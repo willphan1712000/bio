@@ -89,6 +89,10 @@
                 const icon = (<?=json_encode($socialIconArr);?>)
                 
                 for(let i = 0; i < socialName.length; i++) {
+                    let string = socialName[i], displayString = string[0]
+                    for(let j = 1; j < string.length; j++) {
+                        displayString += (string[j] === string[j].toUpperCase()) ? ' ' + string[j] : string[j]
+                    }
                     let inputmode = '', codeDisplay = 'flex', placeholder = '';
                     if(socialName[i] === 'Mobile' || socialName[i] === 'Work') {
                         inputmode = 'numeric'
@@ -98,12 +102,12 @@
                     if(socialName[i] === 'Messenger') {
                         placeholder = 'Facebook Username'
                     } else if (socialName[i] === 'Mobile' || socialName[i] === 'Work' || socialName[i] === 'Zalo') {
-                        placeholder = `${socialName[i]} phone number here`
+                        placeholder = `${displayString} phone number here`
                     } else {
-                        placeholder = `${socialName[i]} link here`
+                        placeholder = `${displayString} link here`
                     }
                     
-                    $("#social-media").append(`<div class="social ${socialName[i]}"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><form action=""><label for="social__info">${socialName[i]}</label><span></span><br></br><div class="inputWrapper"><div class="countryCode" style="display: ${codeDisplay}" data-index><div class="flag"><img style="width:100%;height:100%;"></div><p class="code"></p><i class="fa-solid fa-caret-down"></i></div><div class="codeList"><div class="codeList__search"><input name = "search" id = "searchCountry" type="text" placeholder="Search Country"></div><div class="codeList__list"></div></div><input id="social__info" placeholder="${placeholder}" autocomplete="on" name="${socialName[i]}" type="text" inputmode="${inputmode}" id="social__info"></div></form></div></div></div>`)
+                    $("#social-media").append(`<div class="social ${socialName[i]}"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><form action=""><label for="social__info">${displayString}</label><span></span><br></br><div class="inputWrapper"><div class="countryCode" style="display: ${codeDisplay}" data-index><div class="flag"><img style="width:100%;height:100%;"></div><p class="code"></p><i class="fa-solid fa-caret-down"></i></div><div class="codeList"><div class="codeList__search"><input name = "search" id = "searchCountry" type="text" placeholder="Search Country"></div><div class="codeList__list"></div></div><input id="social__info" placeholder="${placeholder}" autocomplete="on" name="${socialName[i]}" type="text" inputmode="${inputmode}" id="social__info"></div></form></div></div></div>`)
                 }
                 fetch("/src/module/countryCodes.json").then(res => res.json()).then(data => {
                     let htmlList = '', htmlCountryCode = '', index = ''

@@ -68,6 +68,10 @@
                     const icon = (<?=json_encode($socialIconArr);?>)
                     fetch("/src/module/countryCodes.json").then(res => res.json()).then(data => {
                         for(let i = 0; i < socialName.length; i++) {
+                            let string = socialName[i], displayString = string[0]
+                            for(let j = 1; j < string.length; j++) {
+                                displayString += (string[j] === string[j].toUpperCase()) ? ' ' + string[j] : string[j]
+                            }
                             let prefix, index, number, dial_code, href
                             if(infoArray[socialName[i]] !== '') {
                                 // prefix configuration
@@ -94,7 +98,7 @@
                                     href = `${prefix + infoArray[socialName[i]]}`
                                 }
                             }
-                            $("#social-media").append(`<div class="social ${socialName[i]}" style="display: ${(infoArray[socialName[i]] === "") ? "none" : ""};"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><div><p>${socialName[i]}</p><a href="${href}" style="text-decoration: none; color: #000;">${infoArray[socialName[i]]}</a></div></div></div></div>`)
+                            $("#social-media").append(`<div class="social ${socialName[i]}" style="display: ${(infoArray[socialName[i]] === "") ? "none" : ""};"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><div><p>${displayString}</p><a href="${href}" style="text-decoration: none; color: #000;">${infoArray[socialName[i]]}</a></div></div></div></div>`)
                         }
                     })
                 }
