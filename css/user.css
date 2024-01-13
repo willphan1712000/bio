@@ -62,6 +62,7 @@ a {
     align-items: center;
     flex-direction: column;
     position: relative;
+    padding: 20px;
 }
 .info__img--ava {
     width: 100%;

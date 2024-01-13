@@ -67,7 +67,7 @@ class SystemConfig {
     }
 
     public static function socialIconArr() {
-        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<i class="fa-solid fa-b"></i>', '<i class="fa-solid fa-bowl-food"></i>', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
+        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
     }
 
     public static function deleteFolder($path) {
@@ -111,12 +111,12 @@ class SystemConfig {
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dataname = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dataname = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dataname = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dataname = "bio_allinclicks";
 
     public static function connection() {
         return mysqli_connect(self::$servername, self::$username, self::$password, self::$dataname);
