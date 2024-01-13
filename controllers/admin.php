@@ -103,6 +103,8 @@
                         placeholder = 'Facebook Username'
                     } else if (socialName[i] === 'Mobile' || socialName[i] === 'Work' || socialName[i] === 'Zalo') {
                         placeholder = `${displayString} phone number here`
+                    } else if (socialName[i] === 'Address') {
+                        placeholder = `Choose ${displayString} or ${displayString} link here`
                     } else {
                         placeholder = `${displayString} link here`
                     }

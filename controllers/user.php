@@ -90,7 +90,12 @@
                                 }
                                 // href configuration
                                 if(socialName[i] === 'Address') {
-                                    href = `https://google.com/maps/?q=${infoArray[socialName[i]]}`
+                                    let value = infoArray[socialName[i]]
+                                    if(value.includes('https://')) {
+                                        href = value
+                                    } else {
+                                        href = `https://google.com/maps/?q=${infoArray[socialName[i]]}`
+                                    }
                                 } else {
                                     href = `${prefix + infoArray[socialName[i]]}`
                                 }
