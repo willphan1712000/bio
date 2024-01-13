@@ -100,7 +100,7 @@
                                     href = `${prefix + infoArray[socialName[i]]}`
                                 }
                             }
-                            infoArray[socialName[i]] = longStringHanlding(infoArray[socialName[i]])
+                            infoArray[socialName[i]] = longLinkHandling(infoArray[socialName[i]])
                             $("#social-media").append(`<div class="social ${socialName[i]}" style="display: ${(infoArray[socialName[i]] === "") ? "none" : ""};"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><div><p>${displayString}</p><a href="${href}" style="text-decoration: none; color: #000;">${infoArray[socialName[i]]}</a></div></div></div></div>`)
                         }
                     })
@@ -108,19 +108,14 @@
                 const url = "<?=$url;?>"
                 const type = "index"
 
-                function longStringHanlding(string) {
+                function longLinkHandling(string) {
                     if(string === '') {
-                        return ''
+                        return string
                     }
-                    let displayInfo = ''
-                    for(let i = 0; i < string.length; i++) {
-                        if(i === 69) {
-                            displayInfo += '...'
-                            break
-                        }
-                        displayInfo += string[i]
+                    if(string.includes('https://')) {
+                        string = string.split("?")[0]
                     }
-                    return displayInfo
+                    return string
                 }
 
                 function displayStringHandling(string) {
