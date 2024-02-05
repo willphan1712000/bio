@@ -33,7 +33,7 @@ class Router {
 class SystemConfig {
     public static function globalVariables() {
         return [
-            'v' => 4.2,
+            'v' => 4.3,
             'license' => '© '.date("Y").' Allinclicks. All rights reserved.',
             'product_year' => '2023',
             'title' => 'bio',
@@ -135,12 +135,12 @@ class SystemConfig {
 }
 class Database {
     private static $servername = "localhost:3306";
-    private static $username = "root";
-    private static $password = "";
-    private static $dataname = "allincli_bio";
-    // private static $username = "bio_admin";
-    // private static $password = "123456"; // Default password used by Allinclicks
-    // private static $dataname = "bio_allinclicks";
+    // private static $username = "root";
+    // private static $password = "";
+    // private static $dataname = "allincli_bio";
+    private static $username = "bio_admin";
+    private static $password = "123456"; // Default password used by Allinclicks
+    private static $dataname = "bio_allinclicks";
 
     public static function connection() {
         return mysqli_connect(self::$servername, self::$username, self::$password, self::$dataname);
