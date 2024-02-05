@@ -37,4 +37,8 @@ $router->addRoute('/aic', 'controllers/aic.php');
 $router->addRoute('/aic/', 'controllers/aic.php');
 $router->addRoute('/emailExpire', 'controllers/expire.php');
 $router->addRoute('/emailExpire/', 'controllers/expire.php');
+$router->addRoute('/restore', 'controllers/restore.php');
+$router->addRoute('/restore/', 'controllers/restore.php');
+$router->addRoute('/restoreSignin', 'controllers/restoreSignin.php');
+$router->addRoute('/restoreSignin/', 'controllers/restoreSignin.php');
 $router->route($uri);

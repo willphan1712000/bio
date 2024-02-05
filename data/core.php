@@ -34,23 +34,31 @@ class SystemConfig {
     public static function globalVariables() {
         return [
             'v' => 3.6,
-            'license' => '© 2023 Allinclicks. All rights reserved.',
+            'license' => '© '.date("Y").' Allinclicks. All rights reserved.',
             'product_year' => '2023',
             'title' => 'bio',
             'userTitle' => 'Bio User',
             'adminTitle' => 'Bio Admin',
             'timeSession' => 15*60, // 15 minutes
             'resetExpire' => 10*60, // 10 minutes
+            'resetExpireTxt' => 10, // 10 minutes
             'domain' => 'allinclicksbio.com',
-            'rootEmail' => "_mainaccount@allinclicksbio.com",
+            'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
                 'unknown' => '/img/unknown.png',
                 'logo' => '/img/logo.png',
                 'bio' => '/img/bio.png',
                 '404' => '/img/404.png',
                 'expire' => '/img/expire.png'
-            ]
-            ];
+            ],
+            'deleteWarningMsg' => [
+                'msg1' => 'YOUR BIO ACCOUNT WILL HOLD FOR 60 DAYS',
+                'msg2' => 'After this period, your bio account and your information will be permenantly deleted',
+                'msg3' => 'You can still restore your account under Sign in section',
+                'msg4' => 'Are you sure to proceed?'
+            ],
+            'accountHoldPeriod' => 60*24*60*60
+        ];
     }
     
     // dump and die function used for debug process
@@ -60,6 +68,14 @@ class SystemConfig {
         echo "</pre>";
     
         die();
+    }
+
+    public static function account() {
+        return ["username", "email", "password", "token", "deleteToken"];
+    }
+
+    public static function infoArr() {
+        return ["username", "image", "name", "organization", "description"];
     }
 
     public static function socialNameArr() {
@@ -108,15 +124,23 @@ class SystemConfig {
             }
         }
     }
+
+    public static function emailAuth() {
+        return [
+            'host' => 'mi3-tr103.supercp.com',
+            'username' => 'bio@allinclicksbio.com',
+            'password' => 'Allinclicks123200@'
+        ];
+    }
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dataname = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dataname = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dataname = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dataname = "bio_allinclicks";
 
     public static function connection() {
         return mysqli_connect(self::$servername, self::$username, self::$password, self::$dataname);

@@ -5,6 +5,7 @@
     require "./data/vendor1/autoload.php";
     $g = SystemConfig::globalVariables();
     $conn = Database::connection();
+    $emailAuth = SystemConfig::emailAuth();
     if(isset($_POST['submit'])) {
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -45,7 +46,7 @@
                 $subject = "Allinclicks, All rights reserved. ".$g['product_year'];
                 $txt = "<h1>Reset Password</h1><p>Click on the link below to reset your password</p>";
                 $txt .= "<p><a href=\"https://".$link."\" target=\"_blank\">Reset Link</a></p>";
-                $txt .= "<p>Note: The link is going to expire in ".$g['resetExpire']." minutes!</p>";
+                $txt .= "<p>Note: The link is going to expire in ".$g['resetExpireTxt']." minutes!</p>";
                 $txt .= "<h3>Please, do not reply to this email.</h3>";
                 // $headers = "From: ". $g['rootEmail'] . "\r\n";
                 // $headers .= "Content-type: text/html\r\n";
@@ -57,10 +58,10 @@
                     //Server settings
                     // $mail->SMTPDebug = 2;
                     $mail->isSMTP();                                            //Send using SMTP
-                    $mail->Host       = 'mi3-tr103.supercp.com';                     //Set the SMTP server to send through
+                    $mail->Host       = $emailAuth['host'];                     //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    $mail->Username   = 'bio@allinclicksbio.com';                     //SMTP username
-                    $mail->Password   = 'Allinclicks123200@';                               //SMTP password
+                    $mail->Username   = $emailAuth['username'];                     //SMTP username
+                    $mail->Password   = $emailAuth['password'];                               //SMTP password
                     $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
                     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                     $mail->SMTPOptions = array(
@@ -72,10 +73,10 @@
                     );
 
                     //Recipients
-                    $mail->setFrom('bio@allinclicksbio.com', 'Allinclicks');
+                    $mail->setFrom($g['rootEmail'], 'Allinclicks');
                     $mail->addAddress($to);     //Add a recipient
                     // $mail->addAddress('ellen@example.com');               //Name is optional
-                    // $mail->addReplyTo('bio@allinclicksbio.com', 'Allinclicks');
+                    // $mail->addReplyTo($g['rootEmail'], 'Allinclicks');
                     // $mail->addCC('cc@example.com');
                     // $mail->addBCC('bcc@example.com');
 

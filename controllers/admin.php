@@ -1,13 +1,23 @@
 <?php
-   $g = SystemConfig::globalVariables();
-   $conn = Database::connection();
+    $g = SystemConfig::globalVariables();
+    $conn = Database::connection();
     $username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
+    // Check if there is a deleteToken. If so, redirect to restore page
+    $deleteTokenQuery = mysqli_query($conn, "SELECT deleteToken FROM user WHERE username = '$username'");
+    $deleteToken = mysqli_fetch_assoc($deleteTokenQuery)['deleteToken'];
     SESSION_START();
     if(isset($_SESSION[$username])) {
         if(time() - $_SESSION['last_time_'.$username] > $g['timeSession']) {
             unset($_SESSTION[$username]);
             header("Location: /signin");
         } else {
+            if($deleteToken !== "") {
+                if(time() - $deleteToken < $g["accountHoldPeriod"]) {
+                    header("Location: /restore?username=".$username);
+                } else {
+                    header("Location: /signin");
+                }
+            }
             $_SESSION['last_time_'.$username] = time();
         }
     } else {
@@ -49,7 +59,10 @@
         <div class="warning__parent">
             <div class="warning__child">
                 <i class="fa-solid fa-circle-exclamation"></i>
-                <p>Warning, your bio account and your information will be deleted, are you sure you want to proceed?</p>
+                <p><?=$g['deleteWarningMsg']['msg1'];?></p></br>
+                <p><?=$g['deleteWarningMsg']['msg2'];?></p></br>
+                <p><?=$g['deleteWarningMsg']['msg3'];?></p></br>
+                <p><?=$g['deleteWarningMsg']['msg4'];?></p></br>
                 <div class="btn">
                     <div class="btn__ele btn__confirm">Yes</div>
                     <div class="btn__ele btn__back">No</div>
@@ -57,6 +70,9 @@
             </div>
         </div>
         <div class="adminSection">
+            <div class="backToBio">
+                <a href="/<?=$username;?>"><i class="fa-solid fa-arrow-left"></i></a>
+            </div>
             <div class="info">
                 <div class="info__img info__img--ava">
                     <div class="info__img--remove"><i class="fa-solid fa-x"></i></div>
@@ -77,6 +93,12 @@
                             <input type="text" id="name" name="name" autocomplete="on">
                         </form>
                     </div>
+                    <div class="info__org">
+                        <form action="">
+                            <label for="org">Organization</label>
+                            <input type="text" id="org" name="org" autocomplete="on">
+                        </form>
+                    </div>
                     <div class="info__des admin">
                         <label for="des">Description</label>
                         <textarea name="des" id="des"></textarea>
@@ -87,6 +109,7 @@
             <script>
                 const socialName = (<?=json_encode($socialNameArr);?>)
                 const icon = (<?=json_encode($socialIconArr);?>)
+                const time = (<?=time();?>)
                 
                 for(let i = 0; i < socialName.length; i++) {
                     let string = socialName[i], displayString = string[0]
@@ -160,11 +183,11 @@
         </div>
         <div class="adminBtn">
             <div class="adminBtn__ele adminBtn__save"><span><i class="fa-solid fa-check"></i> Save</span></div>
-            <div class="adminBtn__ele adminBtn__delete"><span><i class="fa-solid fa-trash"></i> Delete</span></div>
             <div class="adminBtn__ele adminBtn__index"><span>Go To Bio <i class="fa-solid fa-arrow-right"></i></span></div>
             <form action="" method="POST">
                 <button style = "border: none; color: #000;" name="signout" class="adminBtn__ele adminBtn__index"><span>Sign out</span><i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
+            <div class="adminBtn__ele adminBtn__delete"><span><i class="fa-solid fa-trash"></i> Delete Account</span></div>
         </div>
         <div id="copyright">
         <p><?=$g['license'];?></p>

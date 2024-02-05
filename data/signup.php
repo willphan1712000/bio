@@ -72,7 +72,7 @@
         $output->set($isDuplicated, $isEmailValid, $isLengthValid, $hasUpperCase, $hasDigit, $hasSpecialChar);
 
         if(!$isDuplicated && $isEmailValid && $isLengthValid && $hasUpperCase && $hasDigit && $hasSpecialChar) {
-            mysqli_query($conn, "INSERT INTO user VALUES('$username', '$email', '$password', '')");
+            mysqli_query($conn, "INSERT INTO user VALUES('$username', '$email', '$password', '', '')");
         }
 
         echo json_encode($output->getData());

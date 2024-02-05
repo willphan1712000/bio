@@ -54,6 +54,9 @@ a {
     align-items: center;
     height: auto;
     margin: 20px;
+    padding: 10px;
+    border: solid 1.5px #000;
+    border-radius: 20px;
 }
 .info__img {
     aspect-ratio: 1;
@@ -112,6 +115,10 @@ a {
 }
 .info__name {
     width: -webkit-fill-available;
+}
+.info__org {
+    width: -webkit-fill-available;
+    margin-top: 10px;
 }
 .info__des {
     display: flex;
@@ -179,8 +186,8 @@ a {
     margin: 0px 5px;
 }
 .adminBtn__ele.adminBtn__delete {
-    background-color: rgba(255, 0, 0, 0.6);
-    color: #fff;
+    width: auto;
+    padding: 15px;
 }
 .warning__parent {
     background-color: #0000002b;
@@ -212,6 +219,9 @@ a {
     flex-direction: column;
     padding: 20px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.warning__child p {
+    text-align: center;
 }
 .warning__child i {
     font-size: 45px;
@@ -389,6 +399,21 @@ a {
 .codeList__list > .each:hover {
     background-color: #d9d9d9;
 }
+.backToBio {
+    display: flex;
+    justify-content: flex-end;
+}
+.backToBio > a {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    aspect-ratio: 1;
+    height: 40px;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 0;
+}
 
 @media screen and (max-width: 600px) {
     .adminSection {
@@ -412,7 +437,10 @@ a {
         margin: 15px 0px;
         padding: 20px;
     }
-    .info__name h1 {
+    .info__name > * {
+        text-align: center;
+    }
+    .info__org > * {
         text-align: center;
     }
     .info__des h3 {

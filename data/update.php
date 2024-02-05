@@ -7,7 +7,7 @@
     $conn = Database::connection();
     $json = file_get_contents("php://input");
     $body = json_decode($json);
-    // There are 'create', 'info', 'getInfo', 'delete', 'avaDelete', 'getUserInfo'
+    // There are 'create', 'info', 'getInfo', 'delete', 'avaDelete', 'getUserInfo', 'mainPage', 'deleteToken', 'restoreAccount'
     if($body->type === 'create') {
         // Already fetched variables
         $username = $body->username;
@@ -91,7 +91,7 @@
                 // VCard creation here
                 if($socialName !== 'image') {
                     if($socialName === 'name') {
-                        $vCardContentPhp .= 'N;CHARSET=utf-8:'.$name.';;;;\nFN;CHARSET=utf-8:'.$value.'\n';
+                        $vCardContentPhp .= 'N;CHARSET=utf-8:'.$value.';;;;\nFN;CHARSET=utf-8:'.$value.'\n';
                     }
                     else if ($socialName === 'description') {
                         $vCardContentPhp .= 'NOTE;CHARSET=utf-8:'.$value.'\n';
@@ -123,11 +123,13 @@
                     else if($socialName === 'Address') {
                         $vCardContentPhp .= 'URL;TYPE=Address:https://google.com/maps/?q='.$value.'\n';
                     }
+                    else if($socialName === 'organization') {
+                        $vCardContentPhp .= 'ORG:'.$value.'\n';
+                    }
                     else {
                         $vCardContentPhp .= 'URL;TYPE='.$socialName.':'.$value.'\n';
                     }
                 }
-
             }
         }
         
@@ -145,15 +147,16 @@
         while($row = mysqli_fetch_assoc($getColumnQuery)) {
             $columns[] = $row["Field"];
         }
-        unset($columns[0]); // Remove username
-        unset($columns[1]); // Remove image
-        unset($columns[2]); // Remove name
-        unset($columns[3]); // Remove description
-        $socialNameArr = SystemConfig::socialNameArr();
+        $alls = array_merge(SystemConfig::infoArr(), SystemConfig::socialNameArr());
 
-        foreach(SystemConfig::socialNameArr() as $ele) {
-            if(!in_array($ele, $columns)) {
-                mysqli_query($conn, "ALTER TABLE info ADD COLUMN ".$ele." varchar(200) NOT NULL");
+        foreach($alls as $all) {
+            if(!in_array($all, $columns)) {
+                mysqli_query($conn, "ALTER TABLE info ADD COLUMN ".$all." varchar(200) NOT NULL");
+            }
+        }
+        foreach($columns as $column) {
+            if(!in_array($column, $alls)) {
+                mysqli_query($conn, "ALTER TABLE info DROP COLUMN ".$column);
             }
         }
 
@@ -192,5 +195,34 @@
             $userArray[] = $row;
         }
         echo json_encode($userArray);
+    }
+    elseif ($body->type === 'mainPage') {
+        $userColumnQuery = mysqli_query($conn, "DESCRIBE user");
+        $columns = [];
+        while($col = mysqli_fetch_assoc($userColumnQuery)) {
+            $columns[] = $col['Field'];
+        }
+        foreach(SystemConfig::account() as $ele) {
+            if(!in_array($ele, $columns)) {
+                mysqli_query($conn, "ALTER TABLE user ADD COLUMN ".$ele." varchar(200) NOT NULL");
+            }
+        }
+        foreach($columns as $column) {
+            if(!in_array($column, SystemConfig::account())) {
+                mysqli_query($conn, "ALTER TABLE user DROP COLUMN ".$column);
+            }
+        }
+        echo(true);
+    }
+    elseif ($body->type === 'deleteToken') {
+        $token = $body->token;
+        mysqli_query($conn, "UPDATE user SET deleteToken = '$token'");
+        echo(true);
+    }
+    elseif($body->type === 'restoreAccount') {
+        $username = $body->username;
+        if(mysqli_query($conn, "UPDATE user SET deleteToken = '' WHERE username ='$username'")) {
+            echo(true);
+        }
     }
 ?>

@@ -18,6 +18,7 @@ $(document).ready(function() {
             break
         case 'aic':
             aic()
+            runCheckDatabase()
             break
         case 'forgot':
             forgot()
@@ -28,6 +29,27 @@ $(document).ready(function() {
         case 'resetPass':
             resetPass()
             break
+        case 'restore':
+            restore()
+            break
+    }
+
+    function runCheckDatabase() {
+        $.ajax({
+            url: "/data/update.php",
+            method: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "mainPage"
+            }),
+            success: function(e) {
+                if(e)
+                console.log("Database has been checked and updated")
+            },
+            error: function() {
+                console.log("Error")
+            }
+        })
     }
     
     function signupPage() {
@@ -97,6 +119,7 @@ $(document).ready(function() {
                     if(list !== undefined) {
                         $(".info__img .uploadImg__filename").val(list.image)
                         $(".info__name #name").val(list.name)
+                        $(".info__org #org").val(list.organization)
                         $(".info__des #des").val(list.description)
                         fetch("/src/module/countryCodes.json").then(res => res.json()).then(data => {
                             for(let i = 0; i < socialName.length; i++) {
@@ -140,9 +163,10 @@ $(document).ready(function() {
         })
         // Click confirm button, the do the work below
         $(".warning__child .btn__confirm").click(function() {
-            let listForUpdate = {}
-            listForUpdate.type = "delete",
-            listForUpdate.username = username
+            let listForUpdate = {
+                type: "deleteToken",
+                token: time
+            }
             $.ajax({
                 url: "/data/update.php",
                 method: "POST",
@@ -153,9 +177,6 @@ $(document).ready(function() {
                     if(e) {
                         window.location.href = "/";
                     }
-                },
-                error: function() {
-                    
                 }
             })
         })
@@ -236,6 +257,7 @@ $(document).ready(function() {
                 listForUpdate.username = username
                 listForUpdate.image = $(".info__img .uploadImg__filename").val()
                 listForUpdate.name = $(".info__name #name").val()
+                listForUpdate.organization = $(".info__org #org").val()
                 listForUpdate.description = $(".info__des #des").val()
                 for(let i = 0; i < socialName.length; i++) {
                     if(socialName[i] === 'Messenger') {
@@ -280,7 +302,8 @@ $(document).ready(function() {
                             $(".successMsg").addClass("active")
                             setTimeout(()=>{
                                 $(".successMsg").removeClass("active")
-                            }, 2000)
+                                window.location.href = `/${username}`
+                            }, 1000)
                         }
                     },
                     error: function() {
@@ -372,5 +395,47 @@ $(document).ready(function() {
     function resetPass() {
         $$("#password").passShowHide().run()
         $$("#verifyPassword").passShowHide().run()
+    }
+
+    function restore() {
+        $(".btn__ele--restore").click(function() {
+            $.ajax({
+                url: "/data/update.php",
+                method: "POST",
+                dataType: "json",
+                data: JSON.stringify({
+                    type: "restoreAccount",
+                    username: username
+                }),
+                success: function(e) {
+                    if(e) {
+                        window.location.href = `/`
+                    }
+                },
+                error: function() {
+
+                }
+            })
+        })
+        $(".btn__ele--delete").click(function() {
+            $.ajax({
+                url: "/data/update.php",
+                method: "POST",
+                dataType: "html",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    type: "delete",
+                    username: username
+                }),
+                success: function(e) {
+                    if(e) {
+                        window.location.href = "/";
+                    }
+                },
+                error: function() {
+                    
+                }
+            })
+        })
     }
 })

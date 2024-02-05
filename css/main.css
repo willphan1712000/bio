@@ -316,6 +316,31 @@ h2, h5 {
     padding: 15px;
     margin: 10px 10px 0px 10px;
 }
+
+.restore__msg {
+    text-align: center;
+    padding: 10px;
+}
+.btn__restore {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.btn__ele {
+    background-color: var(--main-deepColor);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.btn__ele--delete {
+    background-color: #ffba5e;
+}
 /* Web responsive */
 @media screen and (max-width: 600px) {
     .heading {

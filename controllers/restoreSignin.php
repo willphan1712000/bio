@@ -49,7 +49,7 @@
     </div>
     <div class="signupParent">
         <div class="signupChild">
-            <h1>Sign In</h1>
+            <h1>Restore you account</h1>
             <span class="signupChild__error"><?=$error;?></span>
             <form action="" id="signup" method="POST">
                 <div class="inputField">
@@ -60,11 +60,9 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" autocomplete="on" value="<?=$password;?>" required>
                 </div>
-                <button type="submit" name="submit" class="signupChild__confirm--php">Log in</button>
+                <button type="submit" name="submit" class="signupChild__confirm--php">Retrieve</button>
             </form>
-            <p class="signupChild__msg">Not have an account? <a href="/signup">Sign up</a>
             <p class="signupChild__msg"><a href="/forgot">Forgot password?</a>
-            <p class="signupChild__msg"><a href="/restoreSignin">Restore Account</a>
         </div>
     </div>
     <div id="copyright">

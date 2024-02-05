@@ -1,0 +1,10 @@
+user/
+src/
+public/
+node_modules/
+composer.json
+composer.lock
+package-lock.json
+package.json
+tailwind.config.js
+webpack.config.js

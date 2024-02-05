@@ -48,6 +48,11 @@
                             <h1><?=$infoArray['name'];?></h1>
                         </div>
                     </div>
+                    <div class="info__org">
+                        <div>
+                            <h2><?=$infoArray['organization'];?></h2>
+                        </div>
+                    </div>
                     <div class="info__des">
                         <div>
                             <h3><?=$infoArray['description'];?></h3>
