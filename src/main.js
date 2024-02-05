@@ -350,7 +350,7 @@ $(document).ready(function() {
                     3: 'Email',
                     4: 'Password',
                     5: 'Token',
-                    6: 'Delate Token',
+                    6: 'Delete Token',
                     7: 'Bio',
                     8: 'Admin',
                     9: 'Delete'

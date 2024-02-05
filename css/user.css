@@ -80,8 +80,10 @@ a {
 .info__img img {
     object-fit: contain;
     width: 100%;
-    height: 100%;
     cursor: pointer;
+}
+.info .info__about > * {
+    text-align: center;
 }
 .info__img--choose {
     margin-top: 5px;

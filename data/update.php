@@ -70,7 +70,7 @@
         }
         $vCardContentPhp = '<?php $vCardContent="BEGIN:VCARD\nVERSION:3.0\nREV:2023-12-08T06:00:48Z\n';
         $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
-
+        
         // Check if there is a username in the database
         if(!$isUsernameExist) {
             mysqli_query($conn, "INSERT INTO info (username) VALUES('$username')");
