@@ -80,6 +80,7 @@ a {
 .info__img img {
     object-fit: contain;
     width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 .info__img--choose {
@@ -95,13 +96,14 @@ a {
 }
 .info__img--remove {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20%;
+    right: 20%;
     background-color: var(--main-color);
     border-radius: 50%;
     padding: 10px;
     cursor: pointer;
     aspect-ratio: 1;
+    width: 40px;
     height: 40px;
     text-align: center;
 }
@@ -413,6 +415,7 @@ a {
     text-align: center;
     margin: 10px;
     margin-bottom: 0;
+    color: #000;
 }
 
 @media screen and (max-width: 600px) {

@@ -216,7 +216,8 @@
     }
     elseif ($body->type === 'deleteToken') {
         $token = $body->token;
-        mysqli_query($conn, "UPDATE user SET deleteToken = '$token'");
+        $username = $body->username;
+        mysqli_query($conn, "UPDATE user SET deleteToken = '$token' WHERE username = '$username'");
         echo(true);
     }
     elseif($body->type === 'restoreAccount') {

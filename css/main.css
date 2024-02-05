@@ -96,6 +96,7 @@ h2, h5 {
 }
 .signupChild h1 {
     margin-bottom: 60px;
+    text-align: center;
 }
 .signupChild .inputField {
     margin: 5px 0px 25px 0px;

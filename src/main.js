@@ -165,7 +165,8 @@ $(document).ready(function() {
         $(".warning__child .btn__confirm").click(function() {
             let listForUpdate = {
                 type: "deleteToken",
-                token: time
+                token: time,
+                username: username
             }
             $.ajax({
                 url: "/data/update.php",
@@ -349,9 +350,10 @@ $(document).ready(function() {
                     3: 'Email',
                     4: 'Password',
                     5: 'Token',
-                    6: 'Bio',
-                    7: 'Admin',
-                    8: 'Delete'
+                    6: 'Delate Token',
+                    7: 'Bio',
+                    8: 'Admin',
+                    9: 'Delete'
                 }
                 $$("#userData", headerObj, userObj).table().create()
                 spinner.hide()
