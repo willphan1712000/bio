@@ -1,5 +1,4 @@
 user/
-src/
 public/
 node_modules/
 composer.json
@@ -8,3 +7,4 @@ package-lock.json
 package.json
 tailwind.config.js
 webpack.config.js
+.DS_Store
