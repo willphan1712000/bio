@@ -33,7 +33,7 @@ class Router {
 class SystemConfig {
     public static function globalVariables() {
         return [
-            'v' => 4.1,
+            'v' => 4.2,
             'license' => '© '.date("Y").' Allinclicks. All rights reserved.',
             'product_year' => '2023',
             'title' => 'bio',

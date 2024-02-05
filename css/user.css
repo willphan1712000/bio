@@ -106,6 +106,7 @@ a {
     width: 40px;
     height: 40px;
     text-align: center;
+    z-index: 1;
 }
 .info__about {
     display: flex;
@@ -439,12 +440,6 @@ a {
         width: 100%;
         margin: 15px 0px;
         padding: 20px;
-    }
-    .info__name > * {
-        text-align: center;
-    }
-    .info__org > * {
-        text-align: center;
     }
     .info__des h3 {
         text-align: center;

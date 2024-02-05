@@ -77,8 +77,8 @@
                 <div class="info__img info__img--ava">
                     <input type="file" class="uploadImg" accept="image/*" name="uploadImg" hidden>
                     <input type="text" class="uploadImg__filename" name="uploadImg__filename" hidden>
+                    <div class="info__img--remove"><i class="fa-solid fa-x"></i></div>
                     <div class="info__img--location">
-                        <div class="info__img--remove"><i class="fa-solid fa-x"></i></div>
                         <img src="" alt="">
                     </div>
                 </div>
