@@ -193,6 +193,7 @@ a {
 .adminBtn__ele.adminBtn__delete {
     width: auto;
     padding: 15px;
+    font-size: 0.8rem;
 }
 .warning__parent {
     background-color: #0000002b;
@@ -442,6 +443,7 @@ a {
         width: 100%;
         margin: 15px 0px;
         padding: 20px;
+        font-size: 1rem;
     }
     .info__des h3 {
         text-align: center;

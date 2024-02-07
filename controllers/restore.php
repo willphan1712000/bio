@@ -14,7 +14,7 @@
         }
     }
     //===========================
-    $deleteTokenQuery = mysqli_query($conn, "SELECT deleteToken from user");
+    $deleteTokenQuery = mysqli_query($conn, "SELECT deleteToken FROM user WHERE username = '$username'");
     $deleteToken = mysqli_fetch_assoc($deleteTokenQuery)['deleteToken'];
     if($deleteToken !== '') {
         $dayLeft = ($g['accountHoldPeriod'] - time() + $deleteToken)/(24*60*60);

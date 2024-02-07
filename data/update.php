@@ -170,16 +170,7 @@
     }
     elseif ($body->type === 'delete') {
         $username = $body->username;
-        if(SystemConfig::deleteFolder("../user/".$username)) {
-            $folderDeleted = true;
-        }
-        if(mysqli_query($conn, "DELETE FROM user WHERE username = '$username'")) {
-            $userDeleted = true;
-        }
-        if(mysqli_query($conn, "DELETE FROM info WHERE username = '$username'")) {
-            $infoDeleted = true;
-        }
-        echo ($folderDeleted && $userDeleted && $infoDeleted) ? true : false;
+        echo SystemConfig::deleteAccount($username);
     }
     elseif ($body->type === 'avaDelete') {
         $username = $body->username;

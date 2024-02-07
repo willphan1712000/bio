@@ -15,7 +15,9 @@
                 if(time() - $deleteToken < $g["accountHoldPeriod"]) {
                     header("Location: /restore?username=".$username);
                 } else {
-                    header("Location: /signin");
+                    if(SystemConfig::deleteAccount($username)) {
+                        header("Location: /signin");
+                    }
                 }
             }
             $_SESSION['last_time_'.$username] = time();
