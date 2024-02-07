@@ -186,7 +186,7 @@
         <div class="adminBtn">
             <div class="adminBtn__ele adminBtn__save"><span><i class="fa-solid fa-check"></i> Save</span></div>
             <div class="adminBtn__ele adminBtn__index"><span>Go To Bio <i class="fa-solid fa-arrow-right"></i></span></div>
-            <form action="" method="POST">
+            <form action="" method="POST" style="width: 100%;">
                 <button style = "border: none; color: #000;" name="signout" class="adminBtn__ele adminBtn__index"><span>Sign out</span><i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
             <div class="adminBtn__ele adminBtn__delete"><span><i class="fa-solid fa-trash"></i> Delete Account</span></div>
