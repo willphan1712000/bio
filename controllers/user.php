@@ -106,7 +106,7 @@
                                 }
                             }
                             infoArray[socialName[i]] = longLinkHandling(infoArray[socialName[i]])
-                            $("#social-media").append(`<div class="social ${socialName[i]}" style="display: ${(infoArray[socialName[i]] === "") ? "none" : ""};"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><div><p>${displayString}</p><a href="${href}" style="text-decoration: none; color: #000;">${infoArray[socialName[i]]}</a></div></div></div></div>`)
+                            $("#social-media").append(`<div class="social ${socialName[i]}" style="display: ${(infoArray[socialName[i]] === "") ? "none" : ""};"><div class="social__img info__img">${icon[i]}</div><div class="social__info info__about"><div class="info__name"><div><p>${displayString}</p><a href="${href}" target="_blank" style="text-decoration: none; color: #000;">${infoArray[socialName[i]]}</a></div></div></div></div>`)
                         }
                     })
                 }
