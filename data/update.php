@@ -73,7 +73,7 @@
         
         // Check if there is a username in the database
         if(!$isUsernameExist) {
-            mysqli_query($conn, "INSERT INTO info (username) VALUES('$username')");
+            mysqli_query($conn, "INSERT INTO info(`username`) VALUE('$username')");
         }
         // Loop over the body object -> Important task
         foreach($body as $socialName => $value) {

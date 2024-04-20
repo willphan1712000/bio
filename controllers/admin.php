@@ -39,7 +39,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/universal.css?v=<?=$g['v'];?>">
-    <link rel="stylesheet" type="text/css" href="/css/user.css?v=<?=$g['v'];?>">
+    <link rel="stylesheet" type="text/css" href="/css/admin.css?v=<?=$g['v'];?>">
     <title><?=$g['adminTitle'];?></title>
     <script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script>
     <script src="/src/module/jQuery371.js"></script>

@@ -33,7 +33,7 @@ class Router {
 class SystemConfig {
     public static function globalVariables() {
         return [
-            'v' => 4.6,
+            'v' => 5,
             'license' => '© '.date("Y").' Allinclicks. All rights reserved.',
             'product_year' => '2023',
             'title' => 'bio',
@@ -143,7 +143,10 @@ class SystemConfig {
         if(mysqli_query(Database::connection(), "DELETE FROM info WHERE username = '$username'")) {
             $infoDeleted = true;
         }
-        return ($folderDeleted && $userDeleted && $infoDeleted) ? true : false;
+        if(mysqli_query(Database::connection(), "DELETE FROM theme WHERE username = '$username'")) {
+            $themeDeleted = true;
+        }
+        return ($folderDeleted && $userDeleted && $infoDeleted && $themeDeleted) ? true : false;
     }
 }
 class Database {
