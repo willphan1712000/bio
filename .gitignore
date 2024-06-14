@@ -8,3 +8,7 @@ package.json
 tailwind.config.js
 webpack.config.js
 .DS_Store
+theme/*
+src/*
+controllers/*
+css/*

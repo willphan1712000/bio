@@ -1,3 +1,45 @@
+# Enable the use of Expires and Headers module
+ExpiresActive On
+
+# Set default expiration to 300 seconds (5 minutes) from now
+ExpiresDefault "access plus 300 seconds"
+
+# Cache images for 300 seconds
+<FilesMatch "\.(jpg|jpeg|png|gif|ico)$">
+    ExpiresDefault "access plus 300 seconds"
+    Header set Cache-Control "public, max-age=300"
+</FilesMatch>
+
+# Cache CSS and JavaScript files for 300 seconds
+<FilesMatch "\.(css|js)$">
+    ExpiresDefault "access plus 300 seconds"
+    Header set Cache-Control "public, max-age=300"
+</FilesMatch>
+
+# Cache HTML files for 300 seconds
+<FilesMatch "\.(html|htm)$">
+    ExpiresDefault "access plus 300 seconds"
+    Header set Cache-Control "public, max-age=300"
+</FilesMatch>
+
+# Cache JSON files for 300 seconds
+<FilesMatch "\.(json)$">
+    ExpiresDefault "access plus 300 seconds"
+    Header set Cache-Control "public, max-age=300"
+</FilesMatch>
+
+# Cache XML files for 300 seconds
+<FilesMatch "\.(xml)$">
+    ExpiresDefault "access plus 300 seconds"
+    Header set Cache-Control "public, max-age=300"
+</FilesMatch>
+
+# Cache PHP files for 0 seconds
+<FilesMatch "\.(php)$">
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+</FilesMatch>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f

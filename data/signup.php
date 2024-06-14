@@ -1,6 +1,6 @@
 <?php
-    include "core.php";
-    $conn = Database::connection();
+    require "core.php";
+    $conn = Database::preparedConnection();
     class Output {
         private $isDuplicated;
         private $isEmailValid;
@@ -70,10 +70,19 @@
         }
         
         $output->set($isDuplicated, $isEmailValid, $isLengthValid, $hasUpperCase, $hasDigit, $hasSpecialChar);
-
         if(!$isDuplicated && $isEmailValid && $isLengthValid && $hasUpperCase && $hasDigit && $hasSpecialChar) {
-            mysqli_query($conn, "INSERT INTO user VALUES('$username', '$email', '$password', '', '')");
-            mysqli_query($conn, "INSERT INTO theme(`username`, `themeid`) VALUES('$username', '0')");
+            $stmt_user = $conn->prepare("INSERT INTO user(username, email, password) VALUES(?,?,?)");
+            $stmt_user->bind_param("sss", $username, $email, $password);
+            $stmt_user->execute();
+
+            $stmt_template = $conn->prepare("INSERT INTO template(username, themeid) VALUES(?,?)");
+            $stmt_template->bind_param("ss", $username, $themeid);
+            $themeid = "0";
+            $stmt_template->execute();
+
+            $stmt_info = $conn->prepare("INSERT INTO info(username) VALUES(?)");
+            $stmt_info->bind_param("s", $username);
+            $stmt_info->execute();
         }
 
         echo json_encode($output->getData());

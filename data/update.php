@@ -34,7 +34,6 @@
         }
     }
     elseif($body->type === 'info') {
-        $countryCodeArr = json_decode(file_get_contents("../src/module/countryCodes.json"), true);
         // Already fetched variables
         $username = $body->username;
         $filename = $body->image;
@@ -51,30 +50,10 @@
             $body->image = $filename;
             file_put_contents("../user/".$username."/".$filename, base64_decode($body->src));
         }
-        // Check if there is a username in the database
-        $infoUsernameQuery = mysqli_query($conn, "SELECT username FROM info");
-        $isUsernameExist = false;
-        while($row = mysqli_fetch_assoc($infoUsernameQuery)) {
-            if($row['username'] === $username) {
-                $isUsernameExist = true;
-                break;
-            }
-        }
         // Initialize if the variable for if the process is successful
         $isSuccess = false;
-        // VCard content initialization
-        if(!empty($filename)) {
-            $imageData = base64_encode(file_get_contents("../user/".$username."/".$filename));
-        } else {
-            $imageData = "";
-        }
-        $vCardContentPhp = '<?php $vCardContent="BEGIN:VCARD\nVERSION:3.0\nREV:2023-12-08T06:00:48Z\n';
-        $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
+        $isVCardSuccess = false;
         
-        // Check if there is a username in the database
-        if(!$isUsernameExist) {
-            mysqli_query($conn, "INSERT INTO info(`username`) VALUE('$username')");
-        }
         // Loop over the body object -> Important task
         foreach($body as $socialName => $value) {
             if(!($socialName === "type" || $socialName === "src" || $socialName === "username")) {
@@ -88,56 +67,12 @@
                 } else {
                     $isSuccess = true;
                 }
-                // VCard creation here
-                if($socialName !== 'image') {
-                    if($socialName === 'name') {
-                        $vCardContentPhp .= 'N;CHARSET=utf-8:'.$value.';;;;\nFN;CHARSET=utf-8:'.$value.'\n';
-                    }
-                    else if ($socialName === 'description') {
-                        $vCardContentPhp .= 'NOTE;CHARSET=utf-8:'.$value.'\n';
-                    }
-                    else if($socialName === 'Mobile') {
-                        $explode = explode(" ", $value);
-                        $index = $explode[0];
-                        $number = $explode[1];
-                        if($index === '235') {
-                            $number = substr($number, 1);
-                        }
-                        $vCardContentPhp .= 'TEL;TYPE=Mobile;PREF:'.$countryCodeArr[$index]['dial_code'].' '.$number.'\n';
-                    }
-                    else if($socialName === 'Work') {
-                        $explode = explode(" ", $value);
-                        $index = $explode[0];
-                        $number = $explode[1];
-                        if($index === '235') {
-                            $number = substr($number, 1);
-                        }
-                        $vCardContentPhp .= 'TEL;TYPE=Work;PREF:'.$countryCodeArr[$index]['dial_code'].' '.$number.'\n';
-                    }
-                    else if($socialName === 'Email') {
-                        $vCardContentPhp .= 'EMAIL;TYPE=Email:'.$value.'\n';
-                    }
-                    else if($socialName === 'Website') {
-                        $vCardContentPhp .= 'URL:'.$Website.'\n';
-                    }
-                    else if($socialName === 'Address') {
-                        $vCardContentPhp .= 'URL;TYPE=Address:https://google.com/maps/?q='.$value.'\n';
-                    }
-                    else if($socialName === 'organization') {
-                        $vCardContentPhp .= 'ORG:'.$value.'\n';
-                    }
-                    else {
-                        $vCardContentPhp .= 'URL;TYPE='.$socialName.':'.$value.'\n';
-                    }
-                }
             }
         }
         
-        $vCardContentPhp .= 'END:VCARD";header("Content-type: text/vcard");header("Content-Disposition: attachment; filename=\"contact.vcf\"");echo $vCardContent;';
-        $vcard = fopen("../user/".$username."/vcard.php", "w");
-        fwrite($vcard, $vCardContentPhp);
+        $isVCardSuccess = SystemConfig::vCardGeneration($username, $filename, $body);
 
-        if($isSuccess) {
+        if($isSuccess && $isVCardSuccess) {
             echo $filename;
         }
     }

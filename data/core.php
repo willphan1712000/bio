@@ -21,7 +21,7 @@ class Router {
 
     private function abort() {
         http_response_code(404);
-        require 'controllers/404.php';
+        require 'dist/404.php';
         die();
     }
 
@@ -143,23 +143,157 @@ class SystemConfig {
         if(mysqli_query(Database::connection(), "DELETE FROM info WHERE username = '$username'")) {
             $infoDeleted = true;
         }
-        if(mysqli_query(Database::connection(), "DELETE FROM theme WHERE username = '$username'")) {
+        if(mysqli_query(Database::connection(), "DELETE FROM template WHERE username = '$username'")) {
             $themeDeleted = true;
         }
         return ($folderDeleted && $userDeleted && $infoDeleted && $themeDeleted) ? true : false;
     }
+
+    public static function infoProcess($arr) {
+        $infoFormatted = [];
+        foreach($arr as $key => $value) {
+            $display = ($value === NULL || $value === '') ? "none" : "";
+            // Handle username, image, name, description, organization
+            if($key === "username" || $key === "image" || $key === "name" || $key === "description" || $key === "organization") {
+                $infoFormatted[$key] = [
+                    'display' => $display,
+                    'a' => $value
+                ];
+                continue;
+            }
+            // Handle email format
+            if($key === "Email") {
+                $infoFormatted[$key] = [
+                    'display' => $display,
+                    'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$value.'</a>'
+                ];
+                continue;
+            }
+            // Handle phone number
+            if($key === "Mobile" || $key === "Work") {
+                $infoFormatted[$key] = [
+                    'display' => $display,
+                    'a' => '<a href="tel:'.self::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000;">'.self::phoneNumberFormat($value).'</a>'
+                ];
+                continue;
+            }
+            // Handle Address
+            if($key === "Address") {
+                $infoFormatted[$key] = [
+                    'display' => $display,
+                    'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.self::handleLongString($value).'</a>'
+                ];
+                continue;
+            }
+            $infoFormatted[$key] = [
+                'display' => $display,
+                'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.self::handleLongString($value).'</a>'
+            ];
+        }
+        return $infoFormatted;
+    }
+    
+    public static function handleLongString($string) {
+        if($string === "") {
+            return $string;
+        }
+        if(str_contains($string, 'https://')) {
+            $string = explode("?", $string)[0];
+        }
+        if(strlen($string) >= 20) {
+            $string = substr($string, 0, 20);
+            $string .= "...";
+        }
+        return $string;
+    }
+
+    public static function makeSpaceBetweenCharacters($string) {
+        $displayString = $string[0];
+        for($i = 1; $i < strlen($string); $i++) {
+            $displayString .= ($string[$i] === strtoupper($string[$i])) ? ' '.$string[$i] : $string[$i];
+        }
+        return $displayString;
+    }
+
+    public static function phoneNumberFormat($value) {
+        $dial = explode(" ", $value)[1];
+        $number = explode(" ", $value)[2];
+        // dial code vietname
+        if($dial === '+84') {
+            $number = substr($number, 1);
+        }
+        return $dial.' '.$number;
+    }
+
+    public static function vCardGeneration($username, $filename, $body) {
+        // VCard content initialization
+        if(!empty($filename)) {
+            $imageData = base64_encode(file_get_contents("../user/".$username."/".$filename));
+        } else {
+            $imageData = "";
+        }
+        // Vcard begins
+        $vCardContentPhp = '<?php $vCardContent="BEGIN:VCARD\nVERSION:3.0\nREV:2023-12-08T06:00:48Z\n';
+        $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
+        foreach($body as $socialName => $value) {
+            if(!($socialName === 'type' || $socialName === 'src' || $socialName === 'username')) {
+                if($socialName === 'des'){
+                    $value = filter_var($value, FILTER_SANITIZE_STRING);
+                }
+                if($socialName !== 'image') {
+                    if($socialName === 'name') {
+                        $vCardContentPhp .= 'N;CHARSET=utf-8:'.$value.';;;;\nFN;CHARSET=utf-8:'.$value.'\n';
+                    }
+                    else if ($socialName === 'description') {
+                        $vCardContentPhp .= 'NOTE;CHARSET=utf-8:'.$value.'\n';
+                    }
+                    else if($socialName === 'Mobile') {
+                        $vCardContentPhp .= 'TEL;TYPE=Mobile;PREF:'.SystemConfig::phoneNumberFormat($value).'\n';
+                    }
+                    else if($socialName === 'Work') {
+                        $vCardContentPhp .= 'TEL;TYPE=Work;PREF:'.SystemConfig::phoneNumberFormat($value).'\n';
+                    }
+                    else if($socialName === 'Email') {
+                        $vCardContentPhp .= 'EMAIL;TYPE=Email:'.$value.'\n';
+                    }
+                    else if($socialName === 'Website') {
+                        $vCardContentPhp .= 'URL:'.$value.'\n';
+                    }
+                    else if($socialName === 'Address') {
+                        $ext = ($value !== NULL && $value !== '') ? 'https://google.com/maps/?q=' : '';
+                        $vCardContentPhp .= 'URL;TYPE=Address:'.$ext.$value.'\n';
+                    }
+                    else if($socialName === 'organization') {
+                        $vCardContentPhp .= 'ORG:'.$value.'\n';
+                    }
+                    else {
+                        $vCardContentPhp .= 'URL;TYPE='.$socialName.':'.$value.'\n';
+                    }
+                }
+            }
+        }
+        $vCardContentPhp .= 'END:VCARD";header("Content-type: text/vcard");header("Content-Disposition: attachment; filename=\"contact.vcf\"");echo $vCardContent;';
+        $vcard = fopen("../user/".$username."/vcard.php", "w");
+        return !fwrite($vcard, $vCardContentPhp) ? false : true;
+    }
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dataname = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dataname = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dbName = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dbName = "bio_allinclicks";
 
+    // Basic connection (high injection risk)
     public static function connection() {
-        return mysqli_connect(self::$servername, self::$username, self::$password, self::$dataname);
+        return mysqli_connect(self::$servername, self::$username, self::$password, self::$dbName);
+    }
+
+    // Prepared connection (low injection risk)
+    public static function preparedConnection() {
+        return new mysqli(self::$servername, self::$username, self::$password, self::$dbName);
     }
 }
 ?>
