@@ -80,12 +80,10 @@ class Template {
                 <div class="template-img">
                     <img draggable="false" src="'.$this->props['img'].'?'.time().'">
                     <div class="like" data-id="'.$this->props['id'].'" data-pressed="0"><i class="fa-solid fa-heart"></i></div>
-                    <div class="msg like-msg"><p>Liked</p></div>
-                    <div class="msg unlike-msg"><p>Unliked</p></div>
                 </div>
                 <div class="template-choice">
-                    <div class="buy">Buy now</div>
-                    <div class="add"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="buy" data-id="'.$this->props['id'].'">Buy now</div>
+                    <div class="add" data-id="'.$this->props['id'].'" data-pressed="0"><i class="fa-solid fa-cart-shopping"></i></div>
                 </div>
             </div>
         ';

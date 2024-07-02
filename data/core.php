@@ -148,50 +148,6 @@ class SystemConfig {
         }
         return ($folderDeleted && $userDeleted && $infoDeleted && $themeDeleted) ? true : false;
     }
-
-    public static function infoProcess($arr) {
-        $infoFormatted = [];
-        foreach($arr as $key => $value) {
-            $display = ($value === NULL || $value === '') ? "none" : "";
-            // Handle username, image, name, description, organization
-            if($key === "username" || $key === "image" || $key === "name" || $key === "description" || $key === "organization") {
-                $infoFormatted[$key] = [
-                    'display' => $display,
-                    'a' => $value
-                ];
-                continue;
-            }
-            // Handle email format
-            if($key === "Email") {
-                $infoFormatted[$key] = [
-                    'display' => $display,
-                    'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$value.'</a>'
-                ];
-                continue;
-            }
-            // Handle phone number
-            if($key === "Mobile" || $key === "Work") {
-                $infoFormatted[$key] = [
-                    'display' => $display,
-                    'a' => '<a href="tel:'.self::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000;">'.self::phoneNumberFormat($value).'</a>'
-                ];
-                continue;
-            }
-            // Handle Address
-            if($key === "Address") {
-                $infoFormatted[$key] = [
-                    'display' => $display,
-                    'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.self::handleLongString($value).'</a>'
-                ];
-                continue;
-            }
-            $infoFormatted[$key] = [
-                'display' => $display,
-                'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.self::handleLongString($value).'</a>'
-            ];
-        }
-        return $infoFormatted;
-    }
     
     public static function handleLongString($string) {
         if($string === "") {
@@ -235,6 +191,7 @@ class SystemConfig {
         // Vcard begins
         $vCardContentPhp = '<?php $vCardContent="BEGIN:VCARD\nVERSION:3.0\nREV:2023-12-08T06:00:48Z\n';
         $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
+        $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
         foreach($body as $socialName => $value) {
             if(!($socialName === 'type' || $socialName === 'src' || $socialName === 'username')) {
                 if($socialName === 'des'){
@@ -257,6 +214,7 @@ class SystemConfig {
                         $vCardContentPhp .= 'EMAIL;TYPE=Email:'.$value.'\n';
                     }
                     else if($socialName === 'Website') {
+                        $vCardContentPhp .= 'URL:'.self::globalVariables()['domain'].'/'.$username.'\n';
                         $vCardContentPhp .= 'URL:'.$value.'\n';
                     }
                     else if($socialName === 'Address') {

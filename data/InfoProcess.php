@@ -1,0 +1,122 @@
+<?php
+
+class InfoProcess extends SystemConfig {
+    private $info;
+
+    public function __construct($info) {
+        $this->info = $info;
+    }
+    // Handle username
+    public function username() {
+        $key = 'username';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        return [
+            'display' => $display,
+            'a' => $value
+        ];
+    }
+    // Handle image
+    public function image() {
+        $key = 'image';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        return [
+            'display' => $display,
+            'a' => $value
+        ];
+    }
+    // Handle name
+    public function name() {
+        $key = 'name';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        return [
+            'display' => $display,
+            'a' => $value
+        ];
+    }
+    // Handle description
+    public function description() {
+        $key = 'description';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        return [
+            'display' => $display,
+            'a' => $value
+        ];
+    }
+    // Handle organization
+    public function organization() {
+        $key = 'organization';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        return [
+            'display' => $display,
+            'a' => $value
+        ];
+    }
+    // Handle email formatting
+    public function email($element = null) {
+        $key = 'Email';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $element = ($element === NULL || $element === '') ? $value : $element; 
+        return [
+            'display' => $display,
+            'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+        ];
+    }
+
+    // Handle mobile phone number
+    public function mobile($element = null) {
+        $key = 'Mobile';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $element = ($element === NULL || $element === '') ? parent::phoneNumberFormat($value) : $element; 
+        return [
+            'display' => $display,
+            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+        ];
+    }
+
+    // Handle work phone number
+    public function work($element = null) {
+        $key = 'Work';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $element = ($element === NULL || $element === '') ? parent::phoneNumberFormat($value) : $element; 
+        return [
+            'display' => $display,
+            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+        ];
+    }
+
+    // Handle Address
+    public function address($element = null) {
+        $key = 'Address';
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
+        return [
+            'display' => $display,
+            'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+        ];
+    }
+
+    // Handle social media
+    public function social($social, $element = null) {
+        $key = $social;
+        $value = $this->info[$key];
+        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
+        return [
+            'display' => $display,
+            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+        ];
+    }
+}
+
+function infoProcess($info) {
+    return new InfoProcess($info);
+}

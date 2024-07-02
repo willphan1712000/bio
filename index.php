@@ -2,6 +2,8 @@
 require_once "data/core.php";
 require_once "data/components/TemplateComponent.php";
 require_once "data/components/BioTemplateButton.php";
+require_once "data/components/UserFooter.php";
+require_once "data/InfoProcess.php";
 
 $conn = Database::connection();
 $userQuery = mysqli_query($conn, "SELECT *FROM user");
@@ -46,4 +48,6 @@ $router->addRoute('/restoreSignin', 'dist/restoreSignin.php');
 $router->addRoute('/restoreSignin/', 'dist/restoreSignin.php');
 $router->addRoute('/template', 'dist/template.php');
 $router->addRoute('/template/', 'dist/template.php');
+$router->addRoute('/checkout/', 'dist/checkout.php');
+$router->addRoute('/checkout', 'dist/checkout.php');
 $router->route($uri);
