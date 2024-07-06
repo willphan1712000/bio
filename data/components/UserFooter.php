@@ -90,7 +90,6 @@ class UserFooter {
                 }
                 '.$container.' .shareWindow_child .shareWindow__qr {
                     width: 100%;
-                    height: 100%;
                 }
                 '.$container.' .shareWindow__btn {
                     width: 100%;
@@ -120,6 +119,9 @@ class UserFooter {
                 }
                 '.$container.' .shareWindow_parent.image {
                     padding: 50px;
+                }
+                '.$container.' .shareWindow_parent.image .shareWindow_child {
+                    aspect-ratio: 9/16;
                 }
             </style>
             <div class="shareWindow_parent image">

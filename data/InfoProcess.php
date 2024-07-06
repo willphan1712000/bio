@@ -107,13 +107,41 @@ class InfoProcess extends SystemConfig {
     // Handle social media
     public function social($social, $element = null) {
         $key = $social;
-        $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
-        $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
-        return [
-            'display' => $display,
-            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
-        ];
+        switch($key) {
+            case "username":
+                return $this->username();
+                break;
+            case "image":
+                return $this->image();
+                break;
+            case "organization":
+                return $this->organization();
+                break;
+            case "description":
+                return $this->description();
+                break;
+            case "Email":
+                return $this->email();
+                break;
+            case "Address":
+                return $this->address();
+                break;
+            case "Mobile":
+                return $this->mobile();
+                break;
+            case "Work":
+                return $this->work();
+                break;
+            default:
+                $value = $this->info[$key];
+                $display = ($value === NULL || $value === '') ? "none" : ""; 
+                $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
+                return [
+                    'display' => $display,
+                    'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+                ];
+                break;
+        }
     }
 }
 

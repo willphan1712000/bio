@@ -1,4 +1,6 @@
-user/
+user/*
+!user/.gitkeep
+
 public/
 node_modules/
 composer.json
@@ -12,4 +14,5 @@ theme/*
 src/*
 controllers/*
 css/*
+
 secrets/*
