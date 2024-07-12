@@ -5,71 +5,79 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 ?>
 <div id="template-container" style="width:100%;">
 <style>
-.beauty-container {
+.beauty-section {
   border-radius: 20px;
   background-color: #fff;
   display: flex;
   max-width: 480px;
   width: 100%;
-  padding-bottom: 80px;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  overflow: hidden;
 }
-
-.hero-section {
+.hero-banner {
   border-radius: 50%;
-  background: linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%);
-  align-self: stretch;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 20px 66px;
+    background: linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%);
+    align-self: stretch;
+    display: flex;
+    width: 130%;
+    position: relative;
+    top: 0px;
+    left: -58px;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    padding: 0 0px 66px;
+    height: 370px;
 }
-
 .hero-image {
   aspect-ratio: 1.92;
-  object-fit: auto;
+  object-fit: cover;
   object-position: center;
   width: 100%;
-  border-radius: 525px;
+  fill: linear-gradient(270deg, #c504fe 0%, #f718f1 100%);
   align-self: stretch;
 }
-
-.hero-title {
-  color: #fff;
-  font: 900 22px Inter, sans-serif;
+.title-wrapper {
+  position: absolute;
+  top: 56%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
+.hero-title {
+  font: 900 22px Inter, sans-serif;
+  text-align: center;
+}
 .hero-description {
   text-align: center;
-  background-color: #fff;
-  margin-top: 12px;
+  margin-top: 10px;
   font: 400 13px Inter, sans-serif;
+  padding: 0px 70px 0px 70px;
 }
-
-.features-container {
+.feature-icons {
   border-radius: 12px;
   box-shadow: 0 0 12px 2px rgba(181, 49, 161, 0.25);
   background-color: #fff;
   z-index: 10;
   display: flex;
+  margin: auto;
   margin-top: -40px;
-  width: 100%;
+  width: 85%;
   max-width: 369px;
-  gap: 20px;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
   padding: 22px 27px;
+  height: 80px;
 }
-
 .feature-icon {
   aspect-ratio: 1;
   object-fit: auto;
   object-position: center;
   width: 50px;
 }
-
 .cta-container {
   border-radius: 12px;
   box-shadow: 0 0 12px 2px rgba(181, 49, 161, 0.25);
@@ -84,74 +92,81 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   text-align: center;
   padding: 13px 21px;
 }
-
 .cta-button {
+  border-radius: 5px;
+  border: 1px solid #bd00ff;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 15px 60px;
-  white-space: nowrap;
-  font-family: Inter, sans-serif;
-}
-
-.primary-button {
-  background: linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%);
-  color: #fff;
-}
-
-.secondary-button {
-  border-radius: 5px;
-  border: 1px solid #bd00ff;
   margin-top: 16px;
 }
-
-.gradient-text {
+.cta-button:first-child {
+  margin-top: 0;
+}
+.cta-text {
+  font-family: Inter, sans-serif;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%);
 }
-
-.visually-hidden {
+.avatar-wrapper {
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 6px;
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  width: 35%;
+  top: 5%;
+}
+.avatar-img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+#social-media {
+  margin: 10px 0px 10px 0px;
 }
 </style>
 
-<main class="beauty-container">
-  <section class="hero-section">
-    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/179687d76c90ffd05b3b1b80d90c0ee31f024823d3ad7d58c868c7c1ee98c055?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Beauty product showcase" class="hero-image" />
-    <h1 class="hero-title"><?=$infoObject->name()['a'];?></h1>
-    <p class="hero-description">
-    <?=$infoObject->organization()['a'];?>
-    </p>
-    <p class="hero-description">
-    <?=$infoObject->description()['a'];?>
-    </p>
-  </section>
-  
-  <section class="features-container">
-    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9f998daf1a5914f376fea12e07efbe55395c8bf1943ceeb08dd2b7307234ff11?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Feature 1" class="feature-icon" />
-    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/89608fb58786d9ccf68551e93e5ba393ff8851fb9b84d7fab554366c8494af3c?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Feature 2" class="feature-icon" />
-    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/343cc0e154d9e7ed6e679f4ec926be79845cce0c03be37660c2ac01d5bb1f116?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Feature 3" class="feature-icon" />
-    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bd9c75c409cc7f69c0cfc2f5e1edcf38b0405e99d61cafe95b747f0fbb2c7ac?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Feature 4" class="feature-icon" />
-  </section>
-  
-  <section class="cta-container">
-    <button class="cta-button primary-button">Facilities</button>
-    <button class="cta-button secondary-button">Treatments</button>
-    <button class="cta-button secondary-button">
-      <span class="gradient-text">About more</span>
-    </button>
-  </section>
-</main>
+<section class="beauty-section">
+  <header class="hero-banner">
+    <div class="avatar-wrapper">
+      <img draggable="false" src=<?=$props['imgPath']."?v=".time();?> alt="" class="avatar-img">
+    </div>
+    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/dea77032a51d516ad82d4f4cfed164a9c9523bf104fffca6e4ef09b29db5de62?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="hero-image" alt="Beauty product showcase" />
+    <div class="title-wrapper">
+      <h1 class="hero-title"><?=$infoObject->name()['a'];?></h1>
+      <p class="hero-description">
+      <?=$infoObject->organization()['a'];?>
+      </p>
+      <p class="hero-description">
+      <?=$infoObject->description()['a'];?>
+      </p>
+    </div>
+  </header>
+  <div class="feature-icons">
+  <?=$infoObject->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9f998daf1a5914f376fea12e07efbe55395c8bf1943ceeb08dd2b7307234ff11?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="feature-icon" alt="Beauty feature 1" />')['a'];?>
+  <?=$infoObject->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/89608fb58786d9ccf68551e93e5ba393ff8851fb9b84d7fab554366c8494af3c?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="feature-icon" alt="Beauty feature 2" />')['a'];?>
+  <?=$infoObject->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/343cc0e154d9e7ed6e679f4ec926be79845cce0c03be37660c2ac01d5bb1f116?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="feature-icon" alt="Beauty feature 3" />')['a'];?>
+  <?=$infoObject->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bd9c75c409cc7f69c0cfc2f5e1edcf38b0405e99d61cafe95b747f0fbb2c7ac?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="feature-icon" alt="Beauty feature 4" />')['a'];?>
+  </div>
+  <div id="social-media">
+    <?php
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+            echo '
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+            ';
+            }
+        }
+    ?>
+</div>
+</section>
 </div>
 
 <div id="userFooter">

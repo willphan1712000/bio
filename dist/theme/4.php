@@ -3,7 +3,7 @@ $socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline"
 
 $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
 ?> <div id="template-container" style="width:100%;"><style>.beauty-store-container {
-  border-radius: 20px;
+  border-radius: 40px;
   background-color: #fff;
   display: flex;
   max-width: 480px;
@@ -18,10 +18,10 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  min-height: 932px;
   width: 100%;
-  padding-bottom: 80px;
   align-items: center;
+  border-radius: 40px;
+  margin-bottom: 10px;
 }
 
 .background-image {
@@ -52,7 +52,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 49px 60px 0;
+  padding: 25px 60px 0;
 }
 
 .logo-wrapper {
@@ -80,7 +80,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .store-title {
   color: #fff;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 90px;
   font: 700 25px Be Vietnam, sans-serif;
 }
 
@@ -94,7 +94,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .social-icons {
   position: relative;
   display: flex;
-  margin-top: 8px;
+  margin-top: 0px;
   gap: 20px;
   justify-content: space-between;
   padding: 0 20px;
@@ -112,13 +112,15 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
   background-color: #fff;
-  margin-top: 24px;
+  margin-top: 8px;
   width: 100%;
   max-width: 366px;
+  width: 300px;
   color: #a986e2;
   text-align: center;
-  padding: 16px 60px;
+  padding: 10px 60px;
   font: 400 18px Bree Serif, sans-serif;
+  border: none;
 }
 
 .contact-button {
@@ -126,14 +128,16 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
   background-color: #fff;
-  margin-top: 18px;
+  margin-top: 8px;
   width: 100%;
   max-width: 366px;
+  width: 300px;
   color: #a986e2;
   white-space: nowrap;
   text-align: center;
-  padding: 18px 60px;
+  padding: 10px 60px;
   font: 400 18px Bree Serif, sans-serif;
+  border: none;
 }
 
 .footer-section {
@@ -141,7 +145,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   display: flex;
   align-items: center;
   gap: 9px;
-  margin: 19px 0 237px;
+  margin: 10px 0 0px;
   padding: 0 20px;
   justify-content: center;
   flex-direction: column;
@@ -174,15 +178,15 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   width: 21px;
   align-self: stretch;
 }</style><main class="beauty-store-container"><div class="content-wrapper"><img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c4b2362f6ba779394de3a3b1b8f2e67bf84ed59db574f51e0bff4ad560120f8c?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="background-image" alt=""><header class="header-section"><div class="logo-container"><div class="logo-wrapper"><img loading="lazy" src="<?=$props['imgPath']."?v=".time();?>" class="logo" alt="Beauty Store Logo"></div></div><h1 class="store-title"><?=$infoObject->name()['a'];?></h1><p class="store-tagline"><?=$infoObject->organization()['a'];?></p><p class="store-tagline"><?=$infoObject->description()['a'];?></p></header><nav class="social-icons"> <?=$infoObject->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ea41de828736f1e15f80c9282ea77b388e47791a9c9f62b7f37ddd55e4f9230?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'];?> <?=$infoObject->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fca1acb0dd0ed414bda53010526ed7ddcaea708e29305577edfafe6d420f350e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'];?> <?=$infoObject->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/e5eb0d1c72f40ec1fd67015d51ca222901f4ab1634fdcfa55f336ce506df26b2?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'];?> <?=$infoObject->social('X', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8cd8a31ac23e0db3b44e83cd3b3c34b1956646a6758da1abe3ee44a8d52436b1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'];?> </nav> <?=$infoObject->social('Website', ' <button class="cta-button">Shop All</button>')['a'];?> <?=$infoObject->mobile('<button class="contact-button">Contact</button>')['a'];?> <footer class="footer-section"><div class="footer-img"><img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0f9b8c07f7ca146900402bf6683a3f7d6bc792db71df115bf9454f37b3385e94?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-line" alt=""> <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0d73be22492798534bb5818d9d502dd92688efaeeed6b13d949bb8c1bc1ae927?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon" alt="Footer Icon"> <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0f9b8c07f7ca146900402bf6683a3f7d6bc792db71df115bf9454f37b3385e94?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-line" alt=""></div><div id="social-media"> <?php
-            $exception = ["Mobile", "Work", "Facebook", "Instagram", "Website", "Tiktok", "X"];
-            for($i = 0; $i < count($socialNameArr); $i++) {
-              if(!in_array($socialNameArr[$i], $exception)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                echo '
-                    <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
-                ';
-              }
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+            echo '
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+            ';
             }
-        ?> </div></footer></div></main></div><div id="userFooter"> <?php
+        }
+    ?> </div></footer></div></main></div><div id="userFooter"> <?php
         userFooter($props)->render("#userFooter");
     ?> </div><div id="copyright"><p><?=$props['g']['license'];?></p></div>

@@ -9,19 +9,28 @@ class Template {
 
     public static function style($container) {
         echo '<style>
-            .'.$container.' .template {
+            '.$container.' {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                overflow-y: hidden;
+                flex-wrap: nowrap;
+                margin: 5px 0px 5px 0px;
+            }
+            '.$container.' .template {
                 width: 60%;
+                width: 270px;
                 flex-shrink: 0;
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                 margin: 10px;
                 padding: 10px;
                 border-radius: 20px;
             }
-            .'.$container.' .template .template-img {
+            '.$container.' .template .template-img {
                 border-radius: 20px;
                 position: relative;
             }
-            .'.$container.' .template .template-img .like {
+            '.$container.' .template .template-img .like {
                 position: absolute;
                 top: 3%;
                 right: 3%;
@@ -36,27 +45,27 @@ class Template {
                 cursor: pointer;
                 font-size: 20px;
             }
-            .'.$container.' .template .template-img > img {
+            '.$container.' .template .template-img > img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 20px;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             }
-            .'.$container.' .template .template-choice {
+            '.$container.' .template .template-choice {
                 display: flex;
                 flex-direction: row;
                 justify-content:center;
                 align-items: center;
             }
-            .'.$container.' .template .template-choice > * {
+            '.$container.' .template .template-choice > * {
                 border-radius: 20px;
                 margin: 5px;
                 padding: 15px;
                 cursor: pointer;
                 border: solid 2px #000;
             }
-            .'.$container.' .template .template-img .msg {
+            '.$container.' .template .template-img .msg {
                 position: absolute;
                 top: calc(50% - 4%);
                 left: calc(50% - 15%);
@@ -75,15 +84,39 @@ class Template {
     }
 
     public function render() {
+        $props = $this->props;
+        if($props['mode'] === 'purchase') {
+            $choiceDisplay = "flex";
+            $selectDisplay = "none";
+            $likeDisplay = "flex";
+        }
+        elseif ($props['mode'] === 'purchased') {
+            $choiceDisplay = "none";
+            $selectDisplay = "flex";
+            $likeDisplay = "none";
+        }
+        if($props["id"] === $props['chosen']) {
+            $chosenDisplay = "#c1dfc1";
+        } else {
+            $chosenDisplay = "#fff";
+        }
+        if($props["isBought"]) {
+            $buyDisplay = "none";
+        } else {
+            $buyDisplay = "block";
+        }
         echo '
-            <div class="template '.$this->props['id'].'" data-id="'.$this->props['id'].'">
+            <div style="display: '.$buyDisplay.' "class="template '.$props['id'].'" data-id="'.$props['id'].'">
                 <div class="template-img">
-                    <img draggable="false" src="'.$this->props['img'].'?'.time().'">
-                    <div class="like" data-id="'.$this->props['id'].'" data-pressed="0"><i class="fa-solid fa-heart"></i></div>
+                    <img draggable="false" src="'.$props['img'].'?'.time().'">
+                    <div style="display: '.$likeDisplay.'" class="like" data-id="'.$props['id'].'" data-pressed="0"><i class="fa-solid fa-heart"></i></div>
                 </div>
-                <div class="template-choice">
-                    <div class="buy" data-id="'.$this->props['id'].'">Buy now</div>
-                    <div class="add" data-id="'.$this->props['id'].'" data-pressed="0"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="template-choice" style="display: '.$choiceDisplay.'">
+                    <div class="buy" data-id="'.$props['id'].'">Buy now</div>
+                    <div class="add" data-id="'.$props['id'].'" data-pressed="0"><i class="fa-solid fa-cart-shopping"></i></div>
+                </div>
+                <div class="template-choice" style="display: '.$selectDisplay.'">
+                    <div style="background-color: '.$chosenDisplay.'" class="select" data-id="'.$props['id'].'">Select</div>
                 </div>
             </div>
         ';

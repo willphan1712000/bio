@@ -6,7 +6,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 <div id="template-container" style="width:100%;">
 <style>
 .beauty-store-container {
-  border-radius: 20px;
+  border-radius: 40px;
   background-color: #fff;
   display: flex;
   max-width: 480px;
@@ -21,10 +21,10 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  min-height: 932px;
   width: 100%;
-  padding-bottom: 80px;
   align-items: center;
+  border-radius: 40px;
+  margin-bottom: 10px;
 }
 
 .background-image {
@@ -55,7 +55,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 49px 60px 0;
+  padding: 25px 60px 0;
 }
 
 .logo-wrapper {
@@ -83,7 +83,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .store-title {
   color: #fff;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 90px;
   font: 700 25px Be Vietnam, sans-serif;
 }
 
@@ -97,7 +97,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .social-icons {
   position: relative;
   display: flex;
-  margin-top: 8px;
+  margin-top: 0px;
   gap: 20px;
   justify-content: space-between;
   padding: 0 20px;
@@ -115,13 +115,15 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
   background-color: #fff;
-  margin-top: 24px;
+  margin-top: 8px;
   width: 100%;
   max-width: 366px;
+  width: 300px;
   color: #a986e2;
   text-align: center;
-  padding: 16px 60px;
+  padding: 10px 60px;
   font: 400 18px Bree Serif, sans-serif;
+  border: none;
 }
 
 .contact-button {
@@ -129,14 +131,16 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
   background-color: #fff;
-  margin-top: 18px;
+  margin-top: 8px;
   width: 100%;
   max-width: 366px;
+  width: 300px;
   color: #a986e2;
   white-space: nowrap;
   text-align: center;
-  padding: 18px 60px;
+  padding: 10px 60px;
   font: 400 18px Bree Serif, sans-serif;
+  border: none;
 }
 
 .footer-section {
@@ -144,7 +148,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   display: flex;
   align-items: center;
   gap: 9px;
-  margin: 19px 0 237px;
+  margin: 10px 0 0px;
   padding: 0 20px;
   justify-content: center;
   flex-direction: column;
@@ -206,19 +210,19 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
       <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0d73be22492798534bb5818d9d502dd92688efaeeed6b13d949bb8c1bc1ae927?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon" alt="Footer Icon" />
       <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0f9b8c07f7ca146900402bf6683a3f7d6bc792db71df115bf9454f37b3385e94?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-line" alt="" />
     </div>
-      <div id="social-media">
-        <?php
-            $exception = ["Mobile", "Work", "Facebook", "Instagram", "Website", "Tiktok", "X"];
-            for($i = 0; $i < count($socialNameArr); $i++) {
-              if(!in_array($socialNameArr[$i], $exception)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                echo '
-                    <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
-                ';
-              }
+    <div id="social-media">
+    <?php
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+            echo '
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+            ';
             }
-        ?>
-    </div>
+        }
+    ?>
+</div>
     </footer>
   </div>
 </main>

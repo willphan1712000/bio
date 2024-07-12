@@ -1,13 +1,16 @@
 <?php
-
 class UserFooter {
     private $props;
 
-    public function __construct($props) {
+    public function __construct($props, $share) {
         $this->props = $props;
+        $this->share = $share;
     }
 
     public function render($container) {
+        if($this->share) {
+            $this->share = "none";
+        }
         echo '
             <style>
                 '.$container.' {
@@ -90,6 +93,7 @@ class UserFooter {
                 }
                 '.$container.' .shareWindow_child .shareWindow__qr {
                     width: 100%;
+                    object-fit: cover;
                 }
                 '.$container.' .shareWindow__btn {
                     width: 100%;
@@ -148,7 +152,7 @@ class UserFooter {
                     <div class="share__btn image"><i class="fa-solid fa-image"></i>Save e-Business card</div>
                     <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/'.$this->props['username'].'/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
-                    <div class="share__btn edit"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
+                    <div class="share__btn edit" style="display: '.$this->share.'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
                 </div>
             </div>
             <script></script>
@@ -157,5 +161,7 @@ class UserFooter {
 }
 
 function userFooter($props) {
-    return new UserFooter($props);
+    // Retrieve share
+    $share = SystemConfig::URLExtraction('share');
+    return new UserFooter($props, $share);
 }

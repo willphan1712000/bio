@@ -6,7 +6,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 <div id="template-container" style="width:100%;">
 <style>
 .bakery-container {
-  border-radius: 20px;
+  border-radius: 30px;
   background-color: #fff;
   display: flex;
   max-width: 480px;
@@ -14,40 +14,42 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  overflow: hidden;
+  position: relative;
 }
 
 .hero-image {
   aspect-ratio: 1.27;
   object-fit: cover;
   width: 100%;
+  border-radius: 30px 30px 0px 0px;
 }
 
 .tagline {
   color: #a6a6a6;
-  margin-top: 12px;
+  margin-top: 5px;
   font: 400 14px Raleway, sans-serif;
   padding: 0px 30px;
 }
 
 .feature-grid {
   display: flex;
-  margin-top: 22px;
+  margin-top: 15px;
   width: 100%;
   max-width: 378px;
-  gap: 20px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .feature-card {
   border-radius: 10px;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: #ffa3a3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 173px;
-  height: 173px;
-  padding: 23px 31px;
+  width: 150px;
+  height: 150px;
+  padding: 20px;
 }
 
 .feature-icon {
@@ -59,7 +61,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .feature-title {
   font: 400 25px Ramabhadra, sans-serif;
   color: #fff;
-  margin-top: 17px;
+  margin-top: 0px;
 }
 
 .feature-decoration {
@@ -70,7 +72,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 }
 
 .contact-section {
-  margin-top: 32px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -83,10 +85,11 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 15px;
   border: 1px solid rgba(255, 178, 178, 1);
   display: flex;
-  margin-top: 11px;
+  margin-top: 5px;
+  margin-bottom: 25px;
   gap: 20px;
   justify-content: space-between;
-  padding: 10px 49px;
+  padding: 5px 49px;
 }
 
 .social-icon {
@@ -99,14 +102,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 20px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.35);
   background-color: #ffa3a3;
-  margin-top: 36px;
-  width: 382px;
-  max-width: 100%;
+  width: 90%;
   height: 18px;
+  position: absolute;
+  bottom: -5px;
 }
 .backdrop {
   position: relative;
-  margin-bottom: 130px;
+  margin-bottom: 20px;
 }
 .backdrop-child {
     position: absolute;
@@ -114,11 +117,11 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     text-align: center;
     border-radius: 30px 30px 0px 0px;
     background-color: #fff;
-    bottom: -120px;
+    bottom: -30px;
     padding-bottom: 10px;
 }
 .backdrop-child > h1 {
-  margin-top: 20px;
+  margin-top: 10px;
   color: #fea3a3;
 }
 </style>
@@ -139,7 +142,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
       <h2 class="feature-title">Store</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/50f2829c38905973e74af073d4bf0b9dcd15ac7616f2b754f75ca873f1399c1f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
     </article>')['a'];?>
-    <?=$infoObject->social('OrderOnline', '<article class="feature-card">
+    <?=$infoObject->social('Booking', '<article class="feature-card">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8efb78b7313897876caa9ce052502fdaf73f69c1fdb543985f5fa1c1c7880a68?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Book icon" class="feature-icon" />
       <h2 class="feature-title">Book</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aef1d77f6506a99c3e4d297b08667d63c38182fc572aea40508f013ddc7f20af?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
@@ -147,7 +150,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   </section>
   
   <section class="feature-grid">
-  <?=$infoObject->social('', '<article class="feature-card">
+  <?=$infoObject->social('OrderOnline', '<article class="feature-card">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/281ea7c8ef38440065862cb32d4229058493835a026843e66324ad713b396aee?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Products icon" class="feature-icon" />
       <h2 class="feature-title">Products</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6759c04ceb8211fbb9f6b6b6cebeb75076e4cbb56b89fe70b689fba4813c106e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
