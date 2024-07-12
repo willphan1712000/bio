@@ -8,7 +8,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     display: flex;
     max-width: 480px;
     width: 100%;
-    padding-bottom: 80px;
+    padding-bottom: 10px;
     flex-direction: column;
     margin: 0 auto;
   }
@@ -18,7 +18,8 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     width: 100%;
     flex-direction: column;
     align-items: center;
-    padding: 25px 28px;
+    padding: 10px 10px;
+    border-radius: 20px 20px 0px 0px;
   }
   .div-3 {
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
@@ -40,36 +41,38 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   }
   .div-4 {
     color: #fff;
-    margin-top: 22px;
+    margin-top: 15px;
     font: 300 30px Inter, sans-serif;
+    text-align: center;
   }
   .div-5 {
     color: #e2fff3;
     text-align: center;
-    margin-top: 16px;
+    margin-top: 10px;
     font: 300 12px Inter, sans-serif;
   }
   .div-6 {
     border-radius: 5px;
     background-color: #fff;
     align-self: stretch;
-    margin-top: 20px;
+    margin-top: 10px;
     align-items: center;
     color: #29b27c;
     justify-content: center;
-    padding: 18px 60px;
+    padding: 10px 80px;
     font: 500 20px Inter, sans-serif;
     text-align: center;
   }
   .div-7 {
     display: flex;
-    margin-top: 26px;
-    align-items: start;
-    gap: 20px;
+    margin-top: 15px;
+    align-items: center;
     font-size: 9px;
     color: #e2fff3;
     font-weight: 300;
     text-align: center;
+    width: 100%;
+    justify-content: space-between;
   }
   .div-8 {
     display: flex;
@@ -80,13 +83,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     aspect-ratio: 1;
     object-fit: auto;
     object-position: center;
-    width: 56px;
+    width: 45px;
     border-radius: 10px;
     align-self: center;
   }
   .div-9 {
     font-family: Inter, sans-serif;
     margin-top: 9px;
+    color: #fff;
   }
   .div-10 {
     display: flex;
@@ -98,13 +102,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     aspect-ratio: 1;
     object-fit: auto;
     object-position: center;
-    width: 56px;
+    width: 45px;
     border-radius: 10px;
     align-self: center;
   }
   .div-11 {
     font-family: Inter, sans-serif;
     margin-top: 9px;
+    color: #fff;
   }
   .div-12 {
     align-self: stretch;
@@ -117,13 +122,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     aspect-ratio: 1;
     object-fit: auto;
     object-position: center;
-    width: 56px;
+    width: 45px;
     border-radius: 10px;
     align-self: center;
   }
   .div-13 {
     font-family: Inter, sans-serif;
     margin-top: 9px;
+    color: #fff;
   }
   .div-14 {
     display: flex;
@@ -135,13 +141,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     aspect-ratio: 1;
     object-fit: auto;
     object-position: center;
-    width: 56px;
+    width: 45px;
     border-radius: 10px;
     align-self: center;
   }
   .div-15 {
     font-family: Inter, sans-serif;
     margin-top: 9px;
+    color: #fff;
   }
   .div-16 {
     display: flex;
@@ -153,12 +160,13 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     aspect-ratio: 1;
     object-fit: auto;
     object-position: center;
-    width: 56px;
+    width: 45px;
     border-radius: 10px;
   }
   .div-17 {
     font-family: Inter, sans-serif;
     margin-top: 9px;
+    color: #fff;
   }
   .div-18 {
     display: flex;
@@ -229,6 +237,16 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
           class="img-6"
         />
         <div class="div-17">Tiktok</div>
-      </div>')['a'];?> </div></div><div class="div-18"><div class="div-19">Infomation</div><div class="div-20">FAQ</div><div class="div-21">PLANS</div></div></div></div><div id="userFooter"> <?php
+      </div>')['a'];?> </div></div><div id="social-media"> <?php
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+            echo '
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+            ';
+            }
+        }
+    ?> </div></div></div><div id="userFooter"> <?php
         userFooter($props)->render("#userFooter");
     ?> </div><div id="copyright"><p><?=$props['g']['license'];?></p></div>

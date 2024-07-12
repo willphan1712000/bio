@@ -234,15 +234,32 @@ class SystemConfig {
         $vcard = fopen("../user/".$username."/vcard.php", "w");
         return !fwrite($vcard, $vCardContentPhp) ? false : true;
     }
+
+    // this function is for extracting url into base or query string
+    public static function URLExtraction($queryStr = null) {
+        $base = basename(parse_url($_SERVER['REQUEST_URI'])['path']);
+        $query = parse_url($_SERVER['REQUEST_URI'])['query'];
+        parse_str($query, $query_params);
+        $result = isset($query_params[$queryStr]) ? $query_params[$queryStr] : null;
+        return ($queryStr === null) ? $base : $result;
+    }
+
+    // Check if the user is signed
+    public static function isTrue($session) {
+        if($session) {
+            return true;
+        }
+        return false;
+    }
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dbName = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dbName = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dbName = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dbName = "bio_allinclicks";
 
     // Basic connection (high injection risk)
     public static function connection() {
@@ -252,6 +269,144 @@ class Database {
     // Prepared connection (low injection risk)
     public static function preparedConnection() {
         return new mysqli(self::$servername, self::$username, self::$password, self::$dbName);
+    }
+
+    // Query function for fast data retrieval
+    public static function GET($table, $column = null, $unique) {
+        $conn = self::preparedConnection();
+        $stmt = null;
+
+        try {
+            if ($column === null) {
+                $query = "SELECT * FROM " . $table . " WHERE " . $unique;
+                $stmt = $conn->prepare($query);
+            } else {
+                $query = "SELECT " . $column . " FROM " . $table . " WHERE " . $unique;
+                $stmt = $conn->prepare($query);
+            }
+
+            if (!$stmt) {
+                throw new Exception("Failed to prepare the SQL statement.");
+            }
+
+            if (!$stmt->execute()) {
+                throw new Exception("Failed to execute the SQL statement.");
+            }
+
+            $result = $stmt->get_result();
+
+            if (!$result) {
+                throw new Exception("Failed to get the result set.");
+            }
+
+            $r = [];
+            while ($row = $result->fetch_assoc()) {
+                $r[] = $row;
+            }
+
+            $stmt->close();
+
+            if ($r === null) {
+                throw new Exception("No results found.");
+            }
+
+            if ($column !== null) {
+                $rrr = [];
+                foreach ($r as $rr) {
+                    $rrr[] = $rr[$column];
+                }
+                return $rrr;
+            }
+
+            return $r;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return null;
+        }
+
+    }
+
+    public static function PUT($table, $column, $value, $unique) {
+        $conn = self::preparedConnection();
+        $stmt = null;
+        try {
+            $query = "UPDATE ".$table." SET ".$column." = '$value' WHERE ".$unique;
+            $stmt = $conn->prepare($query);
+            if(!$stmt) {
+                throw new Exception("Failed to prepare the SQL statement.");
+            }
+    
+            if(!$stmt->execute()) {
+                throw new Exception("Failed to execute the SQL statement.");
+            } else {
+                return true;
+            }
+    
+            return false;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
+    public static function POST(string $table, array $columns) {
+        $conn = self::preparedConnection();
+        $stmt = null;
+
+        try {
+            $key = "(";
+            $value = "(";
+            foreach($columns as $col => $val) {
+                $key .= $col.",";
+                $value .= "'".$val."',";
+            }
+    
+            $key = substr($key, 0, -1).")";
+            $value = substr($value, 0, -1).")";
+            $query = "INSERT INTO ".$table.$key." VALUES".$value;
+    
+            // return $query;
+            $stmt = $conn->prepare($query);
+            if(!$stmt) {
+                throw new Exception("Failed to prepare the SQL statement.");
+            }
+    
+            if(!$stmt->execute()) {
+                throw new Exception("Failed to execute the SQL statement.");
+            } else {
+                return true;
+            }
+    
+            return false;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+    public static function DELETE(string $table, string $unique) {
+        $conn = self::preparedConnection();
+        $stmt = null;
+
+        try {
+            $query = "DELETE FROM ".$table." WHERE ".$unique;
+    
+            // return $query;
+            $stmt = $conn->prepare($query);
+            if(!$stmt) {
+                throw new Exception("Failed to prepare the SQL statement.");
+            }
+    
+            if(!$stmt->execute()) {
+                throw new Exception("Failed to execute the SQL statement.");
+            } else {
+                return true;
+            }
+    
+            return false;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            return false;
+        }
     }
 }
 ?>

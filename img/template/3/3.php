@@ -5,7 +5,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 ?>
 <div id="template-container" style="width:100%;">
 <style>
-  .social {
+  .socialUser {
     background-color: #d9ad89; 
   }
 a {
@@ -30,22 +30,24 @@ a {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 35px 26px 80px;
+  padding: 20px 26px 20px;
+  border-radius: 40px;
 }
 
 .logo {
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;
-  width: 267px;
+  width: 220px;
   max-width: 100%;
   border-radius: 50%;
 }
 
 .shop-title {
   color: #000;
-  margin-top: 27px;
+  margin-top: 15px;
   font: italic 400 28px Castoro, sans-serif;
+  text-align: center;
 }
 
 .tagline {
@@ -60,7 +62,7 @@ a {
   border: 1px solid rgba(217, 173, 137, 1);
   align-self: stretch;
   display: flex;
-  margin-top: 21px;
+  margin-top: 15px;
   gap: 20px;
   justify-content: space-between;
   padding: 10px 48px;
@@ -201,18 +203,18 @@ a {
     <?=$infoObject->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />')['a'];?>
     </nav>
     <div id="social-media">
-        <?php
-            $exception = ["Facebook", "Instagram", "Website", "Tiktok", "Youtube"];
-            for($i = 0; $i < count($socialNameArr); $i++) {
-              if(!in_array($socialNameArr[$i], $exception)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                echo '
-                    <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
-                ';
-              }
+    <?php
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+            echo '
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+            ';
             }
-        ?>
-    </div>
+        }
+    ?>
+</div>
   </div>
 </section>
 </div>

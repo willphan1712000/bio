@@ -5,8 +5,11 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 ?>
 <div id="template-container" style="width:100%;">
 <style>
+  #social-media {
+    margin: 0px 30px 10px 30px;
+  }
 .profile-card {
-  border-radius: 20px;
+  border-radius: 40px;
   background-color: #9be2de;
   display: flex;
   max-width: 480px;
@@ -22,6 +25,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   width: 100%;
   flex-direction: column;
   align-items: center;
+  border-radius: 40px;
 }
 
 .avatar-container {
@@ -32,6 +36,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   flex-direction: column;
   align-items: center;
   padding: 41px 60px 0;
+  border-radius: 40px 40px 0px 0px;
 }
 
 .avatar-wrapper {
@@ -40,7 +45,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   z-index: 10;
   display: flex;
   margin-bottom: -66px;
-  width: 234px;
+  width: 210px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -58,8 +63,9 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 
 .profile-name {
   color: #fff;
-  margin-top: 81px;
-  font: 400 42px Katibeh, sans-serif;
+  margin-top: 70px;
+  font: 400 35px Katibeh, sans-serif;
+  text-align: center;
 }
 
 .profile-bio {
@@ -74,10 +80,11 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 35px;
   border: 2px solid #fff;
   display: flex;
-  gap: 20px;
-  justify-content: space-between;
-  margin: 21px;
-  padding: 10px 41px;
+  justify-content: space-evenly;
+  margin: 10px;
+  padding: 5px 10px;
+  width: 92%;
+  align-items: center;
 }
 
 .social-icon {
@@ -85,6 +92,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   object-fit: cover;
   object-position: center;
   width: 35px;
+  display: block;
 }
 
 .social-icon-small {
@@ -112,12 +120,12 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     </nav>
     <div id="social-media">
     <?php
-        $exception = ["Facebook", "Instagram", "Website", "Tiktok", "Youtube"];
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
         for($i = 0; $i < count($socialNameArr); $i++) {
-            if(!in_array($socialNameArr[$i], $exception)) {
+            if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
             echo '
-                <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
             ';
             }
         }

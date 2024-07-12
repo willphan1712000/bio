@@ -5,12 +5,15 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 ?>
 <div id="template-container" style="width:100%;">
 <style>
-.social {
+#social-media {
+  padding: 0px 20px 0px 20px;
+}
+.socialUser {
   background-color: #ffe1e1;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .beauty-store {
-  border-radius: 20px;
+  border-radius: 30px;
   background-color: #fff;
   display: flex;
   max-width: 480px;
@@ -47,16 +50,18 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   color: #ff8fab;
   text-shadow: 0 4px 20px rgba(255, 255, 255, 0.25), 0 0 20px #fff;
   font: 700 36px Urbanist, sans-serif;
+  text-align: center;
 }
 
 .nav-buttons {
   display: flex;
-  margin-top: 16px;
-  gap: 20px;
-  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
   color: #fff;
   font-weight: 600;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .nav-button {
@@ -66,6 +71,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   background-color: #ff8fab;
   justify-content: center;
   padding: 12px 40px;
+  color: #fff;
 }
 
 .footer {
@@ -82,6 +88,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   position: sticky;
   bottom: 0;
   width: 100%;
+  border-radius: 0px 0px 30px 30px;
 }
 
 .footer-icon {
@@ -152,12 +159,12 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   </nav>
   <div id="social-media">
     <?php
-        $exception = ["Facebook", "Instagram", "Website", "Tiktok", "Youtube", "Mobile"];
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
         for($i = 0; $i < count($socialNameArr); $i++) {
-            if(!in_array($socialNameArr[$i], $exception)) {
+            if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
             echo '
-                <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
             ';
             }
         }

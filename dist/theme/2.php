@@ -22,17 +22,20 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     object-position: center;
     width: 100%;
     align-self: stretch;
+    border-radius: 20px 20px 0px 0px;
   }
   .div-2 {
     color: #9ece00;
-    margin-top: 21px;
+    margin-top: 15px;
     font: 400 35px Lilita One, sans-serif;
+    text-align: center;
   }
   .div-3 {
     color: #a5a5a5;
     margin-top: 10px;
     font: 400 18px Mate, sans-serif;
     text-align: center;
+    padding: 0px 20px;
   }
   .div-4 {
     border-color: rgba(165, 165, 165, 1);

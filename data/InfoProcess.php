@@ -104,6 +104,19 @@ class InfoProcess extends SystemConfig {
         ];
     }
 
+    // Handle Youtube
+    public function youtube($element = null) {
+        $key = 'Youtube';
+        $value = $this->info[$key];
+        $value = str_replace("https", "youtube", $value); // make it able to go directly to youtube app
+        $display = ($value === NULL || $value === '') ? "none" : "";
+        $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element;
+        return [
+            'display' => $display,
+            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+        ];
+    }
+
     // Handle social media
     public function social($social, $element = null) {
         $key = $social;
@@ -121,24 +134,26 @@ class InfoProcess extends SystemConfig {
                 return $this->description();
                 break;
             case "Email":
-                return $this->email();
+                return $this->email($element);
                 break;
             case "Address":
-                return $this->address();
+                return $this->address($element);
                 break;
             case "Mobile":
-                return $this->mobile();
+                return $this->mobile($element);
                 break;
             case "Work":
-                return $this->work();
+                return $this->work($element);
                 break;
+            case "Youtube":
+                return $this->youtube($element);
             default:
                 $value = $this->info[$key];
                 $display = ($value === NULL || $value === '') ? "none" : ""; 
                 $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
                 return [
                     'display' => $display,
-                    'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+                    'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
                 ];
                 break;
         }

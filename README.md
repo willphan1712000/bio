@@ -27,29 +27,40 @@
 - props -> themeid
 
 ### Props shortcuts for creating a template
-- Image : src="<?=$props['imgPath']."?v=".time();?>"
-
-- Name : <?=$infoObject->name()['a'];?>
-
-- Organization: <?=$infoObject->organization()['a'];?>
-
-- Description: <?=$infoObject->description()['a'];?>
-
-- Social Media: <?=$infoObject->social('socialName', 'htmlBlock')['a'];?>
-
+- Image
+```PHP
+draggable="false" src=<?=$props['imgPath']."?v=".time();?>
+```
+- Name
+```PHP
+<?=$infoObject->name()['a'];?>
+```
+- Organization
+```PHP
+<?=$infoObject->organization()['a'];?>
+```
+- Description
+```PHP
+<?=$infoObject->description()['a'];?>
+```
+- Social Media
+```PHP
+<?=$infoObject->social('socialName', 'htmlBlock')['a'];?>
+```
 - Below are PHP code to integrate blocks of link that are not parts of a default template
 
 ```PHP
 <div id="social-media">
     <?php
-        $exception = ["Facebook", "Instagram", "Website", "Tiktok", "Youtube"];
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
         for($i = 0; $i < count($socialNameArr); $i++) {
-            if(!in_array($socialNameArr[$i], $exception)) {
+            if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
             echo '
-                <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
             ';
             }
         }
     ?>
 </div>
+```

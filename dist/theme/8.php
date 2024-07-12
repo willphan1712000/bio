@@ -3,7 +3,7 @@ $socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline"
 
 $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
 ?> <div id="template-container" style="width:100%;"><style>.doctor-card {
-  border-radius: 20px;
+  border-radius: 30px;
   background-color: #fff;
   display: flex;
   max-width: 480px;
@@ -16,11 +16,13 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   aspect-ratio: 1.41;
   object-fit: cover;
   width: 100%;
+  height: 220px;
+  border-radius: 30px 30px 0px 0px;
 }
 
 .doctor-info {
   display: flex;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -32,12 +34,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .doctor-name {
   color: #0f74f6;
   font: 26px Inter, sans-serif;
+  text-align: center;
 }
 
 .experience {
   color: #404040;
-  margin-top: 20px;
+  margin-top: 10px;
   font: 400 19px Inter, sans-serif;
+  text-align: center;
 }
 
 .hospital-info {
@@ -45,7 +49,9 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   gap: 10px;
   color: #a5a5a5;
   font-weight: 400;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .hospital-icon {
@@ -82,13 +88,14 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .social-icons {
   background: linear-gradient(90deg, #0094ff 0%, #0036f5 100%);
   display: flex;
-  margin-top: 60px;
+  margin-top: 20px;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 18px 44px;
   position: sticky;
   width: 100%;
   bottom: 0;
+  border-radius: 0px 0px 30px 30px;
 }
 
 .social-icon {
@@ -107,13 +114,17 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+#social-media {
+  padding: 0px 20px 0px 20px;
 }</style><article class="doctor-card"><img src="<?=$props['imgPath']."?v=".time();?>" alt="Dr. Sarah Wilson" class="doctor-image"><div class="doctor-info"><h2 class="doctor-name"><?=$infoObject->name()['a'];?></h2><p class="experience"><?=$infoObject->organization()['a'];?></p><div class="hospital-info"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/776e3cfcfa82d98d51a9f608fe60490dbe6c756636ef36cde209a8f7bef2c756?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="hospital-icon"><p class="hospital-name"><?=$infoObject->description()['a'];?></p></div></div><div id="social-media"> <?php
-        $exception = ["Facebook", "Instagram", "Tiktok", "Youtube", "Whatsapp"];
+        $certain = ['Mobile', 'Work', 'Email', 'Website'];
         for($i = 0; $i < count($socialNameArr); $i++) {
-            if(!in_array($socialNameArr[$i], $exception)) {
+            if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
             echo '
-                <div class="social '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
+                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
             ';
             }
         }
