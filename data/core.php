@@ -35,14 +35,13 @@ class SystemConfig {
         return [
             'v' => 5,
             'license' => '© '.date("Y").' Allinclicks. All rights reserved.',
-            'product_year' => '2023',
-            'title' => 'bio',
+            'title' => 'Bio',
             'userTitle' => 'Bio User',
             'adminTitle' => 'Bio Admin',
             'timeSession' => 15*60, // 15 minutes
             'resetExpire' => 10*60, // 10 minutes
             'resetExpireTxt' => 10, // 10 minutes
-            'domain' => 'allinclicksbio.com',
+            'domain' => 'test.allinclicksbio.com',
             'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
                 'unknown' => '/img/unknown.png',
@@ -254,12 +253,12 @@ class SystemConfig {
 }
 class Database {
     private static $servername = "localhost:3306";
-    private static $username = "root";
-    private static $password = "";
-    private static $dbName = "allincli_bio";
-    // private static $username = "bio_admin";
-    // private static $password = "123456"; // Default password used by Allinclicks
-    // private static $dbName = "bio_allinclicks";
+    // private static $username = "root";
+    // private static $password = "";
+    // private static $dbName = "allincli_bio";
+    private static $username = "bio_admin";
+    private static $password = "123456"; // Default password used by Allinclicks
+    private static $dbName = "bio_allinclicks";
 
     // Basic connection (high injection risk)
     public static function connection() {
