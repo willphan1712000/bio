@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `info`
 --
 
-CREATE TABLE `info` (
+CREATE TABLE IF NOT EXISTS `info` (
   `username` varchar(200) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `info` (
 -- Table structure for table `purchase`
 --
 
-CREATE TABLE `purchase` (
+CREATE TABLE IF NOT EXISTS `purchase` (
   `username` varchar(200) DEFAULT NULL,
   `template_id` int(255) DEFAULT NULL,
   `purchasedAt` datetime(3) NOT NULL DEFAULT current_timestamp(3)
@@ -71,9 +71,9 @@ CREATE TABLE `purchase` (
 -- Table structure for table `template`
 --
 
-CREATE TABLE `template` (
+CREATE TABLE IF NOT EXISTS `template` (
   `username` varchar(200) DEFAULT NULL,
-  `themeid` varchar(200) DEFAULT NULL,
+  `themeid` int(255) DEFAULT NULL,
   `favorite` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -83,7 +83,7 @@ CREATE TABLE `template` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(200) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,

@@ -5,12 +5,14 @@
   $itemid = SystemConfig::URLExtraction("itemid");
 
   SESSION_START();
-  if($username !== null) {
-    if(!isset($_SESSION[$username])) {
-      header("Location: /template");
-    }
-  } else {
+  $isSignedIn = SystemConfig::isTrue($_SESSION[$username]);
+
+  if(!$isSignedIn) {
     header("Location: /template");
+  }
+
+  if(!TemplateManagement::isAbleToPurchase($isSignedIn, $username, $itemid)) {
+    header("Location: /template?username=".$username);
   }
 ?> <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accept a payment</title><meta name="description" content="A demo of a payment on Stripe"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://js.stripe.com/v3/"></script><style>body {
         display: flex;
@@ -49,5 +51,5 @@
       }
       .hidden {
         display: none;
-      }</style><script defer="defer" src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script defer="defer" src="/dist/checkoutcss2ba6e10d6f48dbdf4802.js"></script><script defer="defer" src="/dist/checkoutjs1f0ed758855f4f7e59b5.js"></script></head><body><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?=$itemid? $itemid : "null";?>";
+      }</style><script defer="defer" src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script defer="defer" src="/dist/checkoutcss9c891d3430f27563d6a3.js"></script><script defer="defer" src="/dist/checkoutjs1f0ed758855f4f7e59b5.js"></script></head><body><a href="/template?username=<?=$username;?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?=$itemid? $itemid : "null";?>";
       const username = "<?=$username? $username : "null";?>"</script></body></html>

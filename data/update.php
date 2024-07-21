@@ -12,7 +12,7 @@
         // Already fetched variables
         $username = $body->username;
         $path = "../user/".$username;
-        $url = $g['domain']."/".$username;
+        $url = SystemConfig::URLGenerator($username, "share");
         // Check if a folder for a user is created yet
         if(!is_dir($path)) {
             if(mkdir($path, 0755, true)) {

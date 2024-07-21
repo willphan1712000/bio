@@ -563,21 +563,25 @@ $(document).ready(function() {
                     }
                 })
             } else {
-                location.href = `/signin`
+                location.href = `/signin?template=true`
             }
         })
 
         $(".template .template-choice .add").click(e => {
-            const current = $(e.currentTarget) // get current element that gets clicked
-            const id = current.data("id") // get current element id
-            const pressed = current.data("pressed") // get current element pressed
-            // Handle add to cart
-            if(pressed === 0) {
-                handleAddToCart('.add[data-id="'+id+'"]', cart, id, cartComponentInstance)
-            }
-            // Handle remove from cart
-            else {
-                handleRemoveFromCart('.add[data-id="'+id+'"]', cart, id, cartComponentInstance)
+            if(username !== "" && isSignedin === "true") {
+                const current = $(e.currentTarget) // get current element that gets clicked
+                const id = current.data("id") // get current element id
+                const pressed = current.data("pressed") // get current element pressed
+                // Handle add to cart
+                if(pressed === 0) {
+                    handleAddToCart('.add[data-id="'+id+'"]', cart, id, cartComponentInstance)
+                }
+                // Handle remove from cart
+                else {
+                    handleRemoveFromCart('.add[data-id="'+id+'"]', cart, id, cartComponentInstance)
+                }
+            } else {
+                window.location.href = `/signin?template=true`
             }
         })
 
@@ -689,6 +693,7 @@ $(document).ready(function() {
         // Handle add to cart
         function handleAddToCart(element, cart, id, instance) {
             $(element).data("pressed", 1) // set pressed to 1
+            $(element).find(".check").addClass("active")
             $(element).css({
                 backgroundColor: "#c1dfc1" // set background of cart icon
             })
@@ -706,6 +711,7 @@ $(document).ready(function() {
         // Handle remove from cart
         function handleRemoveFromCart(element, cart, id, instance) {
             $(element).data("pressed", 0) // set pressed to 0
+            $(element).find(".check").removeClass("active")
             $(element).css({
                 backgroundColor: "#fff" // set background of cart icon back to normal
             })

@@ -3,7 +3,7 @@ $socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline"
 
 $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
 ?>
-<div id="template-container" style="width:100%;">
+<div id="template-container">
 <style>
 .bakery-container {
   border-radius: 30px;
@@ -22,22 +22,22 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   aspect-ratio: 1.27;
   object-fit: cover;
   width: 100%;
-  border-radius: 30px 30px 0px 0px;
 }
 
 .tagline {
   color: #a6a6a6;
-  margin-top: 5px;
-  font: 400 14px Raleway, sans-serif;
-  padding: 0px 30px;
+  margin-top: 2%;
+  font: 400 0.8rem Raleway, sans-serif;
+  padding: 0% 10%;
 }
 
 .feature-grid {
   display: flex;
-  margin-top: 15px;
+  margin-top: 4%;
   width: 100%;
-  max-width: 378px;
+  height: 100%;
   justify-content: space-evenly;
+  padding: 0% 20%;
 }
 
 .feature-card {
@@ -47,55 +47,56 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150px;
-  height: 150px;
-  padding: 20px;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 10%;
+  margin: 0% 5%;
 }
 
 .feature-icon {
   aspect-ratio: 1;
   object-fit: contain;
-  width: 57px;
+  width: 50%;
 }
 
 .feature-title {
-  font: 400 25px Ramabhadra, sans-serif;
+  font: 400 1rem Ramabhadra, sans-serif;
   color: #fff;
-  margin-top: 0px;
 }
 
 .feature-decoration {
   aspect-ratio: 5.88;
   object-fit: contain;
-  width: 110px;
-  margin-top: 18px;
+  width: 85%;
+  margin-top: 10%;
 }
 
 .contact-section {
-  margin-top: 10px;
+  margin-top: 4%;
   text-align: center;
+  width: 80%;
 }
 
 .contact-title {
   color: #ff4d4d;
-  font: 400 20px Ramabhadra, sans-serif;
+  font: 400 1.2rem Ramabhadra, sans-serif;
 }
 
 .social-links {
   border-radius: 15px;
   border: 1px solid rgba(255, 178, 178, 1);
   display: flex;
-  margin-top: 5px;
-  margin-bottom: 25px;
-  gap: 20px;
+  margin-bottom: 8%;
+  margin-top: 5%;
   justify-content: space-between;
-  padding: 5px 49px;
+  padding: 0% 12%;
 }
 
 .social-icon {
   aspect-ratio: 1;
   object-fit: contain;
-  width: 38px;
+  width: 100%;
+  padding: 12%;
 }
 
 .footer-decoration {
@@ -103,9 +104,9 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.35);
   background-color: #ffa3a3;
   width: 90%;
-  height: 18px;
+  height: 2%;
   position: absolute;
-  bottom: -5px;
+  bottom: -1%;
 }
 .backdrop {
   position: relative;
@@ -117,12 +118,13 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     text-align: center;
     border-radius: 30px 30px 0px 0px;
     background-color: #fff;
-    bottom: -30px;
+    bottom: -10%;
     padding-bottom: 10px;
 }
 .backdrop-child > h1 {
-  margin-top: 10px;
+  margin-top: 3%;
   color: #fea3a3;
+  font-size: 1.5rem;
 }
 </style>
 

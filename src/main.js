@@ -1,5 +1,7 @@
+import { dirname } from "path"
 import {$$} from "./module/W.js"
 import {$$$} from "./module/WW.js"
+import { log } from "console"
 
 $(document).ready(function() {
     // Deployment
@@ -8,7 +10,7 @@ $(document).ready(function() {
             // bioPage()
             break
         case 'admin':
-            adminPage()
+            // adminPage()
             break
         case 'signup':
             // signupPage()
@@ -51,6 +53,47 @@ $(document).ready(function() {
     }
 
     function template(props) {
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: false,
+        });
+
+        (function() {
+            let lastScrollTop = 0;
+            const signin = document.querySelector(".logo .btn-ele.signin");
+            const cart = document.querySelector(".logo .btn-ele.cart");
+
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if(scrollTop > lastScrollTop) {
+                    signin.style.bottom = '-12%';
+                    cart.style.bottom = '-12%';
+                } else {
+                    signin.style.bottom = '10px';
+                    cart.style.bottom = '10px';
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            })
+        })()
+
+        $(".share").click(e => {
+            const current = e.currentTarget;
+            const shareURL = $(current).data("share");
+            if(navigator.share) {
+                navigator.share({
+                    title: props.username,
+                    url: shareURL
+                }).then(()=> {
+                    alert("Sent!")
+                }).catch(console.error)
+            } else {
+                alert("Share does not support this browser")
+            }
+        })
+
         $(".select").click(e => {
             const current = e.currentTarget;
             const id = $(current).data("id");
@@ -72,6 +115,16 @@ $(document).ready(function() {
                     console.log("error");
                 }
             })
+        })
+
+        $(".buy").click(e => {
+            const current = $(e.currentTarget) // get current element that gets clicked      
+            const id = current.data("id") // get current element id
+            if(props.isSignedIn !== 'true') {
+                window.location.href = '/signin?template=true'
+            } else {
+                window.location.href = '/checkout?username=' + props.username + '&itemid=' + id;
+            }
         })
     }
 })

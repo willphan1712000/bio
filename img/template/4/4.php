@@ -3,8 +3,14 @@ $socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline"
 
 $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
 ?>
-<div id="template-container" style="width:100%;">
+<div id="template-container"">
 <style>
+#social-media {
+  padding: 0% 8%;
+}
+.social__img i {
+  font-size: 20px;
+}
 .beauty-store-container {
   border-radius: 40px;
   background-color: #fff;
@@ -24,7 +30,6 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   width: 100%;
   align-items: center;
   border-radius: 40px;
-  margin-bottom: 10px;
 }
 
 .background-image {
@@ -55,7 +60,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 25px 60px 0;
+  padding: 5% 25%;
 }
 
 .logo-wrapper {
@@ -65,10 +70,10 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   z-index: 10;
   display: flex;
   margin-bottom: -74px;
-  width: 185px;
+  width: 100%;
+  aspect-ratio: 1;
   align-items: center;
   justify-content: center;
-  height: 185px;
   padding: 0 5px;
 }
 
@@ -83,7 +88,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 .store-title {
   color: #fff;
   text-align: center;
-  margin-top: 90px;
+  margin-top: 25%;
   font: 700 25px Be Vietnam, sans-serif;
 }
 
@@ -105,7 +110,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 
 .social-icon {
   aspect-ratio: 1.03;
-  object-fit: auto;
+  object-fit: cover;
   object-position: center;
   width: 30px;
 }
@@ -115,28 +120,9 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
   background-color: #fff;
-  margin-top: 8px;
-  width: 100%;
-  max-width: 366px;
-  width: 300px;
+  margin-top: 3%;
+  width: 80vw;
   color: #a986e2;
-  text-align: center;
-  padding: 10px 60px;
-  font: 400 18px Bree Serif, sans-serif;
-  border: none;
-}
-
-.contact-button {
-  position: relative;
-  border-radius: 30px;
-  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.25);
-  background-color: #fff;
-  margin-top: 8px;
-  width: 100%;
-  max-width: 366px;
-  width: 300px;
-  color: #a986e2;
-  white-space: nowrap;
   text-align: center;
   padding: 10px 60px;
   font: 400 18px Bree Serif, sans-serif;
@@ -147,27 +133,23 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   position: relative;
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin: 10px 0 0px;
-  padding: 0 20px;
+  margin-top: 2%;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 1%;
 }
 .footer-img {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  width: 90vw;
 }
 
 .footer-line {
   aspect-ratio: 100;
-  object-fit: auto;
   object-position: center;
-  width: 164px;
-  fill: url(<path-to-image>) lightgray 50% / cover no-repeat;
-  stroke-width: 2px;
-  stroke: #fff;
+  width: 40%;
   border: 2px solid #fff;
   align-self: stretch;
   max-width: 100%;
@@ -176,9 +158,9 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 
 .footer-icon {
   aspect-ratio: 1;
-  object-fit: auto;
   object-position: center;
-  width: 21px;
+  width: 5%;
+  margin: 0% 1%;
   align-self: stretch;
 }
 </style>
@@ -203,7 +185,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     <?=$infoObject->social('X', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8cd8a31ac23e0db3b44e83cd3b3c34b1956646a6758da1abe3ee44a8d52436b1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'];?>
     </nav>
     <?=$infoObject->social('Website', ' <button class="cta-button">Shop All</button>')['a'];?>
-    <?=$infoObject->mobile('<button class="contact-button">Contact</button>')['a'];?>
+    <?=$infoObject->mobile('<button class="cta-button">Contact</button>')['a'];?>
     <footer class="footer-section">
       <div class="footer-img">
       <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0f9b8c07f7ca146900402bf6683a3f7d6bc792db71df115bf9454f37b3385e94?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-line" alt="" />
@@ -216,9 +198,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-            echo '
-                <div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p>'.$infoObject->social($socialNameArr[$i])['a'].'</div></div></div></div>
-            ';
+            echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
             }
         }
     ?>

@@ -42,6 +42,7 @@ class SystemConfig {
             'resetExpire' => 10*60, // 10 minutes
             'resetExpireTxt' => 10, // 10 minutes
             'domain' => 'test.allinclicksbio.com',
+            'testingDomain' => 'http://localhost',
             'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
                 'unknown' => '/img/unknown.png',
@@ -56,7 +57,7 @@ class SystemConfig {
                 'msg3' => 'You can still restore your account under Sign in section',
                 'msg4' => 'Are you sure to proceed?'
             ],
-            'accountHoldPeriod' => 60*24*60*60
+            'accountHoldPeriod' => 60*24*60*60, // 60 days
         ];
     }
     
@@ -239,7 +240,7 @@ class SystemConfig {
         $base = basename(parse_url($_SERVER['REQUEST_URI'])['path']);
         $query = parse_url($_SERVER['REQUEST_URI'])['query'];
         parse_str($query, $query_params);
-        $result = isset($query_params[$queryStr]) ? $query_params[$queryStr] : null;
+        $result = (isset($query_params[$queryStr]) && $query_params[$queryStr] !== "") ? $query_params[$queryStr] : null;
         return ($queryStr === null) ? $base : $result;
     }
 
@@ -250,15 +251,26 @@ class SystemConfig {
         }
         return false;
     }
+
+    // This function is to create url for user
+    public static function URLGenerator($username, $c) {
+        if($c === "main") {
+            return self::globalVariables()["domain"]."/".$username;
+        }
+        elseif ($c === "share") {
+            return self::globalVariables()["domain"]."/".$username."?share=true";
+        }
+        return null;
+    }
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dbName = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dbName = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dbName = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dbName = "bio_allinclicks";
 
     // Basic connection (high injection risk)
     public static function connection() {
@@ -314,7 +326,14 @@ class Database {
                 foreach ($r as $rr) {
                     $rrr[] = $rr[$column];
                 }
+                if(count($rrr) === 1) {
+                    return $rrr[0];
+                }
                 return $rrr;
+            }
+
+            if(count($r) === 1) {
+                return $r[0];
             }
 
             return $r;
@@ -406,6 +425,51 @@ class Database {
             error_log($e->getMessage());
             return false;
         }
+    }
+
+    public static function isUserExist($username) {
+        $result = self::GET("user", "username", "username='$username'");
+        if(empty($result)) {
+            return false;
+        }
+        return true;
+    }
+}
+
+class TemplateManagement {
+    public static $totalTemplate = 10;
+    public static function isPurchased($username, $tem) {
+        $isPurchased = Database::GET("purchase", null, "username='$username'AND template_id=$tem");
+        if(!empty($isPurchased)) {
+            return true;
+        }
+        return false;
+    }
+
+    // This function will check if user shares a template. If template was purchased, it would be themeid. Otherwise, it would redirect user to the main user page
+    public static function shareTemplate($username, $tem) {
+        $chosen = Database::GET("template", "themeid", "username='$username'");
+        if($tem !== null) {
+            if(self::isPurchased($username, $tem)) {
+                return $tem;
+            }
+            return $chosen;
+        } else {
+            return $chosen;
+        }
+    }
+
+    public static function isAbleToPurchase($isSignedIn, $username, $itemid) {
+        if($itemid === null) {
+            return true;
+        }
+        if($itemid <= 0 || $itemid > self::$totalTemplate) {
+            return false;
+        }
+        if(self::isPurchased($username, $itemid) && $isSignedIn) {
+            return false;
+        }
+        return true;
     }
 }
 ?>

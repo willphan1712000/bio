@@ -11,8 +11,7 @@ header('Content-Type: application/json');
 $jsonStr = file_get_contents('php://input');
 $jsonObj = json_decode($jsonStr);
 
-$YOUR_DOMAIN = SystemConfig::globalVariables()['domain']; // actual domain when push to production
-$YOUR_DOMAIN = 'http://localhost'; // local domain for testing. Comment out when push to production
+$YOUR_DOMAIN = SystemConfig::globalVariables()["testingDomain"];
 
 $checkout_session = $stripe->checkout->sessions->create([
   'ui_mode' => 'embedded',
