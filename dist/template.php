@@ -6,7 +6,7 @@
     $username = SystemConfig::URLExtraction("username");
 
     SESSION_START();
-    $isSignedIn = SystemConfig::isTrue($_SESSION[$username]);
+    $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
     // if signed in, get avatar image
     if($isSignedIn) {
         $ava = Database::GET("info", "image", "username = '$username'");

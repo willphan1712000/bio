@@ -1,29 +1,24 @@
 <?php
     $g = SystemConfig::globalVariables();
     $conn = Database::connection();
+    // get username
     $username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
-    // Check if there is a deleteToken. If so, redirect to restore page
-    $deleteTokenQuery = mysqli_query($conn, "SELECT deleteToken FROM user WHERE username = '$username'");
-    $deleteToken = mysqli_fetch_assoc($deleteTokenQuery)['deleteToken'];
+    // get deleteToken
+    $deleteToken = Database::GET("user", "deleteToken", "username='$username'");
     SESSION_START();
-    if(isset($_SESSION[$username])) {
-        if(time() - $_SESSION['last_time_'.$username] > $g['timeSession']) {
-            unset($_SESSION[$username]);
-            header("Location: /signin");
-        } else {
-            if($deleteToken !== NULL && $deleteToken !== "") {
-                if(time() - $deleteToken < $g["accountHoldPeriod"]) {
-                    header("Location: /restore?username=".$username);
-                } else {
-                    if(SystemConfig::deleteAccount($username)) {
-                        header("Location: /signin");
-                    }
+    // Check if user is signed in
+    $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
+    if($isSignedIn) {
+        // Check if there is a deleteToken. If so, redirect to restore page
+        if($deleteToken !== NULL && $deleteToken !== "") {
+            if(time() - $deleteToken < $g["accountHoldPeriod"]) {
+                header("Location: /restore?username=".$username);
+            } else {
+                if(SystemConfig::deleteAccount($username)) {
+                    header("Location: /signin");
                 }
             }
-            $_SESSION['last_time_'.$username] = time();
         }
-    } else {
-        header("Location: /signin");
     }
 
     if(isset($_POST['signout'])) {

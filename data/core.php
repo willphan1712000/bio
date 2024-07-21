@@ -244,14 +244,6 @@ class SystemConfig {
         return ($queryStr === null) ? $base : $result;
     }
 
-    // Check if the user is signed
-    public static function isTrue($session) {
-        if($session) {
-            return true;
-        }
-        return false;
-    }
-
     // This function is to create url for user
     public static function URLGenerator($username, $c) {
         if($c === "main") {
@@ -470,6 +462,22 @@ class TemplateManagement {
             return false;
         }
         return true;
+    }
+}
+
+class UserManagement {
+    public static function isSignedIn($SESSION, $username) {
+        if(isset($SESSION[$username])) {
+            if(time() - $SESSION['last_time_'.$username] > SystemConfig::globalVariables()['timeSession']) {
+                unset($SESSION[$username]);
+                header("Location: /signin");
+            } else {
+                $SESSION['last_time_'.$username];
+                return true;
+            }
+        } else {
+            header("Location: /signin");
+        }
     }
 }
 ?>
