@@ -23,7 +23,7 @@
         $chosenTemplate = Database::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsd10a9436e92a7a5aa299.js"></script><script src="/dist/prevjs75ef337007db52255b8b.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templatec592290a3b7c30a09870.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsd10a9436e92a7a5aa299.js"></script><script src="/dist/prevjsc42aae84e4f770841183.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templatec592290a3b7c30a09870.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
                             <a class="btn-ele signin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>'.$username.'</p></a>
@@ -46,7 +46,7 @@
                                         'img' => '../img/template/'.$item.'/'.$item.'.png',
                                         'mode' => 'purchased',
                                         'chosen' => $chosenTemplate,
-                                        'url' => SystemConfig::URLGenerator($username, "main"),
+                                        'url' => UserManagement::URLGenerator($username, "share"),
                                     ])->render();
                                 }
                             }

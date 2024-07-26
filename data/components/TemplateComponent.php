@@ -154,7 +154,7 @@ class Template {
                         <p class="text '.$chosenDisplay.'">Select</p>
                         <p class="check '.$chosenDisplay.'"><i class="fa-solid fa-check"></i></p>
                     </div>
-                    <div class="share" data-id="'.$props['id'].'" data-share="'.$props['url'].'?share=true&tem='.$props["id"].'">
+                    <div class="share" data-id="'.$props['id'].'" data-share="'.$props['url'].'&tem='.$props["id"].'">
                         <p class="text">Share</p>
                     </div>
                 </div>
