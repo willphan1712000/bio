@@ -20,6 +20,10 @@
     // If signed in, check there are templates purchased
     if($isSignedIn) {
         $purchased = Database::GET("purchase", "template_id", "username = '$username'"); // Get all templates purchased
+        if(gettype($purchased) === "integer") {
+            $purchased = [$purchased];
+        }
+        // SystemConfig::dd(!empty($purchased));
         $chosenTemplate = Database::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
 
@@ -34,10 +38,10 @@
                         ';
                     }
                 ?> <a href="/cart" class="btn-ele cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></div></div><!-- <div class="swiper-container">
-                <div class="swiper-wrapper"> --><div class="swiper-slide template-wrapper" style="display: <?= ($isSignedIn) ? "" : "none";?>"><div class="heading"> <?php logo([
+                <div class="swiper-wrapper"> --><div class="swiper-slide template-wrapper" style="display: <?= ($isSignedIn) ? "block" : "none";?>"><div class="heading"> <?php logo([
                         "container" => ".heading",
                         "src" => $g["img"]["logo"]
-                    ])->render(); ?> <h1>Your templates</h1></div><div class="notHaveTemplate" style="display: <?=$purchased[0] === "" ? "flex": "none";?>"><p>You do not have templates</p></div><div class="swiper template_container purchase" style="display: <?=$purchased[0] === "" ? "none": "flex";?>"><div class="swiper-wrapper"> <?php
+                    ])->render(); ?> <h1>Your templates</h1></div><div class="notHaveTemplate" style="display: <?= empty($purchased) ? "flex": "none";?>"><p>You do not have templates</p></div><div class="swiper template_container purchase" style="display: <?= empty($purchased) ? "none": "flex";?>"><div class="swiper-wrapper"> <?php
                             if($isSignedIn) {
                                 Template::style(".template_container.purchase");
                                 foreach($purchased as $item) {
