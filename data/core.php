@@ -257,12 +257,12 @@ class SystemConfig {
 }
 class Database {
     private static $servername = "localhost:3306";
-    private static $username = "root";
-    private static $password = "";
-    private static $dbName = "allincli_bio";
-    // private static $username = "bio_admin";
-    // private static $password = "123456"; // Default password used by Allinclicks
-    // private static $dbName = "bio_allinclicks";
+    // private static $username = "root";
+    // private static $password = "";
+    // private static $dbName = "allincli_bio";
+    private static $username = "bio_admin";
+    private static $password = "123456"; // Default password used by Allinclicks
+    private static $dbName = "bio_allinclicks";
 
     // Basic connection (high injection risk)
     public static function connection() {
@@ -470,13 +470,13 @@ class UserManagement {
         if(isset($SESSION[$username])) {
             if(time() - $SESSION['last_time_'.$username] > SystemConfig::globalVariables()['timeSession']) {
                 unset($SESSION[$username]);
-                header("Location: /signin");
+                return false;
             } else {
                 $SESSION['last_time_'.$username];
                 return true;
             }
         } else {
-            header("Location: /signin");
+            return false;
         }
     }
 }

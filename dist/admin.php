@@ -19,6 +19,8 @@
                 }
             }
         }
+    } else {
+        header("Location: /signin");
     }
 
     if(isset($_POST['signout'])) {

@@ -5,7 +5,7 @@
   $itemid = SystemConfig::URLExtraction("itemid");
 
   SESSION_START();
-  $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
+  $isSignedIn = UserManagement::isSignedIn($_SESSION, $username, "/signin");
 
   if(!$isSignedIn) {
     header("Location: /template");
