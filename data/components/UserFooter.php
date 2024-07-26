@@ -1,6 +1,7 @@
 <?php
 class UserFooter {
     private $props;
+    private $share;
 
     public function __construct($props, $share) {
         $this->props = $props;
@@ -163,5 +164,5 @@ class UserFooter {
 function userFooter($props) {
     // Retrieve share
     $share = SystemConfig::URLExtraction('share');
-    return new UserFooter($props, $share);
+    return new UserFooter($props, $share, $url);
 }

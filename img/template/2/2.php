@@ -3,7 +3,7 @@ $socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline"
 
 $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
 ?>
-<div id="template-container" style="width:100%;">
+<div id="template-container">
 <style>
   .element {
     padding: 0px 10px 0px 10px;
@@ -14,10 +14,10 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     display: flex;
     max-width: 480px;
     width: 100%;
-    padding-bottom: 48px;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    padding-bottom: 10%;
   }
   .img {
     aspect-ratio: 1.25;
@@ -36,7 +36,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   .div-3 {
     color: #a5a5a5;
     margin-top: 10px;
-    font: 400 18px Mate, sans-serif;
+    font: 400 15px Mate, sans-serif;
     text-align: center;
     padding: 0px 20px;
   }
@@ -50,14 +50,25 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     margin-top: 21px;
     width: 100%;
   }
-  .div-5 {
+  .div-element {
     display: flex;
-    margin-top: 15px;
+    margin-top: 4%;
     width: 100%;
-    max-width: 388px;
-    gap: 20px;
-    white-space: nowrap;
     justify-content: space-between;
+    align-items: center;
+  }
+  .div-element-btn {
+    border-radius: 5px;
+    border-color: rgba(158, 206, 0, 1);
+    border-style: solid;
+    border-width: 1px;
+    align-self: start;
+    color: #9ece00;
+    text-align: center;
+    justify-content: center;
+    padding: 8% 10%;
+    font: 600 13px Inter, sans-serif;
+    width: 30vw;
   }
   .div-6 {
     display: flex;
@@ -75,18 +86,6 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   .div-7 {
     font-family: Mate, sans-serif;
     margin: auto 0;
-  }
-  .div-8 {
-    border-radius: 5px;
-    border-color: rgba(158, 206, 0, 1);
-    border-style: solid;
-    border-width: 1px;
-    align-self: start;
-    color: #9ece00;
-    text-align: center;
-    justify-content: center;
-    padding: 12px 37px;
-    font: 600 13px Inter, sans-serif;
   }
   .div-9 {
     border-color: rgba(165, 165, 165, 1);
@@ -263,7 +262,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   <div class="div-3"><?=$infoObject->description()['a'];?></div>
   <div class="div-4"></div>
 
-  <div class="element div-5">
+  <div class="element div-5 div-element">
     <div class="div-6">
       <img
         loading="lazy"
@@ -272,10 +271,10 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
       />
       <div class="div-7">Facebook</div>
     </div>
-    <?= $infoObject->social('Facebook', '<div class="div-8">View</div>')['a'];?>
+    <?= $infoObject->social('Facebook', '<div class="div-element-btn">View</div>')['a'];?>
   </div>
   <div class="div-9"></div>
-  <div class="div-10 element">
+  <div class="element div-element">
     <div class="div-11">
       <img
         loading="lazy"
@@ -284,11 +283,11 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
       />
       <div class="div-12">Youtube</div>
     </div>
-    <?= $infoObject->social('Youtube', '<div class="div-13">View</div>')['a'];?>
+    <?= $infoObject->social('Youtube', '<div class="div-element-btn">View</div>')['a'];?>
     
   </div>
   <div class="div-14"></div>
-  <div class="div-15 element">
+  <div class="element div-element">
     <div class="div-16">
       <img
         loading="lazy"
@@ -297,9 +296,8 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
       />
       <div class="div-17">Instagram</div>
     </div>
-    <?= $infoObject->social('Instagram', '<div class="div-18">View</div>')['a'];?>
+    <?= $infoObject->social('Instagram', '<div class="div-element-btn">View</div>')['a'];?>
   </div>
-  <div class="div-19"></div>
 </div>
 </div>
 

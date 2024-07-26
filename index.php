@@ -3,6 +3,7 @@ require_once "data/core.php";
 require_once "data/components/TemplateComponent.php";
 require_once "data/components/BioTemplateButton.php";
 require_once "data/components/UserFooter.php";
+require_once "data/components/Logo.php";
 require_once "data/InfoProcess.php";
 
 $conn = Database::connection();

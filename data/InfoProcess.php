@@ -10,7 +10,7 @@ class InfoProcess extends SystemConfig {
     public function username() {
         $key = 'username';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
             'a' => $value
@@ -20,7 +20,7 @@ class InfoProcess extends SystemConfig {
     public function image() {
         $key = 'image';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
             'a' => $value
@@ -30,7 +30,7 @@ class InfoProcess extends SystemConfig {
     public function name() {
         $key = 'name';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
             'a' => $value
@@ -40,7 +40,7 @@ class InfoProcess extends SystemConfig {
     public function description() {
         $key = 'description';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
             'a' => $value
@@ -50,7 +50,7 @@ class InfoProcess extends SystemConfig {
     public function organization() {
         $key = 'organization';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
             'a' => $value
@@ -60,11 +60,11 @@ class InfoProcess extends SystemConfig {
     public function email($element = null) {
         $key = 'Email';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         $element = ($element === NULL || $element === '') ? $value : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+            'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
         ];
     }
 
@@ -72,11 +72,11 @@ class InfoProcess extends SystemConfig {
     public function mobile($element = null) {
         $key = 'Mobile';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         $element = ($element === NULL || $element === '') ? parent::phoneNumberFormat($value) : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
         ];
     }
 
@@ -84,11 +84,11 @@ class InfoProcess extends SystemConfig {
     public function work($element = null) {
         $key = 'Work';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         $element = ($element === NULL || $element === '') ? parent::phoneNumberFormat($value) : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
         ];
     }
 
@@ -96,11 +96,11 @@ class InfoProcess extends SystemConfig {
     public function address($element = null) {
         $key = 'Address';
         $value = $this->info[$key];
-        $display = ($value === NULL || $value === '') ? "none" : ""; 
+        $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+            'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
         ];
     }
 
@@ -109,11 +109,11 @@ class InfoProcess extends SystemConfig {
         $key = 'Youtube';
         $value = $this->info[$key];
         $value = str_replace("https", "youtube", $value); // make it able to go directly to youtube app
-        $display = ($value === NULL || $value === '') ? "none" : "";
+        $display = ($value === NULL || $value === '') ? "none" : "flex";
         $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element;
         return [
             'display' => $display,
-            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000;">'.$element.'</a>'
+            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
         ];
     }
 
@@ -149,7 +149,7 @@ class InfoProcess extends SystemConfig {
                 return $this->youtube($element);
             default:
                 $value = $this->info[$key];
-                $display = ($value === NULL || $value === '') ? "none" : ""; 
+                $display = ($value === NULL || $value === '') ? "none" : "flex"; 
                 $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
                 return [
                     'display' => $display,
