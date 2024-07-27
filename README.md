@@ -66,3 +66,4 @@ draggable="false" src=<?=$props['imgPath']."?v=".time();?>
 # Configuration change for push to production
 - change database config in /data/core.php
 - change testing domain to actual domain in /data/stripe/checkout.php
+- if possible, change domain and full domain in /data/core.php
