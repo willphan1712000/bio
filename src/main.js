@@ -86,9 +86,7 @@ $(document).ready(function() {
                 navigator.share({
                     title: props.username,
                     url: shareURL
-                }).then(()=> {
-                    alert("Sent!")
-                }).catch(console.error)
+                })
             } else {
                 alert("Share does not support this browser")
             }

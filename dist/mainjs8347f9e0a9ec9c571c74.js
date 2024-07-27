@@ -2433,9 +2433,7 @@ $(document).ready(function() {
                 navigator.share({
                     title: props.username,
                     url: shareURL
-                }).then(()=> {
-                    alert("Sent!")
-                }).catch(console.error)
+                })
             } else {
                 alert("Share does not support this browser")
             }
@@ -2479,4 +2477,4 @@ $(document).ready(function() {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjsd10a9436e92a7a5aa299.js.map
+//# sourceMappingURL=mainjs8347f9e0a9ec9c571c74.js.map

@@ -1,4 +1,26 @@
 <?php
+class ProductionConfig {
+    public static function database() {
+        return [
+            "servername" => "localhost:3306",
+            "username" => "root",
+            "password" => "",
+            "dbName" => "allincli_bio",
+            // "username" => "bio_admin",
+            // "password" => "123456", // Default password used by Allinclicks
+            // "dbName" => "bio_allinclicks",
+        ];
+    }
+
+    public static function config() {
+        return [
+            'domain' => 'test.allinclicksbio.com',
+            'fulldomain' => 'https://test.allinclicksbio.com',
+            // 'stripeRedirect' => 'https://test.allinclicksbio.com',
+            'stripeRedirect' => 'http://localhost',
+        ];
+    }
+}
 class Router {
     private $routes = [];
 
@@ -41,9 +63,6 @@ class SystemConfig {
             'timeSession' => 15*60, // 15 minutes
             'resetExpire' => 10*60, // 10 minutes
             'resetExpireTxt' => 10, // 10 minutes
-            'domain' => 'test.allinclicksbio.com',
-            'fulldomain' => 'https://test.allinclicksbio.com',
-            'testingDomain' => 'http://localhost',
             'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
                 'unknown' => '/img/unknown.png',
@@ -247,12 +266,12 @@ class SystemConfig {
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dbName = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dbName = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dbName = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dbName = "bio_allinclicks";
 
     // Basic connection (high injection risk)
     public static function connection() {
