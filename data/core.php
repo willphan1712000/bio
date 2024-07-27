@@ -42,6 +42,7 @@ class SystemConfig {
             'resetExpire' => 10*60, // 10 minutes
             'resetExpireTxt' => 10, // 10 minutes
             'domain' => 'test.allinclicksbio.com',
+            'fulldomain' => 'https://test.allinclicksbio.com',
             'testingDomain' => 'http://localhost',
             'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
@@ -243,26 +244,15 @@ class SystemConfig {
         $result = (isset($query_params[$queryStr]) && $query_params[$queryStr] !== "") ? $query_params[$queryStr] : null;
         return ($queryStr === null) ? $base : $result;
     }
-
-    // This function is to create url for user
-    public static function URLGenerator($username, $c) {
-        if($c === "main") {
-            return self::globalVariables()["domain"]."/".$username;
-        }
-        elseif ($c === "share") {
-            return self::globalVariables()["domain"]."/".$username."?share=true";
-        }
-        return null;
-    }
 }
 class Database {
     private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dbName = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dbName = "bio_allinclicks";
+    private static $username = "root";
+    private static $password = "";
+    private static $dbName = "allincli_bio";
+    // private static $username = "bio_admin";
+    // private static $password = "123456"; // Default password used by Allinclicks
+    // private static $dbName = "bio_allinclicks";
 
     // Basic connection (high injection risk)
     public static function connection() {
@@ -478,6 +468,16 @@ class UserManagement {
         } else {
             return false;
         }
+    }
+    // This function is to create url for user
+    public static function URLGenerator($username, $c) {
+        if ($c === "main") {
+            return "https://".SystemConfig::globalVariables()["domain"]."/".$username;
+        }
+        elseif ($c === "share") {
+            return "https://".SystemConfig::globalVariables()["domain"]."/".$username."?share=true";
+        }
+        return null;
     }
 }
 ?>

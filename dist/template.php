@@ -20,10 +20,14 @@
     // If signed in, check there are templates purchased
     if($isSignedIn) {
         $purchased = Database::GET("purchase", "template_id", "username = '$username'"); // Get all templates purchased
+        if(gettype($purchased) === "integer") {
+            $purchased = [$purchased];
+        }
+        // SystemConfig::dd(!empty($purchased));
         $chosenTemplate = Database::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsd10a9436e92a7a5aa299.js"></script><script src="/dist/prevjs75ef337007db52255b8b.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templatec592290a3b7c30a09870.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsd10a9436e92a7a5aa299.js"></script><script src="/dist/prevjsa274e09fc8db800bb6b5.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/template322d439aa9309d616007.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
                             <a class="btn-ele signin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>'.$username.'</p></a>
@@ -34,10 +38,10 @@
                         ';
                     }
                 ?> <a href="/cart" class="btn-ele cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></div></div><!-- <div class="swiper-container">
-                <div class="swiper-wrapper"> --><div class="swiper-slide template-wrapper" style="display: <?= ($isSignedIn) ? "" : "none";?>"><div class="heading"> <?php logo([
+                <div class="swiper-wrapper"> --><div class="swiper-slide template-wrapper" style="display: <?= ($isSignedIn) ? "block" : "none";?>"><div class="heading"> <?php logo([
                         "container" => ".heading",
                         "src" => $g["img"]["logo"]
-                    ])->render(); ?> <h1>Your templates</h1></div><div class="notHaveTemplate" style="display: <?=$purchased[0] === "" ? "flex": "none";?>"><p>You do not have templates</p></div><div class="swiper template_container purchase" style="display: <?=$purchased[0] === "" ? "none": "flex";?>"><div class="swiper-wrapper"> <?php
+                    ])->render(); ?> <h1>Your templates</h1></div><div class="notHaveTemplate" style="display: <?= empty($purchased) ? "flex": "none";?>"><p>You do not have templates</p></div><div class="swiper template_container purchase" style="display: <?= empty($purchased) ? "none": "flex";?>"><div class="swiper-wrapper"> <?php
                             if($isSignedIn) {
                                 Template::style(".template_container.purchase");
                                 foreach($purchased as $item) {
@@ -46,7 +50,7 @@
                                         'img' => '../img/template/'.$item.'/'.$item.'.png',
                                         'mode' => 'purchased',
                                         'chosen' => $chosenTemplate,
-                                        'url' => SystemConfig::URLGenerator($username, "main"),
+                                        'url' => UserManagement::URLGenerator($username, "share"),
                                     ])->render();
                                 }
                             }

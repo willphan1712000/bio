@@ -16,8 +16,6 @@ class Template {
                 flex-wrap: nowrap;
             }
             '.$container.' .template {
-                width: 60%;
-                width: 250px;
                 width: fit-content !important;
                 flex-shrink: 0;
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -28,6 +26,8 @@ class Template {
             '.$container.' .template .template-img {
                 border-radius: 20px;
                 position: relative;
+                width: 100%;
+                aspect-ratio: 0.5869565217;
             }
             '.$container.' .template .template-img .like {
                 position: absolute;
@@ -47,7 +47,7 @@ class Template {
             '.$container.' .template .template-img > img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: contain;
                 border-radius: 20px;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             }
@@ -110,6 +110,11 @@ class Template {
             '.$container.' .template .template-choice .select.active {
                 padding: 0;
             }
+            @media screen and (min-width: 600px) {
+                '.$container.' .template {
+                width: 300px !important;
+            }
+        }
         </style>
         ';
     }
@@ -154,7 +159,7 @@ class Template {
                         <p class="text '.$chosenDisplay.'">Select</p>
                         <p class="check '.$chosenDisplay.'"><i class="fa-solid fa-check"></i></p>
                     </div>
-                    <div class="share" data-id="'.$props['id'].'" data-share="'.$props['url'].'?share=true&tem='.$props["id"].'">
+                    <div class="share" data-id="'.$props['id'].'" data-share="'.$props['url'].'&tem='.$props["id"].'">
                         <p class="text">Share</p>
                     </div>
                 </div>
