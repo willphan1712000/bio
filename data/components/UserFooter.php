@@ -152,10 +152,11 @@ class UserFooter {
                 <p>Drag to see more options</p>
                 <div class="options">
                     <div class="share__btn share"><i class="fa-solid fa-share"></i>Share</div>
-                    <div class="share__btn image"><i class="fa-solid fa-image"></i>Save e-Business card</div>
-                    <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/'.$this->props['username'].'/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
+                    <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
+                    <div class="share__btn image"><i class="fa-solid fa-image"></i>Save PDF</div>
                     <div class="share__btn edit" style="display: '.$this->share.'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
+                    
                 </div>
             </div>
             <script></script>

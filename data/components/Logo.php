@@ -10,10 +10,14 @@ class Logo {
         echo '
             <style>
                 '.$this->props["container"].' .logo-box {
-                height: 100%;
+                    height: 100%;
+                    margin-right: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 '.$this->props["container"].' .logo-box img {
-                    height: 100%;
+                    height: 70%;
                 }
             </style>
             <div class="logo-box">
