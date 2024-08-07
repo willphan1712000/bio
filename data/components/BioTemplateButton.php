@@ -9,14 +9,18 @@ class BioTemplateButton {
 
     public function render($container) {
         $href = $this->username === "" ? "" : "?username=".$this->username;
-        echo '
+        return '
             <style>
+                .'.$container.' {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    box-sizing: border-box !important;
+                }
                 .'.$container.' .templateBtn {
                     width: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 20px;
                 }
                 .'.$container.' .templateBtn > a {
                     text-decoration: none;
@@ -25,7 +29,6 @@ class BioTemplateButton {
                     border-radius:  25px;
                     color: #fff;
                     padding: 20px;
-                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 }
             </style>
             <div class="templateBtn">

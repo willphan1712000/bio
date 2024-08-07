@@ -12,6 +12,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
                         ';
                         }
                     }
-                ?> </div></div><div id="userFooter"> <?php
-            userFooter($props)->render("#userFooter");
-        ?> </div></div><div id="copyright"><p><?=$props['g']['license'];?></p></div>
+                ?> </div></div></div>

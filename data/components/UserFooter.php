@@ -33,6 +33,7 @@ class UserFooter {
                     flex-direction: row;
                     overflow-y: hidden;
                     overflow-x: auto;
+                    padding: 0px 10px;
                 }
                 '.$container.' .share__btn {
                     height: 50px;
@@ -156,7 +157,7 @@ class UserFooter {
                     <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn image"><i class="fa-solid fa-image"></i>Save PDF</div>
                     <div class="share__btn edit" style="display: '.$this->share.'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
-                    
+                    <div class="bioBtn share__btn">'.bioTemplateButton($this->props['username'])->render("bioBtn").'</div>
                 </div>
             </div>
             <script></script>
