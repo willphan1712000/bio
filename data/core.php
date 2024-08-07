@@ -1,7 +1,7 @@
 <?php
 class ProductionConfig {
-    private static $mode = "dev"; // mode (dev or production)
-    public static $version = "6"; // version of the product
+    private static $mode = "production"; // mode (dev or production)
+    public static $version = "6.1"; // version of the product
 
     public static function database() {
         if(self::$mode === "dev") {

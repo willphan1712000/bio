@@ -62,7 +62,7 @@ $(document).ready(function () {
                         9: "Delete"
                     },
                     data
-                }, "/src/dist/module/worker.js", () => {
+                }, "/src/dist/module/Web-Development/worker.js", () => {
                     $("#userData button").off("click", e => {
                         return null;
                     });

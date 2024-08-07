@@ -5429,7 +5429,7 @@ $(document).ready(function () {
                         9: "Delete"
                     },
                     data
-                }, "/src/dist/module/worker.js", () => {
+                }, "/src/dist/module/Web-Development/worker.js", () => {
                     $("#userData button").off("click", e => {
                         return null;
                     });
@@ -5560,4 +5560,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs9643a3fe805b5c4e7071.js.map
+//# sourceMappingURL=mainjs948b911d504529d46d96.js.map
