@@ -256,6 +256,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
             echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
             }
         }
-    ?> </div></div></div><div id="userFooter"> <?php
-        userFooter($props)->render("#userFooter");
-    ?> </div><div id="copyright"><p><?=$props['g']['license'];?></p></div>
+    ?> </div></div></div>

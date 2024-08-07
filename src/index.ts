@@ -1,6 +1,6 @@
 import {$$} from "./module/Web-Development/W"
 import {$$$} from "./module/Web-Development/WW"
-import Swiper from 'swiper';
+import Swiper from 'swiper'
 
 declare var type: string;
 declare var props: {

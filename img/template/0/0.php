@@ -8,7 +8,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
         <div class="info">
             <div class="info__img">
                 <div class="info__img--location">
-                    <img src=<?=$props['imgPath']."?v=".time();?> alt="" draggable="false">
+                    <img src=<?=$props['imgPath'];?> alt="" draggable="false">
                 </div>
             </div>
             <div class="info__about">

@@ -131,7 +131,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 </style>
 
 <article class="doctor-card">
-  <img src="<?=$props['imgPath']."?v=".time();?>" alt="Dr. Sarah Wilson" class="doctor-image" />
+  <img src="<?=$props['imgPath'];?>" alt="Dr. Sarah Wilson" class="doctor-image" />
   <div class="doctor-info">
     <h2 class="doctor-name"><?=$infoObject->name()['a'];?></h2>
     <p class="experience"><?=$infoObject->organization()['a'];?></p>
@@ -161,13 +161,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   </nav>
 </article>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

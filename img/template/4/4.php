@@ -171,7 +171,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     <header class="header-section">
       <div class="logo-container">
         <div class="logo-wrapper">
-          <img loading="lazy" src="<?=$props['imgPath']."?v=".time();?>" class="logo" alt="Beauty Store Logo" />
+          <img loading="lazy" src="<?=$props['imgPath'];?>" class="logo" alt="Beauty Store Logo" />
         </div>
       </div>
       <h1 class="store-title"><?=$infoObject->name()['a'];?></h1>
@@ -207,13 +207,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   </div>
 </main>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

@@ -15,21 +15,11 @@
 - style (get from figma code generator)
 - html (get from figma code generator)
 - javascript (rarely appears)
-- userFooter (including Share, Save e-Business card, QR Code, Save Contact, Edit)
-- copyright
-
-### Props object consists of
-- infoObject (includes all necessary information from individual user)
-- props -> username
-- props -> url
-- props -> imgPath
-- props -> g
-- props -> themeid
 
 ### Props shortcuts for creating a template
 - Image
 ```PHP
-draggable="false" src=<?=$props['imgPath']."?v=".time();?>
+draggable="false" src=<?=$props['imgPath'];?>
 ```
 - Name
 ```PHP

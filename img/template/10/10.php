@@ -118,7 +118,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 </style>
 
 <main class="fashion-show-container">
-  <img src="<?=$props['imgPath']."?v=".time();?>" alt="Fashion Show Hero Image" class="hero-image" />
+  <img src="<?=$props['imgPath'];?>" alt="Fashion Show Hero Image" class="hero-image" />
   <h1 class="main-title"><?=$infoObject->name()['a'];?></h1>
   <p class="des"><?=$infoObject->organization()['a'];?></p>
   <p class="des"><?=$infoObject->description()['a'];?></p>
@@ -151,13 +151,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 </div>
 </main>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

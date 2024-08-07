@@ -111,7 +111,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 }
 .socialUser {
   background-color: #f0f0f0;
-}</style><main class="fashion-show-container"><img src="<?=$props['imgPath']."?v=".time();?>" alt="Fashion Show Hero Image" class="hero-image"><h1 class="main-title"><?=$infoObject->name()['a'];?></h1><p class="des"><?=$infoObject->organization()['a'];?></p><p class="des"><?=$infoObject->description()['a'];?></p><nav class="social-links"> <?=$infoObject->social('Facebook', ' <div class="social-button">
+}</style><main class="fashion-show-container"><img src="<?=$props['imgPath'];?>" alt="Fashion Show Hero Image" class="hero-image"><h1 class="main-title"><?=$infoObject->name()['a'];?></h1><p class="des"><?=$infoObject->organization()['a'];?></p><p class="des"><?=$infoObject->description()['a'];?></p><nav class="social-links"> <?=$infoObject->social('Facebook', ' <div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc6f0cf7b4c3eb8e670601c61cc30afc7ea46efe75ca8f98a5f8f9649aee6497?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Facebook</span>
       </div>')['a'];?> <?=$infoObject->social('Instagram', '<div class="social-button">
@@ -128,6 +128,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
             echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
             }
         }
-    ?> </div></main></div><div id="userFooter"> <?php
-        userFooter($props)->render("#userFooter");
-    ?> </div><div id="copyright"><p><?=$props['g']['license'];?></p></div>
+    ?> </div></main></div>

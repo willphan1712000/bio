@@ -130,7 +130,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 
 <main class="bakery-container">
   <div class="backdrop">
-    <img src="<?=$props['imgPath']."?v=".time();?>" alt="Bakery storefront" class="hero-image" />
+    <img src="<?=$props['imgPath'];?>" alt="Bakery storefront" class="hero-image" />
     <div class="backdrop-child">
       <h1><?=$infoObject->name()['a'];?></h1>
       <p class="tagline"><?=$infoObject->organization()['a'];?></p>
@@ -177,13 +177,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   <div class="footer-decoration" role="presentation"></div>
 </main>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

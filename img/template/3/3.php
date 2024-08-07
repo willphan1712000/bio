@@ -202,7 +202,7 @@ a {
 
 <section class="jewelry-shop">
   <div class="content-wrapper">
-    <img loading="lazy" src=<?=$props['imgPath']."?v=".time();?> class="logo" alt="Jewelry Shop Logo" />
+    <img loading="lazy" src=<?=$props['imgPath'];?> class="logo" alt="Jewelry Shop Logo" />
     <h1 class="shop-title"><?=$infoObject->name()['a'];?></h1>
     <p class="tagline"><?=$infoObject->organization()['a'];?></p>
     <p class="tagline"><?=$infoObject->description()['a'];?></p>
@@ -227,13 +227,4 @@ a {
   </div>
 </section>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

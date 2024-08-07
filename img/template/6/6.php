@@ -113,7 +113,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   <div class="profile-content">
     <div class="avatar-container">
       <div class="avatar-wrapper">
-        <img loading="lazy" src="<?=$props['imgPath']."?v=".time();?>" class="avatar" alt="Profile avatar" />
+        <img loading="lazy" src="<?=$props['imgPath'];?>" class="avatar" alt="Profile avatar" />
       </div>
     </div>
     <h1 class="profile-name"><?=$infoObject->name()['a'];?></h1>
@@ -140,13 +140,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   </div>
 </article>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>
