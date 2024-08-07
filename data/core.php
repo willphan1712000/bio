@@ -1,39 +1,55 @@
 <?php
-class Router {
-    private $routes = [];
+class ProductionConfig {
+    private static $mode = "production"; // mode (dev or production)
+    public static $version = "6.1"; // version of the product
 
-    function addRoute($uri, $controller) {
-        $this->routes[] = [
-            'uri' => $uri,
-            'controller' => $controller
-        ];
-    }
-
-    function route($uri) {
-        foreach($this->routes as $route) {
-            if($route['uri'] === $uri) {
-                return require $route['controller'];
-            }
+    public static function database() {
+        if(self::$mode === "dev") {
+            return [
+                "servername" => "localhost:3306",
+                "username" => "root",
+                "password" => "",
+                "dbName" => "allincli_bio",
+            ];
         }
-
-        $this->abort();
+        else if (self::$mode = "production") {
+            return [
+                "servername" => "localhost:3306",
+                "username" => "bio_admin",
+                "password" => "123456", // Default password used by Allinclicks
+                "dbName" => "bio_allinclicks",
+            ];
+        }
     }
 
-    private function abort() {
-        http_response_code(404);
-        require 'dist/404.php';
-        die();
-    }
-
-    function removeLastRoute() {
-        array_pop($this->routes);
+    public static function config() {
+        if(self::$mode === "dev") {
+            return [
+                'domain' => 'test.allinclicksbio.com',
+                'fulldomain' => 'https://test.allinclicksbio.com',
+                'stripeRedirect' => 'http://localhost',
+            ];
+        }
+        else if (self::$mode = "production") {
+            return [
+                'domain' => 'test.allinclicksbio.com',
+                'fulldomain' => 'https://test.allinclicksbio.com',
+                'stripeRedirect' => 'https://test.allinclicksbio.com',
+                // 'domain' => 'allinclicksbio.com',
+                // 'fulldomain' => 'https://allinclicksbio.com',
+                // 'stripeRedirect' => 'https://allinclicksbio.com',
+            ];
+        }
     }
 }
 
 class SystemConfig {
     public static function globalVariables() {
         return [
-            'v' => 5,
+            'domain' => ProductionConfig::config()['domain'],
+            'fulldomain' => ProductionConfig::config()['fulldomain'],
+            'stripeRedirect' => ProductionConfig::config()['stripeRedirect'],
+            'v' => ProductionConfig::$version,
             'license' => '© '.date("Y").' Allinclicks. All rights reserved.',
             'title' => 'Bio',
             'userTitle' => 'Bio User',
@@ -41,9 +57,6 @@ class SystemConfig {
             'timeSession' => 15*60, // 15 minutes
             'resetExpire' => 10*60, // 10 minutes
             'resetExpireTxt' => 10, // 10 minutes
-            'domain' => 'test.allinclicksbio.com',
-            'fulldomain' => 'https://test.allinclicksbio.com',
-            'testingDomain' => 'http://localhost',
             'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
                 'unknown' => '/img/unknown.png',
@@ -246,22 +259,27 @@ class SystemConfig {
     }
 }
 class Database {
-    private static $servername = "localhost:3306";
-    // private static $username = "root";
-    // private static $password = "";
-    // private static $dbName = "allincli_bio";
-    private static $username = "bio_admin";
-    private static $password = "123456"; // Default password used by Allinclicks
-    private static $dbName = "bio_allinclicks";
+    public static function servername() {
+        return ProductionConfig::database()['servername'];
+    }
+    public static function username() {
+        return ProductionConfig::database()['username'];
+    }
+    public static function password() {
+        return ProductionConfig::database()['password'];
+    }
+    public static function dbName() {
+        return ProductionConfig::database()['dbName'];
+    }
 
     // Basic connection (high injection risk)
     public static function connection() {
-        return mysqli_connect(self::$servername, self::$username, self::$password, self::$dbName);
+        return mysqli_connect(self::servername(), self::username(), self::password(), self::dbName());
     }
 
     // Prepared connection (low injection risk)
     public static function preparedConnection() {
-        return new mysqli(self::$servername, self::$username, self::$password, self::$dbName);
+        return new mysqli(self::servername(), self::username(), self::password(), self::dbName());
     }
 
     // Query function for fast data retrieval
@@ -462,7 +480,7 @@ class UserManagement {
                 unset($SESSION[$username]);
                 return false;
             } else {
-                $SESSION['last_time_'.$username];
+                $SESSION['last_time_'.$username] = time();
                 return true;
             }
         } else {
@@ -478,6 +496,36 @@ class UserManagement {
             return "https://".SystemConfig::globalVariables()["domain"]."/".$username."?share=true";
         }
         return null;
+    }
+}
+class Router {
+    private $routes = [];
+
+    function addRoute($uri, $controller) {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller
+        ];
+    }
+
+    function route($uri) {
+        foreach($this->routes as $route) {
+            if($route['uri'] === $uri) {
+                return require $route['controller'];
+            }
+        }
+
+        $this->abort();
+    }
+
+    private function abort() {
+        http_response_code(404);
+        require 'dist/404.php';
+        die();
+    }
+
+    function removeLastRoute() {
+        array_pop($this->routes);
     }
 }
 ?>

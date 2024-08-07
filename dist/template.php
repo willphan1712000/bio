@@ -27,7 +27,7 @@
         $chosenTemplate = Database::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsd10a9436e92a7a5aa299.js"></script><script src="/dist/prevjsa274e09fc8db800bb6b5.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/template322d439aa9309d616007.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjs948b911d504529d46d96.js"></script><script src="/dist/prevjsa274e09fc8db800bb6b5.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/template381845d566a2ded923f7.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
                             <a class="btn-ele signin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>'.$username.'</p></a>
@@ -76,8 +76,12 @@
                         ])->render();
                     }
                 ?> </div></div></div><!-- </div>
-                </div> --><div id="copyright"><p><?=$g['license'];?></p></div></div><script>var type = "template"
+                </div> --> <?php
+copyright([
+    "position" => "relative"
+])->render();
+?> <script>var type = "template"
             var props = {
                 username: "<?=$username? $username : "";?>",
                 isSignedIn: "<?=($isSignedIn) ? "true" : "";?>"
-            }</script></body></html>
+            }</script></div></body></html>

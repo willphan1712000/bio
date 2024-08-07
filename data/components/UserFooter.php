@@ -106,6 +106,8 @@ class UserFooter {
                     align-items: center;
                     cursor: pointer;
                     margin: 5px 0px;
+                    padding: 10px;
+                    text-align: center;
                 }
                 '.$container.' .shareWindow__btn.shareWindow__download i {
                     margin-right: 5px;
@@ -143,17 +145,18 @@ class UserFooter {
                         <i class="fa-solid fa-x"></i>
                     </div>
                     <img class="shareWindow__qr" src="/user/'.$this->props['username'].'/qr-code.png" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/'.$this->props['username'].'/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
-                    <div class="shareWindow__btn shareWindow__link">'.$this->props['url'].'<i class="fa-regular fa-copy copy"></i><i class="fa-solid fa-check check"></i></div>
+                    <div class="shareWindow__btn shareWindow__link">Copy Link<i class="fa-regular fa-copy copy"></i><i class="fa-solid fa-check check"></i></div>
                 </div>
             </div>
             <div id="share">
                 <p>Drag to see more options</p>
                 <div class="options">
                     <div class="share__btn share"><i class="fa-solid fa-share"></i>Share</div>
-                    <div class="share__btn image"><i class="fa-solid fa-image"></i>Save e-Business card</div>
-                    <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/'.$this->props['username'].'/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
+                    <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
+                    <div class="share__btn image"><i class="fa-solid fa-image"></i>Save PDF</div>
                     <div class="share__btn edit" style="display: '.$this->share.'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
+                    
                 </div>
             </div>
             <script></script>
@@ -164,5 +167,5 @@ class UserFooter {
 function userFooter($props) {
     // Retrieve share
     $share = SystemConfig::URLExtraction('share');
-    return new UserFooter($props, $share, $url);
+    return new UserFooter($props, $share);
 }

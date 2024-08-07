@@ -11,8 +11,7 @@ header('Content-Type: application/json');
 $jsonStr = file_get_contents('php://input');
 $jsonObj = json_decode($jsonStr);
 
-$YOUR_DOMAIN = SystemConfig::globalVariables()["testingDomain"];
-// $YOUR_DOMAIN = SystemConfig::globalVariables()["fulldomain"];
+$YOUR_DOMAIN = SystemConfig::globalVariables()['stripeRedirect'];
 
 $checkout_session = $stripe->checkout->sessions->create([
   'ui_mode' => 'embedded',
