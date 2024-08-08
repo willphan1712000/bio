@@ -17,6 +17,7 @@ $(document).ready(function () {
         case 'admin':
             break;
         case 'signup':
+            signupPage();
             break;
         case 'signin':
             break;
@@ -36,6 +37,11 @@ $(document).ready(function () {
             break;
         default:
             break;
+    }
+    function signupPage() {
+        $$("#password").passShowHide().run();
+        $$(".passRequirements", "dropdown").toggle().run();
+        $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run();
     }
     function aic() {
         (function () {

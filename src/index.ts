@@ -20,7 +20,7 @@ $(document).ready(function() {
             // adminPage()
             break
         case 'signup':
-            // signupPage()
+            signupPage()
             break
         case 'signin':
             // signinPage()
@@ -46,6 +46,12 @@ $(document).ready(function() {
             break
         default:
             break
+    }
+
+    function signupPage() {
+        $$("#password").passShowHide().run()
+        $$(".passRequirements", "dropdown").toggle().run()
+        $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run()
     }
 
     function aic() : void {

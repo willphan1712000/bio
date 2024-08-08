@@ -16,10 +16,10 @@ class Template {
                 flex-wrap: nowrap;
             }
             '.$container.' .template {
-                width: fit-content !important;
+                width: calc(100% - 120px) !important;
                 flex-shrink: 0;
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-                margin: 0px 70px 20px 70px;
+                margin: 0px 60px 20px 60px;
                 padding: 10px;
                 border-radius: 20px;
             }

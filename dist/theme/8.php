@@ -1,8 +1,4 @@
-<?php
-$socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
-
-$socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
-?> <div id="template-container"><style>#social-media {
+<div id="template-container"><style>#social-media {
     padding: 0% 8%;
     display: flex;
     flex-direction: column;
@@ -126,6 +122,8 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   border: 0;
 }</style><article class="doctor-card"><img src="<?=$props['imgPath'];?>" alt="Dr. Sarah Wilson" class="doctor-image"><div class="doctor-info"><h2 class="doctor-name"><?=$infoObject->name()['a'];?></h2><p class="experience"><?=$infoObject->organization()['a'];?></p><div class="hospital-info"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/776e3cfcfa82d98d51a9f608fe60490dbe6c756636ef36cde209a8f7bef2c756?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="hospital-icon"><p class="hospital-name"><?=$infoObject->description()['a'];?></p></div></div><div id="social-media"> <?php
         $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        $socialNameArr = $props['social'];
+        $socialIconArr = $props['icon'];
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);

@@ -166,25 +166,19 @@ class PassShowHide extends W1 {
         this.$input = $(this.inputSelector);
     }
     run() {
-        var _a, _b;
-        const inputWidth = (_a = this.$input.innerWidth()) !== null && _a !== void 0 ? _a : 0;
-        const inputHeight = (_b = this.$input.innerHeight()) !== null && _b !== void 0 ? _b : 0;
-        this.$input.after('<div style="position: relative;"></div>');
-        $(this.inputSelector + " + div").append(this.$input.html());
-        this.$input.after(`<i class="fa-solid fa-eye eye" style="position: absolute;left: ${inputWidth - (18 + 3)}px; top: ${(inputHeight - 16) / 2}px; cursor: pointer; color: #333;"></i>`);
-        const $eye = $(this.inputSelector).next();
-        $eye.click(() => {
+        const inputWidth = this.$input.innerWidth();
+        const inputHeight = this.$input.innerHeight();
+        this.$input.wrap('<div style="position: relative;"></div>');
+        this.$input.after(`<i class="fa-solid fa-eye eye" style="position: absolute; left: ${inputWidth - (18 + 3)}px; top: ${(inputHeight - 16) / 2}px; cursor: pointer; color: #333;"></i>`);
+        const $eye = this.$input.next();
+        $eye.on('click', () => {
             if (this.$input.attr('type') === "password") {
                 this.$input.attr('type', 'text');
-                $eye.css({
-                    color: "green"
-                });
+                $eye.css({ color: "green" });
             }
             else {
                 this.$input.attr('type', 'password');
-                $eye.css({
-                    color: "#333"
-                });
+                $eye.css({ color: "#333" });
             }
         });
         return this;
@@ -5384,6 +5378,7 @@ $(document).ready(function () {
         case 'admin':
             break;
         case 'signup':
+            signupPage();
             break;
         case 'signin':
             break;
@@ -5403,6 +5398,11 @@ $(document).ready(function () {
             break;
         default:
             break;
+    }
+    function signupPage() {
+        (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#password").passShowHide().run();
+        (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".passRequirements", "dropdown").toggle().run();
+        (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run();
     }
     function aic() {
         (function () {
@@ -5559,4 +5559,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs311699d6f5a6681aea23.js.map
+//# sourceMappingURL=mainjs8b940e81ec8327e69cfb.js.map
