@@ -1,11 +1,6 @@
 <?php
 require_once "data/core.php";
-require_once "data/components/TemplateComponent.php";
-require_once "data/components/BioTemplateButton.php";
-require_once "data/components/UserFooter.php";
-require_once "data/components/Logo.php";
-require_once "data/components/Copyright.php";
-require_once "data/InfoProcess.php";
+require_once "data/Components.php";
 
 $conn = Database::connection();
 $userQuery = mysqli_query($conn, "SELECT *FROM user");
