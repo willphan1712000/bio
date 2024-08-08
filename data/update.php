@@ -104,8 +104,7 @@
         echo json_encode($infoArray);
     }
     elseif ($body->type === 'delete') {
-        $username = $body->username;
-        echo SystemConfig::deleteAccount($username);
+        echo SystemConfig::deleteAccount($body->username);
     }
     elseif ($body->type === 'avaDelete') {
         $username = $body->username;

@@ -1,10 +1,10 @@
 <?php
 class ProductionConfig {
-    private static $mode = "dev"; // mode (dev or production)
+    private static $mode = "development"; // mode (dev or production)
     public static $version = "6.1"; // version of the product
 
     public static function database() {
-        if(self::$mode === "dev") {
+        if(self::$mode === "development") {
             return [
                 "servername" => "localhost:3306",
                 "username" => "root",
@@ -23,7 +23,7 @@ class ProductionConfig {
     }
 
     public static function config() {
-        if(self::$mode === "dev") {
+        if(self::$mode === "development") {
             return [
                 'domain' => 'test.allinclicksbio.com',
                 'fulldomain' => 'https://test.allinclicksbio.com',
@@ -71,17 +71,9 @@ class SystemConfig {
                 'msg3' => 'You can still restore your account under Sign in section',
                 'msg4' => 'Are you sure to proceed?'
             ],
-            'accountHoldPeriod' => 60*24*60*60, // 60 days
+            'accountHoldPeriod' => 60*24*60*60, // 60 days,
+            'data_model' => './dataModel/bio.sql'
         ];
-    }
-    
-    // dump and die function used for debug process
-    public static function dd($value) {
-        echo "<pre>";
-        var_dump($value);
-        echo "</pre>";
-    
-        die();
     }
 
     public static function account() {
@@ -98,6 +90,15 @@ class SystemConfig {
 
     public static function socialIconArr() {
         return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
+    }
+    
+    // dump and die function used for debug process
+    public static function dd($value) {
+        echo "<pre>";
+        var_dump($value);
+        echo "</pre>";
+    
+        die();
     }
 
     public static function deleteFolder($path) {
@@ -148,19 +149,16 @@ class SystemConfig {
     }
 
     public static function deleteAccount($username) {
-        if(self::deleteFolder("../user/".$username)) {
-            $folderDeleted = true;
+        $folderDeleted = self::deleteFolder("../user/".$username) ? true : false;
+        
+        $dbDeleted = false;
+        foreach(Database::table() as $key => $table) {
+            if(Database::DELETE($table, "username = '$username'")) {
+                $dbDeleted = true;
+            }
         }
-        if(mysqli_query(Database::connection(), "DELETE FROM user WHERE username = '$username'")) {
-            $userDeleted = true;
-        }
-        if(mysqli_query(Database::connection(), "DELETE FROM info WHERE username = '$username'")) {
-            $infoDeleted = true;
-        }
-        if(mysqli_query(Database::connection(), "DELETE FROM template WHERE username = '$username'")) {
-            $themeDeleted = true;
-        }
-        return ($folderDeleted && $userDeleted && $infoDeleted && $themeDeleted) ? true : false;
+
+        return $folderDeleted && $dbDeleted;
     }
     
     public static function handleLongString($string) {
@@ -270,6 +268,12 @@ class Database {
     }
     public static function dbName() {
         return ProductionConfig::database()['dbName'];
+    }
+
+    public static function table() {
+        $sql = file_get_contents(SystemConfig::globalVariables()['data_model']);
+        preg_match_all('/`(\w+)`\s+\(/', $sql, $matches);
+        return $matches[1];
     }
 
     // Basic connection (high injection risk)

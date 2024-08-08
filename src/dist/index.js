@@ -70,7 +70,6 @@ $(document).ready(function () {
                         $(".warning__parent").addClass("active");
                         let currentUsernameElement = e.currentTarget;
                         let currentUsernameValue = currentUsernameElement.value;
-                        console.log(currentUsernameValue);
                         $(".btn__confirm").off("click", e => {
                             return null;
                         });

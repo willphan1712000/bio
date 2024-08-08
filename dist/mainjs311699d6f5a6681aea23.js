@@ -5437,7 +5437,6 @@ $(document).ready(function () {
                         $(".warning__parent").addClass("active");
                         let currentUsernameElement = e.currentTarget;
                         let currentUsernameValue = currentUsernameElement.value;
-                        console.log(currentUsernameValue);
                         $(".btn__confirm").off("click", e => {
                             return null;
                         });
@@ -5560,4 +5559,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs948b911d504529d46d96.js.map
+//# sourceMappingURL=mainjs311699d6f5a6681aea23.js.map
