@@ -1,5 +1,6 @@
 <?php
 require_once "backend/Router.php";
+require_once "backend/API.php";
 require_once "backend/UserManagement.php";
 require_once "backend/Database.php";
 require_once "backend/TemplateManagement.php";
@@ -159,7 +160,7 @@ class SystemConfig {
         
         $dbDeleted = false;
         foreach(Database::table() as $key => $table) {
-            if(Database::DELETE($table, "username = '$username'")) {
+            if(API::DELETE($table, "username = '$username'")) {
                 $dbDeleted = true;
             }
         }

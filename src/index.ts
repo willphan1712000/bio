@@ -48,6 +48,24 @@ $(document).ready(function() {
             break
     }
 
+    function runCheckDatabase() {
+        $.ajax({
+            url: "/data/update.php",
+            method: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "mainPage"
+            }),
+            success: function(e) {
+                if(e)
+                console.log("Database has been checked and updated")
+            },
+            error: function() {
+                console.log("Error")
+            }
+        })
+    }
+
     function signupPage() {
         $$("#password").passShowHide().run()
         $$(".passRequirements", "dropdown").toggle().run()
@@ -113,8 +131,6 @@ $(document).ready(function() {
     function template(props: Props) : void {
         // Method to remove everything from cart when signed out
         (function() {
-            console.log(props.isSignedIn);
-            
             if(props.isSignedIn !== "true") {
                 localStorage.clear()
             }

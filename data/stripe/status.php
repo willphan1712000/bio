@@ -28,10 +28,10 @@ function completePayment($jsonObj) {
   $username = $jsonObj->username;
 
   foreach($itemidArr as $item) {
-    Database::POST("purchase", [
+    API::POST("purchase", [
       'username' => $username,
       'template_id' => $item
     ]);
   }
-  Database::PUT("template", "themeid", $itemidArr[0], "username='$username'");
+  API::PUT("template", "themeid", $itemidArr[0], "username='$username'");
 }

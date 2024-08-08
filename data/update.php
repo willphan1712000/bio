@@ -7,7 +7,7 @@
     $conn = Database::connection();
     $json = file_get_contents("php://input");
     $body = json_decode($json);
-    // There are 'create', 'info', 'getInfo', 'delete', 'avaDelete', 'getUserInfo', 'mainPage', 'deleteToken', 'restoreAccount'
+    // There are 'create', 'info', 'getInfo', 'delete', 'avaDelete', 'getUserInfo', 'deleteToken', 'restoreAccount'
     if($body->type === 'create') {
         // Already fetched variables
         $username = $body->username;
@@ -120,24 +120,6 @@
             $userArray[] = $row;
         }
         echo json_encode($userArray);
-    }
-    elseif ($body->type === 'mainPage') {
-        $userColumnQuery = mysqli_query($conn, "DESCRIBE user");
-        $columns = [];
-        while($col = mysqli_fetch_assoc($userColumnQuery)) {
-            $columns[] = $col['Field'];
-        }
-        foreach(SystemConfig::account() as $ele) {
-            if(!in_array($ele, $columns)) {
-                mysqli_query($conn, "ALTER TABLE user ADD COLUMN ".$ele." varchar(200) NOT NULL");
-            }
-        }
-        foreach($columns as $column) {
-            if(!in_array($column, SystemConfig::account())) {
-                mysqli_query($conn, "ALTER TABLE user DROP COLUMN ".$column);
-            }
-        }
-        echo(true);
     }
     elseif ($body->type === 'deleteToken') {
         $token = $body->token;

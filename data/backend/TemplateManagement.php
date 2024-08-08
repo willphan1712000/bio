@@ -3,7 +3,7 @@
 class TemplateManagement {
     public static $totalTemplate = 10;
     public static function isPurchased($username, $tem) {
-        $isPurchased = Database::GET("purchase", null, "username='$username'AND template_id=$tem");
+        $isPurchased = API::GET("purchase", null, "username='$username'AND template_id=$tem");
         if(!empty($isPurchased)) {
             return true;
         }
@@ -12,7 +12,7 @@ class TemplateManagement {
 
     // This function will check if user shares a template. If template was purchased, it would be themeid. Otherwise, it would redirect user to the main user page
     public static function shareTemplate($username, $tem) {
-        $chosen = Database::GET("template", "themeid", "username='$username'");
+        $chosen = API::GET("template", "themeid", "username='$username'");
         if($tem !== null) {
             if(self::isPurchased($username, $tem)) {
                 return $tem;

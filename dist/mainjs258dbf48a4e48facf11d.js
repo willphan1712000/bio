@@ -5399,6 +5399,23 @@ $(document).ready(function () {
         default:
             break;
     }
+    function runCheckDatabase() {
+        $.ajax({
+            url: "/data/update.php",
+            method: "POST",
+            dataType: "json",
+            data: JSON.stringify({
+                type: "mainPage"
+            }),
+            success: function (e) {
+                if (e)
+                    console.log("Database has been checked and updated");
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    }
     function signupPage() {
         (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#password").passShowHide().run();
         (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".passRequirements", "dropdown").toggle().run();
@@ -5456,7 +5473,6 @@ $(document).ready(function () {
     }
     function template(props) {
         (function () {
-            console.log(props.isSignedIn);
             if (props.isSignedIn !== "true") {
                 localStorage.clear();
             }
@@ -5559,4 +5575,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs8b940e81ec8327e69cfb.js.map
+//# sourceMappingURL=mainjs258dbf48a4e48facf11d.js.map
