@@ -27,7 +27,6 @@ $(document).ready(function() {
             break
         case 'aic':
             aic();
-            // runCheckDatabase()
             break
         case 'forgot':
             // forgot()
@@ -48,22 +47,13 @@ $(document).ready(function() {
             break
     }
 
-    function runCheckDatabase() {
-        $.ajax({
-            url: "/data/update.php",
-            method: "POST",
-            dataType: "json",
-            data: JSON.stringify({
-                type: "mainPage"
-            }),
-            success: function(e) {
-                if(e)
-                console.log("Database has been checked and updated")
-            },
-            error: function() {
-                console.log("Error")
-            }
-        })
+    async function runCheckDatabase() {
+        const result = await $$$("/data/api/migration.php", null).api().get();
+        if(result) {
+            console.log("Database has been migrated successfully");
+        } else {
+            console.log("Database has failed to migrate");
+        }
     }
 
     function signupPage() {
@@ -72,7 +62,17 @@ $(document).ready(function() {
         $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run()
     }
 
-    function aic() : void {
+    function aic() {
+        // Handle migration
+        $(".migration").click(async function(e) {
+            e.preventDefault();
+            const result = await $$$("/data/api/migration.php", null).api().get();
+            if(result) {
+                alert("Database has been migrated successfully");
+            } else {
+                alert("Database has failed to migrate");
+            }
+        });
         // search mechanism
        (async function() {
            interface Data {

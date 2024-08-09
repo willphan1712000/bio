@@ -1,6 +1,7 @@
 <?php
 require_once "backend/Router.php";
 require_once "backend/API.php";
+require_once "backend/DataMigration.php";
 require_once "backend/UserManagement.php";
 require_once "backend/Database.php";
 require_once "backend/TemplateManagement.php";
@@ -257,7 +258,7 @@ class SystemConfig {
     // this function is for extracting url into base or query string
     public static function URLExtraction($queryStr = null) {
         $base = basename(parse_url($_SERVER['REQUEST_URI'])['path']);
-        $query = parse_url($_SERVER['REQUEST_URI'])['query'];
+        $query = parse_url($_SERVER['REQUEST_URI'])['query'] ?? "";
         parse_str($query, $query_params);
         $result = (isset($query_params[$queryStr]) && $query_params[$queryStr] !== "") ? $query_params[$queryStr] : null;
         return ($queryStr === null) ? $base : $result;

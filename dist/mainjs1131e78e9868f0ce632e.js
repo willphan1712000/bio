@@ -5400,19 +5400,13 @@ $(document).ready(function () {
             break;
     }
     function runCheckDatabase() {
-        $.ajax({
-            url: "/data/update.php",
-            method: "POST",
-            dataType: "json",
-            data: JSON.stringify({
-                type: "mainPage"
-            }),
-            success: function (e) {
-                if (e)
-                    console.log("Database has been checked and updated");
-            },
-            error: function () {
-                console.log("Error");
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/migration.php", null).api().get();
+            if (result) {
+                console.log("Database has been migrated successfully");
+            }
+            else {
+                console.log("Database has failed to migrate");
             }
         });
     }
@@ -5422,6 +5416,18 @@ $(document).ready(function () {
         (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run();
     }
     function aic() {
+        $(".migration").click(function (e) {
+            return __awaiter(this, void 0, void 0, function* () {
+                e.preventDefault();
+                const result = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/migration.php", null).api().get();
+                if (result) {
+                    alert("Database has been migrated successfully");
+                }
+                else {
+                    alert("Database has failed to migrate");
+                }
+            });
+        });
         (function () {
             return __awaiter(this, void 0, void 0, function* () {
                 const data = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/update.php", {
@@ -5575,4 +5581,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs258dbf48a4e48facf11d.js.map
+//# sourceMappingURL=mainjs1131e78e9868f0ce632e.js.map
