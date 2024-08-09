@@ -1,11 +1,14 @@
 <?php
 require_once 'Database.php';
 
-// GET (table, column, unique)
-// POST (table, array of column)
-// PUT (table, column, value, unique)
-// DELETE (table, unique)
-class API extends Database {
+interface IAPI {
+    public static function GET($table, $column = null, $unique);
+    public static function PUT($table, $column, $value, $unique);
+    public static function POST(string $table, array $columns);
+    public static function DELETE(string $table, string $unique);
+}
+
+class API extends Database implements IAPI {
     // Query function for fast data retrieval
     public static function GET($table, $column = null, $unique) {
         $conn = parent::preparedConnection();

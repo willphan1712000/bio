@@ -536,8 +536,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   $$$: () => (/* binding */ $$$)
 /* harmony export */ });
-function $$$(ele1, ele2, ele3, ele4, ele5) {
-    if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined) {
+function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
+    if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
+        return new WW6(ele1, ele2, ele3, ele4, ele5, ele6);
+    }
+    else if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined) {
         return new WW5(ele1, ele2, ele3, ele4, ele5);
     }
     else if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
@@ -590,11 +593,21 @@ class WW5 {
         this.ele4 = ele4;
         this.ele5 = ele5;
     }
-    signup() {
-        return new Signup(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5);
-    }
     formValidate() {
         return new FormValidate(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5);
+    }
+}
+class WW6 {
+    constructor(ele1, ele2, ele3, ele4, ele5, ele6) {
+        this.ele1 = ele1;
+        this.ele2 = ele2;
+        this.ele3 = ele3;
+        this.ele4 = ele4;
+        this.ele5 = ele5;
+        this.ele6 = ele6;
+    }
+    signup() {
+        return new Signup(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5, this.ele6);
     }
 }
 class FormValidate extends WW5 {
@@ -648,14 +661,15 @@ class FormValidate extends WW5 {
         return this;
     }
 }
-class Signup extends WW5 {
-    constructor(username, email, password, error, submit) {
-        super(username, email, password, error, submit);
+class Signup extends WW6 {
+    constructor(username, email, password, error, submit, url) {
+        super(username, email, password, error, submit, url);
         this.username = username;
         this.email = email;
         this.password = password;
         this.error = error;
         this.submit = submit;
+        this.url = url;
         this.$username = $(this.username);
         this.$email = $(this.email);
         this.$password = $(this.password);
@@ -682,7 +696,7 @@ class Signup extends WW5 {
                     else {
                         this.$error.html("");
                         $.ajax({
-                            url: "/data/signup.php",
+                            url: this.url.signup,
                             method: "POST",
                             dataType: "json",
                             data: {
@@ -781,8 +795,7 @@ class Signup extends WW5 {
         $(after).addClass(afterClass);
     }
     createFiles(username) {
-        $$$("/data/update.php", {
-            type: 'create',
+        $$$(this.url.create, {
             username: username
         }).api().post();
     }
@@ -5399,21 +5412,13 @@ $(document).ready(function () {
         default:
             break;
     }
-    function runCheckDatabase() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const result = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/migration.php", null).api().get();
-            if (result) {
-                console.log("Database has been migrated successfully");
-            }
-            else {
-                console.log("Database has failed to migrate");
-            }
-        });
-    }
     function signupPage() {
         (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#password").passShowHide().run();
         (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".passRequirements", "dropdown").toggle().run();
-        (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run();
+        (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
+            signup: "/data/signup.php",
+            create: "/data/api/createAccount.php",
+        }).signup().run();
     }
     function aic() {
         $(".migration").click(function (e) {
@@ -5465,11 +5470,10 @@ $(document).ready(function () {
                         });
                         $(".btn__confirm").click(function () {
                             return __awaiter(this, void 0, void 0, function* () {
-                                yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/update.php", {
-                                    type: 'delete',
+                                const r = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/deleteAccount.php", {
                                     username: currentUsernameValue,
                                 }).api().post();
-                                location.reload();
+                                console.log(r);
                             });
                         });
                     });
@@ -5581,4 +5585,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs1131e78e9868f0ce632e.js.map
+//# sourceMappingURL=mainjs6e97ed374a039d423b62.js.map

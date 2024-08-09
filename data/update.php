@@ -1,39 +1,15 @@
 <?php
     require "core.php";
+    $json = file_get_contents("php://input");
+    $body = json_decode($json);
+    // QR
     require "./vendor/autoload.php";
     use Endroid\QrCode\QrCode;
     use Endroid\QrCode\Writer\PngWriter;
-    $g = SystemConfig::globalVariables();
+    // Database
     $conn = Database::connection();
-    $json = file_get_contents("php://input");
-    $body = json_decode($json);
-    // There are 'create', 'info', 'getInfo', 'delete', 'avaDelete', 'getUserInfo', 'deleteToken', 'restoreAccount'
-    if($body->type === 'create') {
-        // Already fetched variables
-        $username = $body->username;
-        $path = "../user/".$username;
-        $url = UserManagement::URLGenerator($username, "share");
-        // Check if a folder for a user is created yet
-        if(!is_dir($path)) {
-            if(mkdir($path, 0755, true)) {
-                $createFolderSuccess = true;
-            }
-        } else {
-            $createFolderSuccess = false;
-        }
-        // If so, create QR Code
-        if($createFolderSuccess) {
-            // QR Code Generation Process
-            $qr_code = QrCode::create($url)->setSize(600)
-            ->setMargin(10);
-            $writer = new PngWriter;
-            $result = $writer->write($qr_code);
-            header("Content-Type: " . $result->getMimeType());
-            $result->saveToFile($path."/qr-code.png");
-            echo true;
-        }
-    }
-    elseif($body->type === 'info') {
+    // There are 'info', 'getInfo', 'avaDelete', 'getUserInfo', 'deleteToken', 'restoreAccount'
+    if($body->type === 'info') {
         // Already fetched variables
         $username = $body->username;
         $filename = $body->image;
@@ -102,9 +78,6 @@
             $infoArray[] = $row;
         }
         echo json_encode($infoArray);
-    }
-    elseif ($body->type === 'delete') {
-        echo SystemConfig::deleteAccount($body->username);
     }
     elseif ($body->type === 'avaDelete') {
         $username = $body->username;

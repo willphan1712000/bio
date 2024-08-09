@@ -1,6 +1,4 @@
 <?php
-require_once "Database.php";
-
 interface Migration {
     public static function add();
     public static function drop();

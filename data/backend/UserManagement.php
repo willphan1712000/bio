@@ -1,6 +1,10 @@
 <?php
+interface IUserManagement {
+    public static function isSignedIn($SESSION, $username);
+    public static function URLGenerator($username, $c);
+}
 
-class UserManagement {
+class UserManagement implements IUserManagement {
     public static function isSignedIn($SESSION, $username) {
         if(isset($SESSION[$username])) {
             if(time() - $SESSION['last_time_'.$username] > SystemConfig::globalVariables()['timeSession']) {

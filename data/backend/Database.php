@@ -1,5 +1,4 @@
 <?php
-
 class Database {
     protected static function servername() {
         return ProductionConfig::database()['servername'];
@@ -55,26 +54,11 @@ class Database {
             "username" => "varchar(200) DEFAULT NULL",
             "themeid" => "int(255) DEFAULT NULL",
             "favorite" => "varchar(1000) DEFAULT NULL"
-        ],
-        "unitedstates" => [
-            "username" => "varchar(200) DEFAULT NULL",
-            "themeid" => "int(255) DEFAULT NULL",
-            "favorite" => "varchar(1000) DEFAULT NULL",
-            "amendment" => "varchar(1000) DEFAULT NULL",
-            "constitution_version" => "varchar(1000) DEFAULT NULL",
-            "constitution_date" => "varchar(1000) DEFAULT NULL",
-            "constitution_election" => "varchar(1000) DEFAULT NULL",
-            "presidential_election" => "varchar(1000) DEFAULT NULL",
-            "vice_presidential_election" => "varchar(1000) DEFAULT NULL",
-            "biden" => "varchar(1000) DEFAULT NULL",
-            "donald_trump" => "varchar(1000) DEFAULT NULL",
         ]
     ];
 
-    public static function table() {
-        $sql = file_get_contents(SystemConfig::globalVariables()['data_model']);
-        preg_match_all('/`(\w+)`\s+\(/', $sql, $matches);
-        return $matches[1];
+    public static function get_data_model() {
+        return self::$data_model;
     }
 
     // Basic connection (high injection risk)

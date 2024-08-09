@@ -1,5 +1,12 @@
 <?php
 
+interface IRouter {
+    function addRoute($uri, $controller);
+    function route($uri);
+    function abort();
+    function removeLastRoute();
+}
+
 class Router {
     private $routes = [];
 

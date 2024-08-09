@@ -47,19 +47,13 @@ $(document).ready(function() {
             break
     }
 
-    async function runCheckDatabase() {
-        const result = await $$$("/data/api/migration.php", null).api().get();
-        if(result) {
-            console.log("Database has been migrated successfully");
-        } else {
-            console.log("Database has failed to migrate");
-        }
-    }
-
     function signupPage() {
         $$("#password").passShowHide().run()
         $$(".passRequirements", "dropdown").toggle().run()
-        $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm").signup().run()
+        $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
+            signup: "/data/signup.php",
+            create: "/data/api/createAccount.php",
+        }).signup().run()
     }
 
     function aic() {
@@ -117,11 +111,10 @@ $(document).ready(function() {
                         return null;
                     });
                     $(".btn__confirm").click(async function() {
-                        await $$$("/data/update.php", {
-                            type: 'delete',
+                        const r = await $$$("/data/api/deleteAccount.php", {
                             username: currentUsernameValue,
                         }).api().post();
-                        location.reload();
+                        console.log(r);
                     })
                 })
            }).search().run();

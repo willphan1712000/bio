@@ -1,6 +1,12 @@
 <?php
 
-class TemplateManagement {
+interface ITemplateManagement {
+    public static function isPurchased($username, $tem);
+    public static function shareTemplate($username, $tem);
+    public static function isAbleToPurchase($isSignedIn, $username, $itemid);
+}
+
+class TemplateManagement implements ITemplateManagement {
     public static $totalTemplate = 10;
     public static function isPurchased($username, $tem) {
         $isPurchased = API::GET("purchase", null, "username='$username'AND template_id=$tem");

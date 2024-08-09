@@ -16,3 +16,5 @@ css/*
 secrets/*
 
 tsconfig.json
+
+test.php

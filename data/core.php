@@ -6,6 +6,7 @@ require_once "backend/UserManagement.php";
 require_once "backend/Database.php";
 require_once "backend/TemplateManagement.php";
 require_once "backend/InfoProcess.php";
+require_once "backend/DeleteAccount.php";
 
 class ProductionConfig {
     private static $mode = "development"; // mode (dev or production)
@@ -80,12 +81,13 @@ class SystemConfig {
                 'msg4' => 'Are you sure to proceed?'
             ],
             'accountHoldPeriod' => 60*24*60*60, // 60 days,
-            'data_model' => './dataModel/bio.sql'
+            'data_model' => './dataModel/bio.sql',
+            'user_folder' => '../user/',
+            'aicAccount' => [
+                'username' => 'Allinclicks',
+                'password' => '123456'
+            ]
         ];
-    }
-
-    public static function account() {
-        return ["username", "email", "password", "token", "deleteToken"];
     }
 
     public static function infoArr() {
@@ -99,6 +101,14 @@ class SystemConfig {
     public static function socialIconArr() {
         return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
     }
+
+    public static function emailAuth() {
+        return [
+            'host' => 'mi3-tr103.supercp.com',
+            'username' => 'bio@allinclicksbio.com',
+            'password' => 'Allinclicks123200@'
+        ];
+    }
     
     // dump and die function used for debug process
     public static function dd($value) {
@@ -107,22 +117,6 @@ class SystemConfig {
         echo "</pre>";
     
         die();
-    }
-
-    public static function deleteFolder($path) {
-        if(!is_dir($path)) {
-            return false;
-        }
-        $files = array_diff(scandir($path), array('.', '..'));
-        foreach($files as $file) {
-            $filePath = $path.'/'.$file;
-            if(is_dir($filePath)) {
-                deleteFolder($filePath);
-            } else {
-                unlink($filePath);
-            }
-        }
-        return rmdir($path);
     }
     
     public static function isPassVaild($password) {
@@ -146,27 +140,6 @@ class SystemConfig {
                 return true;
             }
         }
-    }
-
-    public static function emailAuth() {
-        return [
-            'host' => 'mi3-tr103.supercp.com',
-            'username' => 'bio@allinclicksbio.com',
-            'password' => 'Allinclicks123200@'
-        ];
-    }
-
-    public static function deleteAccount($username) {
-        $folderDeleted = self::deleteFolder("../user/".$username) ? true : false;
-        
-        $dbDeleted = false;
-        foreach(Database::table() as $key => $table) {
-            if(API::DELETE($table, "username = '$username'")) {
-                $dbDeleted = true;
-            }
-        }
-
-        return $folderDeleted && $dbDeleted;
     }
     
     public static function handleLongString($string) {
