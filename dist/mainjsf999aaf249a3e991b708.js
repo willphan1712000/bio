@@ -842,6 +842,79 @@ class API extends WW2 {
 
 /***/ }),
 
+/***/ "./src/dist/module/pages/restore.js":
+/*!******************************************!*\
+  !*** ./src/dist/module/pages/restore.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ restore)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_WW__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+function restore(props) {
+    $(".btn__ele--restore").click(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const r = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)("/data/api/restoreAccount.php", {
+                username: props.username
+            }).api().post();
+            if (r) {
+                window.location.href = "/";
+            }
+        });
+    });
+    $(".btn__ele--delete").click(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const r = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)("/data/api/deleteAccount.php", {
+                username: props.username
+            }).api().post();
+            if (r) {
+                window.location.href = "/";
+            }
+        });
+    });
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/signup.js":
+/*!*****************************************!*\
+  !*** ./src/dist/module/pages/signup.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ signupPage)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+/* harmony import */ var _Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
+
+
+function signupPage() {
+    (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#password").passShowHide().run();
+    (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".passRequirements", "dropdown").toggle().run();
+    (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
+        signup: "/data/signup.php",
+        create: "/data/api/createAccount.php",
+    }).signup().run();
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/swiper/shared/ssr-window.esm.mjs":
 /*!*******************************************************!*\
   !*** ./node_modules/swiper/shared/ssr-window.esm.mjs ***!
@@ -5372,6 +5445,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module/Web-Development/W */ "./src/dist/module/Web-Development/W.js");
 /* harmony import */ var _module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./module/Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
+/* harmony import */ var _module_pages_restore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/pages/restore */ "./src/dist/module/pages/restore.js");
+/* harmony import */ var _module_pages_signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/pages/signup */ "./src/dist/module/pages/signup.js");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -5384,6 +5459,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 
 
 
+
+
 $(document).ready(function () {
     switch (type) {
         case 'index':
@@ -5391,7 +5468,7 @@ $(document).ready(function () {
         case 'admin':
             break;
         case 'signup':
-            signupPage();
+            (0,_module_pages_signup__WEBPACK_IMPORTED_MODULE_4__["default"])();
             break;
         case 'signin':
             break;
@@ -5405,20 +5482,13 @@ $(document).ready(function () {
         case 'resetPass':
             break;
         case 'restore':
+            (0,_module_pages_restore__WEBPACK_IMPORTED_MODULE_3__["default"])(props);
             break;
         case 'template':
             template(props);
             break;
         default:
             break;
-    }
-    function signupPage() {
-        (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#password").passShowHide().run();
-        (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".passRequirements", "dropdown").toggle().run();
-        (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
-            signup: "/data/signup.php",
-            create: "/data/api/createAccount.php",
-        }).signup().run();
     }
     function aic() {
         $(".migration").click(function (e) {
@@ -5585,4 +5655,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs6e97ed374a039d423b62.js.map
+//# sourceMappingURL=mainjsf999aaf249a3e991b708.js.map

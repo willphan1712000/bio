@@ -75,7 +75,11 @@ class API extends Database implements IAPI {
         $conn = parent::preparedConnection();
         $stmt = null;
         try {
-            $query = "UPDATE ".$table." SET ".$column." = '$value' WHERE ".$unique;
+            if($value === NULL) {
+                $query = "UPDATE ".$table." SET ".$column." = NULL WHERE ".$unique;
+            } else {
+                $query = "UPDATE ".$table." SET ".$column." = '$value' WHERE ".$unique;
+            }
             $stmt = $conn->prepare($query);
             if(!$stmt) {
                 throw new Exception("Failed to prepare the SQL statement.");

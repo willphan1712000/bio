@@ -2,6 +2,9 @@ import {$$} from "./module/Web-Development/W"
 import {$$$} from "./module/Web-Development/WW"
 import Swiper from 'swiper'
 
+import restore from "./module/pages/restore"
+import signupPage from "./module/pages/signup"
+
 declare var type: string;
 declare var props: {
     [key: string]: string
@@ -11,6 +14,7 @@ interface Props {
 }
 
 $(document).ready(function() {
+    
     // Deployment
     switch(type) {
         case 'index':
@@ -38,22 +42,13 @@ $(document).ready(function() {
             // resetPass()
             break
         case 'restore':
-            // restore()
+            restore(props);
             break
         case 'template':
             template(props)
             break
         default:
             break
-    }
-
-    function signupPage() {
-        $$("#password").passShowHide().run()
-        $$(".passRequirements", "dropdown").toggle().run()
-        $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
-            signup: "/data/signup.php",
-            create: "/data/api/createAccount.php",
-        }).signup().run()
     }
 
     function aic() {

@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { $$ } from "./module/Web-Development/W";
 import { $$$ } from "./module/Web-Development/WW";
 import Swiper from 'swiper';
+import restore from "./module/pages/restore";
+import signupPage from "./module/pages/signup";
 $(document).ready(function () {
     switch (type) {
         case 'index':
@@ -31,20 +33,13 @@ $(document).ready(function () {
         case 'resetPass':
             break;
         case 'restore':
+            restore(props);
             break;
         case 'template':
             template(props);
             break;
         default:
             break;
-    }
-    function signupPage() {
-        $$("#password").passShowHide().run();
-        $$(".passRequirements", "dropdown").toggle().run();
-        $$$("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
-            signup: "/data/signup.php",
-            create: "/data/api/createAccount.php",
-        }).signup().run();
     }
     function aic() {
         $(".migration").click(function (e) {

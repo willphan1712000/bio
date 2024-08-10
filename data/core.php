@@ -80,6 +80,12 @@ class SystemConfig {
                 'msg3' => 'You can still restore your account under Sign in section',
                 'msg4' => 'Are you sure to proceed?'
             ],
+            'restoreWarningMsg' => [
+                'msg1' => 'Your account has been deactivated',
+                'msg2' => 'You have ',
+                'msg3' => ' days left to restore your account for the username ',
+                'msg4' => 'Otherwise, your account will be permanently deleted'
+            ],
             'accountHoldPeriod' => 60*24*60*60, // 60 days,
             'data_model' => './dataModel/bio.sql',
             'user_folder' => '../user/',

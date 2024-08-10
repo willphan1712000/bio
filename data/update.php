@@ -8,7 +8,7 @@
     use Endroid\QrCode\Writer\PngWriter;
     // Database
     $conn = Database::connection();
-    // There are 'info', 'getInfo', 'avaDelete', 'getUserInfo', 'deleteToken', 'restoreAccount'
+    // There are 'info', 'avaDelete', 'getUserInfo', 'deleteToken'
     if($body->type === 'info') {
         // Already fetched variables
         $username = $body->username;
@@ -52,33 +52,6 @@
             echo $filename;
         }
     }
-    elseif ($body->type === 'getInfo') {
-        $getColumnQuery = mysqli_query($conn, "DESCRIBE info");
-        $columns = []; // This is the array for all column name of the table
-        while($row = mysqli_fetch_assoc($getColumnQuery)) {
-            $columns[] = $row["Field"];
-        }
-        $alls = array_merge(SystemConfig::infoArr(), SystemConfig::socialNameArr());
-
-        foreach($alls as $all) {
-            if(!in_array($all, $columns)) {
-                mysqli_query($conn, "ALTER TABLE info ADD COLUMN ".$all." varchar(200) NOT NULL");
-            }
-        }
-        foreach($columns as $column) {
-            if(!in_array($column, $alls)) {
-                mysqli_query($conn, "ALTER TABLE info DROP COLUMN ".$column);
-            }
-        }
-
-        $username = $body->username;
-        $infoQuery = mysqli_query($conn, "SELECT *FROM info WHERE username = '$username'");
-        $infoArray = [];
-        while($row = mysqli_fetch_assoc($infoQuery)) {
-            $infoArray[] = $row;
-        }
-        echo json_encode($infoArray);
-    }
     elseif ($body->type === 'avaDelete') {
         $username = $body->username;
         $filename = $body->img;
@@ -99,11 +72,5 @@
         $username = $body->username;
         mysqli_query($conn, "UPDATE user SET deleteToken = '$token' WHERE username = '$username'");
         echo(true);
-    }
-    elseif($body->type === 'restoreAccount') {
-        $username = $body->username;
-        if(mysqli_query($conn, "UPDATE user SET deleteToken = '' WHERE username ='$username'")) {
-            echo(true);
-        }
     }
 ?>
