@@ -842,6 +842,94 @@ class API extends WW2 {
 
 /***/ }),
 
+/***/ "./src/dist/module/pages/aic.js":
+/*!**************************************!*\
+  !*** ./src/dist/module/pages/aic.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ aic)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+/* harmony import */ var _Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+function aic() {
+    $(".migration").click(function (e) {
+        return __awaiter(this, void 0, void 0, function* () {
+            e.preventDefault();
+            const result = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/migration.php", null).api().get();
+            if (result) {
+                alert("Database has been migrated successfully");
+            }
+            else {
+                alert("Database has failed to migrate");
+            }
+        });
+    });
+    (function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/update.php", {
+                type: "getUserInfo",
+            }).api().post();
+            for (const i in data) {
+                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
+                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
+                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
+            }
+            const search = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#search", {
+                location: "#userData",
+                header: {
+                    1: "#",
+                    2: "Username",
+                    3: "Email",
+                    4: "Password",
+                    5: "Token",
+                    6: "Delete Token",
+                    7: "Bio",
+                    8: "Admin",
+                    9: "Delete"
+                },
+                data
+            }, "/src/dist/module/Web-Development/worker.js", () => {
+                $("#userData button").off("click", e => {
+                    return null;
+                });
+                $("#userData button").click(function (e) {
+                    $(".warning__parent").addClass("active");
+                    let currentUsernameElement = e.currentTarget;
+                    let currentUsernameValue = currentUsernameElement.value;
+                    $(".btn__confirm").off("click", e => {
+                        return null;
+                    });
+                    $(".btn__confirm").click(function () {
+                        return __awaiter(this, void 0, void 0, function* () {
+                            const r = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/deleteAccount.php", {
+                                username: currentUsernameValue,
+                            }).api().post();
+                            console.log(r);
+                        });
+                    });
+                });
+            }).search().run();
+        });
+    })();
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/pages/restore.js":
 /*!******************************************!*\
   !*** ./src/dist/module/pages/restore.js ***!
@@ -910,6 +998,124 @@ function signupPage() {
         signup: "/data/signup.php",
         create: "/data/api/createAccount.php",
     }).signup().run();
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/template.js":
+/*!*******************************************!*\
+  !*** ./src/dist/module/pages/template.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ template)
+/* harmony export */ });
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+
+
+function template(props) {
+    (function () {
+        if (props.isSignedIn !== "true") {
+            localStorage.clear();
+        }
+    })();
+    const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper', {
+        direction: 'horizontal',
+        loop: false,
+    });
+    (function () {
+        let lastScrollTop = 0;
+        const signin = document.querySelector(".logo .btn-ele.signin");
+        const cart = document.querySelector(".logo .btn-ele.cart");
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                signin.style.bottom = '-12%';
+                cart.style.bottom = '-12%';
+            }
+            else {
+                signin.style.bottom = '10px';
+                cart.style.bottom = '10px';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+    })();
+    $(".share").click(e => {
+        const current = e.currentTarget;
+        const shareURL = $(current).data("share");
+        if (navigator.share) {
+            navigator.share({
+                title: props.username,
+                url: shareURL
+            });
+        }
+        else {
+            alert("Share does not support this browser");
+        }
+    });
+    $(".select").click(e => {
+        const current = e.currentTarget;
+        const id = $(current).data("id");
+        $.ajax({
+            url: '/data/template.php',
+            method: 'POST',
+            data: {
+                type: "select",
+                username: props.username,
+                themeid: id
+            },
+            dataType: "json",
+            success: function (e) {
+                if (e === 1) {
+                    window.location.href = '/' + props.username;
+                }
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    });
+    $(".buy").click(e => {
+        const current = $(e.currentTarget);
+        const id = current.data("id");
+        if (props.isSignedIn !== 'true') {
+            window.location.href = '/signin?template=true';
+        }
+        else {
+            window.location.href = '/checkout?username=' + props.username + '&itemid=' + id;
+        }
+    });
+    (function () {
+        const imgSpinner = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_1__.$$)(".template .template-img").addSpinner().singleSpinner();
+        const img = $(".template .template-img > img");
+        imgSpinner.show();
+        img.css({
+            "visibility": "hidden"
+        });
+        $(".template .template-img > img").each(function (i) {
+            const img = this;
+            if (img instanceof HTMLImageElement) {
+                if (img.complete) {
+                    handleLoaded(img);
+                }
+                else {
+                    $(img).on("load", function () {
+                        handleLoaded(img);
+                    });
+                }
+            }
+        });
+        function handleLoaded(img) {
+            $(img).siblings(".loader").removeClass("spinner");
+            $(img).css({
+                "visibility": "visible"
+            });
+        }
+    })();
 }
 
 
@@ -5442,21 +5648,10 @@ var __webpack_exports__ = {};
   !*** ./src/dist/index.js ***!
   \***************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module/Web-Development/W */ "./src/dist/module/Web-Development/W.js");
-/* harmony import */ var _module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./module/Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
-/* harmony import */ var _module_pages_restore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/pages/restore */ "./src/dist/module/pages/restore.js");
-/* harmony import */ var _module_pages_signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/pages/signup */ "./src/dist/module/pages/signup.js");
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
+/* harmony import */ var _module_pages_restore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module/pages/restore */ "./src/dist/module/pages/restore.js");
+/* harmony import */ var _module_pages_signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./module/pages/signup */ "./src/dist/module/pages/signup.js");
+/* harmony import */ var _module_pages_aic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/pages/aic */ "./src/dist/module/pages/aic.js");
+/* harmony import */ var _module_pages_template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/pages/template */ "./src/dist/module/pages/template.js");
 
 
 
@@ -5468,12 +5663,12 @@ $(document).ready(function () {
         case 'admin':
             break;
         case 'signup':
-            (0,_module_pages_signup__WEBPACK_IMPORTED_MODULE_4__["default"])();
+            (0,_module_pages_signup__WEBPACK_IMPORTED_MODULE_1__["default"])();
             break;
         case 'signin':
             break;
         case 'aic':
-            aic();
+            (0,_module_pages_aic__WEBPACK_IMPORTED_MODULE_2__["default"])();
             break;
         case 'forgot':
             break;
@@ -5482,177 +5677,16 @@ $(document).ready(function () {
         case 'resetPass':
             break;
         case 'restore':
-            (0,_module_pages_restore__WEBPACK_IMPORTED_MODULE_3__["default"])(props);
+            (0,_module_pages_restore__WEBPACK_IMPORTED_MODULE_0__["default"])(props);
             break;
         case 'template':
-            template(props);
+            (0,_module_pages_template__WEBPACK_IMPORTED_MODULE_3__["default"])(props);
             break;
         default:
             break;
     }
-    function aic() {
-        $(".migration").click(function (e) {
-            return __awaiter(this, void 0, void 0, function* () {
-                e.preventDefault();
-                const result = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/migration.php", null).api().get();
-                if (result) {
-                    alert("Database has been migrated successfully");
-                }
-                else {
-                    alert("Database has failed to migrate");
-                }
-            });
-        });
-        (function () {
-            return __awaiter(this, void 0, void 0, function* () {
-                const data = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/update.php", {
-                    type: "getUserInfo",
-                }).api().post();
-                for (const i in data) {
-                    data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
-                    data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
-                    data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
-                }
-                const search = (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#search", {
-                    location: "#userData",
-                    header: {
-                        1: "#",
-                        2: "Username",
-                        3: "Email",
-                        4: "Password",
-                        5: "Token",
-                        6: "Delete Token",
-                        7: "Bio",
-                        8: "Admin",
-                        9: "Delete"
-                    },
-                    data
-                }, "/src/dist/module/Web-Development/worker.js", () => {
-                    $("#userData button").off("click", e => {
-                        return null;
-                    });
-                    $("#userData button").click(function (e) {
-                        $(".warning__parent").addClass("active");
-                        let currentUsernameElement = e.currentTarget;
-                        let currentUsernameValue = currentUsernameElement.value;
-                        $(".btn__confirm").off("click", e => {
-                            return null;
-                        });
-                        $(".btn__confirm").click(function () {
-                            return __awaiter(this, void 0, void 0, function* () {
-                                const r = yield (0,_module_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/deleteAccount.php", {
-                                    username: currentUsernameValue,
-                                }).api().post();
-                                console.log(r);
-                            });
-                        });
-                    });
-                }).search().run();
-            });
-        })();
-    }
-    function template(props) {
-        (function () {
-            if (props.isSignedIn !== "true") {
-                localStorage.clear();
-            }
-        })();
-        const swiper = new swiper__WEBPACK_IMPORTED_MODULE_2__["default"]('.swiper', {
-            direction: 'horizontal',
-            loop: false,
-        });
-        (function () {
-            let lastScrollTop = 0;
-            const signin = document.querySelector(".logo .btn-ele.signin");
-            const cart = document.querySelector(".logo .btn-ele.cart");
-            window.addEventListener('scroll', () => {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                if (scrollTop > lastScrollTop) {
-                    signin.style.bottom = '-12%';
-                    cart.style.bottom = '-12%';
-                }
-                else {
-                    signin.style.bottom = '10px';
-                    cart.style.bottom = '10px';
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            });
-        })();
-        $(".share").click(e => {
-            const current = e.currentTarget;
-            const shareURL = $(current).data("share");
-            if (navigator.share) {
-                navigator.share({
-                    title: props.username,
-                    url: shareURL
-                });
-            }
-            else {
-                alert("Share does not support this browser");
-            }
-        });
-        $(".select").click(e => {
-            const current = e.currentTarget;
-            const id = $(current).data("id");
-            $.ajax({
-                url: '/data/template.php',
-                method: 'POST',
-                data: {
-                    type: "select",
-                    username: props.username,
-                    themeid: id
-                },
-                dataType: "json",
-                success: function (e) {
-                    if (e === 1) {
-                        window.location.href = '/' + props.username;
-                    }
-                },
-                error: function () {
-                    console.log("error");
-                }
-            });
-        });
-        $(".buy").click(e => {
-            const current = $(e.currentTarget);
-            const id = current.data("id");
-            if (props.isSignedIn !== 'true') {
-                window.location.href = '/signin?template=true';
-            }
-            else {
-                window.location.href = '/checkout?username=' + props.username + '&itemid=' + id;
-            }
-        });
-    }
-    (function () {
-        const imgSpinner = (0,_module_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".template .template-img").addSpinner().singleSpinner();
-        const img = $(".template .template-img > img");
-        imgSpinner.show();
-        img.css({
-            "visibility": "hidden"
-        });
-        $(".template .template-img > img").each(function (i) {
-            const img = this;
-            if (img instanceof HTMLImageElement) {
-                if (img.complete) {
-                    handleLoaded(img);
-                }
-                else {
-                    $(img).on("load", function () {
-                        handleLoaded(img);
-                    });
-                }
-            }
-        });
-        function handleLoaded(img) {
-            $(img).siblings(".loader").removeClass("spinner");
-            $(img).css({
-                "visibility": "visible"
-            });
-        }
-    })();
 });
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjsf999aaf249a3e991b708.js.map
+//# sourceMappingURL=mainjsf9b20177fb1c38855b4b.js.map
