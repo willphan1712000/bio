@@ -6,6 +6,18 @@ class InfoProcess extends SystemConfig {
     public function __construct($info) {
         $this->info = $info;
     }
+    // Detect device type, "Desktop" or "Mobile"
+    private function getDeviceType() {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+    
+        if (preg_match('/mobile/i', $userAgent)) {
+            return 'Mobile';
+        } elseif (preg_match('/tablet/i', $userAgent)) {
+            return 'Tablet';
+        } else {
+            return 'Desktop';
+        }
+    }
     // Handle username
     public function username() {
         $key = 'username';
@@ -108,7 +120,7 @@ class InfoProcess extends SystemConfig {
     public function youtube($element = null) {
         $key = 'Youtube';
         $value = $this->info[$key];
-        $value = str_replace("https", "youtube", $value); // make it able to go directly to youtube app
+        $value = (self::getDeviceType() === "Mobile") ? str_replace("https", "youtube", $value) : $value; // make it able to go directly to youtube app if device type is Mobile
         $display = ($value === NULL || $value === '') ? "none" : "flex";
         $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element;
         return [

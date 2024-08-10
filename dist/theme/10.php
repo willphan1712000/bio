@@ -1,8 +1,4 @@
-<?php
-$socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
-
-$socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
-?> <div id="template-container"><style>#social-media {
+<div id="template-container"><style>#social-media {
     padding: 0% 8%;
     display: flex;
     flex-direction: column;
@@ -111,7 +107,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
 }
 .socialUser {
   background-color: #f0f0f0;
-}</style><main class="fashion-show-container"><img src="<?=$props['imgPath']."?v=".time();?>" alt="Fashion Show Hero Image" class="hero-image"><h1 class="main-title"><?=$infoObject->name()['a'];?></h1><p class="des"><?=$infoObject->organization()['a'];?></p><p class="des"><?=$infoObject->description()['a'];?></p><nav class="social-links"> <?=$infoObject->social('Facebook', ' <div class="social-button">
+}</style><main class="fashion-show-container"><img src="<?=$props['imgPath'];?>" alt="Fashion Show Hero Image" class="hero-image"><h1 class="main-title"><?=$infoObject->name()['a'];?></h1><p class="des"><?=$infoObject->organization()['a'];?></p><p class="des"><?=$infoObject->description()['a'];?></p><nav class="social-links"> <?=$infoObject->social('Facebook', ' <div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc6f0cf7b4c3eb8e670601c61cc30afc7ea46efe75ca8f98a5f8f9649aee6497?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Facebook</span>
       </div>')['a'];?> <?=$infoObject->social('Instagram', '<div class="social-button">
@@ -122,12 +118,12 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
         <span>Tiktok</span>
       </div>')['a'];?> </nav> <?=$infoObject->social('Website', '<div class="cta-button" role="button">Website</div>')['a'];?> <?=$infoObject->mobile('<div class="cta-button" role="button">Contact</div>')['a'];?> <div id="social-media"> <?php
         $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        $socialNameArr = $props['social'];
+        $socialIconArr = $props['icon'];
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
             echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
             }
         }
-    ?> </div></main></div><div id="userFooter"> <?php
-        userFooter($props)->render("#userFooter");
-    ?> </div><div id="copyright"><p><?=$props['g']['license'];?></p></div>
+    ?> </div></main></div>

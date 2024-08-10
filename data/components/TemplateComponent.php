@@ -16,10 +16,10 @@ class Template {
                 flex-wrap: nowrap;
             }
             '.$container.' .template {
-                width: fit-content !important;
+                width: calc(100% - 120px) !important;
                 flex-shrink: 0;
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-                margin: 0px 70px 20px 70px;
+                margin: 0px 60px 20px 60px;
                 padding: 10px;
                 border-radius: 20px;
             }
@@ -132,7 +132,7 @@ class Template {
             $selectDisplay = "flex";
             $likeDisplay = "none";
         }
-        if($props["id"] === $props['chosen']) {
+        if($props["id"] === isset($props['chosen']) ? $props["chosen"] : 0) {
             $chosenDisplay = "active";
         } else {
             $chosenDisplay = "";
@@ -160,7 +160,7 @@ class Template {
                         <p class="text '.$chosenDisplay.'">Select</p>
                         <p class="check '.$chosenDisplay.'"><i class="fa-solid fa-check"></i></p>
                     </div>
-                    <div class="share" data-id="'.$props['id'].'" data-share="'.$props['url'].'&tem='.$props["id"].'">
+                    <div class="share" data-id="'.$props['id'].'" data-share="'.(isset($props['url']) ? $props['url'] : "").'&tem='.$props["id"].'">
                         <p class="text">Share</p>
                     </div>
                 </div>

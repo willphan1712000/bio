@@ -1,10 +1,19 @@
 <?php
+require_once "backend/Router.php";
+require_once "backend/API.php";
+require_once "backend/DataMigration.php";
+require_once "backend/UserManagement.php";
+require_once "backend/Database.php";
+require_once "backend/TemplateManagement.php";
+require_once "backend/InfoProcess.php";
+require_once "backend/DeleteAccount.php";
+
 class ProductionConfig {
     private static $mode = "production"; // mode (dev or production)
     public static $version = "6.1"; // version of the product
 
     public static function database() {
-        if(self::$mode === "dev") {
+        if(self::$mode === "development") {
             return [
                 "servername" => "localhost:3306",
                 "username" => "root",
@@ -23,7 +32,7 @@ class ProductionConfig {
     }
 
     public static function config() {
-        if(self::$mode === "dev") {
+        if(self::$mode === "development") {
             return [
                 'domain' => 'test.allinclicksbio.com',
                 'fulldomain' => 'https://test.allinclicksbio.com',
@@ -71,21 +80,20 @@ class SystemConfig {
                 'msg3' => 'You can still restore your account under Sign in section',
                 'msg4' => 'Are you sure to proceed?'
             ],
-            'accountHoldPeriod' => 60*24*60*60, // 60 days
+            'restoreWarningMsg' => [
+                'msg1' => 'Your account has been deactivated',
+                'msg2' => 'You have ',
+                'msg3' => ' days left to restore your account for the username ',
+                'msg4' => 'Otherwise, your account will be permanently deleted'
+            ],
+            'accountHoldPeriod' => 60*24*60*60, // 60 days,
+            'data_model' => './dataModel/bio.sql',
+            'user_folder' => '../user/',
+            'aicAccount' => [
+                'username' => 'Allinclicks',
+                'password' => '123456'
+            ]
         ];
-    }
-    
-    // dump and die function used for debug process
-    public static function dd($value) {
-        echo "<pre>";
-        var_dump($value);
-        echo "</pre>";
-    
-        die();
-    }
-
-    public static function account() {
-        return ["username", "email", "password", "token", "deleteToken"];
     }
 
     public static function infoArr() {
@@ -100,20 +108,21 @@ class SystemConfig {
         return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
     }
 
-    public static function deleteFolder($path) {
-        if(!is_dir($path)) {
-            return false;
-        }
-        $files = array_diff(scandir($path), array('.', '..'));
-        foreach($files as $file) {
-            $filePath = $path.'/'.$file;
-            if(is_dir($filePath)) {
-                deleteFolder($filePath);
-            } else {
-                unlink($filePath);
-            }
-        }
-        return rmdir($path);
+    public static function emailAuth() {
+        return [
+            'host' => 'mi3-tr103.supercp.com',
+            'username' => 'bio@allinclicksbio.com',
+            'password' => 'Allinclicks123200@'
+        ];
+    }
+    
+    // dump and die function used for debug process
+    public static function dd($value) {
+        echo "<pre>";
+        var_dump($value);
+        echo "</pre>";
+    
+        die();
     }
     
     public static function isPassVaild($password) {
@@ -137,30 +146,6 @@ class SystemConfig {
                 return true;
             }
         }
-    }
-
-    public static function emailAuth() {
-        return [
-            'host' => 'mi3-tr103.supercp.com',
-            'username' => 'bio@allinclicksbio.com',
-            'password' => 'Allinclicks123200@'
-        ];
-    }
-
-    public static function deleteAccount($username) {
-        if(self::deleteFolder("../user/".$username)) {
-            $folderDeleted = true;
-        }
-        if(mysqli_query(Database::connection(), "DELETE FROM user WHERE username = '$username'")) {
-            $userDeleted = true;
-        }
-        if(mysqli_query(Database::connection(), "DELETE FROM info WHERE username = '$username'")) {
-            $infoDeleted = true;
-        }
-        if(mysqli_query(Database::connection(), "DELETE FROM template WHERE username = '$username'")) {
-            $themeDeleted = true;
-        }
-        return ($folderDeleted && $userDeleted && $infoDeleted && $themeDeleted) ? true : false;
     }
     
     public static function handleLongString($string) {
@@ -252,280 +237,10 @@ class SystemConfig {
     // this function is for extracting url into base or query string
     public static function URLExtraction($queryStr = null) {
         $base = basename(parse_url($_SERVER['REQUEST_URI'])['path']);
-        $query = parse_url($_SERVER['REQUEST_URI'])['query'];
+        $query = parse_url($_SERVER['REQUEST_URI'])['query'] ?? "";
         parse_str($query, $query_params);
         $result = (isset($query_params[$queryStr]) && $query_params[$queryStr] !== "") ? $query_params[$queryStr] : null;
         return ($queryStr === null) ? $base : $result;
-    }
-}
-class Database {
-    public static function servername() {
-        return ProductionConfig::database()['servername'];
-    }
-    public static function username() {
-        return ProductionConfig::database()['username'];
-    }
-    public static function password() {
-        return ProductionConfig::database()['password'];
-    }
-    public static function dbName() {
-        return ProductionConfig::database()['dbName'];
-    }
-
-    // Basic connection (high injection risk)
-    public static function connection() {
-        return mysqli_connect(self::servername(), self::username(), self::password(), self::dbName());
-    }
-
-    // Prepared connection (low injection risk)
-    public static function preparedConnection() {
-        return new mysqli(self::servername(), self::username(), self::password(), self::dbName());
-    }
-
-    // Query function for fast data retrieval
-    public static function GET($table, $column = null, $unique) {
-        $conn = self::preparedConnection();
-        $stmt = null;
-
-        try {
-            if ($column === null) {
-                $query = "SELECT * FROM " . $table . " WHERE " . $unique;
-                $stmt = $conn->prepare($query);
-            } else {
-                $query = "SELECT " . $column . " FROM " . $table . " WHERE " . $unique;
-                $stmt = $conn->prepare($query);
-            }
-
-            if (!$stmt) {
-                throw new Exception("Failed to prepare the SQL statement.");
-            }
-
-            if (!$stmt->execute()) {
-                throw new Exception("Failed to execute the SQL statement.");
-            }
-
-            $result = $stmt->get_result();
-
-            if (!$result) {
-                throw new Exception("Failed to get the result set.");
-            }
-
-            $r = [];
-            while ($row = $result->fetch_assoc()) {
-                $r[] = $row;
-            }
-
-            $stmt->close();
-
-            if ($r === null) {
-                throw new Exception("No results found.");
-            }
-
-            if ($column !== null) {
-                $rrr = [];
-                foreach ($r as $rr) {
-                    $rrr[] = $rr[$column];
-                }
-                if(count($rrr) === 1) {
-                    return $rrr[0];
-                }
-                return $rrr;
-            }
-
-            if(count($r) === 1) {
-                return $r[0];
-            }
-
-            return $r;
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-            return null;
-        }
-
-    }
-
-    public static function PUT($table, $column, $value, $unique) {
-        $conn = self::preparedConnection();
-        $stmt = null;
-        try {
-            $query = "UPDATE ".$table." SET ".$column." = '$value' WHERE ".$unique;
-            $stmt = $conn->prepare($query);
-            if(!$stmt) {
-                throw new Exception("Failed to prepare the SQL statement.");
-            }
-    
-            if(!$stmt->execute()) {
-                throw new Exception("Failed to execute the SQL statement.");
-            } else {
-                return true;
-            }
-    
-            return false;
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-            return false;
-        }
-    }
-
-    public static function POST(string $table, array $columns) {
-        $conn = self::preparedConnection();
-        $stmt = null;
-
-        try {
-            $key = "(";
-            $value = "(";
-            foreach($columns as $col => $val) {
-                $key .= $col.",";
-                $value .= "'".$val."',";
-            }
-    
-            $key = substr($key, 0, -1).")";
-            $value = substr($value, 0, -1).")";
-            $query = "INSERT INTO ".$table.$key." VALUES".$value;
-    
-            // return $query;
-            $stmt = $conn->prepare($query);
-            if(!$stmt) {
-                throw new Exception("Failed to prepare the SQL statement.");
-            }
-    
-            if(!$stmt->execute()) {
-                throw new Exception("Failed to execute the SQL statement.");
-            } else {
-                return true;
-            }
-    
-            return false;
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-            return false;
-        }
-    }
-    public static function DELETE(string $table, string $unique) {
-        $conn = self::preparedConnection();
-        $stmt = null;
-
-        try {
-            $query = "DELETE FROM ".$table." WHERE ".$unique;
-    
-            // return $query;
-            $stmt = $conn->prepare($query);
-            if(!$stmt) {
-                throw new Exception("Failed to prepare the SQL statement.");
-            }
-    
-            if(!$stmt->execute()) {
-                throw new Exception("Failed to execute the SQL statement.");
-            } else {
-                return true;
-            }
-    
-            return false;
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-            return false;
-        }
-    }
-
-    public static function isUserExist($username) {
-        $result = self::GET("user", "username", "username='$username'");
-        if(empty($result)) {
-            return false;
-        }
-        return true;
-    }
-}
-
-class TemplateManagement {
-    public static $totalTemplate = 10;
-    public static function isPurchased($username, $tem) {
-        $isPurchased = Database::GET("purchase", null, "username='$username'AND template_id=$tem");
-        if(!empty($isPurchased)) {
-            return true;
-        }
-        return false;
-    }
-
-    // This function will check if user shares a template. If template was purchased, it would be themeid. Otherwise, it would redirect user to the main user page
-    public static function shareTemplate($username, $tem) {
-        $chosen = Database::GET("template", "themeid", "username='$username'");
-        if($tem !== null) {
-            if(self::isPurchased($username, $tem)) {
-                return $tem;
-            }
-            return $chosen;
-        } else {
-            return $chosen;
-        }
-    }
-
-    public static function isAbleToPurchase($isSignedIn, $username, $itemid) {
-        if($itemid === null) {
-            return true;
-        }
-        if($itemid <= 0 || $itemid > self::$totalTemplate) {
-            return false;
-        }
-        if(self::isPurchased($username, $itemid) && $isSignedIn) {
-            return false;
-        }
-        return true;
-    }
-}
-
-class UserManagement {
-    public static function isSignedIn($SESSION, $username) {
-        if(isset($SESSION[$username])) {
-            if(time() - $SESSION['last_time_'.$username] > SystemConfig::globalVariables()['timeSession']) {
-                unset($SESSION[$username]);
-                return false;
-            } else {
-                $SESSION['last_time_'.$username] = time();
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
-    // This function is to create url for user
-    public static function URLGenerator($username, $c) {
-        if ($c === "main") {
-            return "https://".SystemConfig::globalVariables()["domain"]."/".$username;
-        }
-        elseif ($c === "share") {
-            return "https://".SystemConfig::globalVariables()["domain"]."/".$username."?share=true";
-        }
-        return null;
-    }
-}
-class Router {
-    private $routes = [];
-
-    function addRoute($uri, $controller) {
-        $this->routes[] = [
-            'uri' => $uri,
-            'controller' => $controller
-        ];
-    }
-
-    function route($uri) {
-        foreach($this->routes as $route) {
-            if($route['uri'] === $uri) {
-                return require $route['controller'];
-            }
-        }
-
-        $this->abort();
-    }
-
-    private function abort() {
-        http_response_code(404);
-        require 'dist/404.php';
-        die();
-    }
-
-    function removeLastRoute() {
-        array_pop($this->routes);
     }
 }
 ?>

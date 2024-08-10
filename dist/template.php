@@ -1,33 +1,39 @@
 <?php
     $g = SystemConfig::globalVariables();
-    $conn = Database::connection();
     
     // Get username
     $username = SystemConfig::URLExtraction("username");
+    $isSignedIn = false;
+    $purchased = [];
+    $chosenTemplate = null;
 
-    SESSION_START();
-    $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
-    // if signed in, get avatar image
-    if($isSignedIn) {
-        $ava = Database::GET("info", "image", "username = '$username'");
-        if($ava) {
-            $imgPath = "/user/".$username."/".$ava."?v=".time();
+    if($username !== NULL) {
+        SESSION_START();
+        $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
+        // if signed in, get avatar image
+        if($isSignedIn) {
+            $ava = API::GET("info", "image", "username = '$username'");
+            if($ava) {
+                $imgPath = "/user/".$username."/".$ava."?v=".time();
+            } else {
+                $imgPath = $g['img']['unknown'];
+            }
         } else {
-            $imgPath = $g['img']['unknown'];
+            header("Location: /signin?template=true");
         }
     }
     
     // If signed in, check there are templates purchased
     if($isSignedIn) {
-        $purchased = Database::GET("purchase", "template_id", "username = '$username'"); // Get all templates purchased
+        $purchased = API::GET("purchase", "template_id", "username = '$username'"); // Get all templates purchased
         if(gettype($purchased) === "integer") {
             $purchased = [$purchased];
         }
         // SystemConfig::dd(!empty($purchased));
-        $chosenTemplate = Database::GET("template", "themeid", "username = '$username'"); // Get chosen template
+        $chosenTemplate = API::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjs948b911d504529d46d96.js"></script><script src="/dist/prevjsa274e09fc8db800bb6b5.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/template381845d566a2ded923f7.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsf9b20177fb1c38855b4b.js"></script><script src="/dist/prevjs384aca48b6a6f564908b.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templateecf45f859ead57d49544.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
                             <a class="btn-ele signin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>'.$username.'</p></a>
@@ -42,7 +48,7 @@
                         "container" => ".heading",
                         "src" => $g["img"]["logo"]
                     ])->render(); ?> <h1>Your templates</h1></div><div class="notHaveTemplate" style="display: <?= empty($purchased) ? "flex": "none";?>"><p>You do not have templates</p></div><div class="swiper template_container purchase" style="display: <?= empty($purchased) ? "none": "flex";?>"><div class="swiper-wrapper"> <?php
-                            if($isSignedIn) {
+                            if($isSignedIn && ($purchased ?? false)) {
                                 Template::style(".template_container.purchase");
                                 foreach($purchased as $item) {
                                     template([
@@ -77,10 +83,10 @@
                     }
                 ?> </div></div></div><!-- </div>
                 </div> --> <?php
-copyright([
-    "position" => "relative"
-])->render();
-?> <script>var type = "template"
+                    copyright([
+                        "position" => "relative"
+                    ])->render();
+                ?> <script>var type = "template"
             var props = {
                 username: "<?=$username? $username : "";?>",
                 isSignedIn: "<?=($isSignedIn) ? "true" : "";?>"

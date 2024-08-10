@@ -1,5 +1,8 @@
-export function $$$(ele1, ele2, ele3, ele4, ele5) {
-    if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined) {
+export function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
+    if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
+        return new WW6(ele1, ele2, ele3, ele4, ele5, ele6);
+    }
+    else if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined) {
         return new WW5(ele1, ele2, ele3, ele4, ele5);
     }
     else if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
@@ -52,11 +55,21 @@ class WW5 {
         this.ele4 = ele4;
         this.ele5 = ele5;
     }
-    signup() {
-        return new Signup(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5);
-    }
     formValidate() {
         return new FormValidate(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5);
+    }
+}
+class WW6 {
+    constructor(ele1, ele2, ele3, ele4, ele5, ele6) {
+        this.ele1 = ele1;
+        this.ele2 = ele2;
+        this.ele3 = ele3;
+        this.ele4 = ele4;
+        this.ele5 = ele5;
+        this.ele6 = ele6;
+    }
+    signup() {
+        return new Signup(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5, this.ele6);
     }
 }
 class FormValidate extends WW5 {
@@ -110,14 +123,15 @@ class FormValidate extends WW5 {
         return this;
     }
 }
-class Signup extends WW5 {
-    constructor(username, email, password, error, submit) {
-        super(username, email, password, error, submit);
+class Signup extends WW6 {
+    constructor(username, email, password, error, submit, url) {
+        super(username, email, password, error, submit, url);
         this.username = username;
         this.email = email;
         this.password = password;
         this.error = error;
         this.submit = submit;
+        this.url = url;
         this.$username = $(this.username);
         this.$email = $(this.email);
         this.$password = $(this.password);
@@ -144,7 +158,7 @@ class Signup extends WW5 {
                     else {
                         this.$error.html("");
                         $.ajax({
-                            url: "/data/signup.php",
+                            url: this.url.signup,
                             method: "POST",
                             dataType: "json",
                             data: {
@@ -243,8 +257,7 @@ class Signup extends WW5 {
         $(after).addClass(afterClass);
     }
     createFiles(username) {
-        $$$("/data/update.php", {
-            type: 'create',
+        $$$(this.url.create, {
             username: username
         }).api().post();
     }

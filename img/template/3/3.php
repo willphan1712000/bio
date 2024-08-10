@@ -1,8 +1,3 @@
-<?php
-$socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
-
-$socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
-?>
 <div id="template-container">
 <style>
   #social-media {
@@ -202,7 +197,7 @@ a {
 
 <section class="jewelry-shop">
   <div class="content-wrapper">
-    <img loading="lazy" src=<?=$props['imgPath']."?v=".time();?> class="logo" alt="Jewelry Shop Logo" />
+    <img loading="lazy" src=<?=$props['imgPath'];?> class="logo" alt="Jewelry Shop Logo" />
     <h1 class="shop-title"><?=$infoObject->name()['a'];?></h1>
     <p class="tagline"><?=$infoObject->organization()['a'];?></p>
     <p class="tagline"><?=$infoObject->description()['a'];?></p>
@@ -215,6 +210,8 @@ a {
     </nav>
     <div id="social-media">
     <?php
+        $socialNameArr = $props['social'];
+        $socialIconArr = $props['icon'];
         $certain = ['Mobile', 'Work', 'Email', 'Website'];
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
@@ -227,13 +224,4 @@ a {
   </div>
 </section>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

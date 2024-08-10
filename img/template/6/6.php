@@ -1,8 +1,3 @@
-<?php
-$socialNameArr = ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
-
-$socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
-?>
 <div id="template-container">
 <style>
   #social-media {
@@ -113,7 +108,7 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   <div class="profile-content">
     <div class="avatar-container">
       <div class="avatar-wrapper">
-        <img loading="lazy" src="<?=$props['imgPath']."?v=".time();?>" class="avatar" alt="Profile avatar" />
+        <img loading="lazy" src="<?=$props['imgPath'];?>" class="avatar" alt="Profile avatar" />
       </div>
     </div>
     <h1 class="profile-name"><?=$infoObject->name()['a'];?></h1>
@@ -129,6 +124,8 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
     <div id="social-media">
     <?php
         $certain = ['Mobile', 'Work', 'Email', 'Website'];
+        $socialNameArr = $props['social'];
+        $socialIconArr = $props['icon'];
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
             $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
@@ -140,13 +137,4 @@ $socialIconArr = ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-ph
   </div>
 </article>
 </div>
-
-<div id="userFooter">
-    <?php
-        userFooter($props)->render("#userFooter");
-    ?>
-</div>
-</div>
-<div id="copyright">
-<p><?=$props['g']['license'];?></p>
 </div>

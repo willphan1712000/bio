@@ -1,17 +1,12 @@
 <?php
 class UserFooter {
     private $props;
-    private $share;
 
-    public function __construct($props, $share) {
+    public function __construct($props) {
         $this->props = $props;
-        $this->share = $share;
     }
 
     public function render($container) {
-        if($this->share) {
-            $this->share = "none";
-        }
         echo '
             <style>
                 '.$container.' {
@@ -33,6 +28,7 @@ class UserFooter {
                     flex-direction: row;
                     overflow-y: hidden;
                     overflow-x: auto;
+                    padding: 0px 10px;
                 }
                 '.$container.' .share__btn {
                     height: 50px;
@@ -155,8 +151,8 @@ class UserFooter {
                     <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/'.$this->props['username'].'/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
                     <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn image"><i class="fa-solid fa-image"></i>Save PDF</div>
-                    <div class="share__btn edit" style="display: '.$this->share.'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
-                    
+                    <div class="share__btn edit" style="display: '.(SystemConfig::URLExtraction('share')?"none":"flex").'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
+                    <div class="bioBtn share__btn">'.bioTemplateButton($this->props['username'])->render("bioBtn").'</div>
                 </div>
             </div>
             <script></script>
@@ -165,7 +161,5 @@ class UserFooter {
 }
 
 function userFooter($props) {
-    // Retrieve share
-    $share = SystemConfig::URLExtraction('share');
-    return new UserFooter($props, $share);
+    return new UserFooter($props);
 }

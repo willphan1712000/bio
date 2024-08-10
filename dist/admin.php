@@ -1,10 +1,9 @@
 <?php
     $g = SystemConfig::globalVariables();
-    $conn = Database::connection();
     // get username
     $username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
     // get deleteToken
-    $deleteToken = Database::GET("user", "deleteToken", "username='$username'");
+    $deleteToken = API::GET("user", "deleteToken", "username='$username'");
     SESSION_START();
     // Check if user is signed in
     $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
@@ -14,7 +13,7 @@
             if(time() - $deleteToken < $g["accountHoldPeriod"]) {
                 header("Location: /restore?username=".$username);
             } else {
-                if(SystemConfig::deleteAccount($username)) {
+                if(DeleteAccount::delete($username)) {
                     header("Location: /signin");
                 }
             }
@@ -29,7 +28,7 @@
     }
     $socialNameArr = SystemConfig::socialNameArr();
     $socialIconArr = SystemConfig::socialIconArr();
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['adminTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/mainjs948b911d504529d46d96.js"></script><script src="/dist/prevjsa274e09fc8db800bb6b5.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/admin13b0ae32e26ed92071d2.js"></script></head><body><div id="container"><div class="msg successMsg"><i class="fa-solid fa-check"></i><p>Updated!</p></div><div class="msg errorMsg"><i class="fa-solid fa-x"></i><p>Internal Error!</p></div><div class="msg notValidForm"><i class="fa-solid fa-x"></i><p>Some information is not valid, try again!</p></div><div class="warning__parent"><div class="warning__child"><i class="fa-solid fa-circle-exclamation"></i><p><?=$g['deleteWarningMsg']['msg1'];?></p><br><p><?=$g['deleteWarningMsg']['msg2'];?></p><br><p><?=$g['deleteWarningMsg']['msg3'];?></p><br><p><?=$g['deleteWarningMsg']['msg4'];?></p><br><div class="btn"><div class="btn__ele btn__confirm">Yes</div><div class="btn__ele btn__back">No</div></div></div></div><div class="adminSection"><div class="backToBio"><a href="/<?=$username;?>"><i class="fa-solid fa-arrow-left"></i></a></div><div class="info"><div class="info__img info__img--ava"><input type="file" class="uploadImg" accept="image/*" name="uploadImg" hidden> <input type="text" class="uploadImg__filename" name="uploadImg__filename" hidden><div class="info__img--remove"><i class="fa-solid fa-x"></i></div><div class="info__img--location"><img src="" alt=""></div></div><div class="info__img--modify"><h3>Drag, Rotate, or Zoom</h3><div class="info__img--choose">Choose picture</div></div><div class="info__about"><div class="info__name"><form action=""><label for="name">Name</label> <input type="text" id="name" name="name" autocomplete="on"></form></div><div class="info__org"><form action=""><label for="org">Organization</label> <input type="text" id="org" name="org" autocomplete="on"></form></div><div class="info__des admin"><label for="des">Description</label> <textarea name="des" id="des"></textarea></div></div></div><div id="social-media"></div><script>const socialName = (<?=json_encode($socialNameArr);?>)
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['adminTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/mainjsf9b20177fb1c38855b4b.js"></script><script src="/dist/prevjs384aca48b6a6f564908b.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/adminbb028b60915efb71733f.js"></script></head><body><div id="container"><div class="msg successMsg"><i class="fa-solid fa-check"></i><p>Updated!</p></div><div class="msg errorMsg"><i class="fa-solid fa-x"></i><p>Internal Error!</p></div><div class="msg notValidForm"><i class="fa-solid fa-x"></i><p>Some information is not valid, try again!</p></div><div class="warning__parent"><div class="warning__child"><i class="fa-solid fa-circle-exclamation"></i><p><?=$g['deleteWarningMsg']['msg1'];?></p><br><p><?=$g['deleteWarningMsg']['msg2'];?></p><br><p><?=$g['deleteWarningMsg']['msg3'];?></p><br><p><?=$g['deleteWarningMsg']['msg4'];?></p><br><div class="btn"><div class="btn__ele btn__confirm">Yes</div><div class="btn__ele btn__back">No</div></div></div></div><div class="adminSection"><div class="backToBio"><a href="/<?=$username;?>"><i class="fa-solid fa-arrow-left"></i></a></div><div class="info"><div class="info__img info__img--ava"><input type="file" class="uploadImg" accept="image/*" name="uploadImg" hidden> <input type="text" class="uploadImg__filename" name="uploadImg__filename" hidden><div class="info__img--remove"><i class="fa-solid fa-x"></i></div><div class="info__img--location"><img src="" alt=""></div></div><div class="info__img--modify"><h3>Drag, Rotate, or Zoom</h3><div class="info__img--choose">Choose picture</div></div><div class="info__about"><div class="info__name"><form action=""><label for="name">Name</label> <input type="text" id="name" name="name" autocomplete="on"></form></div><div class="info__org"><form action=""><label for="org">Organization</label> <input type="text" id="org" name="org" autocomplete="on"></form></div><div class="info__des admin"><label for="des">Description</label> <textarea name="des" id="des"></textarea></div></div></div><div id="social-media"></div><script>const socialName = (<?=json_encode($socialNameArr);?>)
                 const icon = (<?=json_encode($socialIconArr);?>)
                 const time = (<?=time();?>)
                 
