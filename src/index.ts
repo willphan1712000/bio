@@ -19,7 +19,7 @@ $(document).ready(function() {
             // adminPage()
             break
         case 'signup':
-            signupPage()
+            signupPage();
             break
         case 'signin':
             // signinPage()

@@ -33,7 +33,7 @@
         $chosenTemplate = API::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsf9b20177fb1c38855b4b.js"></script><script src="/dist/prevjs384aca48b6a6f564908b.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templateecf45f859ead57d49544.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjs1065e557f6b66a6596d4.js"></script><script src="/dist/prevjs384aca48b6a6f564908b.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templateecf45f859ead57d49544.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
                             <a class="btn-ele signin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>'.$username.'</p></a>
@@ -49,11 +49,11 @@
                         "src" => $g["img"]["logo"]
                     ])->render(); ?> <h1>Your templates</h1></div><div class="notHaveTemplate" style="display: <?= empty($purchased) ? "flex": "none";?>"><p>You do not have templates</p></div><div class="swiper template_container purchase" style="display: <?= empty($purchased) ? "none": "flex";?>"><div class="swiper-wrapper"> <?php
                             if($isSignedIn && ($purchased ?? false)) {
-                                Template::style(".template_container.purchase");
+                                TemplateComponent::style(".template_container.purchase");
                                 foreach($purchased as $item) {
-                                    template([
+                                    templateComponent([
                                         'id' => $item,
-                                        'img' => '../img/template/'.$item.'/'.$item.'.png',
+                                        'img' => '../data/template/'.$item.'/'.$item.'.png',
                                         'mode' => 'purchased',
                                         'chosen' => $chosenTemplate,
                                         'url' => UserManagement::URLGenerator($username, "share"),
@@ -72,11 +72,11 @@
                     foreach($purchased as $item) {
                         $isBought[$item - 1] = true;
                     }
-                    Template::style(".template_container.show");
+                    TemplateComponent::style(".template_container.show");
                     for($i = 1; $i <= 10; $i++) {
-                        template([
+                        templateComponent([
                             'id' => $i,
-                            'img' => '../img/template/'.$i.'/'.$i.'.png',
+                            'img' => '../data/template/'.$i.'/'.$i.'.png',
                             'mode' => 'purchase',
                             'isBought' => $isBought[$i - 1]
                         ])->render();

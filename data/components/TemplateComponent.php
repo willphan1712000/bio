@@ -1,5 +1,5 @@
 <?php
-class Template {
+class TemplateComponent {
     private $props;
 
     public function __construct($props) {
@@ -137,7 +137,7 @@ class Template {
         } else {
             $chosenDisplay = "";
         }
-        if($props["isBought"]) {
+        if($props["isBought"] ?? false) {
             $buyDisplay = "none";
         } else {
             $buyDisplay = "block";
@@ -170,6 +170,6 @@ class Template {
     }
 }
 
-function template($props) {
-    return new Template($props);
+function templateComponent($props) {
+    return new TemplateComponent($props);
 }

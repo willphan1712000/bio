@@ -536,6 +536,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   $$$: () => (/* binding */ $$$)
 /* harmony export */ });
+/* harmony import */ var _components_signup_SignUpUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/signup/SignUpUI */ "./src/dist/module/Web-Development/components/signup/SignUpUI.js");
+
 function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
         return new WW6(ele1, ele2, ele3, ele4, ele5, ele6);
@@ -576,6 +578,9 @@ class WW3 {
         this.ele2 = ele2;
         this.ele3 = ele3;
     }
+    signup() {
+        return new Signup(this.ele1, this.ele2, this.ele3);
+    }
 }
 class WW4 {
     constructor(ele1, ele2, ele3, ele4) {
@@ -605,9 +610,6 @@ class WW6 {
         this.ele4 = ele4;
         this.ele5 = ele5;
         this.ele6 = ele6;
-    }
-    signup() {
-        return new Signup(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5, this.ele6);
     }
 }
 class FormValidate extends WW5 {
@@ -661,143 +663,10 @@ class FormValidate extends WW5 {
         return this;
     }
 }
-class Signup extends WW6 {
-    constructor(username, email, password, error, submit, url) {
-        super(username, email, password, error, submit, url);
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.error = error;
-        this.submit = submit;
-        this.url = url;
-        this.$username = $(this.username);
-        this.$email = $(this.email);
-        this.$password = $(this.password);
-        this.$error = $(this.error);
-        this.$submit = $(this.submit);
-    }
-    run() {
-        this.$submit.on("click", (e) => {
-            e.preventDefault();
-            if (this.isFillAll(this.$username.val(), this.$email.val(), this.$password.val())) {
-                this.$error.html("Please fill in all information!");
-                this.shakingErrorMsg(this.$error);
-            }
-            else {
-                if (!this.isValidEmail(this.$email.val())) {
-                    this.$error.html("The email is not valid!");
-                    this.shakingErrorMsg(this.$error);
-                }
-                else {
-                    if (!this.isValidPassword(this.$password.val())) {
-                        this.$error.html("The password is not valid!");
-                        this.shakingErrorMsg(this.$error);
-                    }
-                    else {
-                        this.$error.html("");
-                        $.ajax({
-                            url: this.url.signup,
-                            method: "POST",
-                            dataType: "json",
-                            data: {
-                                username: this.removeSpace(this.$username.val()),
-                                email: this.$email.val(),
-                                password: this.$password.val()
-                            },
-                            success: (e) => {
-                                if (e[0]) {
-                                    this.$error.html("The username has already been taken!");
-                                    this.shakingErrorMsg(this.$error);
-                                }
-                                else {
-                                    if (!e[1]) {
-                                        this.$error.html("The email is not valid!");
-                                        this.shakingErrorMsg(this.$error);
-                                    }
-                                    else {
-                                        if (!(e[2] && e[3] && e[4] && e[5])) {
-                                            this.$error.html("There is an error, try again!");
-                                            this.shakingErrorMsg(this.$error);
-                                        }
-                                        else {
-                                            this.signUpSuccess(".signupChild", "inactive", ".signupSuccess", "active");
-                                            this.createFiles(this.removeSpace(this.$username.val()));
-                                        }
-                                    }
-                                }
-                            },
-                            error: () => {
-                                this.$error.html("The server has internal error!");
-                                this.shakingErrorMsg(this.$error);
-                            }
-                        });
-                    }
-                }
-            }
-        });
-    }
-    isFillAll(username, email, password) {
-        return !(username && email && password);
-    }
-    isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    isValidPassword(password) {
-        const isValidLength = password.length >= 12;
-        let hasUpperCase = false;
-        let hasDigit = false;
-        let hasSpecialChar = true;
-        for (let i = 0; i < password.length; i++) {
-            const position = password.charCodeAt(i);
-            if (position >= 65 && position <= 90) {
-                hasUpperCase = true;
-            }
-            if (position >= 48 && position <= 57) {
-                hasDigit = true;
-            }
-            if (position >= 33 && position <= 47) {
-                hasSpecialChar = true;
-            }
-            if (hasUpperCase && hasDigit && hasSpecialChar) {
-                return isValidLength && hasUpperCase && hasDigit && hasSpecialChar;
-            }
-        }
-        return false;
-    }
-    removeSpace(text) {
-        return text.replace(/\s+/g, '');
-    }
-    shakingErrorMsg(error) {
-        const requestAnimationFrame = window.requestAnimationFrame;
-        let counter = 0;
-        let x = 0;
-        let dx = -2.5;
-        const shaking = () => {
-            counter++;
-            x += dx;
-            if (x <= -15 || x >= 15) {
-                dx = -dx;
-            }
-            const runAnimation = requestAnimationFrame(shaking);
-            if (counter === 30) {
-                cancelAnimationFrame(runAnimation);
-                x = 0;
-            }
-            error.css({
-                transform: `translateX(${x}px)`
-            });
-        };
-        shaking();
-    }
-    signUpSuccess(before, beforeClass, after, afterClass) {
-        $(before).addClass(beforeClass);
-        $(after).addClass(afterClass);
-    }
-    createFiles(username) {
-        $$$(this.url.create, {
-            username: username
-        }).api().post();
+class Signup extends WW3 {
+    constructor(ui, url, success) {
+        super(ui, url, success);
+        this.signUpUI = new _components_signup_SignUpUI__WEBPACK_IMPORTED_MODULE_0__["default"](ui, url, success);
     }
 }
 class API extends WW2 {
@@ -836,6 +705,269 @@ class API extends WW2 {
                 }
             });
         });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/CheckBox.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/CheckBox.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CheckBox)
+/* harmony export */ });
+class CheckBox {
+    constructor(checkbox, signUpUI) {
+        this.$checkbox = $(checkbox);
+        this.$checkbox.on("change", e => {
+            signUpUI.update();
+        });
+    }
+    isChecked() {
+        return this.$checkbox.is(':checked');
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/Email.js":
+/*!********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/Email.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Email)
+/* harmony export */ });
+class Email {
+    constructor(email, signUpUI) {
+        this.$email = $(email);
+        this.$email.on("input", e => {
+            signUpUI.update();
+        });
+    }
+    getEmail() {
+        return this.$email.val();
+    }
+    isValidEmail() {
+        const email = this.$email.val();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/Error.js":
+/*!********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/Error.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Error)
+/* harmony export */ });
+class Error {
+    constructor(error, signUpUI) {
+        this.$error = $(error);
+    }
+    setError(msg) {
+        this.$error.html(msg);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/Password.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/Password.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Password)
+/* harmony export */ });
+class Password {
+    constructor(password, signUpUI) {
+        this.$password = $(password);
+        this.$password.on("input", e => {
+            signUpUI.update();
+        });
+    }
+    getPassword() {
+        return this.$password.val();
+    }
+    isValidPassword() {
+        const password = this.$password.val();
+        const isValidLength = password.length >= 12;
+        let hasUpperCase = false;
+        let hasDigit = false;
+        let hasSpecialChar = true;
+        for (let i = 0; i < password.length; i++) {
+            const position = password.charCodeAt(i);
+            if (position >= 65 && position <= 90) {
+                hasUpperCase = true;
+            }
+            if (position >= 48 && position <= 57) {
+                hasDigit = true;
+            }
+            if (position >= 33 && position <= 47) {
+                hasSpecialChar = true;
+            }
+            if (hasUpperCase && hasDigit && hasSpecialChar) {
+                return isValidLength && hasUpperCase && hasDigit && hasSpecialChar;
+            }
+        }
+        return false;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/Register.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/Register.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Register)
+/* harmony export */ });
+class Register {
+    constructor(register, signUpUI) {
+        this.$register = $(register);
+        this.isEnabled = false;
+        this.isDisabledHandling();
+        this.$register.click((e) => {
+            e.preventDefault();
+            signUpUI.signup();
+        });
+    }
+    enabled(is) {
+        this.isEnabled = is;
+        if (this.isEnabled) {
+            this.isEnabledHandling();
+        }
+        else {
+            this.isDisabledHandling();
+        }
+    }
+    isEnabledHandling() {
+        this.$register.prop('disabled', false);
+        this.$register.css("backgroundColor", "#cec3e7");
+    }
+    isDisabledHandling() {
+        this.$register.prop('disabled', true);
+        this.$register.css("backgroundColor", "#c6c6c6");
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/SignUpUI.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/SignUpUI.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SignUpUI)
+/* harmony export */ });
+/* harmony import */ var _WW__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WW */ "./src/dist/module/Web-Development/WW.js");
+/* harmony import */ var _CheckBox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckBox */ "./src/dist/module/Web-Development/components/signup/CheckBox.js");
+/* harmony import */ var _Email__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Email */ "./src/dist/module/Web-Development/components/signup/Email.js");
+/* harmony import */ var _Error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Error */ "./src/dist/module/Web-Development/components/signup/Error.js");
+/* harmony import */ var _Password__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Password */ "./src/dist/module/Web-Development/components/signup/Password.js");
+/* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Register */ "./src/dist/module/Web-Development/components/signup/Register.js");
+/* harmony import */ var _Username__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Username */ "./src/dist/module/Web-Development/components/signup/Username.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+
+
+
+class SignUpUI {
+    constructor(ui, url, success) {
+        this.usernameBox = new _Username__WEBPACK_IMPORTED_MODULE_6__["default"](ui['username'], this);
+        this.passwordBox = new _Password__WEBPACK_IMPORTED_MODULE_4__["default"](ui['password'], this);
+        this.emailBox = new _Email__WEBPACK_IMPORTED_MODULE_2__["default"](ui['email'], this);
+        this.checkBox = new _CheckBox__WEBPACK_IMPORTED_MODULE_1__["default"](ui['checkbox'], this);
+        this.error = new _Error__WEBPACK_IMPORTED_MODULE_3__["default"](ui['error'], this);
+        this.register = new _Register__WEBPACK_IMPORTED_MODULE_5__["default"](ui['register'], this);
+        this.url = url;
+        this.success = success;
+    }
+    update() {
+        this.register.enabled(this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+    }
+    signup() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url.signup, {
+                username: this.usernameBox.getUsername(),
+                password: this.passwordBox.getPassword(),
+                email: this.emailBox.getEmail()
+            }).api().post();
+            if (r) {
+                $(this.success.before).addClass(this.success.beforeClass);
+                $(this.success.after).addClass(this.success.afterClass);
+            }
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/signup/Username.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/signup/Username.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Username)
+/* harmony export */ });
+class Username {
+    constructor(username, signUpUI) {
+        this.$username = $(username);
+        this.$username.on("input", e => {
+            signUpUI.update();
+        });
+    }
+    getUsername() {
+        return this.removeSpace(this.$username.val());
+    }
+    isFilled() {
+        return this.$username.val() !== "";
+    }
+    removeSpace(text) {
+        return text.replace(/\s+/g, '');
     }
 }
 
@@ -994,10 +1126,21 @@ __webpack_require__.r(__webpack_exports__);
 function signupPage() {
     (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#password").passShowHide().run();
     (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(".passRequirements", "dropdown").toggle().run();
-    (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("#username", "#email", "#password", ".signupChild__error", ".signupChild__confirm", {
+    (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)({
+        username: "#username",
+        password: "#password",
+        email: "#email",
+        error: ".signupChild__error",
+        checkbox: "#terms",
+        register: ".signupChild__confirm"
+    }, {
         signup: "/data/signup.php",
-        create: "/data/api/createAccount.php",
-    }).signup().run();
+    }, {
+        before: ".signupChild",
+        after: ".signupSuccess",
+        beforeClass: "inactive",
+        afterClass: "active",
+    }).signup();
 }
 
 
@@ -5689,4 +5832,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjsf9b20177fb1c38855b4b.js.map
+//# sourceMappingURL=mainjs1065e557f6b66a6596d4.js.map

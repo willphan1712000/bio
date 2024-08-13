@@ -1,4 +1,5 @@
 <?php
+$total = 10;
 $product = [
     '1' => [
         'id' => '1',

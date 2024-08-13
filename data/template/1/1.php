@@ -1,3 +1,19 @@
+<?php
+namespace Template;
+require_once '../Template.php';
+
+class Template1 implements ITemplate {
+    private $props;
+    public function __construct($props) {
+        $this->props = $props;
+    }
+    public function html() {
+        $props = $this->props;
+        echo '';
+        }
+}
+?>
+
 <div id="template-container">
 <style>
 #social-media {
