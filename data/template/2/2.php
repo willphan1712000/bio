@@ -1,4 +1,32 @@
-<div id="template-container">
+<?php
+
+class Template2 extends Template {
+    private $props;
+    const PROPS = [
+        'id' => '2',
+        'name' => 'Template ID 2',
+        'price' => parent::PRICE,
+        'image' => 'template/2/2.png',
+        'description' => '',
+    ];
+    public function __construct($props) {
+        $this->props = $props;
+    }
+    public function html() {
+        $props = $this->props;
+        $certain = ["Mobile", "Work", "Email", "Website"];
+        $socialNameArr = $props["social"];
+        $socialIconArr = $props["icon"];
+        $html1 = "";
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+            }
+        }
+        
+        $html = '
+            <div id="template-container">
 <style>
   .element {
     padding: 0px 10px 0px 10px;
@@ -250,11 +278,11 @@
 <div class="div">
   <img
     loading="lazy"
-    src="<?=$props['imgPath'];?>"
+    src="'.$props['imgPath'].'"
     class="img"
   />
-  <div class="div-2"><?=$infoObject->name()['a'];?></div>
-  <div class="div-3"><?=$infoObject->description()['a'];?></div>
+  <div class="div-2">'.$props['info']->name()['a'].'</div>
+  <div class="div-3">'.$props['info']->description()['a'].'</div>
   <div class="div-4"></div>
 
   <div class="element div-5 div-element">
@@ -266,7 +294,7 @@
       />
       <div class="div-7">Facebook</div>
     </div>
-    <?= $infoObject->social('Facebook', '<div class="div-element-btn">View</div>')['a'];?>
+    '.$props['info']->social('Facebook', '<div class="div-element-btn">View</div>')['a'].'
   </div>
   <div class="div-9"></div>
   <div class="element div-element">
@@ -278,7 +306,7 @@
       />
       <div class="div-12">Youtube</div>
     </div>
-    <?= $infoObject->social('Youtube', '<div class="div-element-btn">View</div>')['a'];?>
+    '.$props['info']->social('Youtube', '<div class="div-element-btn">View</div>')['a'].'
     
   </div>
   <div class="div-14"></div>
@@ -291,8 +319,12 @@
       />
       <div class="div-17">Instagram</div>
     </div>
-    <?= $infoObject->social('Instagram', '<div class="div-element-btn">View</div>')['a'];?>
+    '.$props['info']->social('Instagram', '<div class="div-element-btn">View</div>')['a'].'
   </div>
 </div>
 </div>
 </div>
+            ';
+            echo $html;
+        }
+}

@@ -1,4 +1,32 @@
-<div id="template-container">
+<?php
+
+class Template10 extends Template {
+    private $props;
+    const PROPS = [
+        'id' => '10',
+        'name' => 'Template ID 10',
+        'price' => parent::PRICE,
+        'image' => 'template/10/10.png',
+        'description' => '',
+    ];
+    public function __construct($props) {
+        $this->props = $props;
+    }
+    public function html() {
+        $props = $this->props;
+        $certain = ["Mobile", "Work", "Email", "Website"];
+        $socialNameArr = $props["social"];
+        $socialIconArr = $props["icon"];
+        $html1 = "";
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+            }
+        }
+        
+        $html = '
+            <div id="template-container">
 <style>
   #social-media {
     padding: 0% 8%;
@@ -113,39 +141,33 @@
 </style>
 
 <main class="fashion-show-container">
-  <img src="<?=$props['imgPath'];?>" alt="Fashion Show Hero Image" class="hero-image" />
-  <h1 class="main-title"><?=$infoObject->name()['a'];?></h1>
-  <p class="des"><?=$infoObject->organization()['a'];?></p>
-  <p class="des"><?=$infoObject->description()['a'];?></p>
+  <img src="'.$props['imgPath'].'" alt="Fashion Show Hero Image" class="hero-image" />
+  <h1 class="main-title">'.$props['info']->name()['a'].'</h1>
+  <p class="des">'.$props['info']->organization()['a'].'</p>
+  <p class="des">'.$props['info']->description()['a'].'</p>
   <nav class="social-links">
-  <?=$infoObject->social('Facebook', ' <div class="social-button">
+  '.$props['info']->social('Facebook', ' <div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc6f0cf7b4c3eb8e670601c61cc30afc7ea46efe75ca8f98a5f8f9649aee6497?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Facebook</span>
-      </div>')['a'];?>
-  <?=$infoObject->social('Instagram', '<div class="social-button">
+      </div>')['a'].'
+  '.$props['info']->social('Instagram', '<div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/406f99e2876ec60b3fe915758299ce753fcefa6a397a2a9cc14e86b7769f07e8?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Instagram</span>
-      </div>')['a'];?>
-  <?=$infoObject->social('Tiktok', '<div class="social-button">
+      </div>')['a'].'
+  '.$props['info']->social('Tiktok', '<div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9640d6fcd0e2ffb558786d7f0ebe3d9ec7a87327b3263c59345ba8cbbf7326ef?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Tiktok</span>
-      </div>')['a'];?>
+      </div>')['a'].'
   </nav>
-  <?=$infoObject->social('Website', '<div class="cta-button" role="button">Website</div>')['a'];?>
-  <?=$infoObject->mobile('<div class="cta-button" role="button">Contact</div>')['a'];?>
+  '.$props['info']->social('Website', '<div class="cta-button" role="button">Website</div>')['a'].'
+  '.$props['info']->mobile('<div class="cta-button" role="button">Contact</div>')['a'].'
   <div id="social-media">
-    <?php
-        $certain = ['Mobile', 'Work', 'Email', 'Website'];
-        $socialNameArr = $props['social'];
-        $socialIconArr = $props['icon'];
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-            echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
-    ?>
+    '.$html1.'
 </div>
 </main>
 </div>
 </div>
+            ';
+            echo $html;
+        }
+}

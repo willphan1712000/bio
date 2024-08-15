@@ -132,7 +132,7 @@ class TemplateComponent {
             $selectDisplay = "flex";
             $likeDisplay = "none";
         }
-        if($props["id"] === isset($props['chosen']) ? $props["chosen"] : 0) {
+        if($props["id"] === (isset($props['chosen']) ? $props["chosen"] : 0)) {
             $chosenDisplay = "active";
         } else {
             $chosenDisplay = "";

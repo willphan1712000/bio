@@ -27,7 +27,7 @@ export default class SignUpUI {
     }
     update() {
         return __awaiter(this, void 0, void 0, function* () {
-            const r = yield $$$("/data/api/isUserExist.php", {
+            const r = yield $$$(this.url.userExist, {
                 username: this.usernameBox.getUsername()
             }).api().post();
             if (r) {

@@ -1,8 +1,8 @@
 <?php
 
-require_once '../vendorStripe/autoload.php';
+require_once 'vendorStripe/autoload.php';
 require_once '../../secrets/secrets.php';
-require_once './product.php';
+require_once 'product.php';
 require_once '../core.php';
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);

@@ -928,7 +928,7 @@ class SignUpUI {
     }
     update() {
         return __awaiter(this, void 0, void 0, function* () {
-            const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)("/data/api/isUserExist.php", {
+            const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url.userExist, {
                 username: this.usernameBox.getUsername()
             }).api().post();
             if (r) {
@@ -1170,6 +1170,7 @@ function signupPage() {
         register: ".signupChild__confirm"
     }, {
         signup: "/data/signup.php",
+        userExist: "/data/api/isUserExist.php"
     }, {
         before: ".signupChild",
         after: ".signupSuccess",
@@ -5867,4 +5868,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs839c9efccd83ae6bcf2d.js.map
+//# sourceMappingURL=mainjsf83a0af2d092aed079dc.js.map

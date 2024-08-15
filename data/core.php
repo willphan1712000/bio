@@ -55,6 +55,7 @@ class ProductionConfig {
 class SystemConfig {
     public static function globalVariables() {
         return [
+            'product_name' => 'Allinclicks Bio',
             'domain' => ProductionConfig::config()['domain'],
             'fulldomain' => ProductionConfig::config()['fulldomain'],
             'stripeRedirect' => ProductionConfig::config()['stripeRedirect'],

@@ -1,4 +1,32 @@
-<div id="template-container">
+<?php
+
+class Template9 extends Template {
+    private $props;
+    const PROPS = [
+        'id' => '9',
+        'name' => 'Template ID 9',
+        'price' => parent::PRICE,
+        'image' => 'template/9/9.png',
+        'description' => '',
+    ];
+    public function __construct($props) {
+        $this->props = $props;
+    }
+    public function html() {
+        $props = $this->props;
+        $certain = ["Mobile", "Work", "Email", "Website"];
+        $socialNameArr = $props["social"];
+        $socialIconArr = $props["icon"];
+        $html1 = "";
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+            }
+        }
+        
+        $html = '
+            <div id="template-container">
 <style>
 #social-media {
   padding: 0% 8%;
@@ -146,35 +174,29 @@
 
 <main class="beauty-store">
   <div class="logo-container">
-    <img loading="lazy" src="<?=$props['imgPath'];?>" class="logo" alt="Beauty store logo" />
+    <img loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty store logo" />
   </div>
-  <h1 class="store-title"><?=$infoObject->name()['a'];?></h1>
-  <p class="des"><?=$infoObject->organization()['a'];?></p>
-  <p class="des"><?=$infoObject->description()['a'];?></p>
+  <h1 class="store-title">'.$props['info']->name()['a'].'</h1>
+  <p class="des">'.$props['info']->organization()['a'].'</p>
+  <p class="des">'.$props['info']->description()['a'].'</p>
   <nav class="nav-buttons">
-  <?=$infoObject->social('Website', '<div class="nav-button">Shop All</div>')['a'];?>
-  <?=$infoObject->mobile('<div class="nav-button">Contact us</div>')['a'];?>
+  '.$props['info']->social('Website', '<div class="nav-button">Shop All</div>')['a'].'
+  '.$props['info']->mobile('<div class="nav-button">Contact us</div>')['a'].'
   </nav>
   <div id="social-media">
-    <?php
-        $certain = ['Mobile', 'Work', 'Email', 'Website'];
-        $socialNameArr = $props['social'];
-        $socialIconArr = $props['icon'];
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-            echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
-    ?>
+    '.$html1.'
   </div>
   <footer class="footer">
-  <?=$infoObject->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/db6fbffb3e2aa916f4f11adeef0e403764cd3857a6f2cd91eb306e6a046e38c5?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon" alt="" />')['a'];?>
-  <?=$infoObject->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f2ce9a5b93101496d86b45b2af246ca2036999f090d70d709c4f3ce06bb68ccc?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-large" alt="" />')['a'];?>
-  <?=$infoObject->social('Website', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/796c2f9a30e5a6a38d1b204f5010bcf5b57685a59af1e250440f37d9ab1f5e43?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-medium" alt="" />')['a'];?>
-  <?=$infoObject->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7fda2ccdede6a0ff4d33533a6cf9f7c56a1d7231e1c882e40db336ad8c5a46e5?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-square" alt="" />')['a'];?>
-  <?=$infoObject->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/30497f2e2b486df94a3dcaa71ac790f83870e98917a96a365c60a240226c5a42?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-wide" alt="" />')['a'];?>
+  '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/db6fbffb3e2aa916f4f11adeef0e403764cd3857a6f2cd91eb306e6a046e38c5?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon" alt="" />')['a'].'
+  '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f2ce9a5b93101496d86b45b2af246ca2036999f090d70d709c4f3ce06bb68ccc?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-large" alt="" />')['a'].'
+  '.$props['info']->social('Website', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/796c2f9a30e5a6a38d1b204f5010bcf5b57685a59af1e250440f37d9ab1f5e43?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-medium" alt="" />')['a'].'
+  '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7fda2ccdede6a0ff4d33533a6cf9f7c56a1d7231e1c882e40db336ad8c5a46e5?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-square" alt="" />')['a'].'
+  '.$props['info']->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/30497f2e2b486df94a3dcaa71ac790f83870e98917a96a365c60a240226c5a42?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-icon-wide" alt="" />')['a'].'
   </footer>
 </main>
 </div>
 </div>
+            ';
+            echo $html;
+        }
+}

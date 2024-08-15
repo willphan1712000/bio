@@ -1,5 +1,6 @@
+
 <?php
-class Template0 {
+class Template0 extends Template {
     private $props;
     public function __construct($props) {
         $this->props = $props;

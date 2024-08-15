@@ -1,20 +1,32 @@
 <?php
-namespace Template;
-require_once '../Template.php';
 
-class Template1 implements ITemplate {
+class Template1 extends Template {
     private $props;
+    const PROPS = [
+        'id' => '1',
+        'name' => 'Template ID 1',
+        'price' => parent::PRICE,
+        'image' => 'template/1/1.png',
+        'description' => '',
+    ];
     public function __construct($props) {
         $this->props = $props;
     }
     public function html() {
         $props = $this->props;
-        echo '';
+        $certain = ["Mobile", "Work", "Email", "Website"];
+        $socialNameArr = $props["social"];
+        $socialIconArr = $props["icon"];
+        $html1 = "";
+        for($i = 0; $i < count($socialNameArr); $i++) {
+            if(in_array($socialNameArr[$i], $certain)) {
+                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+            }
         }
-}
-?>
-
-<div id="template-container">
+        
+        $html = '
+            <div id="template-container">
 <style>
 #social-media {
     padding: 0% 8%;
@@ -234,78 +246,72 @@ class Template1 implements ITemplate {
     <div class="div-3">
       <img
         loading="lazy"
-        src="<?=$props['imgPath']."?v=".time();?>"
+        src='.$props['imgPath'].'
         class="img"
       />
     </div>
-    <div class="div-4"><?=$infoObject->name()['a'];?></div>
+    <div class="div-4">'.$props['info']->name()['a'].'</div>
     <div class="div-5">
-    <?=$infoObject->organization()['a'];?>
+    '.$props['info']->organization()['a'].'
       <br />
-      <?=$infoObject->description()['a'];?>
+      '.$props['info']->description()['a'].'
     </div>
-    <?= $infoObject->mobile('<div class="div-6">Contact us</div>')['a'];?>
+    '.$props['info']->mobile('<div class="div-6">Contact us</div>')['a'].'
     <div class="div-7">
       
-      <?= $infoObject->social('Website', '<div class="div-8">
+      '.$props['info']->social('Website', '<div class="div-8">
         <img
           loading="lazy"
           srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/c710ffbff614f648caeb0c27694b4bbbb4ecf6bd8f4b08f0ba4a02287c7ed502?apiKey=076e1b6fb9564c54879ab1846aa9f941&"
           class="img-2"
         />
         <div class="div-9">About us</div>
-      </div>')['a'];?>
+      </div>')['a'].'
       
-      <?= $infoObject->social('Facebook', '<div class="div-10">
+      '.$props['info']->social('Facebook', '<div class="div-10">
         <img
           loading="lazy"
           srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/80762aba79ce7dd31ac3f0008b48c3be758aad2361b212b59e1409f47b10fcf5?apiKey=076e1b6fb9564c54879ab1846aa9f941&"
           class="img-3"
         />
         <div class="div-11">Facebook</div>
-      </div>')['a'];?>
+      </div>')['a'].'
       
-      <?= $infoObject->social('Instagram', '<div class="div-12">
+      '.$props['info']->social('Instagram', '<div class="div-12">
         <img
           loading="lazy"
           srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/c542f1f96154579420d94989554b5ba7ff48f5eb8c106707b52c4daac764c249?apiKey=076e1b6fb9564c54879ab1846aa9f941&"
           class="img-4"
         />
         <div class="div-13">Instagram.</div>
-      </div>')['a'];?>
+      </div>')['a'].'
       
-      <?= $infoObject->social('Youtube', '<div class="div-14">
+      '.$props['info']->social('Youtube', '<div class="div-14">
         <img
           loading="lazy"
           srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/cdc52d9b192622532a05c2fd54ed1952554289ba262d9741ccb6701add723c7c?apiKey=076e1b6fb9564c54879ab1846aa9f941&"
           class="img-5"
         />
         <div class="div-15">Youtube</div>
-      </div>')['a'];?>
+      </div>')['a'].'
       
-      <?= $infoObject->social('Tiktok', '<div class="div-16">
+      '.$props['info']->social('Tiktok', '<div class="div-16">
         <img
           loading="lazy"
           srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/facfb97eaa39399f145bec839cec7dfbd9dcf4fc47980e44d691ff08a33406b5?apiKey=076e1b6fb9564c54879ab1846aa9f941&"
           class="img-6"
         />
         <div class="div-17">Tiktok</div>
-      </div>')['a'];?>
+      </div>')['a'].'
     </div>
   </div>
   <div id="social-media">
-    <?php
-        $socialNameArr = $props['social'];
-        $socialIconArr = $props['icon'];
-        $certain = ['Mobile', 'Work', 'Email', 'Website'];
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-            echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
+    '.$html1.'
+</div>
+</div>
+</div>
+</div>
+            ';
+            echo $html;
         }
-    ?>
-</div>
-</div>
-</div>
-</div>
+}
