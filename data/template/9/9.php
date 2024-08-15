@@ -174,7 +174,7 @@ class Template9 extends Template {
 
 <main class="beauty-store">
   <div class="logo-container">
-    <img loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty store logo" />
+    <img draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty store logo" />
   </div>
   <h1 class="store-title">'.$props['info']->name()['a'].'</h1>
   <p class="des">'.$props['info']->organization()['a'].'</p>

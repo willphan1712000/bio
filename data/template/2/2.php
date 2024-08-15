@@ -276,7 +276,7 @@ class Template2 extends Template {
   }
 </style>
 <div class="div">
-  <img
+  <img draggable=false
     loading="lazy"
     src="'.$props['imgPath'].'"
     class="img"

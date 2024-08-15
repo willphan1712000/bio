@@ -194,7 +194,7 @@ class Template4 extends Template {
     <header class="header-section">
       <div class="logo-container">
         <div class="logo-wrapper">
-          <img loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty Store Logo" />
+          <img draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty Store Logo" />
         </div>
       </div>
       <h1 class="store-title">'.$props['info']->name()['a'].'</h1>

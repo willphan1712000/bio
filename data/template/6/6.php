@@ -136,7 +136,7 @@ class Template6 extends Template {
   <div class="profile-content">
     <div class="avatar-container">
       <div class="avatar-wrapper">
-        <img loading="lazy" src="'.$props['imgPath'].'" class="avatar" alt="Profile avatar" />
+        <img draggable=false loading="lazy" src="'.$props['imgPath'].'" class="avatar" alt="Profile avatar" />
       </div>
     </div>
     <h1 class="profile-name">'.$props['info']->name()['a'].'</h1>

@@ -168,7 +168,7 @@ class Template7 extends Template {
 <section class="beauty-section">
   <header class="hero-banner">
     <div class="avatar-wrapper">
-      <img draggable="false" src='.$props['imgPath'].' alt="" class="avatar-img">
+      <img draggable=false draggable="false" src='.$props['imgPath'].' alt="" class="avatar-img">
     </div>
     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/dea77032a51d516ad82d4f4cfed164a9c9523bf104fffca6e4ef09b29db5de62?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="hero-image" alt="Beauty product showcase" />
     <div class="title-wrapper">

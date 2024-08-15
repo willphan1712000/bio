@@ -154,7 +154,7 @@ class Template8 extends Template {
 </style>
 
 <article class="doctor-card">
-  <img src='.$props['imgPath'].' alt="" class="doctor-image" />
+  <img draggable=false src='.$props['imgPath'].' alt="" class="doctor-image" />
   <div class="doctor-info">
     <h2 class="doctor-name">'.$props['info']->name()['a'].'</h2>
     <p class="experience">'.$props['info']->organization()['a'].'</p>

@@ -225,7 +225,7 @@ class Template3 extends Template {
 
             <section class="jewelry-shop">
               <div class="content-wrapper">
-                <img loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
+                <img draggable=false loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
                 <h1 class="shop-title">'.$props['info']->name()['a'].'</h1>
                 <p class="tagline">'.$props['info']->organization()['a'].'</p>
                 <p class="tagline">'.$props['info']->description()['a'].'</p>

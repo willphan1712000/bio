@@ -29,7 +29,7 @@ class Template0 extends Template {
                     <div class="info">
                         <div class="info__img">
                             <div class="info__img--location">
-                                <img src='.$props['imgPath'].' alt="" draggable="false">
+                                <img draggable=false src='.$props['imgPath'].' alt="" draggable="false">
                             </div>
                         </div>
                         <div class="info__about">

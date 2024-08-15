@@ -153,7 +153,7 @@ class Template5 extends Template {
 
 <main class="bakery-container">
   <div class="backdrop">
-    <img src="'.$props['imgPath'].'" alt="Bakery storefront" class="hero-image" />
+    <img draggable=false src="'.$props['imgPath'].'" alt="Bakery storefront" class="hero-image" />
     <div class="backdrop-child">
       <h1>'.$props['info']->name()['a'].'</h1>
       <p class="tagline">'.$props['info']->organization()['a'].'</p>

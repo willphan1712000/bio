@@ -141,7 +141,7 @@ class Template10 extends Template {
 </style>
 
 <main class="fashion-show-container">
-  <img src="'.$props['imgPath'].'" alt="Fashion Show Hero Image" class="hero-image" />
+  <img draggable=false src="'.$props['imgPath'].'" alt="Fashion Show Hero Image" class="hero-image" />
   <h1 class="main-title">'.$props['info']->name()['a'].'</h1>
   <p class="des">'.$props['info']->organization()['a'].'</p>
   <p class="des">'.$props['info']->description()['a'].'</p>
