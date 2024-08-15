@@ -20,13 +20,44 @@ export default class SignUpUI {
         this.passwordBox = new Password(ui['password'], this);
         this.emailBox = new Email(ui['email'], this);
         this.checkBox = new CheckBox(ui['checkbox'], this);
-        this.error = new Error(ui['error'], this);
+        this.error = new Error(ui['error']);
         this.register = new Register(ui['register'], this);
         this.url = url;
         this.success = success;
     }
     update() {
-        this.register.enabled(this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+        return __awaiter(this, void 0, void 0, function* () {
+            const r = yield $$$("/data/api/isUserExist.php", {
+                username: this.usernameBox.getUsername()
+            }).api().post();
+            if (r) {
+                this.error.setError("Username exists");
+            }
+            else if (!this.usernameBox.isFilled()) {
+                this.error.setError("Please enter username");
+            }
+            else if (!this.emailBox.isValidEmail()) {
+                this.error.setError("Email is not valid");
+            }
+            else if (!this.passwordBox.isValidPassword()) {
+                this.error.setError("Password is not valid");
+            }
+            else if (!this.checkBox.isChecked()) {
+                this.error.setError("Please check terms and conditions");
+            }
+            else {
+                this.error.setError(`<i style="color: green;
+                                border: solid green 1px;
+                                border-radius: 50%;
+                                padding: 10px;
+                                width: 30px;
+                                height: 30px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;" class="fa-solid fa-check"></i>`);
+            }
+            this.register.enabled(!r && this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+        });
     }
     signup() {
         return __awaiter(this, void 0, void 0, function* () {

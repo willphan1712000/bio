@@ -1,5 +1,5 @@
 export default class Error {
-    constructor(error, signUpUI) {
+    constructor(error) {
         this.$error = $(error);
     }
     setError(msg) {

@@ -777,7 +777,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Error)
 /* harmony export */ });
 class Error {
-    constructor(error, signUpUI) {
+    constructor(error) {
         this.$error = $(error);
     }
     setError(msg) {
@@ -867,11 +867,15 @@ class Register {
     }
     isEnabledHandling() {
         this.$register.prop('disabled', false);
-        this.$register.css("backgroundColor", "#cec3e7");
+        this.$register.css({
+            "backgroundColor": "#cec3e7"
+        });
     }
     isDisabledHandling() {
         this.$register.prop('disabled', true);
-        this.$register.css("backgroundColor", "#c6c6c6");
+        this.$register.css({
+            "backgroundColor": "#c6c6c6"
+        });
     }
 }
 
@@ -917,13 +921,44 @@ class SignUpUI {
         this.passwordBox = new _Password__WEBPACK_IMPORTED_MODULE_4__["default"](ui['password'], this);
         this.emailBox = new _Email__WEBPACK_IMPORTED_MODULE_2__["default"](ui['email'], this);
         this.checkBox = new _CheckBox__WEBPACK_IMPORTED_MODULE_1__["default"](ui['checkbox'], this);
-        this.error = new _Error__WEBPACK_IMPORTED_MODULE_3__["default"](ui['error'], this);
+        this.error = new _Error__WEBPACK_IMPORTED_MODULE_3__["default"](ui['error']);
         this.register = new _Register__WEBPACK_IMPORTED_MODULE_5__["default"](ui['register'], this);
         this.url = url;
         this.success = success;
     }
     update() {
-        this.register.enabled(this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+        return __awaiter(this, void 0, void 0, function* () {
+            const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)("/data/api/isUserExist.php", {
+                username: this.usernameBox.getUsername()
+            }).api().post();
+            if (r) {
+                this.error.setError("Username exists");
+            }
+            else if (!this.usernameBox.isFilled()) {
+                this.error.setError("Please enter username");
+            }
+            else if (!this.emailBox.isValidEmail()) {
+                this.error.setError("Email is not valid");
+            }
+            else if (!this.passwordBox.isValidPassword()) {
+                this.error.setError("Password is not valid");
+            }
+            else if (!this.checkBox.isChecked()) {
+                this.error.setError("Please check terms and conditions");
+            }
+            else {
+                this.error.setError(`<i style="color: green;
+                                border: solid green 1px;
+                                border-radius: 50%;
+                                padding: 10px;
+                                width: 30px;
+                                height: 30px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;" class="fa-solid fa-check"></i>`);
+            }
+            this.register.enabled(!r && this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+        });
     }
     signup() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -5832,4 +5867,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs1065e557f6b66a6596d4.js.map
+//# sourceMappingURL=mainjs839c9efccd83ae6bcf2d.js.map
