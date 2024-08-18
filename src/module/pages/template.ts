@@ -20,19 +20,18 @@ export default function template(props: Props) : void {
 
     (function() {
         let lastScrollTop = 0;
-        const signin = document.querySelector(".logo .btn-ele.signin") as HTMLElement | null;
-        const cart = document.querySelector(".logo .btn-ele.cart") as HTMLElement | null;
+        const ele = document.querySelectorAll(".logo .btn-ele") as NodeListOf<HTMLElement>;
 
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            if(scrollTop > lastScrollTop) {
-                signin!.style.bottom = '-12%';
-                cart!.style.bottom = '-12%';
-            } else {
-                signin!.style.bottom = '10px';
-                cart!.style.bottom = '10px';
-            }
+            ele.forEach(e => {
+                if(scrollTop > lastScrollTop) {
+                    e.style.bottom = '-12%';
+                } else {
+                    e.style.bottom = '10px';
+                }
+            });
             
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         })

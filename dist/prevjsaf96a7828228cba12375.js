@@ -1,3 +1,7 @@
+/******/ (() => { // webpackBootstrap
+/*!*********************!*\
+  !*** ./src/prev.js ***!
+  \*********************/
 /*
  * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
  * This devtool is neither made for production nor for readable output files.
@@ -56,7 +60,7 @@
     /******/ 	var __webpack_module_cache__ = {};
     /******/ 	
     /******/ 	// The require function
-    /******/ 	function __webpack_require__(moduleId) {
+    /******/ 	function __nested_webpack_require_61268__(moduleId) {
     /******/ 		// Check if module is in cache
     /******/ 		var cachedModule = __webpack_module_cache__[moduleId];
     /******/ 		if (cachedModule !== undefined) {
@@ -70,7 +74,7 @@
     /******/ 		};
     /******/ 	
     /******/ 		// Execute the module function
-    /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+    /******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_61268__);
     /******/ 	
     /******/ 		// Return the exports of the module
     /******/ 		return module.exports;
@@ -80,9 +84,9 @@
     /******/ 	/* webpack/runtime/define property getters */
     /******/ 	(() => {
     /******/ 		// define getter functions for harmony exports
-    /******/ 		__webpack_require__.d = (exports, definition) => {
+    /******/ 		__nested_webpack_require_61268__.d = (exports, definition) => {
     /******/ 			for(var key in definition) {
-    /******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+    /******/ 				if(__nested_webpack_require_61268__.o(definition, key) && !__nested_webpack_require_61268__.o(exports, key)) {
     /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
     /******/ 				}
     /******/ 			}
@@ -91,13 +95,13 @@
     /******/ 	
     /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
     /******/ 	(() => {
-    /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+    /******/ 		__nested_webpack_require_61268__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
     /******/ 	})();
     /******/ 	
     /******/ 	/* webpack/runtime/make namespace object */
     /******/ 	(() => {
     /******/ 		// define __esModule on exports
-    /******/ 		__webpack_require__.r = (exports) => {
+    /******/ 		__nested_webpack_require_61268__.r = (exports) => {
     /******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
     /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
     /******/ 			}
@@ -110,7 +114,10 @@
     /******/ 	// startup
     /******/ 	// Load entry module and return exports
     /******/ 	// This entry module can't be inlined because the eval devtool is used.
-    /******/ 	var __webpack_exports__ = __webpack_require__("./src/main.js");
+    /******/ 	var __webpack_exports__ = __nested_webpack_require_61268__("./src/main.js");
     /******/ 	
     /******/ })()
     ;
+/******/ })()
+;
+//# sourceMappingURL=prevjsaf96a7828228cba12375.js.map

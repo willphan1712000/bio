@@ -32,10 +32,13 @@
         // SystemConfig::dd(!empty($purchased));
         $chosenTemplate = API::GET("template", "themeid", "username = '$username'"); // Get chosen template
     }
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjs8687ab72d033da542f14.js"></script><script src="/dist/prevjsa2691adcb204407ddc78.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/templateecf45f859ead57d49544.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjs3d99126ee196a9dec83c.js"></script><script src="/dist/prevjsaf96a7828228cba12375.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/template58e7462fc0d40d1b6259.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
-                            <a class="btn-ele signin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>'.$username.'</p></a>
+                            <a class="btn-ele signin" href="/'.$username.'"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>Bio</p></a>
+                        ';
+                        echo '
+                            <a class="btn-ele signin admin" href="/'.$username.'/admin"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>Admin</p></a>
                         ';
                     } else {
                         echo '

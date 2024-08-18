@@ -71,6 +71,7 @@ class Table extends W3 {
         this.location = location;
         this.header = header;
         this.data = data;
+        this.create();
     }
     create() {
         $(this.location).append('<table><tr></tr></table>');
@@ -486,6 +487,7 @@ class CopyToClipboard extends W2 {
 class Search extends W4 {
     constructor(ele1, ele2, ele3, ele4) {
         super(ele1, ele2, ele3, ele4);
+        this.run();
     }
     run() {
         const $input = $(this.ele1);
@@ -502,7 +504,7 @@ class Search extends W4 {
         });
         worker.onmessage = (e) => {
             $(location).empty();
-            $$(location, header, e.data).table().create();
+            $$(location, header, e.data).table();
             this.ele4();
         };
         return this;
