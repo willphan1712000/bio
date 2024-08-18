@@ -8,7 +8,7 @@
     use Endroid\QrCode\Writer\PngWriter;
     // Database
     $conn = Database::connection();
-    // There are 'info', 'avaDelete', 'deleteToken'
+    // There are 'info', 'avaDelete'
     if($body->type === 'info') {
         // Already fetched variables
         $username = $body->username;
@@ -58,11 +58,5 @@
         $fileRemoved = unlink("../user/".$username."/".$filename) ? true : false;
         $dbRemoved = mysqli_query($conn, "UPDATE info SET image = '' WHERE username = '$username'") ? true : false;
         echo ($fileRemoved && $dbRemoved) ? true : false;
-    }
-    elseif ($body->type === 'deleteToken') {
-        $token = $body->token;
-        $username = $body->username;
-        mysqli_query($conn, "UPDATE user SET deleteToken = '$token' WHERE username = '$username'");
-        echo(true);
     }
 ?>
