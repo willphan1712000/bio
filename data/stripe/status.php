@@ -1,6 +1,5 @@
 <?php
-
-require_once '../vendorStripe/autoload.php';
+require_once 'vendorStripe/autoload.php';
 require_once '../../secrets/secrets.php';
 require_once '../core.php';
 

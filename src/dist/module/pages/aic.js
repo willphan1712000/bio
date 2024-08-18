@@ -24,49 +24,60 @@ export default function aic() {
     });
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield $$$("/data/update.php", {
-                type: "getUserInfo",
-            }).api().post();
+            const header = {
+                1: "#",
+                2: "Username",
+                3: "Email",
+                4: "Password",
+                5: "Token",
+                6: "Delete Token",
+                7: "Bio",
+                8: "Admin",
+                9: "Delete"
+            };
+            const data = yield $$$("/data/api/getAllUser.php", null).api().get();
             for (const i in data) {
                 data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
                 data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
                 data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
             }
-            const search = $$("#search", {
-                location: "#userData",
-                header: {
-                    1: "#",
-                    2: "Username",
-                    3: "Email",
-                    4: "Password",
-                    5: "Token",
-                    6: "Delete Token",
-                    7: "Bio",
-                    8: "Admin",
-                    9: "Delete"
-                },
-                data
+            $$("#userData", header, data).table();
+            handleClick(false);
+            $$("#search", {
+                location: "#userData", header, data
             }, "/src/dist/module/Web-Development/worker.js", () => {
-                $("#userData button").off("click", e => {
-                    return null;
-                });
-                $("#userData button").click(function (e) {
-                    $(".warning__parent").addClass("active");
-                    let currentUsernameElement = e.currentTarget;
-                    let currentUsernameValue = currentUsernameElement.value;
+                handleClick(true);
+            }).search();
+            function handleClick(search) {
+                if (search) {
+                    $("#userData button").off("click", e => {
+                        return null;
+                    });
                     $(".btn__confirm").off("click", e => {
                         return null;
                     });
+                }
+                $("#userData button").click(function (e) {
+                    $(".warning__parent").addClass("active");
+                    let currentUsernameElement = e.currentTarget;
+                    let currentUsernameValue = "";
+                    currentUsernameValue = currentUsernameElement.value;
                     $(".btn__confirm").click(function () {
                         return __awaiter(this, void 0, void 0, function* () {
                             const r = yield $$$("/data/api/deleteAccount.php", {
                                 username: currentUsernameValue,
                             }).api().post();
-                            console.log(r);
+                            if (r) {
+                                location.reload();
+                            }
                         });
                     });
+                    $(".btn__back").click(() => {
+                        $(".warning__parent").removeClass("active");
+                        currentUsernameValue = "";
+                    });
                 });
-            }).search().run();
+            }
         });
     })();
 }

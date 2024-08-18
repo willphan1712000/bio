@@ -9,8 +9,8 @@ require_once "backend/InfoProcess.php";
 require_once "backend/DeleteAccount.php";
 
 class ProductionConfig {
-    private static $mode = "production"; // mode (dev or production)
-    public static $version = "6.1"; // version of the product
+    private static $mode = "production"; // mode (development or production)
+    public static $version = "6.2"; // version of the product
 
     public static function database() {
         if(self::$mode === "development") {
@@ -55,6 +55,7 @@ class ProductionConfig {
 class SystemConfig {
     public static function globalVariables() {
         return [
+            'product_name' => 'Allinclicks Bio',
             'domain' => ProductionConfig::config()['domain'],
             'fulldomain' => ProductionConfig::config()['fulldomain'],
             'stripeRedirect' => ProductionConfig::config()['stripeRedirect'],

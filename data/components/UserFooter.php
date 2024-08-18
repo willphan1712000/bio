@@ -127,14 +127,6 @@ class UserFooter {
                     aspect-ratio: 9/16;
                 }
             </style>
-            <div class="shareWindow_parent image">
-                <div class="shareWindow_child">
-                    <div class="shareWindow__close">
-                        <i class="fa-solid fa-x"></i>
-                    </div>
-                    <img class="shareWindow__qr" src="" alt=""><a class="shareWindow__btn shareWindow__download" download href="" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
-                </div>
-            </div>
             <div class="shareWindow_parent qrcode">
                 <div class="shareWindow_child">
                     <div class="shareWindow__close">

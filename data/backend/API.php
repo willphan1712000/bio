@@ -2,7 +2,7 @@
 require_once 'Database.php';
 
 interface IAPI {
-    public static function GET($table, $column = null, $unique);
+    public static function GET($table, $column = null, $unique = null, $limit = null);
     public static function PUT($table, $column, $value, $unique);
     public static function POST(string $table, array $columns);
     public static function DELETE(string $table, string $unique);
@@ -10,18 +10,17 @@ interface IAPI {
 
 class API extends Database implements IAPI {
     // Query function for fast data retrieval
-    public static function GET($table, $column = null, $unique) {
+    public static function GET($table, $column = null, $unique = null, $limit = null) {
         $conn = parent::preparedConnection();
         $stmt = null;
 
         try {
-            if ($column === null) {
-                $query = "SELECT * FROM " . $table . " WHERE " . $unique;
-                $stmt = $conn->prepare($query);
-            } else {
-                $query = "SELECT " . $column . " FROM " . $table . " WHERE " . $unique;
-                $stmt = $conn->prepare($query);
-            }
+            $limitSyntax = $limit === null ? "" : " LIMIT ".$limit;
+            $columnSyntax = $column === null ? "*" : $column;
+            $uniqueSyntax = $unique === null ? "" : " WHERE ".$unique;
+
+            $query = "SELECT ". $columnSyntax . " FROM " . $table . $uniqueSyntax . $limitSyntax;
+            $stmt = $conn->prepare($query);
 
             if (!$stmt) {
                 throw new Exception("Failed to prepare the SQL statement.");

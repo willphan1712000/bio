@@ -50,4 +50,6 @@ $router->addRoute('/checkout/', 'dist/checkout.php');
 $router->addRoute('/checkout', 'dist/checkout.php');
 $router->addRoute('/checkoutComplete', 'dist/checkoutComplete.php');
 $router->addRoute('/checkoutComplete/', 'dist/checkoutComplete.php');
+$router->addRoute('/terms', 'dist/terms.php');
+$router->addRoute('/terms/', 'dist/terms.php');
 $router->route($uri);

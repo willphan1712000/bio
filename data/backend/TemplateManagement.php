@@ -7,7 +7,7 @@ interface ITemplateManagement {
 }
 
 class TemplateManagement implements ITemplateManagement {
-    public static $totalTemplate = 10;
+    public static $totalTemplate = Template::TOTAL;
     public static function isPurchased($username, $tem) {
         $isPurchased = API::GET("purchase", null, "username='$username'AND template_id=$tem");
         if(!empty($isPurchased)) {

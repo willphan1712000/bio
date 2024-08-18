@@ -1,5 +1,14 @@
 <?php
-class Database {
+interface IDatabase {
+    public static function get_data_model();
+    // Basic connection (high injection risk)
+    public static function connection();
+    // Prepared connection (low injection risk) - recommended
+    public static function preparedConnection();
+    public static function isUserExist($username);
+    public static function executeQuery(string $query, string $column = null);
+}
+class Database implements IDatabase {
     protected static function servername() {
         return ProductionConfig::database()['servername'];
     }

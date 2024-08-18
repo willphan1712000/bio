@@ -2,9 +2,11 @@ import restore from "./module/pages/restore";
 import signupPage from "./module/pages/signup";
 import aic from "./module/pages/aic";
 import template from "./module/pages/template";
+import bioPage from "./module/pages/bioPage";
 $(document).ready(function () {
     switch (type) {
         case 'index':
+            bioPage(props);
             break;
         case 'admin':
             break;
