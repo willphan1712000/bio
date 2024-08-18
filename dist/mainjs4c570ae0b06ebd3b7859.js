@@ -10097,6 +10097,9 @@ class W1 {
     addSpinner() {
         return new Spinner(this.ele1);
     }
+    share() {
+        return new Share(this.ele1);
+    }
 }
 class W2 {
     constructor(ele1, ele2) {
@@ -10135,6 +10138,20 @@ class W4 {
     }
     search() {
         return new Search(this.ele1, this.ele2, this.ele3, this.ele4);
+    }
+}
+class Share extends W1 {
+    constructor(obj) {
+        super(obj);
+        this.run();
+    }
+    run() {
+        if (navigator.share) {
+            navigator.share(this.ele1);
+        }
+        else {
+            alert("Share does not support this browser");
+        }
     }
 }
 class Table extends W3 {
@@ -11222,17 +11239,10 @@ function bioPage(props) {
         $("#container").removeClass("touch-disabled");
     });
     $("#share .share__btn.share").click(() => {
-        if (navigator.share) {
-            navigator.share({
-                title: props.username,
-                url: window.document.location.href + "?share=true"
-            }).then(() => {
-                alert("Sent!");
-            }).catch(console.error);
-        }
-        else {
-            alert("Share does not support this browser");
-        }
+        (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_1__.$$)({
+            title: props.username,
+            url: window.document.location.href + "?share=true"
+        }).share();
     });
     $(".share__btn.image").click(() => __awaiter(this, void 0, void 0, function* () {
         const element = document.querySelector("#template-container");
@@ -11394,15 +11404,10 @@ function template(props) {
     $(".share").click(e => {
         const current = e.currentTarget;
         const shareURL = $(current).data("share");
-        if (navigator.share) {
-            navigator.share({
-                title: props.username,
-                url: shareURL
-            });
-        }
-        else {
-            alert("Share does not support this browser");
-        }
+        (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_1__.$$)({
+            title: props.username,
+            url: shareURL
+        }).share();
     });
     $(".select").click(e => {
         const current = e.currentTarget;
@@ -16310,4 +16315,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs3d99126ee196a9dec83c.js.map
+//# sourceMappingURL=mainjs4c570ae0b06ebd3b7859.js.map

@@ -29,15 +29,10 @@ export default function template(props) {
     $(".share").click(e => {
         const current = e.currentTarget;
         const shareURL = $(current).data("share");
-        if (navigator.share) {
-            navigator.share({
-                title: props.username,
-                url: shareURL
-            });
-        }
-        else {
-            alert("Share does not support this browser");
-        }
+        $$({
+            title: props.username,
+            url: shareURL
+        }).share();
     });
     $(".select").click(e => {
         const current = e.currentTarget;

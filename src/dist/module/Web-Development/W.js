@@ -25,6 +25,9 @@ class W1 {
     addSpinner() {
         return new Spinner(this.ele1);
     }
+    share() {
+        return new Share(this.ele1);
+    }
 }
 class W2 {
     constructor(ele1, ele2) {
@@ -63,6 +66,20 @@ class W4 {
     }
     search() {
         return new Search(this.ele1, this.ele2, this.ele3, this.ele4);
+    }
+}
+class Share extends W1 {
+    constructor(obj) {
+        super(obj);
+        this.run();
+    }
+    run() {
+        if (navigator.share) {
+            navigator.share(this.ele1);
+        }
+        else {
+            alert("Share does not support this browser");
+        }
     }
 }
 class Table extends W3 {

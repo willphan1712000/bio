@@ -24,16 +24,10 @@ export default function bioPage(props: Props) {
         $("#container").removeClass("touch-disabled")
     })
     $("#share .share__btn.share").click(() => {
-        if(navigator.share) {
-            navigator.share({
-                title: props.username,
-                url: window.document.location.href+"?share=true"
-            }).then(()=> {
-                alert("Sent!")
-            }).catch(console.error)
-        } else {
-            alert("Share does not support this browser")
-        }
+        $$({
+            title: props.username,
+            url: window.document.location.href+"?share=true"
+        }).share();
     })
 
     $(".share__btn.image").click(async ()=>{   
