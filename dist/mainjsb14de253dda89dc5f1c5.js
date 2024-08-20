@@ -10068,8 +10068,23 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   $$: () => (/* binding */ $$)
+/* harmony export */   $$: () => (/* binding */ $$),
+/* harmony export */   W1: () => (/* binding */ W1),
+/* harmony export */   W2: () => (/* binding */ W2),
+/* harmony export */   W3: () => (/* binding */ W3),
+/* harmony export */   W4: () => (/* binding */ W4)
 /* harmony export */ });
+/* harmony import */ var _WW__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WW */ "./src/dist/module/Web-Development/WW.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
 function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
@@ -10115,6 +10130,9 @@ class W2 {
     copyToClipboard() {
         return new CopyToClipboard(this.ele1, this.ele2);
     }
+    table() {
+        return new Table(this.ele1, this.ele2);
+    }
 }
 class W3 {
     constructor(ele1, ele2, ele3) {
@@ -10125,8 +10143,8 @@ class W3 {
     transform() {
         return new Transform(this.ele1, this.ele2, this.ele3);
     }
-    table() {
-        return new Table(this.ele1, this.ele2, this.ele3);
+    addIntersectionObserver() {
+        return new AddIntersectionObserver(this.ele1, this.ele2, this.ele3);
     }
 }
 class W4 {
@@ -10138,6 +10156,35 @@ class W4 {
     }
     search() {
         return new Search(this.ele1, this.ele2, this.ele3, this.ele4);
+    }
+}
+class AddIntersectionObserver extends W3 {
+    constructor(target, options, cb) {
+        super(target, options, cb);
+        this.target = document.querySelector(this.ele1);
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                this.ele3(entry.isIntersecting, this.count);
+            });
+        }, this.ele2);
+        this.count = 0;
+    }
+    observe() {
+        this.observer.observe(this.target);
+        return this;
+    }
+    unobserve() {
+        this.observer.unobserve(this.target);
+        return this;
+    }
+    increaseCount() {
+        this.count++;
+    }
+    resetCount() {
+        this.count = 0;
+    }
+    getCount() {
+        return this.count;
     }
 }
 class Share extends W1 {
@@ -10154,25 +10201,24 @@ class Share extends W1 {
         }
     }
 }
-class Table extends W3 {
-    constructor(location, header, data) {
-        super(location, header, data);
+class Table extends W2 {
+    constructor(location, header) {
+        super(location, header);
         this.location = location;
         this.header = header;
-        this.data = data;
-        this.create();
     }
-    create() {
+    addHeader() {
         $(this.location).append('<table><tr></tr></table>');
         for (const headerKey in this.header) {
             if (this.header.hasOwnProperty(headerKey)) {
                 $(this.location + " table tr").append(`<th>${this.header[headerKey]}</th>`);
             }
         }
-        let counter = 0;
-        for (const dataKey in this.data) {
-            counter++;
-            let row = `<tr><th>${counter}</th>`, eachData = this.data[dataKey];
+        return this;
+    }
+    addRow(data) {
+        for (const dataKey in data) {
+            let row = `<tr>`, eachData = data[dataKey];
             for (const eachKey in eachData) {
                 row += `<th>${eachData[eachKey]}</th>`;
             }
@@ -10180,6 +10226,10 @@ class Table extends W3 {
             $(this.location + " table").append(row);
         }
         return this;
+    }
+    empty() {
+        $(this.location).empty();
+        this.addHeader();
     }
 }
 class Spinner extends W1 {
@@ -10572,31 +10622,111 @@ class CopyToClipboard extends W2 {
         });
     }
 }
-;
 class Search extends W4 {
     constructor(ele1, ele2, ele3, ele4) {
         super(ele1, ele2, ele3, ele4);
         this.run();
     }
     run() {
-        const $input = $(this.ele1);
-        const location = this.ele2.location;
-        const header = this.ele2.header;
-        const data = this.ele2.data;
-        const worker = new Worker(this.ele3 + "?v=" + (new Date()).getTime());
-        $input.on("input", e => {
-            worker.postMessage({
-                message: "search",
-                input: e.target.value,
-                data: data,
+        return __awaiter(this, void 0, void 0, function* () {
+            const $input = $(this.ele1);
+            const limit = 50;
+            const table = yield this.initialTable(this.ele2.tableContainer, limit);
+            const observer = this.addObserver(this.ele2.targetObserver, limit, table);
+            $input.on("input", (e) => __awaiter(this, void 0, void 0, function* () {
+                const v = e.target.value;
+                const data = yield this.getData({
+                    limit,
+                    like: v
+                });
+                if (v === "") {
+                    observer.resetCount();
+                    observer.observe();
+                }
+                else {
+                    observer.unobserve();
+                }
+                table.empty();
+                this.addRow(table, data, true);
+            }));
+            return this;
+        });
+    }
+    getData(options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.ele3, options).api().post();
+            for (const i in data) {
+                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
+                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
+                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
+            }
+            return data;
+        });
+    }
+    initialTable(tableContainer, limit) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const header = this.ele2.header;
+            const data = yield this.getData({
+                limit,
+                offset: 0,
+            });
+            const table = $$(tableContainer, header).table().addHeader();
+            this.addRow(table, data, false);
+            return table;
+        });
+    }
+    addObserver(target, limit, table) {
+        const o = $$(target, {
+            threshold: 1
+        }, (e) => __awaiter(this, void 0, void 0, function* () {
+            if (e) {
+                o.increaseCount();
+                const data = yield this.getData({
+                    limit,
+                    offset: limit * o.getCount()
+                });
+                this.addRow(table, data, true);
+            }
+        })).addIntersectionObserver().observe();
+        return o;
+    }
+    addRow(table, data, search) {
+        table.addRow(data);
+        this.handleClick(search);
+    }
+    handleClick(search) {
+        const html = this.ele4;
+        if (search) {
+            $(html.button).off("click", e => {
+                return null;
+            });
+            $(html.confirm).off("click", e => {
+                return null;
+            });
+            $(html.back).off("click", e => {
+                return null;
+            });
+        }
+        $(html.button).click(function (e) {
+            $(html.parent).addClass("active");
+            let currentUsernameElement = e.currentTarget;
+            let currentUsernameValue = "";
+            currentUsernameValue = currentUsernameElement.value;
+            $(html.confirm).click(function () {
+                return __awaiter(this, void 0, void 0, function* () {
+                    const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)("/data/api/deleteAccount.php", {
+                        username: currentUsernameValue,
+                    }).api().post();
+                    if (r) {
+                        location.reload();
+                    }
+                });
+            });
+            $(html.back).click(() => {
+                $(html.parent).removeClass("active");
+                currentUsernameValue = "";
             });
         });
-        worker.onmessage = (e) => {
-            $(location).empty();
-            $$(location, header, e.data).table();
-            this.ele4();
-        };
-        return this;
     }
 }
 
@@ -11133,60 +11263,25 @@ function aic() {
     });
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
-            const header = {
-                1: "#",
-                2: "Username",
-                3: "Email",
-                4: "Password",
-                5: "Token",
-                6: "Delete Token",
-                7: "Bio",
-                8: "Admin",
-                9: "Delete"
-            };
-            const data = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/getAllUser.php", null).api().get();
-            for (const i in data) {
-                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
-                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
-                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
-            }
-            (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#userData", header, data).table();
-            handleClick(false);
             (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#search", {
-                location: "#userData", header, data
-            }, "/src/dist/module/Web-Development/worker.js", () => {
-                handleClick(true);
-            }).search();
-            function handleClick(search) {
-                if (search) {
-                    $("#userData button").off("click", e => {
-                        return null;
-                    });
-                    $(".btn__confirm").off("click", e => {
-                        return null;
-                    });
+                tableContainer: "#userData",
+                targetObserver: "#copyright",
+                header: {
+                    2: "Username",
+                    3: "Email",
+                    4: "Password",
+                    5: "Token",
+                    6: "Delete Token",
+                    7: "Bio",
+                    8: "Admin",
+                    9: "Delete"
                 }
-                $("#userData button").click(function (e) {
-                    $(".warning__parent").addClass("active");
-                    let currentUsernameElement = e.currentTarget;
-                    let currentUsernameValue = "";
-                    currentUsernameValue = currentUsernameElement.value;
-                    $(".btn__confirm").click(function () {
-                        return __awaiter(this, void 0, void 0, function* () {
-                            const r = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/deleteAccount.php", {
-                                username: currentUsernameValue,
-                            }).api().post();
-                            if (r) {
-                                location.reload();
-                            }
-                        });
-                    });
-                    $(".btn__back").click(() => {
-                        $(".warning__parent").removeClass("active");
-                        currentUsernameValue = "";
-                    });
-                });
-            }
+            }, "/data/api/getAllUser.php", {
+                button: "#userData button",
+                confirm: ".btn__confirm",
+                back: ".btn__back",
+                parent: ".warning__parent"
+            }).search();
         });
     })();
 }
@@ -16315,4 +16410,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs4c570ae0b06ebd3b7859.js.map
+//# sourceMappingURL=mainjsb14de253dda89dc5f1c5.js.map
