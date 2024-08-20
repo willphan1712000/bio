@@ -10069,21 +10069,14 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   $$: () => (/* binding */ $$),
+/* harmony export */   AddIntersectionObserver: () => (/* binding */ AddIntersectionObserver),
+/* harmony export */   Table: () => (/* binding */ Table),
 /* harmony export */   W1: () => (/* binding */ W1),
 /* harmony export */   W2: () => (/* binding */ W2),
 /* harmony export */   W3: () => (/* binding */ W3),
 /* harmony export */   W4: () => (/* binding */ W4)
 /* harmony export */ });
-/* harmony import */ var _WW__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WW */ "./src/dist/module/Web-Development/WW.js");
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
+/* harmony import */ var _components_search_SearchUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/search/SearchUI */ "./src/dist/module/Web-Development/components/search/SearchUI.js");
 
 function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
@@ -10133,6 +10126,9 @@ class W2 {
     table() {
         return new Table(this.ele1, this.ele2);
     }
+    search() {
+        return new Search(this.ele1, this.ele2);
+    }
 }
 class W3 {
     constructor(ele1, ele2, ele3) {
@@ -10153,9 +10149,6 @@ class W4 {
         this.ele2 = ele2;
         this.ele3 = ele3;
         this.ele4 = ele4;
-    }
-    search() {
-        return new Search(this.ele1, this.ele2, this.ele3, this.ele4);
     }
 }
 class AddIntersectionObserver extends W3 {
@@ -10622,111 +10615,10 @@ class CopyToClipboard extends W2 {
         });
     }
 }
-class Search extends W4 {
-    constructor(ele1, ele2, ele3, ele4) {
-        super(ele1, ele2, ele3, ele4);
-        this.run();
-    }
-    run() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const $input = $(this.ele1);
-            const limit = 50;
-            const table = yield this.initialTable(this.ele2.tableContainer, limit);
-            const observer = this.addObserver(this.ele2.targetObserver, limit, table);
-            $input.on("input", (e) => __awaiter(this, void 0, void 0, function* () {
-                const v = e.target.value;
-                const data = yield this.getData({
-                    limit,
-                    like: v
-                });
-                if (v === "") {
-                    observer.resetCount();
-                    observer.observe();
-                }
-                else {
-                    observer.unobserve();
-                }
-                table.empty();
-                this.addRow(table, data, true);
-            }));
-            return this;
-        });
-    }
-    getData(options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const data = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.ele3, options).api().post();
-            for (const i in data) {
-                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
-                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
-                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
-            }
-            return data;
-        });
-    }
-    initialTable(tableContainer, limit) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const header = this.ele2.header;
-            const data = yield this.getData({
-                limit,
-                offset: 0,
-            });
-            const table = $$(tableContainer, header).table().addHeader();
-            this.addRow(table, data, false);
-            return table;
-        });
-    }
-    addObserver(target, limit, table) {
-        const o = $$(target, {
-            threshold: 1
-        }, (e) => __awaiter(this, void 0, void 0, function* () {
-            if (e) {
-                o.increaseCount();
-                const data = yield this.getData({
-                    limit,
-                    offset: limit * o.getCount()
-                });
-                this.addRow(table, data, true);
-            }
-        })).addIntersectionObserver().observe();
-        return o;
-    }
-    addRow(table, data, search) {
-        table.addRow(data);
-        this.handleClick(search);
-    }
-    handleClick(search) {
-        const html = this.ele4;
-        if (search) {
-            $(html.button).off("click", e => {
-                return null;
-            });
-            $(html.confirm).off("click", e => {
-                return null;
-            });
-            $(html.back).off("click", e => {
-                return null;
-            });
-        }
-        $(html.button).click(function (e) {
-            $(html.parent).addClass("active");
-            let currentUsernameElement = e.currentTarget;
-            let currentUsernameValue = "";
-            currentUsernameValue = currentUsernameElement.value;
-            $(html.confirm).click(function () {
-                return __awaiter(this, void 0, void 0, function* () {
-                    const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)("/data/api/deleteAccount.php", {
-                        username: currentUsernameValue,
-                    }).api().post();
-                    if (r) {
-                        location.reload();
-                    }
-                });
-            });
-            $(html.back).click(() => {
-                $(html.parent).removeClass("active");
-                currentUsernameValue = "";
-            });
-        });
+class Search extends W2 {
+    constructor(ele1, ele2) {
+        super(ele1, ele2);
+        this.searchUI = new _components_search_SearchUI__WEBPACK_IMPORTED_MODULE_0__["default"](this.ele1, this.ele2);
     }
 }
 
@@ -10911,6 +10803,251 @@ class API extends WW2 {
                 error: (jqXHR, textStatus, errorThrown) => {
                     rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
                 }
+            });
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/search/DataUI.js":
+/*!*********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/search/DataUI.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DataUI)
+/* harmony export */ });
+/* harmony import */ var _WW__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../WW */ "./src/dist/module/Web-Development/WW.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+class DataUI {
+    constructor(url) {
+        this.url = url;
+    }
+    getData(options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url, options).api().post();
+            for (const i in data) {
+                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
+                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
+                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
+            }
+            return data;
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/search/InputUI.js":
+/*!**********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/search/InputUI.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ InputUI)
+/* harmony export */ });
+class InputUI {
+    constructor(input, searchUI) {
+        this.$input = $(input);
+        this.value = "";
+        this.$input.on("input", e => {
+            this.value = e.target.value;
+            searchUI.update();
+        });
+    }
+    getValue() {
+        return this.value;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/search/SearchUI.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/search/SearchUI.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SearchUI)
+/* harmony export */ });
+/* harmony import */ var _DataUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DataUI */ "./src/dist/module/Web-Development/components/search/DataUI.js");
+/* harmony import */ var _InputUI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InputUI */ "./src/dist/module/Web-Development/components/search/InputUI.js");
+/* harmony import */ var _TableUI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TableUI */ "./src/dist/module/Web-Development/components/search/TableUI.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+class SearchUI {
+    constructor(input, tableProps) {
+        this.inputUI = new _InputUI__WEBPACK_IMPORTED_MODULE_1__["default"](input, this);
+        this.tableUI = new _TableUI__WEBPACK_IMPORTED_MODULE_2__["default"](tableProps.container, tableProps.header, tableProps.target, tableProps.limit, tableProps.like, tableProps.url, tableProps.html);
+        this.dataUI = new _DataUI__WEBPACK_IMPORTED_MODULE_0__["default"](tableProps.url);
+        this.createTable();
+    }
+    createTable() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.table = yield this.tableUI.initilize();
+            this.observer = this.tableUI.addObserver(this.table);
+        });
+    }
+    update() {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a, _b, _c, _d;
+            const v = this.inputUI.getValue();
+            const data = yield this.dataUI.getData({
+                limit: this.tableUI.getLimit(),
+                like: v
+            });
+            if (v === "") {
+                (_a = this.observer) === null || _a === void 0 ? void 0 : _a.resetCount();
+                (_b = this.observer) === null || _b === void 0 ? void 0 : _b.observe();
+            }
+            else {
+                (_c = this.observer) === null || _c === void 0 ? void 0 : _c.unobserve();
+            }
+            (_d = this.table) === null || _d === void 0 ? void 0 : _d.empty();
+            this.tableUI.addRow(this.table, data, true);
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/search/TableUI.js":
+/*!**********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/search/TableUI.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TableUI)
+/* harmony export */ });
+/* harmony import */ var _W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../W */ "./src/dist/module/Web-Development/W.js");
+/* harmony import */ var _WW__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../WW */ "./src/dist/module/Web-Development/WW.js");
+/* harmony import */ var _DataUI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DataUI */ "./src/dist/module/Web-Development/components/search/DataUI.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+class TableUI {
+    constructor(container, header, target, limit, like, url, html) {
+        this.tableContainer = container;
+        this.target = target;
+        this.limit = limit;
+        this.like = like;
+        this.header = header;
+        this.dataUI = new _DataUI__WEBPACK_IMPORTED_MODULE_2__["default"](url);
+        this.html = html;
+    }
+    getLimit() {
+        return this.limit;
+    }
+    setLimit(limit) {
+        this.limit = limit;
+    }
+    initilize() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield this.dataUI.getData({
+                limit: this.limit,
+                like: this.like
+            });
+            const table = (0,_W__WEBPACK_IMPORTED_MODULE_0__.$$)(this.tableContainer, this.header).table().addHeader();
+            this.addRow(table, data, false);
+            return table;
+        });
+    }
+    addObserver(table) {
+        const limit = this.limit;
+        const o = (0,_W__WEBPACK_IMPORTED_MODULE_0__.$$)(this.target, {
+            threshold: 1
+        }, (e) => __awaiter(this, void 0, void 0, function* () {
+            if (e) {
+                o.increaseCount();
+                const data = yield this.dataUI.getData({
+                    limit,
+                    offset: limit * o.getCount()
+                });
+                this.addRow(table, data, true);
+            }
+        })).addIntersectionObserver().observe();
+        return o;
+    }
+    addRow(table, data, search) {
+        table.addRow(data);
+        this.handleClick(search);
+    }
+    handleClick(search) {
+        const html = this.html;
+        if (search) {
+            $(html.button).off("click", e => {
+                return null;
+            });
+            $(html.confirm).off("click", e => {
+                return null;
+            });
+            $(html.back).off("click", e => {
+                return null;
+            });
+        }
+        $(html.button).click(function (e) {
+            $(html.parent).addClass("active");
+            let currentUsernameElement = e.currentTarget;
+            let currentUsernameValue = "";
+            currentUsernameValue = currentUsernameElement.value;
+            $(html.confirm).click(function () {
+                return __awaiter(this, void 0, void 0, function* () {
+                    const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/deleteAccount.php", {
+                        username: currentUsernameValue,
+                    }).api().post();
+                    if (r) {
+                        location.reload();
+                    }
+                });
+            });
+            $(html.back).click(() => {
+                $(html.parent).removeClass("active");
+                currentUsernameValue = "";
             });
         });
     }
@@ -11264,8 +11401,7 @@ function aic() {
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
             (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#search", {
-                tableContainer: "#userData",
-                targetObserver: "#copyright",
+                container: "#userData",
                 header: {
                     2: "Username",
                     3: "Email",
@@ -11275,12 +11411,17 @@ function aic() {
                     7: "Bio",
                     8: "Admin",
                     9: "Delete"
+                },
+                target: "#copyright",
+                limit: 50,
+                like: "",
+                url: "/data/api/getAllUser.php",
+                html: {
+                    button: "#userData button",
+                    confirm: ".btn__confirm",
+                    back: ".btn__back",
+                    parent: ".warning__parent"
                 }
-            }, "/data/api/getAllUser.php", {
-                button: "#userData button",
-                confirm: ".btn__confirm",
-                back: ".btn__back",
-                parent: ".warning__parent"
             }).search();
         });
     })();
@@ -16410,4 +16551,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjsb14de253dda89dc5f1c5.js.map
+//# sourceMappingURL=mainjs98c98bc328c72b30b9cf.js.map

@@ -25,8 +25,7 @@ export default function aic() {
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
             $$("#search", {
-                tableContainer: "#userData",
-                targetObserver: "#copyright",
+                container: "#userData",
                 header: {
                     2: "Username",
                     3: "Email",
@@ -36,12 +35,17 @@ export default function aic() {
                     7: "Bio",
                     8: "Admin",
                     9: "Delete"
+                },
+                target: "#copyright",
+                limit: 50,
+                like: "",
+                url: "/data/api/getAllUser.php",
+                html: {
+                    button: "#userData button",
+                    confirm: ".btn__confirm",
+                    back: ".btn__back",
+                    parent: ".warning__parent"
                 }
-            }, "/data/api/getAllUser.php", {
-                button: "#userData button",
-                confirm: ".btn__confirm",
-                back: ".btn__back",
-                parent: ".warning__parent"
             }).search();
         });
     })();

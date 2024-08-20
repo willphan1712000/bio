@@ -1,13 +1,4 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import { $$$ } from "./WW";
+import SearchUI from "./components/search/SearchUI";
 export function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
@@ -56,6 +47,9 @@ export class W2 {
     table() {
         return new Table(this.ele1, this.ele2);
     }
+    search() {
+        return new Search(this.ele1, this.ele2);
+    }
 }
 export class W3 {
     constructor(ele1, ele2, ele3) {
@@ -77,11 +71,8 @@ export class W4 {
         this.ele3 = ele3;
         this.ele4 = ele4;
     }
-    search() {
-        return new Search(this.ele1, this.ele2, this.ele3, this.ele4);
-    }
 }
-class AddIntersectionObserver extends W3 {
+export class AddIntersectionObserver extends W3 {
     constructor(target, options, cb) {
         super(target, options, cb);
         this.target = document.querySelector(this.ele1);
@@ -124,7 +115,7 @@ class Share extends W1 {
         }
     }
 }
-class Table extends W2 {
+export class Table extends W2 {
     constructor(location, header) {
         super(location, header);
         this.location = location;
@@ -545,110 +536,9 @@ class CopyToClipboard extends W2 {
         });
     }
 }
-class Search extends W4 {
-    constructor(ele1, ele2, ele3, ele4) {
-        super(ele1, ele2, ele3, ele4);
-        this.run();
-    }
-    run() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const $input = $(this.ele1);
-            const limit = 50;
-            const table = yield this.initialTable(this.ele2.tableContainer, limit);
-            const observer = this.addObserver(this.ele2.targetObserver, limit, table);
-            $input.on("input", (e) => __awaiter(this, void 0, void 0, function* () {
-                const v = e.target.value;
-                const data = yield this.getData({
-                    limit,
-                    like: v
-                });
-                if (v === "") {
-                    observer.resetCount();
-                    observer.observe();
-                }
-                else {
-                    observer.unobserve();
-                }
-                table.empty();
-                this.addRow(table, data, true);
-            }));
-            return this;
-        });
-    }
-    getData(options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const data = yield $$$(this.ele3, options).api().post();
-            for (const i in data) {
-                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
-                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
-                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
-            }
-            return data;
-        });
-    }
-    initialTable(tableContainer, limit) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const header = this.ele2.header;
-            const data = yield this.getData({
-                limit,
-                offset: 0,
-            });
-            const table = $$(tableContainer, header).table().addHeader();
-            this.addRow(table, data, false);
-            return table;
-        });
-    }
-    addObserver(target, limit, table) {
-        const o = $$(target, {
-            threshold: 1
-        }, (e) => __awaiter(this, void 0, void 0, function* () {
-            if (e) {
-                o.increaseCount();
-                const data = yield this.getData({
-                    limit,
-                    offset: limit * o.getCount()
-                });
-                this.addRow(table, data, true);
-            }
-        })).addIntersectionObserver().observe();
-        return o;
-    }
-    addRow(table, data, search) {
-        table.addRow(data);
-        this.handleClick(search);
-    }
-    handleClick(search) {
-        const html = this.ele4;
-        if (search) {
-            $(html.button).off("click", e => {
-                return null;
-            });
-            $(html.confirm).off("click", e => {
-                return null;
-            });
-            $(html.back).off("click", e => {
-                return null;
-            });
-        }
-        $(html.button).click(function (e) {
-            $(html.parent).addClass("active");
-            let currentUsernameElement = e.currentTarget;
-            let currentUsernameValue = "";
-            currentUsernameValue = currentUsernameElement.value;
-            $(html.confirm).click(function () {
-                return __awaiter(this, void 0, void 0, function* () {
-                    const r = yield $$$("/data/api/deleteAccount.php", {
-                        username: currentUsernameValue,
-                    }).api().post();
-                    if (r) {
-                        location.reload();
-                    }
-                });
-            });
-            $(html.back).click(() => {
-                $(html.parent).removeClass("active");
-                currentUsernameValue = "";
-            });
-        });
+class Search extends W2 {
+    constructor(ele1, ele2) {
+        super(ele1, ele2);
+        this.searchUI = new SearchUI(this.ele1, this.ele2);
     }
 }

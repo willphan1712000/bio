@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,10 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { $$$ } from "./WW";
 self.onmessage = function (e) {
     return __awaiter(this, void 0, void 0, function* () {
-        ;
         if (e.data.message === "countryCode") {
             let htmlList = '', value = e.data.value, data = e.data.data, iniHtmlList = e.data.iniHtmlList;
             if (value === '') {
@@ -25,13 +24,6 @@ self.onmessage = function (e) {
                 }
                 postMessage(htmlList);
             }
-        }
-        else if (e.data.message === "search") {
-            const input = e.data.input;
-            const data = yield $$$("/data/api/getAllUser.php", {
-                like: input
-            }).api().post();
-            postMessage(data);
         }
     });
 };

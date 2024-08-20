@@ -26,7 +26,7 @@
         'info' => infoProcess($infoArray),
         'css' => ''
     ];
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['userTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/mainjsb14de253dda89dc5f1c5.js"></script><script src="/dist/prevjscfd778853ecbd1ec7e76.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/admin1d4ab13e5ac317247590.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php 
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['userTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/mainjs98c98bc328c72b30b9cf.js"></script><script src="/dist/prevjscfd778853ecbd1ec7e76.js"></script><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script src="/dist/admin1d4ab13e5ac317247590.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php 
             template($themeid, $props)->execute()->html();
         ;?> </div><div id="userFooter"> <?php
         userFooter($props)->render("#userFooter");
