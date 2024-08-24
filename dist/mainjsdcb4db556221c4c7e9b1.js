@@ -11361,6 +11361,89 @@ class Username {
 
 /***/ }),
 
+/***/ "./src/dist/module/pages/adminPage.js":
+/*!********************************************!*\
+  !*** ./src/dist/module/pages/adminPage.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ adminPage)
+/* harmony export */ });
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+function adminPage() {
+    const swiper = new swiper__WEBPACK_IMPORTED_MODULE_2__["default"]('.swiper', {
+        direction: 'horizontal',
+        loop: false
+    });
+    $("#setting .image").click(() => __awaiter(this, void 0, void 0, function* () {
+        const front = document.querySelector("#template-container");
+        const front_d = front.getBoundingClientRect();
+        html2canvas__WEBPACK_IMPORTED_MODULE_0___default()(front, {
+            width: front_d.width,
+            height: front_d.height,
+            x: 0,
+            y: 0,
+            useCORS: true,
+        }).then(canvas => {
+            const r = canvas.width / canvas.height;
+            const width = 200;
+            const height = width / r;
+            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [width, height]
+            });
+            const img = document.createElement("img");
+            img.src = canvas.toDataURL("image/png");
+            doc.addImage(img, "png", 0, 0, width, height);
+            doc.save("front.pdf");
+        });
+        const back = document.querySelector(".card-back-container");
+        const back_d = back.getBoundingClientRect();
+        html2canvas__WEBPACK_IMPORTED_MODULE_0___default()(back, {
+            width: back_d.width,
+            height: back_d.height,
+            x: 0,
+            y: 0,
+            useCORS: true,
+        }).then(canvas => {
+            const r = canvas.width / canvas.height;
+            const width = 200;
+            const height = width / r;
+            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [width, height]
+            });
+            const img = document.createElement("img");
+            img.src = canvas.toDataURL("image/png");
+            doc.addImage(img, "png", 0, 0, width, height);
+            doc.save("img/back.pdf");
+        });
+    }));
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/pages/aic.js":
 /*!**************************************!*\
   !*** ./src/dist/module/pages/aic.js ***!
@@ -11441,24 +11524,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ bioPage)
 /* harmony export */ });
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
 
 function bioPage(props) {
-    (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_1__.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
+    (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
         $(".shareWindow__btn.shareWindow__link .check").show();
         $(".shareWindow__btn.shareWindow__link .copy").hide();
         setTimeout(() => {
@@ -11475,35 +11544,11 @@ function bioPage(props) {
         $("#container").removeClass("touch-disabled");
     });
     $("#share .share__btn.share").click(() => {
-        (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_1__.$$)({
+        (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)({
             title: props.username,
             url: window.document.location.href + "?share=true"
         }).share();
     });
-    $(".share__btn.image").click(() => __awaiter(this, void 0, void 0, function* () {
-        const element = document.querySelector("#template-container");
-        const d = element.getBoundingClientRect();
-        html2canvas__WEBPACK_IMPORTED_MODULE_0___default()(element, {
-            width: d.width,
-            height: d.height,
-            x: 0,
-            y: 0,
-            useCORS: true,
-        }).then(canvas => {
-            const r = canvas.width / canvas.height;
-            const width = 200;
-            const height = width / r;
-            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_2__.jsPDF({
-                orientation: 'portrait',
-                unit: 'px',
-                format: [width, height]
-            });
-            const img = document.createElement("img");
-            img.src = canvas.toDataURL("image/png");
-            doc.addImage(img, "png", 0, 0, width, height);
-            doc.save("card.pdf");
-        });
-    }));
 }
 
 
@@ -16510,6 +16555,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_pages_aic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/pages/aic */ "./src/dist/module/pages/aic.js");
 /* harmony import */ var _module_pages_template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/pages/template */ "./src/dist/module/pages/template.js");
 /* harmony import */ var _module_pages_bioPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/pages/bioPage */ "./src/dist/module/pages/bioPage.js");
+/* harmony import */ var _module_pages_adminPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./module/pages/adminPage */ "./src/dist/module/pages/adminPage.js");
+
 
 
 
@@ -16521,6 +16568,7 @@ $(document).ready(function () {
             (0,_module_pages_bioPage__WEBPACK_IMPORTED_MODULE_4__["default"])(props);
             break;
         case 'admin':
+            (0,_module_pages_adminPage__WEBPACK_IMPORTED_MODULE_5__["default"])();
             break;
         case 'signup':
             (0,_module_pages_signup__WEBPACK_IMPORTED_MODULE_1__["default"])();
@@ -16551,4 +16599,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs98c98bc328c72b30b9cf.js.map
+//# sourceMappingURL=mainjsdcb4db556221c4c7e9b1.js.map

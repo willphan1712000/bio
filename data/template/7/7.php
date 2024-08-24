@@ -192,7 +192,6 @@ class Template7 extends Template {
 </div>
 </section>
 </div>
-</div>
             ';
             echo $html;
         }

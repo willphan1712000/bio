@@ -21,7 +21,7 @@ class Template4 extends Template {
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
                 $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
             }
         }
         
@@ -197,18 +197,18 @@ class Template4 extends Template {
           <img draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty Store Logo" />
         </div>
       </div>
-      <h1 class="store-title">'.$props['info']->name()['a'].'</h1>
-      <p class="store-tagline">'.$props['info']->organization()['a'].'</p>
-      <p class="store-tagline">'.$props['info']->description()['a'].'</p>
+      <h1 class="store-title">'.$props['info']->name()[$props['mode']].'</h1>
+      <p class="store-tagline">'.$props['info']->organization()[$props['mode']].'</p>
+      <p class="store-tagline">'.$props['info']->description()[$props['mode']].'</p>
     </header>
     <nav class="social-icons">
-    '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ea41de828736f1e15f80c9282ea77b388e47791a9c9f62b7f37ddd55e4f9230?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'].'
-    '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fca1acb0dd0ed414bda53010526ed7ddcaea708e29305577edfafe6d420f350e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'].'
-    '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/e5eb0d1c72f40ec1fd67015d51ca222901f4ab1634fdcfa55f336ce506df26b2?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'].'
-    '.$props['info']->social('X', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8cd8a31ac23e0db3b44e83cd3b3c34b1956646a6758da1abe3ee44a8d52436b1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')['a'].'
+    '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ea41de828736f1e15f80c9282ea77b388e47791a9c9f62b7f37ddd55e4f9230?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')[$props['mode']].'
+    '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fca1acb0dd0ed414bda53010526ed7ddcaea708e29305577edfafe6d420f350e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')[$props['mode']].'
+    '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/e5eb0d1c72f40ec1fd67015d51ca222901f4ab1634fdcfa55f336ce506df26b2?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')[$props['mode']].'
+    '.$props['info']->social('X', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8cd8a31ac23e0db3b44e83cd3b3c34b1956646a6758da1abe3ee44a8d52436b1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')[$props['mode']].'
     </nav>
-    '.$props['info']->social('Website', ' <button class="cta-button">Shop All</button>')['a'].'
-    '.$props['info']->mobile('<button class="cta-button">Contact</button>')['a'].'
+    '.$props['info']->social('Website', ' <button class="cta-button">Shop All</button>')[$props['mode']].'
+    '.$props['info']->mobile('<button class="cta-button">Contact</button>')[$props['mode']].'
     <footer class="footer-section">
       <div class="footer-img">
       <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0f9b8c07f7ca146900402bf6683a3f7d6bc792db71df115bf9454f37b3385e94?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-line" alt="" />
@@ -221,7 +221,6 @@ class Template4 extends Template {
     </footer>
   </div>
 </main>
-</div>
 </div>
             ';
             echo $html;

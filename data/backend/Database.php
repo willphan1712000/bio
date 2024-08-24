@@ -23,14 +23,14 @@ class Database implements IDatabase {
     }
     protected static $data_model = [
         "user" => [
-            "username" => "varchar(200) DEFAULT NULL",
+            "username" => "varchar(200) DEFAULT NULL", // primary
             "email" => "varchar(50) DEFAULT NULL",
             "password" => "varchar(200) DEFAULT NULL",
             "token" => "varchar(200) DEFAULT NULL",
             "deleteToken" => "varchar(200) DEFAULT NULL"
         ],
         "info" => [
-            "username" => "varchar(200) DEFAULT NULL",
+            "username" => "varchar(200) DEFAULT NULL", // primary
             "image" => "varchar(200) DEFAULT NULL",
             "name" => "varchar(100) DEFAULT NULL",
             "description" => "varchar(200) DEFAULT NULL",
@@ -55,14 +55,24 @@ class Database implements IDatabase {
             "organization" => "varchar(200) DEFAULT NULL"
         ],
         "purchase" => [
-            "username" => "varchar(200) DEFAULT NULL",
+            "purchase_id" => "int(255) NOT NULL PRIMARY KEY", // primary
+            "username" => "varchar(200) DEFAULT NULL", // foreign
             "template_id" => "int(255) DEFAULT NULL",
             "purchasedAt" => "datetime(3) NOT NULL DEFAULT current_timestamp(3)"
         ],
         "template" => [
-            "username" => "varchar(200) DEFAULT NULL",
+            "username" => "varchar(200) DEFAULT NULL", // primary
             "themeid" => "int(255) DEFAULT NULL",
             "favorite" => "varchar(1000) DEFAULT NULL"
+        ],
+        "style" => [
+            "purchase_id" => "int(255) NOT NULL PRIMARY KEY", // primary
+            "username" => "varchar(200) DEFAULT NULL", // foreign
+            "template_id" => "int(255) DEFAULT NULL",
+            "font" => "varchar(200) DEFAULT NULL",
+            "fontSize" => "varchar(200) DEFAULT NULL",
+            "fontColor" => "varchar(10) DEFAULT NULL",
+            "background" => "varchar(200) DEFAULT NULL"
         ]
     ];
 

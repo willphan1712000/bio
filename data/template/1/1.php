@@ -310,7 +310,6 @@ class Template1 extends Template {
 </div>
 </div>
 </div>
-</div>
             ';
             echo $html;
         }

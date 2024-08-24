@@ -15,6 +15,8 @@ class BioTemplateButton {
                     padding: 0 !important;
                     margin: 0 !important;
                     box-sizing: border-box !important;
+                    border-radius: 25px !important;
+                    border: none !important;
                 }
                 .'.$container.' .templateBtn {
                     width: 100%;

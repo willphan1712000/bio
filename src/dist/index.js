@@ -3,12 +3,14 @@ import signupPage from "./module/pages/signup";
 import aic from "./module/pages/aic";
 import template from "./module/pages/template";
 import bioPage from "./module/pages/bioPage";
+import adminPage from "./module/pages/adminPage";
 $(document).ready(function () {
     switch (type) {
         case 'index':
             bioPage(props);
             break;
         case 'admin':
+            adminPage();
             break;
         case 'signup':
             signupPage();

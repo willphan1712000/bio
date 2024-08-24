@@ -154,7 +154,6 @@ class Template6 extends Template {
   </div>
 </article>
 </div>
-</div>
             ';
             echo $html;
         }

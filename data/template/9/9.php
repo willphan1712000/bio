@@ -195,7 +195,6 @@ class Template9 extends Template {
   </footer>
 </main>
 </div>
-</div>
             ';
             echo $html;
         }

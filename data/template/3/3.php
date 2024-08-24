@@ -240,7 +240,6 @@ class Template3 extends Template {
               </div>
             </section>
             </div>
-            </div>
             ';
             echo $html;
         }

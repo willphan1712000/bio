@@ -28,6 +28,7 @@ function completePayment($jsonObj) {
 
   foreach($itemidArr as $item) {
     API::POST("purchase", [
+      'purchase_id' => time(),
       'username' => $username,
       'template_id' => $item
     ]);

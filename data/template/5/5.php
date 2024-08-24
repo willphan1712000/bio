@@ -200,7 +200,6 @@ class Template5 extends Template {
   <div class="footer-decoration" role="presentation"></div>
 </main>
 </div>
-</div>
             ';
             echo $html;
         }

@@ -1,7 +1,4 @@
-import html2canvas from "html2canvas"
 import { $$ } from "../Web-Development/W"
-import { jsPDF } from "jspdf";
-
 interface Props {
     [key: string]: string
 }
@@ -28,30 +25,5 @@ export default function bioPage(props: Props) {
             title: props.username,
             url: window.document.location.href+"?share=true"
         }).share();
-    })
-
-    $(".share__btn.image").click(async ()=>{   
-        const element = document.querySelector("#template-container") as HTMLElement;
-        const d = element.getBoundingClientRect()
-        html2canvas(element, {
-            width: d.width,
-            height: d.height,
-            x: 0,
-            y: 0,
-            useCORS: true,
-        }).then(canvas => {
-            const r = canvas.width / canvas.height;
-            const width = 200;
-            const height = width / r;
-            const doc = new jsPDF({
-                orientation: 'portrait',
-                unit: 'px',
-                format: [width, height]
-            });
-            const img = document.createElement("img");
-            img.src = canvas.toDataURL("image/png");
-            doc.addImage(img, "png", 0, 0, width, height);
-            doc.save("card.pdf");
-        })
     })
 }

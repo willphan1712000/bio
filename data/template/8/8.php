@@ -175,7 +175,6 @@ class Template8 extends Template {
   </nav>
 </article>
 </div>
-</div>
             ';
             echo $html;
         }

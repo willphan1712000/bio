@@ -3,6 +3,7 @@ import signupPage from "./module/pages/signup"
 import aic from "./module/pages/aic"
 import template from "./module/pages/template";
 import bioPage from "./module/pages/bioPage";
+import adminPage from "./module/pages/adminPage";
 
 declare var type: string;
 declare var props: {
@@ -17,7 +18,7 @@ $(document).ready(function() {
             bioPage(props)
             break
         case 'admin':
-            // adminPage()
+            adminPage()
             break
         case 'signup':
             signupPage();
