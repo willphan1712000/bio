@@ -2,13 +2,6 @@
 
 class Template1 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '1',
-        'name' => 'Template ID 1',
-        'price' => parent::PRICE,
-        'image' => 'template/1/1.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
@@ -26,7 +19,7 @@ class Template1 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style="font-family: '.$props['css']['font'].'; color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
 #social-media {
     padding: 0% 8%;
@@ -50,7 +43,7 @@ class Template1 extends Template {
     margin: 0 auto;
   }
   .div-2 {
-    background-color: #29b27c;
+    background-color: '.$props['css']['background'].';
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -77,13 +70,11 @@ class Template1 extends Template {
     border-radius: 50%;
   }
   .div-4 {
-    color: #fff;
     margin-top: 15px;
     font: 300 30px Inter, sans-serif;
     text-align: center;
   }
   .div-5 {
-    color: #e2fff3;
     text-align: center;
     margin-top: 10px;
     font: 300 12px Inter, sans-serif;
@@ -125,7 +116,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-9 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -144,7 +134,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-11 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -164,7 +153,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-13 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -183,7 +171,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-15 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -201,7 +188,6 @@ class Template1 extends Template {
     border-radius: 10px;
   }
   .div-17 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -221,7 +207,6 @@ class Template1 extends Template {
     font: 500 15px Inter, sans-serif;
   }
   .div-20 {
-    font-family: Inter, sans-serif;
     border-radius: 5px;
     background-color: #29b27c;
     margin-top: 16px;
@@ -231,7 +216,6 @@ class Template1 extends Template {
     padding: 17px 60px;
   }
   .div-21 {
-    font-family: Inter, sans-serif;
     border-radius: 5px;
     background-color: #29b27c;
     margin-top: 16px;

@@ -8,7 +8,8 @@ require_once "components/Template.php";
 require_once "components/TermsCheckBox.php";
 require_once "components/Setting.php";
 require_once "components/Back.php";
+require_once "core.php";
 // Templates
-for($i = 0; $i <= Template::TOTAL; $i++) {
+for($i = 0; $i <= TemplateManagement::getTotal(); $i++) {
     require_once "template/$i/$i.php";
 }

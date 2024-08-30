@@ -15,6 +15,10 @@
     } else {
         $imgPath = $g['img']['unknown'];
     }
+
+    // Get CSS for corresponding template
+    $css = API::GET("style", null, "username = '$username' AND template_id = '$themeid'");
+
     // This is information that gets passed down to the corresponsing template
     $props = [
         'username' => $username,
@@ -22,7 +26,7 @@
         'social' => SystemConfig::socialNameArr(),
         'icon' => SystemConfig::socialIconArr(),
         'info' => infoProcess($infoArray),
-        'css' => '',
+        'css' => $css,
         'mode' => 'div'
     ];
 
@@ -52,7 +56,7 @@
     }
     $socialNameArr = SystemConfig::socialNameArr();
     $socialIconArr = SystemConfig::socialIconArr();
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['adminTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/mainjsdcb4db556221c4c7e9b1.js"></script><script src="/dist/prevjs051119bc8e2a2ef287f1.js"></script><script src="/dist/universala65ac2dbc01a46adc0ce.js"></script><script src="/dist/admin8a3be923deff20d8b97c.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?=$username;?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save">Save</div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div><div class="label upload"><i class="fa-solid fa-arrow-up"></i> Upload</div><div class="label delete"><i class="fa-solid fa-x"></i></div> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['adminTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/mainjsa663a4eedd21eba1851b.js"></script><script src="/dist/prevjs051119bc8e2a2ef287f1.js"></script><script src="/dist/universala65ac2dbc01a46adc0ce.js"></script><script src="/dist/admin8a3be923deff20d8b97c.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?=$username;?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save">Save</div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div><div class="label upload"><i class="fa-solid fa-arrow-up"></i> Upload</div><div class="label delete"><i class="fa-solid fa-x"></i></div> <?php
                         template($themeid, $props)->execute()->html();
                     ;?> </div><div class="back swiper-slide"><div class="label">Back</div> <?php
                         back([

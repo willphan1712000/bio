@@ -31,8 +31,9 @@
         }
         // SystemConfig::dd(!empty($purchased));
         $chosenTemplate = API::GET("template", "themeid", "username = '$username'"); // Get chosen template
+        $TOTAL = TemplateManagement::getTotal();
     }
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsdcb4db556221c4c7e9b1.js"></script><script src="/dist/prevjs051119bc8e2a2ef287f1.js"></script><script src="/dist/universala65ac2dbc01a46adc0ce.js"></script><script src="/dist/templatea4a8ed49c857dab7c03c.js"></script></head><body><div id="container"><div class="logo"><div class="btn-box"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/mainjsa663a4eedd21eba1851b.js"></script><script src="/dist/prevjs051119bc8e2a2ef287f1.js"></script><script src="/dist/universala65ac2dbc01a46adc0ce.js"></script><script src="/dist/template9ef07e39841c71a5c848.js"></script></head><body><div id="container"><div class="navigator"><div class="btn-box"> <?php
                     if($isSignedIn) {
                         echo '
                             <a class="btn-ele signin" href="/'.$username.'"><div class="img"><img draggable="false" src="'.$imgPath.'"></div><p>Bio</p></a>
@@ -45,7 +46,7 @@
                             <a class="btn-ele signin" href="/signin?template=true"><i class="fa-solid fa-user"></i> Sign in</a>
                         ';
                     }
-                ?> <a href="/cart" class="btn-ele cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></div></div><!-- <div class="swiper-container">
+                ?> <a href="/cart" class="btn-ele cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a></div></div><div class="logo"></div><!-- <div class="swiper-container">
                 <div class="swiper-wrapper"> --><div class="swiper-slide template-wrapper" style="display: <?= ($isSignedIn) ? "block" : "none";?>"><div class="heading"> <?php logo([
                         "container" => ".heading",
                         "src" => $g["img"]["logo"]
@@ -64,7 +65,7 @@
                             }
                         ?> </div></div></div><div class="swiper-slide template-wrapper" style="display: <?php 
                     if($isSignedIn) {
-                        echo count($purchased) === Template::TOTAL ? "none" : "block";
+                        echo count($purchased) === $TOTAL ? "none" : "block";
                     }
                 ?>"><div class="heading"> <?php logo([
                             "container" => ".heading",

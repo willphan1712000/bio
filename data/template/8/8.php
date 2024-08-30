@@ -2,13 +2,6 @@
 
 class Template8 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '8',
-        'name' => 'Template ID 8',
-        'price' => parent::PRICE,
-        'image' => 'template/8/8.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }

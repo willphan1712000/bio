@@ -41,27 +41,25 @@ h2, h5 {
   margin-top: 10vh;
 }
 
-.logo {
+.navigator {
   height: 10vh;
+  z-index: 2;
+  position: absolute !important;
+}
+
+.navigator .btn-box {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  top: 0;
-  left: 0;
+  align-items: center;
+  position: fixed;
+  bottom: 10px;
   width: 100%;
-  z-index: 2;
-  background: transparent;
+  height: 10vh;
   transition: all 0.3s linear;
 }
 
-.logo .btn-box {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.logo .btn-ele {
-  padding: 5px 15px;
+.navigator .btn-ele {
+  padding: 5px;
   margin: 10px;
   text-decoration: none;
   color: #000;
@@ -72,43 +70,30 @@ h2, h5 {
   justify-content: center;
   align-items: center;
   width: auto;
-  height: 100%;
+  height: 50%;
   transition: all 0.3s linear;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.logo .btn-ele .img {
+/* cart icon should be larger than usually to catch customer attention */
+.navigator .btn-ele.cart {
+  padding: 10px;
+  height: 70%;
+}
+
+.navigator .btn-ele .img {
   height: 100%;
   aspect-ratio: 1;
 }
 
-.logo .btn-ele img {
+.navigator .btn-ele img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
 
-.logo .btn-ele > * {
+.navigator .btn-ele > * {
   margin-right: 5px;
-}
-
-.logo .btn-ele.signin {
-  position: fixed;
-  left: 10px;
-  bottom: 10px;
-  height: 60px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
-.logo .btn-ele.signin.admin {
-  left: 34%;
-}
-
-.logo .btn-ele.cart {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  height: 60px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .filter {
@@ -158,6 +143,11 @@ h2, h5 {
 }
 
 /* cart style overwritting */
+.logo {
+  z-index: 2;
+  width: 100%;
+}
+
 .cart .count {
   top: -7px;
 }
@@ -228,13 +218,13 @@ h2, h5 {
   }
 }
 @media screen and (min-width: 600px) {
-  .logo .btn-ele.signin {
+  .navigator .btn-box {
     top: 10px;
   }
-  .logo .btn-ele.cart {
-    top: 10px;
+  .navigator .btn-box {
+    justify-content: end;
   }
-}`, "",{"version":3,"sources":["webpack://./css/template.css"],"names":[],"mappings":"AAAA;EACI,YAAA;AACJ;;AACA;EACI,kBAAA;EACA,gBAAA;AAEJ;;AAAA;EACI,aAAA;EACA,sBAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;AAGJ;;AADA;EACI,YAAA;EACA,aAAA;EACA,8BAAA;EACA,aAAA;EACA,MAAA;EACA,OAAA;EACA,WAAA;EACA,UAAA;EACA,uBAAA;EACA,2BAAA;AAIJ;;AAFA;EACI,aAAA;EACA,yBAAA;EACA,mBAAA;AAKJ;;AAHA;EACI,iBAAA;EACA,YAAA;EACA,qBAAA;EACA,WAAA;EACA,yBAAA;EACA,mBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,mBAAA;EACA,WAAA;EACA,YAAA;EACA,2BAAA;AAMJ;;AAJA;EACI,YAAA;EACA,eAAA;AAOJ;;AALA;EACI,WAAA;EACA,YAAA;EACA,kBAAA;AAQJ;;AANA;EACI,iBAAA;AASJ;;AAPA;EACI,eAAA;EACA,UAAA;EACA,YAAA;EACA,YAAA;EACA,yFAAA;AAUJ;;AARA;EACI,SAAA;AAWJ;;AATA;EACI,eAAA;EACA,WAAA;EACA,YAAA;EACA,YAAA;EACA,yFAAA;AAYJ;;AAVA;EACI,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,mBAAA;AAaJ;;AAXA;EACI,aAAA;EACA,mBAAA;EACA,6BAAA;EACA,mBAAA;EACA,SAAA;AAcJ;;AAZA;EACI,qBAAA;EACA,WAAA;AAeJ;;AAbA;EACI,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,mBAAA;EACA,YAAA;AAgBJ;;AAdA;EACI,sBAAA;EACA,WAAA;EACA,uBAAA;AAiBJ;;AAfA;EACI,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,cAAA;AAkBJ;;AAhBA;EACI,kBAAA;AAmBJ;;AAjBA,4BAAA;AACA;EACI,SAAA;AAoBJ;;AAlBA;EACI,mBAAA;EACA,sBAAA;AAqBJ;;AAnBA;EACI,8BAAA;AAsBJ;;AApBA;EACI,gBAAA;EACA,eAAA;AAuBJ;;AArBA;EACI,sBAAA;EACA,uBAAA;EACA,6BAAA;EACA,uBAAA;AAwBJ;;AAtBA;EACI,yBAAA;EACA,kBAAA;AAyBJ;;AAvBA;EACI,kBAAA;EACA,kBAAA;EACA,UAAA;EACA,WAAA;AA0BJ;;AAxBA;EACI,aAAA;AA2BJ;;AAzBA;EACI,mBAAA;EACA,sBAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,SAAA;EACA,6BAAA;EACA,WAAA;EACA,qDAAA;AA4BJ;;AA1BA,mBAAA;AACA;EACI;IACI,eAAA;EA6BN;EA3BE;IACI,YAAA;EA6BN;EA3BE;IACI,YAAA;EA6BN;EA3BE;IACI,mBAAA;EA6BN;AACF;AA1BA;EACI;IACI,SAAA;EA4BN;EA1BE;IACI,SAAA;EA4BN;AACF","sourcesContent":["#container {\n    width: 100vw;\n}\nh2, h5 {\n    text-align: center;\n    margin: 10px 0px;\n}\n.swiper-container {\n    display: flex;\n    flex-direction: column;\n    overflow-x: hidden;\n    overflow-y: auto;\n    flex-wrap: nowrap;\n    width: 100%;\n    height: 80vh;\n    margin-top: 10vh;\n}\n.logo {\n    height: 10vh;\n    display: flex;\n    justify-content: space-between;\n    padding: 10px;\n    top: 0;\n    left: 0;\n    width: 100%;\n    z-index: 2;\n    background:transparent;\n    transition: all .3s linear;\n}\n.logo .btn-box {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n}\n.logo .btn-ele {\n    padding: 5px 15px;\n    margin: 10px;\n    text-decoration: none;\n    color: #000;\n    background-color: #d4d4d4;\n    border-radius: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: center;\n    width: auto;\n    height: 100%;\n    transition: all .3s linear;\n}\n.logo .btn-ele .img {\n    height: 100%;\n    aspect-ratio: 1;\n}\n.logo .btn-ele img {\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n}\n.logo .btn-ele > * {\n    margin-right: 5px;\n}\n.logo .btn-ele.signin {\n    position: fixed;\n    left: 10px;\n    bottom: 10px;\n    height: 60px;\n    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;\n}\n.logo .btn-ele.signin.admin {\n    left: 34%;\n}\n.logo .btn-ele.cart {\n    position: fixed;\n    right: 10px;\n    bottom: 10px;\n    height: 60px;\n    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;\n}\n.filter {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    margin-bottom: 10px;\n}\n.filter .type {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-evenly;\n    align-items: center;\n    gap: 20px;\n}\n.filter .type a {\n    text-decoration: none;\n    color: #000;\n}\n.heading {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: row;\n    height: 10vh;\n}\n.template-wrapper {\n    background-color: #fff;\n    width: 100%;\n    height: 100% !important;\n}\n.notHaveTemplate {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding: 100px;\n}\n.notHaveTemplate > p {\n    text-align: center;\n}\n/* cart style overwritting */\n.cart .count {\n    top: -7px;\n}\n.cart_parent .cart_item-img {\n    border-radius: 40px;\n    background-color: #fff;\n}\n.logo .cart_parent .cart_item-img > img {\n    border-radius: 40px !important;\n}\n.logo .cart_parent .cart_checkout {\n    max-width: 240px;\n    cursor: pointer;\n}\n.logo .cart_parent .cart_items {\n    width: auto !important;\n    height: auto !important;\n    aspect-ratio: 9/16 !important;\n    padding: 0px !important;\n}\n.logo .cart_parent .cart_item {\n    height: calc(100% - 50px);\n    position: relative;\n}\n.logo .cart_parent .cart_item-remove {\n    text-align: center;\n    position: absolute;\n    top: -15px;\n    left: -15px;\n}\n.logo .cart_parent .cart_items .cart_empty_msg {\n    padding: 40px;\n}\n#copyright {\n    border-radius: 20px;\n    background-color: #fff;\n    margin: 15px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    bottom: 0;\n    width: -webkit-fill-available;\n    height: 8vh;\n    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n}\n/* Web responsive */\n@media screen and (max-width: 600px) {\n    .heading h1 {\n        font-size: 20px;\n    }\n    .signupParent {\n        height: 68vh;\n    }\n    .signupChild {\n        height: 100%;\n    }\n    .signupChild h1 {\n        margin-bottom: 20px;\n    }\n    \n}\n@media screen and (min-width: 600px) {\n    .logo .btn-ele.signin {\n        top: 10px;\n    }\n    .logo .btn-ele.cart {\n        top: 10px;\n    }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./css/template.css"],"names":[],"mappings":"AAAA;EACI,YAAA;AACJ;;AACA;EACI,kBAAA;EACA,gBAAA;AAEJ;;AAAA;EACI,aAAA;EACA,sBAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;AAGJ;;AADA;EACI,YAAA;EACA,UAAA;EACA,6BAAA;AAIJ;;AAFA;EACI,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,eAAA;EACA,YAAA;EACA,WAAA;EACA,YAAA;EACA,2BAAA;AAKJ;;AAHA;EACI,YAAA;EACA,YAAA;EACA,qBAAA;EACA,WAAA;EACA,yBAAA;EACA,mBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,mBAAA;EACA,WAAA;EACA,WAAA;EACA,2BAAA;EACA,yFAAA;AAMJ;;AAJA,wEAAA;AACA;EACI,aAAA;EACA,WAAA;AAOJ;;AALA;EACI,YAAA;EACA,eAAA;AAQJ;;AANA;EACI,WAAA;EACA,YAAA;EACA,kBAAA;AASJ;;AAPA;EACI,iBAAA;AAUJ;;AARA;EACI,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,mBAAA;AAWJ;;AATA;EACI,aAAA;EACA,mBAAA;EACA,6BAAA;EACA,mBAAA;EACA,SAAA;AAYJ;;AAVA;EACI,qBAAA;EACA,WAAA;AAaJ;;AAXA;EACI,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,mBAAA;EACA,YAAA;AAcJ;;AAZA;EACI,sBAAA;EACA,WAAA;EACA,uBAAA;AAeJ;;AAbA;EACI,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,cAAA;AAgBJ;;AAdA;EACI,kBAAA;AAiBJ;;AAfA,4BAAA;AACA;EACI,UAAA;EACA,WAAA;AAkBJ;;AAhBA;EACI,SAAA;AAmBJ;;AAjBA;EACI,mBAAA;EACA,sBAAA;AAoBJ;;AAlBA;EACI,8BAAA;AAqBJ;;AAnBA;EACI,gBAAA;EACA,eAAA;AAsBJ;;AApBA;EACI,sBAAA;EACA,uBAAA;EACA,6BAAA;EACA,uBAAA;AAuBJ;;AArBA;EACI,yBAAA;EACA,kBAAA;AAwBJ;;AAtBA;EACI,kBAAA;EACA,kBAAA;EACA,UAAA;EACA,WAAA;AAyBJ;;AAvBA;EACI,aAAA;AA0BJ;;AAxBA;EACI,mBAAA;EACA,sBAAA;EACA,YAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,SAAA;EACA,6BAAA;EACA,WAAA;EACA,qDAAA;AA2BJ;;AAzBA,mBAAA;AACA;EACI;IACI,eAAA;EA4BN;EA1BE;IACI,YAAA;EA4BN;EA1BE;IACI,YAAA;EA4BN;EA1BE;IACI,mBAAA;EA4BN;AACF;AAzBA;EACI;IACI,SAAA;EA2BN;EAzBE;IACI,oBAAA;EA2BN;AACF","sourcesContent":["#container {\n    width: 100vw;\n}\nh2, h5 {\n    text-align: center;\n    margin: 10px 0px;\n}\n.swiper-container {\n    display: flex;\n    flex-direction: column;\n    overflow-x: hidden;\n    overflow-y: auto;\n    flex-wrap: nowrap;\n    width: 100%;\n    height: 80vh;\n    margin-top: 10vh;\n}\n.navigator {\n    height: 10vh;\n    z-index: 2;\n    position: absolute !important;\n}\n.navigator .btn-box {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    position: fixed;\n    bottom: 10px;\n    width: 100%;\n    height: 10vh;\n    transition: all .3s linear;\n}\n.navigator .btn-ele {\n    padding: 5px;\n    margin: 10px;\n    text-decoration: none;\n    color: #000;\n    background-color: #d4d4d4;\n    border-radius: 20px;\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: center;\n    width: auto;\n    height: 50%;\n    transition: all .3s linear;\n    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;\n}\n/* cart icon should be larger than usually to catch customer attention */\n.navigator .btn-ele.cart {\n    padding: 10px;\n    height:70%;\n}\n.navigator .btn-ele .img {\n    height: 100%;\n    aspect-ratio: 1;\n}\n.navigator .btn-ele img {\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n}\n.navigator .btn-ele > * {\n    margin-right: 5px;\n}\n.filter {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    margin-bottom: 10px;\n}\n.filter .type {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-evenly;\n    align-items: center;\n    gap: 20px;\n}\n.filter .type a {\n    text-decoration: none;\n    color: #000;\n}\n.heading {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: row;\n    height: 10vh;\n}\n.template-wrapper {\n    background-color: #fff;\n    width: 100%;\n    height: 100% !important;\n}\n.notHaveTemplate {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding: 100px;\n}\n.notHaveTemplate > p {\n    text-align: center;\n}\n/* cart style overwritting */\n.logo {\n    z-index: 2;\n    width: 100%;\n}\n.cart .count {\n    top: -7px;\n}\n.cart_parent .cart_item-img {\n    border-radius: 40px;\n    background-color: #fff;\n}\n.logo .cart_parent .cart_item-img > img {\n    border-radius: 40px !important;\n}\n.logo .cart_parent .cart_checkout {\n    max-width: 240px;\n    cursor: pointer;\n}\n.logo .cart_parent .cart_items {\n    width: auto !important;\n    height: auto !important;\n    aspect-ratio: 9/16 !important;\n    padding: 0px !important;\n}\n.logo .cart_parent .cart_item {\n    height: calc(100% - 50px);\n    position: relative;\n}\n.logo .cart_parent .cart_item-remove {\n    text-align: center;\n    position: absolute;\n    top: -15px;\n    left: -15px;\n}\n.logo .cart_parent .cart_items .cart_empty_msg {\n    padding: 40px;\n}\n#copyright {\n    border-radius: 20px;\n    background-color: #fff;\n    margin: 15px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    bottom: 0;\n    width: -webkit-fill-available;\n    height: 8vh;\n    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n}\n/* Web responsive */\n@media screen and (max-width: 600px) {\n    .heading h1 {\n        font-size: 20px;\n    }\n    .signupParent {\n        height: 68vh;\n    }\n    .signupChild {\n        height: 100%;\n    }\n    .signupChild h1 {\n        margin-bottom: 20px;\n    }\n    \n}\n@media screen and (min-width: 600px) {\n    .navigator .btn-box {\n        top: 10px;\n    }\n    .navigator .btn-box {\n        justify-content: end;\n    }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -751,4 +741,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /******/ })()
 ;
-//# sourceMappingURL=templatea4a8ed49c857dab7c03c.js.map
+//# sourceMappingURL=template9ef07e39841c71a5c848.js.map

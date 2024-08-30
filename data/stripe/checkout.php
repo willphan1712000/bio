@@ -2,7 +2,6 @@
 
 require_once 'vendorStripe/autoload.php';
 require_once '../../secrets/secrets.php';
-require_once 'product.php';
 require_once '../core.php';
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
@@ -15,9 +14,9 @@ $YOUR_DOMAIN = SystemConfig::globalVariables()['stripeRedirect'];
 
 $checkout_session = $stripe->checkout->sessions->create([
   'ui_mode' => 'embedded',
-  'line_items' => createLineItems($jsonObj->items, $product),
+  'line_items' => createLineItems($jsonObj->items, TemplateManagement::getProducts()),
   'mode' => 'payment',
-  'return_url' => $YOUR_DOMAIN . '/checkoutComplete?session_id={CHECKOUT_SESSION_ID}&username='.$jsonObj->username.'&itemid='.$jsonObj->firstItem,
+  'return_url' => $YOUR_DOMAIN . '/checkoutComplete?session_id={CHECKOUT_SESSION_ID}&username='.$jsonObj->username.'&single='.$jsonObj->singleCheckout,
 ]);
 
 function createLineItems(array $items, array $product) : array {

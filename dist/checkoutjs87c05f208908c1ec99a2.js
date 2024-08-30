@@ -98,12 +98,6 @@ for(const key in cart) {
   })
 }
 
-// Convert items to string
-let r = '';
-items.forEach(e => {
-  r += e.id + ",";
-})
-
 // This is your test secret API key.
 const stripe = Stripe(_secrets_serects_js__WEBPACK_IMPORTED_MODULE_0__.publishableKey);
 
@@ -115,7 +109,7 @@ async function initialize() {
     const response = await fetch("/data/stripe/checkout.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, username, firstItem: r}),
+      body: JSON.stringify({ items, username, singleCheckout }),
     });
     const { clientSecret } = await response.json();
     return clientSecret;
@@ -130,4 +124,4 @@ async function initialize() {
 }
 /******/ })()
 ;
-//# sourceMappingURL=checkoutjs1f0ed758855f4f7e59b5.js.map
+//# sourceMappingURL=checkoutjs87c05f208908c1ec99a2.js.map

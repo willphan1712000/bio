@@ -12,17 +12,15 @@ export default function template(props) {
     });
     (function () {
         let lastScrollTop = 0;
-        const ele = document.querySelectorAll(".logo .btn-ele");
+        const btn_box = document.querySelector(".btn-box");
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            ele.forEach(e => {
-                if (scrollTop > lastScrollTop) {
-                    e.style.bottom = '-12%';
-                }
-                else {
-                    e.style.bottom = '10px';
-                }
-            });
+            if (scrollTop > lastScrollTop) {
+                btn_box.style.bottom = '-12%';
+            }
+            else {
+                btn_box.style.bottom = '10px';
+            }
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
     })();

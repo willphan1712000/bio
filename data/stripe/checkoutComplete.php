@@ -11,7 +11,7 @@ try {
   $jsonStr = file_get_contents('php://input');
   $jsonObj = json_decode($jsonStr);
 
-  completePayment($jsonObj);
+  Purchase::purchaseProcessing($jsonObj->session_username, $jsonObj->session_items);
 
   $session = $stripe->checkout->sessions->retrieve($jsonObj->session_id);
 
@@ -20,18 +20,4 @@ try {
 } catch (Error $e) {
   http_response_code(500);
   echo json_encode(['error' => $e->getMessage()]);
-}
-
-function completePayment($jsonObj) {
-  $itemidArr = $jsonObj->itemidArr;
-  $username = $jsonObj->username;
-
-  foreach($itemidArr as $item) {
-    API::POST("purchase", [
-      'purchase_id' => time(),
-      'username' => $username,
-      'template_id' => $item
-    ]);
-  }
-  API::PUT("template", "themeid", $itemidArr[0], "username='$username'");
 }

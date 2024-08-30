@@ -1,7 +1,7 @@
 <?php
-    require "core.php";
+    require "../core.php";
     $conn = Database::preparedConnection();
-    require "vendor/autoload.php";
+    require "../vendor/autoload.php";
     use Endroid\QrCode\QrCode;
     use Endroid\QrCode\Writer\PngWriter;
     $json = file_get_contents("php://input");
@@ -91,7 +91,7 @@
         $stmt_info->bind_param("s", $username);
         $stmt_info->execute();
         // Create file
-        $path = SystemConfig::globalVariables()['user_folder'].$username; // get path to folder
+        $path = "../".SystemConfig::globalVariables()['user_folder'].$username; // get path to folder
         $url = UserManagement::URLGenerator($username, "share"); // get url generated for share
         // Check if a folder for a user is created yet
         if(!is_dir($path)) {

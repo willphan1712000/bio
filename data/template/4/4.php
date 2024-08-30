@@ -2,13 +2,6 @@
 
 class Template4 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '4',
-        'name' => 'Template ID 4',
-        'price' => parent::PRICE,
-        'image' => 'template/4/4.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
@@ -26,7 +19,7 @@ class Template4 extends Template {
         }
         
             $html = '
-            <div id="template-container"">
+            <div id="template-container" style="font-family: '.$props['css']['font'].'; color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
 #social-media {
   padding: 0% 8%;
@@ -109,17 +102,13 @@ class Template4 extends Template {
 }
 
 .store-title {
-  color: #fff;
   text-align: center;
   margin-top: 25%;
-  font: 700 25px Be Vietnam, sans-serif;
 }
 
 .store-tagline {
-  color: #fff;
   text-align: center;
   margin-top: 8px;
-  font: italic 300 15px Be Vietnam, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .social-icons {

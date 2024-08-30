@@ -1,6 +1,6 @@
 <?php
-require_once "data/core.php";
 require_once "data/Components.php";
+require_once "data/core.php";
 require_once "data/Error.php";
 
 $conn = Database::connection();

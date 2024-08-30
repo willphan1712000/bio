@@ -7,6 +7,8 @@ require_once "backend/Database.php";
 require_once "backend/TemplateManagement.php";
 require_once "backend/InfoProcess.php";
 require_once "backend/DeleteAccount.php";
+require_once "backend/Purchase.php";
+require_once "backend/Schema.php";
 
 class ProductionConfig {
     private static $mode = "development"; // mode (development or production)

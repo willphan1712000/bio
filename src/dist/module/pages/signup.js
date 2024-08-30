@@ -11,7 +11,7 @@ export default function signupPage() {
         checkbox: "#terms",
         register: ".signupChild__confirm"
     }, {
-        signup: "/data/signup.php",
+        signup: "/data/backend/signup.php",
         userExist: "/data/api/isUserExist.php"
     }, {
         before: ".signupChild",

@@ -11628,7 +11628,7 @@ function signupPage() {
         checkbox: "#terms",
         register: ".signupChild__confirm"
     }, {
-        signup: "/data/signup.php",
+        signup: "/data/backend/signup.php",
         userExist: "/data/api/isUserExist.php"
     }, {
         before: ".signupChild",
@@ -11668,17 +11668,15 @@ function template(props) {
     });
     (function () {
         let lastScrollTop = 0;
-        const ele = document.querySelectorAll(".logo .btn-ele");
+        const btn_box = document.querySelector(".btn-box");
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            ele.forEach(e => {
-                if (scrollTop > lastScrollTop) {
-                    e.style.bottom = '-12%';
-                }
-                else {
-                    e.style.bottom = '10px';
-                }
-            });
+            if (scrollTop > lastScrollTop) {
+                btn_box.style.bottom = '-12%';
+            }
+            else {
+                btn_box.style.bottom = '10px';
+            }
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
     })();
@@ -16599,4 +16597,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjsdcb4db556221c4c7e9b1.js.map
+//# sourceMappingURL=mainjsa663a4eedd21eba1851b.js.map

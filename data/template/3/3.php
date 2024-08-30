@@ -2,13 +2,6 @@
 
 class Template3 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '3',
-        'name' => 'Template ID 3',
-        'price' => parent::PRICE,
-        'image' => 'template/3/3.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
@@ -21,12 +14,12 @@ class Template3 extends Template {
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
                 $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
             }
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style="font-family: '.$props['css']['font'].'; color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
             <style>
               #social-media {
                 padding: 0% 8%;
@@ -59,7 +52,7 @@ class Template3 extends Template {
             }
 
             .content-wrapper {
-              background-color: #fff;
+              background-color: '.$props['css']['background'].';
               display: flex;
               width: 100%;
               flex-direction: column;
@@ -78,16 +71,12 @@ class Template3 extends Template {
             }
 
             .shop-title {
-              color: #000;
               margin-top: 15px;
-              font: italic 400 28px Castoro, sans-serif;
               text-align: center;
             }
 
             .tagline {
-              color: #c59975;
               margin-top: 9px;
-              font: 400 15px Barlow Semi Condensed, -apple-system, Roboto, Helvetica, sans-serif;
               text-align: center;
             }
 
@@ -226,15 +215,15 @@ class Template3 extends Template {
             <section class="jewelry-shop">
               <div class="content-wrapper">
                 <img draggable=false loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
-                <h1 class="shop-title">'.$props['info']->name()['a'].'</h1>
-                <p class="tagline">'.$props['info']->organization()['a'].'</p>
-                <p class="tagline">'.$props['info']->description()['a'].'</p>
+                <h1 class="shop-title">'.$props['info']->name()[$props['mode']].'</h1>
+                <p class="tagline">'.$props['info']->organization()[$props['mode']].'</p>
+                <p class="tagline">'.$props['info']->description()[$props['mode']].'</p>
                 <nav class="icon-container">
-                '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />')['a'].'
-                '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c9ca01f01fe0de3d01068aced92664353afad2a7eeee4339b0dab4121cd67c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-2" alt="Navigation Icon 2" />')['a'].'
-                '.$props['info']->social('Website', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93a997ead6a3fa349a746bf98ddffb34732dc07673732dd27f24ad007a133a57?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-3" alt="Navigation Icon 3" />')['a'].'
-                '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/694401f71d23033db96ad84981d7524d368ecc4480b88c1b64088c0d17b72dc6?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-4" alt="Navigation Icon 4" />')['a'].'
-                '.$props['info']->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />')['a'].'
+                '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />')[$props['mode']].'
+                '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c9ca01f01fe0de3d01068aced92664353afad2a7eeee4339b0dab4121cd67c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-2" alt="Navigation Icon 2" />')[$props['mode']].'
+                '.$props['info']->social('Website', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93a997ead6a3fa349a746bf98ddffb34732dc07673732dd27f24ad007a133a57?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-3" alt="Navigation Icon 3" />')[$props['mode']].'
+                '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/694401f71d23033db96ad84981d7524d368ecc4480b88c1b64088c0d17b72dc6?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-4" alt="Navigation Icon 4" />')[$props['mode']].'
+                '.$props['info']->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />')[$props['mode']].'
                 </nav>
                 <div id="social-media">'.$html1.'</div>
               </div>
