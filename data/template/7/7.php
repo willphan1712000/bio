@@ -19,7 +19,7 @@ class Template7 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
     #social-media {
     padding: 0% 8%;
@@ -45,18 +45,17 @@ class Template7 extends Template {
 }
 .hero-banner {
   border-radius: 50%;
-    background: linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%);
-    align-self: stretch;
-    display: flex;
-    width: 130%;
-    position: relative;
-    top: 0px;
-    left: -58px;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
-    padding: 0 0px 66px;
-    height: 370px;
+  background: '.$props['css']['background'].';
+  align-self: stretch;
+  display: flex;
+  width: 130%;
+  position: relative;
+  top: 0px;
+  left: -58px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0px 66px;
+  height: 370px;
 }
 .hero-image {
   aspect-ratio: 1.92;
@@ -75,14 +74,13 @@ class Template7 extends Template {
   justify-content: center;
 }
 .hero-title {
-  font: 900 22px Inter, sans-serif;
   text-align: center;
+  font-family: '.$props['css']['font'].';
 }
 .hero-description {
   text-align: center;
   margin-top: 10px;
-  font: 400 13px Inter, sans-serif;
-  padding: 0% 20%;
+  font-family: '.$props['css']['font'].';
 }
 .feature-icons {
   border-radius: 12px;
@@ -135,7 +133,6 @@ class Template7 extends Template {
   font-family: Inter, sans-serif;
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-image: linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%);
 }
 .avatar-wrapper {

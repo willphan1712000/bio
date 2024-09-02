@@ -19,7 +19,7 @@ class Template1 extends Template {
         }
         
         $html = '
-            <div id="template-container" style="font-family: '.$props['css']['font'].'; color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
 #social-media {
     padding: 0% 8%;
@@ -71,13 +71,13 @@ class Template1 extends Template {
   }
   .div-4 {
     margin-top: 15px;
-    font: 300 30px Inter, sans-serif;
     text-align: center;
+    font-family: '.$props['css']['font'].';
   }
   .div-5 {
     text-align: center;
     margin-top: 10px;
-    font: 300 12px Inter, sans-serif;
+    font-family: '.$props['css']['font'].';
   }
   .div-6 {
     border-radius: 5px;
@@ -100,7 +100,7 @@ class Template1 extends Template {
     font-weight: 300;
     text-align: center;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
   }
   .div-8 {
     display: flex;
@@ -234,7 +234,7 @@ class Template1 extends Template {
         class="img"
       />
     </div>
-    <div class="div-4">'.$props['info']->name()['a'].'</div>
+    <h1 class="div-4">'.$props['info']->name()['a'].'</h1>
     <div class="div-5">
     '.$props['info']->organization()['a'].'
       <br />

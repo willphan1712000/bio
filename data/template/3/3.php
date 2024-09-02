@@ -19,7 +19,7 @@ class Template3 extends Template {
         }
         
         $html = '
-            <div id="template-container" style="font-family: '.$props['css']['font'].'; color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
             <style>
               #social-media {
                 padding: 0% 8%;
@@ -73,11 +73,13 @@ class Template3 extends Template {
             .shop-title {
               margin-top: 15px;
               text-align: center;
+              font-family: '.$props['css']['font'].';
             }
 
             .tagline {
               margin-top: 9px;
               text-align: center;
+              font-family: '.$props['css']['font'].';
             }
 
             .icon-container {

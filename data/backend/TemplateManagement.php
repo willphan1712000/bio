@@ -2,7 +2,7 @@
 interface ITemplateManagement {
     public static function getTotal();
     public static function getProducts();
-    public static function getStyle($id);
+    public static function getStyle($i);
     public static function isPurchased($username, $tem);
     public static function shareTemplate($username, $tem);
     public static function isAbleToPurchase($isSignedIn, $username, $itemid);
@@ -34,15 +34,13 @@ class TemplateManagement implements ITemplateManagement {
         return $product;
     }
 
-    public static function getStyle($id) {
-        $r = Database::executeQuery("SELECT * FROM templateInfo");
-        $data = $r['data'];
-        $target = $data[$id - 1];
+    public static function getStyle($i) {
+        $t = Database_Schema::get_iData()['templateInfo'][$i - 1];
         $style = [];
-        $style['font'] = $target['font'];
-        $style['fontSize'] = $target['fontSize'];
-        $style['fontColor'] = $target['fontColor'];
-        $style['background'] = $target['background'];
+        $style['font'] = $t['font'];
+        $style['fontSize'] = $t['fontSize'];
+        $style['fontColor'] = $t['fontColor'];
+        $style['background'] = $t['background'];
 
         return $style;
     }

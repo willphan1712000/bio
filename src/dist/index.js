@@ -10,7 +10,7 @@ $(document).ready(function () {
             bioPage(props);
             break;
         case 'admin':
-            adminPage();
+            adminPage(props);
             break;
         case 'signup':
             signupPage();

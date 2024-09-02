@@ -19,7 +19,7 @@ class Template9 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
 #social-media {
   padding: 0% 8%;
@@ -33,7 +33,6 @@ class Template9 extends Template {
 }
 .beauty-store {
   border-radius: 30px;
-  background-color: #fff;
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -41,9 +40,6 @@ class Template9 extends Template {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  background-color: #ffcad7;
-  background-image: linear-gradient(62deg, #ffcad7 0%, #ffffff 54%, #ffcad7 100%);
-
 }
 
 .logo-container {
@@ -66,10 +62,9 @@ class Template9 extends Template {
 }
 
 .store-title {
-  color: #ff8fab;
   text-shadow: 0 4px 20px rgba(255, 255, 255, 0.25), 0 0 20px #fff;
-  font: 700 36px Urbanist, sans-serif;
   text-align: center;
+  font-family: '.$props['css']['font'].';
 }
 
 .nav-buttons {
@@ -162,10 +157,14 @@ class Template9 extends Template {
 .des {
   text-align: center;
   padding: 1% 5%;
+  font-family: '.$props['css']['font'].';
+}
+#background {
+    background: '.$props['css']['background'].';
 }
 </style>
 
-<main class="beauty-store">
+<main class="beauty-store" id="background">
   <div class="logo-container">
     <img draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty store logo" />
   </div>

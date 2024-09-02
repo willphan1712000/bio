@@ -19,7 +19,7 @@ class Template2 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
   .element {
     padding: 0px 10px 0px 10px;
@@ -34,6 +34,7 @@ class Template2 extends Template {
     align-items: center;
     margin: 0 auto;
     padding-bottom: 10%;
+    background: '.$props['css']['background'].';
   }
   .img {
     aspect-ratio: 1.25;
@@ -44,17 +45,15 @@ class Template2 extends Template {
     border-radius: 20px 20px 0px 0px;
   }
   .div-2 {
-    color: #9ece00;
     margin-top: 15px;
-    font: 400 35px Lilita One, sans-serif;
     text-align: center;
+    font-family: '.$props['css']['font'].';
   }
   .div-3 {
-    color: #a5a5a5;
     margin-top: 10px;
-    font: 400 15px Mate, sans-serif;
     text-align: center;
     padding: 0px 20px;
+    font-family: '.$props['css']['font'].';
   }
   .div-4 {
     border-color: rgba(165, 165, 165, 1);
@@ -274,7 +273,8 @@ class Template2 extends Template {
     src="'.$props['imgPath'].'"
     class="img"
   />
-  <div class="div-2">'.$props['info']->name()['a'].'</div>
+  <h1 class="div-2">'.$props['info']->name()['a'].'</h1>
+  <div class="div-3">'.$props['info']->organization()['a'].'</div>
   <div class="div-3">'.$props['info']->description()['a'].'</div>
   <div class="div-4"></div>
 

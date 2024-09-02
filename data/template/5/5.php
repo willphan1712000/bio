@@ -19,11 +19,11 @@ class Template5 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
 .bakery-container {
   border-radius: 30px;
-  background-color: #fff;
+  background: '.$props['css']['background'].';
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -41,10 +41,9 @@ class Template5 extends Template {
 }
 
 .tagline {
-  color: #a6a6a6;
   margin-top: 2%;
-  font: 400 0.8rem Raleway, sans-serif;
   padding: 0% 10%;
+  font-family: '.$props['css']['font'].';
 }
 
 .feature-grid {
@@ -139,8 +138,7 @@ class Template5 extends Template {
 }
 .backdrop-child > h1 {
   margin-top: 3%;
-  color: #fea3a3;
-  font-size: 1.5rem;
+  font-family: '.$props['css']['font'].';
 }
 </style>
 

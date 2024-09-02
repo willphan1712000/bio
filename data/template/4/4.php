@@ -19,7 +19,7 @@ class Template4 extends Template {
         }
         
             $html = '
-            <div id="template-container" style="font-family: '.$props['css']['font'].'; color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
 #social-media {
   padding: 0% 8%;
@@ -59,7 +59,7 @@ class Template4 extends Template {
 
 .header-section {
   position: relative;
-  background: linear-gradient(180deg, #7b32f3 22.19%, rgba(197, 171, 245, 0) 99.87%);
+  background: '.$props['css']['background'].';
   align-self: stretch;
   display: flex;
   width: 100%;
@@ -104,11 +104,13 @@ class Template4 extends Template {
 .store-title {
   text-align: center;
   margin-top: 25%;
+  font-family: '.$props['css']['font'].';
 }
 
 .store-tagline {
   text-align: center;
   margin-top: 8px;
+  font-family: '.$props['css']['font'].';
 }
 
 .social-icons {

@@ -4,13 +4,11 @@ interface IPurchase {
 }
 
 class Purchase implements IPurchase {
-    private static function purchase($item, $data) : bool {
-        $data['template_id'] = $item;
+    private static function purchase($data) : bool {
         return API::POST("purchase", $data);
     }
     
     private static function style($item, $data): bool {
-        $data['template_id'] = $item;
         return API::POST("style", array_merge($data, TemplateManagement::getStyle($item)));
     }
 
@@ -22,9 +20,10 @@ class Purchase implements IPurchase {
         foreach ($items as $item) {
             $data = [
                 'purchase_id' => time() + $item->id,
-                'username' => $username
+                'username' => $username,
+                'template_id' => $item->id
             ];
-            self::purchase($item->id,  $data);
+            self::purchase($data);
             self::style($item->id, $data);
         }
         return self::template($username, $items[0]->id);

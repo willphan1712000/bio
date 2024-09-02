@@ -19,7 +19,7 @@ class Template8 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
   #social-media {
     padding: 0% 8%;
@@ -33,7 +33,7 @@ class Template8 extends Template {
 }
 .doctor-card {
   border-radius: 30px;
-  background-color: #fff;
+  background: '.$props['css']['background'].';
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -55,22 +55,19 @@ class Template8 extends Template {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  font-size: 15px;
   font-weight: 600;
   padding: 0 50px;
 }
 
 .doctor-name {
-  color: #0f74f6;
-  font: 26px Inter, sans-serif;
   text-align: center;
+  font-family: '.$props['css']['font'].';
 }
 
 .experience {
-  color: #404040;
   margin-top: 10px;
-  font: 400 19px Inter, sans-serif;
   text-align: center;
+  font-family: '.$props['css']['font'].';
 }
 
 .hospital-info {
@@ -91,8 +88,8 @@ class Template8 extends Template {
 }
 
 .hospital-name {
-  font-family: Inter, sans-serif;
   flex-grow: 1;
+  font-family: '.$props['css']['font'].';
 }
 
 .age-info {

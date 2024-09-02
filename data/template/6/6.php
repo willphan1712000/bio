@@ -19,7 +19,7 @@ class Template6 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
   #social-media {
     padding: 0% 8%;
@@ -44,7 +44,7 @@ class Template6 extends Template {
 }
 
 .profile-content {
-  background: linear-gradient(180deg, #7bffda 0%, #6192fe 100%);
+  background: '.$props['css']['background'].';
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -53,7 +53,7 @@ class Template6 extends Template {
 }
 
 .avatar-container {
-  background: linear-gradient(180deg, #7bffda 0%, #6192fe 100%);
+  background: '.$props['css']['background'].';
   align-self: stretch;
   display: flex;
   width: 100%;
@@ -86,18 +86,16 @@ class Template6 extends Template {
 }
 
 .profile-name {
-  color: #fff;
   margin-top: 70px;
-  font: 400 35px Katibeh, sans-serif;
   text-align: center;
+  font-family: '.$props['css']['font'].';
 }
 
 .profile-bio {
-  color: #fff;
   margin-top: 7px;
-  font: 600 15px Klee One, sans-serif;
   text-align: center;
   padding: 0px 20px;
+  font-family: '.$props['css']['font'].';
 }
 
 .social-links {

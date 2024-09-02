@@ -19,7 +19,7 @@ class Template10 extends Template {
         }
         
         $html = '
-            <div id="template-container">
+            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
 <style>
   #social-media {
     padding: 0% 8%;
@@ -34,15 +34,13 @@ class Template10 extends Template {
 }
 .fashion-show-container {
   border-radius: 30px;
-  background-color: #fff;
+  background-color: '.$props['css']['background'].';
   display: flex;
   max-width: 480px;
   width: 100%;
   padding-bottom: 20px;
   flex-direction: column;
   align-items: center;
-  font-size: 16px;
-  color: #000;
   font-weight: 700;
   margin: 0 auto;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -61,13 +59,13 @@ class Template10 extends Template {
 .des {
   text-align: center;
   padding: 0px 15px;
-  font-size: 13px;
+  font-family: '.$props['css']['font'].';
 }
 
 .main-title {
   margin-top: 10px;
-  font: 28px Kulim Park, sans-serif;
   text-align: center;
+  font-family: '.$props['css']['font'].';
 }
 
 .social-links {

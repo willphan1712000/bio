@@ -1,4 +1,5 @@
 import SearchUI from "./components/search/SearchUI";
+import ColorPicker from "./components/colorPicker/ColorPicker";
 export function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
@@ -28,6 +29,9 @@ export class W1 {
     }
     share() {
         return new Share(this.ele1);
+    }
+    colorPicker(cb, options = null) {
+        return new ColorPicker(this.ele1, cb, options);
     }
 }
 export class W2 {

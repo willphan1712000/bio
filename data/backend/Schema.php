@@ -53,17 +53,6 @@ class Database_Schema {
                 "fontSize" => "varchar(200) DEFAULT NULL",
                 "fontColor" => "varchar(10) DEFAULT NULL",
                 "background" => "varchar(200) DEFAULT NULL"
-            ],
-            "templateInfo" => [
-                "id" => "int(255) NOT NULL PRIMARY KEY",
-                "name" => "varchar(200) DEFAULT NULL",
-                "price" => "int(255) DEFAULT NULL",
-                "image" => "varchar(200) DEFAULT NULL",
-                "description" => "varchar(200) DEFAULT NULL",
-                "font" => "varchar(200) DEFAULT NULL",
-                "fontSize" => "varchar(200) DEFAULT NULL",
-                "fontColor" => "varchar(10) DEFAULT NULL",
-                "background" => "varchar(200) DEFAULT NULL"
             ]
         ];
     }
@@ -77,8 +66,8 @@ class Database_Schema {
                     'name' => 'Template ID 1',
                     'price' => $PRICE,
                     'image' => 'template/1/1.png',
-                    'description' => 'Hello World',
-                    'font' => 'Inter, sans-serif',
+                    'description' => '',
+                    'font' => "\'Inter\', sans-serif",
                     'fontSize' => '12px',
                     'fontColor' => '#fff',
                     'background' => '#29b27c'
@@ -87,11 +76,11 @@ class Database_Schema {
                     'name' => 'Template ID 2',
                     'price' => $PRICE,
                     'image' => 'template/2/2.png',
-                    'description' => 'Hi guys, This is Will from UITS',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'description' => '',
+                    'font' => "\'400 Lilita One\', sans-serif",
+                    'fontSize' => '15px',
+                    'fontColor' => '#9ece00',
+                    'background' => '#fff'
                 ], [
                     'id' => '3',
                     'name' => 'Template ID 3',
@@ -111,7 +100,7 @@ class Database_Schema {
                     'font' => "\'700 Be Vietnam\', sans-serif",
                     'fontSize' => '15px',
                     'fontColor' => '#fff',
-                    'background' => ''
+                    'background' => 'linear-gradient(180deg, #7b32f3 22.19%, rgba(197, 171, 245, 0) 99.87%)'
                 ], 
                 [
                     'id' => '5',
@@ -119,10 +108,10 @@ class Database_Schema {
                     'price' => $PRICE,
                     'image' => 'template/5/5.png',
                     'description' => '',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'font' => "\'400 Raleway\', sans-serif",
+                    'fontSize' => '15px',
+                    'fontColor' => '#fea3a3',
+                    'background' => '#fff'
                 ],
                 [
                     'id' => '6',
@@ -130,10 +119,10 @@ class Database_Schema {
                     'price' => $PRICE,
                     'image' => 'template/6/6.png',
                     'description' => '',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'font' => "\'400 Katibeh\', sans-serif",
+                    'fontSize' => '15px',
+                    'fontColor' => '#fff',
+                    'background' => 'linear-gradient(180deg, #7bffda 0%, #6192fe 100%)'
                 ],
                 [
                     'id' => '7',
@@ -141,10 +130,10 @@ class Database_Schema {
                     'price' => $PRICE,
                     'image' => 'template/7/7.png',
                     'description' => '',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'font' => "\'900 Inter\', sans-serif",
+                    'fontSize' => '13px',
+                    'fontColor' => '#fff',
+                    'background' => 'linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%)'
                 ],
                 [
                     'id' => '8',
@@ -152,10 +141,10 @@ class Database_Schema {
                     'price' => $PRICE,
                     'image' => 'template/8/8.png',
                     'description' => '',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'font' => "\'Inter\', sans-serif",
+                    'fontSize' => '15px',
+                    'fontColor' => '#0f74f6',
+                    'background' => '#fff'
                 ],
                 [
                     'id' => '9',
@@ -163,10 +152,10 @@ class Database_Schema {
                     'price' => $PRICE,
                     'image' => 'template/9/9.png',
                     'description' => '',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'font' => "\'700 Urbanist\', sans-serif",
+                    'fontSize' => '15px',
+                    'fontColor' => '#ff8fab',
+                    'background' => 'linear-gradient(62deg, #ffcad7 0%, #ffffff 54%, #ffcad7 100%)'
                 ],
                 [
                     'id' => '10',
@@ -174,10 +163,10 @@ class Database_Schema {
                     'price' => $PRICE,
                     'image' => 'template/10/10.png',
                     'description' => '',
-                    'font' => '',
-                    'fontSize' => '',
-                    'fontColor' => '',
-                    'background' => ''
+                    'font' => "\'Kulim Park\', sans-serif",
+                    'fontSize' => '15px',
+                    'fontColor' => '#000',
+                    'background' => '#fff'
                 ],
             ],
         ];

@@ -10,7 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Swiper from "swiper";
-export default function adminPage() {
+import Background from "./settings/Background";
+export default function adminPage(props) {
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         loop: false
@@ -61,4 +62,6 @@ export default function adminPage() {
             doc.save("img/back.pdf");
         });
     }));
+    const css = props['css'];
+    const back = new Background(".setting_bar .background", css.background, "#background");
 }
