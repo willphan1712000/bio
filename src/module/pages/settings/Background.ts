@@ -1,4 +1,4 @@
-import ColorPicker from "../../Web-Development/components/colorPicker/ColorPicker";
+import { ColorPicker } from "../../Web-Development/components/colorPicker/ColorPicker";
 import { $$ } from "../../Web-Development/W";
 
 export default class Background {
@@ -7,13 +7,12 @@ export default class Background {
 
     constructor(container: string, reset: string, target: string) {
         this.reset = reset;
-        this.colorPicker = $$(container).colorPicker(color => {
+        this.colorPicker = $$(container).colorPickerDouble(color => {
             $(target).css({
                 background: color
             })
         }, {
             default: this.reset,
         })
-        
     }
 }

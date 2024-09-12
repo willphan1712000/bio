@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Swiper from "swiper";
-import Background from "./settings/Background";
+import { SettingUI } from "./settings/SettingUI";
 export default function adminPage(props) {
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
@@ -62,6 +62,10 @@ export default function adminPage(props) {
             doc.save("img/back.pdf");
         });
     }));
-    const css = props['css'];
-    const back = new Background(".setting_bar .background", css.background, "#background");
+    const settingUI = new SettingUI({
+        css: props['css'],
+        imgPath: props['imgPath'],
+        username: props['username'],
+        imgName: props['imgName'],
+    });
 }

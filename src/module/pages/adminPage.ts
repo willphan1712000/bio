@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Swiper from "swiper";
-import Background from "./settings/Background";
+import { SettingUI } from "./settings/SettingUI";
 
 interface Props {
     [key: string]: string
@@ -63,9 +63,14 @@ export default function adminPage(props: Props) {
         })
     })
 
-    const css = props['css'] as any;
     
-    const back = new Background(".setting_bar .background", css.background, "#background");
+    const settingUI = new SettingUI({
+        css: props['css'],
+        imgPath: props['imgPath'],
+        username: props['username'],
+        imgName: props['imgName'],
+    })
+    
 }
 
 
@@ -87,7 +92,7 @@ export default function adminPage(props: Props) {
 //     $(".info__img input").on("change", (e) => {
 //         upload.fileHandling(e, function(src) {
 //             uploadImage = true
-//             // Make the image container transformable
+//             // Make the image container tranasformable
 //             transform = $$(".info__img--location img").transform().draggable().distort()
 //             img.src = src
 //         })

@@ -14,39 +14,6 @@
 - html (get from figma code generator)
 - javascript (rarely appears)
 
-### Props shortcuts for creating a template
-- Image
-```PHP
-draggable="false" src=<?=$props['imgPath'];?>
-```
-- Name
-```PHP
-<?=$infoObject->name()['a'];?>
-```
-- Organization
-```PHP
-<?=$infoObject->organization()['a'];?>
-```
-- Description
-```PHP
-<?=$infoObject->description()['a'];?>
-```
-- Social Media
-```PHP
-<?=$infoObject->social('socialName', 'htmlBlock')['a'];?>
-```
-- Below are PHP code to integrate blocks of link that are not parts of a default template
-
-```PHP
-<div id="social-media">
-    <?php
-        $certain = ['Mobile', 'Work', 'Email', 'Website'];
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-            $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-            echo $infoObject->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$infoObject->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
-    ?>
-</div>
-```
+### Template ratio
+- Web Browser: 1.7972
+- App: 16/9

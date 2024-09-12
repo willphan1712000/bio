@@ -14,7 +14,7 @@ class Template1 extends Template {
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
                 $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
             }
         }
         
@@ -234,13 +234,13 @@ class Template1 extends Template {
         class="img"
       />
     </div>
-    <h1 class="div-4">'.$props['info']->name()['a'].'</h1>
+    <h1 class="div-4">'.$props['info']->name()[$props['mode']].'</h1>
     <div class="div-5">
-    '.$props['info']->organization()['a'].'
+    '.$props['info']->organization()[$props['mode']].'
       <br />
-      '.$props['info']->description()['a'].'
+      '.$props['info']->description()[$props['mode']].'
     </div>
-    '.$props['info']->mobile('<div class="div-6">Contact us</div>')['a'].'
+    '.$props['info']->mobile('<div class="div-6">Contact us</div>')[$props['mode']].'
     <div class="div-7">
       
       '.$props['info']->social('Website', '<div class="div-8">
@@ -250,7 +250,7 @@ class Template1 extends Template {
           class="img-2"
         />
         <div class="div-9">About us</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Facebook', '<div class="div-10">
         <img
@@ -259,7 +259,7 @@ class Template1 extends Template {
           class="img-3"
         />
         <div class="div-11">Facebook</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Instagram', '<div class="div-12">
         <img
@@ -268,7 +268,7 @@ class Template1 extends Template {
           class="img-4"
         />
         <div class="div-13">Instagram.</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Youtube', '<div class="div-14">
         <img
@@ -277,7 +277,7 @@ class Template1 extends Template {
           class="img-5"
         />
         <div class="div-15">Youtube</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Tiktok', '<div class="div-16">
         <img
@@ -286,7 +286,7 @@ class Template1 extends Template {
           class="img-6"
         />
         <div class="div-17">Tiktok</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
     </div>
   </div>
   <div id="social-media">

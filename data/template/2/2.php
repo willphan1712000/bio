@@ -14,7 +14,7 @@ class Template2 extends Template {
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
                 $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
             }
         }
         
@@ -273,9 +273,9 @@ class Template2 extends Template {
     src="'.$props['imgPath'].'"
     class="img"
   />
-  <h1 class="div-2">'.$props['info']->name()['a'].'</h1>
-  <div class="div-3">'.$props['info']->organization()['a'].'</div>
-  <div class="div-3">'.$props['info']->description()['a'].'</div>
+  <h1 class="div-2">'.$props['info']->name()[$props['mode']].'</h1>
+  <div class="div-3">'.$props['info']->organization()[$props['mode']].'</div>
+  <div class="div-3">'.$props['info']->description()[$props['mode']].'</div>
   <div class="div-4"></div>
 
   <div class="element div-5 div-element">
@@ -287,7 +287,7 @@ class Template2 extends Template {
       />
       <div class="div-7">Facebook</div>
     </div>
-    '.$props['info']->social('Facebook', '<div class="div-element-btn">View</div>')['a'].'
+    '.$props['info']->social('Facebook', '<div class="div-element-btn">View</div>')[$props['mode']].'
   </div>
   <div class="div-9"></div>
   <div class="element div-element">
@@ -299,7 +299,7 @@ class Template2 extends Template {
       />
       <div class="div-12">Youtube</div>
     </div>
-    '.$props['info']->social('Youtube', '<div class="div-element-btn">View</div>')['a'].'
+    '.$props['info']->social('Youtube', '<div class="div-element-btn">View</div>')[$props['mode']].'
     
   </div>
   <div class="div-14"></div>
@@ -312,7 +312,7 @@ class Template2 extends Template {
       />
       <div class="div-17">Instagram</div>
     </div>
-    '.$props['info']->social('Instagram', '<div class="div-element-btn">View</div>')['a'].'
+    '.$props['info']->social('Instagram', '<div class="div-element-btn">View</div>')[$props['mode']].'
   </div>
 </div>
 </div>

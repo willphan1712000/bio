@@ -10077,7 +10077,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   W4: () => (/* binding */ W4)
 /* harmony export */ });
 /* harmony import */ var _components_search_SearchUI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/search/SearchUI */ "./src/dist/module/Web-Development/components/search/SearchUI.js");
-/* harmony import */ var _components_colorPicker_ColorPicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/colorPicker/ColorPicker */ "./src/dist/module/Web-Development/components/colorPicker/ColorPicker.js");
+/* harmony import */ var _components_rangeSlider_RangeSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/rangeSlider/RangeSlider */ "./src/dist/module/Web-Development/components/rangeSlider/RangeSlider.js");
+/* harmony import */ var _components_colorPicker_ColorPickerSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/colorPicker/ColorPickerSingle */ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerSingle.js");
+/* harmony import */ var _components_colorPicker_ColorPickerDouble__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/colorPicker/ColorPickerDouble */ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerDouble.js");
+/* harmony import */ var _components_options_Options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/options/Options */ "./src/dist/module/Web-Development/components/options/Options.js");
+/* harmony import */ var _components_Transform_Transform__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Transform/Transform */ "./src/dist/module/Web-Development/components/Transform/Transform.js");
+/* harmony import */ var _components_upload_UploadFile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/upload/UploadFile */ "./src/dist/module/Web-Development/components/upload/UploadFile.js");
+
+
+
+
+
 
 
 function $$(ele1, ele2, ele3, ele4) {
@@ -10102,7 +10112,7 @@ class W1 {
         return new PassShowHide(this.ele1);
     }
     transform() {
-        return new Transform(this.ele1, undefined, undefined);
+        return new _components_Transform_Transform__WEBPACK_IMPORTED_MODULE_5__["default"](this.ele1);
     }
     addSpinner() {
         return new Spinner(this.ele1);
@@ -10110,8 +10120,20 @@ class W1 {
     share() {
         return new Share(this.ele1);
     }
-    colorPicker(cb, options = null) {
-        return new _components_colorPicker_ColorPicker__WEBPACK_IMPORTED_MODULE_1__["default"](this.ele1, cb, options);
+    colorPickerSingle(cb, options) {
+        return new _components_colorPicker_ColorPickerSingle__WEBPACK_IMPORTED_MODULE_2__["default"](this.ele1, cb, options);
+    }
+    colorPickerDouble(cb, options) {
+        return new _components_colorPicker_ColorPickerDouble__WEBPACK_IMPORTED_MODULE_3__["default"](this.ele1, cb, options);
+    }
+    rangeSlider(cb, options) {
+        return new _components_rangeSlider_RangeSlider__WEBPACK_IMPORTED_MODULE_1__.RangeSlider(this.ele1, cb, options);
+    }
+    options(cb, options) {
+        return new _components_options_Options__WEBPACK_IMPORTED_MODULE_4__.Options(this.ele1, cb, options);
+    }
+    uploadFile(cb) {
+        return new _components_upload_UploadFile__WEBPACK_IMPORTED_MODULE_6__["default"](this.ele1, cb);
     }
 }
 class W2 {
@@ -10122,9 +10144,6 @@ class W2 {
     toggle() {
         return new Toggle(this.ele1, this.ele2);
     }
-    upload() {
-        return new Upload(this.ele1, this.ele2);
-    }
     copyToClipboard() {
         return new CopyToClipboard(this.ele1, this.ele2);
     }
@@ -10134,6 +10153,9 @@ class W2 {
     search() {
         return new Search(this.ele1, this.ele2);
     }
+    transform() {
+        return new _components_Transform_Transform__WEBPACK_IMPORTED_MODULE_5__["default"](this.ele1, this.ele2);
+    }
 }
 class W3 {
     constructor(ele1, ele2, ele3) {
@@ -10142,7 +10164,7 @@ class W3 {
         this.ele3 = ele3;
     }
     transform() {
-        return new Transform(this.ele1, this.ele2, this.ele3);
+        return new _components_Transform_Transform__WEBPACK_IMPORTED_MODULE_5__["default"](this.ele1, this.ele2, this.ele3);
     }
     addIntersectionObserver() {
         return new AddIntersectionObserver(this.ele1, this.ele2, this.ele3);
@@ -10308,59 +10330,6 @@ class PassShowHide extends W1 {
         return this;
     }
 }
-class Upload extends W2 {
-    constructor(ele1, ele2) {
-        super(ele1, ele2);
-        this.$ele1 = $(this.ele1);
-        this.$ele2 = $(this.ele2);
-    }
-    openFile() {
-        this.$ele1.click(e => {
-            e.stopPropagation();
-            this.$ele2.click();
-        });
-        return this;
-    }
-    fileHandling(e, cb) {
-        var _a;
-        const target = e.target;
-        const file = (_a = target.files) === null || _a === void 0 ? void 0 : _a[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = (readerEvent) => {
-                var _a;
-                const imgElement = document.createElement("img");
-                imgElement.src = (_a = readerEvent.target) === null || _a === void 0 ? void 0 : _a.result;
-                imgElement.onload = (imgEvent) => {
-                    cb(imgEvent.target.src);
-                };
-            };
-        }
-    }
-    drawImage(e, x, y, scale, angle, canvasWidth, canvasHeight, containerWidth, containerHeight) {
-        const canvas = document.createElement("canvas");
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) {
-            throw new Error("Unable to get canvas context");
-        }
-        const ratioX = canvasWidth / containerWidth;
-        const ratioY = canvasHeight / containerHeight;
-        const finalX = x * ratioX;
-        const finalY = y * ratioY;
-        const midleWidth = e.width * ratioX;
-        const midleHeight = e.height * ratioY;
-        const finalWidth = e.width * ratioX * scale;
-        const finalHeight = e.height * ratioY * scale;
-        ctx.translate(finalX + midleWidth / 2, finalY + midleHeight / 2);
-        ctx.rotate((angle * Math.PI) / 180);
-        ctx.drawImage(e, -finalWidth / 2, -finalHeight / 2, finalWidth, finalHeight);
-        const srcEncoded = ctx.canvas.toDataURL(e).split(",")[1];
-        return srcEncoded;
-    }
-}
 class Toggle extends W2 {
     constructor(ele1, ele2) {
         super(ele1, ele2);
@@ -10369,242 +10338,6 @@ class Toggle extends W2 {
         $(this.ele1).click((e) => {
             $(e.currentTarget).toggleClass(this.ele2);
         });
-        return this;
-    }
-}
-class Transform {
-    constructor(ele1, ele2, ele3) {
-        this.ele1 = ele1;
-        this.ele2 = ele2;
-        this.collided = false;
-        this.deleted = true;
-        this.x = 0;
-        this.y = 0;
-        this.angle = 0;
-        this.w = 0;
-        this.h = 0;
-        this.$ele2 = $(ele2);
-        this.imgFrame = document.querySelector(ele2);
-        this.controllerClassName = this.ele1.substring(1) + '--controller';
-        this.isRotateOffScreen = false;
-        this.thisObject = this;
-        const img = document.querySelector(this.ele1 + " > img");
-        this.ratio = img.width / img.height;
-        this.css = `
-            ${this.ele1} {
-                position: absolute;
-                transform-origin: top left;
-                user-select: none;
-            }
-            ${this.ele1} > img {
-                object-fit: contain;
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: block;
-                z-index: 1;
-                transform: translate(-50%, -50%)
-            }
-            .${this.controllerClassName}--container {
-                position: absolute;
-                transform-origin: top left;
-                user-select: none;
-            }
-            .${this.controllerClassName} {
-                position: absolute;
-                user-select: none;
-                border: solid 3px #6924d5;
-                z-index: 1;
-                top: 0;
-                left: 0;
-                transform: translate(-50%, -50%);
-            }
-            .${this.controllerClassName} .resize {
-                background-color: #fff;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                transition: all .1s linear;
-            }
-            .${this.controllerClassName} .resize.show {
-                background-color: #6924d5;
-            }
-            .${this.controllerClassName} .resize > .circle {
-                background-color: #f0f0f0a8;
-                position: absolute;
-                top: -15px;
-                left: -15px;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                z-index: -1;
-                visibility: hidden;
-                transition: all .1s linear;
-            }
-            .${this.controllerClassName} .resize > .circle.show {
-                visibility: visible;
-            }
-            .${this.controllerClassName} .resize.resize-topleft {
-                position: absolute;
-                top: -10px;
-                left: -10px;
-            }
-            .${this.controllerClassName} .resize.resize-topright {
-                position: absolute;
-                top: -10px;
-                right: -10px;
-            }
-            .${this.controllerClassName} .resize.resize-bottomleft {
-                position: absolute;
-                bottom: -10px;
-                left: -10px;
-            }
-            .${this.controllerClassName} .resize.resize-bottomright {
-                position: absolute;
-                bottom: -10px;
-                right: -10px;
-            }
-            .${this.controllerClassName} .rotate {
-                position: absolute;
-                top: -50px;
-                left: calc(50% - 15px);
-                width: 30px;
-                height: 30px;
-                background-color: #fff;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .${this.controllerClassName} .delete {
-                position: absolute;
-                bottom: -50px;
-                left: calc(50% + 40px);
-                width: 30px;
-                height: 30px;
-                background-color: #fff;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        `;
-        this.controllerTemplate = `
-            <div class="${this.controllerClassName}--container">
-                <div class="${this.controllerClassName}">
-                    <div class="dot resize resize-topleft"><div class="circle"></div></div>
-                    <div class="dot resize resize-topright"><div class="circle"></div></div>
-                    <div class="dot resize resize-bottomleft"><div class="circle"></div></div>
-                    <div class="dot resize resize-bottomright"><div class="circle"></div></div>
-                    <div class="dot rotate"><i class="fa-solid fa-rotate"></i></div>
-                    <div class="dot rotate shadow" style="visibility: hidden;"><i class="fa-solid fa-rotate"></i></div>
-                    <div class="dot delete"><i class="fa-solid fa-trash"></i></div>
-                    <div class="dot delete shadow" style="visibility: hidden;"><i class="fa-solid fa-trash"></i></div>
-                </div>
-            </div>
-        `;
-    }
-    setRatio(r) {
-        this.ratio = r;
-    }
-    setValue(x, y, angle, w, h) {
-        this.x = x !== undefined ? x : this.x;
-        this.y = y !== undefined ? y : this.y;
-        this.angle = angle !== undefined ? angle : this.angle;
-        this.w = w !== undefined ? w : this.w;
-        this.h = h !== undefined ? h : this.h;
-    }
-    exportData() {
-        return [this.x, this.y, this.angle, this.w, this.h];
-    }
-    isCollided() {
-        return this.collided;
-    }
-    setIsCollided(is) {
-        this.collided = is;
-    }
-    isDeleted() {
-        return this.deleted;
-    }
-    setDeleted(is) {
-        this.deleted = is;
-    }
-    addController() {
-        this.$ele2.after(this.controllerTemplate);
-        this.addCSSForController()
-            .handleElementGoOffScreen("." + this.controllerClassName + " .rotate", "." + this.controllerClassName + " .rotate.shadow", "rotate")
-            .handleElementGoOffScreen("." + this.controllerClassName + " .delete", "." + this.controllerClassName + " .delete.shadow", "delete");
-        return this;
-    }
-    addCSSForController() {
-        const styleElement = document.createElement('style');
-        styleElement.textContent = this.css;
-        document.head.appendChild(styleElement);
-        return this;
-    }
-    delete(cb) {
-        const handleDelete = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            cb();
-            this.setDeleted(true);
-        };
-        $(this.ele1 + "--controller .delete").on("touchstart", handleDelete);
-        $(this.ele1 + "--controller .delete").on("mousedown", handleDelete);
-        return this;
-    }
-    repositionElement(x, y) {
-        var _a, _b;
-        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
-        const boxWrapper = document.querySelector(this.ele1);
-        boxWrapper.style.left = x + 'px';
-        boxWrapper.style.top = y + 'px';
-        controllerWrapper.style.left = (x + (((_a = this.imgFrame) === null || _a === void 0 ? void 0 : _a.offsetLeft) || 0) + 3) + 'px';
-        controllerWrapper.style.top = (y + (((_b = this.imgFrame) === null || _b === void 0 ? void 0 : _b.offsetTop) || 0) + 3) + 'px';
-    }
-    resize(w, h) {
-        const controller = document.querySelector(this.ele1 + '--controller');
-        const img = document.querySelector(this.ele1 + " > img");
-        controller.style.width = w + 6 + 'px';
-        controller.style.height = h + 6 + 'px';
-        img.style.width = w + 'px';
-    }
-    rotateBox(deg) {
-        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
-        const boxWrapper = document.querySelector(this.ele1);
-        boxWrapper.style.transform = `rotate(${deg}deg)`;
-        controllerWrapper.style.rotate = `${deg}deg`;
-        controllerWrapper.querySelector(".delete").style.rotate = `${-deg}deg`;
-    }
-    handleElementGoOffScreen(main, shadow, type) {
-        const mainEle = document.querySelector(main);
-        const shadowEle = document.querySelector(shadow);
-        const options = {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.1,
-        };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    shadowEle.style.visibility = "visible";
-                    shadowEle.style.left = mainEle.style.left;
-                    shadowEle.style.top = mainEle.style.top;
-                    if (type === "rotate") {
-                        this.isRotateOffScreen = true;
-                    }
-                }
-                else {
-                    shadowEle.style.visibility = "hidden";
-                    if (type === "rotate") {
-                        this.isRotateOffScreen = false;
-                    }
-                }
-            });
-        }, options);
-        observer.observe(mainEle);
         return this;
     }
 }
@@ -10816,87 +10549,560 @@ class API extends WW2 {
 
 /***/ }),
 
-/***/ "./src/dist/module/Web-Development/components/colorPicker/ColorPicker.js":
-/*!*******************************************************************************!*\
-  !*** ./src/dist/module/Web-Development/components/colorPicker/ColorPicker.js ***!
-  \*******************************************************************************/
+/***/ "./src/dist/module/Web-Development/components/Transform/Transform.js":
+/*!***************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/Transform/Transform.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ColorPicker)
+/* harmony export */   "default": () => (/* binding */ Transform)
 /* harmony export */ });
-class ColorPicker {
-    constructor(container, cb, options) {
-        this.color1 = "0";
-        this.color2 = "0";
-        this.deg = "0";
-        this.options = options;
-        this.container = container;
-        this.css();
-        this.render();
-        const $container = $(this.container);
-        const $colorPicker = $(this.container + " .colorPickerBox");
-        $container.click(e => {
+/* harmony import */ var _TransformController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransformController */ "./src/dist/module/Web-Development/components/Transform/TransformController.js");
+
+class Transform {
+    constructor(ele1, ele2, ele3) {
+        this.ele1 = ele1,
+            this.ele2 = ele2,
+            this.collided = false;
+        this.deleted = true;
+        this.x = 0;
+        this.y = 0;
+        this.angle = 0;
+        this.w = 0;
+        this.h = 0;
+        this.$ele2 = $(this.ele2);
+        this.imgFrame = document.querySelector(this.ele2);
+        this.controllerClassName = this.ele1.substring(1) + '--controller';
+        this.isRotateOffScreen = false;
+        this.img = document.querySelector(this.ele1 + " > img");
+        this.ratio = this.img.width / this.img.height;
+        this.transformController = new _TransformController__WEBPACK_IMPORTED_MODULE_0__["default"](this.ele1, this.ele2, this.controllerClassName);
+        this.reset();
+        this.transformController.addController();
+        this.transform();
+        this.handleElementGoOffScreen("." + this.controllerClassName + " .rotate", "." + this.controllerClassName + " .rotate.shadow", "rotate").handleElementGoOffScreen("." + this.controllerClassName + " .delete", "." + this.controllerClassName + " .delete.shadow", "delete");
+    }
+    reset() {
+        $(this.ele1 + "--controller--container").remove();
+        document.querySelector(this.ele1).style.transform = `rotate(${0}deg)`;
+    }
+    setValue(x, y, angle, w, h) {
+        this.x = (x !== undefined) ? x : this.x;
+        this.y = (y !== undefined) ? y : this.y;
+        this.angle = (angle !== undefined) ? angle : this.angle;
+        this.w = (w !== undefined) ? w : this.w;
+        this.h = (h !== undefined) ? h : this.h;
+    }
+    exportData() {
+        return [this.x, this.y, this.angle, this.w, this.h];
+    }
+    isCollided() {
+        return this.collided;
+    }
+    setIsCollided(is) {
+        this.collided = is;
+    }
+    isDeleted() {
+        return this.deleted;
+    }
+    setDeleted(is) {
+        this.deleted = is;
+    }
+    delete(cb) {
+        const handleDelete = (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            if ($colorPicker.css('display') === 'none') {
-                $colorPicker.css('display', 'flex');
+            cb();
+            this.setDeleted(true);
+        };
+        $(this.ele1 + "--controller .delete").on("touchstart", e => handleDelete(e));
+        $(this.ele1 + "--controller .delete").on("mousedown", e => handleDelete(e));
+        return this;
+    }
+    repositionElement(x, y) {
+        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
+        const boxWrapper = document.querySelector(this.ele1);
+        boxWrapper.style.left = x + 'px';
+        boxWrapper.style.top = y + 'px';
+        controllerWrapper.style.left = (x + this.imgFrame.offsetLeft + 3) + 'px';
+        controllerWrapper.style.top = (y + this.imgFrame.offsetTop + 3) + 'px';
+    }
+    resize(w, h) {
+        const controller = document.querySelector(this.ele1 + '--controller');
+        const img = document.querySelector(this.ele1 + " > img");
+        controller.style.width = w + 6 + 'px';
+        controller.style.height = h + 6 + 'px';
+        img.style.width = w + 'px';
+    }
+    rotateBox(deg) {
+        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
+        const boxWrapper = document.querySelector(this.ele1);
+        const deleteEle = controllerWrapper.querySelector(".delete");
+        boxWrapper.style.transform = `rotate(${deg}deg)`;
+        controllerWrapper.style.rotate = `${deg}deg`;
+        deleteEle.style.rotate = `${-deg}deg`;
+    }
+    handleElementGoOffScreen(main, shadow, type) {
+        const mainEle = document.querySelector(main);
+        const shadowEle = document.querySelector(shadow);
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.1
+        };
+        const callback = (entries) => {
+            entries.forEach((entry) => {
+                switch (type) {
+                    case 'rotate':
+                        if (!entry.isIntersecting) {
+                            mainEle.style.top = "auto";
+                            mainEle.style.bottom = "-50px";
+                            this.isRotateOffScreen = true;
+                        }
+                        else {
+                            mainEle.style.bottom = "auto";
+                            mainEle.style.top = "-50px";
+                            this.isRotateOffScreen = false;
+                        }
+                        break;
+                    case 'delete':
+                        if (!entry.isIntersecting) {
+                            mainEle.style.bottom = "auto";
+                            mainEle.style.top = "-50px";
+                        }
+                        else {
+                            mainEle.style.top = "auto";
+                            mainEle.style.bottom = "-50px";
+                        }
+                        break;
+                }
+            });
+        };
+        const observer = new IntersectionObserver(callback, options);
+        observer.observe(shadowEle);
+        return this;
+    }
+    transform() {
+        const controller = document.querySelector(this.ele1 + '--controller');
+        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
+        const boxWrapper = document.querySelector(this.ele1);
+        const minWidth = 40;
+        const minHeight = 40;
+        var initX, initY, mousePressX, mousePressY, initW, initH, initRotate;
+        function getCurrentRotation(el) {
+            var st = window.getComputedStyle(el, null);
+            var tm = st.getPropertyValue("-webkit-transform") ||
+                st.getPropertyValue("-moz-transform") ||
+                st.getPropertyValue("-ms-transform") ||
+                st.getPropertyValue("-o-transform") ||
+                st.getPropertyValue("transform");
+            "none";
+            if (tm != "none") {
+                var values = tm.split('(')[1].split(')')[0].split(',');
+                var angle = Math.round(Math.atan2(Number(values[1]), Number(values[0])) * (180 / Math.PI));
+                return (angle < 0 ? angle + 360 : angle);
+            }
+            return 0;
+        }
+        function mousedownCb(event) {
+            event.target.classList.add("show");
+            event.target.querySelector(".circle").classList.add("show");
+        }
+        function mouseupCb(event) {
+            event.target.classList.remove("show");
+            event.target.querySelector(".circle").classList.remove("show");
+        }
+        const handleDrag = (event, type) => {
+            event.preventDefault();
+            event.stopPropagation();
+            let initX = boxWrapper.offsetLeft;
+            let initY = boxWrapper.offsetTop;
+            let mousePressX = (type === 'desk') ? event.clientX : event.touches[0].clientX;
+            let mousePressY = (type === 'desk') ? event.clientY : event.touches[0].clientY;
+            let [, , , w, h] = this.exportData();
+            const eventMoveHandler = (event) => {
+                let x = (type === 'desk') ? event.clientX : event.touches[0].clientX;
+                let y = (type === 'desk') ? event.clientY : event.touches[0].clientY;
+                var posX = initX + (x - mousePressX);
+                var posY = initY + (y - mousePressY);
+                this.repositionElement(posX, posY);
+                this.setValue(posX - w / 2, posY - h / 2, undefined, undefined, undefined);
+            };
+            if (type === 'desk') {
+                controllerWrapper.addEventListener('mousemove', eventMoveHandler, false);
+                window.addEventListener('mouseup', function eventEndHandler() {
+                    controllerWrapper.removeEventListener('mousemove', eventMoveHandler, false);
+                    window.removeEventListener('mouseup', eventEndHandler);
+                }, false);
             }
             else {
-                $colorPicker.css('display', 'none');
+                controllerWrapper.addEventListener('touchmove', eventMoveHandler, false);
+                window.addEventListener('touchend', function eventEndHandler() {
+                    controllerWrapper.removeEventListener('touchmove', eventMoveHandler, false);
+                    window.removeEventListener('touchend', eventEndHandler);
+                }, false);
             }
-        });
-        $("body").click(e => {
-            e.stopPropagation();
-            $colorPicker.css('display', 'none');
-        });
-        $colorPicker.click(e => {
-            e.stopPropagation();
-            $colorPicker.css('display', 'flex');
-        });
+        };
+        controllerWrapper.addEventListener('mousedown', e => handleDrag(e, 'desk'), false);
+        controllerWrapper.addEventListener('touchstart', e => handleDrag(e, 'touch'), false);
+        var leftTop = document.querySelector(this.ele1 + "--controller .resize-topleft");
+        var rightTop = document.querySelector(this.ele1 + "--controller .resize-topright");
+        var rightBottom = document.querySelector(this.ele1 + "--controller .resize-bottomright");
+        var leftBottom = document.querySelector(this.ele1 + "--controller .resize-bottomleft");
+        const resizeHandler = (event, left = false, top = false, xResize = false, yResize = false, type) => {
+            event.preventDefault();
+            event.stopPropagation();
+            initX = boxWrapper.offsetLeft;
+            initY = boxWrapper.offsetTop;
+            mousePressX = (type === 'desk') ? event.clientX : event.touches[0].clientX;
+            mousePressY = (type === 'desk') ? event.clientY : event.touches[0].clientY;
+            initW = this.img.offsetWidth;
+            initH = this.img.offsetHeight;
+            initRotate = getCurrentRotation(boxWrapper);
+            var initRadians = initRotate * Math.PI / 180;
+            var cosFraction = Math.cos(initRadians);
+            var sinFraction = Math.sin(initRadians);
+            mousedownCb(event);
+            var vectorC = [mousePressX - initX - this.imgFrame.offsetLeft, mousePressY - initY - this.imgFrame.offsetTop];
+            const eventMoveHandler = (event) => {
+                var x = ((type === 'desk') ? event.clientX : event.touches[0].clientX);
+                var y = ((type === 'desk') ? event.clientY : event.touches[0].clientY);
+                var wDiff = x - mousePressX;
+                var hDiff = y - mousePressY;
+                var vectorD = [wDiff, hDiff];
+                const c = (vectorC[0] * vectorD[0] + vectorC[1] * vectorD[1]) / (vectorC[0] * vectorC[0] + vectorC[1] * vectorC[1]);
+                var vectorH = [c * vectorC[0], c * vectorC[1]];
+                var rotatedWDiff = cosFraction * vectorH[0] + sinFraction * vectorH[1];
+                var rotatedHDiff = cosFraction * vectorH[1] - sinFraction * vectorH[0];
+                rotatedHDiff = (rotatedHDiff * rotatedWDiff > 0) ? (rotatedWDiff / this.ratio) : (-rotatedWDiff / this.ratio);
+                var newW = initW, newH = initH, newX = initX, newY = initY;
+                if (xResize) {
+                    if (left) {
+                        newW = initW - rotatedWDiff;
+                        if (newW < minWidth) {
+                            newW = minWidth;
+                            rotatedWDiff = initW - minWidth;
+                        }
+                    }
+                    else {
+                        newW = initW + rotatedWDiff;
+                        if (newW < minWidth) {
+                            newW = minWidth;
+                            rotatedWDiff = minWidth - initW;
+                        }
+                    }
+                    newX += 0.5 * rotatedWDiff * cosFraction;
+                    newY += 0.5 * rotatedWDiff * sinFraction;
+                }
+                if (yResize) {
+                    if (top) {
+                        newH = initH - rotatedHDiff;
+                        if (newH < minHeight) {
+                            newH = minHeight;
+                            rotatedHDiff = initH - minHeight;
+                        }
+                    }
+                    else {
+                        newH = initH + rotatedHDiff;
+                        if (newH < minHeight) {
+                            newH = minHeight;
+                            rotatedHDiff = minHeight - initH;
+                        }
+                    }
+                    newX -= 0.5 * rotatedHDiff * sinFraction;
+                    newY += 0.5 * rotatedHDiff * cosFraction;
+                }
+                this.resize(newW, newH);
+                this.repositionElement(newX, newY);
+                this.setValue(newX - newW / 2, newY - newH / 2, undefined, newW, newH);
+            };
+            if (type === 'desk') {
+                window.addEventListener('mousemove', eventMoveHandler, false);
+                window.addEventListener('mouseup', function eventEndHandler() {
+                    mouseupCb(event);
+                    window.removeEventListener('mousemove', eventMoveHandler, false);
+                    window.removeEventListener('mouseup', eventEndHandler);
+                }, false);
+            }
+            else {
+                window.addEventListener('touchmove', eventMoveHandler, false);
+                window.addEventListener('touchend', function eventEndHandler() {
+                    mouseupCb(event);
+                    window.removeEventListener('touchmove', eventMoveHandler, false);
+                    window.removeEventListener('touchend', eventEndHandler);
+                }, false);
+            }
+        };
+        leftTop.addEventListener('mousedown', e => resizeHandler(e, true, true, true, true, 'desk'));
+        rightTop.addEventListener('mousedown', e => resizeHandler(e, false, true, true, true, 'desk'));
+        rightBottom.addEventListener('mousedown', e => resizeHandler(e, false, false, true, true, 'desk'));
+        leftBottom.addEventListener('mousedown', e => resizeHandler(e, true, false, true, true, 'desk'));
+        leftTop.addEventListener('touchstart', e => resizeHandler(e, true, true, true, true, 'touch'));
+        rightTop.addEventListener('touchstart', e => resizeHandler(e, false, true, true, true, 'touch'));
+        rightBottom.addEventListener('touchstart', e => resizeHandler(e, false, false, true, true, 'touch'));
+        leftBottom.addEventListener('touchstart', e => resizeHandler(e, true, false, true, true, 'touch'));
+        var rotate = document.querySelector(this.ele1 + "--controller .rotate");
+        const handleRotate = (event, type) => {
+            event.preventDefault();
+            event.stopPropagation();
+            initX = event.target.offsetLeft;
+            initY = event.target.offsetTop;
+            mousePressX = (type === 'desk') ? event.clientX : event.touches[0].clientX;
+            mousePressY = (type === 'desk') ? event.clientY : event.touches[0].clientY;
+            var arrow = document.querySelector(this.ele1 + '--controller');
+            var arrowRects = arrow.getBoundingClientRect();
+            var arrowX = arrowRects.left + arrowRects.width / 2;
+            var arrowY = arrowRects.top + arrowRects.height / 2;
+            const compensation = this.isRotateOffScreen ? 180 : 0;
+            const eventMoveHandler = (event) => {
+                let x = (type === 'desk') ? event.clientX : event.touches[0].clientX;
+                let y = (type === 'desk') ? event.clientY : event.touches[0].clientY;
+                var angle = Math.atan2(y - arrowY, x - arrowX) + Math.PI / 2;
+                angle *= 180 / Math.PI;
+                angle += compensation;
+                this.rotateBox(angle);
+                this.setValue(undefined, undefined, angle, undefined, undefined);
+            };
+            if (type === 'desk') {
+                window.addEventListener('mousemove', eventMoveHandler, false);
+                window.addEventListener('mouseup', function eventEndHandler() {
+                    window.removeEventListener('mousemove', eventMoveHandler, false);
+                    window.removeEventListener('mouseup', eventEndHandler);
+                }, false);
+            }
+            else {
+                window.addEventListener('touchmove', eventMoveHandler, false);
+                window.addEventListener('touchend', function eventEndHandler() {
+                    window.removeEventListener('touchmove', eventMoveHandler, false);
+                    window.removeEventListener('touchend', eventEndHandler);
+                }, false);
+            }
+        };
+        rotate.addEventListener('mousedown', e => handleRotate(e, 'desk'), false);
+        rotate.addEventListener('touchstart', e => handleRotate(e, 'touch'), false);
+        this.resize(200, 200 / this.ratio);
+        this.repositionElement(100, 100 / this.ratio);
+        this.setValue(0, 0, 0, 200, 200 / this.ratio);
+        return this;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/Transform/TransformController.js":
+/*!*************************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/Transform/TransformController.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TransformController)
+/* harmony export */ });
+class TransformController {
+    constructor(wrapper, frame, controller) {
+        this.wrapper = wrapper;
+        this.frame = frame;
+        this.controller = controller;
+    }
+    addController() {
+        const styleElement = document.createElement('style');
+        styleElement.textContent = this.css();
+        document.head.appendChild(styleElement);
+        $(this.frame).after(this.controllerTemplate());
+    }
+    css() {
+        return `
+        ${this.wrapper} {
+            position: absolute;
+            transform-origin: top left;
+            user-select: none;
+        }
+        ${this.wrapper} > img {
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            z-index: 1;
+            transform: translate(-50%, -50%)
+        }
+        .${this.controller}--container {
+            position: absolute;
+            transform-origin: top left;
+            user-select: none;
+        }
+        .${this.controller} {
+            position: absolute;
+            user-select: none;
+            border: solid 3px #6924d5;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
+        .${this.controller} .resize {
+            background-color: #fff;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            transition: all .1s linear;
+        }
+        .${this.controller} .resize.show {
+            background-color: #6924d5;
+        }
+        .${this.controller} .resize > .circle {
+            background-color: #f0f0f0a8;
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            z-index: -1;
+            visibility: hidden;
+            transition: all .1s linear;
+        }
+        .${this.controller} .resize > .circle.show {
+            visibility: visible;
+        }
+        .${this.controller} .resize.resize-topleft {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+        }
+        .${this.controller} .resize.resize-topright {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        .${this.controller} .resize.resize-bottomleft {
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+        }
+        .${this.controller} .resize.resize-bottomright {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+        }
+        .${this.controller} .rotate {
+            position: absolute;
+            top: -50px;
+            left: calc(50% - 15px);
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .${this.controller} .delete {
+            position: absolute;
+            bottom: -50px;
+            left: calc(50% + 40px);
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+    `;
+    }
+    controllerTemplate() {
+        return `
+            <div class="${this.controller}--container">
+                <div class="${this.controller}">
+                    <div class="dot resize resize-topleft"><div class="circle"></div></div>
+                    <div class="dot resize resize-topright"><div class="circle"></div></div>
+                    <div class="dot resize resize-bottomleft"><div class="circle"></div></div>
+                    <div class="dot resize resize-bottomright"><div class="circle"></div></div>
+                    <div class="dot rotate"><i class="fa-solid fa-rotate"></i></div>
+                    <div class="dot rotate shadow" style="visibility: hidden;"><i class="fa-solid fa-rotate"></i></div>
+                    <div class="dot delete"><i class="fa-solid fa-trash"></i></div>
+                    <div class="dot delete shadow" style="visibility: hidden;"><i class="fa-solid fa-trash"></i></div>
+                </div>
+            </div>
+            `;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerDouble.js":
+/*!*************************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/colorPicker/ColorPickerDouble.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColorPickerDouble)
+/* harmony export */ });
+/* harmony import */ var _ColorPickerParent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPickerParent */ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerParent.js");
+
+class ColorPickerDouble extends _ColorPickerParent__WEBPACK_IMPORTED_MODULE_0__.ColorPickerParent {
+    constructor(container, cb, options) {
+        super();
+        this.options = options;
+        this.container = container;
+        this.color = options.default;
+        this.gradient = {
+            color1: "0",
+            color2: "0",
+            deg: "0"
+        };
+        this.render();
+        this.clickBehavior(this.container);
         const color1 = document.querySelector(this.container + " #color1");
-        const color2 = document.querySelector(this.container + " #color2");
-        const deg = document.querySelector(this.container + " #deg");
         color1.addEventListener("input", e => {
             const input = e.target;
-            this.setColor1(input.value);
+            this.gradient.color1 = input.value;
+            this.setColor(this.gradient);
             cb(this.getColor());
         });
+        const color2 = document.querySelector(this.container + " #color2");
+        const deg = document.querySelector(this.container + " #deg");
         color2.addEventListener("input", e => {
             const input = e.target;
-            this.setColor2(input.value);
+            this.gradient.color2 = input.value;
+            this.setColor(this.gradient);
             cb(this.getColor());
         });
         deg.addEventListener("input", e => {
             const input = e.target;
-            this.setDeg(input.value);
+            this.gradient.deg = input.value;
+            this.setColor(this.gradient);
             cb(this.getColor());
         });
-        $(".colorPickerBox__reset").click(e => {
-            var _a;
+        $(this.container + " .colorPickerBox__reset").click(e => {
             e.stopPropagation();
-            cb((_a = this.options) === null || _a === void 0 ? void 0 : _a.default);
+            this.color = this.options.default;
+            cb(this.getColor());
         });
     }
     getColor() {
-        return `linear-gradient(${this.deg}deg, ${this.hslToHex(Number(this.color2), 100, 80)}, ${this.hslToHex(Number(this.color1), 100, 80)})`;
-        return {
-            color1: this.hslToHex(Number(this.color1), 100, 50),
-            color2: this.hslToHex(Number(this.color2), 100, 50),
-            deg: this.deg,
-        };
+        return this.color;
     }
-    setColor1(color) {
-        this.color1 = color;
-    }
-    setColor2(color) {
-        this.color2 = color;
-    }
-    setDeg(deg) {
-        this.deg = deg;
+    setColor(color) {
+        this.color = `linear-gradient(${color.deg}deg, ${this.hslToHex(Number(color.color2), 100, 80)}, ${this.hslToHex(Number(color.color1), 100, 80)})`;
     }
     render() {
+        const style = document.createElement("style");
+        style.textContent = this.css();
+        document.head.append(style);
         const $container = $(this.container);
         $container.append(this.html());
     }
@@ -10916,7 +11122,7 @@ class ColorPicker {
     }
     css() {
         var _a;
-        const css = `
+        return `
             ${this.container} {
                 position: relative;
             }
@@ -10932,7 +11138,8 @@ class ColorPicker {
                 background: #fff;
                 border-radius: 20px;
                 padding: 10px;
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px ;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px;
+                z-index: 1;
             }
             ${this.container} .colorPickerBox__reset {
                 display: ${((_a = this.options) === null || _a === void 0 ? void 0 : _a.default) == null ? "none" : "flex"};
@@ -10968,9 +11175,44 @@ class ColorPicker {
                 border: none;
             }
         `;
-        const style = document.createElement("style");
-        style.textContent = css;
-        document.head.append(style);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerParent.js":
+/*!*************************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/colorPicker/ColorPickerParent.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ColorPickerParent: () => (/* binding */ ColorPickerParent)
+/* harmony export */ });
+class ColorPickerParent {
+    clickBehavior(container) {
+        const $container = $(container);
+        const $colorPicker = $(container + " .colorPickerBox");
+        $container.click(e => {
+            e.stopPropagation();
+            if ($colorPicker.css('display') === 'none') {
+                $colorPicker.css('display', 'flex');
+            }
+            else {
+                $colorPicker.css('display', 'none');
+            }
+        });
+        $("body").click(e => {
+            e.stopPropagation();
+            $colorPicker.css('display', 'none');
+        });
+        $colorPicker.click(e => {
+            e.stopPropagation();
+            $colorPicker.css('display', 'flex');
+        });
     }
     hslToHex(h, s, l) {
         s /= 100;
@@ -11016,6 +11258,377 @@ class ColorPicker {
             const hex = x.toString(16);
             return hex.length === 1 ? '0' + hex : hex;
         }).join('');
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerSingle.js":
+/*!*************************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/colorPicker/ColorPickerSingle.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColorPickerSingle)
+/* harmony export */ });
+/* harmony import */ var _ColorPickerParent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPickerParent */ "./src/dist/module/Web-Development/components/colorPicker/ColorPickerParent.js");
+
+class ColorPickerSingle extends _ColorPickerParent__WEBPACK_IMPORTED_MODULE_0__.ColorPickerParent {
+    constructor(container, cb, options) {
+        super();
+        this.options = options;
+        this.container = container;
+        this.color = options.default;
+        this.render();
+        this.clickBehavior(this.container);
+        const color = document.querySelector(this.container + " #color");
+        color.addEventListener("input", e => {
+            const input = e.target;
+            this.setColor(input.value);
+            cb(this.getColor());
+        });
+        $(this.container + " .colorPickerBox__reset").click(e => {
+            e.stopPropagation();
+            this.color = this.options.default;
+            cb(this.getColor());
+        });
+    }
+    getColor() {
+        return this.color;
+    }
+    setColor(color) {
+        this.color = this.hslToHex(Number(color), 100, 80);
+    }
+    render() {
+        const style = document.createElement("style");
+        style.textContent = this.css();
+        document.head.append(style);
+        const $container = $(this.container);
+        $container.append(this.html());
+    }
+    html() {
+        return `
+            <div class="colorPickerBox">
+                <div class="colorPickerBox__reset">
+                    <span>Reset</span>
+                </div>
+                <div class="colorPickerBox__input">
+                    <input id="color" class="color" type="range" min="0" max="360" value="0">
+                </div>
+            </div>
+        `;
+    }
+    css() {
+        var _a;
+        return `
+            ${this.container} {
+                position: relative;
+            }
+            ${this.container} .colorPickerBox {
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                align-items: center;
+                justify-content: center;
+                left: 110%;
+                height: 70px;
+                display: none;
+                background: #fff;
+                border-radius: 20px;
+                padding: 10px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px;
+                z-index: 1;
+            }
+            ${this.container} .colorPickerBox__reset {
+                display: ${((_a = this.options) === null || _a === void 0 ? void 0 : _a.default) == null ? "none" : "flex"};
+                justify-content: center;
+                align-items: center;
+                height: fit-content;
+                padding-right: 10px;
+            }
+            ${this.container} .colorPickerBox__input {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+            }
+            ${this.container} .colorPickerBox .color {
+                -webkit-appearance: none;
+                appearance: none;
+                height: 10px;
+                border-radius: 20px;
+                background: linear-gradient(to right, 
+                    hsl(0, 100%, 50%), 
+                    hsl(60, 100%, 50%), 
+                    hsl(120, 100%, 50%), 
+                    hsl(180, 100%, 50%), 
+                    hsl(240, 100%, 50%), 
+                    hsl(300, 100%, 50%), 
+                    hsl(360, 100%, 50%)
+                );
+                outline: none;
+                opacity: 0.9;
+                transition: opacity 0.2s;
+                border: none;
+            }
+        `;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/options/Options.js":
+/*!***********************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/options/Options.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Options: () => (/* binding */ Options)
+/* harmony export */ });
+class Options {
+    constructor(container, cb, options) {
+        this.container = container;
+        this.options = options;
+        this.list = options.list;
+        this.font = options.default;
+        this.render();
+        const $container = $(this.container);
+        const $list = $(this.container + " .list_wrapper");
+        $container.click(e => {
+            e.stopPropagation();
+            if ($list.css('display') === 'none') {
+                $list.css('display', 'flex');
+            }
+            else {
+                $list.css('display', 'none');
+            }
+        });
+        $("body").click(e => {
+            e.stopPropagation();
+            $list.css('display', 'none');
+        });
+        $list.click(e => {
+            e.stopPropagation();
+            $list.css('display', 'flex');
+        });
+        $(this.container + " .font-element").click(e => {
+            e.stopPropagation();
+            this.setFont(e.target.getAttribute("data-font"));
+            cb(e.target.getAttribute("data-font"));
+        });
+        $(this.container + " .list_reset").click(e => {
+            e.stopPropagation();
+            this.setFont(this.options.default);
+            cb(this.getFont());
+        });
+    }
+    getFont() {
+        return this.font;
+    }
+    setFont(font) {
+        this.font = font;
+    }
+    render() {
+        const style = document.createElement("style");
+        style.textContent = this.css();
+        document.head.append(style);
+        const $container = $(this.container);
+        $container.append(this.html());
+    }
+    html() {
+        let list = '';
+        this.list.forEach(e => {
+            list += `<div data-font="${e}" class="font-element" style="font-family: ${e}">${this.options.representative}</div>`;
+        });
+        return `
+            <div class="list_wrapper">
+                <div class="list_reset">Reset</div>
+                ${list}
+            </div>
+        `;
+    }
+    css() {
+        var _a;
+        return `
+            ${this.container} {
+                position: relative;
+            }
+            ${this.container} .list_wrapper {
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                align-items: center;
+                left: 110%;
+                height: 70px;
+                display: none;
+                background: #fff;
+                border-radius: 20px;
+                padding: 10px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px;
+                z-index: 1;
+                width: 250px;
+                overflow-y: hidden;
+                overflow-x: auto;
+            }
+            ${this.container} .list_wrapper::-webkit-scrollbar {
+                display: none;
+            }
+            ${this.container} .list_wrapper .list_reset {
+                display: ${((_a = this.options) === null || _a === void 0 ? void 0 : _a.default) == null ? "none" : "flex"};
+                justify-content: center;
+                align-items: center;
+                height: fit-content;
+                padding-right: 10px;
+            }
+            ${this.container} .list_wrapper > .font-element {
+                padding: 12px;
+                font-size: 35px;
+            }
+        `;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/Web-Development/components/rangeSlider/RangeSlider.js":
+/*!*******************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/rangeSlider/RangeSlider.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   RangeSlider: () => (/* binding */ RangeSlider)
+/* harmony export */ });
+class RangeSlider {
+    constructor(container, cb, options) {
+        var _a;
+        this.options = options;
+        this.value = (_a = this.options) === null || _a === void 0 ? void 0 : _a.default;
+        this.container = container;
+        this.render();
+        const $container = $(this.container);
+        const $rangeSlider = $(this.container + " .rangeSliderBox");
+        $container.click(e => {
+            e.stopPropagation();
+            if ($rangeSlider.css('display') === 'none') {
+                $rangeSlider.css('display', 'flex');
+            }
+            else {
+                $rangeSlider.css('display', 'none');
+            }
+        });
+        $("body").click(e => {
+            e.stopPropagation();
+            $rangeSlider.css('display', 'none');
+        });
+        $rangeSlider.click(e => {
+            e.stopPropagation();
+            $rangeSlider.css('display', 'flex');
+        });
+        const range = document.querySelector(this.container + " #range");
+        const showRange = document.querySelector(this.container + " #showRange");
+        range.addEventListener("input", e => {
+            var _a;
+            const input = e.target;
+            this.setValue(Number(input.value));
+            cb(this.getValue());
+            showRange.value = this.getValue() + ((_a = this.options) === null || _a === void 0 ? void 0 : _a.unit);
+        });
+        $(".rangeSliderBox__reset").click(e => {
+            var _a, _b;
+            e.stopPropagation();
+            this.setValue((_a = this.options) === null || _a === void 0 ? void 0 : _a.default);
+            cb(this.getValue());
+            showRange.value = this.getValue() + ((_b = this.options) === null || _b === void 0 ? void 0 : _b.unit);
+            range.value = this.getValue() + '';
+        });
+    }
+    getValue() {
+        return this.value;
+    }
+    setValue(value) {
+        this.value = value;
+    }
+    render() {
+        const style = document.createElement("style");
+        style.textContent = this.css();
+        document.head.append(style);
+        const $container = $(this.container);
+        $container.append(this.html());
+    }
+    html() {
+        var _a, _b, _c;
+        return `
+            <div class="rangeSliderBox">
+                <div class="rangeSliderBox__reset">
+                    <span>Reset</span>
+                </div>
+                <div class="rangeSliderBox__input">
+                    <input id="showRange" class="showRange" type="text" value="${this.value + ((_a = this.options) === null || _a === void 0 ? void 0 : _a.unit)}">
+                    <input id="range" class="range" type="range" min="${(_b = this.options) === null || _b === void 0 ? void 0 : _b.range[0]}" max="${(_c = this.options) === null || _c === void 0 ? void 0 : _c.range[1]}" value="${this.value}">
+                </div>
+            </div>
+        `;
+    }
+    css() {
+        var _a;
+        return `
+            ${this.container} {
+                position: relative;
+            }
+            ${this.container} .rangeSliderBox {
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                align-items: center;
+                justify-content: center;
+                left: 110%;
+                height: 70px;
+                display: none;
+                background: #fff;
+                border-radius: 20px;
+                padding: 10px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px;
+                z-index: 1;
+            }
+            ${this.container} .rangeSliderBox__reset {
+                display: ${((_a = this.options) === null || _a === void 0 ? void 0 : _a.default) == null ? "none" : "flex"};
+                justify-content: center;
+                align-items: center;
+                height: fit-content;
+                padding-right: 10px;
+            }
+            ${this.container} .rangeSliderBox__input {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+            }
+            ${this.container} .rangeSliderBox .range {
+                height: 10px;
+                border-radius: 20px;
+                outline: none;
+                opacity: 0.9;
+                transition: opacity 0.2s;
+                border: none;
+            }
+            ${this.container} .rangeSliderBox .showRange {
+                border: none;
+            }
+        `;
     }
 }
 
@@ -11572,6 +12185,103 @@ class Username {
 
 /***/ }),
 
+/***/ "./src/dist/module/Web-Development/components/upload/UploadFile.js":
+/*!*************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/upload/UploadFile.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ UploadFile)
+/* harmony export */ });
+class UploadFile {
+    constructor(ele1, cb) {
+        this.$ele1 = $(ele1);
+        this.$ele1.after(`<input type="file" id="" name="" hidden>`);
+        this.$ele2 = this.$ele1.siblings('input');
+        this.openFile();
+        this.$ele2.on("input", e => {
+            var _a;
+            const target = e.target;
+            const file = (_a = target.files) === null || _a === void 0 ? void 0 : _a[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (readerEvent) => {
+                    var _a;
+                    const imgElement = document.createElement("img");
+                    imgElement.src = (_a = readerEvent.target) === null || _a === void 0 ? void 0 : _a.result;
+                    imgElement.onload = (imgEvent) => {
+                        cb(imgEvent.target.src);
+                    };
+                };
+            }
+        });
+    }
+    openFile() {
+        this.$ele1.click(e => {
+            e.stopPropagation();
+            this.$ele2.click();
+        });
+    }
+    createCanvas(width, height) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = width;
+        canvas.height = height;
+        return [canvas, ctx];
+    }
+    drawImage(e, ctx, x, y, scale, angle, canvas, containerWidth, containerHeight) {
+        const ratioX = canvas.width / containerWidth;
+        const ratioY = canvas.height / containerHeight;
+        let finalX = x * ratioX;
+        let finalY = y * ratioY;
+        let midleWidth = e.width * ratioX;
+        let midleHeight = e.height * ratioY;
+        let finalWidth = e.width * ratioX * scale;
+        let finalHeight = e.height * ratioY * scale;
+        ctx.save();
+        ctx.translate(finalX + midleWidth / 2, finalY + midleHeight / 2);
+        ctx.rotate((angle * Math.PI) / 180);
+        ctx.drawImage(e, -finalWidth / 2, -finalHeight / 2, finalWidth, finalHeight);
+        ctx.restore();
+        const src = ctx.canvas.toDataURL(e);
+        const srcEncoded = ctx.canvas.toDataURL(e).split(",")[1];
+        return [ctx, src, srcEncoded];
+    }
+    drawColor(type, color, ctx, width, ratio) {
+        if (type === "")
+            color = "#ffffff";
+        if (type === "gradient") {
+            const breakdownArr = color.split(",");
+            var [angle, color1, percent1, color2, percent2] = [Number(breakdownArr[0]), breakdownArr[1], Number(breakdownArr[2]), breakdownArr[3], Number(breakdownArr[4])];
+            const radians = (angle - 180) * Math.PI / 180;
+            const x0 = width / 2 + (width / 2) * Math.cos(radians - Math.PI / 2);
+            const y0 = width * ratio / 2 + (width * ratio / 2) * Math.sin(radians - Math.PI / 2);
+            const x1 = width / 2 - (width / 2) * Math.cos(radians - Math.PI / 2);
+            const y1 = width * ratio / 2 - (width * ratio / 2) * Math.sin(radians - Math.PI / 2);
+            const gradient = ctx.createLinearGradient(x0, y0, x1, y1);
+            gradient.addColorStop(percent1 / 100, color1);
+            gradient.addColorStop(percent2 / 100, color2);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, width * ratio);
+            const srcEncoded = ctx.canvas.toDataURL().split(",")[1];
+            return [ctx, srcEncoded];
+        }
+        else {
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            const srcEncoded = ctx.canvas.toDataURL().split(",")[1];
+            return [ctx, srcEncoded];
+        }
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/pages/adminPage.js":
 /*!********************************************!*\
   !*** ./src/dist/module/pages/adminPage.js ***!
@@ -11587,7 +12297,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
-/* harmony import */ var _settings_Background__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./settings/Background */ "./src/dist/module/pages/settings/Background.js");
+/* harmony import */ var _settings_SettingUI__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./settings/SettingUI */ "./src/dist/module/pages/settings/SettingUI.js");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -11652,8 +12362,12 @@ function adminPage(props) {
             doc.save("img/back.pdf");
         });
     }));
-    const css = props['css'];
-    const back = new _settings_Background__WEBPACK_IMPORTED_MODULE_3__["default"](".setting_bar .background", css.background, "#background");
+    const settingUI = new _settings_SettingUI__WEBPACK_IMPORTED_MODULE_3__.SettingUI({
+        css: props['css'],
+        imgPath: props['imgPath'],
+        username: props['username'],
+        imgName: props['imgName'],
+    });
 }
 
 
@@ -11769,6 +12483,276 @@ function bioPage(props) {
 
 /***/ }),
 
+/***/ "./src/dist/module/pages/components/AvatarButton.js":
+/*!**********************************************************!*\
+  !*** ./src/dist/module/pages/components/AvatarButton.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AvatarButton)
+/* harmony export */ });
+class AvatarButton {
+    constructor(container) {
+        this.container = container;
+        this.render();
+        this.upload = {
+            class: this.container + " .upload",
+            element: document.querySelector(this.container + " .upload"),
+        };
+        this.delete = {
+            class: this.container + " .delete",
+            element: document.querySelector(this.container + " .delete"),
+        };
+        this.edit = {
+            class: this.container + " .edit",
+            element: document.querySelector(this.container + " .edit"),
+        };
+        this.reset = {
+            class: this.container + " .reset",
+            element: document.querySelector(this.container + " .reset"),
+        };
+        this.disableEdit();
+    }
+    getUpload() {
+        return this.upload;
+    }
+    getDelete() {
+        return this.delete;
+    }
+    getEdit() {
+        return this.edit;
+    }
+    getReset() {
+        return this.reset;
+    }
+    disableDelete() {
+        $(this.getDelete().class).hide();
+    }
+    enableDelete() {
+        $(this.getDelete().class).css({
+            "display": "flex"
+        });
+    }
+    disableEdit() {
+        $(this.getEdit().class).hide();
+    }
+    enableEdit() {
+        $(this.getEdit().class).css({
+            "display": "flex"
+        });
+    }
+    render() {
+        const style = document.createElement("style");
+        style.textContent = this.css();
+        document.head.append(style);
+        const $container = $(this.container);
+        $container.append(this.html());
+    }
+    html() {
+        return `
+            <div class="avaBtn upload"><i class="fa-solid fa-arrow-up"></i> Upload</div>
+            <div class="avaBtn delete"><i class="fa-solid fa-trash"></i></div>
+            <div class="avaBtn edit">Edit</div>
+            <div class="avaBtn reset">Reset</div>
+        `;
+    }
+    css() {
+        return `
+            ${this.container} {
+                position: relative;
+            }
+            ${this.container} .avaBtn {
+                position: absolute;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+                padding: 10px;
+                background: #fff;
+                border-radius: 20px;
+                z-index: 20;
+                cursor: pointer;
+            }
+            ${this.container} .upload {
+                top: 5%;
+                right: -20%;
+            }
+            ${this.container} .delete {
+                top: 5%;
+                left: 5%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: red;
+                color: #fff;
+            }
+            ${this.container} .edit {
+                bottom: 5%;
+                right: 0%;
+            }
+            ${this.container} .reset {
+                bottom: 5%;
+                left: 0%;
+            }
+        `;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/components/EditAvatar.js":
+/*!********************************************************!*\
+  !*** ./src/dist/module/pages/components/EditAvatar.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ EditAvatar)
+/* harmony export */ });
+class EditAvatar {
+    constructor(container) {
+        this.container = container;
+        this.render();
+        this.avaEdit = {
+            class: this.container + " #avaEdit",
+            element: document.querySelector("avaEdit")
+        };
+        this.frame = {
+            class: this.container + " .frame",
+            element: document.querySelector(this.container + " .frame")
+        };
+        this.wrapper = {
+            class: ".img__wrapper",
+            element: document.querySelector(this.container + " .img__wrapper")
+        };
+        this.img = {
+            class: this.container + " .img__wrapper > img",
+            element: document.querySelector(this.container + " .img__wrapper > img")
+        };
+        this.accept = {
+            class: this.container + " .accept",
+            element: document.querySelector(this.container + " .accept")
+        };
+        this.cancel = {
+            class: this.container + " .cancel",
+            element: document.querySelector(this.container + " .cancel")
+        };
+    }
+    getAvaEdit() {
+        return this.avaEdit;
+    }
+    getFrame() {
+        return this.frame;
+    }
+    getWrapper() {
+        return this.wrapper;
+    }
+    getImg() {
+        return this.img;
+    }
+    getAccept() {
+        return this.accept;
+    }
+    getCancel() {
+        return this.cancel;
+    }
+    show() {
+        $(this.getAvaEdit().class).css({
+            "display": "flex"
+        });
+    }
+    hide() {
+        $(this.getAvaEdit().class).css({
+            "display": "none"
+        });
+    }
+    render() {
+        const style = document.createElement("style");
+        style.textContent = this.css();
+        document.head.append(style);
+        const $body = $(this.container);
+        $body.append(this.html());
+    }
+    html() {
+        return `
+            <div id="avaEdit">
+                <h1 class="heading">Resize your picture</h1>
+                <div class="frame">
+                    <div class="img__wrapper">
+                        <img src="">
+                    </div>
+                </div>
+                <div class="avaEdit__btn">
+                    <div class="avaEdit__btn--btn cancel">Cancel</div>
+                    <div class="avaEdit__btn--btn accept">Accept</div>
+                </div>
+            </div>
+        `;
+    }
+    css() {
+        return `
+            ${this.container} {
+                position: relative;
+            }
+            ${this.container} #avaEdit {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 99;
+                width: 100vw;
+                height: 100vh;
+                height: 100svh;
+                height: 100dvh;
+                background-color: #00000063;
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+                display: none;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            ${this.container} #avaEdit .heading {
+                color: #fff;
+            }
+            ${this.container} #avaEdit .frame {
+                width: 80%;
+                aspect-ratio: 1;
+                border: dashed 3px #000;
+                background-color: #fff;
+                border-radius: 50%;
+                position: relative;
+                overflow: hidden;
+            }
+            ${this.container} #avaEdit .img__wrapper > img {
+                width: 100%;
+            }
+            ${this.container} #avaEdit .avaEdit__btn {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            ${this.container} #avaEdit .avaEdit__btn--btn {
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+                padding: 20px;
+                background: #fff;
+                border-radius: 30px;
+                cursor: pointer;
+            }
+        `;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/pages/restore.js":
 /*!******************************************!*\
   !*** ./src/dist/module/pages/restore.js ***!
@@ -11817,6 +12801,115 @@ function restore(props) {
 
 /***/ }),
 
+/***/ "./src/dist/module/pages/settings/Avatar.js":
+/*!**************************************************!*\
+  !*** ./src/dist/module/pages/settings/Avatar.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Avatar: () => (/* binding */ Avatar)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+/* harmony import */ var _components_EditAvatar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/EditAvatar */ "./src/dist/module/pages/components/EditAvatar.js");
+/* harmony import */ var _components_AvatarButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AvatarButton */ "./src/dist/module/pages/components/AvatarButton.js");
+/* harmony import */ var _Web_Development_WW__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+class Avatar {
+    constructor(options) {
+        this.avatarButton = new _components_AvatarButton__WEBPACK_IMPORTED_MODULE_2__["default"]("#avatar__container");
+        this.editAvatar = new _components_EditAvatar__WEBPACK_IMPORTED_MODULE_1__["default"]("#admin");
+        this.element = document.querySelector(options.img);
+        this.preview = this.editAvatar.getImg().element;
+        this.options = options;
+        this.reset = options.reset;
+        this.src = this.reset;
+        const cancel = this.editAvatar.getCancel().element;
+        const accept = this.editAvatar.getAccept().element;
+        const reset = this.avatarButton.getReset().element;
+        const edit = this.avatarButton.getEdit().element;
+        const deleteBtn = this.avatarButton.getDelete().element;
+        this.upload = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(this.avatarButton.getUpload().class).uploadFile(e => {
+            this.editAvatar.show();
+            this.preview.src = e;
+            this.transform = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(this.editAvatar.getWrapper().class, this.editAvatar.getFrame().class).transform();
+            this.avatarButton.enableEdit();
+        });
+        cancel.addEventListener('click', e => {
+            e.stopPropagation();
+            this.editAvatar.hide();
+        });
+        accept.addEventListener("click", e => {
+            e.stopPropagation();
+            const result = this.apply();
+            this.element.src = result.src;
+            this.setSrc(result.srcEncoded);
+            this.editAvatar.hide();
+        });
+        reset.addEventListener('click', e => {
+            e.stopPropagation();
+            this.setSrc(this.reset);
+            this.element.src = this.reset;
+        });
+        edit.addEventListener('click', e => {
+            e.stopPropagation();
+            this.editAvatar.show();
+        });
+        if (this.options.imgName === 'unknown.png') {
+            this.avatarButton.disableDelete();
+        }
+        else {
+            this.avatarButton.enableDelete();
+            deleteBtn.addEventListener('click', (e) => __awaiter(this, void 0, void 0, function* () {
+                e.stopPropagation();
+                const r = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_3__.$$$)('/data/api/removeAvatar.php', {
+                    username: this.options.username,
+                    img: this.options.imgName
+                }).api().post();
+                if (r) {
+                    this.reset = '/img/unknown.png';
+                    this.setSrc(this.reset);
+                    this.element.src = this.reset;
+                    this.avatarButton.disableDelete();
+                }
+            }));
+        }
+    }
+    setSrc(src) {
+        this.src = src;
+    }
+    getSrc() {
+        return this.src;
+    }
+    apply() {
+        const [canvas, ctx] = this.upload.createCanvas(700, 700);
+        const $container = $(this.editAvatar.getFrame().class);
+        const [x, y, angle] = this.transform.exportData();
+        const [, src, srcEncoded] = this.upload.drawImage(this.preview, ctx, x, y, 1, angle, canvas, $container.width(), $container.height());
+        return {
+            src,
+            srcEncoded
+        };
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/pages/settings/Background.js":
 /*!******************************************************!*\
   !*** ./src/dist/module/pages/settings/Background.js ***!
@@ -11833,12 +12926,163 @@ __webpack_require__.r(__webpack_exports__);
 class Background {
     constructor(container, reset, target) {
         this.reset = reset;
-        this.colorPicker = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(container).colorPicker(color => {
+        this.colorPicker = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(container).colorPickerDouble(color => {
             $(target).css({
                 background: color
             });
         }, {
             default: this.reset,
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/settings/Font.js":
+/*!************************************************!*\
+  !*** ./src/dist/module/pages/settings/Font.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Font)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+
+class Font {
+    constructor(container, reset, target) {
+        this.options = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(container).options(e => {
+            $(target).css({
+                'fontFamily': e
+            });
+        }, {
+            default: reset,
+            list: [
+                "'Exo 2', sans-serif",
+                "'Asap', sans-serif",
+                "'Josefin Sans', sans-serif",
+                "'Macondo', cursive",
+                "'Oleo Script', cursive",
+                "'Pacifico', cursive",
+                "'Playfair Display', serif",
+                "'Tapestry', cursive",
+                "'Titillium Web', sans-serif",
+                "'Yanone Kaffeesatz', sans-serif",
+                "'Zen Loop', cursive",
+                "'Bebas Neue'",
+                "'Joan'",
+                "'Joan'",
+                "'Montserrat'",
+                "'Nunito Sans'",
+                "'Playfair Display'",
+                "'Roboto Slab'",
+                "'Source Sans Pro'",
+                "'Tai Heritage Pro'",
+                "'Ubuntu'"
+            ],
+            representative: 'A'
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/settings/FontColor.js":
+/*!*****************************************************!*\
+  !*** ./src/dist/module/pages/settings/FontColor.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FontColor)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+
+class FontColor {
+    constructor(container, reset, target) {
+        this.reset = reset;
+        this.colorPicker = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(container).colorPickerSingle(color => {
+            $(target).css({
+                color: color
+            });
+        }, {
+            default: this.reset,
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/settings/FontSize.js":
+/*!****************************************************!*\
+  !*** ./src/dist/module/pages/settings/FontSize.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FontSize)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+
+class FontSize {
+    constructor(containter, reset, target) {
+        this.rangeSlider = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(containter).rangeSlider(value => {
+            $(target).css({
+                "fontSize": value + "px"
+            });
+        }, {
+            default: reset,
+            unit: "px",
+            range: [0, 25]
+        });
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/dist/module/pages/settings/SettingUI.js":
+/*!*****************************************************!*\
+  !*** ./src/dist/module/pages/settings/SettingUI.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SettingUI: () => (/* binding */ SettingUI)
+/* harmony export */ });
+/* harmony import */ var _Avatar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Avatar */ "./src/dist/module/pages/settings/Avatar.js");
+/* harmony import */ var _Background__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Background */ "./src/dist/module/pages/settings/Background.js");
+/* harmony import */ var _Font__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Font */ "./src/dist/module/pages/settings/Font.js");
+/* harmony import */ var _FontColor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FontColor */ "./src/dist/module/pages/settings/FontColor.js");
+/* harmony import */ var _FontSize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FontSize */ "./src/dist/module/pages/settings/FontSize.js");
+
+
+
+
+
+class SettingUI {
+    constructor(params) {
+        this.params = params;
+        this.background = new _Background__WEBPACK_IMPORTED_MODULE_1__["default"](".setting_bar .background", params.css.background, "#template__background");
+        this.fontSize = new _FontSize__WEBPACK_IMPORTED_MODULE_4__["default"](".setting_bar .fontSize", parseInt(params.css.fontSize), ".template__font");
+        this.font = new _Font__WEBPACK_IMPORTED_MODULE_2__["default"](".setting_bar .font", params.css.font, ".template__font");
+        this.fontColor = new _FontColor__WEBPACK_IMPORTED_MODULE_3__["default"](".setting_bar .fontColor", params.css.fontColor, ".template__font");
+        this.avatar = new _Avatar__WEBPACK_IMPORTED_MODULE_0__.Avatar({
+            reset: params.imgPath,
+            img: "#avatar",
+            username: params.username,
+            imgName: params.imgName,
         });
     }
 }
@@ -16841,4 +18085,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs6aea2df1c89e84d6f7a5.js.map
+//# sourceMappingURL=mainjs91206556224038e1d39c.js.map

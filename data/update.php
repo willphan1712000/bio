@@ -8,7 +8,7 @@
     use Endroid\QrCode\Writer\PngWriter;
     // Database
     $conn = Database::connection();
-    // There are 'info', 'avaDelete'
+    // There are 'info'
     if($body->type === 'info') {
         // Already fetched variables
         $username = $body->username;
@@ -51,12 +51,5 @@
         if($isSuccess && $isVCardSuccess) {
             echo $filename;
         }
-    }
-    elseif ($body->type === 'avaDelete') {
-        $username = $body->username;
-        $filename = $body->img;
-        $fileRemoved = unlink("../user/".$username."/".$filename) ? true : false;
-        $dbRemoved = mysqli_query($conn, "UPDATE info SET image = '' WHERE username = '$username'") ? true : false;
-        echo ($fileRemoved && $dbRemoved) ? true : false;
     }
 ?>

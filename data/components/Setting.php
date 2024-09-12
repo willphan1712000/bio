@@ -20,6 +20,10 @@ class Setting {
                     padding: 10px;
                     align-items: center;
                 }
+                '.$this->props["container"].' .setting_bar::-webkit-scrollbar {
+                    display: none;
+                }
+                    
                 '.$this->props["container"].' .setting_bar .ele {
                     display: flex;
                     justify-content: center;
