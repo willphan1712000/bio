@@ -7,19 +7,9 @@ class Template1 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
         $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
 <style>
 #social-media {
     padding: 0% 8%;
@@ -43,7 +33,6 @@ class Template1 extends Template {
     margin: 0 auto;
   }
   .div-2 {
-    background-color: '.$props['css']['background'].';
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -61,6 +50,7 @@ class Template1 extends Template {
     justify-content: center;
     height: 132px;
     padding: 0 4px;
+    margin-top: 20px;
   }
   .img {
     aspect-ratio: 1;
@@ -72,12 +62,10 @@ class Template1 extends Template {
   .div-4 {
     margin-top: 15px;
     text-align: center;
-    font-family: '.$props['css']['font'].';
   }
   .div-5 {
     text-align: center;
     margin-top: 10px;
-    font-family: '.$props['css']['font'].';
   }
   .div-6 {
     border-radius: 5px;
@@ -224,21 +212,33 @@ class Template1 extends Template {
     justify-content: center;
     padding: 18px 60px;
   }
+  #template__background {
+      background: '.$props['css']['background'].';
+  }
+  .template__font {
+      font-family: '.$props['css']['font'].';
+      font-size: '.$props['css']['fontSize'].';
+      color: '.$props['css']['fontColor'].';
+  }
+  .template_name {
+    font-size: calc('.$props['css']['fontSize'].' + 15px);
+  }
 </style>
 <div class="div">
-  <div class="div-2">
-    <div class="div-3">
-      <img draggable=false
+  <div class="div-2" id="template__background">
+    <div id="avatar__container" class="div-3">
+      <img id="avatar" draggable=false
         loading="lazy"
         src='.$props['imgPath'].'
         class="img"
       />
     </div>
-    <h1 class="div-4">'.$props['info']->name()[$props['mode']].'</h1>
-    <div class="div-5">
-    '.$props['info']->organization()[$props['mode']].'
-      <br />
-      '.$props['info']->description()[$props['mode']].'
+    <div id="text">
+      <h1 class="div-4 template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+      <p class="div-5 template__font template_org">
+      '.$props['info']->organization()[$props['mode']].'</p>
+        <p class="div-5 template__font template_des">'.$props['info']->description()[$props['mode']].'
+      </p>
     </div>
     '.$props['info']->mobile('<div class="div-6">Contact us</div>')[$props['mode']].'
     <div class="div-7">
@@ -290,7 +290,7 @@ class Template1 extends Template {
     </div>
   </div>
   <div id="social-media">
-    '.$html1.'
+    '.socialMediaIcon($props)->render().'
 </div>
 </div>
 </div>

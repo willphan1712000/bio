@@ -50,6 +50,7 @@ border-radius: 50%;
 .store-title {
 text-shadow: 0 4px 20px rgba(255, 255, 255, 0.25), 0 0 20px #fff;
 text-align: center;
+padding-top: 10px;
 }
 
 .nav-buttons {
@@ -161,9 +162,9 @@ height: 130px;
 <img id="avatar" draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty store logo" />
 </div>
 <div id="text">
-<h1 class="store-title template__font">'.$props['info']->name()[$props['mode']].'</h1>
-<p class="des template__font">'.$props['info']->organization()[$props['mode']].'</p>
-<p class="des template__font">'.$props['info']->description()[$props['mode']].'</p>
+<h1 class="store-title template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+<p class="des template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+<p class="des template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
 </div>
 <nav class="nav-buttons">
 '.$props['info']->social('Website', '<div class="nav-button">Shop All</div>')[$props['mode']].'

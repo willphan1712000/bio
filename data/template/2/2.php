@@ -7,26 +7,15 @@ class Template2 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
         $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
 <style>
   .element {
     padding: 0px 10px 0px 10px;
   }
   .div {
     border-radius: 20px;
-    background-color: #fff;
     display: flex;
     max-width: 480px;
     width: 100%;
@@ -34,7 +23,6 @@ class Template2 extends Template {
     align-items: center;
     margin: 0 auto;
     padding-bottom: 10%;
-    background: '.$props['css']['background'].';
   }
   .img {
     aspect-ratio: 1.25;
@@ -47,13 +35,11 @@ class Template2 extends Template {
   .div-2 {
     margin-top: 15px;
     text-align: center;
-    font-family: '.$props['css']['font'].';
   }
   .div-3 {
     margin-top: 10px;
     text-align: center;
     padding: 0px 20px;
-    font-family: '.$props['css']['font'].';
   }
   .div-4 {
     border-color: rgba(165, 165, 165, 1);
@@ -266,16 +252,31 @@ class Template2 extends Template {
     margin-top: 56px;
     font: 400 25px Lilita One, sans-serif;
   }
+  #template__background {
+    background: '.$props['css']['background'].';
+  }
+  .template__font {
+      font-family: '.$props['css']['font'].';
+      font-size: '.$props['css']['fontSize'].';
+      color: '.$props['css']['fontColor'].';
+  }
+  .template_name {
+      font-size: calc('.$props['css']['fontSize'].' + 15px);
+  }
 </style>
 <div class="div">
+  <div id="avatar__container">
   <img draggable=false
     loading="lazy"
     src="'.$props['imgPath'].'"
-    class="img"
+    class="img" id="avatar"
   />
-  <h1 class="div-2">'.$props['info']->name()[$props['mode']].'</h1>
-  <div class="div-3">'.$props['info']->organization()[$props['mode']].'</div>
-  <div class="div-3">'.$props['info']->description()[$props['mode']].'</div>
+  </div>
+  <div id="text">
+  <h1 class="div-2 template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+  <div class="div-3 template__font template_org">'.$props['info']->organization()[$props['mode']].'</div>
+  <div class="div-3 template__font template_des">'.$props['info']->description()[$props['mode']].'</div>
+  </div>
   <div class="div-4"></div>
 
   <div class="element div-5 div-element">

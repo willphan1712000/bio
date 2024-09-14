@@ -5,6 +5,7 @@ import ColorPickerDouble from "./components/colorPicker/ColorPickerDouble";
 import { Options } from "./components/options/Options";
 import Transform from "./components/Transform/Transform";
 import UploadFile from "./components/upload/UploadFile";
+import TextEditor from "./components/textEditor/TextEditor";
 export function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
@@ -49,6 +50,9 @@ export class W1 {
     }
     uploadFile(cb) {
         return new UploadFile(this.ele1, cb);
+    }
+    textEditor(cb) {
+        return new TextEditor(this.ele1, cb);
     }
 }
 export class W2 {

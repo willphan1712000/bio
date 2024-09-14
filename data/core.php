@@ -11,7 +11,7 @@ require_once "backend/Purchase.php";
 require_once "backend/Schema.php";
 
 class ProductionConfig {
-    private static $mode = "development"; // mode (development or production)
+    private static $mode = "production"; // mode (development or production)
     public static $version = "6.2"; // version of the product
 
     public static function database() {

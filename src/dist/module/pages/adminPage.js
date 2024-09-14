@@ -7,10 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import Swiper from "swiper";
 import { SettingUI } from "./settings/SettingUI";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 export default function adminPage(props) {
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',

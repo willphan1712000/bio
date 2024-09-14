@@ -7,19 +7,9 @@ class Template3 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
         $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
             <style>
               #social-media {
                 padding: 0% 8%;
@@ -32,9 +22,9 @@ class Template3 extends Template {
             .social__img i {
               font-size: 20px;
             }
-              .socialUser {
-                background-color: #d9ad89; 
-              }
+            .socialUser {
+              background-color: #d9ad89 !important;
+            }
             a {
               display: flex;
                 justify-content: center;
@@ -52,7 +42,6 @@ class Template3 extends Template {
             }
 
             .content-wrapper {
-              background-color: '.$props['css']['background'].';
               display: flex;
               width: 100%;
               flex-direction: column;
@@ -65,7 +54,6 @@ class Template3 extends Template {
               aspect-ratio: 1;
               object-fit: cover;
               object-position: center;
-              width: 60%;
               max-width: 100%;
               border-radius: 50%;
             }
@@ -73,13 +61,11 @@ class Template3 extends Template {
             .shop-title {
               margin-top: 15px;
               text-align: center;
-              font-family: '.$props['css']['font'].';
             }
 
             .tagline {
               margin-top: 9px;
               text-align: center;
-              font-family: '.$props['css']['font'].';
             }
 
             .icon-container {
@@ -212,14 +198,39 @@ class Template3 extends Template {
               white-space: nowrap;
               border: 0;
             }
+            #template__background {
+              background: '.$props['css']['background'].';
+            }
+            .template__font {
+                font-family: '.$props['css']['font'].';
+                font-size: '.$props['css']['fontSize'].';
+                color: '.$props['css']['fontColor'].';
+            }
+            .template_name {
+                font-size: calc('.$props['css']['fontSize'].' + 15px);
+            }
+            #avatar__container {
+              border-radius: 50%;
+              display: flex;
+              width: 193px;
+              height: 193px;
+              align-items: center;
+              justify-content: center;
+              padding: 0 9px;
+              box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
             </style>
 
             <section class="jewelry-shop">
-              <div class="content-wrapper">
-                <img draggable=false loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
-                <h1 class="shop-title">'.$props['info']->name()[$props['mode']].'</h1>
-                <p class="tagline">'.$props['info']->organization()[$props['mode']].'</p>
-                <p class="tagline">'.$props['info']->description()[$props['mode']].'</p>
+              <div class="content-wrapper" id="template__background">
+              <div id="avatar__container">
+                <img id="avatar" draggable=false loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
+              </div>
+              <div id="text">
+                <h1 class="shop-title template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+                <p class="tagline template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+                <p class="tagline template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
+              </div>
                 <nav class="icon-container">
                 '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />')[$props['mode']].'
                 '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c9ca01f01fe0de3d01068aced92664353afad2a7eeee4339b0dab4121cd67c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-2" alt="Navigation Icon 2" />')[$props['mode']].'
@@ -227,7 +238,7 @@ class Template3 extends Template {
                 '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/694401f71d23033db96ad84981d7524d368ecc4480b88c1b64088c0d17b72dc6?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-4" alt="Navigation Icon 4" />')[$props['mode']].'
                 '.$props['info']->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />')[$props['mode']].'
                 </nav>
-                <div id="social-media">'.$html1.'</div>
+                <div id="social-media">'.socialMediaIcon($props)->render().'</div>
               </div>
             </section>
             </div>

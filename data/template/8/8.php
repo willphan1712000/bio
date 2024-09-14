@@ -7,19 +7,9 @@ class Template8 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
         $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
 <style>
   #social-media {
     padding: 0% 8%;
@@ -33,7 +23,6 @@ class Template8 extends Template {
 }
 .doctor-card {
   border-radius: 30px;
-  background: '.$props['css']['background'].';
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -61,13 +50,11 @@ class Template8 extends Template {
 
 .doctor-name {
   text-align: center;
-  font-family: '.$props['css']['font'].';
 }
 
 .experience {
   margin-top: 10px;
   text-align: center;
-  font-family: '.$props['css']['font'].';
 }
 
 .hospital-info {
@@ -89,7 +76,6 @@ class Template8 extends Template {
 
 .hospital-name {
   flex-grow: 1;
-  font-family: '.$props['css']['font'].';
 }
 
 .age-info {
@@ -141,20 +127,32 @@ class Template8 extends Template {
   white-space: nowrap;
   border: 0;
 }
+  #template__background {
+    background: '.$props['css']['background'].';
+}
+.template__font {
+    font-family: '.$props['css']['font'].';
+    font-size: '.$props['css']['fontSize'].';
+    color: '.$props['css']['fontColor'].';
+}
+.template_name {
+    font-size: calc('.$props['css']['fontSize'].' + 15px);
+}
 </style>
 
-<article class="doctor-card">
-  <img draggable=false src='.$props['imgPath'].' alt="" class="doctor-image" />
-  <div class="doctor-info">
-    <h2 class="doctor-name">'.$props['info']->name()[$props['mode']].'</h2>
-    <p class="experience">'.$props['info']->organization()[$props['mode']].'</p>
+<article class="doctor-card" id="template__background">
+<div id="avatar__container">
+  <img id="avatar" draggable=false src='.$props['imgPath'].' alt="" class="doctor-image" /></div>
+  <div class="doctor-info" id="text">
+    <h2 class="doctor-name template__font template_name">'.$props['info']->name()[$props['mode']].'</h2>
+    <p class="experience template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
     <div class="hospital-info">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/776e3cfcfa82d98d51a9f608fe60490dbe6c756636ef36cde209a8f7bef2c756?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="hospital-icon" />
-      <p class="hospital-name">'.$props['info']->description()[$props['mode']].'</p>
+      <p class="hospital-name template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
     </div>
   </div>
   <div id="social-media">
-    '.$html1.'
+    '.socialMediaIcon($props)->render().'
 </div>
 
   <nav class="social-icons">

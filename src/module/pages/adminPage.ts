@@ -1,7 +1,7 @@
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import Swiper from "swiper";
 import { SettingUI } from "./settings/SettingUI";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface Props {
     [key: string]: string
@@ -62,8 +62,8 @@ export default function adminPage(props: Props) {
             doc.save("img/back.pdf");
         })
     })
-
     
+    // Setting operations
     const settingUI = new SettingUI({
         css: props['css'],
         imgPath: props['imgPath'],

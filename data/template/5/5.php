@@ -7,23 +7,12 @@ class Template5 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
         $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
 <style>
 .bakery-container {
   border-radius: 30px;
-  background: '.$props['css']['background'].';
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -43,7 +32,6 @@ class Template5 extends Template {
 .tagline {
   margin-top: 2%;
   padding: 0% 10%;
-  font-family: '.$props['css']['font'].';
 }
 
 .feature-grid {
@@ -138,17 +126,29 @@ class Template5 extends Template {
 }
 .backdrop-child > h1 {
   margin-top: 3%;
-  font-family: '.$props['css']['font'].';
 }
+  #template__background {
+      background: '.$props['css']['background'].';
+    }
+    .template__font {
+        font-family: '.$props['css']['font'].';
+        font-size: '.$props['css']['fontSize'].';
+        color: '.$props['css']['fontColor'].';
+    }
+    .template_name {
+        font-size: calc('.$props['css']['fontSize'].' + 15px);
+    }
 </style>
 
-<main class="bakery-container">
+<main class="bakery-container" id="template__background">
   <div class="backdrop">
-    <img draggable=false src="'.$props['imgPath'].'" alt="Bakery storefront" class="hero-image" />
-    <div class="backdrop-child">
-      <h1>'.$props['info']->name()[$props['mode']].'</h1>
-      <p class="tagline">'.$props['info']->organization()[$props['mode']].'</p>
-      <p class="tagline">'.$props['info']->description()[$props['mode']].'</p>
+  <div id="avatar__container">
+    <img id="avatar" draggable=false src="'.$props['imgPath'].'" alt="Bakery storefront" class="hero-image" />
+    </div>
+    <div class="backdrop-child" id="text">
+      <h1 class="template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+      <p class="tagline template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+      <p class="tagline template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
     </div>
   </div>
   

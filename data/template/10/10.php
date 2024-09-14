@@ -7,19 +7,9 @@ class Template10 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
         $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
 <style>
   #social-media {
     padding: 0% 8%;
@@ -29,12 +19,14 @@ class Template10 extends Template {
     align-items: center;
     margin-bottom: 2%;
 }
+  .socialUser {
+    background-color: #d9d9d9 !important;
+  }
 .social__img i {
   font-size: 20px;
 }
 .fashion-show-container {
   border-radius: 30px;
-  background-color: '.$props['css']['background'].';
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -59,13 +51,11 @@ class Template10 extends Template {
 .des {
   text-align: center;
   padding: 0px 15px;
-  font-family: '.$props['css']['font'].';
 }
 
 .main-title {
   margin-top: 10px;
   text-align: center;
-  font-family: '.$props['css']['font'].';
 }
 
 .social-links {
@@ -129,13 +119,30 @@ class Template10 extends Template {
 .socialUser {
   background-color: #f0f0f0;
 }
+  #template__background {
+    background: '.$props['css']['background'].';
+}
+.template__font {
+    font-family: '.$props['css']['font'].';
+    font-size: '.$props['css']['fontSize'].';
+    color: '.$props['css']['fontColor'].';
+}
+.template_name {
+    font-size: calc('.$props['css']['fontSize'].' + 15px);
+}
+#avatar__container {
+    margin-top: 35px;
+}
 </style>
 
-<main class="fashion-show-container">
-  <img draggable=false src="'.$props['imgPath'].'" alt="Fashion Show Hero Image" class="hero-image" />
-  <h1 class="main-title">'.$props['info']->name()[$props['mode']].'</h1>
-  <p class="des">'.$props['info']->organization()[$props['mode']].'</p>
-  <p class="des">'.$props['info']->description()[$props['mode']].'</p>
+<main class="fashion-show-container" id="template__background">
+<div id="avatar__container">
+  <img 	id="avatar" draggable=false src="'.$props['imgPath'].'" alt="Fashion Show Hero Image" class="hero-image" /></div>
+  <div id="text">
+  <h1 class="main-title template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+  <p class="des template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+  <p class="des template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
+  </div>
   <nav class="social-links">
   '.$props['info']->social('Facebook', ' <div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc6f0cf7b4c3eb8e670601c61cc30afc7ea46efe75ca8f98a5f8f9649aee6497?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
@@ -153,7 +160,7 @@ class Template10 extends Template {
   '.$props['info']->social('Website', '<div class="cta-button" role="button">Website</div>')[$props['mode']].'
   '.$props['info']->mobile('<div class="cta-button" role="button">Contact</div>')[$props['mode']].'
   <div id="social-media">
-    '.$html1.'
+    '.socialMediaIcon($props)->render().'
 </div>
 </main>
 </div>

@@ -5,6 +5,7 @@ import Background from "./Background";
 import Font from "./Font";
 import FontColor from "./FontColor";
 import FontSize from "./FontSize";
+import Info from "./Info";
 
 export type Params = {
     css: any,
@@ -20,6 +21,7 @@ export class SettingUI {
     private font : Font;
     private fontColor: FontColor;
     private avatar: Avatar;
+    private info: Info;
 
     constructor(params: Params) {
         this.params = params;
@@ -34,5 +36,6 @@ export class SettingUI {
             username: params.username,
             imgName: params.imgName,
         })
+        this.info = new Info({name: ".template_name", target: ".card-back-container .name"}, {name: ".template_org", target: ".card-back-container .organization"}, {name: ".template_des", target: ""});
     }
 }

@@ -7,19 +7,9 @@ class Template4 extends Template {
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
-            }
-        }
         
             $html = '
-            <div id="template-container" style=" color: '.$props['css']['fontColor'].'; font-size: '.$props['css']['fontSize'].';">
+            <div id="template-container">
 <style>
 #social-media {
   padding: 0% 8%;
@@ -59,7 +49,6 @@ class Template4 extends Template {
 
 .header-section {
   position: relative;
-  background: '.$props['css']['background'].';
   align-self: stretch;
   display: flex;
   width: 100%;
@@ -103,14 +92,12 @@ class Template4 extends Template {
 
 .store-title {
   text-align: center;
-  margin-top: 25%;
-  font-family: '.$props['css']['font'].';
+  margin-top: 30%;
 }
 
 .store-tagline {
   text-align: center;
   margin-top: 8px;
-  font-family: '.$props['css']['font'].';
 }
 
 .social-icons {
@@ -177,20 +164,33 @@ class Template4 extends Template {
   margin: 0% 1%;
   align-self: stretch;
 }
+  #template__background {
+      background: '.$props['css']['background'].';
+    }
+    .template__font {
+        font-family: '.$props['css']['font'].';
+        font-size: '.$props['css']['fontSize'].';
+        color: '.$props['css']['fontColor'].';
+    }
+    .template_name {
+        font-size: calc('.$props['css']['fontSize'].' + 15px);
+    }
 </style>
 
 <main class="beauty-store-container">
   <div class="content-wrapper">
     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c4b2362f6ba779394de3a3b1b8f2e67bf84ed59db574f51e0bff4ad560120f8c?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="background-image" alt="" />
-    <header class="header-section">
+    <header class="header-section" id="template__background">
       <div class="logo-container">
-        <div class="logo-wrapper">
-          <img draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty Store Logo" />
+        <div class="logo-wrapper" id="avatar__container">
+          <img id="avatar" draggable=false loading="lazy" src="'.$props['imgPath'].'" class="logo" alt="Beauty Store Logo" />
         </div>
       </div>
-      <h1 class="store-title">'.$props['info']->name()[$props['mode']].'</h1>
-      <p class="store-tagline">'.$props['info']->organization()[$props['mode']].'</p>
-      <p class="store-tagline">'.$props['info']->description()[$props['mode']].'</p>
+      <div id="text">
+      <h1 class="store-title template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+      <p class="store-tagline template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+      <p class="store-tagline template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
+      </div>
     </header>
     <nav class="social-icons">
     '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4ea41de828736f1e15f80c9282ea77b388e47791a9c9f62b7f37ddd55e4f9230?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon" alt="Social Media Icon" />')[$props['mode']].'
@@ -207,7 +207,7 @@ class Template4 extends Template {
       <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/0f9b8c07f7ca146900402bf6683a3f7d6bc792db71df115bf9454f37b3385e94?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="footer-line" alt="" />
     </div>
     <div id="social-media">
-    '.$html1.'
+    '.socialMediaIcon($props)->render().'
 </div>
     </footer>
   </div>

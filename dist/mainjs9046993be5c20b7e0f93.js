@@ -10083,6 +10083,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_options_Options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/options/Options */ "./src/dist/module/Web-Development/components/options/Options.js");
 /* harmony import */ var _components_Transform_Transform__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Transform/Transform */ "./src/dist/module/Web-Development/components/Transform/Transform.js");
 /* harmony import */ var _components_upload_UploadFile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/upload/UploadFile */ "./src/dist/module/Web-Development/components/upload/UploadFile.js");
+/* harmony import */ var _components_textEditor_TextEditor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/textEditor/TextEditor */ "./src/dist/module/Web-Development/components/textEditor/TextEditor.js");
+
 
 
 
@@ -10134,6 +10136,9 @@ class W1 {
     }
     uploadFile(cb) {
         return new _components_upload_UploadFile__WEBPACK_IMPORTED_MODULE_6__["default"](this.ele1, cb);
+    }
+    textEditor(cb) {
+        return new _components_textEditor_TextEditor__WEBPACK_IMPORTED_MODULE_7__["default"](this.ele1, cb);
     }
 }
 class W2 {
@@ -12185,6 +12190,39 @@ class Username {
 
 /***/ }),
 
+/***/ "./src/dist/module/Web-Development/components/textEditor/TextEditor.js":
+/*!*****************************************************************************!*\
+  !*** ./src/dist/module/Web-Development/components/textEditor/TextEditor.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TextEditor)
+/* harmony export */ });
+class TextEditor {
+    constructor(element, cb) {
+        this.element = element;
+        const elementHtml = document.querySelector(this.element);
+        this.text = elementHtml.textContent;
+        elementHtml.contentEditable = 'true';
+        elementHtml.addEventListener("input", e => {
+            this.setText(elementHtml.textContent);
+            cb(elementHtml.textContent);
+        });
+    }
+    setText(text) {
+        this.text = text;
+    }
+    getText() {
+        return this.text;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/Web-Development/components/upload/UploadFile.js":
 /*!*************************************************************************!*\
   !*** ./src/dist/module/Web-Development/components/upload/UploadFile.js ***!
@@ -12293,11 +12331,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ adminPage)
 /* harmony export */ });
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
-/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
-/* harmony import */ var _settings_SettingUI__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./settings/SettingUI */ "./src/dist/module/pages/settings/SettingUI.js");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
+/* harmony import */ var _settings_SettingUI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./settings/SettingUI */ "./src/dist/module/pages/settings/SettingUI.js");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12312,14 +12350,14 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 
 
 function adminPage(props) {
-    const swiper = new swiper__WEBPACK_IMPORTED_MODULE_2__["default"]('.swiper', {
+    const swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper', {
         direction: 'horizontal',
         loop: false
     });
     $("#setting .image").click(() => __awaiter(this, void 0, void 0, function* () {
         const front = document.querySelector("#template-container");
         const front_d = front.getBoundingClientRect();
-        html2canvas__WEBPACK_IMPORTED_MODULE_0___default()(front, {
+        html2canvas__WEBPACK_IMPORTED_MODULE_2___default()(front, {
             width: front_d.width,
             height: front_d.height,
             x: 0,
@@ -12329,7 +12367,7 @@ function adminPage(props) {
             const r = canvas.width / canvas.height;
             const width = 200;
             const height = width / r;
-            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]({
+            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_3__["default"]({
                 orientation: 'portrait',
                 unit: 'px',
                 format: [width, height]
@@ -12341,7 +12379,7 @@ function adminPage(props) {
         });
         const back = document.querySelector(".card-back-container");
         const back_d = back.getBoundingClientRect();
-        html2canvas__WEBPACK_IMPORTED_MODULE_0___default()(back, {
+        html2canvas__WEBPACK_IMPORTED_MODULE_2___default()(back, {
             width: back_d.width,
             height: back_d.height,
             x: 0,
@@ -12351,7 +12389,7 @@ function adminPage(props) {
             const r = canvas.width / canvas.height;
             const width = 200;
             const height = width / r;
-            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_1__["default"]({
+            const doc = new jspdf__WEBPACK_IMPORTED_MODULE_3__["default"]({
                 orientation: 'portrait',
                 unit: 'px',
                 format: [width, height]
@@ -12362,7 +12400,7 @@ function adminPage(props) {
             doc.save("img/back.pdf");
         });
     }));
-    const settingUI = new _settings_SettingUI__WEBPACK_IMPORTED_MODULE_3__.SettingUI({
+    const settingUI = new _settings_SettingUI__WEBPACK_IMPORTED_MODULE_1__.SettingUI({
         css: props['css'],
         imgPath: props['imgPath'],
         username: props['username'],
@@ -13050,6 +13088,34 @@ class FontSize {
 
 /***/ }),
 
+/***/ "./src/dist/module/pages/settings/Info.js":
+/*!************************************************!*\
+  !*** ./src/dist/module/pages/settings/Info.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Info)
+/* harmony export */ });
+/* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
+
+class Info {
+    constructor(name, org, des) {
+        this.name = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(name.name).textEditor(e => {
+            $(name.target).html(e);
+        });
+        this.org = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(org.name).textEditor(e => {
+            $(org.target).html(e);
+        });
+        this.des = (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)(des.name).textEditor(e => { });
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/dist/module/pages/settings/SettingUI.js":
 /*!*****************************************************!*\
   !*** ./src/dist/module/pages/settings/SettingUI.js ***!
@@ -13066,6 +13132,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Font__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Font */ "./src/dist/module/pages/settings/Font.js");
 /* harmony import */ var _FontColor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FontColor */ "./src/dist/module/pages/settings/FontColor.js");
 /* harmony import */ var _FontSize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FontSize */ "./src/dist/module/pages/settings/FontSize.js");
+/* harmony import */ var _Info__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Info */ "./src/dist/module/pages/settings/Info.js");
+
 
 
 
@@ -13084,6 +13152,7 @@ class SettingUI {
             username: params.username,
             imgName: params.imgName,
         });
+        this.info = new _Info__WEBPACK_IMPORTED_MODULE_5__["default"]({ name: ".template_name", target: ".card-back-container .name" }, { name: ".template_org", target: ".card-back-container .organization" }, { name: ".template_des", target: "" });
     }
 }
 
@@ -18085,4 +18154,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs91206556224038e1d39c.js.map
+//# sourceMappingURL=mainjs9046993be5c20b7e0f93.js.map
