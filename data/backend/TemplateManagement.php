@@ -14,10 +14,9 @@ class TemplateManagement implements ITemplateManagement {
     }
 
     public static function getProducts() {
-        $r = Database::executeQuery("SELECT * FROM templateInfo");
-        $data = $r['data'];
+        $data = Database_Schema::get_iData()['templateInfo'];
         $product = [];
-        $product[] = "basic";
+        $product[] = "";
         foreach($data as $i => $c) {
             $arr = [];
             $arr['id'] = $c['id'];
