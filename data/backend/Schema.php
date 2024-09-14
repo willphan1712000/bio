@@ -171,4 +171,9 @@ class Database_Schema {
             ],
         ];
     }
+
+    public static function total() {
+        $templateArr = self::get_iData()['templateInfo'];
+        return count($templateArr);
+    }
 }

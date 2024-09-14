@@ -10,9 +10,7 @@ interface ITemplateManagement {
 
 class TemplateManagement implements ITemplateManagement {
     public static function getTotal() {
-        $r = Database::executeQuery("SELECT COUNT(*) AS total FROM templateInfo");
-        $TOTAL = $r['data'][0]['total'];
-        return $TOTAL;
+        return Database_Schema::total();
     }
 
     public static function getProducts() {
