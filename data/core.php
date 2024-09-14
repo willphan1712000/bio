@@ -28,7 +28,8 @@ class ProductionConfig {
                 "servername" => "localhost:3306",
                 "username" => "bio_admin",
                 "password" => "123456", // Default password used by Allinclicks
-                "dbName" => "bio_allinclicks",
+                "dbName" => "bio_test_allinclicks",
+                // "dbName" => "bio_allinclicks",
             ];
         }
     }
