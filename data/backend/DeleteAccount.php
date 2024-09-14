@@ -22,16 +22,10 @@ class DeleteAccount implements IDeleteAccount {
     }
 
     public static function data($username) : bool {
-        $dbDeleted = false;
-        foreach(Database::get_data_model() as $table => $cols) {
-            if(API::DELETE($table, "username = '$username'")) {
-                $dbDeleted = true;
-            } else {
-                $dbDeleted = false;
-                break;
-            }
+        foreach(Database_Schema::get_schema() as $table => $cols) {
+            API::DELETE($table, "username = '$username'");
         }
-        return $dbDeleted;
+        return true;
     }
 
     public static function delete($username) : bool {

@@ -1,13 +1,14 @@
 <?php
 interface Migration {
     public static function add();
+    public static function addIData();
     public static function drop();
 }
 
 class DataMigration extends Database implements Migration {
     public static function add() : bool {
         $dbName = parent::dbName();
-        $data_model = parent::$data_model;
+        $data_model = Database_Schema::get_schema();
         // Data Model
         $model_tables = [];
         $model_table = "";
@@ -56,9 +57,28 @@ class DataMigration extends Database implements Migration {
         return true;
     }
 
+    public static function addIData() : bool {
+        // First, remove every data in the table
+        Database::executeQuery("DELETE FROM templateInfo");
+
+        // Second, add fresh data
+        $iData = Database_Schema::get_iData();
+        foreach($iData as $table => $rows) {
+            foreach($rows as $row) {
+                $value = $row['id'].",'".$row['name']."',".$row['price'].",'".$row['image']."','".$row['description']."','".$row['font']."','".$row['fontSize']."','".$row['fontColor']."','".$row['background']."'";
+                $r = Database::executeQuery("INSERT INTO $table VALUES($value)");
+                if(!$r["success"]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public static function drop() : bool {
         $dbName = parent::dbName();
-        $data_model = parent::$data_model;
+        $data_model = Database_Schema::get_schema();
         // Data Model
         $model_tables = [];
         $model_table = "";

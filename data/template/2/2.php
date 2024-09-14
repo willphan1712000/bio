@@ -2,28 +2,11 @@
 
 class Template2 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '2',
-        'name' => 'Template ID 2',
-        'price' => parent::PRICE,
-        'image' => 'template/2/2.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
         
         $html = '
             <div id="template-container">
@@ -33,7 +16,6 @@ class Template2 extends Template {
   }
   .div {
     border-radius: 20px;
-    background-color: #fff;
     display: flex;
     max-width: 480px;
     width: 100%;
@@ -51,15 +33,11 @@ class Template2 extends Template {
     border-radius: 20px 20px 0px 0px;
   }
   .div-2 {
-    color: #9ece00;
     margin-top: 15px;
-    font: 400 35px Lilita One, sans-serif;
     text-align: center;
   }
   .div-3 {
-    color: #a5a5a5;
     margin-top: 10px;
-    font: 400 15px Mate, sans-serif;
     text-align: center;
     padding: 0px 20px;
   }
@@ -274,15 +252,31 @@ class Template2 extends Template {
     margin-top: 56px;
     font: 400 25px Lilita One, sans-serif;
   }
+  #template__background {
+    background: '.$props['css']['background'].';
+  }
+  .template__font {
+      font-family: '.$props['css']['font'].';
+      font-size: '.$props['css']['fontSize'].';
+      color: '.$props['css']['fontColor'].';
+  }
+  .template_name {
+      font-size: calc('.$props['css']['fontSize'].' + 15px);
+  }
 </style>
 <div class="div">
+  <div id="avatar__container">
   <img draggable=false
     loading="lazy"
     src="'.$props['imgPath'].'"
-    class="img"
+    class="img" id="avatar"
   />
-  <div class="div-2">'.$props['info']->name()['a'].'</div>
-  <div class="div-3">'.$props['info']->description()['a'].'</div>
+  </div>
+  <div id="text">
+  <h1 class="div-2 template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+  <div class="div-3 template__font template_org">'.$props['info']->organization()[$props['mode']].'</div>
+  <div class="div-3 template__font template_des">'.$props['info']->description()[$props['mode']].'</div>
+  </div>
   <div class="div-4"></div>
 
   <div class="element div-5 div-element">
@@ -294,7 +288,7 @@ class Template2 extends Template {
       />
       <div class="div-7">Facebook</div>
     </div>
-    '.$props['info']->social('Facebook', '<div class="div-element-btn">View</div>')['a'].'
+    '.$props['info']->social('Facebook', '<div class="div-element-btn">View</div>')[$props['mode']].'
   </div>
   <div class="div-9"></div>
   <div class="element div-element">
@@ -306,7 +300,7 @@ class Template2 extends Template {
       />
       <div class="div-12">Youtube</div>
     </div>
-    '.$props['info']->social('Youtube', '<div class="div-element-btn">View</div>')['a'].'
+    '.$props['info']->social('Youtube', '<div class="div-element-btn">View</div>')[$props['mode']].'
     
   </div>
   <div class="div-14"></div>
@@ -319,9 +313,8 @@ class Template2 extends Template {
       />
       <div class="div-17">Instagram</div>
     </div>
-    '.$props['info']->social('Instagram', '<div class="div-element-btn">View</div>')['a'].'
+    '.$props['info']->social('Instagram', '<div class="div-element-btn">View</div>')[$props['mode']].'
   </div>
-</div>
 </div>
 </div>
             ';

@@ -17,12 +17,6 @@ for(const key in cart) {
   })
 }
 
-// Convert items to string
-let r = '';
-items.forEach(e => {
-  r += e.id + ",";
-})
-
 // This is your test secret API key.
 const stripe = Stripe(publishableKey);
 
@@ -34,7 +28,7 @@ async function initialize() {
     const response = await fetch("/data/stripe/checkout.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, username, firstItem: r}),
+      body: JSON.stringify({ items, username, singleCheckout }),
     });
     const { clientSecret } = await response.json();
     return clientSecret;

@@ -51,5 +51,5 @@
       }
       .hidden {
         display: none;
-      }</style><script defer="defer" src="/dist/universalc99ab0fbf8091608a4d8.js"></script><script defer="defer" src="/dist/checkoutcss9c891d3430f27563d6a3.js"></script><script defer="defer" src="/dist/checkoutjs1f0ed758855f4f7e59b5.js"></script></head><body><a href="/template?username=<?=$username;?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?=$itemid? $itemid : "null";?>";
+      }</style><script defer="defer" src="/dist/universala65ac2dbc01a46adc0ce.js"></script><script defer="defer" src="/dist/checkoutcss9c891d3430f27563d6a3.js"></script><script defer="defer" src="/dist/checkoutjs87c05f208908c1ec99a2.js"></script></head><body><a href="/template?username=<?=$username;?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?=$itemid? $itemid : "null";?>";
       const username = "<?=$username? $username : "null";?>"</script></body></html>

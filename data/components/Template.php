@@ -7,10 +7,6 @@ class Template implements ITemplate {
     private $props;
     private $id;
 
-    // Global template information
-    const TOTAL = 10;
-    const PRICE = 1000;
-
     public function __construct($id, $props) {
         $this->id = $id;
         $this->props = $props;

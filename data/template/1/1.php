@@ -2,28 +2,11 @@
 
 class Template1 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '1',
-        'name' => 'Template ID 1',
-        'price' => parent::PRICE,
-        'image' => 'template/1/1.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
         
         $html = '
             <div id="template-container">
@@ -50,7 +33,6 @@ class Template1 extends Template {
     margin: 0 auto;
   }
   .div-2 {
-    background-color: #29b27c;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -68,6 +50,7 @@ class Template1 extends Template {
     justify-content: center;
     height: 132px;
     padding: 0 4px;
+    margin-top: 20px;
   }
   .img {
     aspect-ratio: 1;
@@ -77,16 +60,12 @@ class Template1 extends Template {
     border-radius: 50%;
   }
   .div-4 {
-    color: #fff;
     margin-top: 15px;
-    font: 300 30px Inter, sans-serif;
     text-align: center;
   }
   .div-5 {
-    color: #e2fff3;
     text-align: center;
     margin-top: 10px;
-    font: 300 12px Inter, sans-serif;
   }
   .div-6 {
     border-radius: 5px;
@@ -109,7 +88,7 @@ class Template1 extends Template {
     font-weight: 300;
     text-align: center;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
   }
   .div-8 {
     display: flex;
@@ -125,7 +104,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-9 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -144,7 +122,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-11 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -164,7 +141,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-13 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -183,7 +159,6 @@ class Template1 extends Template {
     align-self: center;
   }
   .div-15 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -201,7 +176,6 @@ class Template1 extends Template {
     border-radius: 10px;
   }
   .div-17 {
-    font-family: Inter, sans-serif;
     margin-top: 9px;
     color: #fff;
   }
@@ -221,7 +195,6 @@ class Template1 extends Template {
     font: 500 15px Inter, sans-serif;
   }
   .div-20 {
-    font-family: Inter, sans-serif;
     border-radius: 5px;
     background-color: #29b27c;
     margin-top: 16px;
@@ -231,7 +204,6 @@ class Template1 extends Template {
     padding: 17px 60px;
   }
   .div-21 {
-    font-family: Inter, sans-serif;
     border-radius: 5px;
     background-color: #29b27c;
     margin-top: 16px;
@@ -240,23 +212,35 @@ class Template1 extends Template {
     justify-content: center;
     padding: 18px 60px;
   }
+  #template__background {
+      background: '.$props['css']['background'].';
+  }
+  .template__font {
+      font-family: '.$props['css']['font'].';
+      font-size: '.$props['css']['fontSize'].';
+      color: '.$props['css']['fontColor'].';
+  }
+  .template_name {
+    font-size: calc('.$props['css']['fontSize'].' + 15px);
+  }
 </style>
 <div class="div">
-  <div class="div-2">
-    <div class="div-3">
-      <img draggable=false
+  <div class="div-2" id="template__background">
+    <div id="avatar__container" class="div-3">
+      <img id="avatar" draggable=false
         loading="lazy"
         src='.$props['imgPath'].'
         class="img"
       />
     </div>
-    <div class="div-4">'.$props['info']->name()['a'].'</div>
-    <div class="div-5">
-    '.$props['info']->organization()['a'].'
-      <br />
-      '.$props['info']->description()['a'].'
+    <div id="text">
+      <h1 class="div-4 template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+      <p class="div-5 template__font template_org">
+      '.$props['info']->organization()[$props['mode']].'</p>
+        <p class="div-5 template__font template_des">'.$props['info']->description()[$props['mode']].'
+      </p>
     </div>
-    '.$props['info']->mobile('<div class="div-6">Contact us</div>')['a'].'
+    '.$props['info']->mobile('<div class="div-6">Contact us</div>')[$props['mode']].'
     <div class="div-7">
       
       '.$props['info']->social('Website', '<div class="div-8">
@@ -266,7 +250,7 @@ class Template1 extends Template {
           class="img-2"
         />
         <div class="div-9">About us</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Facebook', '<div class="div-10">
         <img
@@ -275,7 +259,7 @@ class Template1 extends Template {
           class="img-3"
         />
         <div class="div-11">Facebook</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Instagram', '<div class="div-12">
         <img
@@ -284,7 +268,7 @@ class Template1 extends Template {
           class="img-4"
         />
         <div class="div-13">Instagram.</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Youtube', '<div class="div-14">
         <img
@@ -293,7 +277,7 @@ class Template1 extends Template {
           class="img-5"
         />
         <div class="div-15">Youtube</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
       
       '.$props['info']->social('Tiktok', '<div class="div-16">
         <img
@@ -302,12 +286,11 @@ class Template1 extends Template {
           class="img-6"
         />
         <div class="div-17">Tiktok</div>
-      </div>')['a'].'
+      </div>')[$props['mode']].'
     </div>
   </div>
   <div id="social-media">
-    '.$html1.'
-</div>
+    '.socialMediaIcon($props)->render().'
 </div>
 </div>
 </div>

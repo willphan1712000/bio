@@ -2,28 +2,11 @@
 
 class Template3 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '3',
-        'name' => 'Template ID 3',
-        'price' => parent::PRICE,
-        'image' => 'template/3/3.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
         
         $html = '
             <div id="template-container">
@@ -39,9 +22,9 @@ class Template3 extends Template {
             .social__img i {
               font-size: 20px;
             }
-              .socialUser {
-                background-color: #d9ad89; 
-              }
+            .socialUser {
+              background-color: #d9ad89 !important;
+            }
             a {
               display: flex;
                 justify-content: center;
@@ -59,7 +42,6 @@ class Template3 extends Template {
             }
 
             .content-wrapper {
-              background-color: #fff;
               display: flex;
               width: 100%;
               flex-direction: column;
@@ -72,22 +54,17 @@ class Template3 extends Template {
               aspect-ratio: 1;
               object-fit: cover;
               object-position: center;
-              width: 60%;
               max-width: 100%;
               border-radius: 50%;
             }
 
             .shop-title {
-              color: #000;
               margin-top: 15px;
-              font: italic 400 28px Castoro, sans-serif;
               text-align: center;
             }
 
             .tagline {
-              color: #c59975;
               margin-top: 9px;
-              font: 400 15px Barlow Semi Condensed, -apple-system, Roboto, Helvetica, sans-serif;
               text-align: center;
             }
 
@@ -221,25 +198,49 @@ class Template3 extends Template {
               white-space: nowrap;
               border: 0;
             }
+            #template__background {
+              background: '.$props['css']['background'].';
+            }
+            .template__font {
+                font-family: '.$props['css']['font'].';
+                font-size: '.$props['css']['fontSize'].';
+                color: '.$props['css']['fontColor'].';
+            }
+            .template_name {
+                font-size: calc('.$props['css']['fontSize'].' + 15px);
+            }
+            #avatar__container {
+              border-radius: 50%;
+              display: flex;
+              width: 193px;
+              height: 193px;
+              align-items: center;
+              justify-content: center;
+              padding: 0 9px;
+              box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
             </style>
 
             <section class="jewelry-shop">
-              <div class="content-wrapper">
-                <img draggable=false loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
-                <h1 class="shop-title">'.$props['info']->name()['a'].'</h1>
-                <p class="tagline">'.$props['info']->organization()['a'].'</p>
-                <p class="tagline">'.$props['info']->description()['a'].'</p>
+              <div class="content-wrapper" id="template__background">
+              <div id="avatar__container">
+                <img id="avatar" draggable=false loading="lazy" src='.$props['imgPath'].' class="logo" alt="Jewelry Shop Logo" />
+              </div>
+              <div id="text">
+                <h1 class="shop-title template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+                <p class="tagline template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+                <p class="tagline template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
+              </div>
                 <nav class="icon-container">
-                '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />')['a'].'
-                '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c9ca01f01fe0de3d01068aced92664353afad2a7eeee4339b0dab4121cd67c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-2" alt="Navigation Icon 2" />')['a'].'
-                '.$props['info']->social('Website', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93a997ead6a3fa349a746bf98ddffb34732dc07673732dd27f24ad007a133a57?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-3" alt="Navigation Icon 3" />')['a'].'
-                '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/694401f71d23033db96ad84981d7524d368ecc4480b88c1b64088c0d17b72dc6?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-4" alt="Navigation Icon 4" />')['a'].'
-                '.$props['info']->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />')['a'].'
+                '.$props['info']->social('Facebook', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />')[$props['mode']].'
+                '.$props['info']->social('Instagram', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c9ca01f01fe0de3d01068aced92664353afad2a7eeee4339b0dab4121cd67c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-2" alt="Navigation Icon 2" />')[$props['mode']].'
+                '.$props['info']->social('Website', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93a997ead6a3fa349a746bf98ddffb34732dc07673732dd27f24ad007a133a57?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-3" alt="Navigation Icon 3" />')[$props['mode']].'
+                '.$props['info']->social('Tiktok', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/694401f71d23033db96ad84981d7524d368ecc4480b88c1b64088c0d17b72dc6?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-4" alt="Navigation Icon 4" />')[$props['mode']].'
+                '.$props['info']->social('Youtube', '<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />')[$props['mode']].'
                 </nav>
-                <div id="social-media">'.$html1.'</div>
+                <div id="social-media">'.socialMediaIcon($props)->render().'</div>
               </div>
             </section>
-            </div>
             </div>
             ';
             echo $html;

@@ -1,31 +1,29 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 self.onmessage = function (e) {
-    ;
-    if (e.data.message === "countryCode") {
-        let htmlList = '', value = e.data.value, data = e.data.data, iniHtmlList = e.data.iniHtmlList;
-        if (value === '') {
-            postMessage(iniHtmlList);
-        }
-        else {
-            for (let j = 0; j < data.length; j++) {
-                let text = data[j].name;
-                if (text.toLowerCase().includes(value.toLowerCase())) {
-                    htmlList += `<div class="each" data-index="${j}" data-dial="${data[j].dial_code}" data-code="${data[j].code}"><p>${data[j].name}</p><p>${data[j].dial_code}</p></div>`;
+    return __awaiter(this, void 0, void 0, function* () {
+        if (e.data.message === "countryCode") {
+            let htmlList = '', value = e.data.value, data = e.data.data, iniHtmlList = e.data.iniHtmlList;
+            if (value === '') {
+                postMessage(iniHtmlList);
+            }
+            else {
+                for (let j = 0; j < data.length; j++) {
+                    let text = data[j].name;
+                    if (text.toLowerCase().includes(value.toLowerCase())) {
+                        htmlList += `<div class="each" data-index="${j}" data-dial="${data[j].dial_code}" data-code="${data[j].code}"><p>${data[j].name}</p><p>${data[j].dial_code}</p></div>`;
+                    }
                 }
-            }
-            postMessage(htmlList);
-        }
-    }
-    else if (e.data.message === "search") {
-        const data = e.data.data;
-        const input = e.data.input;
-        const result = {};
-        for (const i in data) {
-            const index = Number(i);
-            if (data[i].username.toLowerCase().includes(input.toLowerCase()) || data[i].email.toLowerCase().includes(input.toLowerCase())) {
-                result[index] = data[i];
+                postMessage(htmlList);
             }
         }
-        postMessage(result);
-    }
+    });
 };

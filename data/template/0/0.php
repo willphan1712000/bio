@@ -14,7 +14,7 @@ class Template0 extends Template {
         for($i = 0; $i < count($socialNameArr); $i++) {
             if(in_array($socialNameArr[$i], $certain)) {
                 $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
+                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')[$props['mode']];
             }
         }
         
@@ -35,17 +35,17 @@ class Template0 extends Template {
                         <div class="info__about">
                             <div class="info__name">
                                 <div>
-                                    <h1>'.$props['info']->name()['a'].'</h1>
+                                    <h1>'.$props['info']->name()[$props['mode']].'</h1>
                                 </div>
                             </div>
                             <div class="info__org">
                                 <div>
-                                    <h2>'.$props['info']->organization()['a'].'</h2>
+                                    <h2>'.$props['info']->organization()[$props['mode']].'</h2>
                                 </div>
                             </div>
                             <div class="info__des">
                                 <div>
-                                    <h3>'.$props['info']->description()['a'].'</h3>
+                                    <h3>'.$props['info']->description()[$props['mode']].'</h3>
                                 </div>
                             </div>
                         </div>

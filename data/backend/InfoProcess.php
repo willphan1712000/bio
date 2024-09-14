@@ -25,7 +25,8 @@ class InfoProcess extends SystemConfig {
         $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
-            'a' => $value
+            'a' => $value,
+            'div' => $value
         ];
     }
     // Handle image
@@ -35,7 +36,8 @@ class InfoProcess extends SystemConfig {
         $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
-            'a' => $value
+            'a' => $value,
+            'div' => $value
         ];
     }
     // Handle name
@@ -45,7 +47,8 @@ class InfoProcess extends SystemConfig {
         $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
-            'a' => $value
+            'a' => $value,
+            'div' => $value
         ];
     }
     // Handle description
@@ -55,7 +58,8 @@ class InfoProcess extends SystemConfig {
         $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
-            'a' => $value
+            'a' => $value,
+            'div' => $value
         ];
     }
     // Handle organization
@@ -65,7 +69,8 @@ class InfoProcess extends SystemConfig {
         $display = ($value === NULL || $value === '') ? "none" : "flex"; 
         return [
             'display' => $display,
-            'a' => $value
+            'a' => $value,
+            'div' => $value
         ];
     }
     // Handle email formatting
@@ -76,7 +81,8 @@ class InfoProcess extends SystemConfig {
         $element = ($element === NULL || $element === '') ? $value : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
+            'a' => '<a href="mailto:'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>',
+            'div' => '<div style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</div>',
         ];
     }
 
@@ -88,7 +94,8 @@ class InfoProcess extends SystemConfig {
         $element = ($element === NULL || $element === '') ? parent::phoneNumberFormat($value) : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
+            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>',
+            'div' => '<div style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</div>'
         ];
     }
 
@@ -100,7 +107,8 @@ class InfoProcess extends SystemConfig {
         $element = ($element === NULL || $element === '') ? parent::phoneNumberFormat($value) : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
+            'a' => '<a href="tel:'.parent::phoneNumberFormat($value).'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>',
+            'div' => '<div style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</div>'
         ];
     }
 
@@ -112,7 +120,8 @@ class InfoProcess extends SystemConfig {
         $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
         return [
             'display' => $display,
-            'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
+            'a' => '<a href="https://google.com/maps?q='.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>',
+            'div' => '<div style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</div>'
         ];
     }
 
@@ -125,7 +134,8 @@ class InfoProcess extends SystemConfig {
         $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element;
         return [
             'display' => $display,
-            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
+            'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>',
+            'div' => '<div style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</div>'
         ];
     }
 
@@ -165,7 +175,8 @@ class InfoProcess extends SystemConfig {
                 $element = ($element === NULL || $element === '') ? parent::handleLongString($value) : $element; 
                 return [
                     'display' => $display,
-                    'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>'
+                    'a' => '<a href="'.$value.'" target="_blank" style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</a>',
+                    'div' => '<div style="text-decoration: none; color: #000; display: '.$display.';">'.$element.'</div>'
                 ];
                 break;
         }

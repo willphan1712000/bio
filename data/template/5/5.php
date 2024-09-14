@@ -2,35 +2,17 @@
 
 class Template5 extends Template {
     private $props;
-    const PROPS = [
-        'id' => '5',
-        'name' => 'Template ID 5',
-        'price' => parent::PRICE,
-        'image' => 'template/5/5.png',
-        'description' => '',
-    ];
     public function __construct($props) {
         $this->props = $props;
     }
     public function html() {
         $props = $this->props;
-        $certain = ["Mobile", "Work", "Email", "Website"];
-        $socialNameArr = $props["social"];
-        $socialIconArr = $props["icon"];
-        $html1 = "";
-        for($i = 0; $i < count($socialNameArr); $i++) {
-            if(in_array($socialNameArr[$i], $certain)) {
-                $displayString = SystemConfig::makeSpaceBetweenCharacters($socialNameArr[$i]);
-                $html1 .= $props['info']->social($socialNameArr[$i], '<div class="socialUser '.$socialNameArr[$i].'" style="display: '.$props['info']->social($socialNameArr[$i])['display'].';"><div class="social__img info__img">'.$socialIconArr[$i].'</div><div class="social__info info__about"><div class="info__name"><div><p>'.$displayString.'</p></div></div></div></div>')['a'];
-            }
-        }
         
         $html = '
             <div id="template-container">
 <style>
 .bakery-container {
   border-radius: 30px;
-  background-color: #fff;
   display: flex;
   max-width: 480px;
   width: 100%;
@@ -48,9 +30,7 @@ class Template5 extends Template {
 }
 
 .tagline {
-  color: #a6a6a6;
   margin-top: 2%;
-  font: 400 0.8rem Raleway, sans-serif;
   padding: 0% 10%;
 }
 
@@ -146,18 +126,29 @@ class Template5 extends Template {
 }
 .backdrop-child > h1 {
   margin-top: 3%;
-  color: #fea3a3;
-  font-size: 1.5rem;
 }
+  #template__background {
+      background: '.$props['css']['background'].';
+    }
+    .template__font {
+        font-family: '.$props['css']['font'].';
+        font-size: '.$props['css']['fontSize'].';
+        color: '.$props['css']['fontColor'].';
+    }
+    .template_name {
+        font-size: calc('.$props['css']['fontSize'].' + 15px);
+    }
 </style>
 
-<main class="bakery-container">
+<main class="bakery-container" id="template__background">
   <div class="backdrop">
-    <img draggable=false src="'.$props['imgPath'].'" alt="Bakery storefront" class="hero-image" />
-    <div class="backdrop-child">
-      <h1>'.$props['info']->name()['a'].'</h1>
-      <p class="tagline">'.$props['info']->organization()['a'].'</p>
-      <p class="tagline">'.$props['info']->description()['a'].'</p>
+  <div id="avatar__container">
+    <img id="avatar" draggable=false src="'.$props['imgPath'].'" alt="Bakery storefront" class="hero-image" />
+    </div>
+    <div class="backdrop-child" id="text">
+      <h1 class="template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
+      <p class="tagline template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+      <p class="tagline template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
     </div>
   </div>
   
@@ -166,12 +157,12 @@ class Template5 extends Template {
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/749732cd930f7b0ef812850a2bff0baf28c84089500fc31bb7109cd9edbb4b9c?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Store icon" class="feature-icon" />
       <h2 class="feature-title">Store</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/50f2829c38905973e74af073d4bf0b9dcd15ac7616f2b754f75ca873f1399c1f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
-    </article>')['a'].'
+    </article>')[$props['mode']].'
     '.$props['info']->social('Booking', '<article class="feature-card">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8efb78b7313897876caa9ce052502fdaf73f69c1fdb543985f5fa1c1c7880a68?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Book icon" class="feature-icon" />
       <h2 class="feature-title">Book</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/aef1d77f6506a99c3e4d297b08667d63c38182fc572aea40508f013ddc7f20af?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
-    </article>')['a'].'
+    </article>')[$props['mode']].'
   </section>
   
   <section class="feature-grid">
@@ -179,27 +170,26 @@ class Template5 extends Template {
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/281ea7c8ef38440065862cb32d4229058493835a026843e66324ad713b396aee?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Products icon" class="feature-icon" />
       <h2 class="feature-title">Products</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6759c04ceb8211fbb9f6b6b6cebeb75076e4cbb56b89fe70b689fba4813c106e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
-    </article>')['a'].'
+    </article>')[$props['mode']].'
     '.$props['info']->address('<article class="feature-card">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1d735676df68e66bb0ac96affaf6cf1b1f524e6ed377ede5580e92e8614c24b4?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="Location icon" class="feature-icon" />
       <h2 class="feature-title">Location</h2>
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2bce1179f942df19a8fe306929b5eb523745e82e56aae3ec69a033af550effb1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="feature-decoration" />
-    </article>')['a'].'
+    </article>')[$props['mode']].'
   </section>
   
   <section class="contact-section">
     <h2 class="contact-title">Contact us</h2>
     <nav class="social-links">
-    '.$props['info']->social('Facebook', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a33b95b1e96e864346811c9177fb38c1250e1daf363a1907428cc211f3962407?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')['a'].'
-    '.$props['info']->social('Instagram', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f115cc012d6f8f529c900770e080cfa35f379169a550de2cbeb5cd303f0dedb8?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')['a'].'
-    '.$props['info']->social('Youtube', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/89fdf680a6c918497445f6e47f7d4321aed48a35f28f1139214354ad6714e8d9?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')['a'].'
-    '.$props['info']->social('Tiktok', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ec5c2c71e61bf3198f4f60c09fba45be81756eaaec96ad02d1e32847414f53c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')['a'].'
+    '.$props['info']->social('Facebook', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a33b95b1e96e864346811c9177fb38c1250e1daf363a1907428cc211f3962407?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
+    '.$props['info']->social('Instagram', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f115cc012d6f8f529c900770e080cfa35f379169a550de2cbeb5cd303f0dedb8?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
+    '.$props['info']->social('Youtube', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/89fdf680a6c918497445f6e47f7d4321aed48a35f28f1139214354ad6714e8d9?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
+    '.$props['info']->social('Tiktok', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ec5c2c71e61bf3198f4f60c09fba45be81756eaaec96ad02d1e32847414f53c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
     </nav>
   </section>
   
   <div class="footer-decoration" role="presentation"></div>
 </main>
-</div>
 </div>
             ';
             echo $html;

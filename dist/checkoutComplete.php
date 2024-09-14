@@ -21,33 +21,48 @@
       font-size: 15px;
       text-align: center;
       padding: 0px 20px;
-    }</style><script src="/dist/universalc99ab0fbf8091608a4d8.js"></script></head><body><section id="success" class="hidden"><i class="fa-solid fa-check"></i><p class="msg">We appreciate your business! A confirmation email will be sent to <span id="customer-email"></span>.</p></section><script>initialize();
+    }</style><script src="/dist/universala65ac2dbc01a46adc0ce.js"></script></head><body><section id="success" class="hidden"><i class="fa-solid fa-check"></i><p class="msg">We appreciate your business! A confirmation email will be sent to <span id="customer-email"></span>.</p></section><script>initialize();
 
         async function initialize() {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const sessionId = urlParams.get('session_id');
-        const username = urlParams.get('username');
-        const itemid = urlParams.get('itemid');
-        const itemidArr = itemid.split(",");
-        itemidArr.pop();
-        const response = await fetch("/data/stripe/status.php", {
-            headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify({ session_id: sessionId, username, itemidArr }),
-        });
-        const session = await response.json();
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const sessionId = urlParams.get('session_id');
+          const username = urlParams.get('username');
+          const singleCheckout = urlParams.get('single');
+          // Process payment to database
+          let cart = JSON.parse(localStorage.getItem("cart")); // get cart from local storage
+          const items = []; // items object will be sent over the server for processing
 
-        if (session.status == 'open') {
-            window.replace('http://localhost:4242/checkout.html')
-        } else if (session.status == 'complete') {
-            document.getElementById('success').classList.remove('hidden');
-            document.getElementById('customer-email').textContent = session.customer_email
+          // Check if there is a single checkout
+          if(singleCheckout !== "null") {
+            cart = {}
+            cart[singleCheckout] = true
+          }
 
-            localStorage.clear(); // reset cart
-            window.location.href = '/' + username // redirect to usrename public page
-        }
+          // for loop to make the items object complete
+          for(const key in cart) {
+            items.push({
+              id: key,
+              quantity: cart[key] ? 1 : cart[key],
+            })
+          }
+
+          const response = await fetch("/data/stripe/checkoutComplete.php", {
+              headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              },
+              method: "POST",
+              body: JSON.stringify({ session_id: sessionId, session_username: username, session_items: items }),
+          });
+          const session = await response.json();
+
+          if (session.status == 'open') {
+              window.replace('http://localhost:4242/checkout.html')
+          } else if (session.status == 'complete') {
+              document.getElementById('success').classList.remove('hidden');
+              document.getElementById('customer-email').textContent = session.customer_email
+              localStorage.clear(); // reset cart
+              window.location.href = '/' + username // redirect to usrename public page
+          }
         }</script></body></html>
