@@ -1,7 +1,6 @@
 <?php
 require_once "backend/Router.php";
 require_once "backend/API.php";
-require_once "backend/DataMigration.php";
 require_once "backend/UserManagement.php";
 require_once "backend/Database.php";
 require_once "backend/TemplateManagement.php";
@@ -9,9 +8,11 @@ require_once "backend/InfoProcess.php";
 require_once "backend/DeleteAccount.php";
 require_once "backend/Purchase.php";
 require_once "backend/Schema.php";
+require_once 'vendorDotEnv/autoload.php';
+Dotenv\Dotenv::createImmutable("./")->load();
 
 class ProductionConfig {
-    private static $mode = "production"; // mode (development or production)
+    private static $mode = "development"; // mode (development or production)
     public static $version = "6.2"; // version of the product
 
     public static function database() {
@@ -25,11 +26,10 @@ class ProductionConfig {
         }
         else if (self::$mode = "production") {
             return [
-                "servername" => "localhost:3306",
-                "username" => "bio_admin",
-                "password" => "123456", // Default password used by Allinclicks
-                "dbName" => "bio_test_allinclicks",
-                // "dbName" => "bio_allinclicks",
+                "servername" => $_ENV["DATABASE_SERVER_NAME"],
+                "username" => $_ENV["DATABASE_USERNAME"],
+                "password" => $_ENV["DATABASE_PASSWORD"],
+                "dbName" => $_ENV["DATABASE_NAME"],
             ];
         }
     }
@@ -114,9 +114,9 @@ class SystemConfig {
 
     public static function emailAuth() {
         return [
-            'host' => 'mi3-tr103.supercp.com',
-            'username' => 'bio@allinclicksbio.com',
-            'password' => 'Allinclicks123200@'
+            'host' => $_ENV["EMAIL_HOST"],
+            'username' => $_ENV["EMAIL_USERNAME"],
+            'password' => $_ENV["EMAIL_PASSWORD"]
         ];
     }
     

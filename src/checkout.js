@@ -1,4 +1,6 @@
-import {publishableKey} from '../secrets/serects.js';
+const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
+
+
 
 let cart = JSON.parse(localStorage.getItem("cart")); // get cart from local storage
 const items = []; // items object will be sent over the server for processing

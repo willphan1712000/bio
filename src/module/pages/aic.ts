@@ -1,18 +1,6 @@
 import { $$ } from "../Web-Development/W";
-import { $$$ } from "../Web-Development/WW";
 
 export default function aic() {
-        // Handle migration
-        $(".migration").click(async function(e) {
-            e.preventDefault();
-            const result = await $$$("/data/api/migration.php", null).api().get();
-            if(result) {
-                alert("Database has been migrated successfully");
-            } else {
-                alert("Database has failed to migrate");
-            }
-        });
-
         // search mechanism
        (async function() {
             // Perform search mechanism
