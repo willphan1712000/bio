@@ -13,10 +13,21 @@ webpack.config.js
 controllers/*
 css/*
 
+# Stripe secret key
 secrets/*
 
+#typescript config
 tsconfig.json
 
+#test file
 test.php
 
+#Wjs
 src/module/Web-Development
+
+# local env files
+.env*.local
+.env
+
+#prisma
+prisma/*

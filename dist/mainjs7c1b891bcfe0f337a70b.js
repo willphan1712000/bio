@@ -12423,7 +12423,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ aic)
 /* harmony export */ });
 /* harmony import */ var _Web_Development_W__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Web-Development/W */ "./src/dist/module/Web-Development/W.js");
-/* harmony import */ var _Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Web-Development/WW */ "./src/dist/module/Web-Development/WW.js");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12434,20 +12433,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     });
 };
 
-
 function aic() {
-    $(".migration").click(function (e) {
-        return __awaiter(this, void 0, void 0, function* () {
-            e.preventDefault();
-            const result = yield (0,_Web_Development_WW__WEBPACK_IMPORTED_MODULE_1__.$$$)("/data/api/migration.php", null).api().get();
-            if (result) {
-                alert("Database has been migrated successfully");
-            }
-            else {
-                alert("Database has failed to migrate");
-            }
-        });
-    });
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
             (0,_Web_Development_W__WEBPACK_IMPORTED_MODULE_0__.$$)("#search", {
@@ -18154,4 +18140,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjs9046993be5c20b7e0f93.js.map
+//# sourceMappingURL=mainjs7c1b891bcfe0f337a70b.js.map

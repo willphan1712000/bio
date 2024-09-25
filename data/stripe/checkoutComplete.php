@@ -1,9 +1,11 @@
 <?php
 require_once 'vendorStripe/autoload.php';
-require_once '../../secrets/secrets.php';
 require_once '../core.php';
+require_once '../vendorDotEnv/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable("../../");
+$dotenv->load();
 
-$stripe = new \Stripe\StripeClient($stripeSecretKey);
+$stripe = new \Stripe\StripeClient($_ENV["STRIPE_SECRET_KEY"]);
 header('Content-Type: application/json');
 
 try {

@@ -47,13 +47,8 @@
     $email = $body->email;
     $password = $body->password;
     // Check if the username is duplicated
-    $userQuery = mysqli_query($conn, "SELECT *FROM user");
-    while($row = mysqli_fetch_assoc($userQuery)) {
-        if($row['username'] === $username) {
-            $isDuplicated = true;
-            break;
-        }
-    }
+    $isDuplicated = Database::isUserExist($username);
+    
     // Check if the email is valid
     $isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL) ? true : false;
     // Check if the password is valid

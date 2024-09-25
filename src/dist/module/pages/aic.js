@@ -8,20 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { $$ } from "../Web-Development/W";
-import { $$$ } from "../Web-Development/WW";
 export default function aic() {
-    $(".migration").click(function (e) {
-        return __awaiter(this, void 0, void 0, function* () {
-            e.preventDefault();
-            const result = yield $$$("/data/api/migration.php", null).api().get();
-            if (result) {
-                alert("Database has been migrated successfully");
-            }
-            else {
-                alert("Database has failed to migrate");
-            }
-        });
-    });
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
             $$("#search", {
