@@ -1,4 +1,8 @@
 <?php
+    require_once __DIR__."/../data/core.php";
+    use config\SystemConfig;
+    require_once __DIR__."/../controllers/components/Copyright.php";
+    use function component\copyright;
   $g = SystemConfig::globalVariables();
 
   $username = SystemConfig::URLExtraction("username");
@@ -51,5 +55,5 @@
       }
       .hidden {
         display: none;
-      }</style><script defer="defer" src="/dist/universala65ac2dbc01a46adc0ce.js"></script><script defer="defer" src="/dist/checkoutcss9c891d3430f27563d6a3.js"></script><script defer="defer" src="/dist/checkoutjs806cea3b9de52475130d.js"></script></head><body><a href="/template?username=<?=$username;?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?=$itemid? $itemid : "null";?>";
+      }</style><script defer="defer" src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script defer="defer" src="/dist/checkoutcssfed602e9009bd4752ebe.js"></script><script defer="defer" src="/dist/checkoutjsb3022f307fb5c5049ae1.js"></script></head><body><a href="/template?username=<?=$username;?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?=$itemid? $itemid : "null";?>";
       const username = "<?=$username? $username : "null";?>"</script></body></html>

@@ -1,0 +1,149 @@
+#container {
+    width: 100vw;
+}
+h2, h5 {
+    text-align: center;
+    margin: 10px 0px;
+}
+.swiper-container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 80vh;
+    margin-top: 10vh;
+}
+.navigator {
+    height: 10vh;
+    z-index: 2;
+    position: absolute !important;
+}
+.navigator .btn-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 10vh;
+    transition: all .3s linear;
+}
+.navigator .btn-ele {
+    padding: 5px;
+    margin: 10px;
+    text-decoration: none;
+    color: #000;
+    background-color: #d4d4d4;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 50%;
+    transition: all .3s linear;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+/* cart icon should be larger than usually to catch customer attention */
+.navigator .btn-ele.cart {
+    padding: 10px;
+    height:70%;
+}
+.navigator .btn-ele .img {
+    height: 100%;
+    aspect-ratio: 1;
+}
+.navigator .btn-ele img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.navigator .btn-ele > * {
+    margin-right: 5px;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 10vh;
+}
+.template-wrapper {
+    background-color: #fff;
+    width: 100%;
+    height: 100% !important;
+}
+.notHaveTemplate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
+.notHaveTemplate > p {
+    text-align: center;
+}
+/* cart style overwritting */
+.logo {
+    z-index: 2;
+    width: 100%;
+}
+.cart .count {
+    top: -7px;
+}
+.cart_parent .cart_item-img {
+    border-radius: 40px;
+    background-color: #fff;
+}
+.logo .cart_parent .cart_item-img > img {
+    border-radius: 40px !important;
+}
+.logo .cart_parent .cart_checkout {
+    max-width: 240px;
+    cursor: pointer;
+}
+.logo .cart_parent .cart_items {
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 9/16 !important;
+    padding: 0px !important;
+}
+.logo .cart_parent .cart_item {
+    height: calc(100% - 50px);
+    position: relative;
+}
+.logo .cart_parent .cart_item-remove {
+    text-align: center;
+    position: absolute;
+    top: -15px;
+    left: -15px;
+}
+.logo .cart_parent .cart_items .cart_empty_msg {
+    padding: 40px;
+}
+/* Web responsive */
+@media screen and (max-width: 600px) {
+    .heading h1 {
+        font-size: 20px;
+    }
+    .signupParent {
+        height: 68vh;
+    }
+    .signupChild {
+        height: 100%;
+    }
+    .signupChild h1 {
+        margin-bottom: 20px;
+    }
+    
+}
+@media screen and (min-width: 600px) {
+    .navigator .btn-box {
+        top: 10px;
+    }
+    .navigator .btn-box {
+        justify-content: end;
+    }
+}
