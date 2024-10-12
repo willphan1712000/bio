@@ -1,29 +1,32 @@
+# user folder
 user/*
 !user/.gitkeep
 
-public/
+# node module
 node_modules/
+
+# composer and npm json files
 composer.json
 composer.lock
 package-lock.json
 package.json
+
+# config file (webpack, tailwind, typesciprt)
 tailwind.config.js
 webpack.config.js
+tsconfig.json
+
+# MacOS
 .DS_Store
-controllers/*
-css/*
 
 # Stripe secret key
 secrets/*
-
-#typescript config
-tsconfig.json
 
 #test file
 test.php
 
 #Wjs
-src/module/Web-Development
+controllers/client/src/module/Web-Development
 
 # local env files
 .env*.local
@@ -31,3 +34,6 @@ src/module/Web-Development
 
 #prisma
 prisma/*
+
+#old version files
+old/*

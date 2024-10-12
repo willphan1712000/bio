@@ -15,9 +15,9 @@ if(isset($_POST['type']) && isset($_POST['username'])) {
             echo API::PUT("template", "favorite", $_POST['favorite'], "username = '$username'");
         }
     }
-    elseif($type === "select") {
-        if(isset($_POST['themeid'])) {
-            echo API::PUT("template", "themeid", $_POST['themeid'], "username = '$username'");
-        }
-    }
+    // elseif($type === "select") {
+    //     if(isset($_POST['themeid'])) {
+    //         echo API::PUT("template", "themeid", $_POST['themeid'], "username = '$username'");
+    //     }
+    // }
 }

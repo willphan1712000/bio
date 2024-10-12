@@ -1,15 +1,5 @@
 <?php
-require_once "backend/Router.php";
-require_once "backend/API.php";
-require_once "backend/UserManagement.php";
-require_once "backend/Database.php";
-require_once "backend/TemplateManagement.php";
-require_once "backend/InfoProcess.php";
-require_once "backend/DeleteAccount.php";
-require_once "backend/Purchase.php";
-require_once "backend/Schema.php";
-require_once 'vendorDotEnv/autoload.php';
-Dotenv\Dotenv::createImmutable("./")->load();
+namespace config;
 
 class ProductionConfig {
     private static $mode = "development"; // mode (development or production)
@@ -72,11 +62,11 @@ class SystemConfig {
             'resetExpireTxt' => 10, // 10 minutes
             'rootEmail' => "bio@allinclicksbio.com",
             'img' => [
-                'unknown' => '/img/unknown.png',
-                'logo' => '/img/logo.png',
-                'bio' => '/img/bio.png',
-                '404' => '/img/404.png',
-                'expire' => '/img/expire.png'
+                'unknown' => '/controllers/client/img/unknown.png',
+                'logo' => '/controllers/client/img/logo.png',
+                'bio' => '/controllers/client/img/bio.png',
+                '404' => '/controllers/client/img/404.png',
+                'expire' => '/controllers/client/img/expire.png'
             ],
             'deleteWarningMsg' => [
                 'msg1' => 'YOUR BIO ACCOUNT WILL HOLD FOR 60 DAYS',
@@ -92,7 +82,7 @@ class SystemConfig {
             ],
             'accountHoldPeriod' => 60*24*60*60, // 60 days,
             'data_model' => './dataModel/bio.sql',
-            'user_folder' => '../user/',
+            'user_folder' => __DIR__."/../user/",
             'aicAccount' => [
                 'username' => 'Allinclicks',
                 'password' => '123456'
@@ -109,7 +99,7 @@ class SystemConfig {
     }
 
     public static function socialIconArr() {
-        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/img/booking.png">', '<img class="icon" src="/img/order.png">', '<img class="icon" src="/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
+        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/controllers/client/img/booking.png">', '<img class="icon" src="/controllers/client/img/order.png">', '<img class="icon" src="/controllers/client/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
     }
 
     public static function emailAuth() {
