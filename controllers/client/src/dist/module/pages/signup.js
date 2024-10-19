@@ -12,7 +12,9 @@ export default function signupPage() {
         register: ".signupChild__confirm"
     }, {
         signup: "/data/api/signup.php",
-        userExist: "/data/api/isUserExist.php"
+        userExist: "/data/api/signup/isUserExist.php",
+        validEmail: "/data/api/signup/isValidEmail.php",
+        validPassword: "/data/api/signup/isValidPass.php",
     }, {
         before: ".signupChild",
         after: ".signupSuccess",

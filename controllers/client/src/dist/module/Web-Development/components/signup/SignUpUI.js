@@ -27,19 +27,25 @@ export default class SignUpUI {
     }
     update() {
         return __awaiter(this, void 0, void 0, function* () {
-            const r = yield $$$(this.url.userExist, {
-                username: this.usernameBox.getUsername()
+            const userExist = yield $$$(this.url.userExist, {
+                username: this.usernameBox.getUsername(),
             }).api().post();
-            if (r) {
+            const validEmail = yield $$$(this.url.validEmail, {
+                email: this.emailBox.getEmail(),
+            }).api().post();
+            const validPassword = yield $$$(this.url.validPassword, {
+                password: this.passwordBox.getPassword(),
+            }).api().post();
+            if (userExist) {
                 this.error.setError("Username exists");
             }
             else if (!this.usernameBox.isFilled()) {
                 this.error.setError("Please enter username");
             }
-            else if (!this.emailBox.isValidEmail()) {
+            else if (!validEmail) {
                 this.error.setError("Email is not valid");
             }
-            else if (!this.passwordBox.isValidPassword()) {
+            else if (!validPassword) {
                 this.error.setError("Password is not valid");
             }
             else if (!this.checkBox.isChecked()) {
@@ -56,7 +62,7 @@ export default class SignUpUI {
                                 justify-content: center;
                                 align-items: center;" class="fa-solid fa-check"></i>`);
             }
-            this.register.enabled(!r && this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+            this.register.enabled(!userExist && this.usernameBox.isFilled() && validPassword && validEmail && this.checkBox.isChecked());
         });
     }
     signup() {

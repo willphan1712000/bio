@@ -1,74 +1,52 @@
 <?php
     require_once __DIR__."/../data/core.php";
     use config\SystemConfig;
+    $g = SystemConfig::globalVariables();
     require_once __DIR__."/../data/backend/business/TemplateManagement.php";
     use business\TemplateManagement;
     require_once __DIR__."/../data/backend/business/controllers/User.php";
-    use business\controllers\user;
+    use function business\controllers\user;
+    require_once __DIR__."/../data/backend/business/controllers/Admin.php";
+    use function business\controllers\admin;
     require_once __DIR__."/../controllers/components/Copyright.php";
     use function component\copyright;
-    $g = SystemConfig::globalVariables();
+    require_once __DIR__."/../data/backend/business/InfoProcess.php";
+    use function business\infoProcess;
+    
 
     // get User object
     $user = user();
-    SystemConfig($user->getUsername());
 
-    // Retrieve from the url
-    $username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
-    
-    // Fetch user info
-    $infoArray = API::GET("info", null, "username='$username'");
-    if(!empty($infoArray['image'])) {
-        $imgPath = "/user/".$username."/".$infoArray['image']."?v=".time();
-        $imgName = $infoArray['image'];
-    } else {
-        $imgPath = $g['img']['unknown'];
-        $imgName = "unknown.png";
-    }
-
+    // Theme redirect
+    $user->themeRedirect();
+    // get username
+    $username = $user->getUsername();
     // Get themeid
-    $themeid = TemplateManagement::shareTemplate($username, (int) SystemConfig::URLExtraction("tem"));
+    $themeid = $user->getThemeid();
     // Get CSS for corresponding template
-    $css = API::GET("style", null, "username = '$username' AND template_id = '$themeid'");
+    $css = $user->getCSS();
+    // Get url for the page with specific username
+    $url = $user->getURL();
 
     // This is information that gets passed down to the corresponsing template
     $props = [
         'username' => $username,
-        'imgPath' => $imgPath,
+        'imgPath' => $user->getImgPath(),
         'social' => SystemConfig::socialNameArr(),
         'icon' => SystemConfig::socialIconArr(),
-        'info' => infoProcess($infoArray),
+        'info' => infoProcess($user->getInfo()),
         'css' => $css,
-        'mode' => 'div'
+        'mode' => 'a'
     ];
 
-    // get deleteToken
-    $deleteToken = API::GET("user", "deleteToken", "username='$username'");
-    SESSION_START();
-    // Check if user is signed in
-    $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
-    if($isSignedIn) {
-        // Check if there is a deleteToken. If so, redirect to restore page
-        if($deleteToken !== NULL && $deleteToken !== "") {
-            if(time() - $deleteToken < $g["accountHoldPeriod"]) {
-                header("Location: /restore?username=".$username);
-            } else {
-                if(DeleteAccount::delete($username)) {
-                    header("Location: /signin");
-                }
-            }
-        }
-    } else {
-        header("Location: /signin");
-    }
+    // Get admin object
+    $admin = admin($username);
 
     if(isset($_POST['signout'])) {
         unset($_SESSION[$username]);
         header("Location: /".$username);
     }
-    $socialNameArr = SystemConfig::socialNameArr();
-    $socialIconArr = SystemConfig::socialIconArr();
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['adminTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind980897a7c3c2117e8977.js"></script><script src="/dist/mainjsf4784fdc304bace1820b.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/admin5c9da877814c70ad7150.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?=$username;?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save">Save</div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['adminTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindd023bb991ce9cd120f0a.js"></script><script src="/dist/mainjs0a1e7cae19d8e79549f2.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/admin5c9da877814c70ad7150.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?=$username;?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save">Save</div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div> <?php
                         template($themeid, $props)->execute()->html();
                     ;?> </div><div class="back swiper-slide"><div class="label">Back</div> <?php
                         back([

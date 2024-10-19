@@ -38,7 +38,7 @@ class Router {
                 }
             } else {
                 $user = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
-                if(UserManagement::isUserExist($base)) {
+                if(UserManagement::isUserExist($user)) {
                     return require __DIR__.'/../../dist/admin.php';
                 }
             }

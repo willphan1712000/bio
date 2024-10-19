@@ -683,16 +683,16 @@ video {
   margin-bottom: 10px;
 }
 
+.mb-\[20px\] {
+  margin-bottom: 20px;
+}
+
 .mr-\[5px\] {
   margin-right: 5px;
 }
 
 .mt-\[20px\] {
   margin-top: 20px;
-}
-
-.mb-\[20px\] {
-  margin-bottom: 20px;
 }
 
 .block {

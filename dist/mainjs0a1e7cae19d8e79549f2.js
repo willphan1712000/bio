@@ -1874,11 +1874,6 @@ class Email {
     getEmail() {
         return this.$email.val();
     }
-    isValidEmail() {
-        const email = this.$email.val();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
 }
 
 
@@ -1927,29 +1922,6 @@ class Password {
     }
     getPassword() {
         return this.$password.val();
-    }
-    isValidPassword() {
-        const password = this.$password.val();
-        const isValidLength = password.length >= 12;
-        let hasUpperCase = false;
-        let hasDigit = false;
-        let hasSpecialChar = true;
-        for (let i = 0; i < password.length; i++) {
-            const position = password.charCodeAt(i);
-            if (position >= 65 && position <= 90) {
-                hasUpperCase = true;
-            }
-            if (position >= 48 && position <= 57) {
-                hasDigit = true;
-            }
-            if (position >= 33 && position <= 47) {
-                hasSpecialChar = true;
-            }
-            if (hasUpperCase && hasDigit && hasSpecialChar) {
-                return isValidLength && hasUpperCase && hasDigit && hasSpecialChar;
-            }
-        }
-        return false;
     }
 }
 
@@ -2050,19 +2022,25 @@ class SignUpUI {
     }
     update() {
         return __awaiter(this, void 0, void 0, function* () {
-            const r = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url.userExist, {
-                username: this.usernameBox.getUsername()
+            const userExist = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url.userExist, {
+                username: this.usernameBox.getUsername(),
             }).api().post();
-            if (r) {
+            const validEmail = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url.validEmail, {
+                email: this.emailBox.getEmail(),
+            }).api().post();
+            const validPassword = yield (0,_WW__WEBPACK_IMPORTED_MODULE_0__.$$$)(this.url.validPassword, {
+                password: this.passwordBox.getPassword(),
+            }).api().post();
+            if (userExist) {
                 this.error.setError("Username exists");
             }
             else if (!this.usernameBox.isFilled()) {
                 this.error.setError("Please enter username");
             }
-            else if (!this.emailBox.isValidEmail()) {
+            else if (!validEmail) {
                 this.error.setError("Email is not valid");
             }
-            else if (!this.passwordBox.isValidPassword()) {
+            else if (!validPassword) {
                 this.error.setError("Password is not valid");
             }
             else if (!this.checkBox.isChecked()) {
@@ -2079,7 +2057,7 @@ class SignUpUI {
                                 justify-content: center;
                                 align-items: center;" class="fa-solid fa-check"></i>`);
             }
-            this.register.enabled(!r && this.usernameBox.isFilled() && this.passwordBox.isValidPassword() && this.emailBox.isValidEmail() && this.checkBox.isChecked());
+            this.register.enabled(!userExist && this.usernameBox.isFilled() && validPassword && validEmail && this.checkBox.isChecked());
         });
     }
     signup() {
@@ -3114,7 +3092,9 @@ function signupPage() {
         register: ".signupChild__confirm"
     }, {
         signup: "/data/api/signup.php",
-        userExist: "/data/api/isUserExist.php"
+        userExist: "/data/api/signup/isUserExist.php",
+        validEmail: "/data/api/signup/isValidEmail.php",
+        validPassword: "/data/api/signup/isValidPass.php",
     }, {
         before: ".signupChild",
         after: ".signupSuccess",
@@ -18139,4 +18119,4 @@ $(document).ready(function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=mainjsf4784fdc304bace1820b.js.map
+//# sourceMappingURL=mainjs0a1e7cae19d8e79549f2.js.map

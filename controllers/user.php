@@ -11,8 +11,12 @@
     require_once __DIR__."/../controllers/components/Template.php";
     use function component\template;
     
+    
     // get User object
     $user = user();
+
+    // Theme redirect
+    $user->themeRedirect();
     // get username
     $username = $user->getUsername();
     // Get themeid

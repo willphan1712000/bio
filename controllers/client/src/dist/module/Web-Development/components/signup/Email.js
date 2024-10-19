@@ -8,9 +8,4 @@ export default class Email {
     getEmail() {
         return this.$email.val();
     }
-    isValidEmail() {
-        const email = this.$email.val();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
 }

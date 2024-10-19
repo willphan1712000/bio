@@ -54,6 +54,12 @@ class User {
     public function getURL() {
         return $this->url;
     }
+    public function themeRedirect() {
+        if($this->themeid == 0) {
+            require __DIR__."/../../../../controllers/default/user.php";
+            die();
+        }
+    }
 }
 
 function user() {

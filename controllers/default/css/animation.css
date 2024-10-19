@@ -1,0 +1,25 @@
+.heading h1 {
+    animation: headingText .8s cubic-bezier(0, 0, 0.41, 1.51);
+}
+@keyframes headingText {
+    from {
+        transform: translate(0px, 40px) scale(2);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px) scale(2);
+        opacity: 1;
+    }
+}
+
+.logo, .register, .heading img, #copyright {
+    animation: otherElements 1.5s linear
+}
+@keyframes otherElements {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
