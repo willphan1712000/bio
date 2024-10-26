@@ -15,10 +15,8 @@
     
 
     // get User object
-    $user = user();
+    $user = user(true);
 
-    // Theme redirect
-    $user->themeRedirect();
     // get username
     $username = $user->getUsername();
     // Get themeid
@@ -40,7 +38,9 @@
     ];
 
     // Get admin object
-    $admin = admin($username);
+    $admin = admin($username, $themeid);
+    // Theme redirect
+    $admin->themeRedirect();
 
     if(isset($_POST['signout'])) {
         unset($_SESSION[$username]);

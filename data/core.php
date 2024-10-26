@@ -119,29 +119,6 @@ class SystemConfig {
         die();
     }
     
-    public static function isPassVaild($password) {
-        $isLengthValid = false;
-        $hasUpperCase = false;
-        $hasDigit = false;
-        $hasSpecialChar = true; // Bypass special character requirement
-        $isLengthValid = (strlen($password) >= 12) ? true : false;
-        for($i = 0; $i < strlen($password); $i++) {
-            $position = ord($password[$i]); // Get ASCII Value
-            if($position >= 65 && $position <= 90) {
-                $hasUpperCase = true;
-            }
-            if($position >= 48 && $position <= 57) {
-                $hasDigit = true;
-            }
-            if($position >= 33 && $position <= 47) {
-                $hasSpecialChar = true;
-            }
-            if($hasUpperCase && $hasDigit && $hasSpecialChar) {
-                return true;
-            }
-        }
-    }
-    
     public static function handleLongString($string) {
         if($string === "") {
             return $string;
@@ -198,10 +175,10 @@ class SystemConfig {
                         $vCardContentPhp .= 'NOTE;CHARSET=utf-8:'.$value.'\n';
                     }
                     else if($socialName === 'Mobile') {
-                        $vCardContentPhp .= 'TEL;TYPE=Mobile;PREF:'.SystemConfig::phoneNumberFormat($value).'\n';
+                        $vCardContentPhp .= 'TEL;TYPE=Mobile;PREF:'.self::phoneNumberFormat($value).'\n';
                     }
                     else if($socialName === 'Work') {
-                        $vCardContentPhp .= 'TEL;TYPE=Work;PREF:'.SystemConfig::phoneNumberFormat($value).'\n';
+                        $vCardContentPhp .= 'TEL;TYPE=Work;PREF:'.self::phoneNumberFormat($value).'\n';
                     }
                     else if($socialName === 'Email') {
                         $vCardContentPhp .= 'EMAIL;TYPE=Email:'.$value.'\n';

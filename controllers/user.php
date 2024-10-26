@@ -13,7 +13,7 @@
     
     
     // get User object
-    $user = user();
+    $user = user(false);
 
     // Theme redirect
     $user->themeRedirect();

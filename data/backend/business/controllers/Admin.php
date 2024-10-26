@@ -12,7 +12,13 @@ use config\SystemConfig;
 $g = SystemConfig::globalVariables();
 
 class Admin {
-    function __construct($username) {
+    private $username;
+    private $themeid;
+
+    function __construct($username, $themeid) {
+        $this->username = $username;
+        $this->themeid = $themeid;
+
         // get deleteToken
         $deleteToken = API::GET("user", "deleteToken", "username='$username'");
         SESSION_START();
@@ -33,8 +39,15 @@ class Admin {
             header("Location: /@signin");
         }
     }
+
+    public function themeRedirect() {
+        if($this->themeid == 0) {
+            require __DIR__.'/../../../../controllers/default/admin.php';
+            die();
+        }
+    }
 }
 
-function admin($username) {
-    return new Admin($username);
+function admin($username, $themeid) {
+    return new Admin($username, $themeid);
 }

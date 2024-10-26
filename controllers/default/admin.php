@@ -7,29 +7,29 @@
     $g = SystemConfig::globalVariables();
     $conn = Database::connection();
     $username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
-    // Check if there is a deleteToken. If so, redirect to restore page
-    $deleteTokenQuery = mysqli_query($conn, "SELECT deleteToken FROM user WHERE username = '$username'");
-    $deleteToken = mysqli_fetch_assoc($deleteTokenQuery)['deleteToken'];
-    SESSION_START();
-    if(isset($_SESSION[$username])) {
-        if(time() - $_SESSION['last_time_'.$username] > $g['timeSession']) {
-            unset($_SESSTION[$username]);
-            header("Location: /@signin");
-        } else {
-            if($deleteToken !== "") {
-                if(time() - $deleteToken < $g["accountHoldPeriod"]) {
-                    header("Location: /@restore?username=".$username);
-                } else {
-                    if(SystemConfig::deleteAccount($username)) {
-                        header("Location: /@signin");
-                    }
-                }
-            }
-            $_SESSION['last_time_'.$username] = time();
-        }
-    } else {
-        header("Location: /@signin");
-    }
+    // // Check if there is a deleteToken. If so, redirect to restore page
+    // $deleteTokenQuery = mysqli_query($conn, "SELECT deleteToken FROM user WHERE username = '$username'");
+    // $deleteToken = mysqli_fetch_assoc($deleteTokenQuery)['deleteToken'];
+    // // SESSION_START();
+    // if(isset($_SESSION[$username])) {
+    //     if(time() - $_SESSION['last_time_'.$username] > $g['timeSession']) {
+    //         unset($_SESSTION[$username]);
+    //         header("Location: /@signin");
+    //     } else {
+    //         if($deleteToken !== "") {
+    //             if(time() - $deleteToken < $g["accountHoldPeriod"]) {
+    //                 header("Location: /@restore?username=".$username);
+    //             } else {
+    //                 if(SystemConfig::deleteAccount($username)) {
+    //                     header("Location: /@signin");
+    //                 }
+    //             }
+    //         }
+    //         $_SESSION['last_time_'.$username] = time();
+    //     }
+    // } else {
+    //     header("Location: /@signin");
+    // }
 
     if(isset($_POST['signout'])) {
         unset($_SESSION[$username]);

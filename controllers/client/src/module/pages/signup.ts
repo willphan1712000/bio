@@ -1,7 +1,15 @@
+import { StringMappingType } from "typescript";
 import { $$ } from "../Web-Development/W"
 import { $$$ } from "../Web-Development/WW"
 
-export default function signupPage() {
+type api = {
+    signup: string,
+    userExist: string,
+    validEmail: string,
+    validPassword: string
+}
+
+export default function signupPage(api : api) {
     $$("#password").passShowHide().run();
     $$(".passRequirements", "dropdown").toggle().run();
     $$$({
@@ -11,12 +19,7 @@ export default function signupPage() {
         error: ".signupChild__error",
         checkbox: "#terms",
         register: ".signupChild__confirm"
-    }, {
-        signup: "/data/api/signup.php",
-        userExist: "/data/api/signup/isUserExist.php",
-        validEmail: "/data/api/signup/isValidEmail.php",
-        validPassword: "/data/api/signup/isValidPass.php",
-    }, {
+    }, api, {
         before: ".signupChild",
         after: ".signupSuccess",
         beforeClass: "inactive",

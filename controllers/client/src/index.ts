@@ -21,7 +21,12 @@ $(document).ready(function() {
             adminPage(props)
             break
         case 'signup':
-            signupPage();
+            signupPage({
+                signup: "/data/api/user/POST.php",
+                userExist: "/data/api/user/validation/isUserExist.php",
+                validEmail: "/data/api/user/validation/isValidEmail.php",
+                validPassword: "/data/api/user/validation/isValidPass.php",
+            });
             break
         case 'signin':
             // signinPage()

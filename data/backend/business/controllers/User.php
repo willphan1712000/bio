@@ -17,8 +17,12 @@ class User {
     private $imgPath;
     private $url;
 
-    function __construct() {
-        $this->username = SystemConfig::URLExtraction();
+    function __construct($isAdmin) {
+        if($isAdmin) {
+            $this->username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
+        } else {
+            $this->username = SystemConfig::URLExtraction();
+        }
 
         $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction("tem"));
 
@@ -62,6 +66,6 @@ class User {
     }
 }
 
-function user() {
-    return new User();
+function user($isAdmin) {
+    return new User($isAdmin);
 }

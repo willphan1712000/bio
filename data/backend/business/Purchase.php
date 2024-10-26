@@ -1,5 +1,8 @@
 <?php
 namespace business;
+
+require_once __DIR__."../persistence/API.php";
+use persistence\API;
 interface IPurchase {
     public static function purchaseProcessing(string $username, array $items):bool;
 }

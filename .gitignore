@@ -22,8 +22,8 @@ tsconfig.json
 # Stripe secret key
 secrets/*
 
-#test file
-test.php
+#testing
+data/test/*
 
 #Wjs
 controllers/client/src/module/Web-Development
@@ -37,3 +37,4 @@ prisma/*
 
 #old version files
 old/*
+/vendor/

@@ -13,7 +13,7 @@
     
     
     // get User object
-    $user = user();
+    $user = user(false);
 
     // Theme redirect
     $user->themeRedirect();
@@ -36,7 +36,7 @@
         'css' => $css,
         'mode' => 'a'
     ];
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['userTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindd023bb991ce9cd120f0a.js"></script><script src="/dist/mainjs0a1e7cae19d8e79549f2.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/admin5c9da877814c70ad7150.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php 
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['userTitle'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind91522c2f842a4d2d1c27.js"></script><script src="/dist/mainjsdfb22f6e78fce5f1b6a0.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/admin5c9da877814c70ad7150.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php 
             template($themeid, $props)->execute()->html();
         ;?> </div><div id="userFooter"> <?php
         userFooter($props)->render("#userFooter");

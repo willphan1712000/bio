@@ -1,5 +1,4 @@
 <?php
-    require_once __DIR__."/../data/core.php";
     use config\SystemConfig;
     require_once __DIR__."/../controllers/components/Copyright.php";
     use function component\copyright;
@@ -12,7 +11,7 @@
     use function component\signin\signinMain;
     require_once __DIR__."/../controllers/components/signup/SignupMain.php";
     use function component\signup\signupMain;
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindd023bb991ce9cd120f0a.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/animation9f513987da43d4d928a4.js"></script><script src="/dist/maindf3fac941aab013505c9.js"></script></head><body><div id="container"><div class="logo"><?= logo()->render();?></div><div class="heading"><h1>Create Your Bio</h1><img src="<?=$g['img']['bio']?>" alt=""></div><div class="register"> <?= signinMain()->render();?> <?= signupMain()->render();?> </div><div class="bioBtn"><?=bioTemplateButton("")->render("bioBtn");?></div> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind91522c2f842a4d2d1c27.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/animation9f513987da43d4d928a4.js"></script><script src="/dist/maindf3fac941aab013505c9.js"></script></head><body><div id="container"><div class="logo"><?= logo()->render();?></div><div class="heading"><h1>Create Your Bio</h1><img src="<?=$g['img']['bio']?>" alt=""></div><div class="register"> <?= signinMain()->render();?> <?= signupMain()->render();?> </div><div class="bioBtn"><?=bioTemplateButton("")->render("bioBtn");?></div> <?php
                 copyright([
                     'position' => 'absolute'
                 ])->render();
