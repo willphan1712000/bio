@@ -1,11 +1,9 @@
 <?php
 namespace business\info\phone;
 
-require_once __DIR__."../InfoHandler.php";
 use business\info\InfoHandler;
-require_once __DIR__."../Info.php";
 use business\info\Info;
-require_once __DIR__."/Phone.php";
+use business\info\Operation;
 use business\info\phone\Phone;
 
 class Mobile extends InfoHandler implements Phone {
@@ -13,15 +11,21 @@ class Mobile extends InfoHandler implements Phone {
         parent::__construct($next);
     }
 
-    public function validate($info): bool {
-        return true;
+    public function validate(?Operation $operation, Info $info): bool {
+        if($operation === null) {
+            return true;
+        }
+        return $operation->validate($info["mobile"]);
     }
 
-    public function format($info): string {
-        return $info;
+    public function format(?Operation $operation, Info $info): string {
+        if($operation === null) {
+            return $info["mobile"];
+        }
+        return $operation->format($info["mobile"]);
     }
 
-    public function doHandle(Info $input): bool {
-        return true;
+    public function doHandle(Info $info): bool {
+        return $this->validate(new Validate(), $info);
     }
 }
