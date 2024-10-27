@@ -1,8 +1,8 @@
 <?php
 namespace business;
-require_once __DIR__.'/../persistence/API.php';
+
+require_once __DIR__.'/../../../vendor/autoload.php';
 use persistence\API;
-require_once __DIR__."/../../core.php";
 use config\SystemConfig;
 
 interface IUserManagement {

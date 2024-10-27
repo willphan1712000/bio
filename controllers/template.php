@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__."/../data/core.php";
+    use business\UserManagement;
     use config\SystemConfig;
 
     require_once __DIR__."/../data/backend/business/controllers/Template.php";

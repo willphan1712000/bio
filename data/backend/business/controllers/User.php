@@ -1,6 +1,6 @@
 <?php
 namespace business\controllers;
-require_once __DIR__."/../../../core.php";
+require_once __DIR__."/../../../../vendor/autoload.php";
 use config\SystemConfig;
 require_once __DIR__."/../TemplateManagement.php";
 use business\TemplateManagement;

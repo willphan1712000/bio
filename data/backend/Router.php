@@ -1,7 +1,6 @@
 <?php
-require_once __DIR__."/../core.php";
-use config\SystemConfig as config;
-require_once __DIR__."/../backend/business/UserManagement.php";
+namespace config;
+
 use business\UserManagement;
 
 interface IRouter {
@@ -22,7 +21,7 @@ class Router {
     }
 
     function route($uri) {
-        $base = config::URLExtraction();
+        $base = SystemConfig::URLExtraction();
         $at = substr($base, 0, 1); // Get the first character of the uri
         // If the first character is @ or the landing page "/", go look for a system uri. Otherwise, go look for a user uri
         if($at == '@' || $at == '') {

@@ -11,4 +11,8 @@ class Info {
     public function getInfo(): array {
         return $this->info;
     }
+
+    public function setInfo(array $info) {
+        $this->info = $info;
+    }
 }

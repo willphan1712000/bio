@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__."/data/backend/Error.php";
-require_once __DIR__."/data/backend/Router.php";
+require_once __DIR__."/vendor/autoload.php";
 require_once __DIR__."/data/vendorDotEnv/autoload.php";
 Dotenv\Dotenv::createImmutable("./")->load();
-require_once __DIR__."/vendor/autoload.php";
+use config\Router;
 
 $pages = ['signin', 'signup', 'forgot', 'forgotUsername', 'resetPass', 'aic', 'expire', 'restore', 'restoreSignin', 'template', 'checkout', 'checkoutComplete', 'terms'];
 $router = new Router();

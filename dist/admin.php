@@ -1,5 +1,4 @@
 <?php
-    require_once __DIR__."/../data/core.php";
     use config\SystemConfig;
     $g = SystemConfig::globalVariables();
     require_once __DIR__."/../data/backend/business/TemplateManagement.php";

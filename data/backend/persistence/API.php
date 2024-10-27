@@ -1,7 +1,9 @@
 <?php
 namespace persistence;
-require_once 'Database.php';
+
+require_once __DIR__."/../../../vendor/autoload.php";
 use persistence\Database;
+use Exception;
 
 interface IAPI {
     public static function GET($table, $column = null, $unique = null, $limit = null);

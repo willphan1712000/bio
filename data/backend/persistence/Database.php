@@ -1,8 +1,10 @@
 <?php
 namespace persistence;
-require_once __DIR__."/../../core.php";
+
+require_once __DIR__."/../../../vendor/autoload.php";
 use config\ProductionConfig;
 use mysqli;
+use Exception;
 
 interface IDatabase {
     // Basic connection (high injection risk)

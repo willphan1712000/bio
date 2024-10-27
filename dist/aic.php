@@ -1,8 +1,8 @@
 <?php
-    require_once __DIR__."/../data/core.php";
     use config\SystemConfig;
     require_once __DIR__."/../controllers/components/Copyright.php";
     use function component\copyright;
+    use business\UserManagement;
     $g = SystemConfig::globalVariables();
     SESSION_START();
     $isSignedIn = UserManagement::isSignedIn($_SESSION, "Allinclicks");

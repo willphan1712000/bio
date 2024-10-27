@@ -1,50 +1,7 @@
 <?php
 namespace config;
 
-class ProductionConfig {
-    private static $mode = "development"; // mode (development or production)
-    public static $version = "6.2"; // version of the product
-
-    public static function database() {
-        if(self::$mode === "development") {
-            return [
-                "servername" => "localhost:3306",
-                "username" => "root",
-                "password" => "",
-                "dbName" => "allincli_bio",
-            ];
-        }
-        else if (self::$mode = "production") {
-            return [
-                "servername" => $_ENV["DATABASE_SERVER_NAME"],
-                "username" => $_ENV["DATABASE_USERNAME"],
-                "password" => $_ENV["DATABASE_PASSWORD"],
-                "dbName" => $_ENV["DATABASE_NAME"],
-            ];
-        }
-    }
-
-    public static function config() {
-        if(self::$mode === "development") {
-            return [
-                'domain' => 'test.allinclicksbio.com',
-                'fulldomain' => 'https://test.allinclicksbio.com',
-                'stripeRedirect' => 'http://localhost',
-            ];
-        }
-        else if (self::$mode = "production") {
-            return [
-                'domain' => 'test.allinclicksbio.com',
-                'fulldomain' => 'https://test.allinclicksbio.com',
-                'stripeRedirect' => 'https://test.allinclicksbio.com',
-                // 'domain' => 'allinclicksbio.com',
-                // 'fulldomain' => 'https://allinclicksbio.com',
-                // 'stripeRedirect' => 'https://allinclicksbio.com',
-            ];
-        }
-    }
-}
-
+require_once __DIR__."/../../vendor/autoload.php";
 class SystemConfig {
     public static function globalVariables() {
         return [
@@ -90,18 +47,6 @@ class SystemConfig {
         ];
     }
 
-    public static function infoArr() {
-        return ["username", "image", "name", "organization", "description"];
-    }
-
-    public static function socialNameArr() {
-        return ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
-    }
-
-    public static function socialIconArr() {
-        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/controllers/client/img/booking.png">', '<img class="icon" src="/controllers/client/img/order.png">', '<img class="icon" src="/controllers/client/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
-    }
-
     public static function emailAuth() {
         return [
             'host' => $_ENV["EMAIL_HOST"],
@@ -118,6 +63,19 @@ class SystemConfig {
     
         die();
     }
+
+    // public static function infoArr() {
+    //     return ["username", "image", "name", "organization", "description"];
+    // }
+
+    public static function socialNameArr() {
+        return ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
+    }
+
+    public static function socialIconArr() {
+        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/controllers/client/img/booking.png">', '<img class="icon" src="/controllers/client/img/order.png">', '<img class="icon" src="/controllers/client/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
+    }
+
     
     public static function handleLongString($string) {
         if($string === "") {
@@ -214,4 +172,3 @@ class SystemConfig {
         return ($queryStr === null) ? $base : $result;
     }
 }
-?>

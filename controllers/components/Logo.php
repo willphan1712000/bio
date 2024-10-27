@@ -1,6 +1,5 @@
 <?php
 namespace component;
-require_once __DIR__."/../../data/core.php";
 use config\SystemConfig as config;
 
 class Logo {

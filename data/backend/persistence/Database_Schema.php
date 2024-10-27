@@ -1,60 +1,95 @@
 <?php
 namespace persistence;
+
+require_once __DIR__."/../../../vendor/autoload.php";
 class Database_Schema {
     public static function get_schema() {
         return [
-            "user" => [
-                "username" => "varchar(200) DEFAULT NULL", // primary
-                "email" => "varchar(50) DEFAULT NULL",
-                "password" => "varchar(200) DEFAULT NULL",
-                "token" => "varchar(200) DEFAULT NULL",
-                "deleteToken" => "varchar(200) DEFAULT NULL"
+            'user' => [
+                'username' => 'String @id',
+                'email' => 'String?',
+                'password' => 'String?',
+                'token' => 'String?',
+                'deleteToken' => 'String?'
             ],
-            "info" => [
-                "username" => "varchar(200) DEFAULT NULL", // primary
-                "image" => "varchar(200) DEFAULT NULL",
-                "name" => "varchar(100) DEFAULT NULL",
-                "description" => "varchar(200) DEFAULT NULL",
-                "Website" => "varchar(200) DEFAULT NULL",
-                "Email" => "varchar(100) DEFAULT NULL",
-                "Facebook" => "varchar(200) DEFAULT NULL",
-                "Instagram" => "varchar(200) DEFAULT NULL",
-                "Messenger" => "varchar(200) DEFAULT NULL",
-                "X" => "varchar(200) DEFAULT NULL",
-                "Tiktok" => "varchar(200) DEFAULT NULL",
-                "Mobile" => "varchar(200) DEFAULT NULL",
-                "Work" => "varchar(200) DEFAULT NULL",
-                "Address" => "varchar(200) DEFAULT NULL",
-                "Youtube" => "varchar(200) DEFAULT NULL",
-                "Threads" => "varchar(200) DEFAULT NULL",
-                "Linkedin" => "varchar(200) DEFAULT NULL",
-                "Pinterest" => "varchar(200) DEFAULT NULL",
-                "Zalo" => "varchar(200) DEFAULT NULL",
-                "Booking" => "varchar(200) DEFAULT NULL",
-                "OrderOnline" => "varchar(200) DEFAULT NULL",
-                "HotSale" => "varchar(200) DEFAULT NULL",
-                "organization" => "varchar(200) DEFAULT NULL"
+            'userInfo' => [
+                'username' => 'String @id',
+                'name' => 'String?',
+                'image' => 'String?',
+                'description' => 'String?',
+                'organization' => 'String?',
+                'Email' => 'String?',
+                'Address' => 'String?',
             ],
-            "purchase" => [
-                "purchase_id" => "int(255) NOT NULL PRIMARY KEY", // primary
-                "username" => "varchar(200) DEFAULT NULL", // foreign
-                "template_id" => "int(255) DEFAULT NULL",
-                "purchasedAt" => "datetime(3) NOT NULL DEFAULT current_timestamp(3)"
+            'userPhone' => [
+                'username' => 'String @id',
+                'Mobile' => 'String?',
+                'MobileCode' => 'String?',
+                'MobileFlag' => 'String?',
+                'Work' => 'String?',
+                'WorkCode' => 'String?',
+                'WorkFlag' => 'String?',
             ],
-            "template" => [
-                "username" => "varchar(200) DEFAULT NULL", // primary
-                "themeid" => "int(255) DEFAULT NULL",
-                "favorite" => "varchar(1000) DEFAULT NULL"
+            'userSocial' => [
+                'username' => 'String @id',
+                'Website' => 'String?',
+                'Facebook' => 'String?',
+                'Instagram' => 'String?',
+                'Messenger' => 'String?',
+                'X' => 'String?',
+                'Tiktok' => 'String?',
+                'Youtube' => 'String?',
+                'Threads' => 'String?',
+                'Linkedin' => 'String?',
+                'Pinterest' => 'String?',
+                'Zalo' => 'String?',
+                'Booking' => 'String?',
+                'OrderOnline' => 'String?',
+                'HotSale' => 'String?',
             ],
-            "style" => [
-                "purchase_id" => "int(255) NOT NULL PRIMARY KEY", // primary
-                "username" => "varchar(200) DEFAULT NULL", // foreign
-                "template_id" => "int(255) DEFAULT NULL",
-                "font" => "varchar(200) DEFAULT NULL",
-                "fontSize" => "varchar(200) DEFAULT NULL",
-                "fontColor" => "varchar(10) DEFAULT NULL",
-                "background" => "varchar(200) DEFAULT NULL"
-            ]
+            'purchase' => [
+                'purchase_id' => 'Int @id',
+                'username' => 'String?',
+                'template_id' => 'Int',
+                'purchasedAt' => 'DateTime @default(now())',
+            ],
+            'template' => [
+                'username' => 'String @id',
+                'themeid' => 'Int',
+                'favorite' => 'String?',
+            ],
+            'style' => [
+                'purchase_id' => 'Int @id',
+                'username' => 'String?',
+                'template_id' => 'Int?',
+                'font' => 'String?',
+                'fontSize' => 'String?',
+                'fontColor' => 'String?',
+                'background' => 'String?',
+            ],
+        ];
+    }
+
+    public static function socialIconArr() {
+        return [
+            "Mobile" => '<i class="fa-solid fa-phone"></i>',
+            "Work" => '<i class="fa-solid fa-phone"></i>',
+            "Email" => '<i class="fa-solid fa-envelope"></i>',
+            "Website" => '<i class="fa-solid fa-globe"></i>',
+            "Booking" => '<img class="icon" src="/controllers/client/img/booking.png">',
+            "OrderOnline" => '<img class="icon" src="/controllers/client/img/order.png">',
+            "HotSale" => '<img class="icon" src="/controllers/client/img/hotsales.png">',
+            "Address" => '<i class="fa-solid fa-location-dot"></i>',
+            "Facebook" => '<i class="fa-brands fa-facebook"></i>',
+            "Instagram" => '<i class="fa-brands fa-instagram"></i>',
+            "Messenger" => '<i class="fa-brands fa-facebook-messenger"></i>',
+            "Youtube" => '<i class="fa-brands fa-youtube"></i>',
+            "Threads" => '<i class="fa-brands fa-threads"></i>',
+            "X" => '<i class="fa-brands fa-x-twitter"></i>',
+            "Linkedin" => '<i class="fa-brands fa-linkedin"></i>',
+            "Tiktok" => '<i class="fa-brands fa-tiktok"></i>',
+            "Pinterest" => '<i class="fa-brands fa-pinterest"></i>',
+            "Zalo" => '<i class="fa-brands fa-viber"></i>',
         ];
     }
 

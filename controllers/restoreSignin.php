@@ -1,6 +1,7 @@
 <?php
-    require_once __DIR__."/../data/core.php";
+    use persistence\API;
     use config\SystemConfig;
+    use business\UserManagement;
     require_once __DIR__."/../controllers/components/Copyright.php";
     use function component\copyright;
     $g = SystemConfig::globalVariables();
@@ -18,7 +19,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if(Database::isUserExist($username)) {
+        if(UserManagement::isUserExist($username)) {
             if($password === API::GET("user", "password", "username='$username'")) {
                 header("Location: /".$username."/admin");
                 $_SESSION[$username] = $username;

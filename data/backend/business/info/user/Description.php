@@ -1,6 +1,7 @@
 <?php
 namespace business\info\user;
 
+require_once __DIR__ ."/../../../../../vendor/autoload.php";
 use business\info\Info;
 use business\info\Operation;
 use business\info\InfoElement;
@@ -11,21 +12,24 @@ class Discription extends InfoHandler implements InfoElement {
         parent::__construct($next);
     }
 
-    public function validate(?Operation $operation, Info $info): bool {
+    public function validate(?Operation $operation, $info): bool {
         if ($operation === null) {
             return true;
         }
-        return $operation->validate($info["description"]);
+        return $operation->validate($info);
     }
 
-    public function format(?Operation $operation, Info $info): string {
+    public function format(?Operation $operation, $info): string {
         if ($operation === null) {
-            return $info["description"];
+            return $info;
         }
-        return $operation->format($info["description"]);
+        return $operation->format($info);
     }
 
     public function doHandle(Info $info): bool {
-        return $this->validate(null, $info);
+        $infoArray = $info->getInfo();
+        $infoArray["description"] = $this->format(null, $infoArray["description"]);
+        $info->setInfo($infoArray);
+        return $this->validate(null, $infoArray["description"]);
     }
 }

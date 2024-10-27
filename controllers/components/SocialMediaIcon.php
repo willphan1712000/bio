@@ -1,5 +1,7 @@
 <?php
 namespace component;
+
+use config\SystemConfig;
 // This is for showing social media item on template
 class SocialMediaIcon {
     private $props;

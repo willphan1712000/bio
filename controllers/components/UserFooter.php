@@ -1,5 +1,7 @@
 <?php
 namespace component;
+
+use config\SystemConfig;
 class UserFooter {
     private $props;
 

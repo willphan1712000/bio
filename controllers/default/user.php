@@ -1,7 +1,5 @@
 <?php
-    require_once __DIR__."/../../data/core.php";
     use config\SystemConfig;
-    require_once __DIR__."/../../data/backend/persistence/Database.php";
     use persistence\Database;
 
     $g = SystemConfig::globalVariables();
