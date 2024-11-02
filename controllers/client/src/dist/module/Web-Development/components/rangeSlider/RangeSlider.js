@@ -1,4 +1,7 @@
-export class RangeSlider {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RangeSlider = void 0;
+class RangeSlider {
     constructor(container, cb, options) {
         var _a;
         this.options = options;
@@ -118,3 +121,4 @@ export class RangeSlider {
         `;
     }
 }
+exports.RangeSlider = RangeSlider;

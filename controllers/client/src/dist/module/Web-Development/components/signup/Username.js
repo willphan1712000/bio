@@ -1,4 +1,6 @@
-export default class Username {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Username {
     constructor(username, signUpUI) {
         this.$username = $(username);
         this.$username.on("input", e => {
@@ -15,3 +17,4 @@ export default class Username {
         return text.replace(/\s+/g, '');
     }
 }
+exports.default = Username;

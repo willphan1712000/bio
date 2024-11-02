@@ -32,6 +32,6 @@ class Booking extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Booking"] = $this->format($operation, $infoArray["Booking"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Booking"]);
     }
 }

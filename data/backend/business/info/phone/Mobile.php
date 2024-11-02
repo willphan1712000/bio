@@ -9,7 +9,7 @@ use business\info\phone\Phone;
 use business\info\phone\operation\Validate;
 
 class Mobile extends InfoHandler implements Phone {
-    function __construct(InfoHandler $next) {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 

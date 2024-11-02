@@ -32,6 +32,6 @@ class HotSale extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["HotSale"] = $this->format($operation, $infoArray["HotSale"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["HotSale"]);
     }
 }

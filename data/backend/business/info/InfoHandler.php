@@ -1,23 +1,25 @@
 <?php
+
     namespace business\info;
 
     abstract class InfoHandler {
         private ?InfoHandler $info;
+        private OperationFactory $operationFactory;
 
         function __construct(?InfoHandler $next) {
             $this->info = $next;
         }
 
-        public function handle(Info $info): bool {
-            if(!$this->doHandle($info)) {
+        public function handle(Info $info, OperationFactory $operationFactory): bool {
+            if(!$this->doHandle($info,  $operationFactory)) {
                 return false;
             }
             if($this->info != null) {
-                return $this->info->handle($info);
+                return $this->info->handle($info,  $operationFactory);
             } else {
                 return true;
             }
         }
 
-        public abstract function doHandle(Info $info): bool;
+        public abstract function doHandle(Info $info, OperationFactory $operationFactory): bool;
     }

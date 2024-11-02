@@ -1,12 +1,18 @@
-import Swiper from "swiper";
-import { $$ } from "../Web-Development/W";
-export default function template(props) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = template;
+const swiper_1 = __importDefault(require("swiper"));
+const W_1 = require("../Web-Development/W");
+function template(props) {
     (function () {
         if (props.isSignedIn !== "true") {
             localStorage.clear();
         }
     })();
-    const swiper = new Swiper('.swiper', {
+    const swiper = new swiper_1.default('.swiper', {
         direction: 'horizontal',
         loop: false,
     });
@@ -27,7 +33,7 @@ export default function template(props) {
     $(".share").click(e => {
         const current = e.currentTarget;
         const shareURL = $(current).data("share");
-        $$({
+        (0, W_1.$$)({
             title: props.username,
             url: shareURL
         }).share();
@@ -64,7 +70,7 @@ export default function template(props) {
         }
     });
     (function () {
-        const imgSpinner = $$(".template .template-img").addSpinner().singleSpinner();
+        const imgSpinner = (0, W_1.$$)(".template .template-img").addSpinner().singleSpinner();
         const img = $(".template .template-img > img");
         imgSpinner.show();
         img.css({

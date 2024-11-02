@@ -32,6 +32,6 @@ class Instagram extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Instagram"] = $this->format($operation, $infoArray["Instagram"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Instagram"]);
     }
 }

@@ -8,7 +8,7 @@ use business\info\InfoElement;
 use business\info\InfoHandler;
 
 class Avatar extends InfoHandler implements InfoElement {
-    function __construct(InfoHandler $next) {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 

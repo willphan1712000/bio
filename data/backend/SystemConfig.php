@@ -2,6 +2,8 @@
 namespace config;
 
 require_once __DIR__."/../../vendor/autoload.php";
+use config\ProductionConfig;
+
 class SystemConfig {
     public static function globalVariables() {
         return [

@@ -32,6 +32,6 @@ class Tiktok extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Tiktok"] = $this->format($operation, $infoArray["Tiktok"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Tiktok"]);
     }
 }

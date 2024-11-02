@@ -1,4 +1,6 @@
-export default class TransformController {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class TransformController {
     constructor(wrapper, frame, controller) {
         this.wrapper = wrapper;
         this.frame = frame;
@@ -130,3 +132,4 @@ export default class TransformController {
             `;
     }
 }
+exports.default = TransformController;

@@ -32,6 +32,6 @@ class Threads extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Threads"] = $this->format($operation, $infoArray["Threads"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Threads"]);
     }
 }

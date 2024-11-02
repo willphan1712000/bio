@@ -1,9 +1,9 @@
-import restore from "./module/pages/restore"
-import signupPage from "./module/pages/signup"
-import aic from "./module/pages/aic"
-import template from "./module/pages/template";
-import bioPage from "./module/pages/bioPage";
 import adminPage from "./module/pages/adminPage";
+import aic from "./module/pages/aic";
+import bioPage from "./module/pages/bioPage";
+import restore from "./module/pages/restore";
+import signupPage from "./module/pages/signup";
+import template from "./module/pages/template";
 
 declare var type: string;
 declare var props: {

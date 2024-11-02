@@ -38,3 +38,8 @@ prisma/*
 #old version files
 old/*
 /vendor/
+
+# Doctrine migration files
+cli-config.php
+migrations.php
+migrations/*

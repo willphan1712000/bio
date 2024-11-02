@@ -1,6 +1,9 @@
-import { $$ } from "../Web-Development/W";
-export default function bioPage(props) {
-    $$((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = bioPage;
+const W_1 = require("../Web-Development/W");
+function bioPage(props) {
+    (0, W_1.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
         $(".shareWindow__btn.shareWindow__link .check").show();
         $(".shareWindow__btn.shareWindow__link .copy").hide();
         setTimeout(() => {
@@ -17,7 +20,7 @@ export default function bioPage(props) {
         $("#container").removeClass("touch-disabled");
     });
     $("#share .share__btn.share").click(() => {
-        $$({
+        (0, W_1.$$)({
             title: props.username,
             url: window.document.location.href + "?share=true"
         }).share();

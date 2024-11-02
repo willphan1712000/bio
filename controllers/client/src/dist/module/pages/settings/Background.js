@@ -1,8 +1,10 @@
-import { $$ } from "../../Web-Development/W";
-export default class Background {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const W_1 = require("../../Web-Development/W");
+class Background {
     constructor(container, reset, target) {
         this.reset = reset;
-        this.colorPicker = $$(container).colorPickerDouble(color => {
+        this.colorPicker = (0, W_1.$$)(container).colorPickerDouble(color => {
             $(target).css({
                 background: color
             });
@@ -11,3 +13,4 @@ export default class Background {
         });
     }
 }
+exports.default = Background;

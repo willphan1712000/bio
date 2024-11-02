@@ -5,7 +5,7 @@ require_once __DIR__ ."/../../../../vendor/autoload.php";
 use business\info\Info;
 use business\info\InfoHandler;
 
-class Discription extends InfoHandler {
+class Push extends InfoHandler {
     function __construct(InfoHandler $next) {
         parent::__construct($next);
     }

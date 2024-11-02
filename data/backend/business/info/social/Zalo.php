@@ -9,7 +9,7 @@ use business\info\social\Social;
 use business\info\social\operation\Zalo as ZaloOperation;
 
 class Zalo extends InfoHandler implements Social {
-    function __construct(InfoHandler $next) {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 
@@ -32,6 +32,6 @@ class Zalo extends InfoHandler implements Social {
         $operation = new ZaloOperation();
         $infoArray["Zalo"] = $this->format($operation, $infoArray["Zalo"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Zalo"]);
     }
 }

@@ -32,6 +32,6 @@ class OrderOnline extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["OrderOnline"] = $this->format($operation, $infoArray["OrderOnline"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["OrderOnline"]);
     }
 }

@@ -6,7 +6,7 @@ use business\info\Operation;
 
 class Zalo implements Operation {
     public function validate($info) : bool {
-        return preg_match('/^\d{10}$/', $info);
+        return preg_match('/^(\d{10}|)$/', $info);
         
     }
 

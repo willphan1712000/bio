@@ -1,4 +1,7 @@
-export class ColorPickerParent {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ColorPickerParent = void 0;
+class ColorPickerParent {
     clickBehavior(container) {
         const $container = $(container);
         const $colorPicker = $(container + " .colorPickerBox");
@@ -66,3 +69,4 @@ export class ColorPickerParent {
         }).join('');
     }
 }
+exports.ColorPickerParent = ColorPickerParent;

@@ -1,4 +1,6 @@
-export default class EditAvatar {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class EditAvatar {
     constructor(container) {
         this.container = container;
         this.render();
@@ -133,3 +135,4 @@ export default class EditAvatar {
         `;
     }
 }
+exports.default = EditAvatar;

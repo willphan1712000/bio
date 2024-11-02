@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,11 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { $$ } from "../Web-Development/W";
-export default function aic() {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = aic;
+const W_1 = require("../Web-Development/W");
+function aic() {
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
-            $$("#search", {
+            (0, W_1.$$)("#search", {
                 container: "#userData",
                 header: {
                     2: "Username",

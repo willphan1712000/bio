@@ -9,7 +9,7 @@ use business\info\phone\Phone;
 use business\info\phone\operation\Validate;
 
 class Work extends InfoHandler implements Phone {
-    function __construct(InfoHandler $next) {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 
@@ -30,8 +30,8 @@ class Work extends InfoHandler implements Phone {
     public function doHandle(Info $info): bool {
         $infoArray = $info->getInfo();
         $operation = new Validate();
-        $infoArray["Mobile"] = $this->format($operation, $infoArray["Mobile"]);
+        $infoArray["Work"] = $this->format($operation, $infoArray["Work"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $infoArray["Mobile"]);
+        return $this->validate($operation, $infoArray["Work"]);
     }
 }

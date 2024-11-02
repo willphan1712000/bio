@@ -32,6 +32,6 @@ class Website extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Website"] = $this->format($operation, $infoArray["Website"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Website"]);
     }
 }

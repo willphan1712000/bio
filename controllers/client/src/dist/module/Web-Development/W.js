@@ -1,12 +1,19 @@
-import SearchUI from "./components/search/SearchUI";
-import { RangeSlider } from "./components/rangeSlider/RangeSlider";
-import ColorPickerSingle from "./components/colorPicker/ColorPickerSingle";
-import ColorPickerDouble from "./components/colorPicker/ColorPickerDouble";
-import { Options } from "./components/options/Options";
-import Transform from "./components/Transform/Transform";
-import UploadFile from "./components/upload/UploadFile";
-import TextEditor from "./components/textEditor/TextEditor";
-export function $$(ele1, ele2, ele3, ele4) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Table = exports.AddIntersectionObserver = exports.W4 = exports.W3 = exports.W2 = exports.W1 = void 0;
+exports.$$ = $$;
+const SearchUI_1 = __importDefault(require("./components/search/SearchUI"));
+const RangeSlider_1 = require("./components/rangeSlider/RangeSlider");
+const ColorPickerSingle_1 = __importDefault(require("./components/colorPicker/ColorPickerSingle"));
+const ColorPickerDouble_1 = __importDefault(require("./components/colorPicker/ColorPickerDouble"));
+const Options_1 = require("./components/options/Options");
+const Transform_1 = __importDefault(require("./components/Transform/Transform"));
+const UploadFile_1 = __importDefault(require("./components/upload/UploadFile"));
+const TextEditor_1 = __importDefault(require("./components/textEditor/TextEditor"));
+function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
     }
@@ -20,7 +27,7 @@ export function $$(ele1, ele2, ele3, ele4) {
         return new W1(ele1);
     }
 }
-export class W1 {
+class W1 {
     constructor(ele1) {
         this.ele1 = ele1;
     }
@@ -28,7 +35,7 @@ export class W1 {
         return new PassShowHide(this.ele1);
     }
     transform() {
-        return new Transform(this.ele1);
+        return new Transform_1.default(this.ele1);
     }
     addSpinner() {
         return new Spinner(this.ele1);
@@ -37,25 +44,26 @@ export class W1 {
         return new Share(this.ele1);
     }
     colorPickerSingle(cb, options) {
-        return new ColorPickerSingle(this.ele1, cb, options);
+        return new ColorPickerSingle_1.default(this.ele1, cb, options);
     }
     colorPickerDouble(cb, options) {
-        return new ColorPickerDouble(this.ele1, cb, options);
+        return new ColorPickerDouble_1.default(this.ele1, cb, options);
     }
     rangeSlider(cb, options) {
-        return new RangeSlider(this.ele1, cb, options);
+        return new RangeSlider_1.RangeSlider(this.ele1, cb, options);
     }
     options(cb, options) {
-        return new Options(this.ele1, cb, options);
+        return new Options_1.Options(this.ele1, cb, options);
     }
     uploadFile(cb) {
-        return new UploadFile(this.ele1, cb);
+        return new UploadFile_1.default(this.ele1, cb);
     }
     textEditor(cb) {
-        return new TextEditor(this.ele1, cb);
+        return new TextEditor_1.default(this.ele1, cb);
     }
 }
-export class W2 {
+exports.W1 = W1;
+class W2 {
     constructor(ele1, ele2) {
         this.ele1 = ele1;
         this.ele2 = ele2;
@@ -73,23 +81,25 @@ export class W2 {
         return new Search(this.ele1, this.ele2);
     }
     transform() {
-        return new Transform(this.ele1, this.ele2);
+        return new Transform_1.default(this.ele1, this.ele2);
     }
 }
-export class W3 {
+exports.W2 = W2;
+class W3 {
     constructor(ele1, ele2, ele3) {
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
     }
     transform() {
-        return new Transform(this.ele1, this.ele2, this.ele3);
+        return new Transform_1.default(this.ele1, this.ele2, this.ele3);
     }
     addIntersectionObserver() {
         return new AddIntersectionObserver(this.ele1, this.ele2, this.ele3);
     }
 }
-export class W4 {
+exports.W3 = W3;
+class W4 {
     constructor(ele1, ele2, ele3, ele4) {
         this.ele1 = ele1;
         this.ele2 = ele2;
@@ -97,7 +107,8 @@ export class W4 {
         this.ele4 = ele4;
     }
 }
-export class AddIntersectionObserver extends W3 {
+exports.W4 = W4;
+class AddIntersectionObserver extends W3 {
     constructor(target, options, cb) {
         super(target, options, cb);
         this.target = document.querySelector(this.ele1);
@@ -126,6 +137,7 @@ export class AddIntersectionObserver extends W3 {
         return this.count;
     }
 }
+exports.AddIntersectionObserver = AddIntersectionObserver;
 class Share extends W1 {
     constructor(obj) {
         super(obj);
@@ -140,7 +152,7 @@ class Share extends W1 {
         }
     }
 }
-export class Table extends W2 {
+class Table extends W2 {
     constructor(location, header) {
         super(location, header);
         this.location = location;
@@ -171,6 +183,7 @@ export class Table extends W2 {
         this.addHeader();
     }
 }
+exports.Table = Table;
 class Spinner extends W1 {
     constructor(ele1) {
         super(ele1);
@@ -275,6 +288,6 @@ class CopyToClipboard extends W2 {
 class Search extends W2 {
     constructor(ele1, ele2) {
         super(ele1, ele2);
-        this.searchUI = new SearchUI(this.ele1, this.ele2);
+        this.searchUI = new SearchUI_1.default(this.ele1, this.ele2);
     }
 }

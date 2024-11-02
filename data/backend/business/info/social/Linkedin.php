@@ -32,6 +32,6 @@ class Linkedin extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Linkedin"] = $this->format($operation, $infoArray["Linkedin"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Linkedin"]);
     }
 }

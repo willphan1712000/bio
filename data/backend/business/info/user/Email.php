@@ -9,7 +9,7 @@ use business\info\InfoHandler;
 use business\info\user\operation\Email as EmailOperation;
 
 class Email extends InfoHandler implements InfoElement {
-    function __construct(InfoHandler $next) {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 

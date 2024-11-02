@@ -8,7 +8,7 @@ use business\info\Operation;
 use business\info\social\Social;
 use business\info\social\operation\Validate;
 
-class Mobile extends InfoHandler implements Social {
+class Facebook extends InfoHandler implements Social {
     function __construct(InfoHandler $next) {
         parent::__construct($next);
     }
@@ -32,6 +32,6 @@ class Mobile extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Facebook"] = $this->format($operation, $infoArray["Facebook"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Facebook"]);
     }
 }

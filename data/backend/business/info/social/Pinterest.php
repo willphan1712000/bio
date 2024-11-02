@@ -32,6 +32,6 @@ class Pinterest extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Pinterest"] = $this->format($operation, $infoArray["Pinterest"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Pinterest"]);
     }
 }

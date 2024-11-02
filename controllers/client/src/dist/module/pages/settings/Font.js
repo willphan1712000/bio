@@ -1,7 +1,9 @@
-import { $$ } from "../../Web-Development/W";
-export default class Font {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const W_1 = require("../../Web-Development/W");
+class Font {
     constructor(container, reset, target) {
-        this.options = $$(container).options(e => {
+        this.options = (0, W_1.$$)(container).options(e => {
             $(target).css({
                 'fontFamily': e
             });
@@ -34,3 +36,4 @@ export default class Font {
         });
     }
 }
+exports.default = Font;

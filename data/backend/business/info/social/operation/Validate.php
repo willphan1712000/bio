@@ -6,8 +6,7 @@ use business\info\Operation;
 
 class Validate implements Operation {
     public function validate($info) : bool {
-        return preg_match('/https:\/\/[a-zA-Z0-9\-._~:\/?#@!$&\'()*+,;=%]+/', $info);
-        
+        return preg_match('/^(https:\/\/.*)?$/', $info);
     }
 
     public function format($info) : string {

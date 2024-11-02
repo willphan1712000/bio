@@ -8,25 +8,11 @@ use business\info\InfoElement;
 use business\info\InfoHandler;
 
 class Organization extends InfoHandler implements InfoElement {
-    function __construct(InfoHandler $next) {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 
-    public function validate(?Operation $operation, $info): bool {
-        if ($operation === null) {
-            return true;
-        }
-        return $operation->validate($info);
-    }
-
-    public function format(?Operation $operation, $info): string {
-        if ($operation === null) {
-            return $info;
-        }
-        return $operation->format($info);
-    }
-
-    public function doHandle(Info $info): bool {
+    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
         $infoArray = $info->getInfo();
         $infoArray["organization"] = $this->format(null, $infoArray["organization"]);
         $info->setInfo($infoArray);

@@ -1,20 +1,25 @@
 <?php
 namespace config;
 
+enum Mode {
+    case DEVELOPMENT;
+    case PRODUCTION;
+}
+
 class ProductionConfig {
-    private static $mode = "development"; // mode (development or production)
+    private static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
     public static $version = "6.2"; // version of the product
 
     public static function database() {
-        if(self::$mode === "development") {
+        if(self::$mode === Mode::DEVELOPMENT) {
             return [
-                "servername" => "localhost:3306",
-                "username" => "root",
-                "password" => "",
-                "dbName" => "allincli_bio",
+                "servername" => $_ENV['DATABASE_SERVER_NAME_DEV'],
+                "username" => $_ENV['DATABASE_USERNAME_DEV'],
+                "password" => $_ENV['DATABASE_PASSWORD_DEV'],
+                "dbName" => $_ENV['DATABASE_NAME_DEV'],
             ];
         }
-        else if (self::$mode = "production") {
+        else if (self::$mode = Mode::PRODUCTION) {
             return [
                 "servername" => $_ENV["DATABASE_SERVER_NAME"],
                 "username" => $_ENV["DATABASE_USERNAME"],
@@ -25,14 +30,14 @@ class ProductionConfig {
     }
 
     public static function config() {
-        if(self::$mode === "development") {
+        if(self::$mode === Mode::DEVELOPMENT) {
             return [
                 'domain' => 'test.allinclicksbio.com',
                 'fulldomain' => 'https://test.allinclicksbio.com',
                 'stripeRedirect' => 'http://localhost',
             ];
         }
-        else if (self::$mode = "production") {
+        else if (self::$mode = Mode::PRODUCTION) {
             return [
                 'domain' => 'test.allinclicksbio.com',
                 'fulldomain' => 'https://test.allinclicksbio.com',

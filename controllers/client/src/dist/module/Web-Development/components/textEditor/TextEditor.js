@@ -1,4 +1,6 @@
-export default class TextEditor {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class TextEditor {
     constructor(element, cb) {
         this.element = element;
         const elementHtml = document.querySelector(this.element);
@@ -16,3 +18,4 @@ export default class TextEditor {
         return this.text;
     }
 }
+exports.default = TextEditor;

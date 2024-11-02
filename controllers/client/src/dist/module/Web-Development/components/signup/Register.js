@@ -1,4 +1,6 @@
-export default class Register {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Register {
     constructor(register, signUpUI) {
         this.$register = $(register);
         this.isEnabled = false;
@@ -30,3 +32,4 @@ export default class Register {
         });
     }
 }
+exports.default = Register;

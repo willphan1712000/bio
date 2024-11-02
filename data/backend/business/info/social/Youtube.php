@@ -32,6 +32,6 @@ class Youtube extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["Youtube"] = $this->format($operation, $infoArray["Youtube"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Youtube"]);
     }
 }

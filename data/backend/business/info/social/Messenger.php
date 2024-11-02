@@ -32,6 +32,6 @@ class Messenger extends InfoHandler implements Social {
         $operation = new MessengerOperation();
         $infoArray["Messenger"] = $this->format($operation, $infoArray["Messenger"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["Messenger"]);
     }
 }

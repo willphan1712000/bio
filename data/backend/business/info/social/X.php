@@ -32,6 +32,6 @@ class X extends InfoHandler implements Social {
         $operation = new Validate();
         $infoArray["X"] = $this->format($operation, $infoArray["X"]);
         $info->setInfo($infoArray);
-        return $this->validate($operation, $info);
+        return $this->validate($operation, $infoArray["X"]);
     }
 }

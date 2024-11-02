@@ -7,8 +7,8 @@ use business\info\Operation;
 use business\info\InfoElement;
 use business\info\InfoHandler;
 
-class Discription extends InfoHandler implements InfoElement {
-    function __construct(InfoHandler $next) {
+class Description extends InfoHandler implements InfoElement {
+    function __construct(?InfoHandler $next) {
         parent::__construct($next);
     }
 
