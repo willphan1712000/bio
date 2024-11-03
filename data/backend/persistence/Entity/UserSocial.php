@@ -1,16 +1,23 @@
 <?php
 namespace persistence\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity]
 #[Table('UserSocial')]
 class UserSocial {
     #[Id, Column(name: 'username')]
-    private string $username;
+    private $username;
+
+    #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
+    #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
+    private $User;
+
     #[Column(name: 'Facebook')]
     private string $Facebook;
     #[Column(name: 'Instagram')]

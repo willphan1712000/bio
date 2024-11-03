@@ -2,36 +2,23 @@
 namespace business\info\social;
 
 require_once __DIR__ ."/../../../../../vendor/autoload.php";
-use business\info\InfoHandler;
 use business\info\Info;
-use business\info\Operation;
+use business\info\InfoHandler;
 use business\info\social\Social;
-use business\info\social\operation\Validate;
+use business\info\OperationFactory;
+use business\info\OPERATIONNAME;
 
 class X extends InfoHandler implements Social {
     function __construct(InfoHandler $next) {
         parent::__construct($next);
     }
 
-    public function validate(?Operation $operation, $info): bool {
-        if($operation === null) {
+    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
+        $operation = $operationFactory->getOperation(OPERATIONNAME::SOCIALVALIDATE->value);
+        if($operation->validate($info->getInfo('X'))) {
+            $info->setInfo('X', $operation->format($info->getInfo('X')));
             return true;
         }
-        return $operation->validate($info);
-    }
-
-    public function format(?Operation $operation, $info): string {
-        if($operation === null) {
-            return $info;
-        }
-        return $operation->format($info);
-    }
-
-    public function doHandle(Info $info): bool {
-        $infoArray = $info->getInfo();
-        $operation = new Validate();
-        $infoArray["X"] = $this->format($operation, $infoArray["X"]);
-        $info->setInfo($infoArray);
-        return $this->validate($operation, $infoArray["X"]);
+        return false;
     }
 }

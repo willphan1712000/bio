@@ -4,6 +4,8 @@ namespace persistence\Entity;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
@@ -11,6 +13,17 @@ use Doctrine\ORM\Mapping\Table;
 class User {
     #[Id, Column(name: 'username')]
     private string $username;
+    
+    #[OneToOne(targetEntity: 'UserInfo', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private $UserInfo;
+    #[OneToOne(targetEntity: 'UserPhone', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private $UserPhone;
+    #[OneToOne(targetEntity: 'UserSocial', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private $UserSocial;
+    #[OneToMany(targetEntity: 'Purchase', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private $Purchase;
+    #[OneToOne(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    private $Template;
 
     #[Column(name: 'password')]
     private string $password;

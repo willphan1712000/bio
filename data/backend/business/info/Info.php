@@ -8,11 +8,16 @@ class Info {
         $this->info = $info;
     }
 
-    public function getInfo(): array {
-        return $this->info;
+    public function getInfo(string $whatToGet) {
+        return $this->info[$whatToGet];
     }
 
-    public function setInfo(array $info) {
-        $this->info = $info;
+    public function setInfo(string $whatToSet, $value): Info {
+        $this->info[$whatToSet] = $value;
+        return $this;
+    }
+
+    public function setEntireInfo(): array {
+        return $this->info;
     }
 }

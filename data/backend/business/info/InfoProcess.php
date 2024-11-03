@@ -45,8 +45,8 @@ class InfoProcess {
         // Handle user information
         $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 
-        $userInfoResult = $userInfoHandler->handle($this->info);
+        $userInfoSuccess = $userInfoHandler->handle($this->info, $this->operationFactory);
 
-        return $userInfoResult;
+        return $userInfoSuccess;
     }
 }

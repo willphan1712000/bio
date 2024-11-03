@@ -4,13 +4,19 @@ namespace persistence\Entity;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
 #[Table('UserInfo')]
 class UserInfo {
     #[Id, Column(name: 'username')]
-    private string $username;
+    private $username;
+    
+    #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
+    #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
+    private $User;
 
     #[Column(name: 'name')]
     private string $name;
@@ -30,7 +36,7 @@ class UserInfo {
     #[Column(name: 'Address')]
     private string $Address;
 
-    public function getUsername(): string {
+    public function getUsername() {
         return $this->username;
     }
     public function getName(): string {
@@ -52,7 +58,7 @@ class UserInfo {
         return $this->Address;
     }
 
-    public function setUsername(string $username): UserInfo {
+    public function setUsername($username): UserInfo {
         $this->username = $username;
         return $this;
     }

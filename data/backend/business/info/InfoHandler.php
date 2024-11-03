@@ -4,7 +4,6 @@
 
     abstract class InfoHandler {
         private ?InfoHandler $info;
-        private OperationFactory $operationFactory;
 
         function __construct(?InfoHandler $next) {
             $this->info = $next;

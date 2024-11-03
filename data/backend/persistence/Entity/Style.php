@@ -1,16 +1,22 @@
 <?php
 namespace persistence\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity()]
 #[Table('Style')]
 class Style {
     #[Id, Column(name: 'purchase_id')]
     private string $purchase_id;
+    #[Id, OneToOne(targetEntity: 'Purchase', inversedBy: 'Style')]
+    #[JoinColumn(name: 'purchase_id', referencedColumnName: 'purchase_id', onDelete: 'CASCADE')]
+    private $Purchase;
+    
     #[Column(name: 'font')]
     private string $font;
     #[Column(name: 'fontSize')]
@@ -20,7 +26,13 @@ class Style {
     #[Column(name: 'background')]
     private string $background;
 
-    public function getPurchaseId() : string {
+    // public function getUsername() : string {
+    //     return $this->username;
+    // }
+    // public function getTemplateId() : string {
+    //     return $this->template_id;
+    // }
+    public function getPurchaseId(): string {
         return $this->purchase_id;
     }
     public function getFont() : string {
@@ -36,7 +48,15 @@ class Style {
         return $this->background;
     }
 
-    public function setPurchasedId(string $id): Style {
+    // public function setUsername(string $username): Style {
+    //     $this->username = $username;
+    //     return $this;
+    // }
+    // public function setTemplateId(string $id): Style {
+    //     $this->template_id = $id;
+    //     return $this;
+    // }
+    public function setPurchaseId(string $id): Style {
         $this->purchase_id = $id;
         return $this;
     }

@@ -1,16 +1,23 @@
 <?php
 namespace persistence\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity]
 #[Table('UserPhone')]
 class UserPhone {
     #[Id, Column(name: 'username')]
-    private string $username;
+    private $username;
+
+    #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserPhone')]
+    #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
+    private $User;
+
     #[Column(name: 'Mobile')]
     private string $Mobile;
     #[Column(name: 'MobileCode')]
@@ -21,7 +28,7 @@ class UserPhone {
     private string $Work;
     #[Column(name: 'WorkCode')]
     private string $WorkCode;
-    #[Column(name: 'WorkFode')]
+    #[Column(name: 'WorkFlag')]
     private string $WorkFlag;
 
     public function getUsername(): string {
