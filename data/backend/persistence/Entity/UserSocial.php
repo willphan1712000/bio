@@ -11,40 +11,47 @@ use Doctrine\ORM\Mapping\JoinColumn;
 #[Entity]
 #[Table('UserSocial')]
 class UserSocial {
-    #[Id, Column(name: 'username')]
+    #[Id, Column(name: 'username', nullable: false)]
     private $username;
 
     #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     private $User;
 
-    #[Column(name: 'Facebook')]
+    #[Column(name: 'Facebook', nullable: true)]
     private string $Facebook;
-    #[Column(name: 'Instagram')]
+    #[Column(name: 'Instagram', nullable: true)]
     private string $Instagram;
-    #[Column(name: 'Messenger')]
+    #[Column(name: 'Messenger', nullable: true)]
     private string $Messenger;
-    #[Column(name: 'X')]
+    #[Column(name: 'X', nullable: true)]
     private string $X;
-    #[Column(name: 'Tiktok')]
+    #[Column(name: 'Tiktok', nullable: true)]
     private string $Tiktok;
-    #[Column(name: 'Youtube')]
+    #[Column(name: 'Youtube', nullable: true)]
     private string $Youtube;
-    #[Column(name: 'Threads')]
+    #[Column(name: 'Threads', nullable: true)]
     private string $Threads;
-    #[Column(name: 'Linkedin')]
+    #[Column(name: 'Linkedin', nullable: true)]
     private string $Linkedin;
-    #[Column(name: 'Pinterest')]
+    #[Column(name: 'Pinterest', nullable: true)]
     private string $Pinterest;
-    #[Column(name: 'Zalo')]
+    #[Column(name: 'Zalo', nullable: true)]
     private string $Zalo;
-    #[Column(name: 'Booking')]
+    #[Column(name: 'Booking', nullable: true)]
     private string $Booking;
-    #[Column(name: 'OrderOnline')]
+    #[Column(name: 'OrderOnline', nullable: true)]
     private string $OrderOnline;
-    #[Column(name: 'HotSale')]
+    #[Column(name: 'HotSale', nullable: true)]
     private string $HotSale;
 
+    public function getUser() : User {
+        return $this->User;
+    }
+    public function setUser(User $User): UserSocial {
+        $this->User = $User;
+        return $this;
+    }
     public function getUsername(): string {
         return $this->username;
     }

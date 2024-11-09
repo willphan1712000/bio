@@ -23,7 +23,7 @@ tsconfig.json
 secrets/*
 
 #testing
-data/test/*
+test/*
 
 #Wjs
 controllers/client/src/module/Web-Development

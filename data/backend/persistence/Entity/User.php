@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity]
 #[Table('User')]
 class User {
-    #[Id, Column(name: 'username')]
+    #[Id, Column(name: 'username', nullable: false)]
     private string $username;
     
     #[OneToOne(targetEntity: 'UserInfo', mappedBy: 'User', cascade: ['persist', 'remove'])]
@@ -25,18 +25,42 @@ class User {
     #[OneToOne(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
     private $Template;
 
-    #[Column(name: 'password')]
+    #[Column(name: 'password', nullable: false)]
     private string $password;
 
-    #[Column(name: 'email')]
+    #[Column(name: 'email', nullable: false)]
     private string $email;
 
-    #[Column(name: 'token')]
+    #[Column(name: 'token', nullable: true)]
     private string $token;
 
-    #[Column(name: 'deleteToken')]
+    #[Column(name: 'deleteToken', nullable: true)]
     private string $deleteToken;
 
+    public function getUserInfo(): UserInfo {
+        return $this->UserInfo;
+    }
+    public function setUserInfo(UserInfo $UserInfo): User {
+        $UserInfo->setUser($this);
+        $this->UserInfo = $UserInfo;
+        return $this;
+    }
+    public function getUserPhone(): UserPhone {
+        return $this->UserPhone;
+    }
+    public function setUserPhone(UserPhone $UserPhone): User {
+        $UserPhone->setUser($this);
+        $this->UserPhone = $UserPhone;
+        return $this;
+    }
+    public function getUserSocial(): UserSocial {
+        return $this->UserSocial;
+    }
+    public function setUserSocial(UserSocial $UserSocial): User {
+        $UserSocial->setUser($this);
+        $this->UserSocial = $UserSocial;
+        return $this;
+    }
     public function getUsername(): string {
         return $this->username;
     }

@@ -11,31 +11,34 @@ use Doctrine\ORM\Mapping\Table;
 #[Entity]
 #[Table('UserInfo')]
 class UserInfo {
-    #[Id, Column(name: 'username')]
+    #[Id, Column(name: 'username', nullable: false)]
     private $username;
     
     #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     private $User;
 
-    #[Column(name: 'name')]
+    #[Column(name: 'name', nullable: true)]
     private string $name;
     
-    #[Column(name: 'image')]
+    #[Column(name: 'image', nullable: true)]
     private string $image;
     
-    #[Column(name: 'organization')]
+    #[Column(name: 'organization', nullable: true)]
     private string $organization;
     
-    #[Column(name: 'description')]
+    #[Column(name: 'description', nullable: true)]
     private string $description;
     
-    #[Column(name: 'Email')]
+    #[Column(name: 'Email', nullable: true)]
     private string $Email;
     
-    #[Column(name: 'Address')]
+    #[Column(name: 'Address', nullable: true)]
     private string $Address;
 
+    public function getUser() : User {
+        return $this->User;
+    }
     public function getUsername() {
         return $this->username;
     }
@@ -58,6 +61,10 @@ class UserInfo {
         return $this->Address;
     }
 
+    public function setUser(User $User): UserInfo {
+        $this->User = $User;
+        return $this;
+    }
     public function setUsername($username): UserInfo {
         $this->username = $username;
         return $this;

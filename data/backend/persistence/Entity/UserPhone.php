@@ -11,26 +11,33 @@ use Doctrine\ORM\Mapping\JoinColumn;
 #[Entity]
 #[Table('UserPhone')]
 class UserPhone {
-    #[Id, Column(name: 'username')]
+    #[Id, Column(name: 'username', nullable: false)]
     private $username;
 
     #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserPhone')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     private $User;
 
-    #[Column(name: 'Mobile')]
+    #[Column(name: 'Mobile', nullable: true)]
     private string $Mobile;
-    #[Column(name: 'MobileCode')]
+    #[Column(name: 'MobileCode', nullable: true)]
     private string $MobileCode;
-    #[Column(name: 'MobileFlag')]
+    #[Column(name: 'MobileFlag', nullable: true)]
     private string $MobileFlag;
-    #[Column(name: 'Work')]
+    #[Column(name: 'Work', nullable: true)]
     private string $Work;
-    #[Column(name: 'WorkCode')]
+    #[Column(name: 'WorkCode', nullable: true)]
     private string $WorkCode;
-    #[Column(name: 'WorkFlag')]
+    #[Column(name: 'WorkFlag', nullable: true)]
     private string $WorkFlag;
 
+    public function getUser() : User {
+        return $this->User;
+    }
+    public function setUser(User $User): UserPhone {
+        $this->User = $User;
+        return $this;
+    }
     public function getUsername(): string {
         return $this->username;
     }
