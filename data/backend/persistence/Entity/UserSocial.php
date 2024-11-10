@@ -10,40 +10,40 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity]
 #[Table('UserSocial')]
-class UserSocial {
+class UserSocial extends EntityFunction {
     #[Id, Column(name: 'username', nullable: false)]
-    private $username;
+    protected $username;
 
     #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
-    private $User;
+    protected $User;
 
     #[Column(name: 'Facebook', nullable: true)]
-    private string $Facebook;
+    protected string $Facebook;
     #[Column(name: 'Instagram', nullable: true)]
-    private string $Instagram;
+    protected string $Instagram;
     #[Column(name: 'Messenger', nullable: true)]
-    private string $Messenger;
+    protected string $Messenger;
     #[Column(name: 'X', nullable: true)]
-    private string $X;
+    protected string $X;
     #[Column(name: 'Tiktok', nullable: true)]
-    private string $Tiktok;
+    protected string $Tiktok;
     #[Column(name: 'Youtube', nullable: true)]
-    private string $Youtube;
+    protected string $Youtube;
     #[Column(name: 'Threads', nullable: true)]
-    private string $Threads;
+    protected string $Threads;
     #[Column(name: 'Linkedin', nullable: true)]
-    private string $Linkedin;
+    protected string $Linkedin;
     #[Column(name: 'Pinterest', nullable: true)]
-    private string $Pinterest;
+    protected string $Pinterest;
     #[Column(name: 'Zalo', nullable: true)]
-    private string $Zalo;
+    protected string $Zalo;
     #[Column(name: 'Booking', nullable: true)]
-    private string $Booking;
+    protected string $Booking;
     #[Column(name: 'OrderOnline', nullable: true)]
-    private string $OrderOnline;
+    protected string $OrderOnline;
     #[Column(name: 'HotSale', nullable: true)]
-    private string $HotSale;
+    protected string $HotSale;
 
     public function getUser() : User {
         return $this->User;

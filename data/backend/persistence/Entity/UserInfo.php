@@ -10,31 +10,31 @@ use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
 #[Table('UserInfo')]
-class UserInfo {
+class UserInfo extends EntityFunction {
     #[Id, Column(name: 'username', nullable: false)]
-    private $username;
+    protected $username;
     
     #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
-    private $User;
+    protected $User;
 
     #[Column(name: 'name', nullable: true)]
-    private string $name;
+    protected string $name;
     
     #[Column(name: 'image', nullable: true)]
-    private string $image;
+    protected string $image;
     
     #[Column(name: 'organization', nullable: true)]
-    private string $organization;
+    protected string $organization;
     
     #[Column(name: 'description', nullable: true)]
-    private string $description;
+    protected string $description;
     
     #[Column(name: 'Email', nullable: true)]
-    private string $Email;
+    protected string $Email;
     
     #[Column(name: 'Address', nullable: true)]
-    private string $Address;
+    protected string $Address;
 
     public function getUser() : User {
         return $this->User;

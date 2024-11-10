@@ -10,32 +10,32 @@ use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
 #[Table('User')]
-class User {
+class User extends EntityFunction {
     #[Id, Column(name: 'username', nullable: false)]
-    private string $username;
+    protected string $username;
     
     #[OneToOne(targetEntity: 'UserInfo', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    private $UserInfo;
+    protected $UserInfo;
     #[OneToOne(targetEntity: 'UserPhone', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    private $UserPhone;
+    protected $UserPhone;
     #[OneToOne(targetEntity: 'UserSocial', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    private $UserSocial;
+    protected $UserSocial;
     #[OneToMany(targetEntity: 'Purchase', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    private $Purchase;
+    protected $Purchase;
     #[OneToOne(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    private $Template;
+    protected $Template;
 
     #[Column(name: 'password', nullable: false)]
-    private string $password;
+    protected string $password;
 
     #[Column(name: 'email', nullable: false)]
-    private string $email;
+    protected string $email;
 
     #[Column(name: 'token', nullable: true)]
-    private string $token;
+    protected string $token;
 
     #[Column(name: 'deleteToken', nullable: true)]
-    private string $deleteToken;
+    protected string $deleteToken;
 
     public function getUserInfo(): UserInfo {
         return $this->UserInfo;

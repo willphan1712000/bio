@@ -10,21 +10,21 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity()]
 #[Table('Style')]
-class Style {
+class Style extends EntityFunction {
     #[Id, Column(name: 'purchase_id')]
-    private string $purchase_id;
+    protected string $purchase_id;
     #[Id, OneToOne(targetEntity: 'Purchase', inversedBy: 'Style')]
     #[JoinColumn(name: 'purchase_id', referencedColumnName: 'purchase_id', onDelete: 'CASCADE')]
-    private $Purchase;
+    protected $Purchase;
     
     #[Column(name: 'font')]
-    private string $font;
+    protected string $font;
     #[Column(name: 'fontSize')]
-    private string $fontSize;
+    protected string $fontSize;
     #[Column(name: 'fontColor')]
-    private string $fontColor;
+    protected string $fontColor;
     #[Column(name: 'background')]
-    private string $background;
+    protected string $background;
 
     // public function getUsername() : string {
     //     return $this->username;

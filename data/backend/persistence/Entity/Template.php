@@ -10,16 +10,16 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity]
 #[Table('Template')]
-class Template {
+class Template extends EntityFunction {
     #[Id, Column(name: 'username')]
-    private string $username;
+    protected string $username;
     #[Id, OneToOne(targetEntity: 'User', inversedBy: 'Template')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
-    private $User;
+    protected $User;
     #[Column(name: 'template_id')]
-    private int $template_id;
+    protected int $template_id;
     #[Column(name: 'favorite')]
-    private string $favorite;
+    protected string $favorite;
 
     public function getUsername(): string {
         return $this->username;

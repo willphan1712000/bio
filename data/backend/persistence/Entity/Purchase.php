@@ -11,24 +11,24 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity]
 #[Table('Purchase')]
-class Purchase {
+class Purchase extends EntityFunction {
     #[Id, Column(name: 'purchase_id')]
-    private string $purchase_id;
+    protected string $purchase_id;
     #[Column(name: 'username')]
-    private string $username;
+    protected string $username;
     #[ManyToOne(targetEntity: 'User', inversedBy: 'Purchase')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username')]
-    private $User;
+    protected $User;
     #[OneToOne(targetEntity: 'Style', mappedBy: 'Purchase', cascade: ['persist', 'remove'])]
-    private $Style;
+    protected $Style;
     #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'Purchase')]
     #[JoinColumn(name: 'template_id', referencedColumnName: 'template_id')]
-    private $StyleDefault;
+    protected $StyleDefault;
 
     #[Column(name: 'template_id')]
-    private int $template_id;
+    protected int $template_id;
     #[Column(name: 'purchasedAt')]
-    private \DateTime $purchasedAt;
+    protected \DateTime $purchasedAt;
 
     public function getPurchaseId():string {
         return $this->purchase_id;

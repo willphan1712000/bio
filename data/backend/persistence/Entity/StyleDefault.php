@@ -9,21 +9,21 @@ use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity()]
 #[Table('StyleDefault')]
-class StyleDefault {
+class StyleDefault extends EntityFunction {
     #[Id, Column(name: 'template_id')]
-    private int $template_id;
+    protected int $template_id;
     #[OneToMany(targetEntity: 'Purchase', mappedBy: 'StyleDefault')]
-    private $Purchase;
+    protected $Purchase;
     #[Column(name: 'font')]
-    private int $font;
+    protected int $font;
     #[Column(name: 'fontSize')]
-    private int $fontSize;
+    protected int $fontSize;
     #[Column(name: 'fontColor')]
-    private int $fontColor;
+    protected int $fontColor;
     #[Column(name: 'background')]
-    private int $background;
+    protected int $background;
     #[Column(name: 'price')]
-    private float $price;
+    protected float $price;
 
     public function getTemplateId(): int {
         return $this->template_id;
