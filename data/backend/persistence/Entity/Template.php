@@ -5,15 +5,18 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[Entity]
 #[Table('Template')]
 class Template extends EntityFunction {
-    #[Id, Column(name: 'username')]
+    #[Id, Column(name: 'id'), GeneratedValue]
+    protected int $id;
+    #[Column(name: 'username')]
     protected string $username;
-    #[OneToOne(targetEntity: 'User', inversedBy: 'Template')]
+    #[ManyToOne(targetEntity: 'User', inversedBy: 'Template')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     protected $User;
     #[Column(name: 'template_id')]

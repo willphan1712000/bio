@@ -26,13 +26,12 @@ class Database implements IDatabase {
             $entityManager = EntityManager::getEntityManager(); // get entity manager instance
     
             $r = $entityManager->getRepository($table); // get entity repository
+            $out = [];
             if($unique === null) {
                 $o = $r->findAll();
                 if($column === null) {
                     return $o;
                 }
-                
-                $out = [];
                 foreach($o as $e) {
                     array_push($out, $e->get($column));
                 }
@@ -85,6 +84,9 @@ class Database implements IDatabase {
             $entityManager = EntityManager::getEntityManager(); // get entity manager instance
     
             $row = $entityManager->getRepository($table)->findOneBy($unique);
+            if($row === NULL) {
+                throw new \Exception("Can not find the data, abort the DELETE operation\n");
+            }
             $entityManager->remove($row);
             $entityManager->flush();
             return true;

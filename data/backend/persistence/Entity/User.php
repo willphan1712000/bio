@@ -2,6 +2,8 @@
 namespace persistence\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
@@ -23,8 +25,8 @@ class User extends EntityFunction {
     protected $UserSocial;
     #[OneToMany(targetEntity: 'Purchase', mappedBy: 'User', cascade: ['persist', 'remove'])]
     protected $Purchase;
-    #[OneToOne(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    protected $Template;
+    #[OneToMany(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    protected Collection $Template;
 
     #[Column(name: 'password', nullable: false)]
     protected string $password;
@@ -47,6 +49,7 @@ class User extends EntityFunction {
     function __construct()
     {
         $this->createdAt = new DateTime();
+        $this->Template = new ArrayCollection();
     }
 
     public function getUserInfo(): UserInfo {
@@ -73,12 +76,12 @@ class User extends EntityFunction {
         $this->UserSocial = $UserSocial;
         return $this;
     }
-    public function getTemplate(): Template {
+    public function getTemplate(): Collection {
         return $this->Template;
     }
     public function setTemplate(Template $Template): User {
         $Template->setUser($this);
-        $this->Template = $Template;
+        $this->Template->add($Template);
         return $this;
     }
     public function getUsername(): string {
