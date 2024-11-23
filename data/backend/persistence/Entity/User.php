@@ -1,12 +1,13 @@
 <?php
 namespace persistence\Entity;
 
+use DateTime;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity]
 #[Table('User')]
@@ -32,10 +33,21 @@ class User extends EntityFunction {
     protected string $email;
 
     #[Column(name: 'token', nullable: true)]
-    protected string $token;
+    protected ?string $token;
 
     #[Column(name: 'deleteToken', nullable: true)]
-    protected string $deleteToken;
+    protected ?string $deleteToken;
+
+    #[Column(name: 'defaultTemplate', nullable: false)]
+    protected int $defaultTemplate;
+
+    #[Column(name: 'createdAt', type: 'datetime')]
+    protected DateTime $createdAt;
+
+    function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
 
     public function getUserInfo(): UserInfo {
         return $this->UserInfo;

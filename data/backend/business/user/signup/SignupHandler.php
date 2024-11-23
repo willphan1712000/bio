@@ -1,5 +1,5 @@
 <?php
-    namespace business\api\user;
+    namespace business\user\signup;
     abstract class SignupHandler {
         private ?SignupHandler $signup;
 

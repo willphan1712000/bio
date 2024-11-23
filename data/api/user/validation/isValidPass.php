@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__."/../../../backend/business/api/user/signup/Password.php";
+require_once __DIR__."/../../../backend/business/user/signup/Password.php";
 use business\api\user\Password;
-require_once __DIR__."/../../../backend/business/api/user/signup/Input.php";
+require_once __DIR__."/../../../backend/business/user/signup/Input.php";
 use business\api\user\Input;
 
 $json = file_get_contents("php://input");

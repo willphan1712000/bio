@@ -1,7 +1,7 @@
 <?php
 namespace business\info;
 
-require_once __DIR__ ."/../../../../vendor/autoload.php";
+// require_once __DIR__ ."/../../../../vendor/autoload.php";
 use business\info\Info;
 use business\info\InfoHandler;
 use config\SystemConfig;

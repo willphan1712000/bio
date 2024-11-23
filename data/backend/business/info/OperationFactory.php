@@ -1,7 +1,7 @@
 <?php
 namespace business\info;
 
-require_once __DIR__."/../../../../vendor/autoload.php";
+// require_once __DIR__."/../../../../vendor/autoload.php";
 
 use business\info\phone\operation\Display;
 use business\info\phone\operation\Validate;

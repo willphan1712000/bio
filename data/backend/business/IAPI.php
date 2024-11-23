@@ -1,6 +1,6 @@
 <?php
 
-namespace business\api;
+namespace business;
 
 interface IAPI {
     public function execute();

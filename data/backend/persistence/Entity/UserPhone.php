@@ -14,22 +14,22 @@ class UserPhone extends EntityFunction {
     #[Id, Column(name: 'username', nullable: false)]
     protected $username;
 
-    #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserPhone')]
+    #[OneToOne(targetEntity: 'User', inversedBy: 'UserPhone')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     protected $User;
 
     #[Column(name: 'Mobile', nullable: true)]
-    protected string $Mobile;
+    protected ?string $Mobile;
     #[Column(name: 'MobileCode', nullable: true)]
-    protected string $MobileCode;
+    protected ?string $MobileCode;
     #[Column(name: 'MobileFlag', nullable: true)]
-    protected string $MobileFlag;
+    protected ?string $MobileFlag;
     #[Column(name: 'Work', nullable: true)]
-    protected string $Work;
+    protected ?string $Work;
     #[Column(name: 'WorkCode', nullable: true)]
-    protected string $WorkCode;
+    protected ?string $WorkCode;
     #[Column(name: 'WorkFlag', nullable: true)]
-    protected string $WorkFlag;
+    protected ?string $WorkFlag;
 
     public function getUser() : User {
         return $this->User;

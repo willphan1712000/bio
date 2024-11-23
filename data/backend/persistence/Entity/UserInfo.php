@@ -14,7 +14,7 @@ class UserInfo extends EntityFunction {
     #[Id, Column(name: 'username', nullable: false)]
     protected $username;
     
-    #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
+    #[OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     protected $User;
 

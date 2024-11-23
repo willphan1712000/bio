@@ -1,22 +1,15 @@
 <?php
-    namespace business\api\user;
+    namespace business\user;
 
-    require_once __DIR__.'/../IAPI.php';
-    use business\api\IAPI;
-    require_once __DIR__.'/signup/CheckUsername.php';
-    use business\api\user\CheckUsername;
-    require_once __DIR__.'/signup/CheckEmail.php';
-    use business\api\user\CheckEmail;
-    require_once __DIR__.'/signup/Password.php';
-    use business\api\user\Password;
-    require_once __DIR__.'/signup/CreateFolder.php';
-    use business\api\user\CreateFolder;
-    require_once __DIR__.'/signup/CreateQR.php';
-    use business\api\user\CreateQR;
-    require_once __DIR__.'/signup/Push.php';
-    use business\api\user\Push;
-    require_once __DIR__.'/signup/Input.php';
-    use business\api\user\Input;
+    // require_once __DIR__."/../../../../vendor/autoload.php";
+    use business\IAPI;
+    use business\user\signup\CheckUsername;
+    use business\user\signup\CheckEmail;
+    use business\user\signup\Password;
+    use business\user\signup\CreateFolder;
+    use business\user\signup\CreateQR;
+    use business\user\signup\Push;
+    use business\user\signup\Input;
 
     class POST implements IAPI {
         private string $username;

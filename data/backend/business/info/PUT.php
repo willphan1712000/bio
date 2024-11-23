@@ -1,6 +1,7 @@
 <?php
 namespace business\info;
 
+use business\IAPI;
 use business\info\Push;
 use business\info\Vcard;
 use business\info\social\X;
@@ -28,9 +29,9 @@ use business\info\user\Description;
 use business\info\user\Organization;
 use business\info\social\OrderOnline;
 
-require_once __DIR__."/../../../../vendor/autoload.php";
+// require_once __DIR__."/../../../../vendor/autoload.php";
 
-class InfoProcess {
+class PUT implements IAPI {
     private Info $info;
     private OperationFactory $operationFactory;
 
@@ -39,7 +40,7 @@ class InfoProcess {
         $this->operationFactory = new OperationFactory();
     }
 
-    public function infoProcess() {
+    private function infoProcess() {
         // Handle push to database and create Vcard
         $user = new Vcard(new Push(null));
         // Handle user social
@@ -52,5 +53,10 @@ class InfoProcess {
         $userInfoSuccess = $userInfoHandler->handle($this->info, $this->operationFactory);
 
         return $userInfoSuccess;
+    }
+
+    public function execute()
+    {
+        return $this->infoProcess();
     }
 }

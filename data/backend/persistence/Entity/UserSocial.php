@@ -14,38 +14,38 @@ class UserSocial extends EntityFunction {
     #[Id, Column(name: 'username', nullable: false)]
     protected $username;
 
-    #[Id, OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
+    #[OneToOne(targetEntity: 'User', inversedBy: 'UserInfo')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     protected $User;
 
     #[Column(name: 'Facebook', nullable: true)]
-    protected string $Facebook;
+    protected ?string $Facebook;
     #[Column(name: 'Instagram', nullable: true)]
-    protected string $Instagram;
+    protected ?string $Instagram;
     #[Column(name: 'Messenger', nullable: true)]
-    protected string $Messenger;
+    protected ?string $Messenger;
     #[Column(name: 'X', nullable: true)]
-    protected string $X;
+    protected ?string $X;
     #[Column(name: 'Tiktok', nullable: true)]
-    protected string $Tiktok;
+    protected ?string $Tiktok;
     #[Column(name: 'Youtube', nullable: true)]
-    protected string $Youtube;
+    protected ?string $Youtube;
     #[Column(name: 'Threads', nullable: true)]
-    protected string $Threads;
+    protected ?string $Threads;
     #[Column(name: 'Linkedin', nullable: true)]
-    protected string $Linkedin;
+    protected ?string $Linkedin;
     #[Column(name: 'Pinterest', nullable: true)]
-    protected string $Pinterest;
+    protected ?string $Pinterest;
     #[Column(name: 'Zalo', nullable: true)]
-    protected string $Zalo;
+    protected ?string $Zalo;
     #[Column(name: 'Booking', nullable: true)]
-    protected string $Booking;
+    protected ?string $Booking;
     #[Column(name: 'OrderOnline', nullable: true)]
-    protected string $OrderOnline;
+    protected ?string $OrderOnline;
     #[Column(name: 'HotSale', nullable: true)]
-    protected string $HotSale;
+    protected ?string $HotSale;
     #[Column(name: 'Website', nullable: true)]
-    protected string $Website;
+    protected ?string $Website;
 
     public function getUser() : User {
         return $this->User;

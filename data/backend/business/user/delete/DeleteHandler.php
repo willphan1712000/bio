@@ -1,5 +1,5 @@
 <?php
-    namespace business\api\user;
+    namespace business\user\delete;
 
     abstract class DeleteHandler {
         private ?DeleteHandler $signup;

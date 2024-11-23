@@ -1,9 +1,7 @@
 <?php
-namespace business\api\user;
+namespace business\user\delete;
 
-require_once __DIR__."/DeleteHandler.php";
-use business\api\user\DeleteHandler;
-require_once __DIR__."/../../../../../core.php";
+use business\user\delete\DeleteHandler;
 use config\SystemConfig;
 
 class DeleteFolder extends DeleteHandler {

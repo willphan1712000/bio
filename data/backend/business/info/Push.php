@@ -1,12 +1,9 @@
 <?php
 namespace business\info;
 
-require_once __DIR__ ."/../../../../vendor/autoload.php";
 use business\info\Info;
-use persistence\Entity\User;
 use business\info\InfoHandler;
 use persistence\Database;
-use persistence\EntityManager;
 use persistence\Entity\UserInfo;
 use persistence\Entity\UserPhone;
 use persistence\Entity\UserSocial;
@@ -40,6 +37,7 @@ class Push extends InfoHandler {
             }
             return true;
         } catch (\Exception $e) {
+            echo $e->getMessage();
             return false;
         }
     }

@@ -1,5 +1,5 @@
 <?php
-    namespace business\api\user;
+    namespace business\user\signup;
     class Input {
         private String $username;
         private String $password;

@@ -1,10 +1,7 @@
 <?php
-    namespace business\api\user;
-    require_once __DIR__.'/SignupHandler.php';
-    require_once __DIR__.'/Input.php';
-    require_once __DIR__.'/../../../../../../vendor/autoload.php';
-    use business\api\user\SignupHandler;
-    use business\api\user\Input;
+    namespace business\user\signup;
+    use business\user\signup\SignupHandler;
+    use business\user\signup\Input;
     use persistence\Entity\Template;
     use persistence\Entity\User;
     use persistence\Entity\UserInfo;
@@ -27,22 +24,19 @@
                 $userInfo = new UserInfo();
                 $userPhone = new UserPhone();
                 $userSocial = new UserSocial();
-                $template = new Template();
 
                 $user->setUsername($username);
                 $user->setPassword($password);
                 $user->setEmail($email);
+                $user->set('defaultTemplate', 0);
 
                 $userInfo->setUsername($username);
                 $userPhone->setUsername($username);
                 $userSocial->setUsername($username);
-                $template->setUsername($username);
-                $template->setTemplateId(0);
 
                 $user->setUserInfo($userInfo);
                 $user->setUserPhone($userPhone);
                 $user->setUserSocial($userSocial);
-                $user->setTemplate($template);
 
                 $entityManager = EntityManager::getEntityManager();
                 $entityManager->persist($user);

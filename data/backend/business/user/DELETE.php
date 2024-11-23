@@ -1,16 +1,10 @@
 <?php
-namespace business\api\user;
+namespace business\user;
 
-require_once __DIR__."/../IAPI.php";
-use business\api\IAPI;
-require_once __DIR__."/delete/DeleteHandler.php";
-use business\api\user\DeleteHandler;
-require_once __DIR__."/delete/IsUserExist.php";
-use business\api\user\IsUserExist;
-require_once __DIR__."/delete/DeleteFolder.php";
-use business\api\user\DeleteFolder;
-require_once __DIR__."/delete/DeleteData.php";
-use business\api\user\DeleteData;
+use business\IAPI;
+use business\user\delete\IsUserExist;
+use business\user\delete\DeleteFolder;
+use business\user\delete\DeleteData;
 
 class DELETE implements IAPI {
     private ?string $username;

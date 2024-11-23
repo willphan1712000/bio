@@ -1,7 +1,6 @@
 <?php
-namespace business\api\user;
+namespace business\user\delete;
 
-require_once __DIR__."/../../../UserManagement.php";
 use business\UserManagement;
 
 class IsUserExist extends DeleteHandler {
