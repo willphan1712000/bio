@@ -3,6 +3,7 @@ namespace business\info;
 
 require_once __DIR__."/../../../../vendor/autoload.php";
 
+use business\info\phone\operation\Display;
 use business\info\phone\operation\Validate;
 use business\info\social\operation\Messenger;
 use business\info\social\operation\Validate as OperationValidate;
@@ -14,6 +15,7 @@ enum OPERATIONNAME: string {
     case ADDRESS = 'ADDRESS';
     case EMAIL = 'EMAIL';
     case PHONEVALIDATE = 'PHONEVALIDATE';
+    case PHONEDISPLAY = 'PHONEDISPLAY';
     case SOCIALVALIDATE = 'SOCIALVALIDATE';
     case MESSENGER = 'MESSENGER';
     case ZALO = 'ZALO';
@@ -26,6 +28,7 @@ class OperationFactory {
         $this->operations[OPERATIONNAME::ADDRESS->value] = new Address();
         $this->operations[OPERATIONNAME::EMAIL->value] = new Email();
         $this->operations[OPERATIONNAME::PHONEVALIDATE->value] = new Validate();
+        $this->operations[OPERATIONNAME::PHONEDISPLAY->value] = new Display();
         $this->operations[OPERATIONNAME::SOCIALVALIDATE->value] = new OperationValidate();
         $this->operations[OPERATIONNAME::MESSENGER->value] = new Messenger();
         $this->operations[OPERATIONNAME::ZALO->value] = new Zalo();

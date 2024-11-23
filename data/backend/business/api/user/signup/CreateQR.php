@@ -1,11 +1,9 @@
 <?php
     namespace business\api\user;
-    require_once __DIR__.'/../../../UserManagement.php';
     use business\UserManagement;
     require __DIR__."/vendorQR/autoload.php";
     use Endroid\QrCode\QrCode;
     use Endroid\QrCode\Writer\PngWriter;
-    require_once __DIR__.'/../../../../../core.php';
     use config\SystemConfig;
 
     class CreateQR extends SignupHandler {

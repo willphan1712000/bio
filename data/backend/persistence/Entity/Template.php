@@ -18,7 +18,7 @@ class Template extends EntityFunction {
     protected $User;
     #[Column(name: 'template_id')]
     protected int $template_id;
-    #[Column(name: 'favorite')]
+    #[Column(name: 'favorite', nullable: true)]
     protected string $favorite;
 
     public function getUsername(): string {
@@ -41,6 +41,15 @@ class Template extends EntityFunction {
     }
     public function setFarovite(int $favorite) : Template {
         $this->favorite = $favorite;
+        return $this;
+    }
+
+    public function getUser(): User {
+        return $this->User;
+    }
+
+    public function setUser(User $User): Template {
+        $this->User = $User;
         return $this;
     }
 }

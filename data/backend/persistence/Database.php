@@ -11,35 +11,42 @@ use persistence\Entity\UserPhone;
 use persistence\Entity\UserSocial;
 
 interface IDatabase {
-    public static function GET(string $table, string $column = null, array $unique = null, string $limit = null);
+    public static function GET($table, string $column = null, array $unique = null, string $limit = null);
     public static function PUT(string $table, $column, $value, $unique): bool;
     public static function POST(string $table, array $columns): bool;
     public static function DELETE(string $table, array $unique): bool;
+    public static function SQL(string $sql): mixed;
 }
 
 class Database implements IDatabase {
     // Query function for fast data retrieval
-    public static function GET(string $table, string $column = null, array $unique = null, string $limit = null) {
-        $entityManager = EntityManager::getEntityManager(); // get entity manager instance
+    public static function GET($table, string $column = null, array $unique = null, string $limit = null) {
+        try {
 
-        $r = $entityManager->getRepository($table); // get entity repository
-        if($unique === null) {
-            $o = $r->findAll();
+            $entityManager = EntityManager::getEntityManager(); // get entity manager instance
+    
+            $r = $entityManager->getRepository($table); // get entity repository
+            if($unique === null) {
+                $o = $r->findAll();
+                if($column === null) {
+                    return $o;
+                }
+                
+                $out = [];
+                foreach($o as $e) {
+                    array_push($out, $e->get($column));
+                }
+                return $out;
+            }
+            $o = $r->findOneBy($unique);
             if($column === null) {
                 return $o;
             }
-            
-            $out = [];
-            foreach($o as $e) {
-                array_push($out, $e->get($column));
-            }
-            return $out;
+            return $o->get($column);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            return false;
         }
-        $o = $r->findOneBy($unique);
-        if($column === null) {
-            return $o;
-        }
-        return $o->get($column);
     }
 
     public static function PUT($table, $column, $value, $unique): bool {
@@ -51,6 +58,7 @@ class Database implements IDatabase {
             $entityManager->flush();
             return true;
         } catch(\Exception $e) {
+            echo $e->getMessage();
             return false;
         }
     }
@@ -68,6 +76,7 @@ class Database implements IDatabase {
             $entityManager->flush();
             return true;
         } catch(\Exception $e) {
+            echo $e->getMessage();
             return false;
         }
     }
@@ -80,6 +89,19 @@ class Database implements IDatabase {
             $entityManager->flush();
             return true;
         } catch(\Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function SQL(string $sql): mixed {
+        try {
+            $conn = EntityManager::getConnection();
+            $stmt = $conn-> prepare($sql);
+            $result = $stmt->executeQuery();
+            return $result->fetchAllAssociative();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
             return false;
         }
     }

@@ -1,8 +1,5 @@
 <?php
     namespace business\api\user;
-    require_once __DIR__.'/SignupHandler.php';
-    require_once __DIR__.'/Input.php';
-    require_once __DIR__.'/../../../../../core.php';
     use business\api\user\SignupHandler;
     use business\api\user\Input;
     use config\SystemConfig;

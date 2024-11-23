@@ -9,4 +9,7 @@ class EntityFunction {
         $this->$setWhat = $value;
         return $this;
     }
+    public static function getProperty(): array {
+        return array_keys(get_class_vars(get_called_class()));
+    }
 }

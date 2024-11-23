@@ -41,7 +41,7 @@ class SystemConfig {
             ],
             'accountHoldPeriod' => 60*24*60*60, // 60 days,
             'data_model' => './dataModel/bio.sql',
-            'user_folder' => __DIR__."/../user/",
+            'user_folder' => __DIR__."/../../user/",
             'aicAccount' => [
                 'username' => 'Allinclicks',
                 'password' => '123456'
@@ -121,7 +121,7 @@ class SystemConfig {
         // Vcard begins
         $vCardContentPhp = '<?php $vCardContent="BEGIN:VCARD\nVERSION:3.0\nREV:2023-12-08T06:00:48Z\n';
         $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
-        $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:'.$imageData.'\n';
+        
         foreach($body as $socialName => $value) {
             if(!($socialName === 'type' || $socialName === 'src' || $socialName === 'username')) {
                 if($socialName === 'des'){

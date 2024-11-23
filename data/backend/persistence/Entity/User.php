@@ -61,6 +61,14 @@ class User extends EntityFunction {
         $this->UserSocial = $UserSocial;
         return $this;
     }
+    public function getTemplate(): Template {
+        return $this->Template;
+    }
+    public function setTemplate(Template $Template): User {
+        $Template->setUser($this);
+        $this->Template = $Template;
+        return $this;
+    }
     public function getUsername(): string {
         return $this->username;
     }

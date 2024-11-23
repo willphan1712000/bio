@@ -19,22 +19,22 @@ class UserInfo extends EntityFunction {
     protected $User;
 
     #[Column(name: 'name', nullable: true)]
-    protected string $name;
+    protected ?string $name;
     
     #[Column(name: 'image', nullable: true)]
-    protected string $image;
+    protected ?string $image;
     
     #[Column(name: 'organization', nullable: true)]
-    protected string $organization;
+    protected ?string $organization;
     
     #[Column(name: 'description', nullable: true)]
-    protected string $description;
+    protected ?string $description;
     
     #[Column(name: 'Email', nullable: true)]
-    protected string $Email;
+    protected ?string $Email;
     
     #[Column(name: 'Address', nullable: true)]
-    protected string $Address;
+    protected ?string $Address;
 
     public function getUser() : User {
         return $this->User;

@@ -17,7 +17,7 @@ class Info {
         return $this;
     }
 
-    public function setEntireInfo(): array {
+    public function getEntireInfo(): array {
         return $this->info;
     }
 }

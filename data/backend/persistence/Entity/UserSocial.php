@@ -44,6 +44,8 @@ class UserSocial extends EntityFunction {
     protected string $OrderOnline;
     #[Column(name: 'HotSale', nullable: true)]
     protected string $HotSale;
+    #[Column(name: 'Website', nullable: true)]
+    protected string $Website;
 
     public function getUser() : User {
         return $this->User;
@@ -94,6 +96,9 @@ class UserSocial extends EntityFunction {
     }
     public function getHotSale(): string {
         return $this->HotSale;
+    }
+    public function getWebsite(): string {
+        return $this->Website;
     }
 
     public function setUsername(string $username): UserSocial {
@@ -150,6 +155,10 @@ class UserSocial extends EntityFunction {
     }
     public function setHotSale(string $HotSale): UserSocial {
         $this->HotSale = $HotSale;
+        return $this;
+    }
+    public function setWebsite(string $Website): UserSocial {
+        $this->Website = $Website;
         return $this;
     }
 }

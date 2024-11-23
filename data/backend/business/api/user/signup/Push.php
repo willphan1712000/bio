@@ -2,10 +2,15 @@
     namespace business\api\user;
     require_once __DIR__.'/SignupHandler.php';
     require_once __DIR__.'/Input.php';
-    require_once __DIR__.'/../../../../persistence/Database.php';
+    require_once __DIR__.'/../../../../../../vendor/autoload.php';
     use business\api\user\SignupHandler;
     use business\api\user\Input;
-    use persistence\Database;
+    use persistence\Entity\Template;
+    use persistence\Entity\User;
+    use persistence\Entity\UserInfo;
+    use persistence\Entity\UserPhone;
+    use persistence\Entity\UserSocial;
+    use persistence\EntityManager;
 
     class Push extends SignupHandler {
         function __construct(?SignupHandler $next) {
@@ -13,24 +18,40 @@
         }
 
         public function doHandle(Input $input): bool {
-            $username = $input->getUsername();
-            $password = $input->getPassword();
-            $email = $input->getEmail();
-            
-            $conn = Database::preparedConnection();
-            // Push to database
-            $stmt_user = $conn->prepare("INSERT INTO user(username, email, password) VALUES(?,?,?)");
-            $stmt_user->bind_param("sss", $username, $email, $password);
-            $stmt_user->execute();
+            try {
+                $username = $input->getUsername();
+                $password = $input->getPassword();
+                $email = $input->getEmail();
+                
+                $user = new User();
+                $userInfo = new UserInfo();
+                $userPhone = new UserPhone();
+                $userSocial = new UserSocial();
+                $template = new Template();
 
-            $stmt_template = $conn->prepare("INSERT INTO template(username, themeid) VALUES(?,?)");
-            $stmt_template->bind_param("ss", $username, $themeid);
-            $themeid = "0";
-            $stmt_template->execute();
+                $user->setUsername($username);
+                $user->setPassword($password);
+                $user->setEmail($email);
 
-            $stmt_info = $conn->prepare("INSERT INTO info(username) VALUES(?)");
-            $stmt_info->bind_param("s", $username);
-            $stmt_info->execute();
-            return true;
+                $userInfo->setUsername($username);
+                $userPhone->setUsername($username);
+                $userSocial->setUsername($username);
+                $template->setUsername($username);
+                $template->setTemplateId(0);
+
+                $user->setUserInfo($userInfo);
+                $user->setUserPhone($userPhone);
+                $user->setUserSocial($userSocial);
+                $user->setTemplate($template);
+
+                $entityManager = EntityManager::getEntityManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+    
+                return true;
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+                return false;
+            }
         }
     }
