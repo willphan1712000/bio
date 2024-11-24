@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 class Style extends EntityFunction {
     #[Id, Column(name: 'purchase_id')]
     protected string $purchase_id;
-    #[Id, OneToOne(targetEntity: 'Purchase', inversedBy: 'Style')]
+    #[OneToOne(targetEntity: 'Purchase', inversedBy: 'Style')]
     #[JoinColumn(name: 'purchase_id', referencedColumnName: 'purchase_id', onDelete: 'CASCADE')]
     protected $Purchase;
     

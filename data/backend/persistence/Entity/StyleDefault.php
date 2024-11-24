@@ -1,6 +1,8 @@
 <?php
 namespace persistence\Entity;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
@@ -13,7 +15,7 @@ class StyleDefault extends EntityFunction {
     #[Id, Column(name: 'template_id')]
     protected int $template_id;
     #[OneToMany(targetEntity: 'Purchase', mappedBy: 'StyleDefault')]
-    protected $Purchase;
+    protected Collection $Purchase;
     #[Column(name: 'name')]
     protected string $name;
     #[Column(name: 'image')]
@@ -30,6 +32,11 @@ class StyleDefault extends EntityFunction {
     protected string $background;
     #[Column(name: 'price')]
     protected float $price;
+
+    function __construct()
+    {
+        $this->Purchase = new ArrayCollection();
+    }
 
     public function getTemplateId(): int {
         return $this->template_id;

@@ -1,13 +1,15 @@
 <?php
 namespace persistence\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity]
 #[Table('Purchase')]
@@ -19,8 +21,8 @@ class Purchase extends EntityFunction {
     #[ManyToOne(targetEntity: 'User', inversedBy: 'Purchase')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username')]
     protected $User;
-    #[OneToOne(targetEntity: 'Style', mappedBy: 'Purchase', cascade: ['persist', 'remove'])]
-    protected $Style;
+    #[OneToMany(targetEntity: 'Style', mappedBy: 'Purchase', cascade: ['persist', 'remove'])]
+    protected Collection $Style;
     #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'Purchase')]
     #[JoinColumn(name: 'template_id', referencedColumnName: 'template_id')]
     protected $StyleDefault;
@@ -29,6 +31,12 @@ class Purchase extends EntityFunction {
     protected int $template_id;
     #[Column(name: 'purchasedAt')]
     protected \DateTime $purchasedAt;
+
+    function __construct()
+    {
+        $this->purchasedAt = new \Datetime();
+        $this->Style = new ArrayCollection();
+    }
 
     public function getPurchaseId():string {
         return $this->purchase_id;

@@ -24,7 +24,7 @@ class User extends EntityFunction {
     #[OneToOne(targetEntity: 'UserSocial', mappedBy: 'User', cascade: ['persist', 'remove'])]
     protected $UserSocial;
     #[OneToMany(targetEntity: 'Purchase', mappedBy: 'User', cascade: ['persist', 'remove'])]
-    protected $Purchase;
+    protected Collection $Purchase;
     #[OneToMany(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
     protected Collection $Template;
 
@@ -50,6 +50,7 @@ class User extends EntityFunction {
     {
         $this->createdAt = new DateTime();
         $this->Template = new ArrayCollection();
+        $this->Purchase = new ArrayCollection();
     }
 
     public function getUserInfo(): UserInfo {
