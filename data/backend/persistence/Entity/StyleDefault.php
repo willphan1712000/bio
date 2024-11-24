@@ -14,14 +14,20 @@ class StyleDefault extends EntityFunction {
     protected int $template_id;
     #[OneToMany(targetEntity: 'Purchase', mappedBy: 'StyleDefault')]
     protected $Purchase;
+    #[Column(name: 'name')]
+    protected string $name;
+    #[Column(name: 'image')]
+    protected string $image;
+    #[Column(name: 'description')]
+    protected string $description;
     #[Column(name: 'font')]
-    protected int $font;
+    protected string $font;
     #[Column(name: 'fontSize')]
-    protected int $fontSize;
+    protected string $fontSize;
     #[Column(name: 'fontColor')]
-    protected int $fontColor;
+    protected string $fontColor;
     #[Column(name: 'background')]
-    protected int $background;
+    protected string $background;
     #[Column(name: 'price')]
     protected float $price;
 

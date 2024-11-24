@@ -56,6 +56,29 @@ class SystemConfig {
             'password' => $_ENV["EMAIL_PASSWORD"]
         ];
     }
+
+    public static function socialIconArr() {
+        return [
+            "Mobile" => '<i class="fa-solid fa-phone"></i>',
+            "Work" => '<i class="fa-solid fa-phone"></i>',
+            "Email" => '<i class="fa-solid fa-envelope"></i>',
+            "Website" => '<i class="fa-solid fa-globe"></i>',
+            "Booking" => '<img class="icon" src="/controllers/client/img/booking.png">',
+            "OrderOnline" => '<img class="icon" src="/controllers/client/img/order.png">',
+            "HotSale" => '<img class="icon" src="/controllers/client/img/hotsales.png">',
+            "Address" => '<i class="fa-solid fa-location-dot"></i>',
+            "Facebook" => '<i class="fa-brands fa-facebook"></i>',
+            "Instagram" => '<i class="fa-brands fa-instagram"></i>',
+            "Messenger" => '<i class="fa-brands fa-facebook-messenger"></i>',
+            "Youtube" => '<i class="fa-brands fa-youtube"></i>',
+            "Threads" => '<i class="fa-brands fa-threads"></i>',
+            "X" => '<i class="fa-brands fa-x-twitter"></i>',
+            "Linkedin" => '<i class="fa-brands fa-linkedin"></i>',
+            "Tiktok" => '<i class="fa-brands fa-tiktok"></i>',
+            "Pinterest" => '<i class="fa-brands fa-pinterest"></i>',
+            "Zalo" => '<i class="fa-brands fa-viber"></i>',
+        ];
+    }
     
     // dump and die function used for debug process
     public static function dd($value) {
@@ -73,11 +96,6 @@ class SystemConfig {
     public static function socialNameArr() {
         return ["Mobile", "Work", "Email", "Website", "Booking", "OrderOnline", "HotSale", "Address", "Facebook", "Instagram", "Messenger", "Youtube", "Threads", "X", "Linkedin", "Tiktok", "Pinterest", "Zalo"];
     }
-
-    public static function socialIconArr() {
-        return ['<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-globe"></i>', '<img class="icon" src="/controllers/client/img/booking.png">', '<img class="icon" src="/controllers/client/img/order.png">', '<img class="icon" src="/controllers/client/img/hotsales.png">', '<i class="fa-solid fa-location-dot"></i>', '<i class="fa-brands fa-facebook"></i>', '<i class="fa-brands fa-instagram"></i>', '<i class="fa-brands fa-facebook-messenger"></i>', '<i class="fa-brands fa-youtube"></i>', '<i class="fa-brands fa-threads"></i>', '<i class="fa-brands fa-x-twitter"></i>', '<i class="fa-brands fa-linkedin"></i>', '<i class="fa-brands fa-tiktok"></i>', '<i class="fa-brands fa-pinterest"></i>', '<i class="fa-brands fa-viber"></i>'];
-    }
-
     
     public static function handleLongString($string) {
         if($string === "") {
