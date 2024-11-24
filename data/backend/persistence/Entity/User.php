@@ -120,4 +120,9 @@ class User extends EntityFunction {
         $this->deleteToken = $deleteToken;
         return $this;
     }
+    public function setPurchase(Purchase $Purchase): User {
+        $Purchase->setUser($this);
+        $this->Purchase->add($Purchase);
+        return $this;
+    }
 }

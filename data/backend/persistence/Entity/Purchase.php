@@ -38,31 +38,18 @@ class Purchase extends EntityFunction {
         $this->Style = new ArrayCollection();
     }
 
-    public function getPurchaseId():string {
-        return $this->purchase_id;
-    }
-
-    public function getUsername(): string {
-        return $this->username;
-    }
-
-    public function getTemplateId(): int {
-        return $this->template_id;
-    }
-
-    public function getPurchasedAt(): \DateTime {
-        return $this->purchasedAt;
-    }
-    public function setPurchasedId(string $id) : Purchase {
-        $this->purchase_id = $id;
+    public function setUser(User $User): Purchase {
+        $this->User = $User;
         return $this;
     }
-    public function setUsername(string $username): Purchase {
-        $this->username = $username;
+
+    public function setStyle(Style $Style): Purchase {
+        $Style->setPurchase($this);
+        $this->Style->add($Style);
         return $this;
     }
-    public function setTemplateId(int $id): Purchase {
-        $this->template_id = $id;
+    public function setStyleDefault(StyleDefault $StyleDefault): Purchase {
+        $this->StyleDefault = $StyleDefault;
         return $this;
     }
 }

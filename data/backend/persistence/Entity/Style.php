@@ -76,4 +76,8 @@ class Style extends EntityFunction {
         $this->background = $background;
         return $this;
     }
+    public function setPurchase(Purchase $Purchase): Style {
+        $this->Purchase = $Purchase;
+        return $this;
+    }
 }

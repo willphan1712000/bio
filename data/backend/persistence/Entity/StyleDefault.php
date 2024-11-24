@@ -81,4 +81,9 @@ class StyleDefault extends EntityFunction {
         $this->price = $price;
         return $this;
     }
+    public function setPurchase(Purchase $Purchase): StyleDefault {
+        $Purchase->setStyleDefault($this);
+        $this->Purchase->add($Purchase);
+        return $this;
+    }
 }

@@ -15,18 +15,7 @@ class POST implements IAPI {
     
     private function getLikedTemplate() {
         try {
-            $entityManager = EntityManager::getEntityManager();
-
-            /** @var User|NULL */
-            $user = $entityManager->find(User::class, $this->username);
-
-            $out = [];
-
-            foreach ($user->getTemplate() as $template) {
-                array_push($out, $template->get('template_id'));
-            }
-
-            return $out;
+            
         } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
