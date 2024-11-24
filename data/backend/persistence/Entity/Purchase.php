@@ -1,4 +1,5 @@
 <?php
+
 namespace persistence\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,29 +8,29 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity]
 #[Table('Purchase')]
-class Purchase extends EntityFunction {
+class Purchase extends EntityFunction
+{
     #[ManyToOne(targetEntity: 'User', inversedBy: 'Purchase')]
-    #[JoinColumn(name: 'username', referencedColumnName: 'username')]
+    #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     protected $User;
     #[OneToMany(targetEntity: 'Style', mappedBy: 'Purchase', cascade: ['persist', 'remove'])]
     protected Collection $Style;
-    
-    #[Id, Column(name: 'purchase_id')]
+
+    #[Id, Column(name: 'purchase_id'), GeneratedValue]
     protected int $purchase_id;
     #[Column(name: 'username')]
     protected string $username;
-    #[Column(name: 'template_id')]
-    protected int $template_id;
     #[Column(name: 'subtotal')]
-    protected int $subtotal;
+    protected float $subtotal;
     #[Column(name: 'total')]
-    protected int $total;
+    protected float $total;
     #[Column(name: 'purchasedAt')]
     protected \DateTime $purchasedAt;
 
@@ -39,12 +40,14 @@ class Purchase extends EntityFunction {
         $this->Style = new ArrayCollection();
     }
 
-    public function setUser(User $User): Purchase {
+    public function setUser(User $User): Purchase
+    {
         $this->User = $User;
         return $this;
     }
 
-    public function setStyle(Style $Style): Purchase {
+    public function setStyle(Style $Style): Purchase
+    {
         $Style->setPurchase($this);
         $this->Style->add($Style);
         return $this;
