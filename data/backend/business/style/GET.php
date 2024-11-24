@@ -3,7 +3,8 @@
 namespace business\style;
 
 use business\IAPI;
-use persistence\EntityManager;
+use persistence\Database;
+use persistence\Entity\Style;
 
 class GET implements IAPI
 {
@@ -13,14 +14,16 @@ class GET implements IAPI
     function __construct(string $username, string $template)
     {
         $this->username = $username;
+        $this->template = $template;
     }
 
     private function getStyle()
     {
         try {
-            $entityManager = EntityManager::getEntityManager();
-
-            return true;
+            return Database::GET(Style::class, null, [
+                'username' => $this->username,
+                'template_id' => $this->template
+            ]);
         } catch (\Exception $e) {
             echo $e->getMessage();
             return false;

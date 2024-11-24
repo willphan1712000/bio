@@ -3,22 +3,37 @@
 namespace business\style;
 
 use business\IAPI;
-use persistence\EntityManager;
+use persistence\Database;
+use persistence\Entity\Style;
 
 class PUT implements IAPI
 {
-    private string $username;
-    private string $template;
+    protected string $username;
+    protected int $template;
+    protected array $props;
 
-    function __construct(string $username, string $template)
+    function __construct(string $username, int $template, array $props)
     {
         $this->username = $username;
+        $this->template = $template;
+        $this->props = $props;
     }
 
-    private function getStyle()
+    protected function updateStyle()
     {
         try {
-            $entityManager = EntityManager::getEntityManager();
+            foreach ($this->props as $key => $value) {
+                if ($value === null || $value === '') {
+                    continue;
+                }
+                if (!Database::PUT(Style::class, $key, $value, [
+                    'username' => $this->username,
+                    'template_id' => $this->template
+                ])) {
+                    throw new \Exception("Update data on the data failed, abort the update operation");
+                    return false;
+                }
+            }
 
             return true;
         } catch (\Exception $e) {
@@ -29,6 +44,6 @@ class PUT implements IAPI
 
     public function execute()
     {
-        return $this->getStyle();
+        return $this->updateStyle();
     }
 }
