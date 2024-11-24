@@ -5,18 +5,25 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity()]
 #[Table('Style')]
 class Style extends EntityFunction {
-    #[Id, Column(name: 'purchase_id')]
-    protected string $purchase_id;
-    #[OneToOne(targetEntity: 'Purchase', inversedBy: 'Style')]
+    #[ManyToOne(targetEntity: 'Purchase', inversedBy: 'Style')]
     #[JoinColumn(name: 'purchase_id', referencedColumnName: 'purchase_id', onDelete: 'CASCADE')]
     protected $Purchase;
+    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'Style')]
+    #[JoinColumn(name: 'template_id', referencedColumnName: 'template_id', onDelete: 'CASCADE')]
+    protected $StyleDefault;
     
+    #[Id, Column(name: 'id')]
+    protected int $id;
+    #[Column(name: 'purchase_id')]
+    protected int $purchase_id;
+    #[Column(name: 'template_id')]
+    protected int $template_id;
     #[Column(name: 'font')]
     protected string $font;
     #[Column(name: 'fontSize')]
@@ -74,6 +81,10 @@ class Style extends EntityFunction {
     }
     public function setBackground(string $background): Style {
         $this->background = $background;
+        return $this;
+    }
+    public function setStyleDefault(StyleDefault $StyleDefault): Style {
+        $this->StyleDefault = $StyleDefault;
         return $this;
     }
     public function setPurchase(Purchase $Purchase): Style {

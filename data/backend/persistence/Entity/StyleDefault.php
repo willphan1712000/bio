@@ -12,10 +12,11 @@ use Doctrine\ORM\Mapping\OneToMany;
 #[Entity()]
 #[Table('StyleDefault')]
 class StyleDefault extends EntityFunction {
+    #[OneToMany(targetEntity: 'Style', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
+    protected Collection $Style;
+
     #[Id, Column(name: 'template_id')]
     protected int $template_id;
-    #[OneToMany(targetEntity: 'Purchase', mappedBy: 'StyleDefault')]
-    protected Collection $Purchase;
     #[Column(name: 'name')]
     protected string $name;
     #[Column(name: 'image')]
@@ -35,7 +36,7 @@ class StyleDefault extends EntityFunction {
 
     function __construct()
     {
-        $this->Purchase = new ArrayCollection();
+        $this->Style = new ArrayCollection();
     }
 
     public function getTemplateId(): int {
@@ -81,9 +82,9 @@ class StyleDefault extends EntityFunction {
         $this->price = $price;
         return $this;
     }
-    public function setPurchase(Purchase $Purchase): StyleDefault {
-        $Purchase->setStyleDefault($this);
-        $this->Purchase->add($Purchase);
+    public function setStyle(Style $Style): StyleDefault {
+        $Style->setStyleDefault($this);
+        $this->Style->add($Style);
         return $this;
     }
 }

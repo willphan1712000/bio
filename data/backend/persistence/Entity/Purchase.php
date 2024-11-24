@@ -14,21 +14,22 @@ use Doctrine\ORM\Mapping\OneToMany;
 #[Entity]
 #[Table('Purchase')]
 class Purchase extends EntityFunction {
-    #[Id, Column(name: 'purchase_id')]
-    protected string $purchase_id;
-    #[Column(name: 'username')]
-    protected string $username;
     #[ManyToOne(targetEntity: 'User', inversedBy: 'Purchase')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username')]
     protected $User;
     #[OneToMany(targetEntity: 'Style', mappedBy: 'Purchase', cascade: ['persist', 'remove'])]
     protected Collection $Style;
-    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'Purchase')]
-    #[JoinColumn(name: 'template_id', referencedColumnName: 'template_id')]
-    protected $StyleDefault;
-
+    
+    #[Id, Column(name: 'purchase_id')]
+    protected int $purchase_id;
+    #[Column(name: 'username')]
+    protected string $username;
     #[Column(name: 'template_id')]
     protected int $template_id;
+    #[Column(name: 'subtotal')]
+    protected int $subtotal;
+    #[Column(name: 'total')]
+    protected int $total;
     #[Column(name: 'purchasedAt')]
     protected \DateTime $purchasedAt;
 
@@ -46,10 +47,6 @@ class Purchase extends EntityFunction {
     public function setStyle(Style $Style): Purchase {
         $Style->setPurchase($this);
         $this->Style->add($Style);
-        return $this;
-    }
-    public function setStyleDefault(StyleDefault $StyleDefault): Purchase {
-        $this->StyleDefault = $StyleDefault;
         return $this;
     }
 }
