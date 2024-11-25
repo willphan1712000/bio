@@ -19,9 +19,6 @@ tsconfig.json
 # MacOS
 .DS_Store
 
-# Stripe secret key
-secrets/*
-
 #testing
 test/*
 
@@ -32,12 +29,8 @@ controllers/client/src/module/Web-Development
 .env*.local
 .env
 
-#prisma
-prisma/*
-
 #old version files
 old/*
-/vendor/
 
 # Doctrine migration files
 cli-config.php

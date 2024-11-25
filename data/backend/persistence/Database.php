@@ -1,16 +1,9 @@
 <?php
+
 namespace persistence;
 
-use persistence\Entity\Purchase;
-use persistence\Entity\Style;
-use persistence\Entity\StyleDefault;
-use persistence\Entity\Template;
-use persistence\Entity\User;
-use persistence\Entity\UserInfo;
-use persistence\Entity\UserPhone;
-use persistence\Entity\UserSocial;
-
-interface IDatabase {
+interface IDatabase
+{
     public static function GET($table, string $column = null, array $unique = null, string $limit = null);
     public static function PUT(string $table, $column, $value, $unique): bool;
     public static function POST(string $table, array $columns): bool;
@@ -18,27 +11,29 @@ interface IDatabase {
     public static function SQL(string $sql): mixed;
 }
 
-class Database implements IDatabase {
+class Database implements IDatabase
+{
     // Query function for fast data retrieval
-    public static function GET($table, string $column = null, array $unique = null, string $limit = null) {
+    public static function GET($table, string $column = null, array $unique = null, string $limit = null)
+    {
         try {
 
             $entityManager = EntityManager::getEntityManager(); // get entity manager instance
-    
+
             $r = $entityManager->getRepository($table); // get entity repository
             $out = [];
-            if($unique === null) {
+            if ($unique === null) {
                 $o = $r->findAll();
-                if($column === null) {
+                if ($column === null) {
                     return $o;
                 }
-                foreach($o as $e) {
+                foreach ($o as $e) {
                     array_push($out, $e->get($column));
                 }
                 return $out;
             }
             $o = $r->findOneBy($unique);
-            if($column === null) {
+            if ($column === null) {
                 return $o;
             }
             return $o->get($column);
@@ -48,7 +43,8 @@ class Database implements IDatabase {
         }
     }
 
-    public static function PUT($table, $column, $value, $unique): bool {
+    public static function PUT($table, $column, $value, $unique): bool
+    {
         try {
             $entityManager = EntityManager::getEntityManager(); // get entity manager instance
 
@@ -56,50 +52,53 @@ class Database implements IDatabase {
             $row->set($column, $value);
             $entityManager->flush();
             return true;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
         }
     }
 
-    public static function POST(string $table, array $columns): bool {
+    public static function POST(string $table, array $columns): bool
+    {
         try {
             $entityManager = EntityManager::getEntityManager(); // get entity manager instance
-    
+
             $table = new $table();
-            foreach($columns as $columnName => $columnValue) {
+            foreach ($columns as $columnName => $columnValue) {
                 $table->set($columnName, $columnValue);
             }
-    
+
             $entityManager->persist($table);
             $entityManager->flush();
             return true;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    public static function DELETE(string $table, array $unique): bool {
+    public static function DELETE(string $table, array $unique): bool
+    {
         try {
             $entityManager = EntityManager::getEntityManager(); // get entity manager instance
-    
+
             $row = $entityManager->getRepository($table)->findOneBy($unique);
-            if($row === NULL) {
+            if ($row === NULL) {
                 throw new \Exception("Can not find the data, abort the DELETE operation\n");
             }
             $entityManager->remove($row);
             $entityManager->flush();
             return true;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
         }
     }
 
-    public static function SQL(string $sql): mixed {
+    public static function SQL(string $sql): mixed
+    {
         try {
             $conn = EntityManager::getConnection();
-            $stmt = $conn-> prepare($sql);
+            $stmt = $conn->prepare($sql);
             $result = $stmt->executeQuery();
             return $result->fetchAllAssociative();
         } catch (\Exception $e) {
