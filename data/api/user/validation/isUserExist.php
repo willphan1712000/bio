@@ -1,7 +1,23 @@
 <?php
-require_once __DIR__."/../../../backend/business/UserManagement.php";
-use business\UserManagement;
-$json = file_get_contents("php://input");
-$body = json_decode($json);
 
-echo json_encode(UserManagement::isUserExist($body->username));
+namespace api\user\validation;
+
+use api\APIAbstract;
+use business\UserManagement;
+
+require_once __DIR__ . "/../../../../vendor/autoload.php";
+
+class IsUserValid extends APIAbstract
+{
+    public function handleRequest($body)
+    {
+        return UserManagement::isUserExist($body->username) ? [
+            'success' => true,
+            'error' => 'User already exists'
+        ] : [
+            'success' => false,
+        ];
+    }
+}
+
+echo json_encode((new IsUserValid())->execute());

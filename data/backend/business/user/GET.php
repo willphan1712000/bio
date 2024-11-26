@@ -1,40 +1,67 @@
 <?php
+
 namespace business\user;
 
 use business\IAPI;
-use business\info\Info;
+use persistence\Database;
 use persistence\Entity\User;
-use persistence\EntityManager;
 
-class GET implements IAPI {
+class GET implements IAPI
+{
     private ?string $username;
 
-    function __construct(?string $username) {
+    function __construct(?string $username = null)
+    {
         $this->username = $username;
     }
 
-    private function getUser() {
+    private function getUser()
+    {
         try {
-            $entityManager = EntityManager::getEntityManager();
-    
-            $user = $entityManager->find(User::class, $this->username);
-    
-            $infoArr = [];
-            
-            foreach(User::getProperty() as $property) {
-                if(!in_array($property, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase'])) {
-                    $infoArr[$property] = $user->get($property);
+
+            if ($this->username === null) {
+                $users = Database::GET(User::class);
+                $out = [];
+                foreach ($users as $user) {
+                    $row = [];
+
+                    foreach (User::getProperty() as $prop) {
+                        if (!in_array($prop, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase', 'Style'])) {
+                            $row[$prop] = $user->get($prop);
+                        }
+                    }
+
+                    array_push($out, $row);
+                }
+
+                return $out;
+            }
+
+            $user = Database::GET(User::class, null, [
+                'username' => $this->username
+            ]);
+
+            if ($user === null) {
+                return false;
+            }
+
+            $row = [];
+
+            foreach (User::getProperty() as $prop) {
+                if (!in_array($prop, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase', 'Style'])) {
+                    $row[$prop] = $user->get($prop);
                 }
             }
-    
-            return new Info($infoArr);
+
+            return $row;
         } catch (\Exception $e) {
             echo $e->getMessage();
             return false;
         }
     }
 
-    public function execute() {
+    public function execute()
+    {
         return $this->getUser();
     }
 }

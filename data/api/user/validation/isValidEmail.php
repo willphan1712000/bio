@@ -1,14 +1,24 @@
 <?php
-require_once __DIR__."/../../../backend/business/user/signup/Checkemail.php";
-use business\api\user\CheckEmail;
-require_once __DIR__."/../../../backend/business/user/signup/Input.php";
-use business\api\user\Input;
 
-$json = file_get_contents("php://input");
-$body = json_decode($json);
+namespace api\user\validation;
 
-$input = new Input("", $body->email, "");
-$checkEmail = new CheckEmail(null);
-$result = $checkEmail->doHandle($input);
+require_once __DIR__ . "/../../../../vendor/autoload.php";
 
-echo json_encode($result);
+use api\APIAbstract;
+use business\user\signup\CheckEmail;
+use business\user\signup\Input;
+
+class IsValidEmail extends APIAbstract
+{
+    public function handleRequest($body)
+    {
+        return (new CheckEmail(null))->doHandle(new Input(null, $body->email, null)) ? [
+            'success' => true
+        ] : [
+            'success' => false,
+            'error' => 'Email is not valid'
+        ];
+    }
+}
+
+echo json_encode((new IsValidEmail())->execute());

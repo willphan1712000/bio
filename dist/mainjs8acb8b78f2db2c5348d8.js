@@ -2066,17 +2066,17 @@ class SignUpUI {
             const validPassword = yield (0, WW_1.$$$)(this.url.validPassword, {
                 password: this.passwordBox.getPassword(),
             }).api().post();
-            if (userExist) {
+            if (userExist.success) {
                 this.error.setError("Username exists");
             }
             else if (!this.usernameBox.isFilled()) {
                 this.error.setError("Please enter username");
             }
-            else if (!validEmail) {
-                this.error.setError("Email is not valid");
+            else if (!validEmail.success) {
+                this.error.setError(validEmail.error);
             }
-            else if (!validPassword) {
-                this.error.setError("Password is not valid");
+            else if (!validPassword.success) {
+                this.error.setError(validPassword.error);
             }
             else if (!this.checkBox.isChecked()) {
                 this.error.setError("Please check terms and conditions");
@@ -2092,7 +2092,7 @@ class SignUpUI {
                                 justify-content: center;
                                 align-items: center;" class="fa-solid fa-check"></i>`);
             }
-            this.register.enabled(!userExist && this.usernameBox.isFilled() && validPassword && validEmail && this.checkBox.isChecked());
+            this.register.enabled(!userExist.success && this.usernameBox.isFilled() && validPassword.success && validEmail.success && this.checkBox.isChecked());
         });
     }
     signup() {
@@ -18058,4 +18058,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=mainjsb1796e33adb83dc2ff0c.js.map
+//# sourceMappingURL=mainjs8acb8b78f2db2c5348d8.js.map

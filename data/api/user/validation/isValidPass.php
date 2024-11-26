@@ -1,14 +1,24 @@
 <?php
-require_once __DIR__."/../../../backend/business/user/signup/Password.php";
-use business\api\user\Password;
-require_once __DIR__."/../../../backend/business/user/signup/Input.php";
-use business\api\user\Input;
 
-$json = file_get_contents("php://input");
-$body = json_decode($json);
+namespace api\user\validation;
 
-$input = new Input("", "", $body->password);
-$password = new Password(null);
-$result = $password->doHandle($input);
+require_once __DIR__ . "/../../../../vendor/autoload.php";
 
-echo json_encode($result);
+use api\APIAbstract;
+use business\user\signup\Input;
+use business\user\signup\Password;
+
+class IsPassValid extends APIAbstract
+{
+    public function handleRequest($body)
+    {
+        return (new Password(null))->doHandle(new Input(null, null, $body->password)) ? [
+            'success' => true
+        ] : [
+            'success' => false,
+            'error' => 'Password is not valid'
+        ];
+    }
+}
+
+echo json_encode((new IsPassValid())->execute());
