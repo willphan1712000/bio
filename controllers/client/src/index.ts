@@ -1,9 +1,9 @@
-import restore from "./module/pages/restore"
-import signupPage from "./module/pages/signup"
-import aic from "./module/pages/aic"
-import template from "./module/pages/template";
-import bioPage from "./module/pages/bioPage";
 import adminPage from "./module/pages/adminPage";
+import aic from "./module/pages/aic";
+import bioPage from "./module/pages/bioPage";
+import restore from "./module/pages/restore";
+import signupPage from "./module/pages/signup";
+import template from "./module/pages/template";
 
 declare var type: string;
 declare var props: {
@@ -21,7 +21,12 @@ $(document).ready(function() {
             adminPage(props)
             break
         case 'signup':
-            signupPage();
+            signupPage({
+                signup: "/data/api/user/POST.php",
+                userExist: "/data/api/user/validation/isUserExist.php",
+                validEmail: "/data/api/user/validation/isValidEmail.php",
+                validPassword: "/data/api/user/validation/isValidPass.php",
+            });
             break
         case 'signin':
             // signinPage()

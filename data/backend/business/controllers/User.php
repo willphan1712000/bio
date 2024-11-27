@@ -1,6 +1,6 @@
 <?php
 namespace business\controllers;
-require_once __DIR__."/../../../core.php";
+require_once __DIR__."/../../../../vendor/autoload.php";
 use config\SystemConfig;
 require_once __DIR__."/../TemplateManagement.php";
 use business\TemplateManagement;
@@ -17,8 +17,12 @@ class User {
     private $imgPath;
     private $url;
 
-    function __construct() {
-        $this->username = SystemConfig::URLExtraction();
+    function __construct($isAdmin) {
+        if($isAdmin) {
+            $this->username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
+        } else {
+            $this->username = SystemConfig::URLExtraction();
+        }
 
         $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction("tem"));
 
@@ -54,8 +58,14 @@ class User {
     public function getURL() {
         return $this->url;
     }
+    public function themeRedirect() {
+        if($this->themeid == 0) {
+            require __DIR__."/../../../../controllers/default/user.php";
+            die();
+        }
+    }
 }
 
-function user() {
-    return new User();
+function user($isAdmin) {
+    return new User($isAdmin);
 }

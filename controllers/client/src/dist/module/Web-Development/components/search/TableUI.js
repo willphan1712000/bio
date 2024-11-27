@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,17 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { $$ } from "../../W";
-import { $$$ } from "../../WW";
-import DataUI from "./DataUI";
-export default class TableUI {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const W_1 = require("../../W");
+const WW_1 = require("../../WW");
+const DataUI_1 = __importDefault(require("./DataUI"));
+class TableUI {
     constructor(container, header, target, limit, like, url, html) {
         this.tableContainer = container;
         this.target = target;
         this.limit = limit;
         this.like = like;
         this.header = header;
-        this.dataUI = new DataUI(url);
+        this.dataUI = new DataUI_1.default(url);
         this.html = html;
     }
     getLimit() {
@@ -32,14 +37,14 @@ export default class TableUI {
                 limit: this.limit,
                 like: this.like
             });
-            const table = $$(this.tableContainer, this.header).table().addHeader();
+            const table = (0, W_1.$$)(this.tableContainer, this.header).table().addHeader();
             this.addRow(table, data, false);
             return table;
         });
     }
     addObserver(table) {
         const limit = this.limit;
-        const o = $$(this.target, {
+        const o = (0, W_1.$$)(this.target, {
             threshold: 1
         }, (e) => __awaiter(this, void 0, void 0, function* () {
             if (e) {
@@ -77,7 +82,7 @@ export default class TableUI {
             currentUsernameValue = currentUsernameElement.value;
             $(html.confirm).click(function () {
                 return __awaiter(this, void 0, void 0, function* () {
-                    const r = yield $$$("/data/api/deleteAccount.php", {
+                    const r = yield (0, WW_1.$$$)("/data/api/deleteAccount.php", {
                         username: currentUsernameValue,
                     }).api().post();
                     if (r) {
@@ -92,3 +97,4 @@ export default class TableUI {
         });
     }
 }
+exports.default = TableUI;

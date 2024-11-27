@@ -1,4 +1,6 @@
-export default class Error {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Error {
     constructor(error) {
         this.$error = $(error);
     }
@@ -6,3 +8,4 @@ export default class Error {
         this.$error.html(msg);
     }
 }
+exports.default = Error;

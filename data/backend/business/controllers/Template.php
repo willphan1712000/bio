@@ -1,12 +1,11 @@
 <?php
     namespace business\controllers;
-    require_once __DIR__."/../UserManagement.php";
+
+    require_once __DIR__."/../../../../vendor/autoload.php";
     use business\UserManagement;
-    require_once __DIR__."/../../persistence/API.php";
     use persistence\API;
-    require_once __DIR__."/../TemplateManagement.php";
     use business\TemplateManagement;
-    require_once __DIR__."/../../../core.php";
+
     use config\SystemConfig;
 
     // This business operation is used to handle template controller logic
@@ -34,12 +33,12 @@
         private function signedIn() {
             if($this->username !== NULL) {
                 SESSION_START();
-                $this->isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
+                $this->isSignedIn = UserManagement::isSignedIn($_SESSION, $this->username);
                 // if signed in, get avatar image
                 if($this->isSignedIn) {
-                    $ava = API::GET("info", "image", "username = '$username'");
+                    $ava = API::GET("info", "image", "username = '$this->username'");
                     if($ava) {
-                        $imgPath = "/user/".$username."/".$ava."?v=".time();
+                        $imgPath = "/user/".$this->username."/".$ava."?v=".time();
                     }
                 } else {
                     header("Location: /@signin?template=true");
@@ -49,11 +48,11 @@
 
         private function purchase() {
             if($this->isSignedIn) {
-                $purchased = API::GET("purchase", "template_id", "username = '$username'"); // Get all templates purchased
+                $purchased = API::GET("purchase", "template_id", "username = '$this->username'"); // Get all templates purchased
                 if(gettype($purchased) === "integer") {
                     $this->purchased = [$purchased];
                 }
-                $this->chosenTemplate = API::GET("template", "themeid", "username = '$username'"); // Get chosen template
+                $this->chosenTemplate = API::GET("template", "themeid", "username = '$this->username'"); // Get chosen template
             }
         }
 

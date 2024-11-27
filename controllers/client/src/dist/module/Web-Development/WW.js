@@ -1,5 +1,11 @@
-import SignUpUI from "./components/signup/SignUpUI";
-export function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.$$$ = $$$;
+const SignUpUI_1 = __importDefault(require("./components/signup/SignUpUI"));
+function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
         return new WW6(ele1, ele2, ele3, ele4, ele5, ele6);
     }
@@ -127,7 +133,7 @@ class FormValidate extends WW5 {
 class Signup extends WW3 {
     constructor(ui, url, success) {
         super(ui, url, success);
-        this.signUpUI = new SignUpUI(ui, url, success);
+        this.signUpUI = new SignUpUI_1.default(ui, url, success);
     }
 }
 class API extends WW2 {

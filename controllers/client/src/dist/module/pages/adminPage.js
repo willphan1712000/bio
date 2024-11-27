@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,19 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import Swiper from "swiper";
-import { SettingUI } from "./settings/SettingUI";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-export default function adminPage(props) {
-    const swiper = new Swiper('.swiper', {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = adminPage;
+const swiper_1 = __importDefault(require("swiper"));
+const SettingUI_1 = require("./settings/SettingUI");
+const html2canvas_1 = __importDefault(require("html2canvas"));
+const jspdf_1 = __importDefault(require("jspdf"));
+function adminPage(props) {
+    const swiper = new swiper_1.default('.swiper', {
         direction: 'horizontal',
         loop: false
     });
     $("#setting .image").click(() => __awaiter(this, void 0, void 0, function* () {
         const front = document.querySelector("#template-container");
         const front_d = front.getBoundingClientRect();
-        html2canvas(front, {
+        (0, html2canvas_1.default)(front, {
             width: front_d.width,
             height: front_d.height,
             x: 0,
@@ -29,7 +35,7 @@ export default function adminPage(props) {
             const r = canvas.width / canvas.height;
             const width = 200;
             const height = width / r;
-            const doc = new jsPDF({
+            const doc = new jspdf_1.default({
                 orientation: 'portrait',
                 unit: 'px',
                 format: [width, height]
@@ -41,7 +47,7 @@ export default function adminPage(props) {
         });
         const back = document.querySelector(".card-back-container");
         const back_d = back.getBoundingClientRect();
-        html2canvas(back, {
+        (0, html2canvas_1.default)(back, {
             width: back_d.width,
             height: back_d.height,
             x: 0,
@@ -51,7 +57,7 @@ export default function adminPage(props) {
             const r = canvas.width / canvas.height;
             const width = 200;
             const height = width / r;
-            const doc = new jsPDF({
+            const doc = new jspdf_1.default({
                 orientation: 'portrait',
                 unit: 'px',
                 format: [width, height]
@@ -62,7 +68,7 @@ export default function adminPage(props) {
             doc.save("img/back.pdf");
         });
     }));
-    const settingUI = new SettingUI({
+    const settingUI = new SettingUI_1.SettingUI({
         css: props['css'],
         imgPath: props['imgPath'],
         username: props['username'],

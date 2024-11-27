@@ -1,18 +1,23 @@
 <?php
-    require_once __DIR__."/../data/core.php";
     use config\SystemConfig;
     $g = SystemConfig::globalVariables();
     require_once __DIR__."/../data/backend/business/controllers/User.php";
     use function business\controllers\user;
-    require_once __DIR__."/../data/backend/business//InfoProcess.php";
+    require_once __DIR__."/../data/backend/business/InfoProcess.php";
     use function business\infoProcess;
     require_once __DIR__."/../controllers/components/Copyright.php";
     use function component\copyright;
     require_once __DIR__."/../controllers/components/Template.php";
     use function component\template;
+    require_once __DIR__."/../controllers/components/UserFooter.php";
+    use function component\userFooter;
+    
     
     // get User object
-    $user = user();
+    $user = user(false);
+
+    // Theme redirect
+    $user->themeRedirect();
     // get username
     $username = $user->getUsername();
     // Get themeid

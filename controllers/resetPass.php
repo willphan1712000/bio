@@ -1,5 +1,4 @@
-<?php    
-    require_once __DIR__."/../data/core.php";
+<?php
     use config\SystemConfig;
     require_once __DIR__."/../controllers/components/Copyright.php";
     use function component\copyright;

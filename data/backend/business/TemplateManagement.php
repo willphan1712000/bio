@@ -1,8 +1,7 @@
 <?php
 namespace business;
-require_once __DIR__.'/../persistence/Schema.php';
+require_once __DIR__.'/../../../vendor/autoload.php';
 use persistence\Database_Schema;
-require_once __DIR__.'/../persistence/API.php';
 use persistence\API;
 
 
@@ -70,7 +69,7 @@ class TemplateManagement implements ITemplateManagement {
         }
     }
 
-    public static function isAbleToPurchase($isSignedIn, $username, $itemid) {
+    public static function isAbleToPurchase($isSignedIn, $username, $itemid): bool {
         if($itemid === null) {
             return true;
         }

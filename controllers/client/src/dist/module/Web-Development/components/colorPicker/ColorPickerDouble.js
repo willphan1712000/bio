@@ -1,5 +1,7 @@
-import { ColorPickerParent } from "./ColorPickerParent";
-export default class ColorPickerDouble extends ColorPickerParent {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const ColorPickerParent_1 = require("./ColorPickerParent");
+class ColorPickerDouble extends ColorPickerParent_1.ColorPickerParent {
     constructor(container, cb, options) {
         super();
         this.options = options;
@@ -123,3 +125,4 @@ export default class ColorPickerDouble extends ColorPickerParent {
         `;
     }
 }
+exports.default = ColorPickerDouble;

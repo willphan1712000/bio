@@ -1,5 +1,10 @@
-import TransformController from "./TransformController";
-export default class Transform {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const TransformController_1 = __importDefault(require("./TransformController"));
+class Transform {
     constructor(ele1, ele2, ele3) {
         this.ele1 = ele1,
             this.ele2 = ele2,
@@ -16,7 +21,7 @@ export default class Transform {
         this.isRotateOffScreen = false;
         this.img = document.querySelector(this.ele1 + " > img");
         this.ratio = this.img.width / this.img.height;
-        this.transformController = new TransformController(this.ele1, this.ele2, this.controllerClassName);
+        this.transformController = new TransformController_1.default(this.ele1, this.ele2, this.controllerClassName);
         this.reset();
         this.transformController.addController();
         this.transform();
@@ -326,3 +331,4 @@ export default class Transform {
         return this;
     }
 }
+exports.default = Transform;

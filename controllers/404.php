@@ -1,5 +1,4 @@
 <?php
-    require_once __DIR__."/../data/core.php";
     use config\SystemConfig;
     require_once __DIR__."/../controllers/components/Logo.php";
     use function component\logo;

@@ -1,9 +1,10 @@
 <?php
 namespace business;
-require_once __DIR__.'/../persistence/API.php';
-use persistence\API;
-require_once __DIR__."/../../core.php";
+
+require_once __DIR__.'/../../../vendor/autoload.php';
 use config\SystemConfig;
+use persistence\Database;
+use persistence\Entity\User;
 
 interface IUserManagement {
     public static function isSignedIn($SESSION, $username): bool;
@@ -37,7 +38,7 @@ class UserManagement implements IUserManagement {
     }
     // Check if username exists 
     public static function isUserExist($username): bool {
-        $result = API::GET("user", "username", "username='$username'");
+        $result = Database::GET(User::class, null, ['username' => $username]);
         if(empty($result)) {
             return false;
         }

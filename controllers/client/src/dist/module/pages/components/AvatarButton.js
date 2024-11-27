@@ -1,4 +1,6 @@
-export default class AvatarButton {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class AvatarButton {
     constructor(container) {
         this.container = container;
         this.render();
@@ -103,3 +105,4 @@ export default class AvatarButton {
         `;
     }
 }
+exports.default = AvatarButton;

@@ -1,4 +1,6 @@
-export default class InputUI {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class InputUI {
     constructor(input, searchUI) {
         this.$input = $(input);
         this.value = "";
@@ -11,3 +13,4 @@ export default class InputUI {
         return this.value;
     }
 }
+exports.default = InputUI;

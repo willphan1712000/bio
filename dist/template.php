@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__."/../data/core.php";
+    use business\UserManagement;
     use config\SystemConfig;
 
     require_once __DIR__."/../data/backend/business/controllers/Template.php";
@@ -35,7 +35,7 @@
     $chosenTemplate = $template->getData()['chosenTemplate'];
     $TOTAL = $template->getData()['total'];
     $imgPath = $template->getData()['imgPath'];
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/tailwind980897a7c3c2117e8977.js"></script><script src="/dist/mainjsf4784fdc304bace1820b.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/template337bc87c65daae01f00d.js"></script></head><body><div id="container"><div class="navigator"><div class="btn-box"> <?= templateDirector([
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=$g['title'];?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/tailwindfc97e7eb53cc1abd30b6.js"></script><script src="/dist/mainjs8acb8b78f2db2c5348d8.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/template337bc87c65daae01f00d.js"></script></head><body><div id="container"><div class="navigator"><div class="btn-box"> <?= templateDirector([
                     'isSignedIn' => $isSignedIn,
                     'username' => $username,
                     'img' => $imgPath,

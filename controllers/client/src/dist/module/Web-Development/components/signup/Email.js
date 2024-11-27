@@ -1,4 +1,6 @@
-export default class Email {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Email {
     constructor(email, signUpUI) {
         this.$email = $(email);
         this.$email.on("input", e => {
@@ -8,9 +10,5 @@ export default class Email {
     getEmail() {
         return this.$email.val();
     }
-    isValidEmail() {
-        const email = this.$email.val();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
 }
+exports.default = Email;

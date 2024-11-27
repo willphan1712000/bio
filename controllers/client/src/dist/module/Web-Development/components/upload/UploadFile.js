@@ -1,4 +1,6 @@
-export default class UploadFile {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class UploadFile {
     constructor(ele1, cb) {
         this.$ele1 = $(ele1);
         this.$ele1.after(`<input type="file" id="" name="" hidden>`);
@@ -80,3 +82,4 @@ export default class UploadFile {
         }
     }
 }
+exports.default = UploadFile;
