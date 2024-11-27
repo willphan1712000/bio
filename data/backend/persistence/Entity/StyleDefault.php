@@ -18,25 +18,27 @@ class StyleDefault extends EntityFunction
     protected Collection $Style;
     #[OneToMany(targetEntity: 'Template', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
     protected Collection $Template;
+    #[OneToMany(targetEntity: 'User', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
+    protected Collection $User;
 
     #[Id, Column(name: 'template_id')]
     protected int $template_id;
-    #[Column(name: 'name')]
-    protected string $name;
-    #[Column(name: 'image')]
-    protected string $image;
-    #[Column(name: 'description')]
-    protected string $description;
-    #[Column(name: 'font')]
-    protected string $font;
-    #[Column(name: 'fontSize')]
-    protected string $fontSize;
-    #[Column(name: 'fontColor')]
-    protected string $fontColor;
-    #[Column(name: 'background')]
-    protected string $background;
-    #[Column(name: 'price')]
-    protected float $price;
+    #[Column(name: 'name', nullable: true)]
+    protected ?string $name;
+    #[Column(name: 'image', nullable: true)]
+    protected ?string $image;
+    #[Column(name: 'description', nullable: true)]
+    protected ?string $description;
+    #[Column(name: 'font', nullable: true)]
+    protected ?string $font;
+    #[Column(name: 'fontSize', nullable: true)]
+    protected ?string $fontSize;
+    #[Column(name: 'fontColor', nullable: true)]
+    protected ?string $fontColor;
+    #[Column(name: 'background', nullable: true)]
+    protected ?string $background;
+    #[Column(name: 'price', nullable: true)]
+    protected ?float $price;
 
     function __construct()
     {
@@ -108,6 +110,12 @@ class StyleDefault extends EntityFunction
     {
         $template->setStyleDefault($this);
         $this->Template->add($template);
+        return $this;
+    }
+    public function setUser(User $user): StyleDefault
+    {
+        $user->setStyleDefault($this);
+        $this->User->add($user);
         return $this;
     }
 }

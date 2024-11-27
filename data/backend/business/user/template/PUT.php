@@ -1,36 +1,40 @@
 <?php
+
 namespace business\user\template;
 
 use business\IAPI;
+use persistence\Database;
 use persistence\Entity\User;
-use persistence\EntityManager;
 
-class PUT implements IAPI {
-    private string $username;
-    private int $template;
+class PUT implements IAPI
+{
+    private ?string $username;
+    private int $template_id;
 
-    function __construct(string $username, int $template)
+    function __construct(?string $username, int $template_id)
     {
         $this->username = $username;
-        $this->template = $template;    
+        $this->template_id = $template_id;
     }
-    
-    private function updateTemplate() {
-        try {
-            $entityManager = EntityManager::getEntityManager();
-            $user = $entityManager->find(User::class, $this->username);
-            $user->set('defaultTemplate', $this->template);
-            $entityManager->flush();
 
-            return true;
+    private function updateUser()
+    {
+        try {
+            return [
+                'success' => Database::PUT(User::class, 'defaultTemplate', $this->template_id, [
+                    'username' => $this->username
+                ])
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 
     public function execute()
     {
-        return $this->updateTemplate();
+        return $this->updateUser();
     }
 }

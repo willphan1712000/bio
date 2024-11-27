@@ -31,6 +31,9 @@ class Database implements IDatabase
             return $out;
         }
         $o = $r->findOneBy($unique);
+        if ($o === NULL) {
+            throw new \Exception("data does not exist");
+        }
         if ($column === null) {
             return $o;
         }

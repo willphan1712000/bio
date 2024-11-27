@@ -4,6 +4,7 @@ namespace business\user\signup;
 
 use business\user\signup\SignupHandler;
 use business\user\signup\Input;
+use persistence\Entity\StyleDefault;
 use persistence\Entity\User;
 use persistence\Entity\UserInfo;
 use persistence\Entity\UserPhone;
@@ -19,6 +20,8 @@ class Push extends SignupHandler
 
     public function doHandle(Input $input): bool
     {
+        $entityManager = EntityManager::getEntityManager();
+
         $username = $input->getUsername();
         $password = $input->getPassword();
         $email = $input->getEmail();
@@ -27,6 +30,7 @@ class Push extends SignupHandler
         $userInfo = new UserInfo();
         $userPhone = new UserPhone();
         $userSocial = new UserSocial();
+        $styleDefault = $entityManager->find(StyleDefault::class, 0);
 
         $user->setUsername($username);
         $user->setPassword($password);
@@ -40,8 +44,8 @@ class Push extends SignupHandler
         $user->setUserInfo($userInfo);
         $user->setUserPhone($userPhone);
         $user->setUserSocial($userSocial);
+        $styleDefault->setUser($user);
 
-        $entityManager = EntityManager::getEntityManager();
         $entityManager->persist($user);
         $entityManager->flush();
 

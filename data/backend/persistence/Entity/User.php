@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 
@@ -31,6 +33,9 @@ class User extends EntityFunction
     protected Collection $Template;
     #[OneToMany(targetEntity: 'Style', mappedBy: 'User', cascade: ['persist', 'remove'])]
     protected Collection $Style;
+    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'User', cascade: ['persist', 'remove'])]
+    #[JoinColumn(name: 'defaultTemplate', referencedColumnName: 'template_id')]
+    protected $StyleDefault;
 
     #[Column(name: 'password', nullable: false)]
     protected string $password;
@@ -153,6 +158,11 @@ class User extends EntityFunction
     {
         $Style->setUser($this);
         $this->Style->add($Style);
+        return $this;
+    }
+    public function setStyleDefault(StyleDefault $styleDefault): User
+    {
+        $this->StyleDefault = $styleDefault;
         return $this;
     }
 }

@@ -23,6 +23,8 @@ class StyleDefault extends \persistence\Entity\StyleDefault implements \Doctrine
 
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
         "\0".'*'."\0".'Style' => [parent::class, 'Style', null],
+        "\0".'*'."\0".'Template' => [parent::class, 'Template', null],
+        "\0".'*'."\0".'User' => [parent::class, 'User', null],
         "\0".'*'."\0".'background' => [parent::class, 'background', null],
         "\0".'*'."\0".'description' => [parent::class, 'description', null],
         "\0".'*'."\0".'font' => [parent::class, 'font', null],
@@ -33,6 +35,8 @@ class StyleDefault extends \persistence\Entity\StyleDefault implements \Doctrine
         "\0".'*'."\0".'price' => [parent::class, 'price', null],
         "\0".'*'."\0".'template_id' => [parent::class, 'template_id', null],
         'Style' => [parent::class, 'Style', null],
+        'Template' => [parent::class, 'Template', null],
+        'User' => [parent::class, 'User', null],
         'background' => [parent::class, 'background', null],
         'description' => [parent::class, 'description', null],
         'font' => [parent::class, 'font', null],

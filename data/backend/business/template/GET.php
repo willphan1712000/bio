@@ -1,4 +1,5 @@
 <?php
+
 namespace business\template;
 
 use business\IAPI;
@@ -6,20 +7,26 @@ use persistence\Entity\Template;
 use persistence\Entity\User;
 use persistence\EntityManager;
 
-class GET implements IAPI {
+class GET implements IAPI
+{
     private string $username;
 
     function __construct(string $username)
     {
-        $this->username = $username; 
+        $this->username = $username;
     }
-    
-    private function getLikedTemplate() {
+
+    private function getLikedTemplate()
+    {
         try {
             $entityManager = EntityManager::getEntityManager();
 
             /** @var User|NULL */
             $user = $entityManager->find(User::class, $this->username);
+
+            if ($user === NULL) {
+                throw new \Exception("user does not exist");
+            }
 
             $out = [];
 
@@ -27,10 +34,15 @@ class GET implements IAPI {
                 array_push($out, $template->get('template_id'));
             }
 
-            return $out;
+            return [
+                'success' => true,
+                'data' => $out
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

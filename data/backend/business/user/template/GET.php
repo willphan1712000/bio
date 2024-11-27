@@ -1,27 +1,32 @@
 <?php
+
 namespace business\user\template;
 
 use business\IAPI;
+use persistence\Database;
 use persistence\Entity\User;
-use persistence\EntityManager;
 
-class GET implements IAPI {
+class GET implements IAPI
+{
     private string $username;
 
     function __construct(string $username)
     {
-        $this->username = $username; 
+        $this->username = $username;
     }
-    
-    private function updateTemplate() {
-        try {
-            $entityManager = EntityManager::getEntityManager();
-            $user = $entityManager->find(User::class, $this->username);
 
-            return $user->get('defaultTemplate');
+    private function updateTemplate()
+    {
+        try {
+            return [
+                'success' => true,
+                'data' => Database::GET(User::class, 'defaultTemplate', ['username' => $this->username])
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 
