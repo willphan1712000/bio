@@ -1,4 +1,5 @@
 <?php
+
 namespace business\info;
 
 use business\IAPI;
@@ -31,28 +32,40 @@ use business\info\social\OrderOnline;
 
 // require_once __DIR__."/../../../../vendor/autoload.php";
 
-class PUT implements IAPI {
+class PUT implements IAPI
+{
     private Info $info;
     private OperationFactory $operationFactory;
 
-    function __construct(Info $info) {
+    function __construct(Info $info)
+    {
         $this->info = $info;
         $this->operationFactory = new OperationFactory();
     }
 
-    private function infoProcess() {
-        // Handle push to database and create Vcard
-        $user = new Vcard(new Push(null));
-        // Handle user social
-        $userSocialHandler = new Booking(new Facebook(new HotSale(new Instagram(new Linkedin(new Messenger(new OrderOnline(new Pinterest(new Threads(new Tiktok(new Website(new X(new Youtube(new Zalo($user))))))))))))));
-        // Handle user phone number
-        $userPhoneHandler = new Mobile(new Work($userSocialHandler));
-        // Handle user information
-        $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
+    private function infoProcess()
+    {
+        try {
+            // Handle push to database and create Vcard
+            $user = new Vcard(new Push(null));
+            // Handle user social
+            $userSocialHandler = new Booking(new Facebook(new HotSale(new Instagram(new Linkedin(new Messenger(new OrderOnline(new Pinterest(new Threads(new Tiktok(new Website(new X(new Youtube(new Zalo($user))))))))))))));
+            // Handle user phone number
+            $userPhoneHandler = new Mobile(new Work($userSocialHandler));
+            // Handle user information
+            $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 
-        $userInfoSuccess = $userInfoHandler->handle($this->info, $this->operationFactory);
+            $userInfoSuccess = $userInfoHandler->handle($this->info, $this->operationFactory);
 
-        return $userInfoSuccess;
+            return [
+                'success' => $userInfoSuccess
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
     }
 
     public function execute()

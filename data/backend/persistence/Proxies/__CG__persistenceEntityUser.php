@@ -24,6 +24,7 @@ class User extends \persistence\Entity\User implements \Doctrine\ORM\Proxy\Inter
     private const LAZY_OBJECT_PROPERTY_SCOPES = [
         "\0".'*'."\0".'Purchase' => [parent::class, 'Purchase', null],
         "\0".'*'."\0".'Style' => [parent::class, 'Style', null],
+        "\0".'*'."\0".'StyleDefault' => [parent::class, 'StyleDefault', null],
         "\0".'*'."\0".'Template' => [parent::class, 'Template', null],
         "\0".'*'."\0".'UserInfo' => [parent::class, 'UserInfo', null],
         "\0".'*'."\0".'UserPhone' => [parent::class, 'UserPhone', null],
@@ -37,6 +38,7 @@ class User extends \persistence\Entity\User implements \Doctrine\ORM\Proxy\Inter
         "\0".'*'."\0".'username' => [parent::class, 'username', null],
         'Purchase' => [parent::class, 'Purchase', null],
         'Style' => [parent::class, 'Style', null],
+        'StyleDefault' => [parent::class, 'StyleDefault', null],
         'Template' => [parent::class, 'Template', null],
         'UserInfo' => [parent::class, 'UserInfo', null],
         'UserPhone' => [parent::class, 'UserPhone', null],

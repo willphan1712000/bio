@@ -8,7 +8,8 @@ use persistence\Entity\UserPhone;
 use persistence\Entity\UserSocial;
 use persistence\EntityManager;
 
-class GET implements IAPI {
+class GET implements IAPI
+{
     private string $username;
 
     public function __construct(string $username)
@@ -16,7 +17,8 @@ class GET implements IAPI {
         $this->username = $username;
     }
 
-    private function get() {
+    private function get()
+    {
         try {
             $entityManager = EntityManager::getEntityManager();
 
@@ -27,28 +29,33 @@ class GET implements IAPI {
             $infoArr = []; // create an empty array to hold every user information
 
             // put each peace of userInfo to the array
-            foreach(UserInfo::getProperty() as $property) {
-                if(!in_array($property, ['User', 'username'])) {
+            foreach (UserInfo::getProperty() as $property) {
+                if (!in_array($property, ['User', 'username'])) {
                     $infoArr[$property] = $userInfo->get($property);
                 }
             }
             // put each peace of userPhone to the array
-            foreach(UserPhone::getProperty() as $property) {
-                if(!in_array($property, ['User', 'username'])) {
+            foreach (UserPhone::getProperty() as $property) {
+                if (!in_array($property, ['User', 'username'])) {
                     $infoArr[$property] = $userPhone->get($property);
                 }
             }
             // put each peace of userSocial to the array
-            foreach(UserSocial::getProperty() as $property) {
-                if(!in_array($property, ['User', 'username'])) {
+            foreach (UserSocial::getProperty() as $property) {
+                if (!in_array($property, ['User', 'username'])) {
                     $infoArr[$property] = $userSocial->get($property);
                 }
             }
 
-            return new Info($infoArr);
+            return [
+                'success' => true,
+                'data' => $infoArr
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 
