@@ -1,4 +1,5 @@
 <?php
+
 namespace persistence\Entity;
 
 use Doctrine\ORM\Mapping\Id;
@@ -11,39 +12,56 @@ use Doctrine\ORM\Mapping\ManyToOne;
 
 #[Entity]
 #[Table('Template')]
-class Template extends EntityFunction {
-    #[Id, Column(name: 'id'), GeneratedValue]
-    protected int $id;
-    #[Column(name: 'username')]
-    protected string $username;
+class Template extends EntityFunction
+{
     #[ManyToOne(targetEntity: 'User', inversedBy: 'Template')]
     #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
     protected $User;
-    #[Column(name: 'template_id')]
+    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'Template')]
+    #[JoinColumn(name: 'template_id', referencedColumnName: 'template_id', onDelete: 'CASCADE')]
+    protected $StyleDefault;
+
+    // #[Id, Column(name: 'id'), GeneratedValue]
+    // protected int $id;
+    #[Id, Column(name: 'username')]
+    protected string $username;
+    #[Id, Column(name: 'template_id')]
     protected int $template_id;
 
-    public function getUsername(): string {
+    public function getUsername(): string
+    {
         return $this->username;
     }
-    public function getTemplateId(): int {
+    public function getTemplateId(): int
+    {
         return $this->template_id;
     }
 
-    public function setUsername(string $username): Template {
+    public function setUsername(string $username): Template
+    {
         $this->username = $username;
         return $this;
     }
-    public function setTemplateId(int $template_id) : Template {
+    public function setTemplateId(int $template_id): Template
+    {
         $this->template_id = $template_id;
         return $this;
     }
 
-    public function getUser(): User {
+    public function getUser(): User
+    {
         return $this->User;
     }
 
-    public function setUser(User $User): Template {
+    public function setUser(User $User): Template
+    {
         $this->User = $User;
+        return $this;
+    }
+
+    public function setStyleDefault(StyleDefault $styleDefault): Template
+    {
+        $this->StyleDefault = $styleDefault;
         return $this;
     }
 }

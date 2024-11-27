@@ -1,4 +1,5 @@
 <?php
+
 namespace persistence\Entity;
 
 use Doctrine\Common\Collections\Collection;
@@ -11,9 +12,12 @@ use Doctrine\ORM\Mapping\OneToMany;
 
 #[Entity()]
 #[Table('StyleDefault')]
-class StyleDefault extends EntityFunction {
+class StyleDefault extends EntityFunction
+{
     #[OneToMany(targetEntity: 'Style', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
     protected Collection $Style;
+    #[OneToMany(targetEntity: 'Template', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
+    protected Collection $Template;
 
     #[Id, Column(name: 'template_id')]
     protected int $template_id;
@@ -39,52 +43,71 @@ class StyleDefault extends EntityFunction {
         $this->Style = new ArrayCollection();
     }
 
-    public function getTemplateId(): int {
+    public function getTemplateId(): int
+    {
         return $this->template_id;
     }
-    public function getFont() : string {
+    public function getFont(): string
+    {
         return $this->font;
     }
-    public function getFontSize() : string {
+    public function getFontSize(): string
+    {
         return $this->fontSize;
     }
-    public function getFontColor() : string {
+    public function getFontColor(): string
+    {
         return $this->fontColor;
     }
-    public function getBackground() : string {
+    public function getBackground(): string
+    {
         return $this->background;
     }
-    public function getPrice() : float {
+    public function getPrice(): float
+    {
         return $this->price;
     }
 
-    public function setTemplateId(int $id): StyleDefault {
+    public function setTemplateId(int $id): StyleDefault
+    {
         $this->template_id = $id;
         return $this;
     }
-    public function setFont(string $font): StyleDefault {
+    public function setFont(string $font): StyleDefault
+    {
         $this->font = $font;
         return $this;
     }
-    public function setFontSize(string $fontSize): StyleDefault {
+    public function setFontSize(string $fontSize): StyleDefault
+    {
         $this->fontSize = $fontSize;
         return $this;
     }
-    public function setFontColor(string $fontColor): StyleDefault {
+    public function setFontColor(string $fontColor): StyleDefault
+    {
         $this->fontColor = $fontColor;
         return $this;
     }
-    public function setBackground(string $background): StyleDefault {
+    public function setBackground(string $background): StyleDefault
+    {
         $this->background = $background;
         return $this;
     }
-    public function setPrice(float $price): StyleDefault {
+    public function setPrice(float $price): StyleDefault
+    {
         $this->price = $price;
         return $this;
     }
-    public function setStyle(Style $Style): StyleDefault {
+    public function setStyle(Style $Style): StyleDefault
+    {
         $Style->setStyleDefault($this);
         $this->Style->add($Style);
+        return $this;
+    }
+    public function setTemplate(Template $template): StyleDefault
+    {
+        $template->setStyleDefault($this);
+        $this->Template->add($template);
         return $this;
     }
 }

@@ -14,14 +14,9 @@ class CheckEmail extends SignupHandler
 
     public function doHandle(Input $input): bool
     {
-        try {
-            if (filter_var($input->getEmail(), FILTER_VALIDATE_EMAIL)) {
-                return true;
-            }
-            return false;
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+        if (filter_var($input->getEmail(), FILTER_VALIDATE_EMAIL)) {
+            return true;
         }
+        throw new \Exception("Email is not valid");
     }
 }

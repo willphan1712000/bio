@@ -1,22 +1,26 @@
 <?php
+
 namespace business\template;
 
 use business\IAPI;
+use persistence\Entity\StyleDefault;
 use persistence\Entity\Template;
 use persistence\Entity\User;
 use persistence\EntityManager;
 
-class POST implements IAPI {
+class POST implements IAPI
+{
     private string $username;
     private int $template_id;
 
     function __construct(string $username, int $template_id)
     {
-        $this->username = $username; 
+        $this->username = $username;
         $this->template_id = $template_id;
     }
-    
-    private function addLikedTemplate() {
+
+    private function addLikedTemplate()
+    {
         try {
             $entityManager = EntityManager::getEntityManager();
 
@@ -26,15 +30,31 @@ class POST implements IAPI {
 
             /** @var User $user */
             $user = $entityManager->find(User::class, $this->username);
+            if ($user === NULL) {
+                throw new \Exception("user does not exist");
+            }
+
             $user->setTemplate($template);
+
+            /** @var StyleDefault*/
+            $styleDefault = $entityManager->find(StyleDefault::class, $this->template_id);
+            if ($styleDefault === NULL) {
+                throw new \Exception("template does not exist");
+            }
+
+            $styleDefault->setTemplate($template);
 
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return true;
+            return [
+                'success' => true
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

@@ -42,7 +42,7 @@ class GET implements IAPI
             ]);
 
             if ($user === null) {
-                return false;
+                throw new \Exception("user does not exist");
             }
 
             $row = [];
@@ -55,8 +55,10 @@ class GET implements IAPI
 
             return $row;
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

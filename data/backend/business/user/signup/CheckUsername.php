@@ -16,14 +16,9 @@ class CheckUsername extends SignupHandler
     public function doHandle(Input $input): bool
     {
         $username = str_replace(' ', '', $input->getUsername());
-        try {
-            if (!UserManagement::isUserExist($username)) {
-                return true;
-            }
-            return false;
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+        if (!UserManagement::isUserExist($username)) {
+            return true;
         }
+        throw new \Exception("User already exists");
     }
 }

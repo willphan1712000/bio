@@ -11,14 +11,7 @@ class GET extends APIAbstract
 {
     public function handleRequest($body)
     {
-        $result = (new userGET($body->username))->execute();
-        return $result ? [
-            'success' => true,
-            'data' => $result
-        ] : [
-            'success' => false,
-            'error' => 'User does not exist or failed to fetch users'
-        ];
+        return (new userGET($body->username))->execute();
     }
 }
 

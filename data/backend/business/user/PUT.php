@@ -27,10 +27,17 @@ class PUT implements IAPI
         try {
             // validate password
             $passValid = new Password(null);
-            return $passValid->doHandle(new Input(null, null, $this->password)) ? (Database::PUT(User::class, 'password', $this->password, ['username' => $this->username])) : false;
+            if ($passValid->doHandle(new Input(null, null, $this->password))) {
+                Database::PUT(User::class, 'password', $this->password, ['username' => $this->username]);
+                return [
+                    'success' => true
+                ];
+            }
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace api\user;
+namespace api\template;
 
 use api\APIAbstract;
-use business\user\POST as userPOST;
+use business\template\POST as TemplatePOST;
 
 require_once __DIR__ . "/../../../vendor/autoload.php";
 
@@ -11,7 +11,7 @@ class POST extends APIAbstract
 {
     public function handleRequest($body)
     {
-        return (new userPOST($body->username, $body->email, $body->password))->execute();
+        return (new TemplatePOST($body->username, $body->template_id))->execute();
     }
 }
 

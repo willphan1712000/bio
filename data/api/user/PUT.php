@@ -11,12 +11,7 @@ class PUT extends APIAbstract
 {
     public function handleRequest($body)
     {
-        return (new userPUT($body->username, $body->password))->execute() ? [
-            'success' => true,
-        ] : [
-            'success' => false,
-            'error' => 'Password is not valid or failed to reset password'
-        ];
+        return (new userPUT($body->username, $body->password))->execute();
     }
 }
 

@@ -11,12 +11,7 @@ class DELETE extends APIAbstract
 {
     public function handleRequest($body)
     {
-        return (new userDELETE($body->username))->execute() ? [
-            'success' => true,
-        ] : [
-            'success' => false,
-            'error' => 'User does not exist or failed to delete user'
-        ];
+        return (new userDELETE($body->username))->execute();
     }
 }
 
