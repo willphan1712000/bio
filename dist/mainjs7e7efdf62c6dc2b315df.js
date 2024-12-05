@@ -30,9 +30,9 @@ $(document).ready(function () {
         case 'signup':
             (0, signup_1.default)({
                 signup: "/data/api/user/POST.php",
-                userExist: "/data/api/user/validation/isUserExist.php",
-                validEmail: "/data/api/user/validation/isValidEmail.php",
-                validPassword: "/data/api/user/validation/isValidPass.php",
+                userExist: "/data/api/user/validation/Username.php",
+                validEmail: "/data/api/user/validation/Email.php",
+                validPassword: "/data/api/user/validation/Password.php",
             });
             break;
         case 'signin':
@@ -2066,7 +2066,7 @@ class SignUpUI {
             const validPassword = yield (0, WW_1.$$$)(this.url.validPassword, {
                 password: this.passwordBox.getPassword(),
             }).api().post();
-            if (userExist.success) {
+            if (!userExist.success) {
                 this.error.setError("Username exists");
             }
             else if (!this.usernameBox.isFilled()) {
@@ -2092,7 +2092,7 @@ class SignUpUI {
                                 justify-content: center;
                                 align-items: center;" class="fa-solid fa-check"></i>`);
             }
-            this.register.enabled(!userExist.success && this.usernameBox.isFilled() && validPassword.success && validEmail.success && this.checkBox.isChecked());
+            this.register.enabled(userExist.success && this.usernameBox.isFilled() && validPassword.success && validEmail.success && this.checkBox.isChecked());
         });
     }
     signup() {
@@ -18058,4 +18058,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=mainjs8acb8b78f2db2c5348d8.js.map
+//# sourceMappingURL=mainjs7e7efdf62c6dc2b315df.js.map

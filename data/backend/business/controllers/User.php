@@ -1,15 +1,25 @@
 <?php
+
 namespace business\controllers;
-require_once __DIR__."/../../../../vendor/autoload.php";
+
+require_once __DIR__ . "/../../../../vendor/autoload.php";
+
 use config\SystemConfig;
-require_once __DIR__."/../TemplateManagement.php";
+
+require_once __DIR__ . "/../TemplateManagement.php";
+
 use business\TemplateManagement;
-require_once __DIR__."/../UserManagement.php";
+
+require_once __DIR__ . "/../UserManagement.php";
+
 use business\UserManagement;
-require_once __DIR__."/../../persistence/API.php";
+
+require_once __DIR__ . "/../../persistence/API.php";
+
 use persistence\API;
 
-class User {
+class User implements Controller
+{
     private string $username;
     private $themeid;
     private $info;
@@ -17,8 +27,9 @@ class User {
     private $imgPath;
     private $url;
 
-    function __construct($isAdmin) {
-        if($isAdmin) {
+    function __construct($isAdmin)
+    {
+        if ($isAdmin) {
             $this->username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
         } else {
             $this->username = SystemConfig::URLExtraction();
@@ -32,40 +43,48 @@ class User {
 
         $g = SystemConfig::globalVariables();
         $infoArray = $this->info;
-        $this->imgPath = !empty($infoArray['image']) ? "/user/".$this->username."/".$infoArray['image']."?v=".time() : $g['img']['unknown'];
+        $this->imgPath = !empty($infoArray['image']) ? "/user/" . $this->username . "/" . $infoArray['image'] . "?v=" . time() : $g['img']['unknown'];
 
         $this->url = UserManagement::URLGenerator($this->username, "share");
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getInfo() {
+    public function getInfo()
+    {
         return $this->info;
     }
 
-    public function getImgPath() {
+    public function getImgPath()
+    {
         return $this->imgPath;
     }
 
-    public function getThemeid() {
+    public function getThemeid()
+    {
         return $this->themeid;
     }
-    public function getCSS() {
+    public function getCSS()
+    {
         return $this->css;
     }
-    public function getURL() {
+    public function getURL()
+    {
         return $this->url;
     }
-    public function themeRedirect() {
-        if($this->themeid == 0) {
-            require __DIR__."/../../../../controllers/default/user.php";
+    public function themeRedirect()
+    {
+        if ($this->themeid == 0) {
+            require __DIR__ . "/../../../../controllers/default/user.php";
             die();
         }
     }
 }
 
-function user($isAdmin) {
+function user($isAdmin)
+{
     return new User($isAdmin);
 }

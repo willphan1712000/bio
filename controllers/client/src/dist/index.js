@@ -20,9 +20,9 @@ $(document).ready(function () {
         case 'signup':
             (0, signup_1.default)({
                 signup: "/data/api/user/POST.php",
-                userExist: "/data/api/user/validation/isUserExist.php",
-                validEmail: "/data/api/user/validation/isValidEmail.php",
-                validPassword: "/data/api/user/validation/isValidPass.php",
+                userExist: "/data/api/user/validation/Username.php",
+                validEmail: "/data/api/user/validation/Email.php",
+                validPassword: "/data/api/user/validation/Password.php",
             });
             break;
         case 'signin':

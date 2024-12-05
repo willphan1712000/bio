@@ -7,17 +7,17 @@ use business\UserManagement;
 
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 
-class IsUserValid extends APIAbstract
+class Username extends APIAbstract
 {
     public function handleRequest($body)
     {
         return UserManagement::isUserExist($body->username) ? [
-            'success' => true,
-            'error' => 'User already exists'
-        ] : [
             'success' => false,
+            'error' => 'user already exists'
+        ] : [
+            'success' => true
         ];
     }
 }
 
-echo json_encode((new IsUserValid())->execute());
+echo json_encode((new Username())->execute());

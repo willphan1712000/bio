@@ -41,7 +41,7 @@ class SignUpUI {
             const validPassword = yield (0, WW_1.$$$)(this.url.validPassword, {
                 password: this.passwordBox.getPassword(),
             }).api().post();
-            if (userExist.success) {
+            if (!userExist.success) {
                 this.error.setError("Username exists");
             }
             else if (!this.usernameBox.isFilled()) {
@@ -67,7 +67,7 @@ class SignUpUI {
                                 justify-content: center;
                                 align-items: center;" class="fa-solid fa-check"></i>`);
             }
-            this.register.enabled(!userExist.success && this.usernameBox.isFilled() && validPassword.success && validEmail.success && this.checkBox.isChecked());
+            this.register.enabled(userExist.success && this.usernameBox.isFilled() && validPassword.success && validEmail.success && this.checkBox.isChecked());
         });
     }
     signup() {
