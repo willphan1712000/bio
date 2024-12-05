@@ -1,9 +1,9 @@
 <?php
 
-namespace api\info;
+namespace api\style;
 
 use api\APIAbstract;
-use business\info\GET as TemplateGET;
+use business\style\GET as TemplateGET;
 
 require_once __DIR__ . "/../../../vendor/autoload.php";
 
@@ -11,7 +11,7 @@ class GET extends APIAbstract
 {
     public function handleRequest($body)
     {
-        return (new TemplateGET($body->username))->execute();
+        return (new TemplateGET($body->username, $body->template))->execute();
     }
 }
 

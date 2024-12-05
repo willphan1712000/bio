@@ -1,9 +1,9 @@
 <?php
 
-namespace api\info;
+namespace api\purchase;
 
 use api\APIAbstract;
-use business\info\GET as TemplateGET;
+use business\purchase\GET as TemplateGET;
 
 require_once __DIR__ . "/../../../vendor/autoload.php";
 

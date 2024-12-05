@@ -44,6 +44,11 @@ class POST implements IAPI
 
             /** @var User|NULL */
             $user = $entityManager->find(User::class, ['username' => $this->username]);
+
+            // Check if user exists or not
+            if ($user === NULL) {
+                throw new \Exception("user does not exist");
+            }
             $user->setPurchase($purchase);
 
             foreach ($this->templates as $template) {
@@ -65,10 +70,14 @@ class POST implements IAPI
 
             $entityManager->persist($purchase);
             $entityManager->flush();
-            return true;
+            return [
+                'success' => true
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 
