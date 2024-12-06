@@ -72,9 +72,6 @@ class Template implements Controller
             'total' => $this->total
         ];
     }
-}
 
-function template($username)
-{
-    return new Template($username);
+    public function execute() {}
 }
