@@ -10,14 +10,14 @@ use persistence\Entity\User;
 
 interface IUserManagement
 {
-    public static function isSignedIn($SESSION, $username): bool;
+    public static function isSignedIn($SESSION, string $username): bool;
     public static function URLGenerator($username, $c): string;
     public static function isUserExist($username): bool;
 }
 
 class UserManagement implements IUserManagement
 {
-    public static function isSignedIn($SESSION, $username): bool
+    public static function isSignedIn($SESSION, string $username): bool
     {
         if (isset($SESSION[$username])) {
             if (time() - $SESSION['last_time_' . $username] > SystemConfig::globalVariables()['timeSession']) {
@@ -41,7 +41,7 @@ class UserManagement implements IUserManagement
         }
         return null;
     }
-    // Check if username exists 
+    // Check if username exists, return true if exists. Otherwise, return false
     public static function isUserExist($username): bool
     {
         try {

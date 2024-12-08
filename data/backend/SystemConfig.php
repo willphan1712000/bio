@@ -192,12 +192,16 @@ class SystemConfig
     // }
 
     // this function is for extracting url into base or query string
-    public static function URLExtraction($queryStr = null)
+    public static function URLExtraction(int $hierarchy = 1, string $queryStr = null)
     {
-        $base = basename(parse_url($_SERVER['REQUEST_URI'])['path']);
+        $groups = explode("/", parse_url($_SERVER['REQUEST_URI'])['path']);
+        $len = count($groups);
+        if ($hierarchy > $len || $hierarchy < 1) {
+            throw new \Exception("Invalid hierarchy");
+        }
         $query = parse_url($_SERVER['REQUEST_URI'])['query'] ?? "";
         parse_str($query, $query_params);
         $result = (isset($query_params[$queryStr]) && $query_params[$queryStr] !== "") ? $query_params[$queryStr] : null;
-        return ($queryStr === null) ? $base : $result;
+        return ($queryStr === null) ? $groups[$len - $hierarchy] : $result;
     }
 }

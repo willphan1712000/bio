@@ -27,13 +27,9 @@ class User implements Controller
     private $imgPath;
     private $url;
 
-    function __construct($isAdmin)
+    function __construct()
     {
-        if ($isAdmin) {
-            $this->username = explode("/", parse_url($_SERVER['REQUEST_URI'])['path'])[1];
-        } else {
-            $this->username = SystemConfig::URLExtraction();
-        }
+        $this->username = SystemConfig::URLExtraction();
 
         $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction("tem"));
 
@@ -82,6 +78,7 @@ class User implements Controller
             die();
         }
     }
+    public function execute() {}
 }
 
 function user($isAdmin)

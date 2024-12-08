@@ -1,66 +1,70 @@
 <?php
+
 namespace business;
-require_once __DIR__.'/../../../vendor/autoload.php';
+
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
 use persistence\Database_Schema;
-use persistence\API;
+use persistence\Database;
+use persistence\Entity\Style;
+use persistence\Entity\StyleDefault;
+use persistence\Entity\User;
 
-
-interface ITemplateManagement {
-    public static function getTotal();
-    public static function getProducts();
-    public static function getStyle($i);
-    public static function isPurchased($username, $tem);
-    public static function shareTemplate($username, $tem);
-    public static function isAbleToPurchase($isSignedIn, $username, $itemid);
-}
-
-class TemplateManagement implements ITemplateManagement {
-    public static function getTotal() {
-        return Database_Schema::total();
+class TemplateManagement
+{
+    public static function getTotal()
+    {
+        $r = Database::SQL("select total from counttemplate");
+        return $r[0]['total'];
     }
 
-    public static function getProducts() {
-        $data = Database_Schema::get_iData()['templateInfo'];
-        $product = [];
-        $product[] = "";
-        foreach($data as $i => $c) {
-            $arr = [];
-            $arr['id'] = $c['id'];
-            $arr['name'] = $c['name'];
-            $arr['price'] = $c['price'];
-            $arr['image'] = $c['image'];
-            $arr['description'] = $c['description'];
+    public static function getProducts()
+    {
+        $products = Database::GET(StyleDefault::class);
+        $productArr = [];
 
-            $product[] = $arr;
+        foreach ($products as $product) {
+            $productProps = [];
+            $productProps['template_id'] = $product->get('template_id');
+            $productProps['name'] = $product->get('name');
+            $productProps['image'] = $product->get('image');
+            $productProps['description'] = $product->get('description');
+            $productProps['font'] = $product->get('font');
+            $productProps['fontSize'] = $product->get('fontSize');
+            $productProps['fontColor'] = $product->get('fontColor');
+            $productProps['background'] = $product->get('background');
+            $productProps['price'] = $product->get('price');
+
+            array_push($productArr, $productProps);
         }
 
-        return $product;
+        return $productArr;
     }
 
-    public static function getStyle($i) {
-        $t = Database_Schema::get_iData()['templateInfo'][$i - 1];
-        $style = [];
-        $style['font'] = $t['font'];
-        $style['fontSize'] = $t['fontSize'];
-        $style['fontColor'] = $t['fontColor'];
-        $style['background'] = $t['background'];
-
-        return $style;
-    }
-
-    public static function isPurchased($username, $tem) {
-        $isPurchased = API::GET("purchase", null, "username='$username'AND template_id=$tem");
-        if(!empty($isPurchased)) {
-            return true;
+    public static function isPurchased(string $username, int $tem)
+    {
+        try {
+            $isPurchased = Database::GET(Style::class, null, [
+                'username' => $username,
+                'template_id' => $tem
+            ]);
+            return [
+                'success' => true
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
-        return false;
     }
 
     // This function will check if user shares a template. If template was purchased, it would be themeid. Otherwise, it would redirect user to the main user page
-    public static function shareTemplate($username, $tem) {
-        $chosen = API::GET("template", "themeid", "username='$username'");
-        if($tem !== null) {
-            if(self::isPurchased($username, $tem)) {
+    public static function shareTemplate($username, $tem = NULL)
+    {
+        $chosen = Database::GET(User::class, 'defaultTemplate', ['username' => $username]);
+        if ($tem !== NULL) {
+            if (self::isPurchased($username, $tem)['success']) {
                 return $tem;
             }
             return $chosen;
@@ -69,14 +73,26 @@ class TemplateManagement implements ITemplateManagement {
         }
     }
 
-    public static function isAbleToPurchase($isSignedIn, $username, $itemid): bool {
-        if($itemid === null) {
-            return true;
-        }
-        if($itemid <= 0 || $itemid > self::getTotal()) {
+    public static function isAbleToPurchase($SESSION, $username, $itemid): bool
+    {
+        // Check if user exists, return true if exists. Return false otherwise
+        if (!UserManagement::isUserExist($username)) {
             return false;
         }
-        if(self::isPurchased($username, $itemid) && $isSignedIn) {
+        // Check if user is already signed in or not
+        if (!UserManagement::isSignedIn($SESSION, $username)) {
+            return false;
+        }
+        // Check if itemid is null or not
+        if ($itemid === null) {
+            return true;
+        }
+        // Check if itemid is out of bound or not
+        if ($itemid <= 0 || $itemid > self::getTotal()) {
+            return false;
+        }
+        // Check if itemid is already purchased or not. If already purchased, return false
+        if (self::isPurchased($username, $itemid)['success']) {
             return false;
         }
         return true;
