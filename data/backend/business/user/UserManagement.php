@@ -1,8 +1,6 @@
 <?php
 
-namespace business;
-
-require_once __DIR__ . '/../../../vendor/autoload.php';
+namespace business\user;
 
 use config\SystemConfig;
 use persistence\Database;
@@ -11,7 +9,7 @@ use persistence\Entity\User;
 interface IUserManagement
 {
     public static function isSignedIn($SESSION, string $username): bool;
-    public static function URLGenerator($username, $c): string;
+    public static function URLGenerator(string $username, string $c): string|null;
     public static function isUserExist($username): bool;
 }
 
@@ -32,14 +30,14 @@ class UserManagement implements IUserManagement
         }
     }
     // This function is to create url for user
-    public static function URLGenerator($username, $c): string
+    public static function URLGenerator(string $username, string $c = "main" | "share"): string|null
     {
         if ($c === "main") {
             return "https://" . SystemConfig::globalVariables()["domain"] . "/" . $username;
         } elseif ($c === "share") {
             return "https://" . SystemConfig::globalVariables()["domain"] . "/" . $username . "?share=true";
         }
-        return null;
+        return NULL;
     }
     // Check if username exists, return true if exists. Otherwise, return false
     public static function isUserExist($username): bool

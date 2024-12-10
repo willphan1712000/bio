@@ -1,16 +1,23 @@
 <?php
 
-namespace business;
+namespace business\template;
 
-require_once __DIR__ . '/../../../vendor/autoload.php';
-
-use persistence\Database_Schema;
 use persistence\Database;
-use persistence\Entity\Style;
-use persistence\Entity\StyleDefault;
 use persistence\Entity\User;
+use persistence\Entity\Style;
+use business\user\UserManagement;
+use persistence\Entity\StyleDefault;
 
-class TemplateManagement
+interface ITemplateManagement
+{
+    public static function getTotal();
+    public static function getProducts();
+    public static function isPurchased(string $username, int $tem);
+    public static function shareTemplate($username, $tem = NULL);
+    public static function isAbleToPurchase($SESSION, $username, $itemid);
+}
+
+class TemplateManagement implements ITemplateManagement
 {
     public static function getTotal()
     {

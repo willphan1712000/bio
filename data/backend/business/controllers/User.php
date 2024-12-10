@@ -2,21 +2,13 @@
 
 namespace business\controllers;
 
-require_once __DIR__ . "/../../../../vendor/autoload.php";
-
 use config\SystemConfig;
-
-require_once __DIR__ . "/../TemplateManagement.php";
-
-use business\TemplateManagement;
-
-require_once __DIR__ . "/../UserManagement.php";
-
-use business\UserManagement;
-
-require_once __DIR__ . "/../../persistence/API.php";
-
-use persistence\API;
+use persistence\Database;
+use persistence\Entity\UserInfo;
+use business\user\UserManagement;
+use persistence\Entity\UserPhone;
+use persistence\Entity\UserSocial;
+use business\template\TemplateManagement;
 
 class User implements Controller
 {
@@ -24,24 +16,12 @@ class User implements Controller
     private $themeid;
     private $info;
     private $css;
-    private $imgPath;
     private $url;
+    private $status;
 
     function __construct()
     {
-        $this->username = SystemConfig::URLExtraction();
-
-        $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction("tem"));
-
-        $this->info = API::GET("info", null, "username='$this->username'");
-
-        $this->css = API::GET("style", null, "username = '$this->username' AND template_id = '$this->themeid'");
-
-        $g = SystemConfig::globalVariables();
-        $infoArray = $this->info;
-        $this->imgPath = !empty($infoArray['image']) ? "/user/" . $this->username . "/" . $infoArray['image'] . "?v=" . time() : $g['img']['unknown'];
-
-        $this->url = UserManagement::URLGenerator($this->username, "share");
+        $this->status = $this->execute();
     }
 
     public function getUsername()
@@ -52,11 +32,6 @@ class User implements Controller
     public function getInfo()
     {
         return $this->info;
-    }
-
-    public function getImgPath()
-    {
-        return $this->imgPath;
     }
 
     public function getThemeid()
@@ -71,6 +46,10 @@ class User implements Controller
     {
         return $this->url;
     }
+    public function getStatus()
+    {
+        return $this->status;
+    }
     public function themeRedirect()
     {
         if ($this->themeid == 0) {
@@ -78,10 +57,56 @@ class User implements Controller
             die();
         }
     }
-    public function execute() {}
-}
+    public function execute()
+    {
+        try {
+            $g = SystemConfig::globalVariables();
+            $this->username = SystemConfig::URLExtraction(); // get username
 
-function user($isAdmin)
-{
-    return new User($isAdmin);
+            $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
+
+            $this->themeRedirect(); // if template id is 0, redirect to default template. Otherwise, proceed the next
+
+            $this->info = [];
+            /** @var UserInfo|NULL*/
+            $userInfo = Database::GET(UserInfo::class, null, ['username' => $this->username]);
+            /** @var UserPhone|NULL */
+            $userPhone = Database::GET(UserPhone::class, null, ['username' => $this->username]);
+            /** @var UserSocial|NULL */
+            $userSocial = Database::GET(UserSocial::class, null, ['username' => $this->username]);
+
+            foreach (UserInfo::getProperty() as $prop) {
+                if (!in_array($prop, ['User', 'image'])) {
+                    $this->info[$prop] = $userInfo->get($prop);
+                }
+                if ($prop === 'image') {
+                    $this->info[$prop] = $userInfo->get($prop) === NULL ? $g['img']['unknown'] : $g['user_folder'] . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
+                }
+            }
+
+            foreach (UserPhone::getProperty() as $prop) {
+                if (!in_array($prop, ['User'])) {
+                    $this->info[$prop] = $userPhone->get($prop);
+                }
+            }
+
+            foreach (UserSocial::getProperty() as $prop) {
+                if (!in_array($prop, ['User']))
+                    $this->info[$prop] = $userSocial->get($prop);
+            }
+
+            // $this->css = API::GET("style", null, "username = '$this->username' AND template_id = '$this->themeid'");
+
+            $this->url = UserManagement::URLGenerator($this->username, "share");
+
+            return [
+                'success' => true
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
+        }
+    }
 }

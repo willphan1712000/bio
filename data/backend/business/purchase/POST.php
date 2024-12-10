@@ -36,6 +36,7 @@ class POST implements IAPI
             $rate = 0.06;
             $total = $subtotal * (1 + $rate);
 
+            // Add new purchase
             $purchase = new Purchase();
             $purchase
                 ->set('username', $this->username)
@@ -50,7 +51,9 @@ class POST implements IAPI
                 throw new \Exception("user does not exist");
             }
             $user->setPurchase($purchase);
+            $user->set("defaultTemplate", $this->templates[0]); // set the first purchased template as the default template for user
 
+            // iteratively add each purchased template
             foreach ($this->templates as $template) {
                 $style = (new Style())
                     ->set('username', $this->username)
