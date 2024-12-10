@@ -4,6 +4,7 @@ namespace business\controllers;
 
 use config\SystemConfig;
 use persistence\Database;
+use persistence\Entity\Style;
 use persistence\Entity\UserInfo;
 use business\user\UserManagement;
 use persistence\Entity\UserPhone;
@@ -18,10 +19,19 @@ class User implements Controller
     private $css;
     private $url;
     private $status;
+    private bool $isDefault;
+    private $socialIconArr;
 
-    function __construct()
+    function __construct(bool $isDefault = false)
     {
+        $this->isDefault = $isDefault;
+        $this->socialIconArr = SystemConfig::socialIconArr();
         $this->status = $this->execute();
+    }
+
+    public function getSocialIconArr()
+    {
+        return $this->socialIconArr;
     }
 
     public function getUsername()
@@ -50,11 +60,23 @@ class User implements Controller
     {
         return $this->status;
     }
-    public function themeRedirect()
+    public function themeRedirect(bool $isDefault = false)
     {
-        if ($this->themeid == 0) {
-            require __DIR__ . "/../../../../controllers/default/user.php";
-            die();
+        if (!$isDefault) {
+            if ($this->themeid === 0) {
+                require __DIR__ . "/../../../../controllers/default/user.php";
+                die();
+            } else {
+                $this->css = [];
+                /** @var Style|NULL */
+                $style = Database::GET(Style::class, null, ['username' => $this->username, 'template_id' => $this->themeid]);
+
+                foreach (Style::getProperty() as $prop) {
+                    if (!in_array($prop, ['Purchase', 'StyleDefault'])) {
+                        $this->css[$prop] = $style->get($prop);
+                    }
+                }
+            }
         }
     }
     public function execute()
@@ -65,7 +87,7 @@ class User implements Controller
 
             $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
 
-            $this->themeRedirect(); // if template id is 0, redirect to default template. Otherwise, proceed the next
+            $this->themeRedirect($this->isDefault); // if template id is 0, redirect to default template. Otherwise, proceed the next
 
             $this->info = [];
             /** @var UserInfo|NULL*/
@@ -80,7 +102,7 @@ class User implements Controller
                     $this->info[$prop] = $userInfo->get($prop);
                 }
                 if ($prop === 'image') {
-                    $this->info[$prop] = $userInfo->get($prop) === NULL ? $g['img']['unknown'] : $g['user_folder'] . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
+                    $this->info[$prop] = $userInfo->get($prop) === NULL ? $g['img']['unknown'] : "/user/" . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
                 }
             }
 
@@ -94,8 +116,6 @@ class User implements Controller
                 if (!in_array($prop, ['User']))
                     $this->info[$prop] = $userSocial->get($prop);
             }
-
-            // $this->css = API::GET("style", null, "username = '$this->username' AND template_id = '$this->themeid'");
 
             $this->url = UserManagement::URLGenerator($this->username, "share");
 

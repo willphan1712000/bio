@@ -13,7 +13,7 @@ interface ITemplateManagement
     public static function getTotal();
     public static function getProducts();
     public static function isPurchased(string $username, int $tem);
-    public static function shareTemplate($username, $tem = NULL);
+    public static function shareTemplate($username, $tem = NULL): int;
     public static function isAbleToPurchase($SESSION, $username, $itemid);
 }
 
@@ -67,16 +67,16 @@ class TemplateManagement implements ITemplateManagement
     }
 
     // This function will check if user shares a template. If template was purchased, it would be themeid. Otherwise, it would redirect user to the main user page
-    public static function shareTemplate($username, $tem = NULL)
+    public static function shareTemplate($username, $tem = NULL): int
     {
         $chosen = Database::GET(User::class, 'defaultTemplate', ['username' => $username]);
         if ($tem !== NULL) {
             if (self::isPurchased($username, $tem)['success']) {
-                return $tem;
+                return (int) $tem;
             }
-            return $chosen;
+            return (int) $chosen;
         } else {
-            return $chosen;
+            return (int) $chosen;
         }
     }
 

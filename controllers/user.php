@@ -4,11 +4,10 @@ use config\SystemConfig;
 
 $g = SystemConfig::globalVariables();
 
+use business\user\InfoAnchor;
+
 use business\controllers\User;
-
-require_once __DIR__ . "/../data/backend/business/InfoProcess.php";
-
-use function business\infoProcess;
+use function component\template;
 
 require_once __DIR__ . "/../controllers/components/Copyright.php";
 
@@ -16,7 +15,7 @@ use function component\copyright;
 
 require_once __DIR__ . "/../controllers/components/Template.php";
 
-use function component\template;
+use function business\infoProcess;
 
 require_once __DIR__ . "/../controllers/components/UserFooter.php";
 
@@ -26,8 +25,6 @@ use function component\userFooter;
 // get User object
 $user = new User();
 
-// Theme redirect
-$user->themeRedirect();
 // get username
 $username = $user->getUsername();
 // Get themeid
@@ -40,10 +37,9 @@ $url = $user->getURL();
 // This is information that gets passed down to the corresponsing template
 $props = [
     'username' => $username,
-    'imgPath' => $user->getImgPath(),
     'social' => SystemConfig::socialNameArr(),
     'icon' => SystemConfig::socialIconArr(),
-    'info' => infoProcess($user->getInfo()),
+    'info' => new InfoAnchor($user->getInfo()),
     'css' => $css,
     'mode' => 'a'
 ];
@@ -65,7 +61,7 @@ $props = [
     </div>
     <div id="container">
         <?php
-        template($themeid, $props)->execute()->html();; ?>
+        template($themeid, $props)->execute()->html(); ?>
     </div>
     <div id="userFooter">
         <?php
