@@ -14,6 +14,7 @@ $infoAnchor = new InfoAnchor($infoArray);
 $socialIconArr = $user->getSocialIconArr();
 $url = $user->getURL();
 $username = $user->getUsername();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

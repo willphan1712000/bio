@@ -4,9 +4,9 @@ namespace business\user;
 
 class InfoAnchorFunction
 {
-    protected function handleLongString($string)
+    protected function handleLongString(?string $string)
     {
-        if ($string === "") {
+        if ($string === "" || $string === NULL) {
             return $string;
         }
         if (str_contains($string, 'https://')) {
@@ -28,7 +28,7 @@ class InfoAnchorFunction
         return $displayString;
     }
 
-    protected function phoneNumberFormat(string $code, string $number)
+    protected function phoneNumberFormat(?string $code, ?string $number)
     {
         if ($code === '+84') {
             $number = substr($number, 1);

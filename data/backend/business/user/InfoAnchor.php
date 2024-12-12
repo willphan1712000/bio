@@ -141,7 +141,9 @@ class InfoAnchor extends InfoAnchorFunction
     {
         $key = 'Youtube';
         $value = $this->info[$key];
-        $value = (self::getDeviceType() === "Mobile") ? str_replace("https", "youtube", $value) : $value; // make it able to go directly to youtube app if device type is Mobile
+        if ($value !== NULL && $value !== "") {
+            $value = (self::getDeviceType() === "Mobile") ? str_replace("https", "youtube", $value) : $value; // make it able to go directly to youtube app if device type is Mobile
+        }
         $display = ($value === NULL || $value === '') ? "none" : "flex";
         $element = ($element === NULL || $element === '') ? $this->handleLongString($value) : $element;
         return [

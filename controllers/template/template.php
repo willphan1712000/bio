@@ -1,14 +1,13 @@
 <?php
 
-use business\user\UserManagement;
-use controllers\template\TemplateController;
-use component\Copyright;
-use component\TemplateComponent;
 use component\Logo;
-use component\Filter;
-use component\TemplateDirector;
-
-
+use component\Copyright;
+use business\user\UserManagement;
+use controllers\template\components\ChooseTemplate;
+use controllers\template\TemplateController;
+use controllers\template\components\TemplateDirector;
+use controllers\template\components\TemplateComponent;
+use controllers\template\components\YourTemplate;
 
 // Run template business logic here
 $template = new TemplateController();
@@ -38,93 +37,45 @@ $g = $data['g'];
 
 <body>
     <div id="container">
+        <!-- Navigator -->
         <div class="navigator">
             <div class="btn-box">
                 <?= (new TemplateDirector([
                     'isSignedIn' => $isSignedIn,
                     'username' => $username,
                     'img' => $imgPath,
-                ]))->execute(); ?>
+                ]))->render(); ?>
                 <a href="/cart" class="btn-ele cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
             </div>
         </div>
         <div class="logo"></div>
+        <!-- Purchased templates -->
+        <?=
+        (new YourTemplate([
+            'username' => $username,
+            'isSignedIn' => $isSignedIn,
+            'purchased' => $purchased,
+            'chosenTemplate' => $chosenTemplate,
+            'g' => $g
+        ]))->render();
+        ?>
+        <!-- Buy more template -->
+        <?=
+        (new ChooseTemplate([
+            'isSignedIn' => $isSignedIn,
+            'purchased' => $purchased,
+            'TOTAL' => $TOTAL,
+            'g' => $g
+        ]))->render();
+        ?>
+        <!-- Copyright -->
+        <?php
+        (new Copyright([
+            "position" => "relative"
+        ]))->render();
+        ?>
 
-        <!-- <div class="swiper-container">
-                <div class="swiper-wrapper"> -->
-        <div class="swiper-slide template-wrapper" style="display: <?= ($isSignedIn) ? "block" : "none"; ?>">
-            <div class="heading">
-                <?= (new Logo([
-                    "src" => $g["img"]["logo"]
-                ]))->render(); ?>
-                <h1>Your templates</h1>
-            </div>
-            <div class="notHaveTemplate" style="display: <?= empty($purchased) ? "flex" : "none"; ?>">
-                <p>You do not have templates</p>
-            </div>
-            <div class="swiper template_container purchase" style="display: <?= empty($purchased) ? "none" : "flex"; ?>">
-                <div class="swiper-wrapper">
-                    <?php
-                    if ($isSignedIn && ($purchased ?? false)) {
-                        TemplateComponent::style(".template_container.purchase");
-                        foreach ($purchased as $item) {
-                            (new TemplateComponent([
-                                'id' => $item,
-                                'img' => '../controllers/template/' . $item . '/' . $item . '.png',
-                                'mode' => 'purchased',
-                                'chosen' => $chosenTemplate,
-                                'url' => UserManagement::URLGenerator($username, "share"),
-                            ]))->render();
-                        }
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="swiper-slide template-wrapper" style="display: <?php
-                                                                    if ($isSignedIn) {
-                                                                        echo count($purchased) === $TOTAL ? "none" : "block";
-                                                                    }
-                                                                    ?>">
-            <div class="heading mb-[20px]">
-                <?= (new Logo([
-                    "src" => $g["img"]["logo"]
-                ]))->render(); ?>
-                <h1>Choose Your Template</h1>
-            </div>
-            <?= (new Filter([
-                'like' => '/@template?filter=like',
-                'industry' => '/@template?filter=industry',
-                'color' => '/@template?filter=color',
-                'popular' => '/@template?filter=popular'
-            ]))->render(); ?>
-        </div>
-        <div class="swiper template_container show">
-            <div class="swiper-wrapper">
-                <?php
-                $isBought = array_fill(0, 10, false);
-                foreach ($purchased as $item) {
-                    $isBought[$item - 1] = true;
-                }
-                TemplateComponent::style(".template_container.show");
-                for ($i = 1; $i <= 10; $i++) {
-                    (new TemplateComponent([
-                        'id' => $i,
-                        'img' => '../controllers/template/' . $i . '/' . $i . '.png',
-                        'mode' => 'purchase',
-                        'isBought' => $isBought[$i - 1]
-                    ]))->render();
-                }
-                ?>
-            </div>
-        </div>
     </div>
-    <?php
-    (new Copyright([
-        "position" => "relative"
-    ]))->render();
-    ?>
     <script>
         var type = "template"
         var props = {
