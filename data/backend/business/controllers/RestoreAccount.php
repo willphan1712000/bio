@@ -2,7 +2,7 @@
 
 namespace business\controllers;
 
-class RestoreAccount implements Controller
+class RestoreAccount extends Controller
 {
     public function execute() {}
 }

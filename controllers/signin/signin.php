@@ -1,7 +1,8 @@
 <?php
 
+use business\controllers\Signin;
 use config\SystemConfig;
-use business\UserManagement;
+use business\user\UserManagement;
 use persistence\API;
 
 require_once __DIR__ . "/../controllers/components/Copyright.php";
@@ -20,42 +21,20 @@ require_once __DIR__ . "/../controllers/components/button/forgot/ForgotSignup.ph
 
 use function component\button\forgot\forgotSignup;
 
-$title = "Sign In";
-if (SystemConfig::URLExtraction("restore") === 'true') {
-    $title = "Restore Account";
-}
+$signin = new Signin();
 
-$g = SystemConfig::globalVariables();
-SESSION_START();
-$template = SystemConfig::URLExtraction("template");
+$g = $signin->get('g');
+$title = $signin->get('title');
+$error = $signin->get('error');
+$username = $signin->get('username');
+$password = $signin->get('password');
 
-$error = "";
-$username = "";
-$password = "";
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    // check if user exists
-    if (UserManagement::isUserExist($username)) {
-        // check if password is correct
-        if ($password === API::GET("user", "password", "username='$username'")) {
-            if ($template === 'true') {
-                header("Location: /@template?username=" . $username);
-            } else {
-                header("Location: /" . $username . "/admin");
-            }
-            $_SESSION[$username] = $username;
-            $_SESSION['last_time_' . $username] = time();
-        } else {
-            $error = "The password is not correct";
-        }
-    } else if ($username === $g['aicAccount']['username'] && $password === $g['aicAccount']['password']) {
-        header("Location: /@aic");
-        $_SESSION[$username] = $username;
-        $_SESSION['last_time_' . $username] = time();
-    } else {
-        $error = "The username does not exist";
-    }
+    $signin->signin($_POST['username'], $_POST['password']);
+
+    $username = $signin->get('username');
+    $password = $signin->get('password');
+    $error = $signin->get('error');
 }
 ?>
 <!DOCTYPE html>

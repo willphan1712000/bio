@@ -20,7 +20,7 @@ use config\SystemConfig;
 
 $g = SystemConfig::globalVariables();
 
-class Admin implements Controller
+class Admin extends Controller
 {
     private $username;
     private $themeid;

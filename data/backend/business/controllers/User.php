@@ -11,7 +11,7 @@ use persistence\Entity\UserPhone;
 use persistence\Entity\UserSocial;
 use business\template\TemplateManagement;
 
-class User implements Controller
+class User extends Controller
 {
     private string $username;
     private $themeid;
@@ -102,7 +102,7 @@ class User implements Controller
                     $this->info[$prop] = $userInfo->get($prop);
                 }
                 if ($prop === 'image') {
-                    $this->info[$prop] = $userInfo->get($prop) === NULL ? $g['img']['unknown'] : "/user/" . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
+                    $this->info[$prop] = $userInfo->get($prop) === NULL ? $g['img']['unknown'] : $g['absolute_user_folder'] . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
                 }
             }
 

@@ -2,16 +2,16 @@
 
 namespace business\controllers;
 
-require_once __DIR__ . "/../../../../vendor/autoload.php";
-
-use business\UserManagement;
-use persistence\API;
-use business\TemplateManagement;
+use business\template\TemplateManagement;
+use business\user\UserManagement;
 
 use config\SystemConfig;
+use persistence\Database;
+use persistence\Entity\User;
+use persistence\Entity\UserInfo;
 
 // This business operation is used to handle template controller logic
-class Template implements Controller
+class Template extends Controller
 {
     private $username;
     private bool $isSignedIn;
@@ -19,21 +19,22 @@ class Template implements Controller
     private $chosenTemplate;
     private $imgPath;
     private $total;
+    private $g;
 
-    function __construct($username)
+    function __construct()
     {
-        $g = SystemConfig::globalVariables();
-        $this->username = $username;
+        $this->g = SystemConfig::globalVariables();
+        $this->username = SystemConfig::URLExtraction(queryStr: "username");
         $this->isSignedIn = false;
         $this->purchased = [];
         $this->chosenTemplate = null;
-        $this->imgPath = $g['img']['unknown'];
+        $this->imgPath = $this->g['img']['unknown'];
         $this->total = TemplateManagement::getTotal();
 
-        $this->signedIn();
-        $this->purchase();
+        $this->execute();
     }
 
+    // Check if user is signed in. If so, get user avatar. Otherwise, redirect user to sign in page
     private function signedIn()
     {
         if ($this->username !== NULL) {
@@ -41,9 +42,9 @@ class Template implements Controller
             $this->isSignedIn = UserManagement::isSignedIn($_SESSION, $this->username);
             // if signed in, get avatar image
             if ($this->isSignedIn) {
-                $ava = API::GET("info", "image", "username = '$this->username'");
+                $ava = Database::GET(UserInfo::class, "image", ['username' => $this->username]);
                 if ($ava) {
-                    $imgPath = "/user/" . $this->username . "/" . $ava . "?v=" . time();
+                    $this->imgPath = "/user/" . $this->username . "/" . $ava . "?v=" . time();
                 }
             } else {
                 header("Location: /@signin?template=true");
@@ -51,20 +52,23 @@ class Template implements Controller
         }
     }
 
+    // get all purchased templates and default template
     private function purchase()
     {
         if ($this->isSignedIn) {
-            $purchased = API::GET("purchase", "template_id", "username = '$this->username'"); // Get all templates purchased
-            if (gettype($purchased) === "integer") {
-                $this->purchased = [$purchased];
+            $purchases = Database::SQL("select template_id from Style where username ='$this->username'"); // Get all templates purchased
+            foreach ($purchases as $purchase) {
+                $this->purchased[] = $purchase['template_id'];
             }
-            $this->chosenTemplate = API::GET("template", "themeid", "username = '$this->username'"); // Get chosen template
+            $this->chosenTemplate = Database::GET(User::class, 'defaultTemplate', ['username' => $this->username]); // Get chosen template
         }
     }
 
     public function getData()
     {
         return [
+            'username' => $this->username,
+            'g' => $this->g,
             'isSignedIn' => $this->isSignedIn,
             'purchased' => $this->purchased,
             'chosenTemplate' => $this->chosenTemplate,
@@ -73,5 +77,9 @@ class Template implements Controller
         ];
     }
 
-    public function execute() {}
+    public function execute()
+    {
+        $this->signedIn();
+        $this->purchase();
+    }
 }

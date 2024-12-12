@@ -3,7 +3,7 @@
 namespace api\user\validation;
 
 use api\APIAbstract;
-use business\UserManagement;
+use business\user\UserManagement;
 
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 

@@ -2,7 +2,18 @@
 
 namespace business\controllers;
 
-interface Controller
+abstract class Controller
 {
-    public function execute();
+    public abstract function execute();
+
+    public function get(string $getWhat)
+    {
+        return $this->$getWhat;
+    }
+
+    public function set(string $setWhat, $value): Controller
+    {
+        $this->$setWhat = $value;
+        return $this;
+    }
 }

@@ -15,8 +15,6 @@ use function component\copyright;
 
 require_once __DIR__ . "/../controllers/components/Template.php";
 
-use function business\infoProcess;
-
 require_once __DIR__ . "/../controllers/components/UserFooter.php";
 
 use function component\userFooter;

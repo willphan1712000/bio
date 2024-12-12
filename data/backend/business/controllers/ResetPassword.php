@@ -2,7 +2,7 @@
 
 namespace business\controllers;
 
-class ResetPassword implements Controller
+class ResetPassword extends Controller
 {
     public function execute() {}
 }

@@ -46,6 +46,7 @@ class SystemConfig
             'accountHoldPeriod' => 60 * 24 * 60 * 60, // 60 days,
             'data_model' => './dataModel/bio.sql',
             'user_folder' => __DIR__ . "/../../user/",
+            'absolute_user_folder' => "/user/",
             'aicAccount' => [
                 'username' => 'Allinclicks',
                 'password' => '123456'

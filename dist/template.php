@@ -1,6 +1,6 @@
 <?php
 
-use business\UserManagement;
+use business\user\UserManagement;
 use config\SystemConfig;
 
 use business\controllers\Template;
@@ -26,20 +26,18 @@ require_once __DIR__ . "/../controllers/components/TemplateDirector.php";
 
 use function component\templateDirector;
 
-// Global config
-$g = SystemConfig::globalVariables();
-
-// Get username
-$username = SystemConfig::URLExtraction("username");
-
 // Run template business logic here
-$template = new Template($username);
+$template = new Template();
 
-$isSignedIn = $template->getData()['isSignedIn'];
-$purchased = $template->getData()['purchased'];
-$chosenTemplate = $template->getData()['chosenTemplate'];
-$TOTAL = $template->getData()['total'];
-$imgPath = $template->getData()['imgPath'];
+// Get all needed data processed by template object
+$data = $template->getData();
+$username = $data['username'];
+$isSignedIn = $data['isSignedIn'];
+$purchased = $data['purchased'];
+$chosenTemplate = $data['chosenTemplate'];
+$TOTAL = $data['total'];
+$imgPath = $data['imgPath'];
+$g = $data['g'];
 ?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['title']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/tailwinda59db76ed6d3558e92ef.js"></script><script src="/dist/mainjs7e7efdf62c6dc2b315df.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/template337bc87c65daae01f00d.js"></script></head><body><div id="container"><div class="navigator"><div class="btn-box"> <?= templateDirector([
                     'isSignedIn' => $isSignedIn,
                     'username' => $username,

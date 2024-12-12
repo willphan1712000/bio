@@ -4,7 +4,7 @@ namespace business\controllers;
 
 use persistence\Database;
 
-class FindUsername implements Controller
+class FindUsername extends Controller
 {
     private $accStr;
     private $count;
@@ -21,16 +21,6 @@ class FindUsername implements Controller
         $this->inactive = "";
         $this->active = "";
         $this->email = "";
-    }
-
-    public function get($getWhat)
-    {
-        return $this->$getWhat;
-    }
-
-    public function set($setWhat, $value)
-    {
-        $this->$setWhat = $value;
     }
 
     public function execute()

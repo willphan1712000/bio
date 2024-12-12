@@ -1,6 +1,6 @@
 <?php
 
-use business\UserManagement;
+use business\user\UserManagement;
 use config\SystemConfig;
 
 use business\controllers\Template;
@@ -26,20 +26,18 @@ require_once __DIR__ . "/../controllers/components/TemplateDirector.php";
 
 use function component\templateDirector;
 
-// Global config
-$g = SystemConfig::globalVariables();
-
-// Get username
-$username = SystemConfig::URLExtraction("username");
-
 // Run template business logic here
-$template = new Template($username);
+$template = new Template();
 
-$isSignedIn = $template->getData()['isSignedIn'];
-$purchased = $template->getData()['purchased'];
-$chosenTemplate = $template->getData()['chosenTemplate'];
-$TOTAL = $template->getData()['total'];
-$imgPath = $template->getData()['imgPath'];
+// Get all needed data processed by template object
+$data = $template->getData();
+$username = $data['username'];
+$isSignedIn = $data['isSignedIn'];
+$purchased = $data['purchased'];
+$chosenTemplate = $data['chosenTemplate'];
+$TOTAL = $data['total'];
+$imgPath = $data['imgPath'];
+$g = $data['g'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
