@@ -1,9 +1,9 @@
-import UploadFile from "../../Web-Development/components/upload/UploadFile";
-import Transform from "../../Web-Development/components/Transform/Transform";
-import { $$ } from "../../Web-Development/W";
+import UploadFile from "../../../Web-Development/components/upload/UploadFile";
+import Transform from "../../../Web-Development/components/Transform/Transform";
+import { $$ } from "../../../Web-Development/W";
 import EditAvatar from "../components/EditAvatar";
 import AvatarButton from "../components/AvatarButton";
-import { $$$ } from "../../Web-Development/WW";
+import { $$$ } from "../../../Web-Development/WW";
 
 export type AvatarOptions = {
     img: string,

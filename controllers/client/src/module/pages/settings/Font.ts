@@ -1,5 +1,5 @@
-import { Options } from "../../Web-Development/components/options/Options";
-import { $$ } from "../../Web-Development/W";
+import { Options } from "../../../Web-Development/components/options/Options";
+import { $$ } from "../../../Web-Development/W";
 
 export default class Font {
     private options: Options

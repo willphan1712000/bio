@@ -1,5 +1,5 @@
-import { ColorPicker } from "../../Web-Development/components/colorPicker/ColorPicker";
-import { $$ } from "../../Web-Development/W";
+import { ColorPicker } from "../../../Web-Development/components/colorPicker/ColorPicker";
+import { $$ } from "../../../Web-Development/W";
 
 export default class FontColor {
     private colorPicker: ColorPicker;

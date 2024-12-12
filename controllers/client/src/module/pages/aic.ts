@@ -1,4 +1,4 @@
-import { $$ } from "../Web-Development/W";
+import { $$ } from "../../Web-Development/W";
 
 export default function aic() {
         // search mechanism

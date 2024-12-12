@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         if (!$isDefault) {
             if ($this->themeid === 0) {
-                require __DIR__ . "/../default/user.php";
+                require __DIR__ . "/../../dist/userDefault.php";
                 die();
             } else {
                 $this->css = [];

@@ -1,4 +1,4 @@
-import { $$ } from "../Web-Development/W"
+import { $$ } from "../../Web-Development/W"
 
 interface Props {
     [key: string]: string

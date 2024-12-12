@@ -1,21 +1,27 @@
 <?php
+
 namespace component;
 
 use config\SystemConfig;
-class UserFooter {
+use component\BioTemplateButton;
+
+class UserFooter
+{
     private $props;
 
-    public function __construct($props) {
+    public function __construct($props)
+    {
         $this->props = $props;
     }
 
-    public function render($container) {
+    public function render($container)
+    {
         echo '
             <style>
-                '.$container.' {
+                ' . $container . ' {
                     width: 100%;
                 }
-                '.$container.' #share {
+                ' . $container . ' #share {
                     border-top: solid 2px #000;
                     width: 100%;
                     height: 100px;
@@ -24,7 +30,7 @@ class UserFooter {
                     align-items: center;
                     flex-direction: column;
                 }
-                '.$container.' #share .options {
+                ' . $container . ' #share .options {
                     width: 100%;
                     display: flex;
                     align-items: center;
@@ -33,7 +39,7 @@ class UserFooter {
                     overflow-x: auto;
                     padding: 0px 10px;
                 }
-                '.$container.' .share__btn {
+                ' . $container . ' .share__btn {
                     height: 50px;
                     width: auto;
                     margin: 10px;
@@ -47,10 +53,10 @@ class UserFooter {
                     flex-shrink: 0;
                     padding: 20px;
                 }
-                '.$container.' .share__btn i {
+                ' . $container . ' .share__btn i {
                     margin-right: 5px;
                 }
-                '.$container.' .shareWindow_parent {
+                ' . $container . ' .shareWindow_parent {
                     background-color: #0000002b;
                     width: 100vw;
                     height: 100vh;
@@ -68,11 +74,11 @@ class UserFooter {
                     opacity: 0;
                     transition: all .2s cubic-bezier(0.4, 0, 0.58, 1.4)
                 }
-                '.$container.' .shareWindow_parent.active {
+                ' . $container . ' .shareWindow_parent.active {
                     visibility: visible;
                     opacity: 1;
                 }
-                '.$container.' .shareWindow_child {
+                ' . $container . ' .shareWindow_child {
                     border-radius: 20px;
                     background-color: #fff;
                     display: flex;
@@ -84,18 +90,18 @@ class UserFooter {
                     width: 600px;
                     margin: 0px 10px;
                 }
-                '.$container.' .shareWindow_child .shareWindow__close {
+                ' . $container . ' .shareWindow_child .shareWindow__close {
                     border-radius: 10px;
                     background-color: var(--main-color);
                     padding: 10px;
                     margin-left: auto;
                     cursor: pointer;
                 }
-                '.$container.' .shareWindow_child .shareWindow__qr {
+                ' . $container . ' .shareWindow_child .shareWindow__qr {
                     width: 100%;
                     object-fit: cover;
                 }
-                '.$container.' .shareWindow__btn {
+                ' . $container . ' .shareWindow__btn {
                     width: 100%;
                     height: 50px;
                     border-radius: 10px;
@@ -108,25 +114,25 @@ class UserFooter {
                     padding: 10px;
                     text-align: center;
                 }
-                '.$container.' .shareWindow__btn.shareWindow__download i {
+                ' . $container . ' .shareWindow__btn.shareWindow__download i {
                     margin-right: 5px;
                 }
-                '.$container.' .shareWindow__btn.shareWindow__link input {
+                ' . $container . ' .shareWindow__btn.shareWindow__link input {
                     background-color: var(--main-color);
                     border: none;
                     border-radius: 10px;
                     padding: 10px;
                 }
-                '.$container.' .shareWindow__btn.shareWindow__link i {
+                ' . $container . ' .shareWindow__btn.shareWindow__link i {
                     margin-left: 5px;
                 }
-                '.$container.' .shareWindow__btn.shareWindow__link i.check {
+                ' . $container . ' .shareWindow__btn.shareWindow__link i.check {
                     display: none;
                 }
-                '.$container.' .shareWindow_parent.image {
+                ' . $container . ' .shareWindow_parent.image {
                     padding: 50px;
                 }
-                '.$container.' .shareWindow_parent.image .shareWindow_child {
+                ' . $container . ' .shareWindow_parent.image .shareWindow_child {
                     aspect-ratio: 9/16;
                 }
             </style>
@@ -135,7 +141,7 @@ class UserFooter {
                     <div class="shareWindow__close">
                         <i class="fa-solid fa-x"></i>
                     </div>
-                    <img class="shareWindow__qr" src="/user/'.$this->props['username'].'/qr-code.png" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/'.$this->props['username'].'/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
+                    <img draggable=false class="shareWindow__qr" src="/user/' . $this->props['username'] . '/qr-code.png" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/' . $this->props['username'] . '/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
                     <div class="shareWindow__btn shareWindow__link">Copy Link<i class="fa-regular fa-copy copy"></i><i class="fa-solid fa-check check"></i></div>
                 </div>
             </div>
@@ -143,17 +149,17 @@ class UserFooter {
                 <p>Drag to see more options</p>
                 <div class="options">
                     <div class="share__btn share"><i class="fa-solid fa-share"></i>Share</div>
-                    <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/'.$this->props['username'].'/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
+                    <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/' . $this->props['username'] . '/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
                     <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
-                    <div class="share__btn edit" style="display: '.(SystemConfig::URLExtraction('share')?"none":"flex").'"><a style="text-decoration: none; color: #000;" href="/'.$this->props['username'].'/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
-                    <div class="bioBtn share__btn" style="display: '.(SystemConfig::URLExtraction('share')?"none":"flex").'">'.bioTemplateButton($this->props['username'])->render("bioBtn").'</div>
+                    <div class="share__btn edit" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '"><a style="text-decoration: none; color: #000;" href="/' . $this->props['username'] . '/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
+                    <div class="bioBtn share__btn" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '">' . (new BioTemplateButton($this->props['username']))->render("bioBtn") . '</div>
                 </div>
             </div>
-            <script></script>
         ';
     }
 }
 
-function userFooter($props) {
+function userFooter($props)
+{
     return new UserFooter($props);
 }

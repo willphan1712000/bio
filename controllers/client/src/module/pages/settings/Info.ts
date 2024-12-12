@@ -1,5 +1,5 @@
-import TextEditor from "../../Web-Development/components/textEditor/TextEditor";
-import { $$ } from "../../Web-Development/W";
+import TextEditor from "../../../Web-Development/components/textEditor/TextEditor";
+import { $$ } from "../../../Web-Development/W";
 
 export default class Info {
     private name!: TextEditor;

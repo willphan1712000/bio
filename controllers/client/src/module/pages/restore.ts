@@ -1,4 +1,4 @@
-import { $$$ } from "../Web-Development/WW"
+import { $$$ } from "../../Web-Development/WW"
 
 interface Props {
     [key: string]: string

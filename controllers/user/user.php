@@ -59,12 +59,13 @@ $props = [
     <?php (new Copyright([
         'position' => 'relative'
     ]))->render(); ?>
+
     <script>
-        const type = "index";
         const props = {
             url: "<?= $url; ?>",
             username: "<?= $username; ?>"
         }
+        console.log(props)
     </script>
 </body>
 

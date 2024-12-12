@@ -31,13 +31,13 @@ $props = [
     'css' => $css,
     'mode' => 'a'
 ];
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['userTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwinda59db76ed6d3558e92ef.js"></script><script src="/dist/mainjs7e7efdf62c6dc2b315df.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/admin5c9da877814c70ad7150.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['userTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwinda59db76ed6d3558e92ef.js"></script><script src="/dist/universal1ed11b7151cd51cfb9c6.js"></script><script src="/dist/admin5c9da877814c70ad7150.js"></script><script src="/dist/prevjs193bd9fc95f6c951fbc2.js"></script><script src="/dist/userjs3c15f29d5a411e8cd356.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php
         (new Template($themeid, $props))->execute()->html(); ?> </div><div id="userFooter"> <?php
         (new UserFooter($props))->render("#userFooter");
         ?> </div> <?php (new Copyright([
         'position' => 'relative'
-    ]))->render(); ?> <script>const type = "index";
-        const props = {
+    ]))->render(); ?> <script>const props = {
             url: "<?= $url; ?>",
             username: "<?= $username; ?>"
-        }</script></body></html>
+        }
+        console.log(props)</script></body></html>

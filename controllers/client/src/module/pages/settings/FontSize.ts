@@ -1,5 +1,5 @@
-import {RangeSlider} from "../../Web-Development/components/rangeSlider/RangeSlider";
-import { $$ } from "../../Web-Development/W";
+import {RangeSlider} from "../../../Web-Development/components/rangeSlider/RangeSlider";
+import { $$ } from "../../../Web-Development/W";
 
 export default class FontSize {
      private rangeSlider: RangeSlider;

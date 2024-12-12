@@ -1,6 +1,6 @@
 import { StringMappingType } from "typescript";
-import { $$ } from "../Web-Development/W"
-import { $$$ } from "../Web-Development/WW"
+import { $$ } from "../../Web-Development/W"
+import { $$$ } from "../../Web-Development/WW"
 
 type api = {
     signup: string,
