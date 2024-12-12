@@ -4,26 +4,15 @@ use config\SystemConfig;
 
 $g = SystemConfig::globalVariables();
 
-require_once __DIR__ . "/../controllers/components/Copyright.php";
-
-use function component\copyright;
-
-require_once __DIR__ . "/../data/vendor1/autoload.php";
+use component\Copyright;
+use persistence\EntityManager;
+use component\signin\SigninGoBack;
+use component\Logo;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-use persistence\Database;
-use persistence\EntityManager;
-
-require_once __DIR__ . "/../controllers/components/signin/SigninGoBack.php";
-
-use function component\signin\signinGoBack;
-
-require_once __DIR__ . "/../controllers/components/Logo.php";
-
-use function component\logo;
 
 $conn = EntityManager::getConnection();
 $emailAuth = SystemConfig::emailAuth();
@@ -140,7 +129,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="logo"><?= logo()->render(); ?></div>
+    <div class="logo"><?= (new Logo())->render(); ?></div>
     <div class="signupParent">
         <div class="signupChild <?= $inactive; ?>">
             <h1 class="text-[32px]">Forgot Password</h1><span class="signupChild__error"><?= $error; ?></span>
@@ -149,18 +138,18 @@ if (isset($_POST['submit'])) {
                 <div class="inputField"><label for="email">Email</label> <input type="email" id="email" name="email" autocomplete="email" value="<?= $email; ?>" required></div><button type="submit" name="submit" class="signupChild__confirm--php">Send</button>
             </form>
             <p class="signupChild__msg">Forgot username? <a href="/@forgotUsername">Click here</a></p>
-            <p class="signupChild__msg"><?= signinGoBack()->render(); ?></p>
+            <p class="signupChild__msg"><?= (new SigninGoBack())->render(); ?></p>
         </div>
         <div class="signupChild emailSent <?= $active; ?>">
             <div><i class="fa-solid fa-check" style="font-size: 40px;color: green;border: solid 2px green;border-radius: 50%;padding: 20px;margin-bottom: 10px;"></i></div>
             <h2>Reset Password Link has been sent to your email</h2>
             <h5>If you do not see the email, please check spam or junk email!</h5>
-            <p class="signupChild__msg"><?= signinGoBack()->render(); ?></p>
+            <p class="signupChild__msg"><?= (new SigninGoBack())->render(); ?></p>
         </div>
     </div><?php
-            copyright([
+            (new Copyright([
                 'position' => 'absolute'
-            ])->render();
+            ]))->render();
             ?><script>
         const type = 'forgot'
     </script>

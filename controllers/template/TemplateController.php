@@ -1,17 +1,18 @@
 <?php
 
-namespace business\controllers;
-
-use business\template\TemplateManagement;
-use business\user\UserManagement;
+namespace controllers\template;
 
 use config\SystemConfig;
 use persistence\Database;
+
 use persistence\Entity\User;
 use persistence\Entity\UserInfo;
+use business\user\UserManagement;
+use controllers\Controller;
+use business\template\TemplateManagement;
 
 // This business operation is used to handle template controller logic
-class Template extends Controller
+class TemplateController extends Controller
 {
     private $username;
     private bool $isSignedIn;

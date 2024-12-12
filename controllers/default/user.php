@@ -1,12 +1,12 @@
 <?php
 
-use business\controllers\User;
 use business\user\InfoAnchor;
 use config\SystemConfig;
+use controllers\user\UserController;
 
 $g = SystemConfig::globalVariables();
 
-$user = new User(true);
+$user = new UserController(true);
 
 $infoArray = $user->getInfo();
 $infoAnchor = new InfoAnchor($infoArray);

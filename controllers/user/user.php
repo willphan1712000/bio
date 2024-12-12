@@ -5,23 +5,14 @@ use config\SystemConfig;
 $g = SystemConfig::globalVariables();
 
 use business\user\InfoAnchor;
-
-use business\controllers\User;
-use function component\template;
-
-require_once __DIR__ . "/../controllers/components/Copyright.php";
-
-use function component\copyright;
-
-require_once __DIR__ . "/../controllers/components/Template.php";
-
-require_once __DIR__ . "/../controllers/components/UserFooter.php";
-
-use function component\userFooter;
+use controllers\user\UserController;
+use component\Template;
+use component\Copyright;
+use component\UserFooter;
 
 
 // get User object
-$user = new User();
+$user = new UserController();
 
 // get username
 $username = $user->getUsername();
@@ -35,7 +26,6 @@ $url = $user->getURL();
 // This is information that gets passed down to the corresponsing template
 $props = [
     'username' => $username,
-    'social' => SystemConfig::socialNameArr(),
     'icon' => SystemConfig::socialIconArr(),
     'info' => new InfoAnchor($user->getInfo()),
     'css' => $css,
@@ -59,16 +49,16 @@ $props = [
     </div>
     <div id="container">
         <?php
-        template($themeid, $props)->execute()->html(); ?>
+        (new Template($themeid, $props))->execute()->html(); ?>
     </div>
     <div id="userFooter">
         <?php
-        userFooter($props)->render("#userFooter");
+        (new UserFooter($props))->render("#userFooter");
         ?>
     </div>
-    <?php copyright([
+    <?php (new Copyright([
         'position' => 'relative'
-    ])->render(); ?>
+    ]))->render(); ?>
     <script>
         const type = "index";
         const props = {

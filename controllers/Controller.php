@@ -1,6 +1,6 @@
 <?php
 
-namespace business\controllers;
+namespace controllers;
 
 abstract class Controller
 {

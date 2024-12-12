@@ -1,13 +1,14 @@
 <?php
 
-namespace business\controllers;
+namespace controllers\signin;
 
-use business\user\UserManagement;
 use config\SystemConfig;
 use persistence\Database;
+use controllers\Controller;
 use persistence\Entity\User;
+use business\user\UserManagement;
 
-class Signin extends Controller
+class SigninController extends Controller
 {
     protected string $username;
     protected string $password;

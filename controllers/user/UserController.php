@@ -1,9 +1,10 @@
 <?php
 
-namespace business\controllers;
+namespace controllers\user;
 
 use config\SystemConfig;
 use persistence\Database;
+use controllers\Controller;
 use persistence\Entity\Style;
 use persistence\Entity\UserInfo;
 use business\user\UserManagement;
@@ -11,7 +12,7 @@ use persistence\Entity\UserPhone;
 use persistence\Entity\UserSocial;
 use business\template\TemplateManagement;
 
-class User extends Controller
+class UserController extends Controller
 {
     private string $username;
     private $themeid;
@@ -64,7 +65,7 @@ class User extends Controller
     {
         if (!$isDefault) {
             if ($this->themeid === 0) {
-                require __DIR__ . "/../../../../controllers/default/user.php";
+                require __DIR__ . "/../default/user.php";
                 die();
             } else {
                 $this->css = [];

@@ -1,17 +1,18 @@
 <?php
 
-namespace business\controllers;
+namespace controllers\forgotUsername;
 
 use persistence\Database;
+use controllers\Controller;
 
 class FindUsername extends Controller
 {
-    private $accStr;
-    private $count;
-    private $error;
-    private $inactive;
-    private $active;
-    private $email;
+    protected $accStr;
+    protected $count;
+    protected $error;
+    protected $inactive;
+    protected $active;
+    protected $email;
 
     function __construct()
     {
