@@ -7,11 +7,11 @@ use component\BioTemplateButton;
 
 class UserFooter
 {
-    private $props;
+    private $username;
 
-    public function __construct($props)
+    public function __construct()
     {
-        $this->props = $props;
+        $this->username = SystemConfig::URLExtraction();
     }
 
     public function render($container)
@@ -141,7 +141,7 @@ class UserFooter
                     <div class="shareWindow__close">
                         <i class="fa-solid fa-x"></i>
                     </div>
-                    <img draggable=false class="shareWindow__qr" src="/user/' . $this->props['username'] . '/qr-code.png" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/' . $this->props['username'] . '/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
+                    <img draggable=false class="shareWindow__qr" src="/user/' . $this->username . '/qr-code.png" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/' . $this->username . '/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
                     <div class="shareWindow__btn shareWindow__link">Copy Link<i class="fa-regular fa-copy copy"></i><i class="fa-solid fa-check check"></i></div>
                 </div>
             </div>
@@ -149,10 +149,10 @@ class UserFooter
                 <p>Drag to see more options</p>
                 <div class="options">
                     <div class="share__btn share"><i class="fa-solid fa-share"></i>Share</div>
-                    <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/' . $this->props['username'] . '/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
+                    <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/' . $this->username . '/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
                     <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
-                    <div class="share__btn edit" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '"><a style="text-decoration: none; color: #000;" href="/' . $this->props['username'] . '/admin"><i class="fa-solid fa-pen-to-square"></i> Edit</a></div>
-                    <div class="bioBtn share__btn" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '">' . (new BioTemplateButton($this->props['username']))->render("bioBtn") . '</div>
+                    <div class="share__btn edit" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '"><a style="text-decoration: none; color: #000;" href="/' . $this->username . '/admin"><i class="fa-solid fa-pen-to-square"></i> Bio</a></div>
+                    <div class="bioBtn share__btn" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '">' . (new BioTemplateButton($this->username))->render("bioBtn") . '</div>
                 </div>
             </div>
         ';

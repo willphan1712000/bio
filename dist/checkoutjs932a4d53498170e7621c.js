@@ -4,8 +4,6 @@
   \********************************************/
 const publishableKey = {"STRIPE_PUBLISHABLE_KEY":"pk_test_51PAMO1BBsUVJd6T4Eic1w4bC9mNx3g1ztStSqJkms3slrzO4W2G6X2vwOiQFPoYT6jxHg1D6wUnQnkrzvaTg4lwh00ZaNPiUyb"}.STRIPE_PUBLISHABLE_KEY
 
-
-
 let cart = JSON.parse(localStorage.getItem("cart")); // get cart from local storage
 const items = []; // items object will be sent over the server for processing
 
@@ -49,4 +47,4 @@ async function initialize() {
 }
 /******/ })()
 ;
-//# sourceMappingURL=checkoutjsb3022f307fb5c5049ae1.js.map
+//# sourceMappingURL=checkoutjs932a4d53498170e7621c.js.map

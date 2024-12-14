@@ -13,6 +13,7 @@ const Options_1 = require("./components/options/Options");
 const Transform_1 = __importDefault(require("./components/Transform/Transform"));
 const UploadFile_1 = __importDefault(require("./components/upload/UploadFile"));
 const TextEditor_1 = __importDefault(require("./components/textEditor/TextEditor"));
+const client_1 = __importDefault(require("react-dom/client"));
 function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
@@ -68,9 +69,6 @@ class W2 {
         this.ele1 = ele1;
         this.ele2 = ele2;
     }
-    toggle() {
-        return new Toggle(this.ele1, this.ele2);
-    }
     copyToClipboard() {
         return new CopyToClipboard(this.ele1, this.ele2);
     }
@@ -82,6 +80,9 @@ class W2 {
     }
     transform() {
         return new Transform_1.default(this.ele1, this.ele2);
+    }
+    reactMounting() {
+        return new ReactMounting(this.ele1, this.ele2);
     }
 }
 exports.W2 = W2;
@@ -97,6 +98,9 @@ class W3 {
     addIntersectionObserver() {
         return new AddIntersectionObserver(this.ele1, this.ele2, this.ele3);
     }
+    toggle() {
+        return new Toggle(this.ele1, this.ele2, this.ele3);
+    }
 }
 exports.W3 = W3;
 class W4 {
@@ -108,6 +112,16 @@ class W4 {
     }
 }
 exports.W4 = W4;
+class ReactMounting {
+    constructor(element, jsx) {
+        this.element = element;
+        this.jsx = jsx;
+        this.render();
+    }
+    render() {
+        (client_1.default.createRoot(this.element)).render(this.jsx);
+    }
+}
 class AddIntersectionObserver extends W3 {
     constructor(target, options, cb) {
         super(target, options, cb);
@@ -262,13 +276,31 @@ class PassShowHide extends W1 {
         return this;
     }
 }
-class Toggle extends W2 {
-    constructor(ele1, ele2) {
-        super(ele1, ele2);
+class Toggle extends W3 {
+    constructor(ele1, ele2, ele3) {
+        super(ele1, ele2, ele3);
     }
-    run() {
+    default() {
         $(this.ele1).click((e) => {
             $(e.currentTarget).toggleClass(this.ele2);
+        });
+        return this;
+    }
+    advanced() {
+        $(this.ele1.trigger).click(() => {
+            $(this.ele2).addClass(this.ele3);
+        });
+        if (this.ele1.terminate !== undefined) {
+            $(this.ele1.terminate).click(() => {
+                $(this.ele2).removeClass(this.ele3);
+            });
+        }
+        document.addEventListener('click', e => {
+            const t = e.target;
+            const child = document.querySelector(this.ele1.trigger).children;
+            if (!$.contains(document.querySelector(this.ele2), t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(child).includes(t)) {
+                $(this.ele2).removeClass(this.ele3);
+            }
         });
         return this;
     }

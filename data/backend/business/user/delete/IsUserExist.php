@@ -2,7 +2,7 @@
 
 namespace business\user\delete;
 
-use business\UserManagement;
+use business\user\UserManagement;
 
 class IsUserExist extends DeleteHandler
 {

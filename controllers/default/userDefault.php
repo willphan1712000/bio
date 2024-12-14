@@ -2,19 +2,18 @@
 
 use business\user\InfoAnchor;
 use component\UserFooter;
-use config\SystemConfig;
 use controllers\user\UserController;
 
-$g = SystemConfig::globalVariables();
+$user = new UserController();
+$user->execute();
 
-$user = new UserController(true);
-
-$infoArray = $user->getInfo();
+$infoArray = $user->get("info");
 $infoAnchor = new InfoAnchor($infoArray);
 
-$socialIconArr = $user->getSocialIconArr();
-$url = $user->getURL();
-$username = $user->getUsername();
+$socialIconArr = $user->get("socialIconArr");
+$url = $user->get("url");
+$username = $user->get("username");
+$g = $user->get("g");
 
 ?>
 <!DOCTYPE html>
@@ -88,9 +87,7 @@ $username = $user->getUsername();
             </div>
         </div>
         <div id="share">
-            <?= (new UserFooter([
-                'username' => $username
-            ]))->render("#share"); ?>
+            <?= (new UserFooter())->render("#share"); ?>
         </div>
         <script>
             const url = "<?= $url; ?>"
@@ -106,7 +103,6 @@ $username = $user->getUsername();
             username: "<?= $username; ?>"
         }
     </script>
-    <script src="/controllers/default/bundle.js?v=<?= $g['v']; ?>"></script>
 </body>
 
 </html>

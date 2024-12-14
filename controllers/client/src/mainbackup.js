@@ -177,9 +177,16 @@ $(document).ready(function() {
                                     dial = '+1'
                                     code = 'US'
                                 } else {
-                                    code = ele.split(" ")[0]
-                                    dial = ele.split(" ")[1]
-                                    ele = ele.split(" ")[2]
+                                    if(socialName[i] === "Mobile") {
+                                        code = list['MobileFlag']
+                                        dial = list['MobileCode']
+                                        ele = list['Mobile']
+                                    }
+                                    if(socialName[i] === "Work") {
+                                        code = list['WorkFlag']
+                                        dial = list['WorkCode']
+                                        ele = list['Work']
+                                    }
                                 }
                                 $("."+socialName[i]+" .countryCode").data("dial", dial)
                                 $("."+socialName[i]+" .countryCode").data("code", code)

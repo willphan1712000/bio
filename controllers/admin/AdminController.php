@@ -1,47 +1,47 @@
 <?php
 
-namespace business\controllers;
-
-require_once __DIR__ . "/../../persistence/API.php";
-
-use persistence\API;
-
-require_once __DIR__ . "/../UserManagement.php";
-
-use business\UserManagement;
-
-require_once __DIR__ . "/../DeleteAccount.php";
-
-use business\DeleteAccount;
-
-require_once __DIR__ . "/../../../core.php";
+namespace controllers\admin;
 
 use config\SystemConfig;
+use business\user\DELETE;
+use persistence\Database;
+use persistence\Entity\User;
+use controllers\user\UserController;
+use business\template\TemplateManagement;
+use business\user\UserManagement;
 
-$g = SystemConfig::globalVariables();
-
-class Admin extends Controller
+class AdminController extends UserController
 {
-    private $username;
-    private $themeid;
-
-    function __construct($username, $themeid)
+    protected function getPreData()
     {
-        $this->username = $username;
-        $this->themeid = $themeid;
+        $this->g = SystemConfig::globalVariables(); // get global variables
+        $this->username = SystemConfig::URLExtraction(2); // get username
+        $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
+    }
 
+    private function themeRedirect()
+    {
+        if ($this->themeid === 0) {
+            require __DIR__ . '/../../dist/adminDefault.php';
+            die();
+        }
+        require __DIR__ . '/../../dist/adminTemplate.php';
+        die();
+    }
+
+    private function restoreProcess()
+    {
         // get deleteToken
-        $deleteToken = API::GET("user", "deleteToken", "username='$username'");
-        SESSION_START();
+        $deleteToken = Database::GET(User::class, "deleteToken", ['username' => $this->username]);
         // Check if user is signed in
-        $isSignedIn = UserManagement::isSignedIn($_SESSION, $username);
+        $isSignedIn = UserManagement::isSignedIn($_SESSION, $this->username);
         if ($isSignedIn) {
             // Check if there is a deleteToken. If so, redirect to restore page
             if ($deleteToken !== NULL && $deleteToken !== "") {
-                if (time() - $deleteToken < $g["accountHoldPeriod"]) {
-                    header("Location: /@restore?username=" . $username);
+                if (time() - $deleteToken < $this->g["accountHoldPeriod"]) {
+                    header("Location: /@restore?username=" . $this->username);
                 } else {
-                    if (DeleteAccount::delete($username)) {
+                    if (((new DELETE($this->username))->execute())['success']) {
                         header("Location: /@signin");
                     }
                 }
@@ -51,16 +51,35 @@ class Admin extends Controller
         }
     }
 
-    public function themeRedirect()
+    public function redirect()
     {
-        if ($this->themeid == 0) {
-            require __DIR__ . '/../../../../controllers/default/admin.php';
-            die();
+        $this->getPreData(); // get pre data to check some conditions before proceeding to anything
+        $this->themeRedirect(); // if template id is 0, redirect to default admin page. Otherwise, proceed the next
+    }
+
+    public function execute()
+    {
+        try {
+            $this->getPreData(); // get pre data to check some conditions before proceeding to anything
+            if (UserManagement::isSignedIn($_SESSION, $this->username)) {
+                $this->restoreProcess(); // perform restore process before proceeding anything
+
+                $this->getPostData(); // get all needed data
+
+                return [
+                    'success' => true
+                ];
+            } else {
+                header("Location: /@signin");
+            }
+            return [
+                'success' => false
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
-}
-
-function admin($username, $themeid)
-{
-    return new Admin($username, $themeid);
 }

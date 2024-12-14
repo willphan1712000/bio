@@ -13,16 +13,10 @@ function user(props) {
             $(".shareWindow__btn.shareWindow__link .copy").show();
         }, 2000);
     });
-    $(".share__btn.qr").click(() => {
-        $(".shareWindow_parent.qrcode").addClass("active");
-        $("#container").addClass("touch-disabled");
-    });
-    document.addEventListener('click', e => {
-        if (!$.contains(document.querySelector(".shareWindow_parent.qrcode"), e.target) && e.target !== document.querySelector(".shareWindow__close") && e.target !== document.querySelector(".share__btn.qr")) {
-            $(".shareWindow_parent").removeClass("active");
-            $("#container").removeClass("touch-disabled");
-        }
-    });
+    (0, W_1.$$)({
+        trigger: ".share__btn.qr",
+        terminate: ".shareWindow__close"
+    }, ".shareWindow_parent.qrcode", "active").toggle().advanced();
     $("#share .share__btn.share").click(() => {
         (0, W_1.$$)({
             title: props.username,

@@ -11,7 +11,7 @@ type api = {
 
 export default function signupPage(api : api) {
     $$("#password").passShowHide().run();
-    $$(".passRequirements", "dropdown").toggle().run();
+    $$(".passRequirements", "dropdown", undefined).toggle().default();
     $$$({
         username: "#username",
         password: "#password",

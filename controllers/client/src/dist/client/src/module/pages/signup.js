@@ -5,7 +5,7 @@ const W_1 = require("../../Web-Development/W");
 const WW_1 = require("../../Web-Development/WW");
 function signupPage(api) {
     (0, W_1.$$)("#password").passShowHide().run();
-    (0, W_1.$$)(".passRequirements", "dropdown").toggle().run();
+    (0, W_1.$$)(".passRequirements", "dropdown", undefined).toggle().default();
     (0, WW_1.$$$)({
         username: "#username",
         password: "#password",

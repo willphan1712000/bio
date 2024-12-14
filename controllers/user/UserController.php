@@ -14,111 +14,90 @@ use business\template\TemplateManagement;
 
 class UserController extends Controller
 {
-    private string $username;
-    private $themeid;
-    private $info;
-    private $css;
-    private $url;
-    private $status;
-    private bool $isDefault;
-    private $socialIconArr;
+    protected string $username;
+    protected $themeid;
+    protected $info;
+    protected $css;
+    protected $url;
+    protected $status;
+    protected $socialIconArr;
+    protected $g;
 
-    function __construct(bool $isDefault = false)
+    private function themeRedirect()
     {
-        $this->isDefault = $isDefault;
-        $this->socialIconArr = SystemConfig::socialIconArr();
-        $this->status = $this->execute();
-    }
-
-    public function getSocialIconArr()
-    {
-        return $this->socialIconArr;
+        if ($this->themeid === 0) {
+            require __DIR__ . "/../../dist/userDefault.php";
+            die();
+        }
+        require __DIR__ . "/../../dist/userTemplate.php";
+        die();
     }
 
-    public function getUsername()
+    protected function getPreData()
     {
-        return $this->username;
+        $this->g = SystemConfig::globalVariables(); // get global variables
+        $this->username = SystemConfig::URLExtraction(); // get username
+        $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
     }
 
-    public function getInfo()
+    protected function getPostData()
     {
-        return $this->info;
-    }
+        $this->socialIconArr = SystemConfig::socialIconArr(); // get icon array
+        $this->url = UserManagement::URLGenerator($this->username, "share"); // get url based on username
 
-    public function getThemeid()
-    {
-        return $this->themeid;
-    }
-    public function getCSS()
-    {
-        return $this->css;
-    }
-    public function getURL()
-    {
-        return $this->url;
-    }
-    public function getStatus()
-    {
-        return $this->status;
-    }
-    public function themeRedirect(bool $isDefault = false)
-    {
-        if (!$isDefault) {
-            if ($this->themeid === 0) {
-                require __DIR__ . "/../../dist/userDefault.php";
-                die();
-            } else {
-                $this->css = [];
-                /** @var Style|NULL */
-                $style = Database::GET(Style::class, null, ['username' => $this->username, 'template_id' => $this->themeid]);
+        $this->info = [];
+        /** @var UserInfo|NULL*/
+        $userInfo = Database::GET(UserInfo::class, null, ['username' => $this->username]);
+        /** @var UserPhone|NULL */
+        $userPhone = Database::GET(UserPhone::class, null, ['username' => $this->username]);
+        /** @var UserSocial|NULL */
+        $userSocial = Database::GET(UserSocial::class, null, ['username' => $this->username]);
 
-                foreach (Style::getProperty() as $prop) {
-                    if (!in_array($prop, ['Purchase', 'StyleDefault'])) {
-                        $this->css[$prop] = $style->get($prop);
-                    }
+        foreach (UserInfo::getProperty() as $prop) {
+            if (!in_array($prop, ['User', 'image'])) {
+                $this->info[$prop] = $userInfo->get($prop);
+            }
+            if ($prop === 'image') {
+                $this->info[$prop] = $userInfo->get($prop) === NULL ? $this->g['img']['unknown'] : $this->g['absolute_user_folder'] . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
+            }
+        }
+
+        foreach (UserPhone::getProperty() as $prop) {
+            if (!in_array($prop, ['User'])) {
+                $this->info[$prop] = $userPhone->get($prop);
+            }
+        }
+
+        foreach (UserSocial::getProperty() as $prop) {
+            if (!in_array($prop, ['User']))
+                $this->info[$prop] = $userSocial->get($prop);
+        }
+
+        $this->css = [];
+        if ($this->themeid !== 0) {
+            /** @var Style|NULL */
+            $style = Database::GET(Style::class, null, ['username' => $this->username, 'template_id' => $this->themeid]);
+
+            foreach (Style::getProperty() as $prop) {
+                if (!in_array($prop, ['Purchase', 'StyleDefault'])) {
+                    $this->css[$prop] = $style->get($prop);
                 }
             }
         }
     }
+
+    public function redirect()
+    {
+        $this->getPreData();
+        $this->themeRedirect(); // if template id is 0, redirect to default template. Otherwise, proceed the next
+    }
+
     public function execute()
     {
         try {
-            $g = SystemConfig::globalVariables();
-            $this->username = SystemConfig::URLExtraction(); // get username
+            $this->getPreData(); // get pre data to check some conditions before proceeding to anything
 
-            $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
-
-            $this->themeRedirect($this->isDefault); // if template id is 0, redirect to default template. Otherwise, proceed the next
-
-            $this->info = [];
-            /** @var UserInfo|NULL*/
-            $userInfo = Database::GET(UserInfo::class, null, ['username' => $this->username]);
-            /** @var UserPhone|NULL */
-            $userPhone = Database::GET(UserPhone::class, null, ['username' => $this->username]);
-            /** @var UserSocial|NULL */
-            $userSocial = Database::GET(UserSocial::class, null, ['username' => $this->username]);
-
-            foreach (UserInfo::getProperty() as $prop) {
-                if (!in_array($prop, ['User', 'image'])) {
-                    $this->info[$prop] = $userInfo->get($prop);
-                }
-                if ($prop === 'image') {
-                    $this->info[$prop] = $userInfo->get($prop) === NULL ? $g['img']['unknown'] : $g['absolute_user_folder'] . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
-                }
-            }
-
-            foreach (UserPhone::getProperty() as $prop) {
-                if (!in_array($prop, ['User'])) {
-                    $this->info[$prop] = $userPhone->get($prop);
-                }
-            }
-
-            foreach (UserSocial::getProperty() as $prop) {
-                if (!in_array($prop, ['User']))
-                    $this->info[$prop] = $userSocial->get($prop);
-            }
-
-            $this->url = UserManagement::URLGenerator($this->username, "share");
+            $this->getPostData(); // get user information and style if themeid is not 0
 
             return [
                 'success' => true

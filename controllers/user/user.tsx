@@ -1,9 +1,6 @@
 import { $$ } from "../client/src/Web-Development/W"
 
-declare var props: {
-    username: string,
-    url: string
-}
+declare var props: Props
 
 interface Props {
     username: string,
@@ -23,17 +20,11 @@ function user(props: Props) {
             $(".shareWindow__btn.shareWindow__link .copy").show()
         }, 2000)
     })
-    $(".share__btn.qr").click(()=>{
-        $(".shareWindow_parent.qrcode").addClass("active")
-        $("#container").addClass("touch-disabled")
-    })
 
-    document.addEventListener('click', e => {
-        if(!$.contains(document.querySelector(".shareWindow_parent.qrcode") as Element, e.target as Element) && e.target as Element !== document.querySelector(".shareWindow__close") && e.target !== document.querySelector(".share__btn.qr")) {
-            $(".shareWindow_parent").removeClass("active")
-            $("#container").removeClass("touch-disabled")
-        }
-    })
+    $$({
+        trigger: ".share__btn.qr",
+        terminate: ".shareWindow__close"
+    }, ".shareWindow_parent.qrcode", "active").toggle().advanced()
     
     $("#share .share__btn.share").click(() => {
         $$({

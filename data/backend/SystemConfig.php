@@ -50,7 +50,8 @@ class SystemConfig
             'aicAccount' => [
                 'username' => 'Allinclicks',
                 'password' => '123456'
-            ]
+            ],
+            'ownerEmail' => 'tonthang@icloud.com'
         ];
     }
 

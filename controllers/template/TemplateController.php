@@ -39,7 +39,6 @@ class TemplateController extends Controller
     private function signedIn()
     {
         if ($this->username !== NULL) {
-            SESSION_START();
             $this->isSignedIn = UserManagement::isSignedIn($_SESSION, $this->username);
             // if signed in, get avatar image
             if ($this->isSignedIn) {

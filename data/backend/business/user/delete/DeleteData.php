@@ -3,7 +3,6 @@
 namespace business\user\delete;
 
 use business\user\delete\DeleteHandler;
-use persistence\Entity\Purchase;
 use persistence\Entity\User;
 use persistence\EntityManager;
 

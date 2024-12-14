@@ -28,7 +28,7 @@ class SigninController extends Controller
         if (SystemConfig::URLExtraction(queryStr: "restore") === 'true') {
             $this->title = "Restore Account";
         }
-        SESSION_START();
+
         $this->template = SystemConfig::URLExtraction(queryStr: "template");
     }
 

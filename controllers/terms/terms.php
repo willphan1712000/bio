@@ -58,7 +58,7 @@
             <br>
             <div>
                 <h3 class="text-xl">Reporting Violations</h3>
-                <p>If you encounter any content that you believe violates these terms and conditions, please report it to us immediately using the reporting tools provided within <?=$g['product_name'];?> or by contacting our support team at tonthang@icloud.com.</p>
+                <p>If you encounter any content that you believe violates these terms and conditions, please report it to us immediately using the reporting tools provided within <?=$g['product_name'];?> or by contacting our support team at <strong><a href="mailto: <?= $g['ownerEmail'];?>"><?= $g['ownerEmail'];?></a></strong>.</p>
             </div>
             <br>
             <div>
