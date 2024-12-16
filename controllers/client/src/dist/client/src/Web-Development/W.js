@@ -119,7 +119,11 @@ class ReactMounting {
         this.render();
     }
     render() {
-        (client_1.default.createRoot(this.element)).render(this.jsx);
+        const parentElement = document.querySelector(this.element);
+        if (!parentElement) {
+            throw new Error("Target DOM element not found");
+        }
+        (client_1.default.createRoot(parentElement).render(this.jsx));
     }
 }
 class AddIntersectionObserver extends W3 {
@@ -213,11 +217,6 @@ class Spinner extends W1 {
     singleSpinner() {
         const styleElement = document.createElement("style");
         styleElement.textContent = `
-        .spinner {
-            position: absolute;
-            top: calc(50% - 8px);
-            left: calc(50% - 8px);
-        }
         .spinner::after {
             content: "";
             position: absolute;
@@ -287,21 +286,58 @@ class Toggle extends W3 {
         return this;
     }
     advanced() {
-        $(this.ele1.trigger).click(() => {
-            $(this.ele2).addClass(this.ele3);
-        });
+        if (document.querySelector(this.ele2) === null) {
+            throw new Error(this.ele2 + " is not defined or rendered on DOM");
+        }
         if (this.ele1.terminate !== undefined) {
-            $(this.ele1.terminate).click(() => {
-                $(this.ele2).removeClass(this.ele3);
+            if (document.querySelector(this.ele1.trigger) === null) {
+                throw new Error(this.ele1.trigger + " is not defined or rendered on DOM");
+            }
+            if (document.querySelector(this.ele1.terminate) === null) {
+                throw new Error(this.ele1.terminate + " is not defined or rendered on DOM");
+            }
+            if (this.ele1.trigger === this.ele1.terminate) {
+                $(this.ele1.trigger).click(e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if ($(this.ele2).hasClass(this.ele3)) {
+                        $(this.ele2).removeClass(this.ele3);
+                    }
+                    else {
+                        $(this.ele2).addClass(this.ele3);
+                    }
+                });
+            }
+            else {
+                $(this.ele1.trigger).click(e => {
+                    $(this.ele2).addClass(this.ele3);
+                });
+                $(this.ele1.terminate).click(e => {
+                    $(this.ele2).removeClass(this.ele3);
+                });
+            }
+        }
+        else {
+            $(this.ele1.trigger).click(e => {
+                $(this.ele2).addClass(this.ele3);
             });
         }
         document.addEventListener('click', e => {
             const t = e.target;
-            const child = document.querySelector(this.ele1.trigger).children;
-            if (!$.contains(document.querySelector(this.ele2), t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(child).includes(t)) {
+            const ele1child = document.querySelector(this.ele1.trigger).children;
+            const ele2child = document.querySelector(this.ele2).children;
+            console.log(t);
+            if (!Array.from(ele2child).includes(t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(ele1child).includes(t)) {
                 $(this.ele2).removeClass(this.ele3);
             }
         });
+        return this;
+    }
+    cancel() {
+        $(this.ele1.trigger).off();
+        $(this.ele1.terminate).off();
+        $(this.ele2).off();
+        $(document).off();
         return this;
     }
 }

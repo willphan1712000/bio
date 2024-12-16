@@ -5,7 +5,6 @@ use controllers\admin\AdminController;
 $admin = new AdminController();
 $admin->execute();
 
-$socialIconArr = $admin->get("socialIconArr");
 $g = $admin->get("g");
 $info = $admin->get("info");
 $socialNameArr = [];
@@ -25,7 +24,6 @@ if (isset($_POST['signout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/controllers/default/css/universal.css?v=<?= $g['v']; ?>">
     <link rel="stylesheet" type="text/css" href="/controllers/default/css/user.css?v=<?= $g['v']; ?>">
     <title><?= $g['adminTitle']; ?></title>
     <script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script>
@@ -73,7 +71,6 @@ if (isset($_POST['signout'])) {
                     </div>
                 </div>
                 <div class="info__img--modify">
-                    <h3>Drag, Rotate, or Zoom</h3>
                     <div class="info__img--choose">Choose picture</div>
                 </div>
                 <div class="info__about">
@@ -112,7 +109,6 @@ if (isset($_POST['signout'])) {
 
     <script>
         const socialName = (<?= json_encode($socialNameArr); ?>)
-        const icon = (<?= json_encode($socialIconArr); ?>)
         const time = (<?= time(); ?>)
         const username = "<?= $username ?>"
         const defaultImgPath = '<?= $g['img']['unknown']; ?>'

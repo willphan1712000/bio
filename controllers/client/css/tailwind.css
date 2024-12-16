@@ -604,6 +604,10 @@ video {
   position: absolute;
 }
 
+.\!absolute {
+  position: absolute !important;
+}
+
 .relative {
   position: relative;
 }
@@ -632,6 +636,14 @@ video {
   top: 5px;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
+.z-\[1\] {
+  z-index: 1;
+}
+
 .m-2\.5 {
   margin: 0.625rem;
 }
@@ -646,6 +658,10 @@ video {
 
 .m-\[20px\] {
   margin: 20px;
+}
+
+.m-\[5px\] {
+  margin: 5px;
 }
 
 .mx-\[15px\] {
@@ -711,6 +727,10 @@ video {
   display: flex;
 }
 
+.\!flex {
+  display: flex !important;
+}
+
 .table {
   display: table;
 }
@@ -743,8 +763,20 @@ video {
   height: 90%;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
+}
+
+.h-\[500\%\] {
+  height: 500%;
+}
+
+.h-\[32px\] {
+  height: 32px;
 }
 
 .\!w-\[20px\] {
@@ -767,6 +799,10 @@ video {
   width: 100%;
 }
 
+.w-\[40px\] {
+  width: 40px;
+}
+
 .max-w-\[500px\] {
   max-width: 500px;
 }
@@ -785,6 +821,10 @@ video {
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .resize {
@@ -823,6 +863,10 @@ video {
   gap: 20px;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
 .rounded-\[10px\] {
   border-radius: 10px;
 }
@@ -843,9 +887,22 @@ video {
   border-width: 1px;
 }
 
+.border-\[1px\] {
+  border-width: 1px;
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .bg-\[\#fff\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-white {
@@ -883,13 +940,31 @@ video {
   padding: 3px;
 }
 
+.p-\[5px\] {
+  padding: 5px;
+}
+
 .p-\[6px\] {
   padding: 6px;
+}
+
+.p-\[2px\] {
+  padding: 2px;
 }
 
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.px-\[5px\] {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .py-\[20px\] {
@@ -908,6 +983,14 @@ video {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-\[14px\] {
+  font-size: 14px;
+}
+
+.text-\[15px\] {
+  font-size: 15px;
 }
 
 .text-\[24px\] {
@@ -991,4 +1074,47 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-\[\#d9d9d9\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
+}
+
+.peer:valid ~ .peer-valid\:left-\[10px\] {
+  left: 10px;
+}
+
+.peer:valid ~ .peer-valid\:top-\[-15px\] {
+  top: -15px;
+}
+
+.peer:valid ~ .peer-valid\:top-\[-25px\] {
+  top: -25px;
+}
+
+.peer:valid ~ .peer-valid\:z-50 {
+  z-index: 50;
+}
+
+.peer:focus ~ .peer-focus\:left-\[10px\] {
+  left: 10px;
+}
+
+.peer:focus ~ .peer-focus\:top-\[-15px\] {
+  top: -15px;
+}
+
+.peer:focus ~ .peer-focus\:top-\[-25px\] {
+  top: -25px;
+}
+
+.peer:focus ~ .peer-focus\:z-50 {
+  z-index: 50;
 }
