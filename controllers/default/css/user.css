@@ -5,6 +5,7 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+  z-index: 0;
 }
 a {
   overflow-wrap: anywhere;
@@ -46,6 +47,7 @@ a {
   border-radius: 20px;
   width: 600px;
   background-color: #fff;
+  z-index: -1;
 }
 .info {
   display: flex;
@@ -82,9 +84,9 @@ a {
   width: 100%;
   cursor: pointer;
 }
-.info .info__about > * {
+/* .info .info__about > * {
   text-align: center;
-}
+} */
 .info__img--choose {
   margin-top: 5px;
   height: 40px;
@@ -150,6 +152,7 @@ a {
   border-radius: 10px;
   padding: 10px;
   font-size: 15px;
+  border: solid #000 1px;
 }
 
 .social {
@@ -163,9 +166,6 @@ a {
 .social__img i {
   font-size: 50px;
 }
-.social__info span {
-  margin-left: 10px;
-}
 .social__info label {
   margin-bottom: 5px;
 }
@@ -177,7 +177,6 @@ a {
   flex-direction: row;
 }
 .adminBtn__ele {
-  flex: 1;
   margin: 0px 15px;
   height: 60px;
   border-radius: 20px;
@@ -418,6 +417,9 @@ a {
   margin: 10px;
   margin-bottom: 0;
   color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -440,7 +442,7 @@ a {
   .adminBtn__ele {
     width: 100%;
     margin: 15px 0px;
-    padding: 20px;
+    /* padding: 20px; */
     font-size: 1rem;
   }
   .info__des h3 {

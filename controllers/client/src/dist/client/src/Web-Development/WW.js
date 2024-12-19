@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.$$$ = $$$;
+const PhoneFormat_1 = __importDefault(require("./algorithms/PhoneFormat"));
 const SignUpUI_1 = __importDefault(require("./components/signup/SignUpUI"));
 function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
@@ -29,6 +30,9 @@ class WW1 {
     constructor(ele1) {
         this.ele1 = ele1;
     }
+    phoneFormat() {
+        return new PhoneFormat_1.default(this.ele1);
+    }
 }
 class WW2 {
     constructor(ele1, ele2) {
@@ -48,6 +52,9 @@ class WW3 {
     signup() {
         return new Signup(this.ele1, this.ele2, this.ele3);
     }
+    formValidate() {
+        return new FormValidate(this.ele1, this.ele2, this.ele3);
+    }
 }
 class WW4 {
     constructor(ele1, ele2, ele3, ele4) {
@@ -65,9 +72,6 @@ class WW5 {
         this.ele4 = ele4;
         this.ele5 = ele5;
     }
-    formValidate() {
-        return new FormValidate(this.ele1, this.ele2, this.ele3, this.ele4, this.ele5);
-    }
 }
 class WW6 {
     constructor(ele1, ele2, ele3, ele4, ele5, ele6) {
@@ -79,15 +83,20 @@ class WW6 {
         this.ele6 = ele6;
     }
 }
-class FormValidate extends WW5 {
-    constructor(input, msg, success, error, regex) {
-        super(input, msg, success, error, regex);
-        this.input = input;
-        this.msg = msg;
-        this.success = success;
-        this.error = error;
+class FormValidate extends WW3 {
+    constructor(inputElement, feedbackElement, regex) {
+        super(inputElement, feedbackElement, regex);
+        this.inputElement = inputElement;
+        this.feedbackElement = feedbackElement;
         this.regex = regex;
         this.isValid = true;
+        if (this.inputElement === null) {
+            throw new Error("Input Element is not defined or rendered");
+        }
+        if (this.feedbackElement === null) {
+            throw new Error("Feedback Element is not defined or rendered");
+        }
+        this.execute();
     }
     setValidity(value) {
         this.isValid = value;
@@ -95,38 +104,29 @@ class FormValidate extends WW5 {
     getValidity() {
         return this.isValid;
     }
-    phoneFormat() {
-        $(this.input).on("input", (event) => {
-            const inputValue = event.target.value.replace(/\D/g, '');
-            let formattedValue = '';
-            for (let i = 0; i < inputValue.length; i++) {
-                if (i === 3 || i === 6) {
-                    formattedValue += '-';
-                }
-                formattedValue += inputValue[i];
-            }
-            event.target.value = formattedValue;
-        });
-    }
-    run() {
+    execute() {
         const regex = new RegExp(this.regex);
-        $(this.input).on("input", (e) => {
+        this.inputElement.addEventListener("input", (e) => {
             const target = e.target;
             if (target.value !== '') {
                 if (regex.test(target.value)) {
                     this.setValidity(true);
-                    $(this.msg).html(this.success);
+                    this.feedbackElement.innerHTML = `<i style="color: green;" class="fa-solid fa-check"></i>`;
                 }
                 else {
                     this.setValidity(false);
-                    $(this.msg).html(this.error);
+                    this.feedbackElement.innerHTML = `<i style="color: red;" class="fa-solid fa-x"></i>`;
                 }
             }
             else {
-                $(this.msg).html('');
+                this.feedbackElement.innerHTML = '';
                 this.setValidity(true);
             }
         });
+        return this;
+    }
+    cleanup() {
+        this.inputElement.removeEventListener('input', () => { });
         return this;
     }
 }

@@ -1,80 +1,99 @@
-import { MouseEventHandler, useEffect } from "react"
-import { $$ } from "../../../client/src/Web-Development/W"
+import { ChangeEvent, useContext, useState } from "react"
 import codeList from "./codeList"
-interface Props {
-    container: string
+import handleAdminContext, { handleAdminElementContext } from "../AdminContext"
+
+type Code = {
+    code: string,
+    flag: string
 }
 
-const CountryCodeDropDown = ({container}: Props) => {
-    // useEffect(() => {
-    //     fetch("/controllers/admin/clientComponents/CountryCode/countryCodes.json").then(res => res.json()).then(data => {
-    //         let htmlList = '',
-    //             htmlCountryCode = '',
-    //             index = ''
-    //         for (let j = 0; j < data.length; j++) {
-    //             htmlList += `<div class="each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]" data-index="${j}"><p>${data[j].name}</p><p>${data[j].dial_code}</p></div>`
-    //         }
-    //         $(".codeList__list").html(htmlList)
-    //         $(".codeList__list > .each").click(function(e) {
-    //             afterClick(e, data, null)
-    //         })
-    //         return [data, htmlList]
-    //     }).then(([data, iniHtmlList]) => {
-    //         const worker = new Worker('/controllers/client/src/dist/client/src/Web-Development/worker.js')
-    //         $(".codeList__search > input").on("input", function(e) {
-    //             let value = (e.currentTarget as HTMLInputElement).value
-    //             worker.postMessage({
-    //                 message: "countryCode",
-    //                 value: value,
-    //                 iniHtmlList: iniHtmlList,
-    //                 data: data
-    //             })
-    //         })
-        
-    //         worker.onmessage = function(e) {
-    //             $(".codeList__list").html(e.data)
-    //             $(".codeList__list > .each").click(function(e) {
-    //                 afterClick(e, data, iniHtmlList)
-    //             })
-    //         }
+type List = {
+    name: string,
+    dial_code: string,
+    code: string
+}
 
+interface Props {
+    isListShown: boolean,
+    listRef: React.RefObject<HTMLDivElement>,
+    setDropDown: () => void
+}
 
-    //         const handleClick = $$({
-    //             'trigger': container,
-    //             'terminate': container
-    //         }, `${container} .codeList`, 'activeFlex').toggle().advanced()
-    //     })
-        
-    //     function afterClick(e: any, data: any, iniHtmlList: any) {
-    //         $(container + " .codeList").removeClass("active")
-    //         let index = $(e.currentTarget).data("index")
-    //         $(e.currentTarget).parent().parent().prev().data("index", index)
-    //         let htmlCountryCode = `<div class="flag w-[40px] p-[5px] !flex items-center"><img draggable=false src="/controllers/admin/clientComponents/CountryCode/flags/${data[index].code.toLowerCase()}.png" style="width:100%;height:100%;""></div><p class="code !flex items-center p-[2px]">${data[index].dial_code}</p><i class="fa-solid fa-caret-down !flex items-center p-[2px]"></i>`
-    //         $(e.currentTarget).parent().parent().prev().html(htmlCountryCode)
-    //         $(".codeList__search > input").val("")
-    //         if (iniHtmlList !== null) {
-    //             $(".codeList__list").html(iniHtmlList)
-    //         }
-    //     }
-    // }, [])
+const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
+    const data = useContext(handleAdminContext())
+    const name = useContext(handleAdminElementContext())
+
+    const [list, setList] = useState<Array<List>>(codeList)
+    const [value, setValue] = useState<string>('')
 
     const top = {
         top: 'calc(100% + 5px)'
     }
 
-    const countryCodeClickHandler = (e: any) => {
-        
+    defaultValue()
+
+    function defaultValue(): void {
+        switch(name) {
+            case 'Mobile':
+                if(data['MobileCode'] === null || data['MobileCode'] === '' || data['MobileFlag'] === null || data['MobileFlag'] === '') {
+                    setCountryCode({code: '+1', flag: 'us'})
+                }
+                break
+            case 'Work':
+                if(data['WorkCode'] === null || data['WorkCode'] === '' || data['WorkFlag'] === null || data['WorkFlag'] === '') {
+                    setCountryCode({code: '+1', flag: 'us'})
+                }
+                break
+            default:
+                break
+        }
+    }
+
+    function setCountryCode({flag, code}: Code): void {
+        switch(name) {
+            case 'Mobile':
+                data['MobileCode'] = code
+                data['MobileFlag'] = flag
+                break
+            case 'Work':
+                data['WorkCode'] = code
+                data['WorkFlag'] = flag
+                break
+            default:
+                break
+        }
+    }
+
+    const countryCodeClickHandler = ({dial_code, code}: List) => {
+        setCountryCode({flag: code, code: dial_code})
+        setDropDown()
+    }
+
+    const worker = new Worker('/controllers/client/src/dist/admin/clientComponents/CountryCode/worker.js')
+    
+    const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        let value = e.target.value
+        setValue(value)
+
+        worker.postMessage({
+            value,
+            codeList
+        })
+
+    }
+    worker.onmessage = function(e) {
+        setList(e.data)
     }
 
     return (
-        <div style={top} className="codeList !absolute hidden flex-col left-0 w-full h-[500%] bg-white rounded-[10px] z-[1] p-[5px]">
+        isListShown && (<div style={top} className="flex codeList !absolute flex-col left-0 h-[500%] bg-white rounded-[10px] z-[999] p-[5px]" ref={listRef}>
             <div className="codeList__search">
-                <input name = "search" id = "searchCountry" type="text" placeholder="Search Country" />
+                <input onChange={onSearch} name = "search" id = "searchCountry" type="text" placeholder="Search Country" defaultValue={value}/>
             </div>
             <div className="codeList__list overflow-auto m-[5px]">
-                {codeList.map(country => <div onClick={countryCodeClickHandler} key={country.code} className="each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]" data-index={country.code}><p>{country.name}</p><p>{country.dial_code}</p></div>)}
+                {list.map(country => <div onClick={() => countryCodeClickHandler(country)} key={country.code} className="each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]" data-flag={country.code}><p>{country.name}</p><p>{country.dial_code}</p></div>)}
             </div>
-        </div>
+        </div>)
     )
 }
 

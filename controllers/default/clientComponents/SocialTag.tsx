@@ -1,19 +1,23 @@
-import { PropsWithChildren, ReactNode } from 'react'
+import { useContext } from 'react'
+import handleAdminContext, { handleAdminElementContext } from '../../admin/clientComponents/AdminContext'
+import CountryCode from '../../admin/clientComponents/CountryCode/CountryCode'
 import Input from '../../admin/clientComponents/Input'
+import { iconMap } from '../../client/src/ElementMap'
 
-interface Props {
-    name: string,
-    label: string,
-    data?: string,
-    children?: ReactNode
-}
+const SocialTag = () => {
+  const name = useContext(handleAdminElementContext())
+  const data = useContext(handleAdminContext())
 
-const SocialTag = ({name, label, data, children}: Props) => {
+  if(data === undefined) {
+    throw new Error("Fetching data failed")
+  }
+
   return (
     <div className={`social ${name}`} >
-        <div className="social__img info__img">{children}</div>
+        <div className="social__img info__img">{iconMap[name]}</div>
+        <div className='social__tool flex items-center'><div className="social__tool--wrapper flex items-center relative h-auto">{['Mobile', 'Work'].includes(name) && <CountryCode />}</div></div>
         <div className="social__info info__about">
-            <Input inputLabel={label} inputMode={(name === 'Mobile' || name === 'Work') ? 'numeric': 'text'} inputName={name} data={data} />
+            <Input inputLabelColor='#f6f2ff'/>
         </div>
     </div>
   )

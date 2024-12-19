@@ -207,11 +207,11 @@ class Spinner extends W1 {
         super(ele1);
     }
     show() {
-        $(this.ele1 + " .loader").addClass("spinner");
+        $(this.ele1.querySelector(".loader")).addClass("spinner");
         return this;
     }
     hide() {
-        $(this.ele1 + " .loader").removeClass("spinner");
+        $(this.ele1.querySelector(".loader")).removeClass("spinner");
         return this;
     }
     singleSpinner() {
@@ -326,7 +326,6 @@ class Toggle extends W3 {
             const t = e.target;
             const ele1child = document.querySelector(this.ele1.trigger).children;
             const ele2child = document.querySelector(this.ele2).children;
-            console.log(t);
             if (!Array.from(ele2child).includes(t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(ele1child).includes(t)) {
                 $(this.ele2).removeClass(this.ele3);
             }

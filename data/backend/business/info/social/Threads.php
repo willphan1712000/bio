@@ -1,22 +1,27 @@
 <?php
+
 namespace business\info\social;
 
-require_once __DIR__ ."/../../../../../vendor/autoload.php";
+require_once __DIR__ . "/../../../../../vendor/autoload.php";
+
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\social\Social;
 use business\info\OperationFactory;
 use business\info\OPERATIONNAME;
 
-class Threads extends InfoHandler implements Social {
-    function __construct(InfoHandler $next) {
+class Threads extends InfoHandler implements Social
+{
+    function __construct(InfoHandler $next)
+    {
         parent::__construct($next);
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
+    public function doHandle(Info $info, OperationFactory $operationFactory): bool
+    {
         $operation = $operationFactory->getOperation(OPERATIONNAME::SOCIALVALIDATE->value);
-        if($operation->validate($info->getInfo('Threads'))) {
-            $info->setInfo('Threads', $operation->format($info->getInfo('Threads')));
+        if ($operation->validate($info->getInfo('Threads'))) {
+            $info->setInfo('Threads', $info->getInfo('Threads'));
             return true;
         }
         return false;

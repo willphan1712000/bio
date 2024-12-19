@@ -27,16 +27,11 @@ function adminPage() {
         if (!data.success) {
             return;
         }
+        const socialName = Object.keys(data.data);
         const list = data.data;
-        $(".info__img .uploadImg__filename").val(list.image === null ? '' : list.image);
-        $(".info__name #name").val(list.name === null ? '' : list.name);
-        $(".info__org #org").val(list.organization === null ? '' : list.organization);
-        $(".info__des #des").val(list.description === null ? '' : list.description);
-        (0, W_1.$$)("#social-media", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { socialArr: socialName, data: list })).reactMounting();
+        list.username = username;
+        (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath } })).reactMounting();
         const img = document.querySelector(".info__img--location img");
-        let transform, uploadImage = false;
-        img.src = (list.image === null || list.image === '') ? defaultImgPath : '/user/' + username + '/' + list.image;
-        const spinner = (0, W_1.$$)(".adminBtn__save").addSpinner().singleSpinner();
         $(".adminBtn__delete").click(function () {
             $(".warning__parent").addClass("active");
         });
@@ -62,9 +57,6 @@ function adminPage() {
                 }
             });
         });
-        $(".adminBtn__index").click(function () {
-            window.location.href = `/${username}`;
-        });
         $(".info__img--remove").click(function () {
             let data = {
                 type: 'avaDelete',
@@ -72,7 +64,7 @@ function adminPage() {
                 img: $(".info__img .uploadImg__filename").val()
             };
             $.ajax({
-                url: "/data/api/info/PUT.php",
+                url: "/data/api/info/PUTss.php",
                 method: "POST",
                 data: JSON.stringify(data),
                 dataType: "html",
@@ -87,38 +79,16 @@ function adminPage() {
                 }
             });
         });
-        const isValid = {};
-        for (let i = 0; i < socialName.length; i++) {
-            if (!(socialName[i] === 'Mobile' || socialName[i] === 'Email' || socialName[i] === 'Messenger' || socialName[i] === 'Work')) {
-                isValid[socialName[i]] = (0, WW_1.$$$)("." + socialName[i] + " #social__info", "." + socialName[i] + " span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^(https?:\/\/)\w*/).formValidate().run();
-            }
-        }
-        isValid.Mobile = (0, WW_1.$$$)(".Mobile #social__info", ".Mobile span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^\d{3}-\d{3}-\d{4}$/).formValidate().run();
-        isValid.Mobile.phoneFormat();
-        isValid.Work = (0, WW_1.$$$)(".Work #social__info", ".Work span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^\d{3}-\d{3}-\d{4}$/).formValidate().run();
-        isValid.Work.phoneFormat();
-        isValid.Zalo = (0, WW_1.$$$)(".Zalo #social__info", ".Zalo span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^\d{3}\d{3}\d{4}$/).formValidate().run();
-        isValid.Email = (0, WW_1.$$$)(".Email #social__info", ".Email span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^[^\s@]+@[^\s@]+\.[^\s@]+$/).formValidate().run();
-        isValid.Messenger = (0, WW_1.$$$)(".Messenger #social__info", ".Messenger span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^.*$/).formValidate().run();
-        isValid.Address = (0, WW_1.$$$)(".Address #social__info", ".Address span", '<i style="color:green;" class="fa-solid fa-check"></i>', '<i style="color:red;" class="fa-solid fa-x"></i>', /^.*$/).formValidate().run();
         let isDisabled = false;
-        $(".adminBtn__save").click(function () {
+        $(".adminBtn__saves").click(function () {
             if (isDisabled) {
                 return;
             }
             let booleanArr = [];
-            for (let i = 0; i < socialName.length; i++) {
-                booleanArr.push(isValid[socialName[i]].getValidity());
-            }
-            booleanArr.push(isValid.Mobile.getValidity());
-            booleanArr.push(isValid.Work.getValidity());
-            booleanArr.push(isValid.Email.getValidity());
-            booleanArr.push(isValid.Messenger.getValidity());
-            booleanArr.push(isValid.Address.getValidity());
-            const allTrue = booleanArr.every(ele => ele === true);
+            const allTrue = true;
             if (allTrue) {
                 let listForUpdate = {};
-                if (uploadImage) {
+                if (true) {
                 }
                 listForUpdate.src = "";
                 listForUpdate.username = username;
@@ -139,13 +109,12 @@ function adminPage() {
                     listForUpdate[socialName[i]] = $("." + socialName[i] + " #social__info").val();
                 }
                 $.ajax({
-                    url: "/data/api/info/PUT.php",
+                    url: "/data/api/info/PUTss.php",
                     method: "POST",
                     data: JSON.stringify(listForUpdate),
                     dataType: "html",
                     contentType: "application/json",
                     beforeSend: function () {
-                        spinner.show();
                         $(".adminBtn__save span").css("visibility", "hidden");
                         isDisabled = true;
                         $(".adminBtn__save").css({
@@ -154,7 +123,6 @@ function adminPage() {
                     },
                     success: function (e) {
                         if (e !== null) {
-                            spinner.hide();
                             $(".adminBtn__save span").css("visibility", "visible");
                             $(".info__img .uploadImg__filename").val(e);
                             $(".msg").removeClass("active");

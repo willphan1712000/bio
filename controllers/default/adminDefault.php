@@ -7,12 +7,8 @@ $admin->execute();
 
 $g = $admin->get("g");
 $info = $admin->get("info");
-$socialNameArr = [];
 $username = $admin->get("username");
 
-foreach ($info as $k => $v) {
-    $socialNameArr[] = $k;
-}
 if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);
     header("Location: /" . $username);
@@ -32,18 +28,6 @@ if (isset($_POST['signout'])) {
 
 <body>
     <div id="container">
-        <div class="msg successMsg">
-            <i class="fa-solid fa-check"></i>
-            <p>Updated!</p>
-        </div>
-        <div class="msg errorMsg">
-            <i class="fa-solid fa-x"></i>
-            <p>Internal Error!</p>
-        </div>
-        <div class="msg notValidForm">
-            <i class="fa-solid fa-x"></i>
-            <p>Some information is not valid, try again!</p>
-        </div>
         <div class="warning__parent">
             <div class="warning__child">
                 <i class="fa-solid fa-circle-exclamation"></i>
@@ -61,42 +45,12 @@ if (isset($_POST['signout'])) {
             <div class="backToBio">
                 <a href="/<?= $username; ?>"><i class="fa-solid fa-arrow-left"></i></a>
             </div>
-            <div class="info">
-                <div class="info__img info__img--ava">
-                    <input type="file" class="uploadImg" accept="image/*" name="uploadImg" hidden>
-                    <input type="text" class="uploadImg__filename" name="uploadImg__filename" hidden>
-                    <div class="info__img--remove"><i class="fa-solid fa-x"></i></div>
-                    <div class="info__img--location">
-                        <img src="" alt="">
-                    </div>
-                </div>
-                <div class="info__img--modify">
-                    <div class="info__img--choose">Choose picture</div>
-                </div>
-                <div class="info__about">
-                    <div class="info__name">
-                        <form action="">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" autocomplete="on">
-                        </form>
-                    </div>
-                    <div class="info__org">
-                        <form action="">
-                            <label for="org">Organization</label>
-                            <input type="text" id="org" name="org" autocomplete="on">
-                        </form>
-                    </div>
-                    <div class="info__des admin">
-                        <label for="des">Description</label>
-                        <textarea name="des" id="des"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div id="social-media"></div>
+            <div id="info__wrapper"></div>
         </div>
         <div class="adminBtn">
-            <div class="adminBtn__ele adminBtn__save"><span><i class="fa-solid fa-check"></i> Save</span></div>
-            <div class="adminBtn__ele adminBtn__index"><span>Go To Bio <i class="fa-solid fa-arrow-right"></i></span></div>
+            <div class="adminBtn__ele adminBtn__index">
+                <a href="/<?= $username; ?>" class="w-full h-full p-[20px] flex justify-center"><span>Go To Bio <i class="fa-solid fa-arrow-right"></i></span></a>
+            </div>
             <form action="" method="POST" style="width: 100%;">
                 <button style="border: none; color: #000;" name="signout" class="adminBtn__ele adminBtn__index"><span>Sign out</span><i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
@@ -108,7 +62,6 @@ if (isset($_POST['signout'])) {
     </div>
 
     <script>
-        const socialName = (<?= json_encode($socialNameArr); ?>)
         const time = (<?= time(); ?>)
         const username = "<?= $username ?>"
         const defaultImgPath = '<?= $g['img']['unknown']; ?>'

@@ -34,6 +34,7 @@ class UserFooter
                     width: 100%;
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     flex-direction: row;
                     overflow-y: hidden;
                     overflow-x: auto;
@@ -134,6 +135,11 @@ class UserFooter
                 }
                 ' . $container . ' .shareWindow_parent.image .shareWindow_child {
                     aspect-ratio: 9/16;
+                }
+                @media screen and (max-width: 600px) {
+                    ' . $container . ' #share .options {
+                        justify-content: start;
+                    }
                 }
             </style>
             <div class="shareWindow_parent qrcode">

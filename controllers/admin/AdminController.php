@@ -9,6 +9,8 @@ use persistence\Entity\User;
 use controllers\user\UserController;
 use business\template\TemplateManagement;
 use business\user\UserManagement;
+use config\Mode;
+use config\ProductionConfig;
 
 class AdminController extends UserController
 {
@@ -18,7 +20,7 @@ class AdminController extends UserController
     {
         $this->username = SystemConfig::URLExtraction(2); // get username
         $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
-        $this->isSignedIn = UserManagement::isSignedIn($_SESSION, $this->username); // get sign in session
+        $this->isSignedIn = ProductionConfig::$mode === Mode::PRODUCTION ? UserManagement::isSignedIn($_SESSION, $this->username) : true; // get sign in session
         $this->g = SystemConfig::globalVariables(); // get global variables
     }
 

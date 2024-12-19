@@ -13,7 +13,7 @@ class Validate implements Operation
         if (empty($info)) {
             return true;
         }
-        if (!preg_match('/^\d{3}-\d{3}-\d{4}$/', $info)) {
+        if (!preg_match('/^\d{10}$/', $info)) {
             throw new \Exception("Mobile or Work number is not valid");
         }
         return true;
