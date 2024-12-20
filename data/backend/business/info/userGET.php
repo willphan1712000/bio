@@ -27,7 +27,7 @@ use business\info\user\Description;
 use business\info\user\Organization;
 use business\info\social\OrderOnline;
 
-class GET implements IAPI
+class userGET implements IAPI
 {
     private string $username;
 
@@ -48,7 +48,7 @@ class GET implements IAPI
             // Handle user information
             $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 
-            $get = $userInfoHandler->adminGET($info);
+            $get = $userInfoHandler->userGET($info);
 
             return [
                 'success' => $get,

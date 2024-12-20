@@ -79,7 +79,7 @@ $g = $user->get("g");
                                     </div>
                                 </div>
                             </div>
-                            </div>';
+                        </div>';
                     }
                 }
                 ?>

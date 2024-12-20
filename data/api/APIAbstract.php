@@ -2,7 +2,7 @@
 
 namespace api;
 
-use business\UserManagement;
+use business\user\UserManagement;
 use config\Mode;
 use config\ProductionConfig;
 
@@ -22,12 +22,13 @@ abstract class APIAbstract
 
     public function execute()
     {
-        // Verify user has already signed in before giving access to them
+        // Verify user has already signed in before giving access to resources
         if (ProductionConfig::$mode === Mode::PRODUCTION) {
             if (UserManagement::isSignedIn($_SESSION, $this->body->username)) {
                 return $this->handleRequest($this->body); // Return authorized resource
             } else {
                 return [
+                    "success" => false,
                     "error" => "User not signed in, deny access to resources"
                 ];
             }

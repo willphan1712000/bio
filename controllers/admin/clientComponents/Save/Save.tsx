@@ -23,23 +23,32 @@ export default function Save({setSubmit, setDone, setMsg} : Props) {
         data.img = ''
         setSubmitHandler(true)
         setSubmit(true)
-        const result = await $$$("/data/api/info/PUT.php", data).api().post() as POST
-        if(result.success) {
-            setSubmitHandler(false)
-            setSubmit(false)
-            setDone(true)
-            setMsg('Updated. Going to your bio')
-            setTimeout(() => {
-              window.location.href = '/' + data.username
-            }, 1500)
-        } else {
-            setMsg(result.error!)
-            setSubmit(false)
-            setTimeout(() => {
+        try {
+          const result = await $$$("/data/api/info/PUT.php", data).api().post() as POST
+          if(result.success) {
               setSubmitHandler(false)
-              setMsg("Save")
-            }, 3000)
-        }
+              setSubmit(false)
+              setDone(true)
+              setMsg('Updated. Going to your bio')
+              setTimeout(() => {
+                window.location.href = '/' + data.username
+              }, 1500)
+          } else {
+              setMsg(result.error!)
+              setSubmit(false)
+              setTimeout(() => {
+                setSubmitHandler(false)
+                setMsg("Save")
+              }, 3000)
+          }
+        } catch (error: any) {
+          setMsg(error.error)
+          setSubmit(false)
+          setTimeout(() => {
+            setSubmitHandler(false)
+            setMsg("Save")
+          }, 3000)
+      }
     }
   return (
     <button disabled={isSubmitting} className='w-full h-full absolute top-0 left-0' onClick={e => handleSubmit(e)}></button>

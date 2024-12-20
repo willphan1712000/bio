@@ -88,6 +88,34 @@ class SystemConfig
         ];
     }
 
+    public static function regexMap()
+    {
+        return [
+            'name' => '/^.*$/',
+            'image' => '/^.*$/',
+            'organization' => '/^.*$/',
+            'description' => '/^.*$/',
+            'Email' => '/^[^\s@]+@[^\s@]+\.[^\s@]+$/',
+            'Mobile' => '/^\d{10}$/',
+            'Work' => '/^\d{10}$/',
+            'Booking' => '/^https?:\/\/[^\s]+$/',
+            'OrderOnline' => '/^https?:\/\/[^\s]+$/',
+            'HotSale' => '/^https?:\/\/[^\s]+$/',
+            'Address' => '/^.*$/',
+            'Facebook' => '/^https?:\/\/[^\s]+$/',
+            'Instagram' => '/^https?:\/\/[^\s]+$/',
+            'Messenger' => '/^.*$/',
+            'Youtube' => '/^https?:\/\/[^\s]+$/',
+            'Threads' => '/^https?:\/\/[^\s]+$/',
+            'X' => '/^https?:\/\/[^\s]+$/',
+            'Pinterest' => '/^https?:\/\/[^\s]+$/',
+            'Linkedin' => '/^https?:\/\/[^\s]+$/',
+            'Zalo' => '/^\d{3}\d{3}\d{4}$/',
+            'Tiktok' => '/^https?:\/\/[^\s]+$/',
+            'Website' => '/^https?:\/\/[^\s]+$/',
+        ];
+    }
+
     // dump and die function used for debug process
     public static function dd($value)
     {

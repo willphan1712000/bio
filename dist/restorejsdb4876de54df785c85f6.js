@@ -161,7 +161,8 @@ class API extends WW2 {
                     res(e);
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                    rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
+                    rej({ 'error': 'Request failed due to network connection failed' });
+                    throw new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
                 }
             });
         });
@@ -178,7 +179,8 @@ class API extends WW2 {
                     res(e);
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                    rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
+                    rej({ 'error': 'Request failed due to network connection failed' });
+                    throw new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
                 }
             });
         });
@@ -561,4 +563,4 @@ function restore(props) {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=restorejs982222fea36118094f3a.js.map
+//# sourceMappingURL=restorejsdb4876de54df785c85f6.js.map

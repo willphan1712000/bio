@@ -28,19 +28,6 @@ if (isset($_POST['signout'])) {
 
 <body>
     <div id="container">
-        <div class="warning__parent">
-            <div class="warning__child">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <p><?= $g['deleteWarningMsg']['msg1']; ?></p></br>
-                <p><?= $g['deleteWarningMsg']['msg2']; ?></p></br>
-                <p><?= $g['deleteWarningMsg']['msg3']; ?></p></br>
-                <p><?= $g['deleteWarningMsg']['msg4']; ?></p></br>
-                <div class="btn">
-                    <div class="btn__ele btn__confirm">Yes</div>
-                    <div class="btn__ele btn__back">No</div>
-                </div>
-            </div>
-        </div>
         <div class="adminSection">
             <div class="backToBio">
                 <a href="/<?= $username; ?>"><i class="fa-solid fa-arrow-left"></i></a>
@@ -54,7 +41,6 @@ if (isset($_POST['signout'])) {
             <form action="" method="POST" style="width: 100%;">
                 <button style="border: none; color: #000;" name="signout" class="adminBtn__ele adminBtn__index"><span>Sign out</span><i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
-            <div class="adminBtn__ele adminBtn__delete"><span><i class="fa-solid fa-trash"></i> Delete Account</span></div>
         </div>
         <div id="copyright">
             <p><?= $g['license']; ?></p>
@@ -62,7 +48,6 @@ if (isset($_POST['signout'])) {
     </div>
 
     <script>
-        const time = (<?= time(); ?>)
         const username = "<?= $username ?>"
         const defaultImgPath = '<?= $g['img']['unknown']; ?>'
     </script>

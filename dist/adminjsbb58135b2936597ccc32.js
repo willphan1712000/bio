@@ -1194,7 +1194,8 @@ class API extends WW2 {
                     res(e);
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                    rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
+                    rej({ 'error': 'Request failed due to network connection failed' });
+                    throw new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
                 }
             });
         });
@@ -1211,7 +1212,8 @@ class API extends WW2 {
                     res(e);
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                    rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
+                    rej({ 'error': 'Request failed due to network connection failed' });
+                    throw new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
                 }
             });
         });
@@ -51261,4 +51263,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminjse5c1f6935e3be647c063.js.map
+//# sourceMappingURL=adminjsbb58135b2936597ccc32.js.map

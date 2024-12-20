@@ -2,58 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./controllers/client/src/dist/aic/aic.js":
-/*!************************************************!*\
-  !*** ./controllers/client/src/dist/aic/aic.js ***!
-  \************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports["default"] = aic;
-const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
-function aic() {
-    (function () {
-        return __awaiter(this, void 0, void 0, function* () {
-            (0, W_1.$$)("#search", {
-                container: "#userData",
-                header: {
-                    2: "Username",
-                    3: "Email",
-                    4: "Password",
-                    5: "Token",
-                    6: "Delete Token",
-                    7: "Bio",
-                    8: "Admin",
-                    9: "Delete"
-                },
-                target: "#copyright",
-                limit: 50,
-                like: "",
-                url: "/data/api/getAllUser.php",
-                html: {
-                    button: "#userData button",
-                    confirm: ".btn__confirm",
-                    back: ".btn__back",
-                    parent: ".warning__parent"
-                }
-            }).search();
-        });
-    })();
-}
-
-
-/***/ }),
-
 /***/ "./controllers/client/src/dist/client/src/Web-Development/W.js":
 /*!*********************************************************************!*\
   !*** ./controllers/client/src/dist/client/src/Web-Development/W.js ***!
@@ -583,7 +531,8 @@ class API extends WW2 {
                     res(e);
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                    rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
+                    rej({ 'error': 'Request failed due to network connection failed' });
+                    throw new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
                 }
             });
         });
@@ -600,7 +549,8 @@ class API extends WW2 {
                     res(e);
                 },
                 error: (jqXHR, textStatus, errorThrown) => {
-                    rej(new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`));
+                    rej({ 'error': 'Request failed due to network connection failed' });
+                    throw new Error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
                 }
             });
         });
@@ -35808,12 +35758,45 @@ if (false) {} else {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./controllers/client/src/dist/aic/aic.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it uses a non-standard name for the exports (exports).
+(() => {
+var exports = __webpack_exports__;
+/*!******************************************************!*\
+  !*** ./controllers/client/src/dist/signup/signup.js ***!
+  \******************************************************/
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
+const WW_1 = __webpack_require__(/*! ../client/src/Web-Development/WW */ "./controllers/client/src/dist/client/src/Web-Development/WW.js");
+$(document).ready(function () {
+    signupPage();
+});
+function signupPage() {
+    (0, W_1.$$)(".passRequirements", "dropdown", "").toggle().default();
+    (0, W_1.$$)("#password").passShowHide().run();
+    (0, WW_1.$$$)({
+        username: "#username",
+        password: "#password",
+        email: "#email",
+        error: ".signupChild__error",
+        checkbox: "#terms",
+        register: ".signupChild__confirm"
+    }, {
+        signup: "/data/api/user/POST.php",
+        userExist: "/data/api/user/validation/Username.php",
+        validEmail: "/data/api/user/validation/Email.php",
+        validPassword: "/data/api/user/validation/Password.php",
+    }, {
+        before: ".signupChild",
+        after: ".signupSuccess",
+        beforeClass: "inactive",
+        afterClass: "active",
+    }).signup();
+}
+
+})();
+
 /******/ })()
 ;
-//# sourceMappingURL=aicjs7c79c9919130a89da8d6.js.map
+//# sourceMappingURL=signupjs59da90c83b1b1e69d06b.js.map

@@ -1,9 +1,20 @@
 <?php
+
 namespace business\info\phone;
 
-require_once __DIR__ ."/../../../../../vendor/autoload.php";
-use business\info\InfoElement;
+use persistence\Database;
+use business\info\InfoHandler;
+use persistence\Entity\UserPhone;
 
-interface Phone extends InfoElement {
-    
+abstract class Phone extends InfoHandler
+{
+    protected function getValueFromDatabase(string $getWhat, string $username): ?string
+    {
+        return Database::GET(UserPhone::class, $getWhat, ['username' => $username]);
+    }
+
+    protected function setValueToDatabase(string $setWhat, ?string $value, string $username): bool
+    {
+        return Database::PUT(UserPhone::class, $setWhat, $value, ['username' => $username]);
+    }
 }

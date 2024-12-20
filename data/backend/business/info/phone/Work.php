@@ -2,28 +2,54 @@
 
 namespace business\info\phone;
 
-require_once __DIR__ . "/../../../../../vendor/autoload.php";
-
 use business\info\Info;
 use business\info\InfoHandler;
+use business\info\operation\Phone as OperationPhone;
 use business\info\phone\Phone;
-use business\info\OperationFactory;
-use business\info\OPERATIONNAME;
 
-class Work extends InfoHandler implements Phone
+class Work extends Phone
 {
     function __construct(?InfoHandler $next)
     {
         parent::__construct($next);
+        $this->name = 'Work';
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool
+    public function doHandle(Info $info): bool
     {
-        $operation = $operationFactory->getOperation(OPERATIONNAME::PHONEVALIDATE->value);
-        if ($operation->validate($info->getInfo('Work'))) {
-            $info->setInfo('Work', $info->getInfo('Work'));
-            return true;
+        if ($this->validate($this->name, $info->getInfo($this->name))) {
+            $info->setInfo($this->name, $info->getInfo($this->name));
+            return $this->setValueToDatabase($this->name, $info->getInfo($this->name), $info->getInfo('username')) && $this->setValueToDatabase('WorkCode', $info->getInfo('WorkCode'), $info->getInfo('username')) && $this->setValueToDatabase('WorkFlag', $info->getInfo('WorkFlag'), $info->getInfo('username'));
         }
         return false;
+    }
+
+    public function doAdminGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase('Work', $info->getInfo('username'));
+        $code = $this->getValueFromDatabase('WorkCode', $info->getInfo('username'));
+        $flag = $this->getValueFromDatabase('WorkFlag', $info->getInfo('username'));
+
+        $info->setInfo('Work', $value);
+        $info->setInfo('WorkCode', $code);
+        $info->setInfo('WorkFlag', $flag);
+        return true;
+    }
+
+    public function doUserGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase('Work', $info->getInfo('username'));
+        $code = $this->getValueFromDatabase('WorkCode', $info->getInfo('username'));
+        $info->setInfo($this->name, $this->format([
+            'code' => $code,
+            'number' => $value
+        ]));
+        return true;
+    }
+
+    public function format($info): ?string
+    {
+        $o = OperationPhone::getInstance();
+        return $o->execute($info);
     }
 }

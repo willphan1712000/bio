@@ -26,18 +26,28 @@ function Save({ setSubmit, setDone, setMsg }) {
             data.img = '';
             setSubmitHandler(true);
             setSubmit(true);
-            const result = yield (0, WW_1.$$$)("/data/api/info/PUT.php", data).api().post();
-            if (result.success) {
-                setSubmitHandler(false);
-                setSubmit(false);
-                setDone(true);
-                setMsg('Updated. Going to your bio');
-                setTimeout(() => {
-                    window.location.href = '/' + data.username;
-                }, 1500);
+            try {
+                const result = yield (0, WW_1.$$$)("/data/api/info/PUT.php", data).api().post();
+                if (result.success) {
+                    setSubmitHandler(false);
+                    setSubmit(false);
+                    setDone(true);
+                    setMsg('Updated. Going to your bio');
+                    setTimeout(() => {
+                        window.location.href = '/' + data.username;
+                    }, 1500);
+                }
+                else {
+                    setMsg(result.error);
+                    setSubmit(false);
+                    setTimeout(() => {
+                        setSubmitHandler(false);
+                        setMsg("Save");
+                    }, 3000);
+                }
             }
-            else {
-                setMsg(result.error);
+            catch (error) {
+                setMsg(error.error);
                 setSubmit(false);
                 setTimeout(() => {
                     setSubmitHandler(false);

@@ -1,37 +1,40 @@
 <?php
+
 namespace business\info\user;
 
-require_once __DIR__ ."/../../../../../vendor/autoload.php";
 use business\info\Info;
-use business\info\InfoElement;
 use business\info\InfoHandler;
-use business\info\OperationFactory;
 use config\SystemConfig;
 use persistence\Database;
 use persistence\Entity\UserInfo;
 
-class Avatar extends InfoHandler implements InfoElement {
-    function __construct(?InfoHandler $next) {
+class Avatar extends User
+{
+    function __construct(?InfoHandler $next)
+    {
         parent::__construct($next);
+        $this->name = 'image';
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
+    public function doHandle(Info $info): bool
+    {
         try {
             $username = $info->getInfo('username'); // get username
-            $old = Database::GET(UserInfo::class, 'image', ['username' => $username]); // get old image from database
-    
-            $src = $info->getInfo('src'); // get image source uploaded
-            if($src !== "" && $src !== null) {
-                if($old !== NULL) {
-                    unlink(SystemConfig::globalVariables()['user_folder'].$username."/".$old); // delete old image to save storage
+            $old = $this->getValueFromDatabase($this->name, $username); // get old image from database
+
+            $src = $info->getInfo($this->name); // get image source uploaded
+            if ($src !== "" && $src !== null) {
+                if ($old !== NULL) {
+                    unlink(SystemConfig::globalVariables()['user_folder'] . $username . "/" . $old); // delete old image to save storage
                 }
-    
-                $new = time().".png";
-                $info->setInfo('image', $new);
-                $o = file_put_contents(SystemConfig::globalVariables()['user_folder'].$username."/".$new, base64_decode($src));
-                if(!$o) {
+
+                $new = time() . ".png";
+                $info->setInfo($this->name, $new);
+                $o = file_put_contents(SystemConfig::globalVariables()['user_folder'] . $username . "/" . $new, base64_decode($src));
+                if (!$o) {
                     return false;
                 }
+                return $this->setValueToDatabase($this->name, $new, $info->getInfo('username'));
             }
             return true;
         } catch (\Exception $e) {

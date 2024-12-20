@@ -2,28 +2,21 @@
 
 namespace business\info\social;
 
-require_once __DIR__ . "/../../../../../vendor/autoload.php";
-
-use business\info\Info;
 use business\info\InfoHandler;
+use business\info\operation\URL;
 use business\info\social\Social;
-use business\info\OperationFactory;
-use business\info\OPERATIONNAME;
 
-class Facebook extends InfoHandler implements Social
+class Facebook extends Social
 {
-    function __construct(InfoHandler $next)
+    function __construct(?InfoHandler $next)
     {
         parent::__construct($next);
+        $this->name = 'Facebook';
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool
+    public function format($info): ?string
     {
-        $operation = $operationFactory->getOperation(OPERATIONNAME::SOCIALVALIDATE->value);
-        if ($operation->validate($info->getInfo('Facebook'))) {
-            $info->setInfo('Facebook', $info->getInfo('Facebook'));
-            return true;
-        }
-        return false;
+        $o = URL::getInstance();
+        return $o->execute($info);
     }
 }
