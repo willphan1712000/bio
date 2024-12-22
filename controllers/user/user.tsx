@@ -22,9 +22,12 @@ function user(props: Props) {
     })
 
     $$({
-        trigger: ".share__btn.qr",
-        terminate: ".shareWindow__close"
-    }, ".shareWindow_parent.qrcode", "active").toggle().advanced()
+        trigger: document.querySelector(".share__btn.qr"),
+        terminate: [
+            document.querySelector(".shareWindow__close"),
+            document.querySelector(".shareWindow_parent.qrcode")
+        ]
+    }, document.querySelector(".shareWindow_parent.qrcode"), "active").toggle().advanced()
     
     $("#share .share__btn.share").click(() => {
         $$({

@@ -2,6 +2,58 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./controllers/client/src/dist/aic/aic.js":
+/*!************************************************!*\
+  !*** ./controllers/client/src/dist/aic/aic.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = aic;
+const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
+function aic() {
+    (function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            (0, W_1.$$)("#search", {
+                container: "#userData",
+                header: {
+                    2: "Username",
+                    3: "Email",
+                    4: "Password",
+                    5: "Token",
+                    6: "Delete Token",
+                    7: "Bio",
+                    8: "Admin",
+                    9: "Delete"
+                },
+                target: "#copyright",
+                limit: 50,
+                like: "",
+                url: "/data/api/getAllUser.php",
+                html: {
+                    button: "#userData button",
+                    confirm: ".btn__confirm",
+                    back: ".btn__back",
+                    parent: ".warning__parent"
+                }
+            }).search();
+        });
+    })();
+}
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/client/src/Web-Development/W.js":
 /*!*********************************************************************!*\
   !*** ./controllers/client/src/dist/client/src/Web-Development/W.js ***!
@@ -296,50 +348,32 @@ class Toggle extends W3 {
         return this;
     }
     advanced() {
-        if (document.querySelector(this.ele2) === null) {
-            throw new Error(this.ele2 + " is not defined or rendered on DOM");
+        if (this.ele2 === null) {
+            throw new Error("showing element is not defined or rendered on DOM");
         }
-        if (this.ele1.terminate !== undefined) {
-            if (document.querySelector(this.ele1.trigger) === null) {
-                throw new Error(this.ele1.trigger + " is not defined or rendered on DOM");
-            }
-            if (document.querySelector(this.ele1.terminate) === null) {
-                throw new Error(this.ele1.terminate + " is not defined or rendered on DOM");
-            }
-            if (this.ele1.trigger === this.ele1.terminate) {
-                $(this.ele1.trigger).click(e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if ($(this.ele2).hasClass(this.ele3)) {
-                        $(this.ele2).removeClass(this.ele3);
-                    }
-                    else {
-                        $(this.ele2).addClass(this.ele3);
-                    }
-                });
-            }
-            else {
-                $(this.ele1.trigger).click(e => {
-                    $(this.ele2).addClass(this.ele3);
-                });
-                $(this.ele1.terminate).click(e => {
-                    $(this.ele2).removeClass(this.ele3);
-                });
-            }
+        if (this.ele1.terminate === null) {
+            throw new Error("terminating element is not defined or rendered on DOM");
         }
         else {
-            $(this.ele1.trigger).click(e => {
-                $(this.ele2).addClass(this.ele3);
+            this.ele1.trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if ($(this.ele2).hasClass(this.ele3)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+                else {
+                    $(this.ele2).addClass(this.ele3);
+                }
             });
         }
-        document.addEventListener('click', e => {
-            const t = e.target;
-            const ele1child = document.querySelector(this.ele1.trigger).children;
-            const ele2child = document.querySelector(this.ele2).children;
-            if (!Array.from(ele2child).includes(t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(ele1child).includes(t)) {
-                $(this.ele2).removeClass(this.ele3);
-            }
-        });
+        if (this.ele1.terminate !== null) {
+            document.addEventListener('click', e => {
+                const target = e.target;
+                if (this.ele1.terminate.includes(target)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+            });
+        }
         return this;
     }
     cancel() {
@@ -35758,42 +35792,12 @@ if (false) {} else {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it uses a non-standard name for the exports (exports).
-(() => {
-var exports = __webpack_exports__;
-/*!**************************************************!*\
-  !*** ./controllers/client/src/dist/user/user.js ***!
-  \**************************************************/
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
-$(document).ready(function () {
-    user(props);
-});
-function user(props) {
-    (0, W_1.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
-        $(".shareWindow__btn.shareWindow__link .check").show();
-        $(".shareWindow__btn.shareWindow__link .copy").hide();
-        setTimeout(() => {
-            $(".shareWindow__btn.shareWindow__link .check").hide();
-            $(".shareWindow__btn.shareWindow__link .copy").show();
-        }, 2000);
-    });
-    (0, W_1.$$)({
-        trigger: ".share__btn.qr",
-        terminate: ".shareWindow__close"
-    }, ".shareWindow_parent.qrcode", "active").toggle().advanced();
-    $("#share .share__btn.share").click(() => {
-        (0, W_1.$$)({
-            title: props.username,
-            url: window.document.location.href + "?share=true"
-        }).share();
-    });
-}
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./controllers/client/src/dist/aic/aic.js");
+/******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=userjs6d7d2dc26590717a288b.js.map
+//# sourceMappingURL=aicjs1704a99782e567ab6298.js.map

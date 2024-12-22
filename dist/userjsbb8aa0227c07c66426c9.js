@@ -296,50 +296,32 @@ class Toggle extends W3 {
         return this;
     }
     advanced() {
-        if (document.querySelector(this.ele2) === null) {
-            throw new Error(this.ele2 + " is not defined or rendered on DOM");
+        if (this.ele2 === null) {
+            throw new Error("showing element is not defined or rendered on DOM");
         }
-        if (this.ele1.terminate !== undefined) {
-            if (document.querySelector(this.ele1.trigger) === null) {
-                throw new Error(this.ele1.trigger + " is not defined or rendered on DOM");
-            }
-            if (document.querySelector(this.ele1.terminate) === null) {
-                throw new Error(this.ele1.terminate + " is not defined or rendered on DOM");
-            }
-            if (this.ele1.trigger === this.ele1.terminate) {
-                $(this.ele1.trigger).click(e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if ($(this.ele2).hasClass(this.ele3)) {
-                        $(this.ele2).removeClass(this.ele3);
-                    }
-                    else {
-                        $(this.ele2).addClass(this.ele3);
-                    }
-                });
-            }
-            else {
-                $(this.ele1.trigger).click(e => {
-                    $(this.ele2).addClass(this.ele3);
-                });
-                $(this.ele1.terminate).click(e => {
-                    $(this.ele2).removeClass(this.ele3);
-                });
-            }
+        if (this.ele1.terminate === null) {
+            throw new Error("terminating element is not defined or rendered on DOM");
         }
         else {
-            $(this.ele1.trigger).click(e => {
-                $(this.ele2).addClass(this.ele3);
+            this.ele1.trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if ($(this.ele2).hasClass(this.ele3)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+                else {
+                    $(this.ele2).addClass(this.ele3);
+                }
             });
         }
-        document.addEventListener('click', e => {
-            const t = e.target;
-            const ele1child = document.querySelector(this.ele1.trigger).children;
-            const ele2child = document.querySelector(this.ele2).children;
-            if (!Array.from(ele2child).includes(t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(ele1child).includes(t)) {
-                $(this.ele2).removeClass(this.ele3);
-            }
-        });
+        if (this.ele1.terminate !== null) {
+            document.addEventListener('click', e => {
+                const target = e.target;
+                if (this.ele1.terminate.includes(target)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+            });
+        }
         return this;
     }
     cancel() {
@@ -35762,41 +35744,41 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it uses a non-standard name for the exports (exports).
 (() => {
 var exports = __webpack_exports__;
-/*!******************************************************!*\
-  !*** ./controllers/client/src/dist/signup/signup.js ***!
-  \******************************************************/
+/*!**************************************************!*\
+  !*** ./controllers/client/src/dist/user/user.js ***!
+  \**************************************************/
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
-const WW_1 = __webpack_require__(/*! ../client/src/Web-Development/WW */ "./controllers/client/src/dist/client/src/Web-Development/WW.js");
 $(document).ready(function () {
-    signupPage();
+    user(props);
 });
-function signupPage() {
-    (0, W_1.$$)(".passRequirements", "dropdown", "").toggle().default();
-    (0, W_1.$$)("#password").passShowHide().run();
-    (0, WW_1.$$$)({
-        username: "#username",
-        password: "#password",
-        email: "#email",
-        error: ".signupChild__error",
-        checkbox: "#terms",
-        register: ".signupChild__confirm"
-    }, {
-        signup: "/data/api/user/POST.php",
-        userExist: "/data/api/user/validation/Username.php",
-        validEmail: "/data/api/user/validation/Email.php",
-        validPassword: "/data/api/user/validation/Password.php",
-    }, {
-        before: ".signupChild",
-        after: ".signupSuccess",
-        beforeClass: "inactive",
-        afterClass: "active",
-    }).signup();
+function user(props) {
+    (0, W_1.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
+        $(".shareWindow__btn.shareWindow__link .check").show();
+        $(".shareWindow__btn.shareWindow__link .copy").hide();
+        setTimeout(() => {
+            $(".shareWindow__btn.shareWindow__link .check").hide();
+            $(".shareWindow__btn.shareWindow__link .copy").show();
+        }, 2000);
+    });
+    (0, W_1.$$)({
+        trigger: document.querySelector(".share__btn.qr"),
+        terminate: [
+            document.querySelector(".shareWindow__close"),
+            document.querySelector(".shareWindow_parent.qrcode")
+        ]
+    }, document.querySelector(".shareWindow_parent.qrcode"), "active").toggle().advanced();
+    $("#share .share__btn.share").click(() => {
+        (0, W_1.$$)({
+            title: props.username,
+            url: window.document.location.href + "?share=true"
+        }).share();
+    });
 }
 
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=signupjs59da90c83b1b1e69d06b.js.map
+//# sourceMappingURL=userjsbb8aa0227c07c66426c9.js.map

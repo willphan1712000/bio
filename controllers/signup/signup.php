@@ -45,10 +45,9 @@ use function component\signup\signupAgain;
         <div class="passRequirements">
             <p><i class="fa-solid fa-arrow-down" style="margin-right: 2px"></i> PASSWORD REQUIREMENTS
             <p><br><br>
-            <p>Password must have at least 12 characters</p><br><br>
-            <p>Password must have at least 1 upper case</p><br><br>
-            <p>Password must have at least 1 digit</p><!-- <br></br>
-            <p>Password must have at least 1 special character</p> -->
+            <p><?= $g['passwordRequirement']['char']; ?></p><br><br>
+            <p><?= $g['passwordRequirement']['upper']; ?></p><br><br>
+            <p><?= $g['passwordRequirement']['number']; ?></p>
         </div>
         <div class="signupChild">
             <h1 style="font-size:32px;">Sign Up</h1><span class="signupChild__error">Please fill in all information!</span>

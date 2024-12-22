@@ -35,4 +35,10 @@ class UserDisplay implements Display
         $display = $this->value === null ? "none" : "flex";
         return '<a href="' . $this->value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
     }
+
+    public function getAdminHTML(?string $children = null): string
+    {
+        $children = $children ?? '';
+        return '<div id="' . $this->name . '">' . $children . '</div>';
+    }
 }

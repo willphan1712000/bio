@@ -958,50 +958,32 @@ class Toggle extends W3 {
         return this;
     }
     advanced() {
-        if (document.querySelector(this.ele2) === null) {
-            throw new Error(this.ele2 + " is not defined or rendered on DOM");
+        if (this.ele2 === null) {
+            throw new Error("showing element is not defined or rendered on DOM");
         }
-        if (this.ele1.terminate !== undefined) {
-            if (document.querySelector(this.ele1.trigger) === null) {
-                throw new Error(this.ele1.trigger + " is not defined or rendered on DOM");
-            }
-            if (document.querySelector(this.ele1.terminate) === null) {
-                throw new Error(this.ele1.terminate + " is not defined or rendered on DOM");
-            }
-            if (this.ele1.trigger === this.ele1.terminate) {
-                $(this.ele1.trigger).click(e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if ($(this.ele2).hasClass(this.ele3)) {
-                        $(this.ele2).removeClass(this.ele3);
-                    }
-                    else {
-                        $(this.ele2).addClass(this.ele3);
-                    }
-                });
-            }
-            else {
-                $(this.ele1.trigger).click(e => {
-                    $(this.ele2).addClass(this.ele3);
-                });
-                $(this.ele1.terminate).click(e => {
-                    $(this.ele2).removeClass(this.ele3);
-                });
-            }
+        if (this.ele1.terminate === null) {
+            throw new Error("terminating element is not defined or rendered on DOM");
         }
         else {
-            $(this.ele1.trigger).click(e => {
-                $(this.ele2).addClass(this.ele3);
+            this.ele1.trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if ($(this.ele2).hasClass(this.ele3)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+                else {
+                    $(this.ele2).addClass(this.ele3);
+                }
             });
         }
-        document.addEventListener('click', e => {
-            const t = e.target;
-            const ele1child = document.querySelector(this.ele1.trigger).children;
-            const ele2child = document.querySelector(this.ele2).children;
-            if (!Array.from(ele2child).includes(t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(ele1child).includes(t)) {
-                $(this.ele2).removeClass(this.ele3);
-            }
-        });
+        if (this.ele1.terminate !== null) {
+            document.addEventListener('click', e => {
+                const target = e.target;
+                if (this.ele1.terminate.includes(target)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+            });
+        }
         return this;
     }
     cancel() {
@@ -51263,4 +51245,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminjsbb58135b2936597ccc32.js.map
+//# sourceMappingURL=adminjsb56c2f857a4eb1b00663.js.map

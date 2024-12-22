@@ -2,8 +2,8 @@
 
 namespace business\user\signup;
 
+use config\SystemConfig;
 use business\user\signup\SignupHandler;
-use Exception;
 
 class CheckEmail extends SignupHandler
 {
@@ -14,9 +14,9 @@ class CheckEmail extends SignupHandler
 
     public function doHandle(Input $input): bool
     {
-        if (filter_var($input->getEmail(), FILTER_VALIDATE_EMAIL)) {
-            return true;
+        if (!preg_match(SystemConfig::regexMap()['Email'], $input->getEmail())) {
+            throw new \Exception("Email is not valid");
         }
-        throw new \Exception("Email is not valid");
+        return true;
     }
 }

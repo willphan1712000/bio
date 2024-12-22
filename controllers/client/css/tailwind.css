@@ -652,6 +652,10 @@ video {
   margin: 0.625rem;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .m-\[10px\] {
   margin: 10px;
 }
@@ -1095,7 +1099,8 @@ video {
   width: 70%;
   height: 60px;
   background-color: rgb(255, 255, 255);
-  box-shadow: 0 5px 35px 0px rgb(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   border-radius: 85px;
   margin: 20px;
 }

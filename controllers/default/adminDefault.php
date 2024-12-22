@@ -30,7 +30,7 @@ if (isset($_POST['signout'])) {
     <div id="container">
         <div class="adminSection">
             <div class="backToBio">
-                <a href="/<?= $username; ?>"><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="/<?= $username; ?>">Go to bio<i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div id="info__wrapper"></div>
         </div>

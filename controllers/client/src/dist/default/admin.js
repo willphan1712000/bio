@@ -29,7 +29,6 @@ function adminPage() {
         }
         const list = data.data;
         list.username = username;
-        console.log(list);
         (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath } })).reactMounting();
         $(".info__img--remove").click(function () {
             let data = {

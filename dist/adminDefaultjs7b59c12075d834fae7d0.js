@@ -2065,50 +2065,32 @@ class Toggle extends W3 {
         return this;
     }
     advanced() {
-        if (document.querySelector(this.ele2) === null) {
-            throw new Error(this.ele2 + " is not defined or rendered on DOM");
+        if (this.ele2 === null) {
+            throw new Error("showing element is not defined or rendered on DOM");
         }
-        if (this.ele1.terminate !== undefined) {
-            if (document.querySelector(this.ele1.trigger) === null) {
-                throw new Error(this.ele1.trigger + " is not defined or rendered on DOM");
-            }
-            if (document.querySelector(this.ele1.terminate) === null) {
-                throw new Error(this.ele1.terminate + " is not defined or rendered on DOM");
-            }
-            if (this.ele1.trigger === this.ele1.terminate) {
-                $(this.ele1.trigger).click(e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if ($(this.ele2).hasClass(this.ele3)) {
-                        $(this.ele2).removeClass(this.ele3);
-                    }
-                    else {
-                        $(this.ele2).addClass(this.ele3);
-                    }
-                });
-            }
-            else {
-                $(this.ele1.trigger).click(e => {
-                    $(this.ele2).addClass(this.ele3);
-                });
-                $(this.ele1.terminate).click(e => {
-                    $(this.ele2).removeClass(this.ele3);
-                });
-            }
+        if (this.ele1.terminate === null) {
+            throw new Error("terminating element is not defined or rendered on DOM");
         }
         else {
-            $(this.ele1.trigger).click(e => {
-                $(this.ele2).addClass(this.ele3);
+            this.ele1.trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if ($(this.ele2).hasClass(this.ele3)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+                else {
+                    $(this.ele2).addClass(this.ele3);
+                }
             });
         }
-        document.addEventListener('click', e => {
-            const t = e.target;
-            const ele1child = document.querySelector(this.ele1.trigger).children;
-            const ele2child = document.querySelector(this.ele2).children;
-            if (!Array.from(ele2child).includes(t) && t !== document.querySelector(this.ele1.trigger) && !Array.from(ele1child).includes(t)) {
-                $(this.ele2).removeClass(this.ele3);
-            }
-        });
+        if (this.ele1.terminate !== null) {
+            document.addEventListener('click', e => {
+                const target = e.target;
+                if (this.ele1.terminate.includes(target)) {
+                    $(this.ele2).removeClass(this.ele3);
+                }
+            });
+        }
         return this;
     }
     cancel() {
@@ -4119,7 +4101,6 @@ function adminPage() {
         }
         const list = data.data;
         list.username = username;
-        console.log(list);
         (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath } })).reactMounting();
         $(".info__img--remove").click(function () {
             let data = {
@@ -4167,12 +4148,18 @@ const SaveDefault_1 = __importDefault(__webpack_require__(/*! ../../admin/client
 const SocialTag_1 = __importDefault(__webpack_require__(/*! ./SocialTag */ "./controllers/client/src/dist/default/clientComponents/SocialTag.js"));
 const Input_1 = __importDefault(__webpack_require__(/*! ../../admin/clientComponents/Input */ "./controllers/client/src/dist/admin/clientComponents/Input.js"));
 const InfoArea = ({ data, extraData }) => {
+    const [isLoading, setLoading] = (0, react_1.useState)(true);
     const [description, setDescription] = (0, react_1.useState)(data.description);
     const src = (data.image === null || data.image === '') ? extraData.defaultImgPath : '/user/' + data.username + '/' + data.image;
     function desChangeHandler(e) {
         setDescription(e.target.value);
         data.description = e.target.value;
     }
+    (0, react_1.useEffect)(() => {
+        setLoading(false);
+    });
+    if (isLoading)
+        return (0, jsx_runtime_1.jsx)("div", { className: 'm-3', children: (0, jsx_runtime_1.jsx)("p", { className: 'text-center', children: "Loading... Please Wait" }) });
     return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminContext.Provider, { value: data, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'info', children: [(0, jsx_runtime_1.jsxs)("div", { className: "info__img info__img--ava", children: [(0, jsx_runtime_1.jsx)("input", { type: "file", className: "uploadImg", accept: "image/*", name: "uploadImg", hidden: true }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--remove", children: (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-x" }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--location", children: (0, jsx_runtime_1.jsx)("img", { draggable: false, src: src, alt: "avatar_admin" }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--modify", children: (0, jsx_runtime_1.jsx)("div", { className: "info__img--choose", children: "Choose picture" }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__about", children: [(0, jsx_runtime_1.jsx)("div", { className: "info__name my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'name' }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__org my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'organization' }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__des admin", children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "des", children: "Description" }), (0, jsx_runtime_1.jsx)("textarea", { name: "des", id: "des", value: description, onChange: e => desChangeHandler(e) })] })] })] }), (0, jsx_runtime_1.jsx)("div", { id: "social-media", children: Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'].includes(key) && (0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: key, children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}, key) }, key)) }), (0, jsx_runtime_1.jsx)(SaveDefault_1.default, {})] }) }));
 };
 exports["default"] = InfoArea;
@@ -57201,4 +57188,4 @@ const counter = api.counter;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminDefaultjs871bc33692361c5198cd.js.map
+//# sourceMappingURL=adminDefaultjs7b59c12075d834fae7d0.js.map

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { AdminContext, AdminElementContext } from '../../admin/clientComponents/AdminContext'
 import SaveDefault from '../../admin/clientComponents/Save/SaveDefault'
 import SocialTag from './SocialTag'
@@ -14,6 +14,7 @@ interface Props {
 }
 
 const InfoArea = ({data, extraData}: Props) => {
+  const [isLoading, setLoading] = useState(true)
   const [description, setDescription] = useState(data.description)
 
   const src = (data.image === null || data.image === '') ? extraData.defaultImgPath : '/user/' + data.username + '/' + data.image
@@ -22,6 +23,13 @@ const InfoArea = ({data, extraData}: Props) => {
     setDescription(e.target.value)
     data.description = e.target.value
   }
+
+  useEffect(() => {
+    setLoading(false)
+  })
+
+  if(isLoading)
+    return <div className='m-3'><p className='text-center'>Loading... Please Wait</p></div>
 
   return (
     <>

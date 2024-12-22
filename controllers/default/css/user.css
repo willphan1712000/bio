@@ -179,6 +179,7 @@ a {
 .adminBtn__ele {
   margin: 0px 15px;
   height: 60px;
+  width: 100%;
   border-radius: 20px;
   display: flex;
   justify-content: center;
@@ -269,7 +270,7 @@ a {
 .share__btn i {
   margin-right: 5px;
 }
-.shareWindow_parent {
+/* .shareWindow_parent {
   background-color: #0000002b;
   width: 100vw;
   height: 100vh;
@@ -337,7 +338,7 @@ a {
 }
 .shareWindow__btn.shareWindow__link i.check {
   display: none;
-}
+} */
 
 #copyright {
   border-radius: 20px;
@@ -406,12 +407,14 @@ a {
   display: flex;
   justify-content: flex-end;
 }
+.backToBio i {
+  margin-left: 5px;
+}
 .backToBio > a {
   background-color: var(--main-color);
-  border-radius: 50%;
+  border-radius: 10px;
   padding: 10px;
   cursor: pointer;
-  aspect-ratio: 1;
   height: 40px;
   text-align: center;
   margin: 10px;

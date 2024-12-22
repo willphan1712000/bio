@@ -4,6 +4,7 @@ namespace business\user\signup;
 
 use business\user\signup\SignupHandler;
 use business\user\signup\Input;
+use config\SystemConfig;
 
 class Password extends SignupHandler
 {
@@ -18,7 +19,7 @@ class Password extends SignupHandler
         $hasDigit = false;
         $hasUpperCase = false;
         $hasSpecialChar = true; // Bypass special characters
-        $isLengthValid = (strlen($password) >= 12) ? true : false;
+        $isLengthValid = (strlen($password) >= SystemConfig::globalVariables()['passwordRequirement']['limit']) ? true : false;
         for ($i = 0; $i < strlen($password); $i++) {
             $position = ord($password[$i]); // Get ASCII Value
             if ($position >= 65 && $position <= 90) {
@@ -27,9 +28,6 @@ class Password extends SignupHandler
             if ($position >= 48 && $position <= 57) {
                 $hasDigit = true;
             }
-            // if($position >= 33 && $position <= 47) {
-            //     $hasSpecialChar = true;
-            // }
             if ($hasUpperCase && $hasDigit && $hasSpecialChar) {
                 break;
             }

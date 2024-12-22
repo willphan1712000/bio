@@ -51,7 +51,13 @@ class SystemConfig
                 'username' => 'Allinclicks',
                 'password' => '123456'
             ],
-            'ownerEmail' => 'tonthang@icloud.com'
+            'ownerEmail' => 'tonthang@icloud.com',
+            'passwordRequirement' => [
+                'limit' => 6,
+                'char' => 'Password must have at least 6 characters',
+                'number' => 'Password must have at least a number',
+                'upper' => 'Password must have at least 1 upper case'
+            ]
         ];
     }
 
@@ -85,6 +91,7 @@ class SystemConfig
             "Tiktok" => '<i class="fa-brands fa-tiktok"></i>',
             "Pinterest" => '<i class="fa-brands fa-pinterest"></i>',
             "Zalo" => '<i class="fa-brands fa-viber"></i>',
+            "Viber" => '<i class="fa-brands fa-viber"></i>',
         ];
     }
 

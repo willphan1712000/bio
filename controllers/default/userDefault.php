@@ -2,6 +2,7 @@
 
 use component\UserFooter;
 use business\info\display\Display;
+use config\SystemConfig;
 use controllers\user\UserController;
 
 $user = new UserController();
@@ -31,15 +32,6 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
 
 <body>
     <div id="container">
-        <div class="shareWindow_parent">
-            <div class="shareWindow_child">
-                <div class="shareWindow__close">
-                    <i class="fa-solid fa-x"></i>
-                </div>
-                <img class="shareWindow__qr" src="/user/<?= $username; ?>/qr-code.png?v=<?= $g['v']; ?>" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/<?= $username; ?>/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
-                <div class="shareWindow__btn shareWindow__link"><?= $url; ?><i class="fa-regular fa-copy copy"></i><i class="fa-solid fa-check check"></i></div>
-            </div>
-        </div>
         <div class="adminSection">
             <div class="info">
                 <div class="info__img">

@@ -29,7 +29,6 @@ async function adminPage() {
 
     const list = data.data
     list.username = username
-    console.log(list)
 
     $$("#info__wrapper", <InfoArea data={list} extraData={{defaultImgPath}}/>).reactMounting()
 
