@@ -117,9 +117,10 @@ class SystemConfig
             'X' => '/^https?:\/\/[^\s]+$/',
             'Pinterest' => '/^https?:\/\/[^\s]+$/',
             'Linkedin' => '/^https?:\/\/[^\s]+$/',
-            'Zalo' => '/^\d{3}\d{3}\d{4}$/',
+            'Zalo' => '/^\d{10}$/',
             'Tiktok' => '/^https?:\/\/[^\s]+$/',
             'Website' => '/^https?:\/\/[^\s]+$/',
+            'Viber' => '/^\d{10}$/',
         ];
     }
 

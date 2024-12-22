@@ -5,6 +5,9 @@ import InfoArea from "./clientComponents/InfoArea";
 
 declare var username: string
 declare var defaultImgPath: string
+declare var regexMap: {
+    [key: string]: string
+}
 
 interface GET {
     success: boolean,
@@ -30,7 +33,7 @@ async function adminPage() {
     const list = data.data
     list.username = username
 
-    $$("#info__wrapper", <InfoArea data={list} extraData={{defaultImgPath}}/>).reactMounting()
+    $$("#info__wrapper", <InfoArea data={list} extraData={{defaultImgPath, regexMap}}/>).reactMounting()
 
 
     // ================================================================

@@ -1,5 +1,6 @@
 <?php
 
+use config\SystemConfig;
 use controllers\admin\AdminController;
 
 $admin = new AdminController();
@@ -8,6 +9,7 @@ $admin->execute();
 $g = $admin->get("g");
 $info = $admin->get("info");
 $username = $admin->get("username");
+$regexMap = $admin->get("regexMap");
 
 if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);
@@ -50,6 +52,7 @@ if (isset($_POST['signout'])) {
     <script>
         const username = "<?= $username ?>"
         const defaultImgPath = '<?= $g['img']['unknown']; ?>'
+        const regexMap = <?= json_encode($regexMap); ?>
     </script>
 </body>
 

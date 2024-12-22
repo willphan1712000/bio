@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.labelMap = exports.regexMap = exports.iconMap = void 0;
+exports.labelMap = exports.iconMap = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 const react_fontawesome_1 = require("@fortawesome/react-fontawesome");
@@ -27,30 +27,6 @@ const iconMap = {
     'Invalid': (0, jsx_runtime_1.jsx)(Invalid, {})
 };
 exports.iconMap = iconMap;
-const regexMap = {
-    'name': /^.*$/,
-    'organization': /^.*$/,
-    'description': /^.*$/,
-    'Email': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    'Mobile': /^\d{10}$/,
-    'Work': /^\d{10}$/,
-    'Booking': /^(https:\/\/.*|[^]+)$/,
-    'OrderOnline': /^(https:\/\/.*|[^]+)$/,
-    'HotSale': /^(https:\/\/.*|[^]+)$/,
-    'Address': /^.*$/,
-    'Facebook': /^(https:\/\/.*|[^]+)$/,
-    'Instagram': /^(https:\/\/.*|[^]+)$/,
-    'Messenger': /^.*$/,
-    'Youtube': /^(https:\/\/.*|[^]+)$/,
-    'Threads': /^(https:\/\/.*|[^]+)$/,
-    'X': /^(https:\/\/.*|[^]+)$/,
-    'Pinterest': /^(https:\/\/.*|[^]+)$/,
-    'Linkedin': /^(https:\/\/.*|[^]+)$/,
-    'Zalo': /^\d{3}\d{3}\d{4}$/,
-    'Tiktok': /^(https:\/\/.*|[^]+)$/,
-    'Website': /^(https:\/\/.*|[^]+)$/,
-};
-exports.regexMap = regexMap;
 const labelMap = {
     'name': 'Your Name',
     'organization': 'Organization or Job title',

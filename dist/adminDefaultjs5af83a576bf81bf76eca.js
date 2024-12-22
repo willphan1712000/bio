@@ -10,17 +10,25 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AdminElementContext = exports.AdminContext = void 0;
+exports.AdminElementContext = exports.AdminRegexContext = exports.AdminContext = void 0;
 exports["default"] = handleAdminContext;
+exports.handleAdminRegexContext = handleAdminRegexContext;
 exports.handleAdminElementContext = handleAdminElementContext;
 const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 exports.AdminContext = (0, react_1.createContext)(undefined);
+exports.AdminRegexContext = (0, react_1.createContext)(undefined);
 exports.AdminElementContext = (0, react_1.createContext)(undefined);
 function handleAdminContext() {
     if (exports.AdminContext === undefined) {
         throw new Error("Admin context is undefined");
     }
     return exports.AdminContext;
+}
+function handleAdminRegexContext() {
+    if (exports.AdminRegexContext === undefined) {
+        throw new Error("Admin context is undefined");
+    }
+    return exports.AdminRegexContext;
 }
 function handleAdminElementContext() {
     if (exports.AdminContext === undefined) {
@@ -1499,6 +1507,7 @@ const WW_1 = __webpack_require__(/*! ../../client/src/Web-Development/WW */ "./c
 const AdminContext_1 = __importStar(__webpack_require__(/*! ./AdminContext */ "./controllers/client/src/dist/admin/clientComponents/AdminContext.js"));
 const Input = ({ inputLabelColor, name }) => {
     const data = (0, react_1.useContext)((0, AdminContext_1.default)());
+    const regexMap = (0, react_1.useContext)((0, AdminContext_1.handleAdminRegexContext)());
     const nameContext = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
     if (name === undefined) {
         name = nameContext;
@@ -1512,7 +1521,7 @@ const Input = ({ inputLabelColor, name }) => {
         data[name] = valueFormatted;
     };
     (0, react_1.useEffect)(() => {
-        const validate = (0, WW_1.$$$)(inputRef.current, spanRef.current, ElementMap_1.regexMap[name]).formValidate();
+        const validate = (0, WW_1.$$$)(inputRef.current, spanRef.current, new RegExp(regexMap[name].slice(1, -1))).formValidate();
         return () => {
             validate.cleanup();
         };
@@ -1631,7 +1640,7 @@ function SaveDefault() {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.labelMap = exports.regexMap = exports.iconMap = void 0;
+exports.labelMap = exports.iconMap = void 0;
 const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
@@ -1658,30 +1667,6 @@ const iconMap = {
     'Invalid': (0, jsx_runtime_1.jsx)(Invalid, {})
 };
 exports.iconMap = iconMap;
-const regexMap = {
-    'name': /^.*$/,
-    'organization': /^.*$/,
-    'description': /^.*$/,
-    'Email': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    'Mobile': /^\d{10}$/,
-    'Work': /^\d{10}$/,
-    'Booking': /^(https:\/\/.*|[^]+)$/,
-    'OrderOnline': /^(https:\/\/.*|[^]+)$/,
-    'HotSale': /^(https:\/\/.*|[^]+)$/,
-    'Address': /^.*$/,
-    'Facebook': /^(https:\/\/.*|[^]+)$/,
-    'Instagram': /^(https:\/\/.*|[^]+)$/,
-    'Messenger': /^.*$/,
-    'Youtube': /^(https:\/\/.*|[^]+)$/,
-    'Threads': /^(https:\/\/.*|[^]+)$/,
-    'X': /^(https:\/\/.*|[^]+)$/,
-    'Pinterest': /^(https:\/\/.*|[^]+)$/,
-    'Linkedin': /^(https:\/\/.*|[^]+)$/,
-    'Zalo': /^\d{3}\d{3}\d{4}$/,
-    'Tiktok': /^(https:\/\/.*|[^]+)$/,
-    'Website': /^(https:\/\/.*|[^]+)$/,
-};
-exports.regexMap = regexMap;
 const labelMap = {
     'name': 'Your Name',
     'organization': 'Organization or Job title',
@@ -4101,7 +4086,7 @@ function adminPage() {
         }
         const list = data.data;
         list.username = username;
-        (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath } })).reactMounting();
+        (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath, regexMap } })).reactMounting();
         $(".info__img--remove").click(function () {
             let data = {
                 type: 'avaDelete',
@@ -4160,7 +4145,7 @@ const InfoArea = ({ data, extraData }) => {
     });
     if (isLoading)
         return (0, jsx_runtime_1.jsx)("div", { className: 'm-3', children: (0, jsx_runtime_1.jsx)("p", { className: 'text-center', children: "Loading... Please Wait" }) });
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminContext.Provider, { value: data, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'info', children: [(0, jsx_runtime_1.jsxs)("div", { className: "info__img info__img--ava", children: [(0, jsx_runtime_1.jsx)("input", { type: "file", className: "uploadImg", accept: "image/*", name: "uploadImg", hidden: true }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--remove", children: (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-x" }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--location", children: (0, jsx_runtime_1.jsx)("img", { draggable: false, src: src, alt: "avatar_admin" }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--modify", children: (0, jsx_runtime_1.jsx)("div", { className: "info__img--choose", children: "Choose picture" }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__about", children: [(0, jsx_runtime_1.jsx)("div", { className: "info__name my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'name' }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__org my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'organization' }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__des admin", children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "des", children: "Description" }), (0, jsx_runtime_1.jsx)("textarea", { name: "des", id: "des", value: description, onChange: e => desChangeHandler(e) })] })] })] }), (0, jsx_runtime_1.jsx)("div", { id: "social-media", children: Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'].includes(key) && (0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: key, children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}, key) }, key)) }), (0, jsx_runtime_1.jsx)(SaveDefault_1.default, {})] }) }));
+    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminContext.Provider, { value: data, children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminRegexContext.Provider, { value: extraData.regexMap, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'info', children: [(0, jsx_runtime_1.jsxs)("div", { className: "info__img info__img--ava", children: [(0, jsx_runtime_1.jsx)("input", { type: "file", className: "uploadImg", accept: "image/*", name: "uploadImg", hidden: true }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--remove", children: (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-x" }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--location", children: (0, jsx_runtime_1.jsx)("img", { draggable: false, src: src, alt: "avatar_admin" }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--modify", children: (0, jsx_runtime_1.jsx)("div", { className: "info__img--choose", children: "Choose picture" }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__about", children: [(0, jsx_runtime_1.jsx)("div", { className: "info__name my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'name' }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__org my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'organization' }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__des admin", children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "des", children: "Description" }), (0, jsx_runtime_1.jsx)("textarea", { name: "des", id: "des", value: description, onChange: e => desChangeHandler(e) })] })] })] }), (0, jsx_runtime_1.jsx)("div", { id: "social-media", children: Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'].includes(key) && (0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: key, children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}, key) }, key)) }), (0, jsx_runtime_1.jsx)(SaveDefault_1.default, {})] }) }) }));
 };
 exports["default"] = InfoArea;
 
@@ -57188,4 +57173,4 @@ const counter = api.counter;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminDefaultjs7b59c12075d834fae7d0.js.map
+//# sourceMappingURL=adminDefaultjs5af83a576bf81bf76eca.js.map

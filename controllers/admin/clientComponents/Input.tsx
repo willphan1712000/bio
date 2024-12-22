@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
-import { labelMap, regexMap } from '../../client/src/ElementMap'
+import { labelMap } from '../../client/src/ElementMap'
 import { $$$ } from '../../client/src/Web-Development/WW'
-import handleAdminContext, { handleAdminElementContext } from './AdminContext'
+import handleAdminContext, { handleAdminElementContext, handleAdminRegexContext } from './AdminContext'
 
 interface Props {
     inputLabelColor: string,
@@ -10,6 +10,7 @@ interface Props {
 
 const Input = ({inputLabelColor, name}: Props) => {
   const data = useContext(handleAdminContext())
+  const regexMap = useContext(handleAdminRegexContext())
   const nameContext = useContext(handleAdminElementContext())
   if(name === undefined) {
     name = nameContext as string
@@ -27,7 +28,7 @@ const Input = ({inputLabelColor, name}: Props) => {
   }
 
   useEffect(() => {
-    const validate = $$$(inputRef.current, spanRef.current, regexMap[name]).formValidate()
+    const validate = $$$(inputRef.current, spanRef.current, new RegExp(regexMap[name].slice(1, -1))).formValidate()
 
     return () => {
       validate.cleanup()

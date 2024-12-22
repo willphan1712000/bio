@@ -2,6 +2,8 @@ import { createContext } from "react";
 
 export const AdminContext = createContext<{[key: string]: string} | undefined>(undefined)
 
+export const AdminRegexContext = createContext<{[key: string]: string} | undefined>(undefined)
+
 export const AdminElementContext = createContext<string | undefined>(undefined)
 
 export default function handleAdminContext() : React.Context<any> {
@@ -9,6 +11,13 @@ export default function handleAdminContext() : React.Context<any> {
         throw new Error("Admin context is undefined")
     }
     return AdminContext
+}
+
+export function handleAdminRegexContext() : React.Context<any> {
+    if(AdminRegexContext === undefined) {
+        throw new Error("Admin context is undefined")
+    }
+    return AdminRegexContext
 }
 
 export function handleAdminElementContext() : React.Context<any> {

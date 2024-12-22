@@ -30,6 +30,7 @@ const WW_1 = require("../../client/src/Web-Development/WW");
 const AdminContext_1 = __importStar(require("./AdminContext"));
 const Input = ({ inputLabelColor, name }) => {
     const data = (0, react_1.useContext)((0, AdminContext_1.default)());
+    const regexMap = (0, react_1.useContext)((0, AdminContext_1.handleAdminRegexContext)());
     const nameContext = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
     if (name === undefined) {
         name = nameContext;
@@ -43,7 +44,7 @@ const Input = ({ inputLabelColor, name }) => {
         data[name] = valueFormatted;
     };
     (0, react_1.useEffect)(() => {
-        const validate = (0, WW_1.$$$)(inputRef.current, spanRef.current, ElementMap_1.regexMap[name]).formValidate();
+        const validate = (0, WW_1.$$$)(inputRef.current, spanRef.current, new RegExp(regexMap[name].slice(1, -1))).formValidate();
         return () => {
             validate.cleanup();
         };

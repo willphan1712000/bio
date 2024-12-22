@@ -15,6 +15,7 @@ use config\ProductionConfig;
 class AdminController extends UserController
 {
     private bool $isSignedIn;
+    protected array $regexMap;
 
     protected function getPreData()
     {
@@ -70,6 +71,8 @@ class AdminController extends UserController
                 $this->restoreProcess(); // perform restore process before proceeding anything
 
                 $this->getPostData(); // get all needed data
+
+                $this->regexMap = SystemConfig::regexMap();
 
                 return [
                     'success' => true
