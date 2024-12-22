@@ -1,19 +1,19 @@
 <?php
 
-use business\user\InfoAnchor;
 use component\UserFooter;
+use business\info\display\Display;
 use controllers\user\UserController;
 
 $user = new UserController();
 $user->execute();
 
 $infoArray = $user->get("info");
-$infoAnchor = new InfoAnchor($infoArray);
 
 $socialIconArr = $user->get("socialIconArr");
 $url = $user->get("url");
 $username = $user->get("username");
 $g = $user->get("g");
+$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : $infoArray['image'];
 
 ?>
 <!DOCTYPE html>
@@ -44,23 +44,23 @@ $g = $user->get("g");
             <div class="info">
                 <div class="info__img">
                     <div class="info__img--location">
-                        <img src=<?= $infoArray['image']; ?> alt="bio_user_avatar">
+                        <img src=<?= $image; ?> alt="bio_user_avatar">
                     </div>
                 </div>
                 <div class="info__about">
                     <div class="info__name">
                         <div>
-                            <h1><?= $infoArray['name']; ?></h1>
+                            <h1><?= $infoArray['name']->getHTML(); ?></h1>
                         </div>
                     </div>
                     <div class="info__org">
                         <div>
-                            <h2><?= $infoArray['organization']; ?></h2>
+                            <h2><?= $infoArray['organization']->getHTML(); ?></h2>
                         </div>
                     </div>
                     <div class="info__des">
                         <div>
-                            <h3><?= $infoArray['description']; ?></h3>
+                            <h3><?= $infoArray['description']->getHTML(); ?></h3>
                         </div>
                     </div>
                 </div>
@@ -69,17 +69,20 @@ $g = $user->get("g");
                 <?php
                 foreach ($infoArray as $prop => $info) {
                     if (!in_array($prop, ['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'])) {
-                        $social = $infoAnchor->social($prop);
-                        echo '<div class="social ' . $prop . '" style="display: ' . $social['display'] . ';">
+
+                        /** @var Display */
+                        $element = $infoArray[$prop];
+                        echo $element->getHTML('<div class="social ' . $prop . '" style="width: 100%;">
                             <div class="social__img info__img">' . $socialIconArr[$prop] . '</div>
                             <div class="social__info info__about">
                                 <div class="info__name">
                                     <div>
-                                        <p>' . $social['label'] . '</p>' . $social['a'] . '
+                                        <p>' . $element->getLabel() . '</p>
+                                        <p>' . $element->getValue() . '</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>');
                     }
                 }
                 ?>

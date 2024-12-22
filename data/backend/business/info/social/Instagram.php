@@ -13,10 +13,4 @@ class Instagram extends Social
         parent::__construct($next);
         $this->name = 'Instagram';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

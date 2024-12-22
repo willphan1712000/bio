@@ -2,11 +2,10 @@
 
 namespace business\info\user;
 
+use business\info\display\NormalDisplay;
 use business\info\Info;
 use business\info\InfoHandler;
 use config\SystemConfig;
-use persistence\Database;
-use persistence\Entity\UserInfo;
 
 class Avatar extends User
 {
@@ -41,5 +40,12 @@ class Avatar extends User
             echo $e->getMessage();
             return false;
         }
+    }
+
+    public function doUserGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
+        $info->setInfo($this->name, new NormalDisplay($this->name, $this->format($value)));
+        return true;
     }
 }

@@ -16,10 +16,4 @@ class HotSale extends Social
         parent::__construct($next);
         $this->name = 'HotSale';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

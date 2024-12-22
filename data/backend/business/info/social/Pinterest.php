@@ -13,10 +13,4 @@ class Pinterest extends Social
         parent::__construct($next);
         $this->name = 'Pinterest';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

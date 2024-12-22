@@ -21,7 +21,7 @@
       font-size: 15px;
       text-align: center;
       padding: 0px 20px;
-    }</style><script src="/dist/tailwind99b9bdf64c76da772ae5.js"></script><script src="/dist/universal338525335f3c1d0938f4.js"></script></head><body><section id="success" class="hidden"><i class="fa-solid fa-check"></i><p class="msg">We appreciate your business! A confirmation email will be sent to <span id="customer-email"></span>.</p></section><script>initialize();
+    }</style><script src="/dist/tailwind47405e76c3bc0414eb3f.js"></script><script src="/dist/universal338525335f3c1d0938f4.js"></script></head><body><section id="success" class="hidden"><i class="fa-solid fa-check"></i><p class="msg">We appreciate your business! A confirmation email will be sent to <span id="customer-email"></span>.</p></section><script>initialize();
 
         async function initialize() {
           const queryString = window.location.search;

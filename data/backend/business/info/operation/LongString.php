@@ -16,7 +16,7 @@ class LongString implements Operation
     private function handleLongString(?string $string): ?string
     {
         if ($string === "" || $string === NULL) {
-            return $string;
+            return null;
         }
         if (str_contains($string, 'https://')) {
             $string = explode("?", $string)[0];

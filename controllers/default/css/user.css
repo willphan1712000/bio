@@ -448,4 +448,10 @@ a {
   .info__des h3 {
     text-align: center;
   }
+  .info__name h1 {
+    text-align: center;
+  }
+  .info__org h2 {
+    text-align: center;
+  }
 }

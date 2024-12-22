@@ -27,7 +27,7 @@ class Device implements Operation
         }
     }
 
-    public function execute($list): mixed
+    public function execute($list = null): mixed
     {
         return $this->getDeviceType();
     }

@@ -2,6 +2,8 @@
 
 namespace controllers\user;
 
+use business\info\userGET;
+use business\style\GET;
 use config\SystemConfig;
 use persistence\Database;
 use controllers\Controller;
@@ -45,45 +47,10 @@ class UserController extends Controller
         $this->socialIconArr = SystemConfig::socialIconArr(); // get icon array
         $this->url = UserManagement::URLGenerator($this->username, "share"); // get url based on username
 
-        $this->info = [];
-        /** @var UserInfo|NULL*/
-        $userInfo = Database::GET(UserInfo::class, null, ['username' => $this->username]);
-        /** @var UserPhone|NULL */
-        $userPhone = Database::GET(UserPhone::class, null, ['username' => $this->username]);
-        /** @var UserSocial|NULL */
-        $userSocial = Database::GET(UserSocial::class, null, ['username' => $this->username]);
+        $infoProcess = (new userGET($this->username))->execute();
+        $this->info = $infoProcess['success'] ? $infoProcess['data'] : null; // get info map
 
-        foreach (UserInfo::getProperty() as $prop) {
-            if (!in_array($prop, ['User', 'image'])) {
-                $this->info[$prop] = $userInfo->get($prop);
-            }
-            if ($prop === 'image') {
-                $this->info[$prop] = $userInfo->get($prop) === NULL ? $this->g['img']['unknown'] : $this->g['absolute_user_folder'] . $this->username . "/" . $userInfo->get($prop) . "?v=" . time();
-            }
-        }
-
-        foreach (UserPhone::getProperty() as $prop) {
-            if (!in_array($prop, ['User'])) {
-                $this->info[$prop] = $userPhone->get($prop);
-            }
-        }
-
-        foreach (UserSocial::getProperty() as $prop) {
-            if (!in_array($prop, ['User']))
-                $this->info[$prop] = $userSocial->get($prop);
-        }
-
-        $this->css = [];
-        if ($this->themeid !== 0) {
-            /** @var Style|NULL */
-            $style = Database::GET(Style::class, null, ['username' => $this->username, 'template_id' => $this->themeid]);
-
-            foreach (Style::getProperty() as $prop) {
-                if (!in_array($prop, ['Purchase', 'StyleDefault'])) {
-                    $this->css[$prop] = $style->get($prop);
-                }
-            }
-        }
+        $this->css = (new GET($this->username, $this->themeid)); // get template style array
     }
 
     public function redirect()

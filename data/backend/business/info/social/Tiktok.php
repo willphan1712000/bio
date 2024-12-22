@@ -13,10 +13,4 @@ class Tiktok extends Social
         parent::__construct($next);
         $this->name = 'Tiktok';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

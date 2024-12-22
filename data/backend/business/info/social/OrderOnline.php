@@ -13,10 +13,4 @@ class OrderOnline extends Social
         parent::__construct($next);
         $this->name = 'OrderOnline';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

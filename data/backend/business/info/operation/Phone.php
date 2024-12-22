@@ -16,6 +16,10 @@ class Phone implements Operation
     private function phoneNumberFormat(array $list): ?string
     {
         $number = $this->handleNumber($list['number']);
+        if ($number === null) {
+            return null;
+        }
+
         $code = $list['code'];
         // if coed is +84 Vietname, trim the first digit of the phone number
         if ($code === '+84') {
@@ -30,8 +34,11 @@ class Phone implements Operation
         return $this->phoneNumberFormat($list);
     }
 
-    private function handleNumber(string $number): string
+    private function handleNumber(?string $number): ?string
     {
+        if ($number === null) {
+            return null;
+        }
         $dashedNumber = ""; // the return number looks like this ddd-ddd-dddd
         for ($i = 0; $i < strlen($number); $i++) {
             if ($i === 3 || $i === 6) {

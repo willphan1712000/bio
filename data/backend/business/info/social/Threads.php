@@ -13,10 +13,4 @@ class Threads extends Social
         parent::__construct($next);
         $this->name = 'Threads';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

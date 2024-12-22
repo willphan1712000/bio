@@ -2,9 +2,9 @@
 
 namespace business\info\phone;
 
+use business\info\display\PhoneDisplay;
 use business\info\Info;
 use business\info\InfoHandler;
-use business\info\operation\Phone as OperationPhone;
 use business\info\phone\Phone;
 
 class Mobile extends Phone
@@ -40,16 +40,10 @@ class Mobile extends Phone
     {
         $value = $this->getValueFromDatabase('Mobile', $info->getInfo('username'));
         $code = $this->getValueFromDatabase('MobileCode', $info->getInfo('username'));
-        $info->setInfo($this->name, $this->format([
+        $info->setInfo($this->name, new PhoneDisplay($this->name, $this->format([
             'code' => $code,
             'number' => $value
-        ]));
+        ])));
         return true;
-    }
-
-    public function format($info): ?string
-    {
-        $o = OperationPhone::getInstance();
-        return $o->execute($info);
     }
 }

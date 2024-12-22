@@ -2,7 +2,6 @@
 
 namespace business\info\user;
 
-use business\info\Info;
 use business\info\InfoHandler;
 
 class Address extends User
@@ -13,8 +12,8 @@ class Address extends User
         $this->name = 'Address';
     }
 
-    public function format($info): string
+    public function format($info): ?string
     {
-        return empty($info) ? "" : "https://google.com/maps?q=" . $info;
+        return $info === null ? null : "https://google.com/maps?q=" . $info;
     }
 }

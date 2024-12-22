@@ -13,10 +13,4 @@ class X extends Social
         parent::__construct($next);
         $this->name = 'X';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }

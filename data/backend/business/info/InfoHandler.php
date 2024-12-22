@@ -2,6 +2,8 @@
 
 namespace business\info;
 
+use business\info\display\AdminDisplay;
+use business\info\display\UserDisplay;
 use config\SystemConfig;
 
 abstract class InfoHandler implements InfoElement
@@ -52,9 +54,9 @@ abstract class InfoHandler implements InfoElement
 
     public function doHandle(Info $info): bool
     {
-        if ($this->validate($this->name, $info->getInfo($this->name))) {
-            $info->setInfo($this->name, $info->getInfo($this->name));
-            return $this->setValueToDatabase($this->name, $info->getInfo($this->name), $info->getInfo('username'));
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;
     }
@@ -69,7 +71,7 @@ abstract class InfoHandler implements InfoElement
     public function doUserGET(Info $info): bool
     {
         $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
-        $info->setInfo($this->name, $this->format($value));
+        $info->setInfo($this->name, new UserDisplay($this->name, $this->format($value)));
         return true;
     }
 

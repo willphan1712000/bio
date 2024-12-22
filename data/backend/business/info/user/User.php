@@ -2,9 +2,10 @@
 
 namespace business\info\user;
 
-use business\info\InfoHandler;
 use persistence\Database;
+use business\info\InfoHandler;
 use persistence\Entity\UserInfo;
+use business\info\operation\MakeSpace;
 
 abstract class User extends InfoHandler
 {

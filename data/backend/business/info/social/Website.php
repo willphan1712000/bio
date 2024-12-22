@@ -13,10 +13,4 @@ class Website extends Social
         parent::__construct($next);
         $this->name = 'Website';
     }
-
-    public function format($info): ?string
-    {
-        $o = URL::getInstance();
-        return $o->execute($info);
-    }
 }
