@@ -35,7 +35,10 @@ class Avatar extends User
                 }
                 return $this->setValueToDatabase($this->name, $new, $info->getInfo('username'));
             }
-            return true;
+
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'PHOTO;ENCODING=b;TYPE=JPEG:' . $src . '\n');
+
+            return $this->setValueToDatabase($this->name, null, $info->getInfo('username'));
         } catch (\Exception $e) {
             echo $e->getMessage();
             return false;

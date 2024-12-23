@@ -11,6 +11,6 @@ class NormalDisplay extends UserDisplay
 
     public function getHTML(?string $children = null): string
     {
-        return $this->value;
+        return $this->value ?? '';
     }
 }

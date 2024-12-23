@@ -51,6 +51,7 @@ class PUT implements IAPI
             // Handle user information
             $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 
+            $this->info->setInfo('vcard', ''); // set vcard string to empty before attaching info elements to it
             $userInfoSuccess = $userInfoHandler->handle($this->info);
 
             return [

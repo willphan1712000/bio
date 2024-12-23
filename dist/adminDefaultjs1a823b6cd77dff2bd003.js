@@ -1674,7 +1674,7 @@ const Input = ({ inputLabelColor, name }) => {
             validate.cleanup();
         };
     }, []);
-    return ((0, jsx_runtime_1.jsxs)("div", { className: 'relative w-full h-[32px]', children: [(0, jsx_runtime_1.jsx)("input", { ref: inputRef, value: value === null ? '' : value, onChange: handleChange, required: true, type: "text", inputMode: ['Mobile', 'Work', 'Zalo'].includes(name) ? 'numeric' : 'text', autoComplete: 'on', name: name, id: name, className: 'peer absolute rounded-[10px] border-black border-[1px] p-[5px] text-[15px] w-full h-auto z-50 bg-transparent' }), (0, jsx_runtime_1.jsxs)("div", { style: { background: inputLabelColor }, className: `label absolute top-0 left-0 py-0 px-[5px] m-[5px] text-[15px] text-black transition-all peer-focus:top-[-15px] peer-focus:left-[10px] peer-focus:z-50 peer-focus:text-[13px] peer-valid:top-[-15px] peer-valid:left-[10px] peer-valid:z-50 peer-valid:text-[13px]`, children: [ElementMap_1.labelMap[name], " ", (0, jsx_runtime_1.jsx)("span", { ref: spanRef, className: 'ml-[5px]' })] })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'relative w-full h-[32px]', children: [(0, jsx_runtime_1.jsx)("input", { ref: inputRef, value: value === null ? '' : value, onChange: handleChange, required: true, type: "text", inputMode: ['Mobile', 'Work', 'Zalo', 'Viber', 'HotLine'].includes(name) ? 'numeric' : 'text', autoComplete: 'on', name: name, id: name, className: 'peer absolute rounded-[10px] border-black border-[1px] p-[5px] text-[15px] w-full h-auto z-50 bg-transparent' }), (0, jsx_runtime_1.jsxs)("div", { style: { background: inputLabelColor }, className: `label absolute top-0 left-0 py-0 px-[5px] m-[5px] text-[15px] text-black transition-all peer-focus:top-[-15px] peer-focus:left-[10px] peer-focus:z-50 peer-focus:text-[13px] peer-valid:top-[-15px] peer-valid:left-[10px] peer-valid:z-50 peer-valid:text-[13px]`, children: [ElementMap_1.labelMap[name], " ", (0, jsx_runtime_1.jsx)("span", { ref: spanRef, className: 'ml-[5px]' })] })] }));
 };
 exports["default"] = Input;
 
@@ -4183,7 +4183,9 @@ const InfoArea = ({ data, extraData }) => {
         data.description = e.target.value;
     }
     (0, react_1.useEffect)(() => {
-        setLoading(false);
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     });
     if (isLoading)
         return (0, jsx_runtime_1.jsx)("div", { className: 'm-3', children: (0, jsx_runtime_1.jsx)("p", { className: 'text-center', children: "Loading... Please Wait" }) });
@@ -57215,4 +57217,4 @@ const counter = api.counter;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminDefaultjs670970aaec8dfebdb76e.js.map
+//# sourceMappingURL=adminDefaultjs1a823b6cd77dff2bd003.js.map

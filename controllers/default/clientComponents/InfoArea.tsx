@@ -28,7 +28,9 @@ const InfoArea = ({data, extraData}: Props) => {
   }
 
   useEffect(() => {
-    setLoading(false)
+    setTimeout(() => {
+      setLoading(false)
+    }, 500)
   })
 
   if(isLoading)

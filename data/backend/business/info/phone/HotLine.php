@@ -18,9 +18,20 @@ class HotLine extends Phone
 
     public function doHandle(Info $info): bool
     {
-        if ($this->validate($this->name, $info->getInfo($this->name))) {
-            $info->setInfo($this->name, $info->getInfo($this->name));
-            return $this->setValueToDatabase($this->name, $info->getInfo($this->name), $info->getInfo('username')) && $this->setValueToDatabase('HotLineCode', $info->getInfo('HotLineCode'), $info->getInfo('username')) && $this->setValueToDatabase('HotLineFlag', $info->getInfo('HotLineFlag'), $info->getInfo('username'));
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            // $info->setInfo($this->name, $value);
+            if (!empty($value)) {
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'TEL;TYPE=Hotline;PREF:' . $this->format([
+                    'code' => $info->getInfo('HotLineCode'),
+                    'number' => $info->getInfo('HotLine')
+                ]) . '\n');
+
+                return $this->setValueToDatabase($this->name, $value, $info->getInfo('username')) && $this->setValueToDatabase('HotLineCode', $info->getInfo('HotLineCode'), $info->getInfo('username')) && $this->setValueToDatabase('HotLineFlag', $info->getInfo('HotLineFlag'), $info->getInfo('username'));
+            }
+
+
+            return $this->setValueToDatabase($this->name, null, $info->getInfo('username')) && $this->setValueToDatabase('HotLineCode', null, $info->getInfo('username')) && $this->setValueToDatabase('HotLineFlag', null, $info->getInfo('username'));
         }
         return false;
     }

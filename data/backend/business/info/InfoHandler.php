@@ -56,6 +56,7 @@ abstract class InfoHandler implements InfoElement
     {
         $value = $info->getInfo($this->name);
         if ($this->validate($this->name, $value)) {
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'URL;TYPE=' . $this->name . ':' . $this->format($value) . '\n');
             return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;

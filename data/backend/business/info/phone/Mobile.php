@@ -17,9 +17,19 @@ class Mobile extends Phone
 
     public function doHandle(Info $info): bool
     {
-        if ($this->validate($this->name, $info->getInfo($this->name))) {
-            $info->setInfo($this->name, $info->getInfo($this->name));
-            return $this->setValueToDatabase($this->name, $info->getInfo($this->name), $info->getInfo('username')) && $this->setValueToDatabase('MobileCode', $info->getInfo('MobileCode'), $info->getInfo('username')) && $this->setValueToDatabase('MobileFlag', $info->getInfo('MobileFlag'), $info->getInfo('username'));
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            // $info->setInfo($this->name, $value);
+            if (!empty($value)) {
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'TEL;TYPE=Mobile Phone;PREF:' . $this->format([
+                    'code' => $info->getInfo('MobileCode'),
+                    'number' => $info->getInfo('Mobile')
+                ]) . '\n');
+
+                return $this->setValueToDatabase($this->name, $value, $info->getInfo('username')) && $this->setValueToDatabase('MobileCode', $info->getInfo('MobileCode'), $info->getInfo('username')) && $this->setValueToDatabase('MobileFlag', $info->getInfo('MobileFlag'), $info->getInfo('username'));
+            }
+
+            return $this->setValueToDatabase($this->name, null, $info->getInfo('username')) && $this->setValueToDatabase('MobileCode', null, $info->getInfo('username')) && $this->setValueToDatabase('MobileFlag', null, $info->getInfo('username'));
         }
         return false;
     }

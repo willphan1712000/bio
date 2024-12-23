@@ -18,7 +18,9 @@ const InfoArea = ({ data, extraData }) => {
         data.description = e.target.value;
     }
     (0, react_1.useEffect)(() => {
-        setLoading(false);
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     });
     if (isLoading)
         return (0, jsx_runtime_1.jsx)("div", { className: 'm-3', children: (0, jsx_runtime_1.jsx)("p", { className: 'text-center', children: "Loading... Please Wait" }) });

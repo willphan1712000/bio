@@ -6,7 +6,6 @@ use business\info\Info;
 use business\info\InfoHandler;
 use business\info\phone\Phone;
 use business\info\display\ViberDisplay;
-use business\info\operation\Phone as OperationPhone;
 
 class Viber extends Phone
 {
@@ -18,9 +17,20 @@ class Viber extends Phone
 
     public function doHandle(Info $info): bool
     {
-        if ($this->validate($this->name, $info->getInfo($this->name))) {
-            $info->setInfo($this->name, $info->getInfo($this->name));
-            return $this->setValueToDatabase($this->name, $info->getInfo($this->name), $info->getInfo('username')) && $this->setValueToDatabase('ViberCode', $info->getInfo('ViberCode'), $info->getInfo('username')) && $this->setValueToDatabase('ViberFlag', $info->getInfo('ViberFlag'), $info->getInfo('username'));
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            // $info->setInfo($this->name, $value);
+            if (!empty($value)) {
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'TEL;TYPE=Viber;PREF:' . $this->format([
+                    'code' => $info->getInfo('ViberCode'),
+                    'number' => $info->getInfo('Viber')
+                ]) . '\n');
+
+                return $this->setValueToDatabase($this->name, $value, $info->getInfo('username')) && $this->setValueToDatabase('ViberCode', $info->getInfo('ViberCode'), $info->getInfo('username')) && $this->setValueToDatabase('ViberFlag', $info->getInfo('ViberFlag'), $info->getInfo('username'));
+            }
+
+
+            return $this->setValueToDatabase($this->name, null, $info->getInfo('username')) && $this->setValueToDatabase('ViberCode', null, $info->getInfo('username')) && $this->setValueToDatabase('ViberFlag', null, $info->getInfo('username'));
         }
         return false;
     }
@@ -46,11 +56,5 @@ class Viber extends Phone
             'number' => $value
         ])));
         return true;
-    }
-
-    public function format($info): ?string
-    {
-        $o = OperationPhone::getInstance();
-        return $o->execute($info);
     }
 }

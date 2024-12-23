@@ -247,15 +247,15 @@ a {
   padding: 15px;
   margin: 10px 10px 0px 10px;
 }
-#share {
+/* #share {
   width: 100%;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-}
-.share__btn {
+} */
+/* .share__btn {
   height: 50px;
   width: 100px;
   margin: 10px;
@@ -269,7 +269,7 @@ a {
 }
 .share__btn i {
   margin-right: 5px;
-}
+} */
 /* .shareWindow_parent {
   background-color: #0000002b;
   width: 100vw;
