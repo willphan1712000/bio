@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
-import { labelMap } from '../../client/src/ElementMap'
+import { labelMap } from './ElementMap'
 import { $$$ } from '../../client/src/Web-Development/WW'
 import handleAdminContext, { handleAdminElementContext, handleAdminRegexContext } from './AdminContext'
 

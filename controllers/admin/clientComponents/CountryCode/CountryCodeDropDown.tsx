@@ -59,6 +59,14 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
                 data['WorkCode'] = code
                 data['WorkFlag'] = flag
                 break
+            case 'HotLine':
+                data['HotLineCode'] = code
+                data['HotLineFlag'] = flag
+                break
+            case 'Viber':
+                data['ViberCode'] = code
+                data['ViberFlag'] = flag
+                break
             default:
                 break
         }

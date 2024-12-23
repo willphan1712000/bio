@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import handleAdminContext, { handleAdminElementContext } from '../../admin/clientComponents/AdminContext'
 import CountryCode from '../../admin/clientComponents/CountryCode/CountryCode'
 import Input from '../../admin/clientComponents/Input'
-import { iconMap } from '../../client/src/ElementMap'
+import { iconMap } from '../../admin/clientComponents/ElementMap'
 
 const SocialTag = () => {
   const name = useContext(handleAdminElementContext())
@@ -15,7 +15,7 @@ const SocialTag = () => {
   return (
     <div className={`social ${name}`} >
         <div className="social__img info__img">{iconMap[name]}</div>
-        <div className='social__tool flex items-center'><div className="social__tool--wrapper flex items-center relative h-auto">{['Mobile', 'Work'].includes(name) && <CountryCode />}</div></div>
+        <div className='social__tool flex items-center'><div className="social__tool--wrapper flex items-center relative h-auto">{['Mobile', 'Work', 'Viber', 'HotLine'].includes(name) && <CountryCode />}</div></div>
         <div className="social__info info__about">
             <Input inputLabelColor='#f6f2ff'/>
         </div>

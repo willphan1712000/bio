@@ -2,8 +2,6 @@
 
 namespace business\info\display;
 
-use business\info\operation\MakeSpace;
-
 class EmailDisplay extends UserDisplay
 {
     function __construct(string $name, ?string $value)

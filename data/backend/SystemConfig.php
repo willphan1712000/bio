@@ -92,6 +92,7 @@ class SystemConfig
             "Pinterest" => '<i class="fa-brands fa-pinterest"></i>',
             "Zalo" => '<i class="fa-brands fa-viber"></i>',
             "Viber" => '<i class="fa-brands fa-viber"></i>',
+            "HotLine" => '<i class="fa-solid fa-phone"></i>',
         ];
     }
 
@@ -121,6 +122,7 @@ class SystemConfig
             'Tiktok' => '/^https?:\/\/[^\s]+$/',
             'Website' => '/^https?:\/\/[^\s]+$/',
             'Viber' => '/^\d{10}$/',
+            'HotLine' => '/^\d{10}$/',
         ];
     }
 

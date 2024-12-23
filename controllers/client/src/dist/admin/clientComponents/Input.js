@@ -25,7 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const ElementMap_1 = require("../../client/src/ElementMap");
+const ElementMap_1 = require("./ElementMap");
 const WW_1 = require("../../client/src/Web-Development/WW");
 const AdminContext_1 = __importStar(require("./AdminContext"));
 const Input = ({ inputLabelColor, name }) => {

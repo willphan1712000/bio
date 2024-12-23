@@ -20,6 +20,14 @@ const CountryCodeIcon = ({buttonRef, onCallBack} : Props) => {
       flag = data['WorkFlag'] ?? 'us'
       code = data['WorkCode'] ?? '+1'
       break
+    case 'Viber':
+      flag = data['ViberFlag'] ?? 'us'
+      code = data['ViberCode'] ?? '+1'
+      break
+    case 'HotLine':
+      flag = data['HotLineFlag'] ?? 'us'
+      code = data['HotLineCode'] ?? '+1'
+      break
     default:
       break
   }

@@ -1,14 +1,15 @@
 <?php
 
+use config\SystemConfig as c;
 use component\UserFooter;
 use business\info\display\Display;
-use config\SystemConfig;
 use controllers\user\UserController;
 
 $user = new UserController();
 $user->execute();
 
 $infoArray = $user->get("info");
+// c::dd($infoArray['HotLine']->getHTML());
 
 $socialIconArr = $user->get("socialIconArr");
 $url = $user->get("url");
@@ -60,7 +61,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             <div id="social-media">
                 <?php
                 foreach ($infoArray as $prop => $info) {
-                    if (!in_array($prop, ['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'])) {
+                    if (!in_array($prop, ['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
 
                         /** @var Display */
                         $element = $infoArray[$prop];

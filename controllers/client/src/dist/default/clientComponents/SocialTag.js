@@ -31,13 +31,13 @@ const react_1 = require("react");
 const AdminContext_1 = __importStar(require("../../admin/clientComponents/AdminContext"));
 const CountryCode_1 = __importDefault(require("../../admin/clientComponents/CountryCode/CountryCode"));
 const Input_1 = __importDefault(require("../../admin/clientComponents/Input"));
-const ElementMap_1 = require("../../client/src/ElementMap");
+const ElementMap_1 = require("../../admin/clientComponents/ElementMap");
 const SocialTag = () => {
     const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
     const data = (0, react_1.useContext)((0, AdminContext_1.default)());
     if (data === undefined) {
         throw new Error("Fetching data failed");
     }
-    return ((0, jsx_runtime_1.jsxs)("div", { className: `social ${name}`, children: [(0, jsx_runtime_1.jsx)("div", { className: "social__img info__img", children: ElementMap_1.iconMap[name] }), (0, jsx_runtime_1.jsx)("div", { className: 'social__tool flex items-center', children: (0, jsx_runtime_1.jsx)("div", { className: "social__tool--wrapper flex items-center relative h-auto", children: ['Mobile', 'Work'].includes(name) && (0, jsx_runtime_1.jsx)(CountryCode_1.default, {}) }) }), (0, jsx_runtime_1.jsx)("div", { className: "social__info info__about", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#f6f2ff' }) })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: `social ${name}`, children: [(0, jsx_runtime_1.jsx)("div", { className: "social__img info__img", children: ElementMap_1.iconMap[name] }), (0, jsx_runtime_1.jsx)("div", { className: 'social__tool flex items-center', children: (0, jsx_runtime_1.jsx)("div", { className: "social__tool--wrapper flex items-center relative h-auto", children: ['Mobile', 'Work', 'Viber', 'HotLine'].includes(name) && (0, jsx_runtime_1.jsx)(CountryCode_1.default, {}) }) }), (0, jsx_runtime_1.jsx)("div", { className: "social__info info__about", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#f6f2ff' }) })] }));
 };
 exports.default = SocialTag;

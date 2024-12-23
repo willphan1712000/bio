@@ -5,13 +5,8 @@ namespace controllers\user;
 use business\info\userGET;
 use business\style\GET;
 use config\SystemConfig;
-use persistence\Database;
 use controllers\Controller;
-use persistence\Entity\Style;
-use persistence\Entity\UserInfo;
 use business\user\UserManagement;
-use persistence\Entity\UserPhone;
-use persistence\Entity\UserSocial;
 use business\template\TemplateManagement;
 
 class UserController extends Controller

@@ -27,7 +27,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const AdminContext_1 = __importStar(require("../AdminContext"));
 const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
     const data = (0, react_1.useContext)((0, AdminContext_1.default)());
     let flag, code;
@@ -39,6 +39,14 @@ const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
         case 'Work':
             flag = (_c = data['WorkFlag']) !== null && _c !== void 0 ? _c : 'us';
             code = (_d = data['WorkCode']) !== null && _d !== void 0 ? _d : '+1';
+            break;
+        case 'Viber':
+            flag = (_e = data['ViberFlag']) !== null && _e !== void 0 ? _e : 'us';
+            code = (_f = data['ViberCode']) !== null && _f !== void 0 ? _f : '+1';
+            break;
+        case 'HotLine':
+            flag = (_g = data['HotLineFlag']) !== null && _g !== void 0 ? _g : 'us';
+            code = (_h = data['HotLineCode']) !== null && _h !== void 0 ? _h : '+1';
             break;
         default:
             break;

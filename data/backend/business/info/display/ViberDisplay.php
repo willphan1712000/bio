@@ -2,7 +2,7 @@
 
 namespace business\info\display;
 
-class PhoneDisplay extends UserDisplay
+class ViberDisplay extends UserDisplay
 {
     function __construct(string $name, ?string $value)
     {
@@ -13,6 +13,6 @@ class PhoneDisplay extends UserDisplay
     {
         $children = $children ?? $this->value;
         $display = $this->value === null ? "none" : "flex";
-        return '<a href="tel: ' . $this->value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
+        return '<a href="viber://contact?number=' . $this->value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
     }
 }

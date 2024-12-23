@@ -1,5 +1,6 @@
 import { faEnvelope, faGlobe, faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "../../client/src/Web-Development/components/Image";
 
 type Element = 'Email' | 'Mobile' | 'Work' | 'Booking' | 'OrderOnline' | 'HotSale' | 'Address' | 'Facebook' | 'Instagram' | 'Messenger' | 'Youtube' | 'Threads' | 'X' | 'Pinterest' | 'Linkedin' | 'Zalo' | 'Tiktok' | 'Website';
 export default Element;
@@ -9,7 +10,7 @@ type ElementArray = Record<string, any>
 const iconMap: ElementArray = {
     'Email': <Email />,
     'Mobile': <Mobile />,
-    'Work': <Work />,
+    'Work': <Mobile />,
     'Booking': <Booking />,
     'OrderOnline': <OrderOnline />,
     'HotSale': <HotSale />,
@@ -23,6 +24,8 @@ const iconMap: ElementArray = {
     'Pinterest': <Pinterest />,
     'Linkedin': <Linkedin />,
     'Zalo': <Zalo />,
+    'Viber': <Viber />,
+    'HotLine': <Mobile />,
     'Tiktok': <Tiktok />,
     'Website': <Website />,
     'Valid': <Valid />,
@@ -78,7 +81,9 @@ const labelMap: ElementArray = {
     'Linkedin': 'Linkedin link',
     'Zalo': 'Zalo phone number',
     'Tiktok': 'Tiktok link',
-    'Website': 'Website line',
+    'Website': 'Website link',
+    'Viber': 'Viber',
+    'HotLine': 'HotLine',
 }
 
 export { labelMap };
@@ -95,27 +100,21 @@ function Mobile() {
     )
 }
 
-function Work() {
-    return (
-        <FontAwesomeIcon icon={faPhone} size="3x"/>
-    )
-}
-
 function Booking() {
     return (
-        <img className="icon" src="/controllers/client/img/booking.png" />
+        <Image src="/controllers/client/img/booking.png"/>
     )
 }
 
 function OrderOnline() {
     return (
-        <img className="icon" src="/controllers/client/img/order.png" />
+        <Image src="/controllers/client/img/order.png"/>
     )
 }
 
 function HotSale() {
     return (
-        <img className="icon" src="/controllers/client/img/hotsales.png" />
+        <Image src="/controllers/client/img/hotsales.png"/>
     )
 }
 
@@ -173,9 +172,15 @@ function Linkedin() {
     )
 }
 
-function Zalo() {
+function Viber() {
     return (
         <i className="fa-brands fa-viber"></i>
+    )
+}
+
+function Zalo() {
+    return (
+        <Image src="/controllers/client/img/zalo.png"/>
     )
 }
 

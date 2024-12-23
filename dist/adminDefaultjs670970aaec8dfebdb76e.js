@@ -156,6 +156,14 @@ const CountryCodeDropDown = ({ isListShown, listRef, setDropDown }) => {
                 data['WorkCode'] = code;
                 data['WorkFlag'] = flag;
                 break;
+            case 'HotLine':
+                data['HotLineCode'] = code;
+                data['HotLineFlag'] = flag;
+                break;
+            case 'Viber':
+                data['ViberCode'] = code;
+                data['ViberFlag'] = flag;
+                break;
             default:
                 break;
         }
@@ -219,7 +227,7 @@ const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modul
 const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 const AdminContext_1 = __importStar(__webpack_require__(/*! ../AdminContext */ "./controllers/client/src/dist/admin/clientComponents/AdminContext.js"));
 const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
     const data = (0, react_1.useContext)((0, AdminContext_1.default)());
     let flag, code;
@@ -231,6 +239,14 @@ const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
         case 'Work':
             flag = (_c = data['WorkFlag']) !== null && _c !== void 0 ? _c : 'us';
             code = (_d = data['WorkCode']) !== null && _d !== void 0 ? _d : '+1';
+            break;
+        case 'Viber':
+            flag = (_e = data['ViberFlag']) !== null && _e !== void 0 ? _e : 'us';
+            code = (_f = data['ViberCode']) !== null && _f !== void 0 ? _f : '+1';
+            break;
+        case 'HotLine':
+            flag = (_g = data['HotLineFlag']) !== null && _g !== void 0 ? _g : 'us';
+            code = (_h = data['HotLineCode']) !== null && _h !== void 0 ? _h : '+1';
             break;
         default:
             break;
@@ -1468,6 +1484,138 @@ exports["default"] = codeList;
 
 /***/ }),
 
+/***/ "./controllers/client/src/dist/admin/clientComponents/ElementMap.js":
+/*!**************************************************************************!*\
+  !*** ./controllers/client/src/dist/admin/clientComponents/ElementMap.js ***!
+  \**************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.labelMap = exports.iconMap = void 0;
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
+const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+const Image_1 = __importDefault(__webpack_require__(/*! ../../client/src/Web-Development/components/Image */ "./controllers/client/src/dist/client/src/Web-Development/components/Image.js"));
+const iconMap = {
+    'Email': (0, jsx_runtime_1.jsx)(Email, {}),
+    'Mobile': (0, jsx_runtime_1.jsx)(Mobile, {}),
+    'Work': (0, jsx_runtime_1.jsx)(Mobile, {}),
+    'Booking': (0, jsx_runtime_1.jsx)(Booking, {}),
+    'OrderOnline': (0, jsx_runtime_1.jsx)(OrderOnline, {}),
+    'HotSale': (0, jsx_runtime_1.jsx)(HotSale, {}),
+    'Address': (0, jsx_runtime_1.jsx)(Address, {}),
+    'Facebook': (0, jsx_runtime_1.jsx)(Facebook, {}),
+    'Instagram': (0, jsx_runtime_1.jsx)(Instagram, {}),
+    'Messenger': (0, jsx_runtime_1.jsx)(Messenger, {}),
+    'Youtube': (0, jsx_runtime_1.jsx)(Youtube, {}),
+    'Threads': (0, jsx_runtime_1.jsx)(Threads, {}),
+    'X': (0, jsx_runtime_1.jsx)(X, {}),
+    'Pinterest': (0, jsx_runtime_1.jsx)(Pinterest, {}),
+    'Linkedin': (0, jsx_runtime_1.jsx)(Linkedin, {}),
+    'Zalo': (0, jsx_runtime_1.jsx)(Zalo, {}),
+    'Viber': (0, jsx_runtime_1.jsx)(Viber, {}),
+    'HotLine': (0, jsx_runtime_1.jsx)(Mobile, {}),
+    'Tiktok': (0, jsx_runtime_1.jsx)(Tiktok, {}),
+    'Website': (0, jsx_runtime_1.jsx)(Website, {}),
+    'Valid': (0, jsx_runtime_1.jsx)(Valid, {}),
+    'Invalid': (0, jsx_runtime_1.jsx)(Invalid, {})
+};
+exports.iconMap = iconMap;
+const labelMap = {
+    'name': 'Your Name',
+    'organization': 'Organization or Job title',
+    'description': 'A little about yourself',
+    'Email': 'Your email',
+    'Mobile': 'Mobile',
+    'Work': 'Work',
+    'Booking': 'Booking link',
+    'OrderOnline': 'Order Online Link',
+    'HotSale': 'HotSale link',
+    'Address': 'Your Address',
+    'Facebook': 'Facebook link',
+    'Instagram': 'Instagram link',
+    'Messenger': 'Facebook username',
+    'Youtube': 'Youtube link',
+    'Threads': 'Threads link',
+    'X': 'X link',
+    'Pinterest': 'Pinterest link',
+    'Linkedin': 'Linkedin link',
+    'Zalo': 'Zalo phone number',
+    'Tiktok': 'Tiktok link',
+    'Website': 'Website link',
+    'Viber': 'Viber',
+    'HotLine': 'HotLine',
+};
+exports.labelMap = labelMap;
+function Email() {
+    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEnvelope, size: "3x" }));
+}
+function Mobile() {
+    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faPhone, size: "3x" }));
+}
+function Booking() {
+    return ((0, jsx_runtime_1.jsx)(Image_1.default, { src: "/controllers/client/img/booking.png" }));
+}
+function OrderOnline() {
+    return ((0, jsx_runtime_1.jsx)(Image_1.default, { src: "/controllers/client/img/order.png" }));
+}
+function HotSale() {
+    return ((0, jsx_runtime_1.jsx)(Image_1.default, { src: "/controllers/client/img/hotsales.png" }));
+}
+function Address() {
+    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faLocationDot, size: "3x" }));
+}
+function Facebook() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-facebook" }));
+}
+function Instagram() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-instagram" }));
+}
+function Messenger() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-facebook-messenger" }));
+}
+function Youtube() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-youtube" }));
+}
+function Threads() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-threads" }));
+}
+function X() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-x-twitter" }));
+}
+function Pinterest() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-pinterest" }));
+}
+function Linkedin() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-linkedin" }));
+}
+function Viber() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-viber" }));
+}
+function Zalo() {
+    return ((0, jsx_runtime_1.jsx)(Image_1.default, { src: "/controllers/client/img/zalo.png" }));
+}
+function Tiktok() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-tiktok" }));
+}
+function Website() {
+    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faGlobe, size: "3x" }));
+}
+function Valid() {
+    return (0, jsx_runtime_1.jsx)("i", { style: { color: "green" }, className: "fa-solid fa-check" });
+}
+function Invalid() {
+    return (0, jsx_runtime_1.jsx)("i", { style: { color: "red" }, className: "fa-solid fa-x" });
+}
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/admin/clientComponents/Input.js":
 /*!*********************************************************************!*\
   !*** ./controllers/client/src/dist/admin/clientComponents/Input.js ***!
@@ -1502,7 +1650,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const ElementMap_1 = __webpack_require__(/*! ../../client/src/ElementMap */ "./controllers/client/src/dist/client/src/ElementMap.js");
+const ElementMap_1 = __webpack_require__(/*! ./ElementMap */ "./controllers/client/src/dist/admin/clientComponents/ElementMap.js");
 const WW_1 = __webpack_require__(/*! ../../client/src/Web-Development/WW */ "./controllers/client/src/dist/client/src/Web-Development/WW.js");
 const AdminContext_1 = __importStar(__webpack_require__(/*! ./AdminContext */ "./controllers/client/src/dist/admin/clientComponents/AdminContext.js"));
 const Input = ({ inputLabelColor, name }) => {
@@ -1626,130 +1774,6 @@ function SaveDefault() {
     const [isDone, setDone] = (0, react_1.useState)(false);
     const [msg, setMsg] = (0, react_1.useState)('Save');
     return ((0, jsx_runtime_1.jsx)("div", { className: 'flex justify-center items-center sticky bottom-0 z-[99]', children: (0, jsx_runtime_1.jsxs)("div", { className: `saveDefaultButtonStyle ${isDone ? 'saveDefaultButtonGlowingStyle' : ''}`, children: [(0, jsx_runtime_1.jsxs)("span", { className: "flex items-center", children: [(0, jsx_runtime_1.jsx)("p", { className: 'mx-[10px]', children: msg }), " ", (0, jsx_runtime_1.jsx)(react_spinners_1.ClipLoader, { size: "20px", color: '#000', loading: isSubmitting })] }), (0, jsx_runtime_1.jsx)(Save_1.default, { setSubmit: setSubmit, setDone: setDone, setMsg: setMsg })] }) }));
-}
-
-
-/***/ }),
-
-/***/ "./controllers/client/src/dist/client/src/ElementMap.js":
-/*!**************************************************************!*\
-  !*** ./controllers/client/src/dist/client/src/ElementMap.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.labelMap = exports.iconMap = void 0;
-const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
-const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-const iconMap = {
-    'Email': (0, jsx_runtime_1.jsx)(Email, {}),
-    'Mobile': (0, jsx_runtime_1.jsx)(Mobile, {}),
-    'Work': (0, jsx_runtime_1.jsx)(Work, {}),
-    'Booking': (0, jsx_runtime_1.jsx)(Booking, {}),
-    'OrderOnline': (0, jsx_runtime_1.jsx)(OrderOnline, {}),
-    'HotSale': (0, jsx_runtime_1.jsx)(HotSale, {}),
-    'Address': (0, jsx_runtime_1.jsx)(Address, {}),
-    'Facebook': (0, jsx_runtime_1.jsx)(Facebook, {}),
-    'Instagram': (0, jsx_runtime_1.jsx)(Instagram, {}),
-    'Messenger': (0, jsx_runtime_1.jsx)(Messenger, {}),
-    'Youtube': (0, jsx_runtime_1.jsx)(Youtube, {}),
-    'Threads': (0, jsx_runtime_1.jsx)(Threads, {}),
-    'X': (0, jsx_runtime_1.jsx)(X, {}),
-    'Pinterest': (0, jsx_runtime_1.jsx)(Pinterest, {}),
-    'Linkedin': (0, jsx_runtime_1.jsx)(Linkedin, {}),
-    'Zalo': (0, jsx_runtime_1.jsx)(Zalo, {}),
-    'Tiktok': (0, jsx_runtime_1.jsx)(Tiktok, {}),
-    'Website': (0, jsx_runtime_1.jsx)(Website, {}),
-    'Valid': (0, jsx_runtime_1.jsx)(Valid, {}),
-    'Invalid': (0, jsx_runtime_1.jsx)(Invalid, {})
-};
-exports.iconMap = iconMap;
-const labelMap = {
-    'name': 'Your Name',
-    'organization': 'Organization or Job title',
-    'description': 'A little about yourself',
-    'Email': 'Your email',
-    'Mobile': 'Mobile',
-    'Work': 'Work',
-    'Booking': 'Booking link',
-    'OrderOnline': 'Order Online Link',
-    'HotSale': 'HotSale link',
-    'Address': 'Your Address',
-    'Facebook': 'Facebook link',
-    'Instagram': 'Instagram link',
-    'Messenger': 'Facebook username',
-    'Youtube': 'Youtube link',
-    'Threads': 'Threads link',
-    'X': 'X link',
-    'Pinterest': 'Pinterest link',
-    'Linkedin': 'Linkedin link',
-    'Zalo': 'Zalo phone number',
-    'Tiktok': 'Tiktok link',
-    'Website': 'Website line',
-};
-exports.labelMap = labelMap;
-function Email() {
-    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEnvelope, size: "3x" }));
-}
-function Mobile() {
-    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faPhone, size: "3x" }));
-}
-function Work() {
-    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faPhone, size: "3x" }));
-}
-function Booking() {
-    return ((0, jsx_runtime_1.jsx)("img", { className: "icon", src: "/controllers/client/img/booking.png" }));
-}
-function OrderOnline() {
-    return ((0, jsx_runtime_1.jsx)("img", { className: "icon", src: "/controllers/client/img/order.png" }));
-}
-function HotSale() {
-    return ((0, jsx_runtime_1.jsx)("img", { className: "icon", src: "/controllers/client/img/hotsales.png" }));
-}
-function Address() {
-    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faLocationDot, size: "3x" }));
-}
-function Facebook() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-facebook" }));
-}
-function Instagram() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-instagram" }));
-}
-function Messenger() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-facebook-messenger" }));
-}
-function Youtube() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-youtube" }));
-}
-function Threads() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-threads" }));
-}
-function X() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-x-twitter" }));
-}
-function Pinterest() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-pinterest" }));
-}
-function Linkedin() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-linkedin" }));
-}
-function Zalo() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-viber" }));
-}
-function Tiktok() {
-    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-tiktok" }));
-}
-function Website() {
-    return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faGlobe, size: "3x" }));
-}
-function Valid() {
-    return (0, jsx_runtime_1.jsx)("i", { style: { color: "green" }, className: "fa-solid fa-check" });
-}
-function Invalid() {
-    return (0, jsx_runtime_1.jsx)("i", { style: { color: "red" }, className: "fa-solid fa-x" });
 }
 
 
@@ -2322,6 +2346,24 @@ class PhoneFormat {
     }
 }
 exports["default"] = PhoneFormat;
+
+
+/***/ }),
+
+/***/ "./controllers/client/src/dist/client/src/Web-Development/components/Image.js":
+/*!************************************************************************************!*\
+  !*** ./controllers/client/src/dist/client/src/Web-Development/components/Image.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const Image = ({ src }) => {
+    return ((0, jsx_runtime_1.jsx)("img", { className: "image", src: src, draggable: false, alt: 'React Image Component' }));
+};
+exports["default"] = Image;
 
 
 /***/ }),
@@ -4145,7 +4187,7 @@ const InfoArea = ({ data, extraData }) => {
     });
     if (isLoading)
         return (0, jsx_runtime_1.jsx)("div", { className: 'm-3', children: (0, jsx_runtime_1.jsx)("p", { className: 'text-center', children: "Loading... Please Wait" }) });
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminContext.Provider, { value: data, children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminRegexContext.Provider, { value: extraData.regexMap, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'info', children: [(0, jsx_runtime_1.jsxs)("div", { className: "info__img info__img--ava", children: [(0, jsx_runtime_1.jsx)("input", { type: "file", className: "uploadImg", accept: "image/*", name: "uploadImg", hidden: true }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--remove", children: (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-x" }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--location", children: (0, jsx_runtime_1.jsx)("img", { draggable: false, src: src, alt: "avatar_admin" }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--modify", children: (0, jsx_runtime_1.jsx)("div", { className: "info__img--choose", children: "Choose picture" }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__about", children: [(0, jsx_runtime_1.jsx)("div", { className: "info__name my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'name' }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__org my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'organization' }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__des admin", children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "des", children: "Description" }), (0, jsx_runtime_1.jsx)("textarea", { name: "des", id: "des", value: description, onChange: e => desChangeHandler(e) })] })] })] }), (0, jsx_runtime_1.jsx)("div", { id: "social-media", children: Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'].includes(key) && (0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: key, children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}, key) }, key)) }), (0, jsx_runtime_1.jsx)(SaveDefault_1.default, {})] }) }) }));
+    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminContext.Provider, { value: data, children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminRegexContext.Provider, { value: extraData.regexMap, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'info', children: [(0, jsx_runtime_1.jsxs)("div", { className: "info__img info__img--ava", children: [(0, jsx_runtime_1.jsx)("input", { type: "file", className: "uploadImg", accept: "image/*", name: "uploadImg", hidden: true }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--remove", children: (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-x" }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--location", children: (0, jsx_runtime_1.jsx)("img", { draggable: false, src: src, alt: "avatar_admin" }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "info__img--modify", children: (0, jsx_runtime_1.jsx)("div", { className: "info__img--choose", children: "Choose picture" }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__about", children: [(0, jsx_runtime_1.jsx)("div", { className: "info__name my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'name' }) }), (0, jsx_runtime_1.jsx)("div", { className: "info__org my-[15px]", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#fff', name: 'organization' }) }), (0, jsx_runtime_1.jsxs)("div", { className: "info__des admin", children: [(0, jsx_runtime_1.jsx)("label", { htmlFor: "des", children: "Description" }), (0, jsx_runtime_1.jsx)("textarea", { name: "des", id: "des", value: description, onChange: e => desChangeHandler(e) })] })] })] }), (0, jsx_runtime_1.jsx)("div", { id: "social-media", children: Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode'].includes(key) && (0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: key, children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}, key) }, key)) }), (0, jsx_runtime_1.jsx)(SaveDefault_1.default, {})] }) }) }));
 };
 exports["default"] = InfoArea;
 
@@ -4192,14 +4234,14 @@ const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js"
 const AdminContext_1 = __importStar(__webpack_require__(/*! ../../admin/clientComponents/AdminContext */ "./controllers/client/src/dist/admin/clientComponents/AdminContext.js"));
 const CountryCode_1 = __importDefault(__webpack_require__(/*! ../../admin/clientComponents/CountryCode/CountryCode */ "./controllers/client/src/dist/admin/clientComponents/CountryCode/CountryCode.js"));
 const Input_1 = __importDefault(__webpack_require__(/*! ../../admin/clientComponents/Input */ "./controllers/client/src/dist/admin/clientComponents/Input.js"));
-const ElementMap_1 = __webpack_require__(/*! ../../client/src/ElementMap */ "./controllers/client/src/dist/client/src/ElementMap.js");
+const ElementMap_1 = __webpack_require__(/*! ../../admin/clientComponents/ElementMap */ "./controllers/client/src/dist/admin/clientComponents/ElementMap.js");
 const SocialTag = () => {
     const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
     const data = (0, react_1.useContext)((0, AdminContext_1.default)());
     if (data === undefined) {
         throw new Error("Fetching data failed");
     }
-    return ((0, jsx_runtime_1.jsxs)("div", { className: `social ${name}`, children: [(0, jsx_runtime_1.jsx)("div", { className: "social__img info__img", children: ElementMap_1.iconMap[name] }), (0, jsx_runtime_1.jsx)("div", { className: 'social__tool flex items-center', children: (0, jsx_runtime_1.jsx)("div", { className: "social__tool--wrapper flex items-center relative h-auto", children: ['Mobile', 'Work'].includes(name) && (0, jsx_runtime_1.jsx)(CountryCode_1.default, {}) }) }), (0, jsx_runtime_1.jsx)("div", { className: "social__info info__about", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#f6f2ff' }) })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: `social ${name}`, children: [(0, jsx_runtime_1.jsx)("div", { className: "social__img info__img", children: ElementMap_1.iconMap[name] }), (0, jsx_runtime_1.jsx)("div", { className: 'social__tool flex items-center', children: (0, jsx_runtime_1.jsx)("div", { className: "social__tool--wrapper flex items-center relative h-auto", children: ['Mobile', 'Work', 'Viber', 'HotLine'].includes(name) && (0, jsx_runtime_1.jsx)(CountryCode_1.default, {}) }) }), (0, jsx_runtime_1.jsx)("div", { className: "social__info info__about", children: (0, jsx_runtime_1.jsx)(Input_1.default, { inputLabelColor: '#f6f2ff' }) })] }));
 };
 exports["default"] = SocialTag;
 
@@ -57173,4 +57215,4 @@ const counter = api.counter;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminDefaultjs5af83a576bf81bf76eca.js.map
+//# sourceMappingURL=adminDefaultjs670970aaec8dfebdb76e.js.map

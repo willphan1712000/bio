@@ -3,7 +3,6 @@
 namespace business\info\display;
 
 use business\info\operation\Device;
-use business\info\operation\MakeSpace;
 
 class YoutubeDisplay extends UserDisplay
 {

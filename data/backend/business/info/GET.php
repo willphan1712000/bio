@@ -19,6 +19,7 @@ use business\info\social\Threads;
 use business\info\social\Website;
 use business\info\social\Youtube;
 use business\info\social\Facebook;
+use business\info\phone\HotLine;
 use business\info\social\Linkedin;
 use business\info\social\Instagram;
 use business\info\social\Messenger;
@@ -26,6 +27,7 @@ use business\info\social\Pinterest;
 use business\info\user\Description;
 use business\info\user\Organization;
 use business\info\social\OrderOnline;
+use business\info\phone\Viber;
 
 class GET implements IAPI
 {
@@ -44,7 +46,7 @@ class GET implements IAPI
 
             $userSocialHandler = new Booking(new Facebook(new HotSale(new Instagram(new Linkedin(new Messenger(new OrderOnline(new Pinterest(new Threads(new Tiktok(new Website(new X(new Youtube(new Zalo(null))))))))))))));
             // Handle user phone number
-            $userPhoneHandler = new Mobile(new Work($userSocialHandler));
+            $userPhoneHandler = new Mobile(new Work(new HotLine(new Viber($userSocialHandler))));
             // Handle user information
             $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 

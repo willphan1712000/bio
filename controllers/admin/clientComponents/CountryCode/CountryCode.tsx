@@ -8,14 +8,9 @@ type Code = {
 }
 
 const CountryCode = () => {
-    // const [dataProp, setData] = useState<Code>(data!)
     const [isListShown, setShown] = useState<boolean>(false)
     const listRef = useRef<HTMLDivElement>(null)
     const buttonRef = useRef<HTMLDivElement>(null)
-
-    // function getCode(data: Code) {
-    //     setData(data)
-    // }
 
     function setDropDown() {
         setShown(!isListShown)

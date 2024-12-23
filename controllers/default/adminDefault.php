@@ -1,13 +1,12 @@
 <?php
 
-use config\SystemConfig;
+use config\SystemConfig as c;
 use controllers\admin\AdminController;
 
 $admin = new AdminController();
 $admin->execute();
 
 $g = $admin->get("g");
-$info = $admin->get("info");
 $username = $admin->get("username");
 $regexMap = $admin->get("regexMap");
 

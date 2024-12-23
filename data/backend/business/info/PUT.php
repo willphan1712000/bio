@@ -3,6 +3,7 @@
 namespace business\info;
 
 use business\IAPI;
+use business\info\Info;
 use business\info\Vcard;
 use business\info\social\X;
 use business\info\user\Name;
@@ -11,9 +12,11 @@ use business\info\user\Email;
 use business\info\social\Zalo;
 use business\info\user\Avatar;
 use business\info\phone\Mobile;
+use business\info\phone\Viber;
 use business\info\user\Address;
 use business\info\social\Tiktok;
 use business\info\social\Booking;
+use business\info\phone\HotLine;
 use business\info\social\HotSale;
 use business\info\social\Threads;
 use business\info\social\Website;
@@ -44,7 +47,7 @@ class PUT implements IAPI
             // Handle user social
             $userSocialHandler = new Booking(new Facebook(new HotSale(new Instagram(new Linkedin(new Messenger(new OrderOnline(new Pinterest(new Threads(new Tiktok(new Website(new X(new Youtube(new Zalo($user))))))))))))));
             // Handle user phone number
-            $userPhoneHandler = new Mobile(new Work($userSocialHandler));
+            $userPhoneHandler = new Mobile(new Work(new HotLine(new Viber($userSocialHandler))));
             // Handle user information
             $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 

@@ -2,8 +2,6 @@
 
 namespace business\info\display;
 
-use business\info\operation\MakeSpace;
-
 class NormalDisplay extends UserDisplay
 {
     function __construct(string $name, ?string $value)

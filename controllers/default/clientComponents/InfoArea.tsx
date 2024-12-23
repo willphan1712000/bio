@@ -63,7 +63,7 @@ const InfoArea = ({data, extraData}: Props) => {
             </div>
           </div>
           <div id="social-media">
-              {Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode'].includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
+              {Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode'].includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
           </div>
           <SaveDefault />
         </AdminRegexContext.Provider>
