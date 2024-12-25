@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
-import handleAdminContext from "../AdminContext"
+import { useState } from "react"
 import { $$$ } from "../../../client/src/Web-Development/WW"
+import handleAdminContext from "../AdminContext"
 
 
 interface Props {
@@ -16,7 +16,7 @@ type POST = {
 
 export default function Save({setSubmit, setDone, setMsg} : Props) {
     const [isSubmitting, setSubmitHandler] = useState(false)
-    const data = useContext(handleAdminContext())
+    const data = handleAdminContext()
 
     async function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.preventDefault()

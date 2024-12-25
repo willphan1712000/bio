@@ -1,4 +1,3 @@
-import { useContext } from "react"
 import handleAdminContext, { handleAdminElementContext } from "../AdminContext"
 
 interface Props {
@@ -7,10 +6,10 @@ interface Props {
 }
 
 const CountryCodeIcon = ({buttonRef, onCallBack} : Props) => {
-  const name = useContext(handleAdminElementContext())
-  const data = useContext(handleAdminContext())
+  const name = handleAdminElementContext()
+  const data = handleAdminContext()
 
-  let flag, code
+  let flag: string = '', code: string = ''
   switch(name) {
     case 'Mobile':
       flag = data['MobileFlag'] ?? 'us'

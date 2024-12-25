@@ -285,6 +285,16 @@ class Toggle extends W3 {
         });
         return this;
     }
+    disableScroll() {
+        $("body").css({
+            overflow: "hidden"
+        });
+    }
+    enableScroll() {
+        $("body").css({
+            overflow: "auto"
+        });
+    }
     advanced() {
         if (this.ele2 === null) {
             throw new Error("showing element is not defined or rendered on DOM");
@@ -297,9 +307,11 @@ class Toggle extends W3 {
                 e.preventDefault();
                 e.stopPropagation();
                 if ($(this.ele2).hasClass(this.ele3)) {
+                    this.enableScroll();
                     $(this.ele2).removeClass(this.ele3);
                 }
                 else {
+                    this.disableScroll();
                     $(this.ele2).addClass(this.ele3);
                 }
             });
@@ -308,6 +320,7 @@ class Toggle extends W3 {
             document.addEventListener('click', e => {
                 const target = e.target;
                 if (this.ele1.terminate.includes(target)) {
+                    this.enableScroll();
                     $(this.ele2).removeClass(this.ele3);
                 }
             });

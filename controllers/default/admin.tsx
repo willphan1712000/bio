@@ -1,4 +1,3 @@
-import Transform from "../client/src/Web-Development/components/Transform/Transform";
 import { $$ } from "../client/src/Web-Development/W";
 import { $$$ } from "../client/src/Web-Development/WW";
 import InfoArea from "./clientComponents/InfoArea";
@@ -59,6 +58,4 @@ async function adminPage() {
             }
         })
     })
-
-    
 }

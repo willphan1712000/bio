@@ -1,6 +1,6 @@
-import { ChangeEvent, useContext, useState } from "react"
-import codeList from "./codeList"
+import { ChangeEvent, useState } from "react"
 import handleAdminContext, { handleAdminElementContext } from "../AdminContext"
+import codeList from "./codeList"
 
 type Code = {
     code: string,
@@ -20,8 +20,8 @@ interface Props {
 }
 
 const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
-    const data = useContext(handleAdminContext())
-    const name = useContext(handleAdminElementContext())
+    const data = handleAdminContext()
+    const name = handleAdminElementContext()
 
     const [list, setList] = useState<Array<List>>(codeList)
     const [value, setValue] = useState<string>('')

@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.$$$ = $$$;
-const PhoneFormat_1 = __importDefault(require("./algorithms/PhoneFormat"));
 const SignUpUI_1 = __importDefault(require("./components/signup/SignUpUI"));
 function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
@@ -29,9 +28,6 @@ function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
 class WW1 {
     constructor(ele1) {
         this.ele1 = ele1;
-    }
-    phoneFormat() {
-        return new PhoneFormat_1.default(this.ele1);
     }
 }
 class WW2 {

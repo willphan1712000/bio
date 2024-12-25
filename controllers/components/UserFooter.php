@@ -40,7 +40,7 @@ class UserFooter
                     overflow-x: auto;
                     padding: 0px 10px;
                 }
-                ' . $container . ' .share__btn > a,  ' . $container . ' .share__btn--s {
+                ' . $container . ' .share__btn {
                     height: 50px;
                     width: auto;
                     margin: 10px;
@@ -155,9 +155,9 @@ class UserFooter
             <div id="share">
                 <p>Drag to see more options</p>
                 <div class="options">
-                    <div class="share__btn share__btn--s share"><i class="fa-solid fa-share"></i>Share</div>
+                    <div class="share__btn share"><i class="fa-solid fa-share"></i>Share</div>
                     <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/' . $this->username . '/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
-                    <div class="share__btn share__btn--s qr"><i class="fa-solid fa-share"></i>QR Code</div>
+                    <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn edit" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '"><a style="text-decoration: none; color: #000;" href="/' . $this->username . '/admin"><i class="fa-solid fa-pen-to-square"></i> Bio</a></div>
                     <div class="bioBtn share__btn" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '">' . (new BioTemplateButton($this->username))->render("bioBtn") . '</div>
                 </div>

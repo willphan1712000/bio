@@ -1,12 +1,11 @@
-import { useContext } from 'react'
 import handleAdminContext, { handleAdminElementContext } from '../../admin/clientComponents/AdminContext'
 import CountryCode from '../../admin/clientComponents/CountryCode/CountryCode'
-import Input from '../../admin/clientComponents/Input'
 import { iconMap } from '../../admin/clientComponents/ElementMap'
+import Input from '../../admin/clientComponents/Input'
 
 const SocialTag = () => {
-  const name = useContext(handleAdminElementContext())
-  const data = useContext(handleAdminContext())
+  const name = handleAdminElementContext()
+  const data = handleAdminContext()
 
   if(data === undefined) {
     throw new Error("Fetching data failed")

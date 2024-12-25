@@ -27,14 +27,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
 const AdminContext_1 = __importStar(require("../../admin/clientComponents/AdminContext"));
 const CountryCode_1 = __importDefault(require("../../admin/clientComponents/CountryCode/CountryCode"));
-const Input_1 = __importDefault(require("../../admin/clientComponents/Input"));
 const ElementMap_1 = require("../../admin/clientComponents/ElementMap");
+const Input_1 = __importDefault(require("../../admin/clientComponents/Input"));
 const SocialTag = () => {
-    const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
-    const data = (0, react_1.useContext)((0, AdminContext_1.default)());
+    const name = (0, AdminContext_1.handleAdminElementContext)();
+    const data = (0, AdminContext_1.default)();
     if (data === undefined) {
         throw new Error("Fetching data failed");
     }

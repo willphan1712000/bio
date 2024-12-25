@@ -88,118 +88,118 @@ const labelMap: ElementArray = {
 
 export { labelMap };
 
-function Email() {
+export function Email() {
     return (
         <FontAwesomeIcon icon={faEnvelope} size="3x"/>
     )
 }
 
-function Mobile() {
+export function Mobile() {
     return (
         <FontAwesomeIcon icon={faPhone} size="3x"/>
     )
 }
 
-function Booking() {
+export function Booking() {
     return (
         <Image src="/controllers/client/img/booking.png"/>
     )
 }
 
-function OrderOnline() {
+export function OrderOnline() {
     return (
         <Image src="/controllers/client/img/order.png"/>
     )
 }
 
-function HotSale() {
+export function HotSale() {
     return (
         <Image src="/controllers/client/img/hotsales.png"/>
     )
 }
 
-function Address() {
+export function Address() {
     return (
         <FontAwesomeIcon icon={faLocationDot} size="3x"/>
     )
 }
 
-function Facebook() {
+export function Facebook() {
     return (
         <i className="fa-brands fa-facebook"></i>
     )
 }
 
-function Instagram() {
+export function Instagram() {
     return (
         <i className="fa-brands fa-instagram"></i>
     )
 }
 
-function Messenger() {
+export function Messenger() {
     return (
         <i className="fa-brands fa-facebook-messenger"></i>
     )
 }
 
-function Youtube() {
+export function Youtube() {
     return (
         <i className="fa-brands fa-youtube"></i>
     )
 }
 
-function Threads() {
+export function Threads() {
     return (
         <i className="fa-brands fa-threads"></i>
     )
 }
 
-function X() {
+export function X() {
     return (
         <i className="fa-brands fa-x-twitter"></i>
     )
 }
 
-function Pinterest() {
+export function Pinterest() {
     return (
         <i className="fa-brands fa-pinterest"></i>
     )
 }
 
-function Linkedin() {
+export function Linkedin() {
     return (
         <i className="fa-brands fa-linkedin"></i>
     )
 }
 
-function Viber() {
+export function Viber() {
     return (
         <i className="fa-brands fa-viber"></i>
     )
 }
 
-function Zalo() {
+export function Zalo() {
     return (
         <Image src="/controllers/client/img/zalo.png"/>
     )
 }
 
-function Tiktok() {
+export function Tiktok() {
     return (
         <i className="fa-brands fa-tiktok"></i>
     )
 }
 
-function Website() {
+export function Website() {
     return (
         <FontAwesomeIcon icon={faGlobe} size="3x"/>
     )
 }
 
-function Valid() {
+export function Valid() {
     return <i style={{color: "green"}} className="fa-solid fa-check"></i>
 }
 
-function Invalid() {
+export function Invalid() {
     return <i style={{color: "red"}} className="fa-solid fa-x"></i>
 }

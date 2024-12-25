@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Save;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const AdminContext_1 = __importDefault(require("../AdminContext"));
 const WW_1 = require("../../../client/src/Web-Development/WW");
+const AdminContext_1 = __importDefault(require("../AdminContext"));
 function Save({ setSubmit, setDone, setMsg }) {
     const [isSubmitting, setSubmitHandler] = (0, react_1.useState)(false);
-    const data = (0, react_1.useContext)((0, AdminContext_1.default)());
+    const data = (0, AdminContext_1.default)();
     function handleSubmit(e) {
         return __awaiter(this, void 0, void 0, function* () {
             e.preventDefault();

@@ -25,13 +25,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const ElementMap_1 = require("./ElementMap");
 const WW_1 = require("../../client/src/Web-Development/WW");
 const AdminContext_1 = __importStar(require("./AdminContext"));
+const ElementMap_1 = require("./ElementMap");
 const Input = ({ inputLabelColor, name }) => {
-    const data = (0, react_1.useContext)((0, AdminContext_1.default)());
-    const regexMap = (0, react_1.useContext)((0, AdminContext_1.handleAdminRegexContext)());
-    const nameContext = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
+    const data = (0, AdminContext_1.default)();
+    const regexMap = (0, AdminContext_1.handleAdminRegexContext)();
+    const nameContext = (0, AdminContext_1.handleAdminElementContext)();
     if (name === undefined) {
         name = nameContext;
     }
@@ -49,6 +49,6 @@ const Input = ({ inputLabelColor, name }) => {
             validate.cleanup();
         };
     }, []);
-    return ((0, jsx_runtime_1.jsxs)("div", { className: 'relative w-full h-[32px]', children: [(0, jsx_runtime_1.jsx)("input", { ref: inputRef, value: value === null ? '' : value, onChange: handleChange, required: true, type: "text", inputMode: ['Mobile', 'Work', 'Zalo', 'Viber', 'HotLine'].includes(name) ? 'numeric' : 'text', autoComplete: 'on', name: name, id: name, className: 'peer absolute rounded-[10px] border-black border-[1px] p-[5px] text-[15px] w-full h-auto z-50 bg-transparent' }), (0, jsx_runtime_1.jsxs)("div", { style: { background: inputLabelColor }, className: `label absolute top-0 left-0 py-0 px-[5px] m-[5px] text-[15px] text-black transition-all peer-focus:top-[-15px] peer-focus:left-[10px] peer-focus:z-50 peer-focus:text-[13px] peer-valid:top-[-15px] peer-valid:left-[10px] peer-valid:z-50 peer-valid:text-[13px]`, children: [ElementMap_1.labelMap[name], " ", (0, jsx_runtime_1.jsx)("span", { ref: spanRef, className: 'ml-[5px]' })] })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'relative w-full h-[32px]', children: [(0, jsx_runtime_1.jsx)("input", { ref: inputRef, value: value === null ? '' : value, onChange: handleChange, required: true, type: "text", inputMode: ['Mobile', 'Work', 'Zalo', 'Viber', 'HotLine'].includes(name) ? 'numeric' : 'text', autoComplete: 'on', name: name, id: name, className: 'peer absolute rounded-[10px] border-black border-[1px] p-[5px] text-[15px] w-full h-auto z-[1] bg-transparent' }), (0, jsx_runtime_1.jsxs)("div", { style: { background: inputLabelColor }, className: `label z-[0] absolute top-0 left-0 py-0 px-[5px] m-[5px] text-[15px] text-black transition-all peer-focus:top-[-15px] peer-focus:left-[10px] peer-focus:z-[1] peer-focus:text-[13px] peer-valid:top-[-15px] peer-valid:left-[10px] peer-valid:z-[1] peer-valid:text-[13px]`, children: [ElementMap_1.labelMap[name], " ", (0, jsx_runtime_1.jsx)("span", { ref: spanRef, className: 'ml-[5px]' })] })] }));
 };
 exports.default = Input;

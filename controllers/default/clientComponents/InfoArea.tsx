@@ -1,8 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-import { AdminContext, AdminElementContext, AdminRegexContext } from '../../admin/clientComponents/AdminContext'
+import { AdminContext, AdminElementContext, AdminRegexContext, username } from '../../admin/clientComponents/AdminContext'
+import Avatar from '../../admin/clientComponents/Avatar/Avatar'
+import Input from '../../admin/clientComponents/Input'
 import SaveDefault from '../../admin/clientComponents/Save/SaveDefault'
 import SocialTag from './SocialTag'
-import Input from '../../admin/clientComponents/Input'
+
 
 interface Props {
     data: {
@@ -19,8 +21,6 @@ interface Props {
 const InfoArea = ({data, extraData}: Props) => {
   const [isLoading, setLoading] = useState(true)
   const [description, setDescription] = useState(data.description)
-
-  const src = (data.image === null || data.image === '') ? extraData.defaultImgPath : '/user/' + data.username + '/' + data.image
 
   function desChangeHandler(e: ChangeEvent<HTMLTextAreaElement>) {
     setDescription(e.target.value)
@@ -42,21 +42,18 @@ const InfoArea = ({data, extraData}: Props) => {
         <AdminRegexContext.Provider value={extraData.regexMap}>
           <div className='info'>
             <div className="info__img info__img--ava">
-                <input type="file" className="uploadImg" accept="image/*" name="uploadImg" hidden />
-                <div className="info__img--remove"><i className="fa-solid fa-x"></i></div>
-                <div className="info__img--location">
-                    <img draggable={false} src={src as string} alt="avatar_admin" />
-                </div>
-            </div>
-            <div className="info__img--modify">
-                <div className="info__img--choose">Choose picture</div>
+                <Avatar />
             </div>
             <div className="info__about">
                 <div className="info__name my-[15px]">
+                  <AdminElementContext.Provider value={'name'}>
                     <Input inputLabelColor='#fff' name='name'/>
+                  </AdminElementContext.Provider>
                 </div>
                 <div className="info__org my-[15px]">
-                  <Input inputLabelColor='#fff' name='organization'/>
+                  <AdminElementContext.Provider value={'organization'}>
+                    <Input inputLabelColor='#fff' name='organization'/>
+                  </AdminElementContext.Provider>
                 </div>
                 <div className="info__des admin">
                     <label htmlFor="des">Description</label>

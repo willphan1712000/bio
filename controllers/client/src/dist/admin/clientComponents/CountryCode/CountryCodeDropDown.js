@@ -28,11 +28,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const codeList_1 = __importDefault(require("./codeList"));
 const AdminContext_1 = __importStar(require("../AdminContext"));
+const codeList_1 = __importDefault(require("./codeList"));
 const CountryCodeDropDown = ({ isListShown, listRef, setDropDown }) => {
-    const data = (0, react_1.useContext)((0, AdminContext_1.default)());
-    const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
+    const data = (0, AdminContext_1.default)();
+    const name = (0, AdminContext_1.handleAdminElementContext)();
     const [list, setList] = (0, react_1.useState)(codeList_1.default);
     const [value, setValue] = (0, react_1.useState)('');
     const top = {

@@ -24,13 +24,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
 const AdminContext_1 = __importStar(require("../AdminContext"));
 const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
     var _a, _b, _c, _d, _e, _f, _g, _h;
-    const name = (0, react_1.useContext)((0, AdminContext_1.handleAdminElementContext)());
-    const data = (0, react_1.useContext)((0, AdminContext_1.default)());
-    let flag, code;
+    const name = (0, AdminContext_1.handleAdminElementContext)();
+    const data = (0, AdminContext_1.default)();
+    let flag = '', code = '';
     switch (name) {
         case 'Mobile':
             flag = (_a = data['MobileFlag']) !== null && _a !== void 0 ? _a : 'us';
