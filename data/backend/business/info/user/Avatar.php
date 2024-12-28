@@ -22,7 +22,18 @@ class Avatar extends User
             $old = $this->getValueFromDatabase($this->name, $username); // get old image from database
 
             $src = $info->getInfo($this->name); // get image source uploaded
-            if ($src !== "" && $src !== null && $src !== $old) {
+
+            if ($src === $old) {
+                $path = __DIR__ . "/../../../../../user/" . $username . "/" . $old;
+                if (file_exists($path)) {
+                    $image = file_get_contents($path);
+                    $src = base64_encode($image);
+                    $info->setInfo('vcard', $info->getInfo('vcard') . 'PHOTO;ENCODING=b;TYPE=JPEG:' . $src . '\n');
+                }
+                return true;
+            }
+
+            if ($src !== "" && $src !== null) {
                 if ($old !== NULL) {
                     unlink(SystemConfig::globalVariables()['user_folder'] . $username . "/" . $old); // delete old image to save storage
                 }
@@ -36,9 +47,8 @@ class Avatar extends User
                 $info->setInfo('vcard', $info->getInfo('vcard') . 'PHOTO;ENCODING=b;TYPE=JPEG:' . $src . '\n');
                 return $this->setValueToDatabase($this->name, $new, $info->getInfo('username'));
             }
-
+            unlink(SystemConfig::globalVariables()['user_folder'] . $username . "/" . $old); // delete old image to save storage
             $info->setInfo('vcard', $info->getInfo('vcard') . 'PHOTO;ENCODING=b;TYPE=JPEG:' . $src . '\n');
-
             return $this->setValueToDatabase($this->name, null, $info->getInfo('username'));
         } catch (\Exception $e) {
             echo $e->getMessage();

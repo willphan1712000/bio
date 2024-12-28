@@ -4,7 +4,6 @@ namespace business\info;
 
 use business\info\Info;
 use business\info\InfoHandler;
-use business\info\operation\Phone;
 use config\SystemConfig;
 
 class Vcard extends InfoHandler
