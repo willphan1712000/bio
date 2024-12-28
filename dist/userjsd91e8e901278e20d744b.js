@@ -35685,6 +35685,7 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
 $(document).ready(function () {
+    user(props);
 });
 function user(props) {
     (0, W_1.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
@@ -35714,4 +35715,4 @@ function user(props) {
 
 /******/ })()
 ;
-//# sourceMappingURL=userjsb3b38ea268c098335c56.js.map
+//# sourceMappingURL=userjsd91e8e901278e20d744b.js.map
