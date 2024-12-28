@@ -22,7 +22,7 @@ class Avatar extends User
             $old = $this->getValueFromDatabase($this->name, $username); // get old image from database
 
             $src = $info->getInfo($this->name); // get image source uploaded
-            if ($src !== "" && $src !== null) {
+            if ($src !== "" && $src !== null && $src !== $old) {
                 if ($old !== NULL) {
                     unlink(SystemConfig::globalVariables()['user_folder'] . $username . "/" . $old); // delete old image to save storage
                 }
@@ -33,6 +33,7 @@ class Avatar extends User
                 if (!$o) {
                     return false;
                 }
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'PHOTO;ENCODING=b;TYPE=JPEG:' . $src . '\n');
                 return $this->setValueToDatabase($this->name, $new, $info->getInfo('username'));
             }
 

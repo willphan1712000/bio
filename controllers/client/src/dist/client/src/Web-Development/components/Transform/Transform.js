@@ -6,30 +6,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const TransformController_1 = __importDefault(require("./TransformController"));
 class Transform {
     constructor(ele1, ele2, ele3) {
-        this.ele1 = ele1,
-            this.ele2 = ele2,
-            this.collided = false;
-        this.deleted = true;
+        this.ele1 = ele1;
+        this.ele2 = ele2;
         this.x = 0;
         this.y = 0;
         this.angle = 0;
         this.w = 0;
         this.h = 0;
-        this.$ele2 = $(this.ele2);
-        this.imgFrame = document.querySelector(this.ele2);
-        this.controllerClassName = this.ele1.substring(1) + '--controller';
+        if (this.ele1 === null) {
+            throw new Error("wrapper elemenet is not defined or not rendered yet");
+        }
+        this.wrapperClass = "_" + (Date.now() + 1).toString();
+        $(this.ele1).addClass(this.wrapperClass);
+        this.imgFrame = this.ele2;
+        if (this.imgFrame === null) {
+            throw new Error("frame element is not defined or not rendered yet");
+        }
+        this.frameClass = "_" + (Date.now() - 1).toString();
+        $(this.ele2).addClass(this.frameClass);
+        this.img = (this.ele1).querySelector("img");
+        if (this.img === null) {
+            throw new Error("image element is not defined or not rendered yet");
+        }
+        this.ratio = this.img.clientWidth / this.img.clientHeight;
+        this.controllerClassName = "_" + Date.now().toString();
         this.isRotateOffScreen = false;
-        this.img = document.querySelector(this.ele1 + " > img");
-        this.ratio = this.img.width / this.img.height;
-        this.transformController = new TransformController_1.default(this.ele1, this.ele2, this.controllerClassName);
-        this.reset();
-        this.transformController.addController();
+        new TransformController_1.default(this.wrapperClass, this.frameClass, this.controllerClassName);
         this.transform();
         this.handleElementGoOffScreen("." + this.controllerClassName + " .rotate", "." + this.controllerClassName + " .rotate.shadow", "rotate").handleElementGoOffScreen("." + this.controllerClassName + " .delete", "." + this.controllerClassName + " .delete.shadow", "delete");
     }
     reset() {
-        $(this.ele1 + "--controller--container").remove();
-        document.querySelector(this.ele1).style.transform = `rotate(${0}deg)`;
+        const width = this.imgFrame.clientWidth;
+        const height = width / this.ratio;
+        this.resize(width, height);
+        this.repositionElement(width / 2, this.imgFrame.clientHeight / 2);
+        this.setValue(0, 0, 0, width, height);
+        this.rotateBox(0);
     }
     setValue(x, y, angle, w, h) {
         this.x = (x !== undefined) ? x : this.x;
@@ -41,51 +53,28 @@ class Transform {
     exportData() {
         return [this.x, this.y, this.angle, this.w, this.h];
     }
-    isCollided() {
-        return this.collided;
-    }
-    setIsCollided(is) {
-        this.collided = is;
-    }
-    isDeleted() {
-        return this.deleted;
-    }
-    setDeleted(is) {
-        this.deleted = is;
-    }
-    delete(cb) {
-        const handleDelete = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            cb();
-            this.setDeleted(true);
-        };
-        $(this.ele1 + "--controller .delete").on("touchstart", e => handleDelete(e));
-        $(this.ele1 + "--controller .delete").on("mousedown", e => handleDelete(e));
-        return this;
-    }
     repositionElement(x, y) {
-        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
-        const boxWrapper = document.querySelector(this.ele1);
+        const controllerWrapper = document.querySelector("." + this.controllerClassName + '--container');
+        const boxWrapper = this.ele1;
         boxWrapper.style.left = x + 'px';
         boxWrapper.style.top = y + 'px';
         controllerWrapper.style.left = (x + this.imgFrame.offsetLeft + 3) + 'px';
         controllerWrapper.style.top = (y + this.imgFrame.offsetTop + 3) + 'px';
     }
     resize(w, h) {
-        const controller = document.querySelector(this.ele1 + '--controller');
-        const img = document.querySelector(this.ele1 + " > img");
-        controller.style.width = w + 6 + 'px';
-        controller.style.height = h + 6 + 'px';
+        const controller = document.querySelector("." + this.controllerClassName);
+        const img = this.img;
+        const wrapper = this.ele1;
+        controller.style.width = w + 3 + 'px';
+        controller.style.height = h + 3 + 'px';
         img.style.width = w + 'px';
+        wrapper.style.width = w + 'px';
     }
     rotateBox(deg) {
-        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
-        const boxWrapper = document.querySelector(this.ele1);
-        const deleteEle = controllerWrapper.querySelector(".delete");
+        const controllerWrapper = document.querySelector("." + this.controllerClassName + '--container');
+        const boxWrapper = this.ele1;
         boxWrapper.style.transform = `rotate(${deg}deg)`;
         controllerWrapper.style.rotate = `${deg}deg`;
-        deleteEle.style.rotate = `${-deg}deg`;
     }
     handleElementGoOffScreen(main, shadow, type) {
         const mainEle = document.querySelector(main);
@@ -128,9 +117,8 @@ class Transform {
         return this;
     }
     transform() {
-        const controller = document.querySelector(this.ele1 + '--controller');
-        const controllerWrapper = document.querySelector(this.ele1 + '--controller--container');
-        const boxWrapper = document.querySelector(this.ele1);
+        const controllerWrapper = document.querySelector("." + this.controllerClassName + '--container');
+        const boxWrapper = this.ele1;
         const minWidth = 40;
         const minHeight = 40;
         var initX, initY, mousePressX, mousePressY, initW, initH, initRotate;
@@ -190,10 +178,10 @@ class Transform {
         };
         controllerWrapper.addEventListener('mousedown', e => handleDrag(e, 'desk'), false);
         controllerWrapper.addEventListener('touchstart', e => handleDrag(e, 'touch'), false);
-        var leftTop = document.querySelector(this.ele1 + "--controller .resize-topleft");
-        var rightTop = document.querySelector(this.ele1 + "--controller .resize-topright");
-        var rightBottom = document.querySelector(this.ele1 + "--controller .resize-bottomright");
-        var leftBottom = document.querySelector(this.ele1 + "--controller .resize-bottomleft");
+        var leftTop = document.querySelector("." + this.controllerClassName + " .resize-topleft");
+        var rightTop = document.querySelector("." + this.controllerClassName + " .resize-topright");
+        var rightBottom = document.querySelector("." + this.controllerClassName + " .resize-bottomright");
+        var leftBottom = document.querySelector("." + this.controllerClassName + " .resize-bottomleft");
         const resizeHandler = (event, left = false, top = false, xResize = false, yResize = false, type) => {
             event.preventDefault();
             event.stopPropagation();
@@ -286,7 +274,7 @@ class Transform {
         rightTop.addEventListener('touchstart', e => resizeHandler(e, false, true, true, true, 'touch'));
         rightBottom.addEventListener('touchstart', e => resizeHandler(e, false, false, true, true, 'touch'));
         leftBottom.addEventListener('touchstart', e => resizeHandler(e, true, false, true, true, 'touch'));
-        var rotate = document.querySelector(this.ele1 + "--controller .rotate");
+        var rotate = document.querySelector("." + this.controllerClassName + " .rotate");
         const handleRotate = (event, type) => {
             event.preventDefault();
             event.stopPropagation();
@@ -294,7 +282,7 @@ class Transform {
             initY = event.target.offsetTop;
             mousePressX = (type === 'desk') ? event.clientX : event.touches[0].clientX;
             mousePressY = (type === 'desk') ? event.clientY : event.touches[0].clientY;
-            var arrow = document.querySelector(this.ele1 + '--controller');
+            var arrow = document.querySelector("." + this.controllerClassName);
             var arrowRects = arrow.getBoundingClientRect();
             var arrowX = arrowRects.left + arrowRects.width / 2;
             var arrowY = arrowRects.top + arrowRects.height / 2;
@@ -325,9 +313,16 @@ class Transform {
         };
         rotate.addEventListener('mousedown', e => handleRotate(e, 'desk'), false);
         rotate.addEventListener('touchstart', e => handleRotate(e, 'touch'), false);
-        this.resize(200, 200 / this.ratio);
-        this.repositionElement(100, 100 / this.ratio);
-        this.setValue(0, 0, 0, 200, 200 / this.ratio);
+        this.reset();
+        return this;
+    }
+    cleanup() {
+        window.removeEventListener('mousedown', () => { });
+        window.removeEventListener('mouseup', () => { });
+        window.removeEventListener('mousemove', () => { });
+        window.removeEventListener('touchstart', () => { });
+        window.removeEventListener('touchend', () => { });
+        window.removeEventListener('touchmove', () => { });
         return this;
     }
 }

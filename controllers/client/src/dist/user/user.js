@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const W_1 = require("../client/src/Web-Development/W");
 $(document).ready(function () {
-    user(props);
 });
 function user(props) {
     (0, W_1.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {

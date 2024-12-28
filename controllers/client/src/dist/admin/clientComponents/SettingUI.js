@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SettingUI = void 0;
-const AvatarClass_1 = require("./Avatar/AvatarClass");
 const Background_1 = __importDefault(require("./Background"));
 const Font_1 = __importDefault(require("./Font"));
 const FontColor_1 = __importDefault(require("./FontColor"));
@@ -17,12 +16,6 @@ class SettingUI {
         this.fontSize = new FontSize_1.default(".setting_bar .fontSize", parseInt(params.css.fontSize), ".template__font");
         this.font = new Font_1.default(".setting_bar .font", params.css.font, ".template__font");
         this.fontColor = new FontColor_1.default(".setting_bar .fontColor", params.css.fontColor, ".template__font");
-        this.avatar = new AvatarClass_1.AvatarClass({
-            reset: params.imgPath,
-            img: "#avatar",
-            username: params.username,
-            imgName: params.imgName,
-        });
         this.info = new Info_1.default({ name: ".template_name", target: ".card-back-container .name" }, { name: ".template_org", target: ".card-back-container .organization" }, { name: ".template_des", target: "" });
     }
 }

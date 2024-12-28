@@ -9,13 +9,12 @@ $user = new UserController();
 $user->execute();
 
 $infoArray = $user->get("info");
-// c::dd($infoArray['HotLine']->getHTML());
 
 $socialIconArr = $user->get("socialIconArr");
 $url = $user->get("url");
 $username = $user->get("username");
 $g = $user->get("g");
-$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : $infoArray['image'];
+$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +36,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             <div class="info">
                 <div class="info__img">
                     <div class="info__img--location">
-                        <img src=<?= $image; ?> alt="bio_user_avatar">
+                        <img src=<?= $image; ?> alt="bio_user_avatar" draggable="false" style="width: 100%; height: 100%;">
                     </div>
                 </div>
                 <div class="info__about">

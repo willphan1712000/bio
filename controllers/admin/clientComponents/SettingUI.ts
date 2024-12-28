@@ -1,4 +1,3 @@
-import { AvatarClass } from "./Avatar/AvatarClass";
 import Background from "./Background";
 import Font from "./Font";
 import FontColor from "./FontColor";
@@ -18,7 +17,6 @@ export class SettingUI {
     private fontSize : FontSize;
     private font : Font;
     private fontColor: FontColor;
-    private avatar: AvatarClass;
     private info: Info;
 
     constructor(params: Params) {
@@ -28,12 +26,12 @@ export class SettingUI {
         this.fontSize = new FontSize(".setting_bar .fontSize", parseInt(params.css.fontSize), ".template__font");
         this.font = new Font(".setting_bar .font", params.css.font, ".template__font");
         this.fontColor = new FontColor(".setting_bar .fontColor", params.css.fontColor, ".template__font")
-        this.avatar = new AvatarClass({
-            reset: params.imgPath,
-            img: "#avatar",
-            username: params.username,
-            imgName: params.imgName,
-        })
+        // this.avatar = new AvatarClass({
+        //     reset: params.imgPath,
+        //     img: "#avatar",
+        //     username: params.username,
+        //     imgName: params.imgName,
+        // })
         this.info = new Info({name: ".template_name", target: ".card-back-container .name"}, {name: ".template_org", target: ".card-back-container .organization"}, {name: ".template_des", target: ""});
     }
 }

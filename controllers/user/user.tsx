@@ -8,7 +8,7 @@ interface Props {
 }
 
 $(document).ready(function () {
-    user(props)
+    // user(props)
 })
 
 function user(props: Props) {

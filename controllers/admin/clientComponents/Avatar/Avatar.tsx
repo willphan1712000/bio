@@ -3,24 +3,12 @@ import handleAdminContext, { Action, AdminImageContext, State, username } from "
 import AvatarButton from "./AvatarButton";
 import AvatarFrame from "./AvatarFrame";
 
-
-
 function reducer(state: State, action: Action): any {
     switch(action.type) {
         case 'upload':
             return {
                 ...state,
                 isUpload: !state.isUpload
-            }
-        case 'edit':
-            return {
-                ...state,
-                isEdit: !state.isEdit
-            }
-        case 'initial':
-            return {
-                ...state,
-                initialSrc: action.value
             }
         case 'main':
             return {
@@ -32,6 +20,13 @@ function reducer(state: State, action: Action): any {
                 ...state,
                 previewSrc: action.value
             }
+        case 'delete':
+            return {
+                ...state,
+                isDelete: !state.isDelete
+            }
+        default:
+            throw new Error("Unknown action type")
     }
 }
 
@@ -41,9 +36,8 @@ const Avatar = () => {
     const [state, dispatch] = useReducer(reducer, {
         isUpload: false,
         mainSrc: `${data.image === null ? '/controllers/client/img/unknown.png': `/user/${username()}/${data.image}`}`,
-        intialSrc: `${data.image === null ? '/controllers/client/img/unknown.png': `/user/${username()}/${data.image}`}`,
         previewSrc: undefined,
-        isEdit: false
+        isDelete: data.image !== null,
     })
 
   return (

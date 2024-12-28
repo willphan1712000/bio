@@ -56,11 +56,11 @@ class W1 {
     options(cb, options) {
         return new Options_1.Options(this.ele1, cb, options);
     }
-    uploadFile(cb) {
-        return new UploadFile_1.default(this.ele1, cb);
-    }
     textEditor(cb) {
         return new TextEditor_1.default(this.ele1, cb);
+    }
+    uploadFile(cb, type) {
+        return new UploadFile_1.default(this.ele1, cb, type);
     }
 }
 exports.W1 = W1;

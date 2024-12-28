@@ -35,14 +35,14 @@ function reducer(state, action) {
     switch (action.type) {
         case 'upload':
             return Object.assign(Object.assign({}, state), { isUpload: !state.isUpload });
-        case 'edit':
-            return Object.assign(Object.assign({}, state), { isEdit: !state.isEdit });
-        case 'initial':
-            return Object.assign(Object.assign({}, state), { initialSrc: action.value });
         case 'main':
             return Object.assign(Object.assign({}, state), { mainSrc: action.value });
         case 'preview':
             return Object.assign(Object.assign({}, state), { previewSrc: action.value });
+        case 'delete':
+            return Object.assign(Object.assign({}, state), { isDelete: !state.isDelete });
+        default:
+            throw new Error("Unknown action type");
     }
 }
 const Avatar = () => {
@@ -50,9 +50,8 @@ const Avatar = () => {
     const [state, dispatch] = (0, react_1.useReducer)(reducer, {
         isUpload: false,
         mainSrc: `${data.image === null ? '/controllers/client/img/unknown.png' : `/user/${(0, AdminContext_1.username)()}/${data.image}`}`,
-        intialSrc: `${data.image === null ? '/controllers/client/img/unknown.png' : `/user/${(0, AdminContext_1.username)()}/${data.image}`}`,
         previewSrc: undefined,
-        isEdit: false
+        isDelete: data.image !== null,
     });
     return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminImageContext.Provider, { value: [state, dispatch], children: [(0, jsx_runtime_1.jsx)(AvatarFrame_1.default, {}), (0, jsx_runtime_1.jsx)(AvatarButton_1.default, {})] }) }));
 };

@@ -27,49 +27,6 @@ class Vcard extends InfoHandler
 
         $vCardContentPhp .= 'END:VCARD";header("Content-type: text/vcard");header("Content-Disposition: attachment; filename=\"contact.vcf\"");echo $vCardContent;';
 
-        // $vCardContentPhp .= 'PHOTO;ENCODING=b;TYPE=JPEG:' . $imageData . '\n';
-
-        // foreach ($info->getEntireInfo() as $key => $value) {
-        //     if (!in_array($key, ['username', 'src', 'image', 'MobileCode', 'MobileFlag', 'WorkCode', 'WorkFlag', 'ViberCode', 'ViberFlag', 'HotLineCode', 'HotLineFlag'])) {
-        //         if ($key === 'name') {
-        //             $vCardContentPhp .= 'N;CHARSET=utf-8:' . $value . ';;;;\nFN;CHARSET=utf-8:' . $value . '\n';
-        //         } else if ($key === 'description') {
-        //             $vCardContentPhp .= 'NOTE;CHARSET=utf-8:' . $value . '\n';
-        //         } else if ($key === 'Mobile') {
-        //             $vCardContentPhp .= 'TEL;TYPE=Mobile;PREF:' . $o->execute([
-        //                 'code' => $info->getInfo('MobileCode'),
-        //                 'number' => $info->getInfo('Mobile')
-        //             ]) . '\n';
-        //         } else if ($key === 'Work') {
-        //             $vCardContentPhp .= 'TEL;TYPE=Work;PREF:' . $o->execute([
-        //                 'code' => $info->getInfo('WorkCode'),
-        //                 'number' => $info->getInfo('Work')
-        //             ]) . '\n';
-        //         } else if ($key === 'HotLine') {
-        //             $vCardContentPhp .= 'TEL;TYPE=Hot Line;PREF:' . $o->execute([
-        //                 'code' => $info->getInfo('HotLineCode'),
-        //                 'number' => $info->getInfo('HotLine')
-        //             ]) . '\n';
-        //         } else if ($key === 'Viber') {
-        //             $vCardContentPhp .= 'TEL;TYPE=Viber;PREF:' . $o->execute([
-        //                 'code' => $info->getInfo('ViberCode'),
-        //                 'number' => $info->getInfo('Viber')
-        //             ]) . '\n';
-        //         } else if ($key === 'Email') {
-        //             $vCardContentPhp .= 'EMAIL;TYPE=Email:' . $value . '\n';
-        //         } else if ($key === 'Website') {
-        //             $vCardContentPhp .= 'URL:' . SystemConfig::globalVariables()['domain'] . '/' . $username . '\n';
-        //             $vCardContentPhp .= 'URL:' . $value . '\n';
-        //         } else if ($key === 'Address') {
-        //             $vCardContentPhp .= 'URL;TYPE=Address:' . $value . '\n';
-        //         } else if ($key === 'organization') {
-        //             $vCardContentPhp .= 'ORG:' . $value . '\n';
-        //         } else {
-        //             $vCardContentPhp .= 'URL;TYPE=' . $key . ':' . $value . '\n';
-        //         }
-        //     }
-        // }
-
         $filePath = $userPath . $username . "/vcard.php";
 
         $vcard = fopen($filePath, "w");

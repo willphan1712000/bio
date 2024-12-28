@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,53 +31,48 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Save;
 const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
 const WW_1 = require("../../../client/src/Web-Development/WW");
-const AdminContext_1 = __importDefault(require("../AdminContext"));
-function Save({ setSubmit, setDone, setMsg }) {
-    const [isSubmitting, setSubmitHandler] = (0, react_1.useState)(false);
+const AdminContext_1 = __importStar(require("../AdminContext"));
+function Save() {
     const data = (0, AdminContext_1.default)();
+    const [state, dispatch] = (0, AdminContext_1.handleAdminSaveContext)();
     function handleSubmit(e) {
         return __awaiter(this, void 0, void 0, function* () {
             e.preventDefault();
-            data.img = '';
-            setSubmitHandler(true);
-            setSubmit(true);
+            dispatch({ type: 'submit' });
+            dispatch({ type: 'disable' });
+            dispatch({ type: 'message', value: 'Uploading...' });
             try {
                 const result = yield (0, WW_1.$$$)("/data/api/info/PUT.php", data).api().post();
                 if (result.success) {
-                    setSubmitHandler(false);
-                    setSubmit(false);
-                    setDone(true);
-                    setMsg('Updated. Going to your bio');
+                    dispatch({ type: 'submit' });
+                    dispatch({ type: 'show' });
+                    dispatch({ type: 'message', value: 'Updated. Going to your bio' });
                     setTimeout(() => {
                         window.location.href = '/' + data.username;
                     }, 1500);
                 }
                 else {
-                    setMsg(result.error);
-                    setSubmit(false);
+                    dispatch({ type: 'message', value: result.error });
+                    dispatch({ type: 'submit' });
                     setTimeout(() => {
-                        setSubmitHandler(false);
-                        setMsg("Save");
+                        dispatch({ type: 'disable' });
+                        dispatch({ type: 'default' });
                     }, 3000);
                 }
             }
             catch (error) {
-                setMsg(error.error);
-                setSubmit(false);
+                dispatch({ type: 'message', value: error.error });
+                dispatch({ type: 'submit' });
                 setTimeout(() => {
-                    setSubmitHandler(false);
-                    setMsg("Save");
+                    dispatch({ type: 'disable' });
+                    dispatch({ type: 'default' });
                 }, 3000);
             }
         });
     }
-    return ((0, jsx_runtime_1.jsx)("button", { disabled: isSubmitting, className: 'w-full h-full absolute top-0 left-0', onClick: e => handleSubmit(e) }));
+    return ((0, jsx_runtime_1.jsx)("button", { disabled: state.disabled, className: 'w-full h-full absolute top-0 left-0', onClick: e => handleSubmit(e) }));
 }

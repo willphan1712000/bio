@@ -1,16 +1,25 @@
 import { createContext, useContext } from "react";
 
-type Admin = {[key: string]: string} | undefined
+type Admin = {[key: string]: string | null} | undefined
 type Element = string | undefined
 type Image = [state: State, action: React.Dispatch<Action>] | undefined
 export type State = {
     isUpload: boolean,
-    isEdit: boolean,
     mainSrc: string,
-    initialSrc: string,
-    previewSrc: string
+    previewSrc: string,
+    isDelete: boolean,
 }
-export type Action = | {type: 'upload'} | {type: 'main', value: any} | {type: 'initial', value: any} | {type: 'preview', value: any} | {type: 'edit'}
+export type Action = {type: 'upload' | 'main' | 'preview' | 'delete', value?: string}
+
+type Save = [state: SaveState, action: React.Dispatch<SaveAction>] | undefined
+export type SaveState = {
+    isSubmitting: boolean,
+    isShow: boolean,
+    disabled: boolean,
+    msg: string,
+    default: string
+}
+export type SaveAction = {type: 'submit' | 'show' | 'message' | 'disable' | 'default', value?: string}
 
 export const AdminContext = createContext<Admin>(undefined)
 
@@ -19,6 +28,8 @@ export const AdminRegexContext = createContext<Admin>(undefined)
 export const AdminElementContext = createContext<Element>(undefined)
 
 export const AdminImageContext = createContext<Image>(undefined)
+
+export const AdminSaveContext = createContext<Save>(undefined)
 
 export default function handleAdminContext() {
     const data = useContext(AdminContext)
@@ -48,6 +59,14 @@ export function handleAdminImageContext() {
     const data = useContext(AdminImageContext)
     if(data === undefined) {
         throw new Error("Admin image context is undefined")
+    }
+    return data
+}
+
+export function handleAdminSaveContext() {
+    const data = useContext(AdminSaveContext)
+    if(data === undefined) {
+        throw new Error("Admin save context is undefined")
     }
     return data
 }

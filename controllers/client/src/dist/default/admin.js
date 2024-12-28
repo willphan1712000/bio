@@ -28,28 +28,10 @@ function adminPage() {
             return;
         }
         const list = data.data;
+        if (!list) {
+            return;
+        }
         list.username = username;
         (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath, regexMap } })).reactMounting();
-        $(".info__img--remove").click(function () {
-            let data = {
-                type: 'avaDelete',
-                username: username,
-                img: $(".info__img .uploadImg__filename").val()
-            };
-            $.ajax({
-                url: "/data/api/info/PUTss.php",
-                method: "POST",
-                data: JSON.stringify(data),
-                dataType: "html",
-                contentType: "application.json",
-                success: function (e) {
-                    if (e) {
-                    }
-                    else {
-                        location.reload();
-                    }
-                }
-            });
-        });
     });
 }
