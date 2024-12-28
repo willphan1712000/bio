@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'persistence\\' => array($baseDir . '/data/backend/persistence'),
+    'controllers\\' => array($baseDir . '/controllers'),
     'config\\' => array($baseDir . '/data/backend'),
     'component\\' => array($baseDir . '/controllers/components'),
     'business\\' => array($baseDir . '/data/backend/business'),

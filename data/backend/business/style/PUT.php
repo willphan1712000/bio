@@ -26,19 +26,20 @@ class PUT implements IAPI
                 if ($value === null || $value === '') {
                     continue;
                 }
-                if (!Database::PUT(Style::class, $key, $value, [
+                Database::PUT(Style::class, $key, $value, [
                     'username' => $this->username,
                     'template_id' => $this->template
-                ])) {
-                    throw new \Exception("Update data on the data failed, abort the update operation");
-                    return false;
-                }
+                ]);
             }
 
-            return true;
+            return [
+                'success' => true
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

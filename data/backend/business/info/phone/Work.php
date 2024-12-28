@@ -1,24 +1,60 @@
 <?php
+
 namespace business\info\phone;
 
-require_once __DIR__ ."/../../../../../vendor/autoload.php";
+use business\info\display\PhoneDisplay;
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\phone\Phone;
-use business\info\OperationFactory;
-use business\info\OPERATIONNAME;
 
-class Work extends InfoHandler implements Phone {
-    function __construct(?InfoHandler $next) {
+class Work extends Phone
+{
+    function __construct(?InfoHandler $next)
+    {
         parent::__construct($next);
+        $this->name = 'Work';
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
-        $operation = $operationFactory->getOperation(OPERATIONNAME::PHONEVALIDATE->value);
-        if($operation->validate($info->getInfo('Work'))) {
-            $info->setInfo('Work', $operation->format($info->getInfo('Work')));
-            return true;
+    public function doHandle(Info $info): bool
+    {
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            // $info->setInfo($this->name, $value);
+            if (!empty($value)) {
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'TEL;TYPE=Work Phone;PREF:' . $this->format([
+                    'code' => $info->getInfo('WorkCode'),
+                    'number' => $info->getInfo('Work')
+                ]) . '\n');
+
+                return $this->setValueToDatabase($this->name, $value, $info->getInfo('username')) && $this->setValueToDatabase('WorkCode', $info->getInfo('WorkCode'), $info->getInfo('username')) && $this->setValueToDatabase('WorkFlag', $info->getInfo('WorkFlag'), $info->getInfo('username'));
+            }
+
+
+            return $this->setValueToDatabase($this->name, null, $info->getInfo('username')) && $this->setValueToDatabase('WorkCode', null, $info->getInfo('username')) && $this->setValueToDatabase('WorkFlag', null, $info->getInfo('username'));
         }
         return false;
+    }
+
+    public function doAdminGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase('Work', $info->getInfo('username'));
+        $code = $this->getValueFromDatabase('WorkCode', $info->getInfo('username'));
+        $flag = $this->getValueFromDatabase('WorkFlag', $info->getInfo('username'));
+
+        $info->setInfo('Work', $value);
+        $info->setInfo('WorkCode', $code);
+        $info->setInfo('WorkFlag', $flag);
+        return true;
+    }
+
+    public function doUserGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase('Work', $info->getInfo('username'));
+        $code = $this->getValueFromDatabase('WorkCode', $info->getInfo('username'));
+        $info->setInfo($this->name, new PhoneDisplay($this->name, $this->format([
+            'code' => $code,
+            'number' => $value
+        ])));
+        return true;
     }
 }

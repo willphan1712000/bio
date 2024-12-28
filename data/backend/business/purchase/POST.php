@@ -36,6 +36,7 @@ class POST implements IAPI
             $rate = 0.06;
             $total = $subtotal * (1 + $rate);
 
+            // Add new purchase
             $purchase = new Purchase();
             $purchase
                 ->set('username', $this->username)
@@ -44,8 +45,15 @@ class POST implements IAPI
 
             /** @var User|NULL */
             $user = $entityManager->find(User::class, ['username' => $this->username]);
-            $user->setPurchase($purchase);
 
+            // Check if user exists or not
+            if ($user === NULL) {
+                throw new \Exception("user does not exist");
+            }
+            $user->setPurchase($purchase);
+            $user->set("defaultTemplate", $this->templates[0]); // set the first purchased template as the default template for user
+
+            // iteratively add each purchased template
             foreach ($this->templates as $template) {
                 $style = (new Style())
                     ->set('username', $this->username)
@@ -65,10 +73,14 @@ class POST implements IAPI
 
             $entityManager->persist($purchase);
             $entityManager->flush();
-            return true;
+            return [
+                'success' => true
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

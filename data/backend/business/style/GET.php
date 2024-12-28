@@ -34,8 +34,10 @@ class GET implements IAPI
 
             return $out;
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

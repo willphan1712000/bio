@@ -23,6 +23,7 @@ class ComposerStaticInit2edcd92ef15fe2894552acf5289130cd
         ),
         'c' => 
         array (
+            'controllers\\' => 12,
             'config\\' => 7,
             'component\\' => 10,
         ),
@@ -80,6 +81,10 @@ class ComposerStaticInit2edcd92ef15fe2894552acf5289130cd
         'persistence\\' => 
         array (
             0 => __DIR__ . '/../..' . '/data/backend/persistence',
+        ),
+        'controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/controllers',
         ),
         'config\\' => 
         array (

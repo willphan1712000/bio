@@ -1,23 +1,30 @@
 <?php
+
 namespace business\info\user;
 
-require_once __DIR__ ."/../../../../../vendor/autoload.php";
 use business\info\Info;
-use business\info\InfoElement;
 use business\info\InfoHandler;
-use business\info\OperationFactory;
-use business\info\OPERATIONNAME;
 
-class Address extends InfoHandler implements InfoElement {
-    function __construct(?InfoHandler $next) {
+class Address extends User
+{
+    function __construct(?InfoHandler $next)
+    {
         parent::__construct($next);
+        $this->name = 'Address';
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
-        $operation = $operationFactory->getOperation(OPERATIONNAME::ADDRESS->value);
-        if($operation->validate($info->getInfo('Address'))) {
-            $info->setInfo('Address', $operation->format($info->getInfo('Address')));
-            return true;
+    public function format($info): ?string
+    {
+        return $info === null ? null : "https://google.com/maps?q=" . $info;
+    }
+
+    public function doHandle(Info $info): bool
+    {
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'URL;TYPE=Address:' . $this->format($value) . '\n');
+
+            return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;
     }

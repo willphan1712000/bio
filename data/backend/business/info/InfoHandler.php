@@ -1,24 +1,98 @@
 <?php
 
-    namespace business\info;
+namespace business\info;
 
-    abstract class InfoHandler {
-        private ?InfoHandler $info;
+use business\info\display\AdminDisplay;
+use business\info\display\UserDisplay;
+use config\SystemConfig;
 
-        function __construct(?InfoHandler $next) {
-            $this->info = $next;
-        }
+abstract class InfoHandler implements InfoElement
+{
+    private ?InfoHandler $info;
+    protected string $name;
 
-        public function handle(Info $info, OperationFactory $operationFactory): bool {
-            if(!$this->doHandle($info,  $operationFactory)) {
-                return false;
-            }
-            if($this->info != null) {
-                return $this->info->handle($info,  $operationFactory);
-            } else {
-                return true;
-            }
-        }
-
-        public abstract function doHandle(Info $info, OperationFactory $operationFactory): bool;
+    function __construct(?InfoHandler $next)
+    {
+        $this->info = $next;
     }
+
+    public function handle(Info $info): bool
+    {
+        if (!$this->doHandle($info)) {
+            return false;
+        }
+        if ($this->info != null) {
+            return $this->info->handle($info);
+        } else {
+            return true;
+        }
+    }
+
+    public function adminGET(Info $info): bool
+    {
+        if (!$this->doAdminGET($info)) {
+            return false;
+        }
+        if ($this->info != null) {
+            return $this->info->adminGET($info);
+        } else {
+            return true;
+        }
+    }
+
+    public function userGET(Info $info): bool
+    {
+        if (!$this->doUserGET($info)) {
+            return false;
+        }
+        if ($this->info != null) {
+            return $this->info->userGET($info);
+        } else {
+            return true;
+        }
+    }
+
+    public function doHandle(Info $info): bool
+    {
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'URL;TYPE=' . $this->name . ':' . $this->format($value) . '\n');
+            return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
+        }
+        return false;
+    }
+
+    public function doAdminGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
+        $info->setInfo($this->name, $value);
+        return true;
+    }
+
+    public function doUserGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
+        $info->setInfo($this->name, new UserDisplay($this->name, $this->format($value)));
+        return true;
+    }
+
+    // This algorithm might change in the future when we utilize AI to validate the information that is safe for work
+    public function validate($name, $info): bool
+    {
+        if (empty($info)) {
+            return true;
+        }
+        if (!preg_match(SystemConfig::regexMap()[$name], $info)) {
+            throw new \Exception($name . " is not valid");
+        }
+        return true;
+    }
+
+    public function format(?string $info): ?string
+    {
+        return $info;
+    }
+
+    protected abstract function getValueFromDatabase(string $getWhat, string $username): ?string;
+    protected abstract function setValueToDatabase(string $setWhat, ?string $value, string $username): bool;
+}

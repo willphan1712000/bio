@@ -23,7 +23,7 @@ tsconfig.json
 test/*
 
 #Wjs
-controllers/client/src/module/Web-Development
+controllers/client/src/Web-Development
 
 # local env files
 .env*.local

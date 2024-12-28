@@ -1,23 +1,34 @@
 <?php
+
 namespace business\info\user;
 
-require_once __DIR__ ."/../../../../../vendor/autoload.php";
+use business\info\display\EmailDisplay;
 use business\info\Info;
-use business\info\InfoElement;
+use business\info\user\User;
 use business\info\InfoHandler;
-use business\info\OperationFactory;
-use business\info\OPERATIONNAME;
 
-class Email extends InfoHandler implements InfoElement {
-    function __construct(?InfoHandler $next) {
+class Email extends User
+{
+    function __construct(?InfoHandler $next)
+    {
         parent::__construct($next);
+        $this->name = 'Email';
     }
 
-    public function doHandle(Info $info, OperationFactory $operationFactory): bool {
-        $operation = $operationFactory->getOperation(OPERATIONNAME::EMAIL->value);
-        if($operation->validate($info->getInfo('Email'))) {
-            $info->setInfo('Email', $operation->format($info->getInfo('Email')));
-            return true;
+    public function doUserGET(Info $info): bool
+    {
+        $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
+        $info->setInfo($this->name, new EmailDisplay($this->name, $this->format($value)));
+        return true;
+    }
+
+    public function doHandle(Info $info): bool
+    {
+        $value = $info->getInfo($this->name);
+        if ($this->validate($this->name, $value)) {
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'EMAIL;TYPE=Email:' . $this->format($value) . '\n');
+
+            return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;
     }

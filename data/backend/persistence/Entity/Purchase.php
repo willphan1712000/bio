@@ -27,9 +27,9 @@ class Purchase extends EntityFunction
     protected int $purchase_id;
     #[Column(name: 'username')]
     protected string $username;
-    #[Column(name: 'subtotal')]
+    #[Column(name: 'subtotal', type: 'decimal', precision: 10, scale: 2)]
     protected float $subtotal;
-    #[Column(name: 'total')]
+    #[Column(name: 'total', type: 'decimal', precision: 10, scale: 2)]
     protected float $total;
     #[Column(name: 'purchasedAt')]
     protected \DateTime $purchasedAt;

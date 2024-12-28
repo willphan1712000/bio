@@ -1,17 +1,22 @@
 <?php
+
 namespace component;
-class Back {
+
+class Back
+{
     private $props;
 
-    public function __construct($props) {
+    public function __construct($props)
+    {
         $this->props = $props;
     }
 
-    public function render() {
+    public function render()
+    {
         $props = $this->props;
-        echo '
+        return '
             <style>
-                '.$this->props["container"].' {
+                ' . $this->props["container"] . ' {
                     width: 100%;
                     display: flex;
                     justify-content: center;
@@ -20,7 +25,7 @@ class Back {
                     position: relative;
                     padding: 10px 20px;
                 }
-                '.$this->props["container"].' .card-back-container {
+                ' . $this->props["container"] . ' .card-back-container {
                     background-color: #fff;
                     border-radius: 40px;
                     height: 100%;
@@ -30,35 +35,36 @@ class Back {
                     align-items: center;
                     flex-direction: column;
                 }
-                '.$this->props["container"].' .card-back-container .ele {
+                ' . $this->props["container"] . ' .card-back-container .ele {
                     margin: 10px;
                 }
-                '.$this->props["container"].' .card-back-container .line {
+                ' . $this->props["container"] . ' .card-back-container .line {
                     border-bottom: solid 2px #000;
                     width: 60%;
                 }
-                '.$this->props["container"].' .card-back-container .qr {
+                ' . $this->props["container"] . ' .card-back-container .qr {
                     width: 35%;
                 }
-                '.$this->props["container"].' .card-back-container .qr img {
+                ' . $this->props["container"] . ' .card-back-container .qr img {
                     width: 100%;
                     height: 100%;
                 }
-                '.$this->props["container"].' .card-back-container .name {
+                ' . $this->props["container"] . ' .card-back-container .name {
                     font-size: 30px;
                 }
             </style>
             <div class="card-back-container">
-                <div class="ele name">'.$props['info']->name()['a'].'</div>
-                <div class="ele organization">'.$props['info']->organization()['a'].'</div>
+                <div class="ele name">' . $props['info']->name()['a'] . '</div>
+                <div class="ele organization">' . $props['info']->organization()['a'] . '</div>
                 <div class="ele line"></div>
-                <div class="ele phone">'.$props['info']->mobile()['div'].'</div>
-                <div class="ele qr"><img draggable=false src="../user/'.$props['username'].'/qr-code.png"></div>
+                <div class="ele phone">' . $props['info']->mobile()['div'] . '</div>
+                <div class="ele qr"><img draggable=false src="../user/' . $props['username'] . '/qr-code.png"></div>
             </div>
         ';
     }
 }
 
-function back($props) {
+function back($props)
+{
     return new Back($props);
 }

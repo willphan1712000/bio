@@ -13,19 +13,20 @@ class RESET extends PUT implements IAPI
     {
         try {
             foreach ($this->props as $key => $value) {
-                if (!Database::PUT(Style::class, $key, Database::GET(StyleDefault::class, $key, ['template_id' => $this->template]), [
+                Database::PUT(Style::class, $key, Database::GET(StyleDefault::class, $key, ['template_id' => $this->template]), [
                     'username' => $this->username,
                     'template_id' => $this->template
-                ])) {
-                    throw new \Exception("Reset data on the data failed, abort the update operation");
-                    return false;
-                }
+                ]);
             }
 
-            return true;
+            return [
+                'success' => true
+            ];
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 }

@@ -3,10 +3,31 @@
 namespace business\info;
 
 use business\IAPI;
-use persistence\Entity\UserInfo;
-use persistence\Entity\UserPhone;
-use persistence\Entity\UserSocial;
-use persistence\EntityManager;
+use business\info\Info;
+use business\info\social\X;
+use business\info\user\Name;
+use business\info\phone\Work;
+use business\info\user\Email;
+use business\info\social\Zalo;
+use business\info\user\Avatar;
+use business\info\phone\Mobile;
+use business\info\user\Address;
+use business\info\social\Tiktok;
+use business\info\social\Booking;
+use business\info\social\HotSale;
+use business\info\social\Threads;
+use business\info\social\Website;
+use business\info\social\Youtube;
+use business\info\social\Facebook;
+use business\info\phone\HotLine;
+use business\info\social\Linkedin;
+use business\info\social\Instagram;
+use business\info\social\Messenger;
+use business\info\social\Pinterest;
+use business\info\user\Description;
+use business\info\user\Organization;
+use business\info\social\OrderOnline;
+use business\info\phone\Viber;
 
 class GET implements IAPI
 {
@@ -20,36 +41,20 @@ class GET implements IAPI
     private function get()
     {
         try {
-            $entityManager = EntityManager::getEntityManager();
+            $info = new Info([]);
+            $info->setInfo('username', $this->username);
 
-            $userInfo = $entityManager->find(UserInfo::class, $this->username);
-            $userPhone = $entityManager->find(UserPhone::class, $this->username);
-            $userSocial = $entityManager->find(UserSocial::class, $this->username);
+            $userSocialHandler = new Booking(new Facebook(new HotSale(new Instagram(new Linkedin(new Messenger(new OrderOnline(new Pinterest(new Threads(new Tiktok(new Website(new X(new Youtube(new Zalo(null))))))))))))));
+            // Handle user phone number
+            $userPhoneHandler = new Mobile(new Work(new HotLine(new Viber($userSocialHandler))));
+            // Handle user information
+            $userInfoHandler = new Name(new Avatar(new Organization(new Description(new Email(new Address($userPhoneHandler))))));
 
-            $infoArr = []; // create an empty array to hold every user information
-
-            // put each peace of userInfo to the array
-            foreach (UserInfo::getProperty() as $property) {
-                if (!in_array($property, ['User', 'username'])) {
-                    $infoArr[$property] = $userInfo->get($property);
-                }
-            }
-            // put each peace of userPhone to the array
-            foreach (UserPhone::getProperty() as $property) {
-                if (!in_array($property, ['User', 'username'])) {
-                    $infoArr[$property] = $userPhone->get($property);
-                }
-            }
-            // put each peace of userSocial to the array
-            foreach (UserSocial::getProperty() as $property) {
-                if (!in_array($property, ['User', 'username'])) {
-                    $infoArr[$property] = $userSocial->get($property);
-                }
-            }
+            $get = $userInfoHandler->adminGET($info);
 
             return [
-                'success' => true,
-                'data' => $infoArr
+                'success' => $get,
+                'data' => $info->getEntireInfo()
             ];
         } catch (\Exception $e) {
             return [
