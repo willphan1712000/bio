@@ -27,10 +27,14 @@ const AvatarFrame = () => {
     const [canvas, ctx] = canvasObj.createCanvas(700, 700)
     const [,src,srcEncoded] = canvasObj.drawImage(img, ctx, x, y, 1, angle, canvas, frameRef.current!.clientWidth, frameRef.current!.clientHeight)
 
+    $("body").css({
+      overflow: "auto"
+    })
+
     dispatch({type: 'main', value: src}) // update main image
     data.image = srcEncoded // update image in data object, be ready for updating to db
 
-    dispatch({type: 'upload'})
+    dispatch({type: 'upload'}) // hide screen
   }
 
   useEffect(() => {

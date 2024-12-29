@@ -4,7 +4,6 @@ namespace controllers\template;
 
 use config\SystemConfig;
 use persistence\Database;
-
 use persistence\Entity\User;
 use persistence\Entity\UserInfo;
 use business\user\UserManagement;
