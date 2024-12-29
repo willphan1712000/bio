@@ -4,11 +4,11 @@ namespace api\user\validation;
 
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 
-use api\APIAbstract;
+use api\APISecret;
 use business\user\signup\CheckEmail;
 use business\user\signup\Input;
 
-class Email extends APIAbstract
+class Email extends APISecret
 {
     public function handleRequest($body)
     {

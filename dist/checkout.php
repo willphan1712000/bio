@@ -60,5 +60,5 @@ if (!TemplateManagement::isAbleToPurchase($isSignedIn, $username, $itemid)) {
 
     .hidden {
       display: none;
-    }</style><script defer="defer" src="/dist/universal338525335f3c1d0938f4.js"></script><script defer="defer" src="/dist/checkoutcssfed602e9009bd4752ebe.js"></script><script defer="defer" src="/dist/checkoutjs932a4d53498170e7621c.js"></script></head><body><a href="/template?username=<?= $username; ?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?= $itemid ? $itemid : "null"; ?>";
+    }</style><script defer="defer" src="/dist/universal338525335f3c1d0938f4.js"></script><script defer="defer" src="/dist/checkoutcssfed602e9009bd4752ebe.js"></script><script defer="defer" src="/dist/checkoutjs529013749549619bb1aa.js"></script></head><body><a href="/template?username=<?= $username; ?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?= $itemid ? $itemid : "null"; ?>";
     const username = "<?= $username ? $username : "null"; ?>"</script></body></html>

@@ -2,7 +2,7 @@
 
 namespace business\user\signup;
 
-use business\UserManagement;
+use business\user\UserManagement;
 
 require __DIR__ . "/vendorQR/autoload.php";
 

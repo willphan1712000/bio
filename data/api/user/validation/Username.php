@@ -2,18 +2,18 @@
 
 namespace api\user\validation;
 
-use api\APIAbstract;
+use api\APISecret;
 use business\user\UserManagement;
 
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 
-class Username extends APIAbstract
+class Username extends APISecret
 {
     public function handleRequest($body)
     {
         return UserManagement::isUserExist($body->username) ? [
             'success' => false,
-            'error' => 'user already exists'
+            'error' => 'User already exists'
         ] : [
             'success' => true
         ];

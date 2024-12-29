@@ -19,6 +19,7 @@ const Error_1 = __importDefault(require("./Error"));
 const Password_1 = __importDefault(require("./Password"));
 const Register_1 = __importDefault(require("./Register"));
 const Username_1 = __importDefault(require("./Username"));
+const key = process.env.SYSTEM_SECRET_KEY;
 class SignUpUI {
     constructor(ui, url, success) {
         this.usernameBox = new Username_1.default(ui['username'], this);
@@ -34,15 +35,18 @@ class SignUpUI {
         return __awaiter(this, void 0, void 0, function* () {
             const userExist = yield (0, WW_1.$$$)(this.url.userExist, {
                 username: this.usernameBox.getUsername(),
+                key
             }).api().post();
             const validEmail = yield (0, WW_1.$$$)(this.url.validEmail, {
                 email: this.emailBox.getEmail(),
+                key
             }).api().post();
             const validPassword = yield (0, WW_1.$$$)(this.url.validPassword, {
                 password: this.passwordBox.getPassword(),
+                key
             }).api().post();
             if (!userExist.success) {
-                this.error.setError("Username exists");
+                this.error.setError(userExist.error);
             }
             else if (!this.usernameBox.isFilled()) {
                 this.error.setError("Please enter username");
@@ -75,7 +79,8 @@ class SignUpUI {
             const r = yield (0, WW_1.$$$)(this.url.signup, {
                 username: this.usernameBox.getUsername(),
                 password: this.passwordBox.getPassword(),
-                email: this.emailBox.getEmail()
+                email: this.emailBox.getEmail(),
+                key
             }).api().post();
             if (r) {
                 $(this.success.before).addClass(this.success.beforeClass);
