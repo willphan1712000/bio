@@ -50,6 +50,9 @@ const AvatarFrame = () => {
         const [x, y, angle] = transform.exportData();
         const [canvas, ctx] = canvasObj.createCanvas(700, 700);
         const [, src, srcEncoded] = canvasObj.drawImage(img, ctx, x, y, 1, angle, canvas, frameRef.current.clientWidth, frameRef.current.clientHeight);
+        $("body").css({
+            overflow: "auto"
+        });
         dispatch({ type: 'main', value: src });
         data.image = srcEncoded;
         dispatch({ type: 'upload' });

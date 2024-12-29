@@ -15,7 +15,7 @@ class YoutubeDisplay extends UserDisplay
     {
         $children = $children ?? $this->value;
         $display = $this->value === null ? "none" : "flex";
-        $href = Device::getInstance()->execute() === 'Mobile' ? str_replace('https', 'youtube', $this->value) : $this->value;
+        $href = Device::getInstance()->execute() === 'Mobile' ? str_replace('https', 'youtube', $this->value ?? '') : $this->value;
         return '<a href="' . $href . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
     }
 }

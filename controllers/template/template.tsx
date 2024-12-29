@@ -1,10 +1,30 @@
 import Swiper from "swiper";
 import { $$ } from "../client/src/Web-Development/W"
+import { username } from "./clientComponents/TemplateContext";
+import Cart from "./clientComponents/cart/Cart";
+import { $$$ } from "../client/src/Web-Development/WW";
+import Response from "../client/src/Web-Development/components/Response";
 
 interface Props {
-    [key: string]: string
+    isSignedIn: string
 }
+
+declare var props: Props
+
+$(document).ready(() => {
+    template(props)
+})
+
+export function auth(isSignedIn: boolean, cb: () => void) {
+    if(!isSignedIn) {
+        window.location.href = '/@signin?template=true'
+    } else {
+        cb()
+    }
+}
+
 export default function template(props: Props) : void {
+    $$("#cart", <Cart signin={props.isSignedIn}/>).reactMounting(); // Mount cart component
     // Method to remove everything from cart when signed out
     (function() {
         if(props.isSignedIn !== "true") {
@@ -12,12 +32,14 @@ export default function template(props: Props) : void {
         }
     })()
     
+    // Swiper effect for templates
     const swiper = new Swiper('.swiper', {
         // Optional parameters
         direction: 'horizontal',
         loop: false,
     });
 
+    // When scrolling down, box button will disappear. When scrolling up, box button will appear
     (function() {
         let lastScrollTop = 0;
         const btn_box = document.querySelector(".btn-box") as HTMLElement;
@@ -35,15 +57,17 @@ export default function template(props: Props) : void {
         })
     })()
 
+    // Handle share button
     $(".share").click(e => {
         const current = e.currentTarget;
         const shareURL = $(current).data("share");
         $$({
-            title: props.username,
+            title: username(),
             url: shareURL
         }).share();
     })
 
+    // handle select button
     $(".select").click(e => {
         const current = e.currentTarget;
         const id = $(current).data("id");
@@ -51,13 +75,13 @@ export default function template(props: Props) : void {
             url: '/data/api/template/select.php',
             method: 'POST',
             data: {
-                username: props.username,
+                username: username(),
                 themeid: id
             },
             dataType: "json",
             success: function(e) {
                 if(e === 1) {
-                    window.location.href = '/' + props.username
+                    window.location.href = '/' + username()
                 }
             },
             error: function() {
@@ -66,20 +90,73 @@ export default function template(props: Props) : void {
         })
     })
 
+    // handle buy button
     $(".buy").click(e => {
-        const current = $(e.currentTarget) // get current element that gets clicked      
-        const id = current.data("id") // get current element id
-        if(props.isSignedIn !== 'true') {
-            window.location.href = '/@signin?template=true'
-        } else {
-            window.location.href = '/@checkout?username=' + props.username + '&itemid=' + id;
+        auth(props.isSignedIn === 'true', () => {
+            const current = $(e.currentTarget) // get current element that gets clicked      
+            const id = current.data("id") // get current element id
+            window.location.href = '/@checkout?username=' + username() + '&itemid=' + id;
+        })
+    });
+
+    // Handle like button
+    (async function() {
+        if(username() !== null) {
+            try {
+                const r = await $$$("/data/api/template/GET.php", {
+                    username: username()
+                }).api().post() as Response
+                
+                if(r.success){
+                    (r.data as Array<string>).map(item => {
+                        $(`.like[data-id=${item}]`).addClass("active")
+                    })
+                }
+            } catch(error: any) {
+                console.log(error.error)
+            }
         }
+    })()
+    $(".like").click(e => {
+        auth(props.isSignedIn === 'true', async () => {
+            const current = $(e.currentTarget)
+            const id = current.data("id")
+
+            if(!current.hasClass("active")) {
+                try {
+                    const r = await $$$("/data/api/template/POST.php", {
+                        username: username(),
+                        template_id: id
+                    }).api().post() as Response
+
+                    if(r.success) {
+                        current.addClass("active")
+                    }
+                } catch(error: any) {
+                    console.log(error.error)
+                }
+            } else {
+                try {
+                    const r = await $$$("/data/api/template/DELETE.php", {
+                        username: username(),
+                        template_id: id
+                    }).api().post() as Response
+
+                    if(r.success) {
+                        current.removeClass("active")
+                    }
+                } catch(error: any) {
+                    console.log(error.error)
+                }
+            }
+
+        })
     });
 
     // Load templates with spinner
     (function() {
         // Initially show spinner
-        const imgSpinner = $$(".template .template-img").addSpinner().singleSpinner();
+        const imgSpinner = $$(document.querySelector(".template .template-img")).addSpinner().singleSpinner();
         const img = $(".template .template-img > img");
         imgSpinner.show();
         img.css({

@@ -1,12 +1,9 @@
 <?php
 
-use component\Logo;
 use component\Copyright;
-use business\user\UserManagement;
 use controllers\template\components\ChooseTemplate;
 use controllers\template\TemplateController;
 use controllers\template\components\TemplateDirector;
-use controllers\template\components\TemplateComponent;
 use controllers\template\components\YourTemplate;
 
 // Run template business logic here
@@ -45,7 +42,7 @@ $g = $data['g'];
                     'username' => $username,
                     'img' => $imgPath,
                 ]))->render(); ?>
-                <a href="/cart" class="btn-ele cart"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+                <div id="cart"></div>
             </div>
         </div>
         <div class="logo"></div>
@@ -79,8 +76,7 @@ $g = $data['g'];
     <script>
         var type = "template"
         var props = {
-            username: "<?= $username ? $username : ""; ?>",
-            isSignedIn: "<?= ($isSignedIn) ? "true" : ""; ?>"
+            isSignedIn: "<?= ($isSignedIn) ? "true" : "false"; ?>"
         }
     </script>
 </body>

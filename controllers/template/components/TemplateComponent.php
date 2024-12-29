@@ -45,6 +45,10 @@ class TemplateComponent extends Component
                 cursor: pointer;
                 font-size: 20px;
             }
+            ' . $container . ' .template .template-img .like.active {
+                color: red;
+                border-color: red;
+            }
             ' . $container . ' .template .template-img > img {
                 width: 100%;
                 height: 100%;

@@ -3,8 +3,6 @@
 namespace api;
 
 use business\user\UserManagement;
-use config\Mode;
-use config\ProductionConfig;
 
 header('Content-Type: application/json');
 SESSION_START();
