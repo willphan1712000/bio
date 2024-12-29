@@ -4,11 +4,11 @@ namespace api\user\validation;
 
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 
-use api\APIAbstract;
+use api\APISecret;
 use business\user\signup\Input;
 use business\user\signup\Password;
 
-class IsPassValid extends APIAbstract
+class IsPassValid extends APISecret
 {
     public function handleRequest($body)
     {

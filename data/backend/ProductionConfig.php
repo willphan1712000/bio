@@ -16,7 +16,7 @@ enum Mode
 
 class ProductionConfig
 {
-    public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
+    public static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
     public static $version = "7.0"; // version of the product
 
     public static function database()

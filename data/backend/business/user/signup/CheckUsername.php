@@ -4,7 +4,7 @@ namespace business\user\signup;
 
 use business\user\signup\SignupHandler;
 use business\user\signup\Input;
-use business\UserManagement;
+use business\user\UserManagement;
 
 class CheckUsername extends SignupHandler
 {

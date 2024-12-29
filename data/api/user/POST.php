@@ -2,12 +2,12 @@
 
 namespace api\user;
 
-use api\APIAbstract;
+use api\APISecret;
 use business\user\POST as userPOST;
 
 require_once __DIR__ . "/../../../vendor/autoload.php";
 
-class POST extends APIAbstract
+class POST extends APISecret
 {
     public function handleRequest($body)
     {
