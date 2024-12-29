@@ -121,7 +121,7 @@ class ReactMounting {
     render() {
         const parentElement = document.querySelector(this.element);
         if (!parentElement) {
-            throw new Error("Target DOM element not found");
+            throw new Error("The element React components will be mounted on is not found");
         }
         (client_1.default.createRoot(parentElement).render(this.jsx));
     }

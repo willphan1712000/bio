@@ -126,6 +126,11 @@ a {
 .info__org {
   width: -webkit-fill-available;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 }
 .info__des {
   display: flex;

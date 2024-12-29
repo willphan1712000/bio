@@ -22,7 +22,7 @@ class NormalPhone implements Operation
 
         $code = $list['code'];
 
-        return $code . ' ' . $number;
+        return $number;
     }
 
     public function execute($list): mixed
