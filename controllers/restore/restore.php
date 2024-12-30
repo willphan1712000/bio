@@ -47,7 +47,7 @@ if (isset($_POST['delete'])) {
                 <form action="" method="POST">
                     <button type="submit" name="restore" class="btn__ele btn__ele--restore">Restore Account</button>
                     <p class="mt-3 text-[red]"><?= $error; ?></p>
-                    <button type="submit" name="delete" class="btn__ele btn__ele--delete">Delete Permanently</button>
+                    <button type="submit" name="delete" class="p-0 w-[150px] h-[40px] text-[12px] !bg-[#f0f0f0] btn__ele btn__ele--delete">Delete Permanently</button>
                 </form>
             </div>
             <p class="signupChild__msg"><?= (new SigninGoBack())->render(); ?></p>

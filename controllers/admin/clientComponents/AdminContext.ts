@@ -12,6 +12,7 @@ export type State = {
 export type Action = {type: 'upload' | 'main' | 'preview' | 'delete', value?: string}
 
 type Save = [state: SaveState, action: React.Dispatch<SaveAction>] | undefined
+
 export type SaveState = {
     isSubmitting: boolean,
     isShow: boolean,
@@ -20,6 +21,19 @@ export type SaveState = {
     default: string
 }
 export type SaveAction = {type: 'submit' | 'show' | 'message' | 'disable' | 'default', value?: string}
+
+type Delete = [state: DeleteState, action : React.Dispatch<DeleteAction>] | undefined
+
+export type DeleteState = {
+    show: boolean,
+    username: string,
+    message: {[key: string]: string},
+    isDeleting: boolean,
+    msg: string,
+    disabled: boolean
+}
+
+export type DeleteAction = | {type: 'show' | 'delete' | 'disable' | 'msg', value?: string}
 
 export const AdminContext = createContext<Admin>(undefined)
 
@@ -30,6 +44,8 @@ export const AdminElementContext = createContext<Element>(undefined)
 export const AdminImageContext = createContext<Image>(undefined)
 
 export const AdminSaveContext = createContext<Save>(undefined)
+
+export const AdminDeleteContext = createContext<Delete>(undefined)
 
 export default function handleAdminContext() {
     const data = useContext(AdminContext)
@@ -67,6 +83,14 @@ export function handleAdminSaveContext() {
     const data = useContext(AdminSaveContext)
     if(data === undefined) {
         throw new Error("Admin save context is undefined")
+    }
+    return data
+}
+
+export function handleAdminDeleteContext() {
+    const data = useContext(AdminDeleteContext)
+    if(data === undefined) {
+        throw new Error("Admin delete context is undefined")
     }
     return data
 }

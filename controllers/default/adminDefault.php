@@ -43,15 +43,17 @@ if (isset($_POST['signout'])) {
                 <button style="border: none; color: #000;" name="signout" class="adminBtn__ele adminBtn__index"><span>Sign out</span><i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
         </div>
+        <div id="delete"></div>
         <div id="copyright">
             <p><?= $g['license']; ?></p>
         </div>
     </div>
 
     <script>
-        const username = "<?= $username ?>"
-        const defaultImgPath = '<?= $g['img']['unknown']; ?>'
-        const regexMap = <?= json_encode($regexMap); ?>
+        const username = "<?= $username ?>";
+        const defaultImgPath = '<?= $g['img']['unknown']; ?>';
+        const regexMap = <?= json_encode($regexMap); ?>;
+        const message = <?= json_encode($g['deleteWarningMsg']); ?>;
     </script>
 </body>
 
