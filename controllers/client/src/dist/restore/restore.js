@@ -11,11 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = restore;
 const WW_1 = require("../client/src/Web-Development/WW");
-function restore(props) {
+const TemplateContext_1 = require("../template/clientComponents/TemplateContext");
+$(document).ready(function () {
+});
+function restore() {
+    const user = (0, TemplateContext_1.username)();
+    const key = process.env.SYSTEM_SECRET_KEY;
     $(".btn__ele--restore").click(function () {
         return __awaiter(this, void 0, void 0, function* () {
             const r = yield (0, WW_1.$$$)("/data/api/restoreAccount.php", {
-                username: props.username
+                username: user
             }).api().post();
             if (r) {
                 window.location.href = "/";
@@ -25,7 +30,8 @@ function restore(props) {
     $(".btn__ele--delete").click(function () {
         return __awaiter(this, void 0, void 0, function* () {
             const r = yield (0, WW_1.$$$)("/data/api/deleteAccount.php", {
-                username: props.username
+                username: user,
+                key
             }).api().post();
             if (r) {
                 window.location.href = "/";

@@ -57,7 +57,7 @@ const InfoArea = ({data, extraData}: Props) => {
                 </div>
                 <div className="info__des admin">
                     <label htmlFor="des">Description</label>
-                    <textarea name="des" id="des" value={description} onChange={e => desChangeHandler(e)}></textarea>
+                    <textarea name="des" id="des" value={description ?? ''} onChange={e => desChangeHandler(e)}></textarea>
                 </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\OneToMany;
 class Purchase extends EntityFunction
 {
     #[ManyToOne(targetEntity: 'User', inversedBy: 'Purchase')]
-    #[JoinColumn(name: 'username', referencedColumnName: 'username', onDelete: 'CASCADE')]
+    #[JoinColumn(name: 'username', referencedColumnName: 'username')]
     protected $User;
     #[OneToMany(targetEntity: 'Style', mappedBy: 'Purchase', cascade: ['persist'])]
     protected Collection $Style;
