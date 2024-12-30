@@ -65,9 +65,8 @@ use function component\signup\signupAgain;
         <div class="signupChild signupSuccess">
             <div class="signupSuccess__logo"><i class="fa-solid fa-check"></i></div>
             <div class="signupSuccess__text">
-                <h1 class="text-[30px]">You have signed up successfully</h1>
+                <h1 class="text-[30px] p-[10px]">Sign up success, taking you to admin...</h1>
             </div>
-            <div class="signupSuccess__btn"><?= signinOriginal()->render(); ?> <?= signupAgain()->render(); ?></div>
         </div>
     </div><?php
             copyright([

@@ -85,6 +85,9 @@ class SignUpUI {
             if (r) {
                 $(this.success.before).addClass(this.success.beforeClass);
                 $(this.success.after).addClass(this.success.afterClass);
+                setTimeout(() => {
+                    window.location.href = '/' + this.usernameBox.getUsername() + '/admin';
+                }, 2000);
             }
         });
     }

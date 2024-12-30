@@ -22,6 +22,7 @@ if (isset($_POST['submit'])) {
     $password = $signin->get('password');
     $error = $signin->get('error');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -19,7 +19,7 @@ class Password extends SignupHandler
         $hasDigit = false;
         $hasUpperCase = false;
         $hasSpecialChar = true; // Bypass special characters
-        $isLengthValid = (strlen($password) >= SystemConfig::globalVariables()['passwordRequirement']['limit']) ? true : false;
+        $isLengthValid = (strlen($password) >= SystemConfig::globalVariables()['passwordRequirement']['limit']);
         for ($i = 0; $i < strlen($password); $i++) {
             $position = ord($password[$i]); // Get ASCII Value
             if ($position >= 65 && $position <= 90) {

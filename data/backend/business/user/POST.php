@@ -4,6 +4,7 @@ namespace business\user;
 
 // require_once __DIR__."/../../../../vendor/autoload.php";
 use business\IAPI;
+use business\user\signup\Auth;
 use business\user\signup\CheckUsername;
 use business\user\signup\CheckEmail;
 use business\user\signup\Password;
@@ -29,8 +30,8 @@ class POST implements IAPI
     {
         try {
             $input = new Input($username, $email, $password); // input object from user
-            // Check username -> check email -> check password -> create user folder -> create user QR code -> push data to database
-            $signupHandler = new CheckUsername(new CheckEmail(new Password(new CreateFolder(new CreateQR(new Push(null))))));
+            // Check username -> check email -> check password -> create user folder -> create user QR code -> push data to database -> create admin authorization
+            $signupHandler = new CheckUsername(new CheckEmail(new Password(new CreateFolder(new CreateQR(new Push(new Auth(null)))))));
             $process = $signupHandler->handle($input); // return true if the process is successful
             return [
                 'success' => $process

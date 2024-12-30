@@ -8,7 +8,8 @@ use persistence\Entity\User;
 
 interface IUserManagement
 {
-    public static function isSignedIn($SESSION, string $username): bool;
+    public static function isSignedIn(&$SESSION, string $username): bool;
+    public static function auth(&$SESSION, string $username): bool;
     public static function URLGenerator(string $username, string $c): string|null;
     public static function isUserExist($username): bool;
     public static function isEmailMatchUsername(string $username, string $email): bool;
@@ -16,7 +17,7 @@ interface IUserManagement
 
 class UserManagement implements IUserManagement
 {
-    public static function isSignedIn($SESSION, string $username): bool
+    public static function isSignedIn(&$SESSION, string $username): bool
     {
         if (isset($SESSION[$username])) {
             if (time() - $SESSION['last_time_' . $username] > SystemConfig::globalVariables()['timeSession']) {
@@ -29,6 +30,13 @@ class UserManagement implements IUserManagement
         } else {
             return false;
         }
+    }
+    public static function auth(&$SESSION, string $username): bool
+    {
+        $SESSION[$username] = $username;
+        $SESSION['last_time_' . $username] = time();
+
+        return true;
     }
     // This function is to create url for user
     public static function URLGenerator(string $username, string $c = "main" | "share"): string|null
