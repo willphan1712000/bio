@@ -171,16 +171,16 @@ class Share extends W1 {
     }
 }
 class Table extends W2 {
-    constructor(location, header) {
-        super(location, header);
+    constructor(location, data) {
+        super(location, data);
         this.location = location;
-        this.header = header;
+        this.data = data;
     }
     addHeader() {
         $(this.location).append('<table><tr></tr></table>');
-        for (const headerKey in this.header) {
-            if (this.header.hasOwnProperty(headerKey)) {
-                $(this.location + " table tr").append(`<th>${this.header[headerKey]}</th>`);
+        for (const headerKey in this.data[0]) {
+            if (this.data[0].hasOwnProperty(headerKey)) {
+                $(this.location + " table tr").append(`<th>${headerKey}</th>`);
             }
         }
         return this;
@@ -189,6 +189,19 @@ class Table extends W2 {
         for (const dataKey in data) {
             let row = `<tr>`, eachData = data[dataKey];
             for (const eachKey in eachData) {
+                if (eachKey === 'createdAt') {
+                    let dateFormatted = new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'America/New_York',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                    }).format(new Date(eachData[eachKey]));
+                    row += `<th>${dateFormatted}</th>`;
+                    continue;
+                }
                 row += `<th>${eachData[eachKey]}</th>`;
             }
             row += `</tr>`;

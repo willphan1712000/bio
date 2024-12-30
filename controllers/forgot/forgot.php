@@ -5,116 +5,26 @@ use config\SystemConfig;
 $g = SystemConfig::globalVariables();
 
 use component\Copyright;
-use persistence\EntityManager;
 use component\signin\SigninGoBack;
 use component\Logo;
+use controllers\forgot\ForgotController;
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
+$forgotController = new ForgotController();
 
-
-$conn = EntityManager::getConnection();
-$emailAuth = SystemConfig::emailAuth();
-
-$error = "";
-$username = "";
-$email = "";
+$error = $forgotController->get("error");
+$username = $forgotController->get("username");
+$email = $forgotController->get("email");
 
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $usernameExist = false;
-    $emailExist = false;
-    $match = false;
-    $usernameQuery = mysqli_query($conn, "SELECT username FROM user");
-    while ($row = mysqli_fetch_assoc($usernameQuery)) {
-        if ($row['username'] === $username) {
-            $usernameExist = true;
-            break;
-        }
-    }
-    $emailQuery = mysqli_query($conn, "SELECT email FROM user");
-    while ($row = mysqli_fetch_assoc($emailQuery)) {
-        if ($row['email'] === $email) {
-            $emailExist = true;
-            break;
-        }
-    }
-    $matchQuery = mysqli_query($conn, "SELECT email FROM user WHERE username = '$username'");
-    if (mysqli_fetch_assoc($matchQuery)['email'] === $email) {
-        $match = true;
-    }
-    if (!$usernameExist && $emailExist) {
-        $error = "Username does not exist";
-    } else if ($usernameExist && !$emailExist) {
-        $error = "Email does not exist";
-    } else if (!$usernameExist && !$emailExist) {
-        $error = "Both username and Email do not exist";
-    } else if ($usernameExist && $emailExist) {
-        if (!$match) {
-            $error = "The email does not match with the username";
-        } else {
-            $token = time();
-            $link = $g['domain'] . "/" . $token . "?username=" . $username;
-            $to = $email;
-            $subject = "Allinclicks, All rights reserved. " . $g['product_year'];
-            $txt = "<h1>Reset Password</h1><p>Click on the link below to reset your password</p>";
-            $txt .= "<p><a href=\"https://" . $link . "\" target=\"_blank\">Reset Link</a></p>";
-            $txt .= "<p>Note: The link is going to expire in " . $g['resetExpireTxt'] . " minutes!</p>";
-            $txt .= "<h3>Please, do not reply to this email.</h3>";
-            // $headers = "From: ". $g['rootEmail'] . "\r\n";
-            // $headers .= "Content-type: text/html\r\n";
+    $forgotController->set('username', $_POST['username']);
+    $forgotController->set('email', $_POST['email']);
+    $forgotController->execute();
 
-            //Create an instance; passing `true` enables exceptions
-            $mail = new PHPMailer(true);
-
-            try {
-                //Server settings
-                // $mail->SMTPDebug = 2;
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = $emailAuth['host'];                     //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = $emailAuth['username'];                     //SMTP username
-                $mail->Password   = $emailAuth['password'];                               //SMTP password
-                $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-                $mail->SMTPOptions = array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    )
-                );
-
-                //Recipients
-                $mail->setFrom($g['rootEmail'], 'Allinclicks');
-                $mail->addAddress($to);     //Add a recipient
-                // $mail->addAddress('ellen@example.com');               //Name is optional
-                // $mail->addReplyTo($g['rootEmail'], 'Allinclicks');
-                // $mail->addCC('cc@example.com');
-                // $mail->addBCC('bcc@example.com');
-
-                //Attachments
-                // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-                //Content
-                $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = $subject;
-                $mail->Body    = $txt;
-                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-                if ($mail->send()) {
-                    $inactive = "inactive";
-                    $active = "active";
-                    mysqli_query($conn, "UPDATE user SET token='$token' WHERE username='$username'");
-                }
-            } catch (Exception $e) {
-                echo "<script>alert(\"Message could not be sent. Mailer Error: {$mail->ErrorInfo}\")</script>";
-            }
-        }
-    }
+    $inactive = $forgotController->get("inactive");
+    $active = $forgotController->get("active");
+    $error = $forgotController->get("error");
+    $username = $forgotController->get("username");
+    $email = $forgotController->get("email");
 }
 ?>
 <!DOCTYPE html>

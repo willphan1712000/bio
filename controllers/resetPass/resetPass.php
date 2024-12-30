@@ -1,42 +1,29 @@
 <?php
 
 use config\SystemConfig;
+use component\Copyright;
+use component\Logo;
+use component\signin\SigninGoBack;
+use controllers\resetPass\ResetPassword;
 
-require_once __DIR__ . "/../controllers/components/Copyright.php";
-
-use function component\copyright;
+$reset = new ResetPassword();
+$password = $reset->get("password");
+$verifyPassword = $reset->get("verifyPassword");
+$error = $reset->get("error");
 
 $g = SystemConfig::globalVariables();
-// $conn = Database::connection();
-parse_str(parse_url($_SERVER['REQUEST_URI'])['query'], $info);
-if (!empty($info)) {
-    $username = $info['username'];
-    $time = str_replace("/", "", parse_url($_SERVER['REQUEST_URI'])['path']);
-    if (time() - $time > $g['resetExpire']) {
-        header("Location: /emailExpire");
-        mysqli_query($conn, "UPDATE user SET token='' WHERE username='$username'");
-    } else {
-        if (isset($_POST['submit'])) {
-            $password = $_POST['password'];
-            $verifyPassword = $_POST['verifyPassword'];
-            $valid = SystemConfig::isPassVaild($password);
-            if (!$valid) {
-                $error = "The password is not valid";
-            } else {
-                if (!($password === $verifyPassword)) {
-                    $error = "The verified password does not match";
-                } else {
-                    if (mysqli_query($conn, "UPDATE user SET password = '$password' WHERE username = '$username'")) {
-                        mysqli_query($conn, "UPDATE user SET token='' WHERE username='$username'");
-                        $inactive = "inactive";
-                        $active = "active";
-                    }
-                }
-            }
-        }
-    }
-} else {
-    header("Location: /emailExpire");
+
+if (isset($_POST['submit'])) {
+    $reset->set("password", $_POST['password']);
+    $reset->set("verifyPassword", $_POST['verifyPassword']);
+
+    $reset->execute();
+
+    $inactive = $reset->get("inactive");
+    $active = $reset->get("active");
+    $password = $reset->get("password");
+    $verifyPassword = $reset->get("verifyPassword");
+    $error = $reset->get("error");
 }
 ?>
 <!DOCTYPE html>
@@ -51,10 +38,10 @@ if (!empty($info)) {
 </head>
 
 <body>
-    <div class="logo"><img src="<?= $g['img']['logo'] ?>" alt=""></div>
+    <div class="logo"><?= (new Logo())->render(); ?></div>
     <div class="signupParent">
         <div class="signupChild <?= $inactive; ?>">
-            <h1>Reset Password</h1><span class="signupChild__error"><?= $error; ?></span>
+            <h1 class="text-[30px]">Reset Password</h1><span class="signupChild__error"><?= $error; ?></span>
             <form action="" id="signup" method="POST">
                 <div class="inputField"><label for="password">Password</label> <input type="password" id="password" name="password" autocomplete="password" value="<?= $password; ?>" required></div>
                 <div class="inputField"><label for="verifyPassword">Verify Password</label> <input type="password" id="verifyPassword" name="verifyPassword" autocomplete="verifyPassword" value="<?= $verifyPassword; ?>" required></div><button type="submit" name="submit" class="signupChild__confirm--php">Change</button>
@@ -62,12 +49,12 @@ if (!empty($info)) {
         </div>
         <div class="signupChild passwordResetSuccess <?= $active; ?>">
             <div><i class="fa-solid fa-check" style="font-size: 40px;color: green;border: solid 2px green;border-radius: 50%;padding: 20px;margin-bottom: 10px;"></i></div>
-            <h2>Password has been reset successfully</h2><a style="text-decoration: none;" href="/signin">Go back to sign in</a>
+            <h2>Password has been reset successfully</h2><?= (new SigninGoBack())->render(); ?>
         </div>
     </div><?php
-            copyright([
+            (new Copyright([
                 'position' => 'absolute'
-            ])->render();
+            ]))->render();
             ?><script>
         const type = 'resetPass';
     </script>

@@ -16,14 +16,14 @@ const W_1 = require("../../W");
 const WW_1 = require("../../WW");
 const DataUI_1 = __importDefault(require("./DataUI"));
 class TableUI {
-    constructor(container, header, target, limit, like, url, html) {
+    constructor(container, target, limit, like, url, html) {
         this.tableContainer = container;
         this.target = target;
         this.limit = limit;
         this.like = like;
-        this.header = header;
-        this.dataUI = new DataUI_1.default(url);
+        this.dataUI = new DataUI_1.default(url.get);
         this.html = html;
+        this.url = url;
     }
     getLimit() {
         return this.limit;
@@ -35,10 +35,11 @@ class TableUI {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield this.dataUI.getData({
                 limit: this.limit,
-                like: this.like
+                like: this.like,
+                username: 'Allinclicks'
             });
-            const table = (0, W_1.$$)(this.tableContainer, this.header).table().addHeader();
-            this.addRow(table, data, false);
+            const table = (0, W_1.$$)(this.tableContainer, data.data).table().addHeader();
+            this.addRow(table, data.data);
             return table;
         });
     }
@@ -51,49 +52,44 @@ class TableUI {
                 o.increaseCount();
                 const data = yield this.dataUI.getData({
                     limit,
-                    offset: limit * o.getCount()
+                    offset: limit * o.getCount(),
+                    username: 'Allinclicks'
                 });
-                this.addRow(table, data, true);
+                this.addRow(table, data.data);
             }
         })).addIntersectionObserver().observe();
         return o;
     }
-    addRow(table, data, search) {
+    addRow(table, data) {
         table.addRow(data);
-        this.handleClick(search);
+        this.handleClick();
     }
-    handleClick(search) {
+    handleClick() {
         const html = this.html;
-        if (search) {
-            $(html.button).off("click", e => {
-                return null;
-            });
-            $(html.confirm).off("click", e => {
-                return null;
-            });
-            $(html.back).off("click", e => {
-                return null;
-            });
-        }
-        $(html.button).click(function (e) {
+        $(html.button).off("click", undefined);
+        $(html.confirm).off("click", undefined);
+        $(html.back).off("click", undefined);
+        const state = { currentUsernameValue: undefined };
+        $(html.button).click(e => {
             $(html.parent).addClass("active");
             let currentUsernameElement = e.currentTarget;
-            let currentUsernameValue = "";
-            currentUsernameValue = currentUsernameElement.value;
-            $(html.confirm).click(function () {
-                return __awaiter(this, void 0, void 0, function* () {
-                    const r = yield (0, WW_1.$$$)("/data/api/deleteAccount.php", {
-                        username: currentUsernameValue,
-                    }).api().post();
-                    if (r) {
-                        location.reload();
-                    }
-                });
-            });
-            $(html.back).click(() => {
-                $(html.parent).removeClass("active");
-                currentUsernameValue = "";
-            });
+            state.currentUsernameValue = currentUsernameElement.value;
+        });
+        $(html.confirm).click(() => __awaiter(this, void 0, void 0, function* () {
+            const r = yield (0, WW_1.$$$)(this.url.delete, {
+                username: state.currentUsernameValue,
+                key: process.env.SYSTEM_SECRET_KEY
+            }).api().post();
+            if (r.success) {
+                location.reload();
+            }
+            else {
+                alert(r.error);
+            }
+        }));
+        $(html.back).click(() => {
+            $(html.parent).removeClass("active");
+            state.currentUsernameValue = "";
         });
     }
 }
