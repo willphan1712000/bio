@@ -38,7 +38,9 @@ if (isset($_POST['submit'])) {
             <p class="signupChild__msg"><?= (new ForgotGoBack())->render(); ?></p>
         </div>
         <div class="signupChild result <?= $find->get("active"); ?>">
-            <h2 class="text-[24px]">You have <?= $find->get("count"); ?> account(s)</h2><br> <?= $find->get("accStr"); ?> <p class="signupChild__msg"><?= (new ForgotGoBack())->render(); ?></p>
+            <h2 class="text-[24px]">You have <?= $find->get("count"); ?> account(s)</h2><br>
+            <?= $find->get("accStr"); ?>
+            <p class="signupChild__msg"><?= (new ForgotGoBack())->render(); ?></p>
         </div>
     </div>
     <?php

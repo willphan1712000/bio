@@ -17,10 +17,15 @@ class DataUI {
     getData(options) {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield (0, WW_1.$$$)(this.url, options).api().post();
-            for (const i in data) {
-                data[i].a = '<a target="_blank" href="/' + data[i].username + '" style="color: #000;">Bio</a>';
-                data[i].admin = '<a target="_blank" href="/' + data[i].username + '/admin" style="color: #000;">Admin</a>';
-                data[i].delete = '<button value="' + data[i].username + '">Delete</button>';
+            if (data.success) {
+                for (const i in data.data) {
+                    data.data[i].Bio = '<a target="_blank" href="/' + data.data[i].username + '" style="color: #000;">Bio</a>';
+                    data.data[i].admin = '<a target="_blank" href="/' + data.data[i].username + '/admin" style="color: #000;">Admin</a>';
+                    data.data[i].delete = '<button value="' + data.data[i].username + '">Delete</button>';
+                }
+            }
+            else {
+                throw new Error(data.error);
             }
             return data;
         });

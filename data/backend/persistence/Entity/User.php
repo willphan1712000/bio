@@ -21,19 +21,19 @@ class User extends EntityFunction
     #[Id, Column(name: 'username', nullable: false)]
     protected string $username;
 
-    #[OneToOne(targetEntity: 'UserInfo', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[OneToOne(targetEntity: 'UserInfo', mappedBy: 'User', cascade: ['persist'])]
     protected $UserInfo;
-    #[OneToOne(targetEntity: 'UserPhone', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[OneToOne(targetEntity: 'UserPhone', mappedBy: 'User', cascade: ['persist'])]
     protected $UserPhone;
-    #[OneToOne(targetEntity: 'UserSocial', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[OneToOne(targetEntity: 'UserSocial', mappedBy: 'User', cascade: ['persist'])]
     protected $UserSocial;
-    #[OneToMany(targetEntity: 'Purchase', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: 'Purchase', mappedBy: 'User', cascade: ['persist'])]
     protected Collection $Purchase;
-    #[OneToMany(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: 'Template', mappedBy: 'User', cascade: ['persist'])]
     protected Collection $Template;
-    #[OneToMany(targetEntity: 'Style', mappedBy: 'User', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: 'Style', mappedBy: 'User', cascade: ['persist'])]
     protected Collection $Style;
-    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'User', cascade: ['persist', 'remove'])]
+    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'User', cascade: ['persist'])]
     #[JoinColumn(name: 'defaultTemplate', referencedColumnName: 'template_id')]
     protected $StyleDefault;
 

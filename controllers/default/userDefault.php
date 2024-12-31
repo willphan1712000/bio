@@ -46,7 +46,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
                         </div>
                     </div>
                     <div class="info__org">
-                        <h3>Position</h3>
+                        <h3 style="display: <?= $infoArray['organization']->getValue() === NULL ? 'none' : 'flex'; ?>">Position</h3>
                         <div>
                             <h2><?= $infoArray['organization']->getHTML(); ?></h2>
                         </div>

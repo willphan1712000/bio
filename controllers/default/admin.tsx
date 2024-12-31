@@ -1,3 +1,4 @@
+import Delete from "../admin/clientComponents/Delete/Delete";
 import Response from "../client/src/Web-Development/components/Response";
 import { $$ } from "../client/src/Web-Development/W";
 import { $$$ } from "../client/src/Web-Development/WW";
@@ -6,6 +7,9 @@ import InfoArea from "./clientComponents/InfoArea";
 declare var username: string
 declare var defaultImgPath: string
 declare var regexMap: {
+    [key: string]: string
+}
+declare var message: {
     [key: string]: string
 }
 
@@ -30,4 +34,6 @@ async function adminPage() {
     list.username = username
 
     $$("#info__wrapper", <InfoArea data={list} extraData={{defaultImgPath, regexMap}}/>).reactMounting() // Mount React components
+
+    $$("#delete", <Delete message={message}/>).reactMounting() // Mount React component
 }

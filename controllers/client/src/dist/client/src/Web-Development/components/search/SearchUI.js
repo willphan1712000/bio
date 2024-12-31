@@ -18,8 +18,8 @@ const TableUI_1 = __importDefault(require("./TableUI"));
 class SearchUI {
     constructor(input, tableProps) {
         this.inputUI = new InputUI_1.default(input, this);
-        this.tableUI = new TableUI_1.default(tableProps.container, tableProps.header, tableProps.target, tableProps.limit, tableProps.like, tableProps.url, tableProps.html);
-        this.dataUI = new DataUI_1.default(tableProps.url);
+        this.tableUI = new TableUI_1.default(tableProps.container, tableProps.target, tableProps.limit, tableProps.like, tableProps.url, tableProps.html);
+        this.dataUI = new DataUI_1.default(tableProps.url.get);
         this.createTable();
     }
     createTable() {
@@ -31,12 +31,14 @@ class SearchUI {
     update() {
         return __awaiter(this, void 0, void 0, function* () {
             var _a, _b, _c, _d;
-            const v = this.inputUI.getValue();
+            const like = this.inputUI.getValue();
+            const limit = this.tableUI.getLimit();
             const data = yield this.dataUI.getData({
-                limit: this.tableUI.getLimit(),
-                like: v
+                limit,
+                like,
+                username: 'Allinclicks'
             });
-            if (v === "") {
+            if (like === "") {
                 (_a = this.observer) === null || _a === void 0 ? void 0 : _a.resetCount();
                 (_b = this.observer) === null || _b === void 0 ? void 0 : _b.observe();
             }
@@ -44,7 +46,7 @@ class SearchUI {
                 (_c = this.observer) === null || _c === void 0 ? void 0 : _c.unobserve();
             }
             (_d = this.table) === null || _d === void 0 ? void 0 : _d.empty();
-            this.tableUI.addRow(this.table, data, true);
+            this.tableUI.addRow(this.table, data.data);
         });
     }
 }

@@ -38,20 +38,18 @@ class SigninController extends Controller
         if (UserManagement::isUserExist($this->username)) {
             // check if password is correct
             if ($this->password === Database::GET(User::class, "password", ['username' => $this->username])) {
+                UserManagement::auth($_SESSION, $this->username);
                 if ($this->template === 'true') {
                     header("Location: /@template?username=" . $this->username);
                 } else {
                     header("Location: /" . $this->username . "/admin");
                 }
-                $_SESSION[$this->username] = $this->username;
-                $_SESSION['last_time_' . $this->username] = time();
             } else {
                 $this->error = "The password is not correct";
             }
         } else if ($this->username === $this->g['aicAccount']['username'] && $this->password === $this->g['aicAccount']['password']) {
             header("Location: /@aic");
-            $_SESSION[$this->username] = $this->username;
-            $_SESSION['last_time_' . $this->username] = time();
+            UserManagement::auth($_SESSION, $this->username);
         } else {
             $this->error = "The username does not exist";
         }

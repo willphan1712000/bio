@@ -44,7 +44,6 @@ class SystemConfig
                 'msg4' => 'Otherwise, your account will be permanently deleted'
             ],
             'accountHoldPeriod' => 60 * 24 * 60 * 60, // 60 days,
-            'data_model' => './dataModel/bio.sql',
             'user_folder' => __DIR__ . "/../../user/",
             'absolute_user_folder' => "/user/",
             'aicAccount' => [
@@ -137,6 +136,8 @@ class SystemConfig
     }
 
     // this function is for extracting url into base or query string
+    // For example, if the url is https://domain/page1/page2/page3. hierarchy 1 will return page3, 2 will return page2, 3 will return page1, and so on
+    // If ignore hierarchy, and pass queryStr, it will return matching queryStr. For example, if the url is https://domain?username=willphan and queryStr is username, it will return willphan
     public static function URLExtraction(int $hierarchy = 1, string $queryStr = null)
     {
         $groups = explode("/", parse_url($_SERVER['REQUEST_URI'])['path']);

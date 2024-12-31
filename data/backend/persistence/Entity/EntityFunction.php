@@ -22,6 +22,7 @@ class EntityFunction
         return
             "INSERT INTO StyleDefault (template_id, name, price, image, description, font, fontSize, fontColor, background) 
         VALUES
+            (0, 'Template ID 0', 10, 'template/0/0.png', null, null, null, null, null),
             (1, 'Template ID 1', 10, 'template/1/1.png', '', '\'Inter\', sans-serif', '12px', '#fff', '#29b27c'),
             (2, 'Template ID 2', 10, 'template/2/2.png', '', '\'400 Lilita One\', sans-serif', '15px', '#9ece00', '#fff'),
             (3, 'Template ID 3', 10, 'template/3/3.png', '', '\'400 Barlow Semi    Condensed\', -apple-system, Roboto, Helvetica, sans-serif', '15px', '#c59975', '#fff'),

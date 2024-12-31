@@ -14,11 +14,11 @@ use Doctrine\ORM\Mapping\OneToMany;
 #[Table('StyleDefault')]
 class StyleDefault extends EntityFunction
 {
-    #[OneToMany(targetEntity: 'Style', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: 'Style', mappedBy: 'StyleDefault', cascade: ['persist'])]
     protected Collection $Style;
-    #[OneToMany(targetEntity: 'Template', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: 'Template', mappedBy: 'StyleDefault', cascade: ['persist'])]
     protected Collection $Template;
-    #[OneToMany(targetEntity: 'User', mappedBy: 'StyleDefault', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: 'User', mappedBy: 'StyleDefault', cascade: ['persist'])]
     protected Collection $User;
 
     #[Id, Column(name: 'template_id')]

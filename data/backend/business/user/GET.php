@@ -1,5 +1,5 @@
 <?php
-
+// 
 namespace business\user;
 
 use business\IAPI;
@@ -9,10 +9,16 @@ use persistence\Entity\User;
 class GET implements IAPI
 {
     private ?string $username;
+    private ?int $offset;
+    private ?string $limit;
+    private ?string $like;
 
-    function __construct(?string $username = null)
+    function __construct(?string $username = null, ?int $offset = 0, ?string $limit = null, ?string $like = '')
     {
         $this->username = $username;
+        $this->offset = $offset;
+        $this->limit = $limit;
+        $this->like = $like;
     }
 
     private function getUser()
@@ -26,7 +32,7 @@ class GET implements IAPI
                     $row = [];
 
                     foreach (User::getProperty() as $prop) {
-                        if (!in_array($prop, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase', 'Style'])) {
+                        if (!in_array($prop, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase', 'Style', 'StyleDefault'])) {
                             $row[$prop] = $user->get($prop);
                         }
                     }
@@ -34,7 +40,22 @@ class GET implements IAPI
                     array_push($out, $row);
                 }
 
-                return $out;
+                return [
+                    'success' => true,
+                    'data' => $out
+                ];
+            }
+
+            if ($this->like !== null || $this->offset !== null || $this->limit !== null) {
+                $like = $this->like . "%";
+                $offset = $this->offset;
+                $limit = $this->limit;
+                $r = Database::SQL("SELECT *FROM User WHERE username LIKE '$like' OR email LIKE '$like' LIMIT $limit OFFSET $offset");
+
+                return [
+                    'success' => true,
+                    'data' => $r
+                ];
             }
 
             $user = Database::GET(User::class, null, [
@@ -48,7 +69,7 @@ class GET implements IAPI
             $row = [];
 
             foreach (User::getProperty() as $prop) {
-                if (!in_array($prop, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase', 'Style'])) {
+                if (!in_array($prop, ['UserInfo', 'UserPhone', 'UserSocial', 'Template', 'Purchase', 'Style', 'StyleDefault'])) {
                     $row[$prop] = $user->get($prop);
                 }
             }

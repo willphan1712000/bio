@@ -2,12 +2,12 @@
 
 namespace api\user;
 
-use api\APIAbstract;
+use api\APISecret;
 use business\user\PUT as userPUT;
 
 require_once __DIR__ . "/../../../vendor/autoload.php";
 
-class PUT extends APIAbstract
+class PUT extends APISecret
 {
     public function handleRequest($body)
     {
