@@ -5,6 +5,7 @@ namespace business\info\user;
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\display\NormalDisplay;
+use business\info\operation\TextArea;
 
 class Description extends User
 {
@@ -17,7 +18,7 @@ class Description extends User
     public function doUserGET(Info $info): bool
     {
         $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
-        $info->setInfo($this->name, new NormalDisplay($this->name, $this->format($value)));
+        $info->setInfo($this->name, new NormalDisplay($this->name, $value));
         return true;
     }
 
@@ -30,5 +31,11 @@ class Description extends User
             return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;
+    }
+
+    public function format($info): ?string
+    {
+        $o = TextArea::getInstance();
+        return $o->execute($info);
     }
 }

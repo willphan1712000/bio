@@ -28,6 +28,11 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
     <title><?= $g['userTitle']; ?></title>
     <script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #des::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,14 +51,13 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
                         </div>
                     </div>
                     <div class="info__org">
-                        <h3 style="display: <?= $infoArray['organization']->getValue() === NULL ? 'none' : 'flex'; ?>">Position</h3>
                         <div>
                             <h2><?= $infoArray['organization']->getHTML(); ?></h2>
                         </div>
                     </div>
                     <div class="info__des">
                         <div>
-                            <h3><?= $infoArray['description']->getHTML(); ?></h3>
+                            <textarea id="des" rows="5" cols="15" style="border: none; resize: none; outline: none; font-size: 18px; text-align: center; scrollbar-width: none; -ms-overflow-style: none;"><?= $infoArray['description']->getHTML(); ?></textarea>
                         </div>
                     </div>
                 </div>

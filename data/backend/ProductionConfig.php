@@ -24,7 +24,7 @@ enum Type
 
 class ProductionConfig
 {
-    public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
+    public static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
     public static Type $type = Type::MAIN;
     public static $version = "7.2"; // version of the product
 
@@ -38,12 +38,24 @@ class ProductionConfig
                 "dbName" => $_ENV['DATABASE_NAME_DEV'],
             ];
         } else if (self::$mode = Mode::PRODUCTION) {
-            return [
-                "servername" => $_ENV["DATABASE_SERVER_NAME"],
-                "username" => $_ENV["DATABASE_USERNAME"],
-                "password" => $_ENV["DATABASE_PASSWORD"],
-                "dbName" => $_ENV["DATABASE_NAME"],
-            ];
+            switch (self::$type) {
+                case Type::MAIN:
+                    return [
+                        "servername" => $_ENV["DATABASE_SERVER_NAME"],
+                        "username" => $_ENV["DATABASE_USERNAME"],
+                        "password" => $_ENV["DATABASE_PASSWORD"],
+                        "dbName" => $_ENV["DATABASE_NAME"],
+                    ];
+                case Type::TEST:
+                    return [
+                        "servername" => $_ENV["DATABASE_SERVER_NAME_TEST"],
+                        "username" => $_ENV["DATABASE_USERNAME_TEST"],
+                        "password" => $_ENV["DATABASE_PASSWORD_TEST"],
+                        "dbName" => $_ENV["DATABASE_NAME_TEST"],
+                    ];
+                default:
+                    return [];
+            }
         }
     }
 

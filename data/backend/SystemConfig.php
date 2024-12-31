@@ -101,7 +101,7 @@ class SystemConfig
             'name' => '/^.*$/',
             'image' => '/^.*$/',
             'organization' => '/^.*$/',
-            'description' => '/^.*$/',
+            'description' => '/.+/s',
             'Email' => '/^[^\s@]+@[^\s@]+\.[^\s@]+$/',
             'Mobile' => '/^\d{10}$/',
             'Work' => '/^\d{10}$/',
