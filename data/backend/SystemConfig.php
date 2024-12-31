@@ -44,7 +44,6 @@ class SystemConfig
                 'msg4' => 'Otherwise, your account will be permanently deleted'
             ],
             'accountHoldPeriod' => 60 * 24 * 60 * 60, // 60 days,
-            'data_model' => './dataModel/bio.sql',
             'user_folder' => __DIR__ . "/../../user/",
             'absolute_user_folder' => "/user/",
             'aicAccount' => [

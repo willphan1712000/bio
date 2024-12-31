@@ -31,7 +31,7 @@ const InfoArea = ({data, extraData}: Props) => {
     setTimeout(() => {
       setLoading(false)
     }, 500)
-  })
+  }, [])
 
   if(isLoading)
     return <div className='m-3'><p className='text-center'>Loading... Please Wait</p></div>

@@ -8,16 +8,25 @@ use Dotenv\Dotenv;
 
 Dotenv::createImmutable(__DIR__ . "./../../")->load();
 
+// Development mode and Production mode
 enum Mode
 {
     case DEVELOPMENT;
     case PRODUCTION;
 }
 
+// Main is main site for bio, Test is test site for bio
+enum Type
+{
+    case MAIN;
+    case TEST;
+}
+
 class ProductionConfig
 {
-    public static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
-    public static $version = "7.1"; // version of the product
+    public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
+    public static Type $type = Type::MAIN;
+    public static $version = "7.2"; // version of the product
 
     public static function database()
     {
@@ -47,14 +56,22 @@ class ProductionConfig
                 'stripeRedirect' => 'http://localhost',
             ];
         } else if (self::$mode = Mode::PRODUCTION) {
-            return [
-                'domain' => 'test.allinclicksbio.com',
-                'fulldomain' => 'https://test.allinclicksbio.com',
-                'stripeRedirect' => 'https://test.allinclicksbio.com',
-                // 'domain' => 'allinclicksbio.com',
-                // 'fulldomain' => 'https://allinclicksbio.com',
-                // 'stripeRedirect' => 'https://allinclicksbio.com',
-            ];
+            switch (self::$type) {
+                case Type::MAIN:
+                    return [
+                        'domain' => 'allinclicksbio.com',
+                        'fulldomain' => 'https://allinclicksbio.com',
+                        'stripeRedirect' => 'https://allinclicksbio.com',
+                    ];
+                case Type::TEST:
+                    return [
+                        'domain' => 'test.allinclicksbio.com',
+                        'fulldomain' => 'https://test.allinclicksbio.com',
+                        'stripeRedirect' => 'https://test.allinclicksbio.com',
+                    ];
+                default:
+                    return [];
+            }
         }
     }
 }
