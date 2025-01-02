@@ -39,6 +39,7 @@ h5 {
   height: 75vh;
 }
 .signupChild {
+  padding: 30px;
   width: 80%;
   max-width: 500px;
   height: 90%;

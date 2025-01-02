@@ -76,5 +76,6 @@ class UserManagement implements IUserManagement
                 return false;
             }
         }
+        return false;
     }
 }

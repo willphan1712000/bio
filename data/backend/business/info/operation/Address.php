@@ -21,6 +21,9 @@ class Address implements Operation
     // Format if the link redirects to Google Map
     public function googleMap(?string $info): ?string
     {
+        if ($info === null) {
+            return null;
+        }
         if (!str_contains($info, 'https://')) {
             return "https://google.com/maps?q=" . $info;
         }
@@ -30,6 +33,9 @@ class Address implements Operation
     // Format if the link redirects to Apple Map
     public function appleMap(?string $info): ?string
     {
+        if ($info === null) {
+            return null;
+        }
         if (!str_contains($info, 'https://')) {
             return "https://https://maps.apple.com/?q=" . $info;
         }
