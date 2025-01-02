@@ -3,6 +3,7 @@
 
 require 'vendor/autoload.php';
 
+use config\ProductionConfig;
 use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\DriverManager;
@@ -14,7 +15,7 @@ Dotenv\Dotenv::createImmutable("./")->load(); // Load environment file
 
 $config = new PhpFile('migrations.php'); // Or use one of the Doctrine\Migrations\Configuration\Configuration\* loaders
 
-$paths = [__DIR__.'/data/backend/persistence/Entity']; // Directory to entity folder (folder containing all defined entity
+$paths = [__DIR__ . '/data/backend/persistence/Entity']; // Directory to entity folder (folder containing all defined entity
 $isDevMode = true;
 
 $ORMConfig = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
@@ -23,10 +24,10 @@ $ORMConfig = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 // $connectionParams = $dsnParser->parse($_ENV['DATABASE_URL']); // pdo_mysql://username:password@localhost/dbname
 
 $connectionParams = [
-    'dbname' => $_ENV['DATABASE_NAME_DEV'],
-    'user' => $_ENV['DATABASE_USERNAME_DEV'],
-    'password' => $_ENV['DATABASE_PASSWORD_DEV'],
-    'host' => $_ENV['DATABASE_SERVER_NAME_DEV'],
+    'dbname' => ProductionConfig::database()['dbName'],
+    'user' => ProductionConfig::database()['username'],
+    'password' => ProductionConfig::database()['password'],
+    'host' => ProductionConfig::database()['servername'],
     'driver' => 'pdo_mysql',
 ];
 
