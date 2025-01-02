@@ -6,6 +6,7 @@ use business\info\Info;
 use business\info\user\User;
 use business\info\InfoHandler;
 use business\info\display\NormalDisplay;
+use business\info\operation\JobTitle;
 
 class Organization extends User
 {
@@ -17,7 +18,7 @@ class Organization extends User
     public function doUserGET(Info $info): bool
     {
         $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
-        $info->setInfo($this->name, new NormalDisplay($this->name, $this->format($value)));
+        $info->setInfo($this->name, new NormalDisplay($this->name, $value));
         return true;
     }
 
@@ -25,10 +26,19 @@ class Organization extends User
     {
         $value = $info->getInfo($this->name);
         if ($this->validate($this->name, $value)) {
-            $info->setInfo('vcard', $info->getInfo('vcard') . 'ORG:' . $this->format($value) . '\n');
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'ORG:' . $this->format([
+                'position' => $info->getInfo('position'),
+                'org' => $value
+            ]) . '\n');
 
             return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;
+    }
+
+    public function format($info): ?string
+    {
+        $o = JobTitle::getInstance();
+        return $o->execute($info);
     }
 }

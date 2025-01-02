@@ -15,7 +15,6 @@ $url = $user->get("url");
 $username = $user->get("username");
 $g = $user->get("g");
 $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,12 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
                 <div class="info__about">
                     <div class="info__name">
                         <div>
-                            <h1><?= $infoArray['name']->getHTML(); ?></h1>
+                            <h1 style="text-align: center;"><?= $infoArray['name']->getHTML(); ?></h1>
+                        </div>
+                    </div>
+                    <div class="info__position">
+                        <div>
+                            <p style="text-align: center; font-size: 18px; margin-top: 10px;"><?= $infoArray['position']->getHTML(); ?></p>
                         </div>
                     </div>
                     <div class="info__org">
@@ -65,7 +69,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             <div id="social-media">
                 <?php
                 foreach ($infoArray as $prop => $info) {
-                    if (!in_array($prop, ['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
+                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
 
                         /** @var Display */
                         $element = $infoArray[$prop];

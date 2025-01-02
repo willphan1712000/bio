@@ -55,7 +55,8 @@ const iconMap = {
 exports.iconMap = iconMap;
 const labelMap = {
     'name': 'Your Name',
-    'organization': 'Organization or Job title',
+    'position': 'Position or Job title',
+    'organization': 'Organization',
     'description': 'A little about yourself',
     'Email': 'Your email',
     'Mobile': 'Mobile',

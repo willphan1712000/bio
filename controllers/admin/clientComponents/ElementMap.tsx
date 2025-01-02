@@ -34,35 +34,10 @@ const iconMap: ElementArray = {
 
 export { iconMap };
 
-// const regexMap: ElementArray = {
-//     'name': /^.*$/,
-//     'organization': /^.*$/,
-//     'description': /^.*$/,
-//     'Email': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-//     'Mobile': /^\d{10}$/,
-//     'Work': /^\d{10}$/,
-//     'Booking': /^(https:\/\/.*|[^]+)$/,
-//     'OrderOnline': /^(https:\/\/.*|[^]+)$/,
-//     'HotSale': /^(https:\/\/.*|[^]+)$/,
-//     'Address': /^.*$/,
-//     'Facebook': /^(https:\/\/.*|[^]+)$/,
-//     'Instagram': /^(https:\/\/.*|[^]+)$/,
-//     'Messenger': /^.*$/,
-//     'Youtube': /^(https:\/\/.*|[^]+)$/,
-//     'Threads': /^(https:\/\/.*|[^]+)$/,
-//     'X': /^(https:\/\/.*|[^]+)$/,
-//     'Pinterest': /^(https:\/\/.*|[^]+)$/,
-//     'Linkedin': /^(https:\/\/.*|[^]+)$/,
-//     'Zalo': /^\d{3}\d{3}\d{4}$/,
-//     'Tiktok': /^(https:\/\/.*|[^]+)$/,
-//     'Website': /^(https:\/\/.*|[^]+)$/,
-// }
-
-// export { regexMap };
-
 const labelMap: ElementArray = {
     'name': 'Your Name',
-    'organization': 'Organization or Job title',
+    'position': 'Position or Job title',
+    'organization': 'Organization',
     'description': 'A little about yourself',
     'Email': 'Your email',
     'Mobile': 'Mobile',

@@ -50,6 +50,11 @@ const InfoArea = ({data, extraData}: Props) => {
                     <Input inputLabelColor='#fff' name='name'/>
                   </AdminElementContext.Provider>
                 </div>
+                <div className="info__position my-[15px]">
+                  <AdminElementContext.Provider value={'position'}>
+                    <Input inputLabelColor='#fff' name='position'/>
+                  </AdminElementContext.Provider>
+                </div>
                 <div className="info__org my-[15px]">
                   <AdminElementContext.Provider value={'organization'}>
                     <Input inputLabelColor='#fff' name='organization'/>

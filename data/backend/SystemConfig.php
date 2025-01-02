@@ -101,6 +101,7 @@ class SystemConfig
             'name' => '/^.*$/',
             'image' => '/^.*$/',
             'organization' => '/^.*$/',
+            'position' => '/^.*$/',
             'description' => '/.+/s',
             'Email' => '/^[^\s@]+@[^\s@]+\.[^\s@]+$/',
             'Mobile' => '/^\d{10}$/',
@@ -125,7 +126,7 @@ class SystemConfig
         ];
     }
 
-    // dump and die function used for debug process
+    // dump and die function used for debugging
     public static function dd($value)
     {
         echo "<pre>";
