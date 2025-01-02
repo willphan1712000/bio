@@ -5,13 +5,6 @@ import { $$ } from "../client/src/Web-Development/W";
 import { $$$ } from "../client/src/Web-Development/WW";
 import InfoArea from "./clientComponents/InfoArea";
 
-// declare var defaultImgPath: string
-// declare var regexMap: {
-//     [key: string]: string
-// }
-// declare var message: {
-//     [key: string]: string
-// }
 type Resource = {
     regexMap: {
         [key: string]: string

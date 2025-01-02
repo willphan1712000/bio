@@ -22,10 +22,18 @@ enum Type
     case TEST;
 }
 
+// Basic bio and Pro bio
+enum Bio
+{
+    case BASIC;
+    case PRO;
+}
+
 class ProductionConfig
 {
     public static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
     public static Type $type = Type::MAIN;
+    public static Bio $bio = Bio::BASIC;
     public static $version = "7.2"; // version of the product
 
     public static function database()

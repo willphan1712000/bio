@@ -45,7 +45,7 @@ use function component\signup\signupMain;
             <?= signinMain()->render(); ?>
             <?= signupMain()->render(); ?>
         </div>
-        <div class="bioBtn"><?= bioTemplateButton("")->render("bioBtn"); ?></div>
+        <div class="bioBtn"><?= bioTemplateButton("")->render(".bioBtn"); ?></div>
         <?php
         copyright([
             'position' => 'absolute'

@@ -1,5 +1,6 @@
 <?php
 
+use component\BioTemplateButton;
 use config\SystemConfig as c;
 use controllers\admin\AdminController;
 
@@ -30,12 +31,16 @@ if (isset($_POST['signout'])) {
 <body>
     <div id="container">
         <div class="adminSection">
+            <div class="mt-[20px]">
+                <div id="template1"><?= (new BioTemplateButton($username))->render('#template1'); ?></div>
+            </div>
             <div class="backToBio">
                 <a href="/<?= $username; ?>">Go to bio<i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div id="info__wrapper"></div>
         </div>
         <div class="adminBtn">
+            <div id="template2"><?= (new BioTemplateButton($username))->render('#template2'); ?></div>
             <div class="adminBtn__ele adminBtn__index">
                 <a href="/<?= $username; ?>" class="w-full h-full p-[20px] flex justify-center"><span>Go To Bio <i class="fa-solid fa-arrow-right"></i></span></a>
             </div>
