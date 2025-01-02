@@ -31,3 +31,7 @@ controllers/client/src/Web-Development
 
 #old version files
 old/*
+
+#migrations
+migrations/*
+!migrations/.gitkeep
