@@ -53,6 +53,7 @@ class UserFooter
                     flex-shrink: 0;
                     padding: 20px;
                     position: relative;
+                    display: flex;
                 }
                 ' . $container . ' .share__btn i {
                     margin-right: 5px;

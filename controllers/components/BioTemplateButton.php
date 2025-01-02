@@ -27,7 +27,7 @@ class BioTemplateButton
         return '
             <style>
                 ' . $container . ' {
-                    display: ' . $display . ';
+                    display: ' . $display . ' !important;
                     padding: 0 !important;
                     margin: 0 !important;
                     box-sizing: border-box !important;
