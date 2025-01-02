@@ -48,13 +48,6 @@ if (isset($_POST['signout'])) {
             <p><?= $g['license']; ?></p>
         </div>
     </div>
-
-    <script>
-        const username = "<?= $username ?>";
-        const defaultImgPath = '<?= $g['img']['unknown']; ?>';
-        const regexMap = <?= json_encode($regexMap); ?>;
-        const message = <?= json_encode($g['deleteWarningMsg']); ?>;
-    </script>
 </body>
 
 </html>

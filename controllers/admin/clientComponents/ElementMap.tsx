@@ -34,35 +34,6 @@ const iconMap: ElementArray = {
 
 export { iconMap };
 
-const labelMap: ElementArray = {
-    'name': 'Your Name',
-    'position': 'Position or Job title',
-    'organization': 'Organization',
-    'description': 'A little about yourself',
-    'Email': 'Your email',
-    'Mobile': 'Mobile',
-    'Work': 'Work',
-    'Booking': 'Booking link',
-    'OrderOnline': 'Order Online Link',
-    'HotSale': 'HotSale link',
-    'Address': 'Your Address',
-    'Facebook': 'Facebook link',
-    'Instagram': 'Instagram link',
-    'Messenger': 'Facebook username',
-    'Youtube': 'Youtube link',
-    'Threads': 'Threads link',
-    'X': 'X link',
-    'Pinterest': 'Pinterest link',
-    'Linkedin': 'Linkedin link',
-    'Zalo': 'Zalo phone number',
-    'Tiktok': 'Tiktok link',
-    'Website': 'Website link',
-    'Viber': 'Viber',
-    'HotLine': 'HotLine',
-}
-
-export { labelMap };
-
 export function Email() {
     return (
         <FontAwesomeIcon icon={faEnvelope} size="3x"/>

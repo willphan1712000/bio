@@ -1,18 +1,14 @@
+import { username } from "../admin/clientComponents/AdminContext"
 import { $$ } from "../client/src/Web-Development/W"
 
-declare var props: Props
-
-interface Props {
-    username: string,
-    url: string
-}
-
 $(document).ready(function () {
-    user(props)
+    user()
 })
 
-function user(props: Props) {
-    $$((typeof(props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(()=>{
+function user() {
+    const url = window.document.location.href+"?share=true"
+    const user = username()
+    $$((typeof(url) === 'string') ? url : '', ".shareWindow__link").copyToClipboard().run(()=>{
         $(".shareWindow__btn.shareWindow__link .check").show()
         $(".shareWindow__btn.shareWindow__link .copy").hide()
         setTimeout(()=>{
@@ -31,8 +27,8 @@ function user(props: Props) {
     
     $("#share .share__btn.share").click(() => {
         $$({
-            title: props.username,
-            url: window.document.location.href+"?share=true"
+            title: user,
+            url
         }).share();
     })
 }

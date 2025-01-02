@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.labelMap = exports.iconMap = void 0;
+exports.iconMap = void 0;
 exports.Email = Email;
 exports.Mobile = Mobile;
 exports.Booking = Booking;
@@ -53,33 +53,6 @@ const iconMap = {
     'Invalid': (0, jsx_runtime_1.jsx)(Invalid, {})
 };
 exports.iconMap = iconMap;
-const labelMap = {
-    'name': 'Your Name',
-    'position': 'Position or Job title',
-    'organization': 'Organization',
-    'description': 'A little about yourself',
-    'Email': 'Your email',
-    'Mobile': 'Mobile',
-    'Work': 'Work',
-    'Booking': 'Booking link',
-    'OrderOnline': 'Order Online Link',
-    'HotSale': 'HotSale link',
-    'Address': 'Your Address',
-    'Facebook': 'Facebook link',
-    'Instagram': 'Instagram link',
-    'Messenger': 'Facebook username',
-    'Youtube': 'Youtube link',
-    'Threads': 'Threads link',
-    'X': 'X link',
-    'Pinterest': 'Pinterest link',
-    'Linkedin': 'Linkedin link',
-    'Zalo': 'Zalo phone number',
-    'Tiktok': 'Tiktok link',
-    'Website': 'Website link',
-    'Viber': 'Viber',
-    'HotLine': 'HotLine',
-};
-exports.labelMap = labelMap;
 function Email() {
     return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEnvelope, size: "3x" }));
 }

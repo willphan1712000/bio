@@ -93,20 +93,10 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
         <div id="share">
             <?= (new UserFooter())->render("#share"); ?>
         </div>
-        <script>
-            const url = "<?= $url; ?>"
-            const type = "index"
-        </script>
         <div id="copyright">
             <p><?= $g['license']; ?></p>
         </div>
     </div>
-    <script>
-        const props = {
-            url: "<?= $url; ?>",
-            username: "<?= $username; ?>"
-        }
-    </script>
 </body>
 
 </html>
