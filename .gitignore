@@ -31,8 +31,3 @@ controllers/client/src/Web-Development
 
 #old version files
 old/*
-
-# Doctrine migration files
-cli-config.php
-migrations.php
-migrations/*

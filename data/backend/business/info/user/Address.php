@@ -4,6 +4,7 @@ namespace business\info\user;
 
 use business\info\Info;
 use business\info\InfoHandler;
+use business\info\operation\Address as OperationAddress;
 
 class Address extends User
 {
@@ -15,7 +16,8 @@ class Address extends User
 
     public function format($info): ?string
     {
-        return $info === null ? null : "https://google.com/maps?q=" . $info;
+        $o = OperationAddress::getInstance();
+        return $o->execute($info);
     }
 
     public function doHandle(Info $info): bool

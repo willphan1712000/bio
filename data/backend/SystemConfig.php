@@ -101,7 +101,8 @@ class SystemConfig
             'name' => '/^.*$/',
             'image' => '/^.*$/',
             'organization' => '/^.*$/',
-            'description' => '/^.*$/',
+            'position' => '/^.*$/',
+            'description' => '/.+/s',
             'Email' => '/^[^\s@]+@[^\s@]+\.[^\s@]+$/',
             'Mobile' => '/^\d{10}$/',
             'Work' => '/^\d{10}$/',
@@ -125,7 +126,37 @@ class SystemConfig
         ];
     }
 
-    // dump and die function used for debug process
+    public static function labelMap()
+    {
+        return [
+            'name' => 'Your Name',
+            'position' => 'Position or Job title',
+            'organization' => 'Organization',
+            'description' => 'A little about yourself',
+            'Email' => 'Your email',
+            'Mobile' => 'Mobile',
+            'Work' => 'Work',
+            'Booking' => 'Booking link',
+            'OrderOnline' => 'Order Online Link',
+            'HotSale' => 'HotSale link',
+            'Address' => 'Your Address',
+            'Facebook' => 'Facebook link',
+            'Instagram' => 'Instagram link',
+            'Messenger' => 'Facebook username',
+            'Youtube' => 'Youtube link',
+            'Threads' => 'Threads link',
+            'X' => 'X link',
+            'Pinterest' => 'Pinterest link',
+            'Linkedin' => 'Linkedin link',
+            'Zalo' => 'Zalo phone number',
+            'Tiktok' => 'Tiktok link',
+            'Website' => 'Website link',
+            'Viber' => 'Viber',
+            'HotLine' => 'HotLine',
+        ];
+    }
+
+    // dump and die function used for debugging
     public static function dd($value)
     {
         echo "<pre>";

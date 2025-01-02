@@ -2,7 +2,6 @@
 
 namespace business\info;
 
-use business\info\display\AdminDisplay;
 use business\info\display\UserDisplay;
 use config\SystemConfig;
 

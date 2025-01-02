@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { $$$ } from '../../client/src/Web-Development/WW'
-import handleAdminContext, { handleAdminElementContext, handleAdminRegexContext } from './AdminContext'
-import { labelMap } from './ElementMap'
+import handleAdminContext, { handleAdminElementContext, handleAdminLabelContext, handleAdminRegexContext } from './AdminContext'
 
 interface Props {
     inputLabelColor: string,
@@ -12,6 +11,7 @@ const Input = ({inputLabelColor, name}: Props) => {
   const data = handleAdminContext()
   const regexMap = handleAdminRegexContext()
   const nameContext = handleAdminElementContext()
+  const labelMap = handleAdminLabelContext()
   
   if(name === undefined) {
     name = nameContext as string

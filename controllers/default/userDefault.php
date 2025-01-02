@@ -15,7 +15,6 @@ $url = $user->get("url");
 $username = $user->get("username");
 $g = $user->get("g");
 $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +27,11 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
     <title><?= $g['userTitle']; ?></title>
     <script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #des::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,18 +46,22 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
                 <div class="info__about">
                     <div class="info__name">
                         <div>
-                            <h1><?= $infoArray['name']->getHTML(); ?></h1>
+                            <h1 style="text-align: center;"><?= $infoArray['name']->getHTML(); ?></h1>
+                        </div>
+                    </div>
+                    <div class="info__position">
+                        <div>
+                            <p style="text-align: center; font-size: 18px; margin-top: 10px;"><?= $infoArray['position']->getHTML(); ?></p>
                         </div>
                     </div>
                     <div class="info__org">
-                        <h3 style="display: <?= $infoArray['organization']->getValue() === NULL ? 'none' : 'flex'; ?>">Position</h3>
                         <div>
                             <h2><?= $infoArray['organization']->getHTML(); ?></h2>
                         </div>
                     </div>
                     <div class="info__des">
                         <div>
-                            <h3><?= $infoArray['description']->getHTML(); ?></h3>
+                            <textarea id="des" rows="5" cols="15" style="border: none; resize: none; outline: none; font-size: 18px; text-align: center; scrollbar-width: none; -ms-overflow-style: none;"><?= $infoArray['description']->getHTML(); ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -61,7 +69,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             <div id="social-media">
                 <?php
                 foreach ($infoArray as $prop => $info) {
-                    if (!in_array($prop, ['username', 'name', 'image', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
+                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
 
                         /** @var Display */
                         $element = $infoArray[$prop];
@@ -85,20 +93,10 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
         <div id="share">
             <?= (new UserFooter())->render("#share"); ?>
         </div>
-        <script>
-            const url = "<?= $url; ?>"
-            const type = "index"
-        </script>
         <div id="copyright">
             <p><?= $g['license']; ?></p>
         </div>
     </div>
-    <script>
-        const props = {
-            url: "<?= $url; ?>",
-            username: "<?= $username; ?>"
-        }
-    </script>
 </body>
 
 </html>

@@ -1,11 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const AdminContext_1 = require("../admin/clientComponents/AdminContext");
 const W_1 = require("../client/src/Web-Development/W");
 $(document).ready(function () {
-    user(props);
+    user();
 });
-function user(props) {
-    (0, W_1.$$)((typeof (props.url) === 'string') ? props.url : '', ".shareWindow__link").copyToClipboard().run(() => {
+function user() {
+    const url = window.document.location.href + "?share=true";
+    const user = (0, AdminContext_1.username)();
+    (0, W_1.$$)((typeof (url) === 'string') ? url : '', ".shareWindow__link").copyToClipboard().run(() => {
         $(".shareWindow__btn.shareWindow__link .check").show();
         $(".shareWindow__btn.shareWindow__link .copy").hide();
         setTimeout(() => {
@@ -22,8 +25,8 @@ function user(props) {
     }, document.querySelector(".shareWindow_parent.qrcode"), "active").toggle().advanced();
     $("#share .share__btn.share").click(() => {
         (0, W_1.$$)({
-            title: props.username,
-            url: window.document.location.href + "?share=true"
+            title: user,
+            url
         }).share();
     });
 }
