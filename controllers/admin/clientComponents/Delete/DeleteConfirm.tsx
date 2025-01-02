@@ -1,8 +1,8 @@
+import { useRef } from "react"
 import ClipLoader from "react-spinners/ClipLoader"
-import { handleAdminDeleteContext } from "../AdminContext"
-import { useEffect, useRef } from "react"
 import { $$$ } from "../../../client/src/Web-Development/WW"
 import Response from "../../../client/src/Web-Development/components/Response"
+import { handleAdminDeleteContext } from "../AdminContext"
 
 const DeleteConfirm = () => {
     const [state, dispatch] = handleAdminDeleteContext()

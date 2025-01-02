@@ -27,10 +27,10 @@ $g = SystemConfig::globalVariables();
     <div id="container">
         <div class="logo mt-[20px]"><?= logo(["src" => $g["img"]["logo"]])->render(); ?></div>
         <div id="code404"><img draggable=false src="<?= $g['img']['404'] ?>" alt=""> <a href="/">Go back</a></div><?php
-                                                                                                                copyright([
-                                                                                                                    'position' => 'absolute'
-                                                                                                                ])->render();
-                                                                                                                ?>
+                                                                                                                    copyright([
+                                                                                                                        'position' => 'absolute'
+                                                                                                                    ])->render();
+                                                                                                                    ?>
     </div>
 </body>
 

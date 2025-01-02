@@ -30,10 +30,11 @@ class SystemConfig
                 'logo' => '/controllers/client/img/logo.png',
                 'bio' => '/controllers/client/img/bio.png',
                 '404' => '/controllers/client/img/404.png',
-                'expire' => '/controllers/client/img/expire.png'
+                'expire' => '/controllers/client/img/expire.png',
+                'deactivate' => '/controllers/client/img/deactivate.png'
             ],
             'deleteWarningMsg' => [
-                'msg1' => 'YOUR BIO ACCOUNT WILL HOLD FOR 60 DAYS',
+                'msg1' => 'YOUR BIO ACCOUNT WILL BE DEACTIVATED AND HOLD FOR 60 DAYS',
                 'msg2' => 'After this period, your bio account and your information will be permenantly deleted',
                 'msg3' => 'You can still restore your account under Sign in section',
                 'msg4' => 'Are you sure to proceed?'

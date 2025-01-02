@@ -6,7 +6,7 @@ SESSION_START();
 
 use config\Router;
 
-$pages = ['signin', 'signup', 'forgot', 'forgotUsername', 'resetPass', 'aic', 'expire', 'restore', 'template', 'checkout', 'checkoutComplete', 'terms'];
+$pages = ['signin', 'signup', 'forgot', 'forgotUsername', 'resetPass', 'aic', 'expire', 'restore', 'template', 'checkout', 'checkoutComplete', 'terms', 'deactivate'];
 $router = new Router();
 $router->addRoute('/', 'dist/index.php');
 for ($i = 0; $i < count($pages); $i++) {

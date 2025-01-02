@@ -1171,6 +1171,10 @@ video {
   padding: 0px;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1221,6 +1225,10 @@ video {
 
 .p-\[8px\] {
   padding: 8px;
+}
+
+.p-\[30px\] {
+  padding: 30px;
 }
 
 .px-0 {

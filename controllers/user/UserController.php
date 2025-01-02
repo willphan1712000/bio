@@ -8,6 +8,8 @@ use config\SystemConfig;
 use controllers\Controller;
 use business\user\UserManagement;
 use business\template\TemplateManagement;
+use persistence\Database;
+use persistence\Entity\User;
 
 class UserController extends Controller
 {
@@ -19,7 +21,18 @@ class UserController extends Controller
     protected $status;
     protected $socialIconArr;
     protected $g;
+    protected $deleteToken;
 
+    // Function that checks if the account is being deactived or not
+    private function deactivateRedirect()
+    {
+        if ($this->deleteToken !== NULL) {
+            require __DIR__ . "/../../dist/deactivate.php";
+            die();
+        }
+    }
+
+    // if template id is 0, redirect to default template. Otherwise, proceed the next
     private function themeRedirect()
     {
         if ($this->themeid === 0) {
@@ -35,6 +48,7 @@ class UserController extends Controller
         $this->g = SystemConfig::globalVariables(); // get global variables
         $this->username = SystemConfig::URLExtraction(); // get username
         $this->themeid = TemplateManagement::shareTemplate($this->username, (int) SystemConfig::URLExtraction(queryStr: "tem")); // get template id
+        $this->deleteToken = Database::GET(User::class, 'deleteToken', ['username' => $this->username]);
     }
 
     protected function getPostData()
@@ -51,7 +65,8 @@ class UserController extends Controller
     public function redirect()
     {
         $this->getPreData();
-        $this->themeRedirect(); // if template id is 0, redirect to default template. Otherwise, proceed the next
+        $this->deactivateRedirect();
+        $this->themeRedirect();
     }
 
     public function execute()

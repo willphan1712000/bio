@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const ClipLoader_1 = __importDefault(require("react-spinners/ClipLoader"));
-const AdminContext_1 = require("../AdminContext");
 const react_1 = require("react");
+const ClipLoader_1 = __importDefault(require("react-spinners/ClipLoader"));
 const WW_1 = require("../../../client/src/Web-Development/WW");
+const AdminContext_1 = require("../AdminContext");
 const DeleteConfirm = () => {
     const [state, dispatch] = (0, AdminContext_1.handleAdminDeleteContext)();
     const deleteMenuRef = (0, react_1.useRef)(null);
