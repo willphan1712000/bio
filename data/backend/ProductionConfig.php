@@ -38,7 +38,7 @@ class ProductionConfig
 
     public static function database()
     {
-        if (self::$mode === Mode::PRODUCTION) {
+        if (self::$mode === Mode::DEVELOPMENT) {
             return [
                 "servername" => $_ENV['DATABASE_SERVER_NAME_DEV'],
                 "username" => $_ENV['DATABASE_USERNAME_DEV'],

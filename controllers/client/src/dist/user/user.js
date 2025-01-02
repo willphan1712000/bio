@@ -19,7 +19,7 @@ function user() {
     (0, W_1.$$)({
         trigger: document.querySelector(".share__btn.qr"),
         terminate: [
-            document.querySelector(".shareWindow__close"),
+            document.querySelector(".shareWindow_parent.qrcode i"),
             document.querySelector(".shareWindow_parent.qrcode")
         ]
     }, document.querySelector(".shareWindow_parent.qrcode"), "active").toggle().advanced();
