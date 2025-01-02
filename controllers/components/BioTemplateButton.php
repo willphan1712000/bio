@@ -3,6 +3,7 @@
 namespace component;
 
 use config\Bio;
+use config\SystemConfig;
 use config\ProductionConfig;
 
 class BioTemplateButton
@@ -20,15 +21,13 @@ class BioTemplateButton
         if (ProductionConfig::$bio === Bio::BASIC) {
             $display = 'none';
         } elseif (ProductionConfig::$bio === Bio::PRO) {
-            $display = 'flex';
+            $display = SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex";
         }
 
         return '
             <style>
                 ' . $container . ' {
-                    display: ' . $display . '
-                }
-                ' . $container . ' {
+                    display: ' . $display . ';
                     padding: 0 !important;
                     margin: 0 !important;
                     box-sizing: border-box !important;

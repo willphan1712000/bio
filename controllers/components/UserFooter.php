@@ -46,7 +46,6 @@ class UserFooter
                     margin: 10px;
                     background-color: #fff;
                     border-radius: 15px;
-                    display: flex;
                     justify-content: center;
                     align-items: center;
                     cursor: pointer;
@@ -159,7 +158,7 @@ class UserFooter
                     <div class="share__btn save"><a style="text-decoration: none; color: #000;" href="/user/' . $this->username . '/vcard.php"><i class="fa-solid fa-download"></i> Save Contact</a></div>
                     <div class="share__btn qr"><i class="fa-solid fa-share"></i>QR Code</div>
                     <div class="share__btn edit" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '"><a style="text-decoration: none; color: #000;" href="/' . $this->username . '/admin"><i class="fa-solid fa-pen-to-square"></i> Bio</a></div>
-                    <div class="bioBtn share__btn" style="display: ' . (SystemConfig::URLExtraction(queryStr: 'share') ? "none" : "flex") . '">' . (new BioTemplateButton($this->username))->render("bioBtn") . '</div>
+                    <div class="bioBtn share__btn">' . (new BioTemplateButton($this->username))->render(".bioBtn") . '</div>
                 </div>
             </div>
         ';
