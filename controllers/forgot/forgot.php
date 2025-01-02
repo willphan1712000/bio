@@ -14,6 +14,8 @@ $forgotController = new ForgotController();
 $error = $forgotController->get("error");
 $username = $forgotController->get("username");
 $email = $forgotController->get("email");
+// $inactive = 'inactive';
+// $active = 'active';
 
 if (isset($_POST['submit'])) {
     $forgotController->set('username', $_POST['username']);

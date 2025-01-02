@@ -31,14 +31,14 @@ enum Bio
 
 class ProductionConfig
 {
-    public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
+    public static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
     public static Type $type = Type::MAIN;
     public static Bio $bio = Bio::BASIC;
     public static $version = "7.2"; // version of the product
 
     public static function database()
     {
-        if (self::$mode === Mode::DEVELOPMENT) {
+        if (self::$mode === Mode::PRODUCTION) {
             return [
                 "servername" => $_ENV['DATABASE_SERVER_NAME_DEV'],
                 "username" => $_ENV['DATABASE_USERNAME_DEV'],

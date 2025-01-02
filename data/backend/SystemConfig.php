@@ -12,6 +12,7 @@ class SystemConfig
     {
         return [
             'product_name' => 'Allinclicks Bio',
+            'product_year' => date("Y"),
             'domain' => ProductionConfig::config()['domain'],
             'fulldomain' => ProductionConfig::config()['fulldomain'],
             'stripeRedirect' => ProductionConfig::config()['stripeRedirect'],
