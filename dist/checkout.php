@@ -1,64 +1,16 @@
 <?php
 
-use business\user\UserManagement;
-use config\SystemConfig;
-use business\template\TemplateManagement;
+use controllers\checkout\checkoutController;
 
-$g = SystemConfig::globalVariables();
-
-$username = SystemConfig::URLExtraction("username");
-$itemid = SystemConfig::URLExtraction("itemid");
-
-SESSION_START();
-$isSignedIn = UserManagement::isSignedIn($_SESSION, $username, "/signin");
-
-if (!$isSignedIn) {
-  header("Location: /template");
-}
-
-if (!TemplateManagement::isAbleToPurchase($isSignedIn, $username, $itemid)) {
-  header("Location: /template?username=" . $username);
-}
-?> <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accept a payment</title><meta name="description" content="A demo of a payment on Stripe"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://js.stripe.com/v3/"></script><style>body {
-      display: flex;
-      justify-content: center;
-      background: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-        'Helvetica Neue', 'Ubuntu', sans-serif;
-      height: 100vh;
-      margin: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    section {
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      width: 400px;
-      height: 112px;
-      border-radius: 6px;
-      justify-content: space-between;
-    }
-
-    p {
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 20px;
-      letter-spacing: -0.154px;
-      color: #242d60;
-      height: 100%;
-      width: 100%;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    #checkout {
-      width: 100vw;
-    }
-
-    .hidden {
-      display: none;
-    }</style><script defer="defer" src="/dist/universal338525335f3c1d0938f4.js"></script><script defer="defer" src="/dist/checkoutcssfed602e9009bd4752ebe.js"></script><script defer="defer" src="/dist/checkoutjs529013749549619bb1aa.js"></script></head><body><a href="/template?username=<?= $username; ?>" class="cancel">Cancel</a><!-- Display a payment form --><div id="checkout"><!-- Checkout will insert the payment form here --></div><script>const singleCheckout = "<?= $itemid ? $itemid : "null"; ?>";
-    const username = "<?= $username ? $username : "null"; ?>"</script></body></html>
+$checkout = new checkoutController();
+$checkout->execute();
+$username = $checkout->get("username");
+$href = '/@template?username=' . $username;
+?> <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accept a payment</title><meta name="description" content="A demo of a payment on Stripe"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind2c2ee72c5b1c6ff3c3a5.js"></script><script src="/dist/universal338525335f3c1d0938f4.js"></script><script src="/dist/checkoutjsedbe169d51859c5a0403.js"></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><a href="<?= $href; ?>" class="fixed top-[10px] right-[10px] rounded-[20px] p-[10px] bg-[#f0f0f0]">Cancel</a><!-- Display a payment form --><div id="checkout"></div><!--
+    This HTML file is a template.
+    If you open it directly in the browser, you will see an empty page.
+    You can add webfonts, meta tags, or analytics to this file.
+    The build step will place the bundled scripts into the <body> tag.
+    To begin the development, run `npm start` or `yarn start`.
+    To create a production bundle, use `npm run build` or `yarn build`.
+  --></body></html>

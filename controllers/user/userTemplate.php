@@ -10,7 +10,6 @@ use component\Template;
 use component\Copyright;
 use component\UserFooter;
 
-
 // get User object
 $user = new UserController();
 $user->execute();

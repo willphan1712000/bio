@@ -39,8 +39,10 @@ if (isset($_POST['signout'])) {
             </div>
             <div id="info__wrapper"></div>
         </div>
-        <div class="adminBtn">
+        <div class="mb-[15px]">
             <div id="template2"><?= (new BioTemplateButton($username))->render('#template2'); ?></div>
+        </div>
+        <div class="adminBtn">
             <div class="adminBtn__ele adminBtn__index">
                 <a href="/<?= $username; ?>" class="w-full h-full p-[20px] flex justify-center"><span>Go To Bio <i class="fa-solid fa-arrow-right"></i></span></a>
             </div>

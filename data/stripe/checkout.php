@@ -1,28 +1,43 @@
 <?php
 
-require_once 'vendorStripe/autoload.php';
-require_once '../core.php';
+use config\SystemConfig;
+use business\template\TemplateManagement;
+use Stripe\StripeClient;
 
-require_once '../vendorDotEnv/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable("../../");
-$dotenv->load();
+require_once __DIR__ . '/../../vendor/autoload.php';
+Dotenv\Dotenv::createImmutable(__DIR__ . "/../../")->load();
 
-$stripe = new \Stripe\StripeClient($_ENV["STRIPE_SECRET_KEY"]);
-header('Content-Type: application/json');
-// retrieve JSON from POST body
-$jsonStr = file_get_contents('php://input');
-$jsonObj = json_decode($jsonStr);
+try {
+  $stripe = new StripeClient($_ENV["STRIPE_SECRET_KEY"]);
+  header('Content-Type: application/json');
+  // retrieve JSON from POST body
+  $jsonStr = file_get_contents('php://input');
+  $jsonObj = json_decode($jsonStr);
 
-$YOUR_DOMAIN = SystemConfig::globalVariables()['stripeRedirect'];
+  $YOUR_DOMAIN = SystemConfig::globalVariables()['stripeRedirect'];
+  $productList = TemplateManagement::getProducts();
 
-$checkout_session = $stripe->checkout->sessions->create([
-  'ui_mode' => 'embedded',
-  'line_items' => createLineItems($jsonObj->items, TemplateManagement::getProducts()),
-  'mode' => 'payment',
-  'return_url' => $YOUR_DOMAIN . '/checkoutComplete?session_id={CHECKOUT_SESSION_ID}&username='.$jsonObj->username.'&single='.$jsonObj->singleCheckout,
-]);
+  // echo json_encode($stripe);
+  // die();
 
-function createLineItems(array $items, array $product) : array {
+  $checkout_session = $stripe->checkout->sessions->create([
+    'ui_mode' => 'embedded',
+    'line_items' => createLineItems($jsonObj->items, $productList),
+    'mode' => 'payment',
+    'return_url' => $YOUR_DOMAIN . '/@return?session_id={CHECKOUT_SESSION_ID}',
+  ]);
+
+
+  echo json_encode(array('clientSecret' => $checkout_session->client_secret));
+} catch (\Exception $e) {
+  echo json_encode(array('clientSecret' => [
+    'success' => false,
+    'error' => $e->getMessage()
+  ]));
+}
+
+function createLineItems(array $items, array $product): array
+{
   $result = [];
   foreach ($items as $item) {
     $result[] = [
@@ -39,5 +54,3 @@ function createLineItems(array $items, array $product) : array {
   }
   return $result;
 }
-
-echo json_encode(array('clientSecret' => $checkout_session->client_secret));

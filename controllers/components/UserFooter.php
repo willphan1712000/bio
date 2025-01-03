@@ -39,6 +39,7 @@ class UserFooter
                     overflow-y: hidden;
                     overflow-x: auto;
                     padding: 0px 10px;
+                    scrollbar-width: none;
                 }
                 ' . $container . ' .share__btn {
                     height: 50px;
@@ -54,6 +55,7 @@ class UserFooter
                     padding: 20px;
                     position: relative;
                     display: flex;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
                 }
                 ' . $container . ' .share__btn i {
                     margin-right: 5px;

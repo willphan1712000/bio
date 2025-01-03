@@ -1,6 +1,6 @@
 import Swiper from "swiper";
 import { $$ } from "../client/src/Web-Development/W"
-import { username } from "./clientComponents/TemplateContext";
+import { auth, username } from "./clientComponents/TemplateContext";
 import Cart from "./clientComponents/cart/Cart";
 import { $$$ } from "../client/src/Web-Development/WW";
 import Response from "../client/src/Web-Development/components/Response";
@@ -14,14 +14,6 @@ declare var props: Props
 $(document).ready(() => {
     template(props)
 })
-
-export function auth(isSignedIn: boolean, cb: () => void) {
-    if(!isSignedIn) {
-        window.location.href = '/@signin?template=true'
-    } else {
-        cb()
-    }
-}
 
 export default function template(props: Props) : void {
     $$("#cart", <Cart signin={props.isSignedIn}/>).reactMounting(); // Mount cart component

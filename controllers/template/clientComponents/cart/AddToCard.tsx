@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import handleCartContext from './CartContext'
-import { auth } from '../../template'
+import { auth } from '../TemplateContext'
 
 const AddToCard = () => {
     const [state, dispatch] = handleCartContext()

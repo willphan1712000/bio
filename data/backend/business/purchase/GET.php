@@ -19,8 +19,10 @@ class GET implements IAPI
         try {
             return Database::SQL("SELECT *FROM Purchase WHERE username = '$this->username'");
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                'success' => false,
+                'error' => $e->getMessage()
+            ];
         }
     }
 

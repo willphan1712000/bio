@@ -49,6 +49,7 @@ class ComposerStaticInit2edcd92ef15fe2894552acf5289130cd
             'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Cache\\' => 24,
+            'Stripe\\' => 7,
         ),
         'P' => 
         array (
@@ -150,6 +151,10 @@ class ComposerStaticInit2edcd92ef15fe2894552acf5289130cd
         'Symfony\\Component\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'Psr\\Log\\' => 
         array (
