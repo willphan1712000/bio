@@ -107,7 +107,7 @@ const Return = () => {
         return () => {
             clearInterval(countDown);
         };
-    }, []);
+    }, [status]);
     if (status === 'open') {
         return ((0, jsx_runtime_1.jsx)(react_router_dom_1.Navigate, { to: "/@checkout" }));
     }

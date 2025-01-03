@@ -130,7 +130,7 @@ const Return = () => {
     return () => {
       clearInterval(countDown)
     }
-  }, [])
+  }, [status])
 
   if (status === 'open') {
     return (
