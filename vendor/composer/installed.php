@@ -3,7 +3,7 @@
         'name' => 'willphan1712000/htdocs',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd8300b9db46193050a0547fc4dc1ab9e433a7608',
+        'reference' => '85081fd18483c6ecb5e5ef9fef71b0892734c204',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -172,6 +172,15 @@
                 0 => '1.0|2.0|3.0',
             ),
         ),
+        'stripe/stripe-php' => array(
+            'pretty_version' => 'v16.4.0',
+            'version' => '16.4.0.0',
+            'reference' => '4aa86099f888db9368f5f778f29feb14e6294dfb',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../stripe/stripe-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'symfony/cache' => array(
             'pretty_version' => 'v7.1.6',
             'version' => '7.1.6.0',
@@ -307,7 +316,7 @@
         'willphan1712000/htdocs' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd8300b9db46193050a0547fc4dc1ab9e433a7608',
+            'reference' => '85081fd18483c6ecb5e5ef9fef71b0892734c204',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

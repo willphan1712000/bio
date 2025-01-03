@@ -21,7 +21,7 @@ class Viber extends Phone
         if ($this->validate($this->name, $value)) {
             // $info->setInfo($this->name, $value);
             if (!empty($value)) {
-                $info->setInfo('vcard', $info->getInfo('vcard') . 'TEL;TYPE=Viber;PREF:' . $this->format([
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'URL;TYPE=Viber:viber://contact?number=' . $this->format([
                     'code' => $info->getInfo('ViberCode'),
                     'number' => $info->getInfo('Viber')
                 ]) . '\n');

@@ -51,6 +51,16 @@ const CountryCodeDropDown = ({ isListShown, listRef, setDropDown }) => {
                     setCountryCode({ code: '+1', flag: 'us' });
                 }
                 break;
+            case 'Viber':
+                if (data['ViberCode'] === null || data['ViberCode'] === '' || data['ViberFlag'] === null || data['ViberFlag'] === '') {
+                    setCountryCode({ code: '+1', flag: 'us' });
+                }
+                break;
+            case 'HotLine':
+                if (data['HotLineCode'] === null || data['HotLineCode'] === '' || data['HotLineFlag'] === null || data['HotLineFlag'] === '') {
+                    setCountryCode({ code: '+1', flag: 'us' });
+                }
+                break;
             default:
                 break;
         }

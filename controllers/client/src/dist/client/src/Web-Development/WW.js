@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.$$$ = $$$;
+const jquery_1 = __importDefault(require("jquery"));
 const SignUpUI_1 = __importDefault(require("./components/signup/SignUpUI"));
 function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
@@ -138,7 +139,7 @@ class API extends WW2 {
     }
     get() {
         return new Promise((res, rej) => {
-            $.ajax({
+            jquery_1.default.ajax({
                 url: this.ele1,
                 method: "GET",
                 dataType: "json",
@@ -155,7 +156,7 @@ class API extends WW2 {
     }
     post() {
         return new Promise((res, rej) => {
-            $.ajax({
+            jquery_1.default.ajax({
                 url: this.ele1,
                 method: "POST",
                 data: JSON.stringify(this.ele2),

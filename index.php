@@ -6,7 +6,15 @@ SESSION_START();
 
 use config\Router;
 
-$pages = ['signin', 'signup', 'forgot', 'forgotUsername', 'resetPass', 'aic', 'expire', 'restore', 'template', 'checkout', 'checkoutComplete', 'terms'];
+$payment = ['checkout', 'return'];
+$user = ['signin', 'signup', 'forgot', 'forgotUsernmame', 'resetPass', 'restore'];
+$template = ['template'];
+$warning = ['expire', 'deactivate'];
+$admin = ['aic'];
+$document = ['terms'];
+
+$pages = array_merge($payment, $user, $template, $warning, $admin, $document);
+
 $router = new Router();
 $router->addRoute('/', 'dist/index.php');
 for ($i = 0; $i < count($pages); $i++) {

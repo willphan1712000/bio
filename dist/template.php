@@ -18,7 +18,7 @@ $chosenTemplate = $data['chosenTemplate'];
 $TOTAL = $data['total'];
 $imgPath = $data['imgPath'];
 $g = $data['g'];
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['title']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/tailwind37cf26cd033043d29681.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/templated5d6f1189be1e692587c.js"></script><script src="/dist/templatejs759618b13886e8680538.js"></script></head><body><div id="container"><!-- Navigator --><div class="navigator"><div class="btn-box"> <?= (new TemplateDirector([
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['title']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script><script src="/dist/tailwindd1e856a4a9eada21702b.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/templated5d6f1189be1e692587c.js"></script><script src="/dist/templatejs897d53d2e4c74a257587.js"></script></head><body><div id="container"><!-- Navigator --><div class="navigator"><div class="btn-box"> <?= (new TemplateDirector([
                     'isSignedIn' => $isSignedIn,
                     'username' => $username,
                     'img' => $imgPath,
@@ -37,7 +37,7 @@ $g = $data['g'];
             'TOTAL' => $TOTAL,
             'g' => $g
         ]))->render();
-        ?> <!-- Copyright --> <?php
+        ?> <!-- Go back to original --><div class="flex flex-row justify-center items-center mt-5"><div data-id="0" class="select p-[10px] rounded-[10px] bg-[#f0f0f0] cursor-pointer" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Go back to basic template</div></div><!-- Copyright --> <?php
         (new Copyright([
             "position" => "relative"
         ]))->render();

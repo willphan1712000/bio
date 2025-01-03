@@ -5,11 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const CartContext_1 = __importDefault(require("./CartContext"));
-const template_1 = require("../../template");
+const TemplateContext_1 = require("../TemplateContext");
 const AddToCard = () => {
     const [state, dispatch] = (0, CartContext_1.default)();
     function handleClick(e) {
-        (0, template_1.auth)(state.signin, () => {
+        (0, TemplateContext_1.auth)(state.signin, () => {
             const current = $(e.currentTarget);
             const check = current.find(".check");
             const data = current.data("id");

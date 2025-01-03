@@ -1,6 +1,6 @@
 import Swiper from "swiper";
 import { $$ } from "../client/src/Web-Development/W"
-import { username } from "./clientComponents/TemplateContext";
+import { auth, username } from "./clientComponents/TemplateContext";
 import Cart from "./clientComponents/cart/Cart";
 import { $$$ } from "../client/src/Web-Development/WW";
 import Response from "../client/src/Web-Development/components/Response";
@@ -14,14 +14,6 @@ declare var props: Props
 $(document).ready(() => {
     template(props)
 })
-
-export function auth(isSignedIn: boolean, cb: () => void) {
-    if(!isSignedIn) {
-        window.location.href = '/@signin?template=true'
-    } else {
-        cb()
-    }
-}
 
 export default function template(props: Props) : void {
     $$("#cart", <Cart signin={props.isSignedIn}/>).reactMounting(); // Mount cart component
@@ -68,26 +60,18 @@ export default function template(props: Props) : void {
     })
 
     // handle select button
-    $(".select").click(e => {
+    $(".select").click(async e => {
         const current = e.currentTarget;
         const id = $(current).data("id");
-        $.ajax({
-            url: '/data/api/template/select.php',
-            method: 'POST',
-            data: {
-                username: username(),
-                themeid: id
-            },
-            dataType: "json",
-            success: function(e) {
-                if(e === 1) {
-                    window.location.href = '/' + username()
-                }
-            },
-            error: function() {
-                console.log("error");
-            }
-        })
+
+        const r = await $$$('/data/api/user/template/PUT.php', {
+            username: username(),
+            template_id: id
+        }).api().post() as Response
+
+        if(r.success) {
+            window.location.href = '/' + username()
+        }
     })
 
     // handle buy button

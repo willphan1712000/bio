@@ -14,7 +14,7 @@ const Delete = ({message}: Props) => {
         username: username(),
         message,
         isDeleting: false,
-        msg: 'Delete',
+        msg: 'Deactivate Account',
         disabled: false
     })
   return (

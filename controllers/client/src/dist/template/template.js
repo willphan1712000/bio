@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.auth = auth;
 exports.default = template;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const swiper_1 = __importDefault(require("swiper"));
@@ -23,14 +22,6 @@ const WW_1 = require("../client/src/Web-Development/WW");
 $(document).ready(() => {
     template(props);
 });
-function auth(isSignedIn, cb) {
-    if (!isSignedIn) {
-        window.location.href = '/@signin?template=true';
-    }
-    else {
-        cb();
-    }
-}
 function template(props) {
     (0, W_1.$$)("#cart", (0, jsx_runtime_1.jsx)(Cart_1.default, { signin: props.isSignedIn })).reactMounting();
     (function () {
@@ -64,29 +55,19 @@ function template(props) {
             url: shareURL
         }).share();
     });
-    $(".select").click(e => {
+    $(".select").click((e) => __awaiter(this, void 0, void 0, function* () {
         const current = e.currentTarget;
         const id = $(current).data("id");
-        $.ajax({
-            url: '/data/api/template/select.php',
-            method: 'POST',
-            data: {
-                username: (0, TemplateContext_1.username)(),
-                themeid: id
-            },
-            dataType: "json",
-            success: function (e) {
-                if (e === 1) {
-                    window.location.href = '/' + (0, TemplateContext_1.username)();
-                }
-            },
-            error: function () {
-                console.log("error");
-            }
-        });
-    });
+        const r = yield (0, WW_1.$$$)('/data/api/user/template/PUT.php', {
+            username: (0, TemplateContext_1.username)(),
+            template_id: id
+        }).api().post();
+        if (r.success) {
+            window.location.href = '/' + (0, TemplateContext_1.username)();
+        }
+    }));
     $(".buy").click(e => {
-        auth(props.isSignedIn === 'true', () => {
+        (0, TemplateContext_1.auth)(props.isSignedIn === 'true', () => {
             const current = $(e.currentTarget);
             const id = current.data("id");
             window.location.href = '/@checkout?username=' + (0, TemplateContext_1.username)() + '&itemid=' + id;
@@ -112,7 +93,7 @@ function template(props) {
         });
     })();
     $(".like").click(e => {
-        auth(props.isSignedIn === 'true', () => __awaiter(this, void 0, void 0, function* () {
+        (0, TemplateContext_1.auth)(props.isSignedIn === 'true', () => __awaiter(this, void 0, void 0, function* () {
             const current = $(e.currentTarget);
             const id = current.data("id");
             if (!current.hasClass("active")) {

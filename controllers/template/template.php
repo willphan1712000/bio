@@ -65,6 +65,10 @@ $g = $data['g'];
             'g' => $g
         ]))->render();
         ?>
+        <!-- Go back to original -->
+        <div class="flex flex-row justify-center items-center mt-5">
+            <div data-id="0" class="select p-[10px] rounded-[10px] bg-[#f0f0f0] cursor-pointer" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Go back to basic template</div>
+        </div>
         <!-- Copyright -->
         <?php
         (new Copyright([

@@ -32,6 +32,7 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
 
     defaultValue()
 
+    // Function that sets default value if some value is empty, undefined, or null
     function defaultValue(): void {
         switch(name) {
             case 'Mobile':
@@ -41,6 +42,16 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
                 break
             case 'Work':
                 if(data['WorkCode'] === null || data['WorkCode'] === '' || data['WorkFlag'] === null || data['WorkFlag'] === '') {
+                    setCountryCode({code: '+1', flag: 'us'})
+                }
+                break
+            case 'Viber':
+                if(data['ViberCode'] === null || data['ViberCode'] === '' || data['ViberFlag'] === null || data['ViberFlag'] === '') {
+                    setCountryCode({code: '+1', flag: 'us'})
+                }
+                break
+            case 'HotLine':
+                if(data['HotLineCode'] === null || data['HotLineCode'] === '' || data['HotLineFlag'] === null || data['HotLineFlag'] === '') {
                     setCountryCode({code: '+1', flag: 'us'})
                 }
                 break

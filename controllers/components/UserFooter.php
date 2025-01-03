@@ -39,6 +39,7 @@ class UserFooter
                     overflow-y: hidden;
                     overflow-x: auto;
                     padding: 0px 10px;
+                    scrollbar-width: none;
                 }
                 ' . $container . ' .share__btn {
                     height: 50px;
@@ -54,6 +55,7 @@ class UserFooter
                     padding: 20px;
                     position: relative;
                     display: flex;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
                 }
                 ' . $container . ' .share__btn i {
                     margin-right: 5px;
@@ -92,12 +94,19 @@ class UserFooter
                     width: 600px;
                     margin: 0px 10px;
                 }
-                ' . $container . ' .shareWindow_child .shareWindow__close {
-                    border-radius: 10px;
-                    background-color: var(--main-color);
+                ' . $container . ' .shareWindow_child > i {
                     padding: 10px;
                     margin-left: auto;
                     cursor: pointer;
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                ' . $container . ' .shareWindow_child > i:hover {
+                    background-color: #f0f0f0;
+                    border-radius: 50%;
                 }
                 ' . $container . ' .shareWindow_child .shareWindow__qr {
                     width: 100%;
@@ -145,9 +154,8 @@ class UserFooter
             </style>
             <div class="shareWindow_parent qrcode">
                 <div class="shareWindow_child">
-                    <div class="shareWindow__close">
-                        <i class="fa-solid fa-x"></i>
-                    </div>
+                    <i class="fa-solid fa-x"></i>
+                    <div class="shareWindow__close"></div>
                     <img draggable=false class="shareWindow__qr" src="/user/' . $this->username . '/qr-code.png" alt=""><a class="shareWindow__btn shareWindow__download" download href="/user/' . $this->username . '/qr-code.png" style="text-decoration: none; color: #000;"><i class="fa-solid fa-arrow-down"></i>Download</a>
                     <div class="shareWindow__btn shareWindow__link">Copy Link<i class="fa-regular fa-copy copy"></i><i class="fa-solid fa-check check"></i></div>
                 </div>

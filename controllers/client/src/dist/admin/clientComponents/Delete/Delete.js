@@ -15,7 +15,7 @@ const Delete = ({ message }) => {
         username: (0, AdminContext_1.username)(),
         message,
         isDeleting: false,
-        msg: 'Delete',
+        msg: 'Deactivate Account',
         disabled: false
     });
     return ((0, jsx_runtime_1.jsxs)(AdminContext_1.AdminDeleteContext.Provider, { value: [state, dispatch], children: [(0, jsx_runtime_1.jsx)(DeleteButton_1.default, {}), (0, jsx_runtime_1.jsx)(DeleteConfirm_1.default, {})] }));

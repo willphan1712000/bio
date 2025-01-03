@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Table = exports.AddIntersectionObserver = exports.W4 = exports.W3 = exports.W2 = exports.W1 = void 0;
 exports.$$ = $$;
+const jquery_1 = __importDefault(require("jquery"));
 const SearchUI_1 = __importDefault(require("./components/search/SearchUI"));
 const RangeSlider_1 = require("./components/rangeSlider/RangeSlider");
 const ColorPickerSingle_1 = __importDefault(require("./components/colorPicker/ColorPickerSingle"));
@@ -177,10 +178,10 @@ class Table extends W2 {
         this.data = data;
     }
     addHeader() {
-        $(this.location).append('<table><tr></tr></table>');
+        (0, jquery_1.default)(this.location).append('<table><tr></tr></table>');
         for (const headerKey in this.data[0]) {
             if (this.data[0].hasOwnProperty(headerKey)) {
-                $(this.location + " table tr").append(`<th>${headerKey}</th>`);
+                (0, jquery_1.default)(this.location + " table tr").append(`<th>${headerKey}</th>`);
             }
         }
         return this;
@@ -205,12 +206,12 @@ class Table extends W2 {
                 row += `<th>${eachData[eachKey]}</th>`;
             }
             row += `</tr>`;
-            $(this.location + " table").append(row);
+            (0, jquery_1.default)(this.location + " table").append(row);
         }
         return this;
     }
     empty() {
-        $(this.location).empty();
+        (0, jquery_1.default)(this.location).empty();
         this.addHeader();
     }
 }
@@ -220,11 +221,11 @@ class Spinner extends W1 {
         super(ele1);
     }
     show() {
-        $(this.ele1.querySelector(".loader")).addClass("spinner");
+        (0, jquery_1.default)(this.ele1.querySelector(".loader")).addClass("spinner");
         return this;
     }
     hide() {
-        $(this.ele1.querySelector(".loader")).removeClass("spinner");
+        (0, jquery_1.default)(this.ele1.querySelector(".loader")).removeClass("spinner");
         return this;
     }
     singleSpinner() {
@@ -254,12 +255,12 @@ class Spinner extends W1 {
             }
         }`;
         document.head.appendChild(styleElement);
-        $(this.ele1).append(`<div class="loader"></div>`);
-        $(this.ele1).css("position", "relative");
+        (0, jquery_1.default)(this.ele1).append(`<div class="loader"></div>`);
+        (0, jquery_1.default)(this.ele1).css("position", "relative");
         return this;
     }
     gradientSpinner() {
-        $(this.ele1).append(`<div class="loader spinner"></div>`);
+        (0, jquery_1.default)(this.ele1).append(`<div class="loader spinner"></div>`);
         return this;
     }
 }
@@ -267,7 +268,7 @@ class PassShowHide extends W1 {
     constructor(inputSelector) {
         super(inputSelector);
         this.inputSelector = inputSelector;
-        this.$input = $(this.inputSelector);
+        this.$input = (0, jquery_1.default)(this.inputSelector);
     }
     run() {
         const inputWidth = this.$input.innerWidth();
@@ -293,18 +294,18 @@ class Toggle extends W3 {
         super(ele1, ele2, ele3);
     }
     default() {
-        $(this.ele1).click((e) => {
-            $(e.currentTarget).toggleClass(this.ele2);
+        (0, jquery_1.default)(this.ele1).click((e) => {
+            (0, jquery_1.default)(e.currentTarget).toggleClass(this.ele2);
         });
         return this;
     }
     disableScroll() {
-        $("body").css({
+        (0, jquery_1.default)("body").css({
             overflow: "hidden"
         });
     }
     enableScroll() {
-        $("body").css({
+        (0, jquery_1.default)("body").css({
             overflow: "auto"
         });
     }
@@ -319,13 +320,13 @@ class Toggle extends W3 {
             this.ele1.trigger.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if ($(this.ele2).hasClass(this.ele3)) {
+                if ((0, jquery_1.default)(this.ele2).hasClass(this.ele3)) {
                     this.enableScroll();
-                    $(this.ele2).removeClass(this.ele3);
+                    (0, jquery_1.default)(this.ele2).removeClass(this.ele3);
                 }
                 else {
                     this.disableScroll();
-                    $(this.ele2).addClass(this.ele3);
+                    (0, jquery_1.default)(this.ele2).addClass(this.ele3);
                 }
             });
         }
@@ -334,17 +335,17 @@ class Toggle extends W3 {
                 const target = e.target;
                 if (this.ele1.terminate.includes(target)) {
                     this.enableScroll();
-                    $(this.ele2).removeClass(this.ele3);
+                    (0, jquery_1.default)(this.ele2).removeClass(this.ele3);
                 }
             });
         }
         return this;
     }
     cancel() {
-        $(this.ele1.trigger).off();
-        $(this.ele1.terminate).off();
-        $(this.ele2).off();
-        $(document).off();
+        (0, jquery_1.default)(this.ele1.trigger).off();
+        (0, jquery_1.default)(this.ele1.terminate).off();
+        (0, jquery_1.default)(this.ele2).off();
+        (0, jquery_1.default)(document).off();
         return this;
     }
 }
@@ -353,7 +354,7 @@ class CopyToClipboard extends W2 {
         super(ele1, ele2);
     }
     run(cb) {
-        $(this.ele2).click(() => {
+        (0, jquery_1.default)(this.ele2).click(() => {
             navigator.clipboard.writeText(this.ele1).then(() => {
                 cb();
             });

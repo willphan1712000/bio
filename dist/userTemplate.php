@@ -10,7 +10,6 @@ use component\Template;
 use component\Copyright;
 use component\UserFooter;
 
-
 // get User object
 $user = new UserController();
 $user->execute();
@@ -32,7 +31,7 @@ $props = [
     'css' => $css,
     'mode' => 'a'
 ];
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['userTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind37cf26cd033043d29681.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/admin92e7aefe993bc8cf9ff5.js"></script><script src="/dist/prevjsf002fa72f0dd09cf65c6.js"></script><script src="/dist/userjsee848e352b746aeb4a40.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['userTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindd1e856a4a9eada21702b.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/admin92e7aefe993bc8cf9ff5.js"></script><script src="/dist/prevjsf002fa72f0dd09cf65c6.js"></script><script src="/dist/userjsb1a2dc45cf69d9594df1.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php
         (new Template($themeid, $props))->execute()->html(); ?> </div><div id="userFooter"> <?php
         (new UserFooter())->render("#userFooter");
         ?> </div> <?php (new Copyright([
