@@ -101,7 +101,9 @@ const Return = () => {
                 }
             });
         }
-        push();
+        if (status === 'complete') {
+            push();
+        }
         return () => {
             clearInterval(countDown);
         };

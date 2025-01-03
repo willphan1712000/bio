@@ -133,7 +133,9 @@ const Return = () => {
                 }
             });
         }
-        push();
+        if (status === 'complete') {
+            push();
+        }
         return () => {
             clearInterval(countDown);
         };
@@ -66014,4 +66016,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=checkoutjsedbe169d51859c5a0403.js.map
+//# sourceMappingURL=checkoutjsba944d8428f7a5038e61.js.map

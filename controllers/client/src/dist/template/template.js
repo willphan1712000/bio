@@ -55,27 +55,17 @@ function template(props) {
             url: shareURL
         }).share();
     });
-    $(".select").click(e => {
+    $(".select").click((e) => __awaiter(this, void 0, void 0, function* () {
         const current = e.currentTarget;
         const id = $(current).data("id");
-        $.ajax({
-            url: '/data/api/template/select.php',
-            method: 'POST',
-            data: {
-                username: (0, TemplateContext_1.username)(),
-                themeid: id
-            },
-            dataType: "json",
-            success: function (e) {
-                if (e === 1) {
-                    window.location.href = '/' + (0, TemplateContext_1.username)();
-                }
-            },
-            error: function () {
-                console.log("error");
-            }
-        });
-    });
+        const r = yield (0, WW_1.$$$)('/data/api/user/template/PUT.php', {
+            username: (0, TemplateContext_1.username)(),
+            template_id: id
+        }).api().post();
+        if (r.success) {
+            window.location.href = '/' + (0, TemplateContext_1.username)();
+        }
+    }));
     $(".buy").click(e => {
         (0, TemplateContext_1.auth)(props.isSignedIn === 'true', () => {
             const current = $(e.currentTarget);

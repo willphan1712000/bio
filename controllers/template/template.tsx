@@ -60,26 +60,18 @@ export default function template(props: Props) : void {
     })
 
     // handle select button
-    $(".select").click(e => {
+    $(".select").click(async e => {
         const current = e.currentTarget;
         const id = $(current).data("id");
-        $.ajax({
-            url: '/data/api/template/select.php',
-            method: 'POST',
-            data: {
-                username: username(),
-                themeid: id
-            },
-            dataType: "json",
-            success: function(e) {
-                if(e === 1) {
-                    window.location.href = '/' + username()
-                }
-            },
-            error: function() {
-                console.log("error");
-            }
-        })
+
+        const r = await $$$('/data/api/user/template/PUT.php', {
+            username: username(),
+            template_id: id
+        }).api().post() as Response
+
+        if(r.success) {
+            window.location.href = '/' + username()
+        }
     })
 
     // handle buy button
