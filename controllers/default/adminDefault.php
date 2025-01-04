@@ -1,7 +1,7 @@
 <?php
 
 use component\BioTemplateButton;
-use config\SystemConfig as c;
+use component\signup\SignupAgain;
 use controllers\admin\AdminController;
 
 $admin = new AdminController();
@@ -9,7 +9,6 @@ $admin->execute();
 
 $g = $admin->get("g");
 $username = $admin->get("username");
-$regexMap = $admin->get("regexMap");
 
 if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);
@@ -49,6 +48,9 @@ if (isset($_POST['signout'])) {
             <form action="" method="POST" style="width: 100%;">
                 <button style="border: none; color: #000;" name="signout" class="adminBtn__ele adminBtn__index"><span>Sign out</span><i class="fa-solid fa-right-from-bracket"></i></button>
             </form>
+        </div>
+        <div class="mt-4">
+            <?= (new SignupAgain())->render(); ?>
         </div>
         <div id="delete"></div>
         <div id="copyright">

@@ -6,7 +6,7 @@
 // $checkout->execute();
 // $username = $checkout->get("username");
 // $href = '/@template?username=' . $username;
-?> <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accept a payment</title><meta name="description" content="A demo of a payment on Stripe"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindd1e856a4a9eada21702b.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/checkoutjs1f6a6288364f8898ba04.js"></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><!-- Display a payment form --><div id="checkout" class=""></div><!--
+?> <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Accept a payment</title><meta name="description" content="A demo of a payment on Stripe"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind91be4756ae2106cf251a.js"></script><script src="/dist/universal338525335f3c1d0938f4.js"></script><script src="/dist/checkoutjs2e3e3b1442577bdbeed2.js"></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><!-- Display a payment form --><div id="checkout" class=""></div><!--
     This HTML file is a template.
     If you open it directly in the browser, you will see an empty page.
     You can add webfonts, meta tags, or analytics to this file.

@@ -1,35 +1,32 @@
 <?php
 
-use config\SystemConfig;
-
-$g = SystemConfig::globalVariables();
-
-use business\user\InfoAnchor;
+use config\SystemConfig as c;
 use controllers\user\UserController;
 use component\Template;
 use component\Copyright;
 use component\UserFooter;
+use controllers\template\TemplateFactory;
 
 // get User object
 $user = new UserController();
 $user->execute();
 
-// get username
-$username = $user->getUsername();
-// Get themeid
-$themeid = $user->getThemeid();
-// Get CSS for corresponding template
-$css = $user->getCSS();
-// Get url for the page with specific username
-$url = $user->getURL();
+$infoArray = $user->get("info");
+
+// $socialIconArr = $user->get("socialIconArr");
+$username = $user->get("username");
+$themeid = $user->get("themeid");
+$g = $user->get("g");
+$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
+$css = $user->get("css");
+
+// c::dd($css);
 
 // This is information that gets passed down to the corresponsing template
 $props = [
-    'username' => $username,
-    'icon' => SystemConfig::socialIconArr(),
-    'info' => new InfoAnchor($user->getInfo()),
-    'css' => $css,
-    'mode' => 'a'
+    'imgPath' => $image,
+    'info' => $infoArray,
+    'css' => $css
 ];
 ?>
 <!DOCTYPE html>
@@ -49,7 +46,8 @@ $props = [
     </div>
     <div id="container">
         <?php
-        (new Template($themeid, $props))->execute()->html(); ?>
+        TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
+        ?>
     </div>
     <div id="userFooter">
         <?php
@@ -59,14 +57,6 @@ $props = [
     <?php (new Copyright([
         'position' => 'relative'
     ]))->render(); ?>
-
-    <script>
-        const props = {
-            url: "<?= $url; ?>",
-            username: "<?= $username; ?>"
-        }
-        console.log(props)
-    </script>
 </body>
 
 </html>

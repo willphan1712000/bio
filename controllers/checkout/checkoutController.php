@@ -33,13 +33,13 @@ class checkoutController extends Controller
             $this->redirect();
         }
 
-        // if (!TemplateManagement::isAbleToPurchase($isSignedIn, $username, $itemid)) {
-        //     header("Location: /@template?username=" . $username);
-        // }
+        if (!TemplateManagement::isAbleToPurchase($_SESSION, $this->username, $this->itemid)) {
+            $this->redirect();
+        }
     }
 
     private function redirect()
     {
-        header("Location: /@template");
+        header("Location: /@template?username=" . $this->username);
     }
 }

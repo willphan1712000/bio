@@ -11,7 +11,6 @@ $user->execute();
 $infoArray = $user->get("info");
 
 $socialIconArr = $user->get("socialIconArr");
-$url = $user->get("url");
 $username = $user->get("username");
 $g = $user->get("g");
 $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();

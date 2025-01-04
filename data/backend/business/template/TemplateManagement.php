@@ -14,7 +14,7 @@ interface ITemplateManagement
     public static function getProducts();
     public static function isPurchased(string $username, int $tem);
     public static function shareTemplate($username, $tem = NULL): int;
-    public static function isAbleToPurchase($SESSION, $username, $itemid);
+    public static function isAbleToPurchase(&$SESSION, $username, $itemid);
 }
 
 class TemplateManagement implements ITemplateManagement
@@ -80,7 +80,7 @@ class TemplateManagement implements ITemplateManagement
         }
     }
 
-    public static function isAbleToPurchase($SESSION, $username, $itemid): bool
+    public static function isAbleToPurchase(&$SESSION, $username, $itemid): bool
     {
         // Check if user exists, return true if exists. Return false otherwise
         if (!UserManagement::isUserExist($username)) {
@@ -95,7 +95,7 @@ class TemplateManagement implements ITemplateManagement
             return true;
         }
         // Check if itemid is out of bound or not
-        if ($itemid <= 0 || $itemid > self::getTotal()) {
+        if ($itemid <= 0 || $itemid >= self::getTotal()) {
             return false;
         }
         // Check if itemid is already purchased or not. If already purchased, return false

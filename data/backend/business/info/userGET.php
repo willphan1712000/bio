@@ -4,30 +4,6 @@ namespace business\info;
 
 use business\IAPI;
 use business\info\Info;
-use business\info\social\X;
-use business\info\user\Name;
-use business\info\phone\Work;
-use business\info\user\Email;
-use business\info\social\Zalo;
-use business\info\user\Avatar;
-use business\info\phone\Mobile;
-use business\info\phone\Viber;
-use business\info\user\Address;
-use business\info\social\Tiktok;
-use business\info\social\Booking;
-use business\info\phone\HotLine;
-use business\info\social\HotSale;
-use business\info\social\Threads;
-use business\info\social\Website;
-use business\info\social\Youtube;
-use business\info\social\Facebook;
-use business\info\social\Linkedin;
-use business\info\social\Instagram;
-use business\info\social\Messenger;
-use business\info\social\Pinterest;
-use business\info\user\Description;
-use business\info\user\Organization;
-use business\info\social\OrderOnline;
 
 class userGET implements IAPI
 {
