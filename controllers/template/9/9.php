@@ -156,6 +156,9 @@ font-family: ' . $props['css']['font'] . ';
 font-size: ' . $props['css']['fontSize'] . ';
 color: ' . $props['css']['fontColor'] . ';
 }
+.template_name {
+font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
+}
 #text {
 height: 130px;
 }

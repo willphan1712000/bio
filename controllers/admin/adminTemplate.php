@@ -12,19 +12,19 @@ use controllers\admin\AdminController;
 $admin = new AdminController(); // get admin object
 $admin->execute();
 
-$username = $admin->get("username"); // get username
-$themeid = $admin->get("themeid"); // Get themeid
-$css = $admin->get("css"); // Get CSS for corresponding template
-$url = $admin->get("url"); // Get url for the page with specific username
+// $username = $admin->get("username"); // get username
+// $themeid = $admin->get("themeid"); // Get themeid
+// $css = $admin->get("css"); // Get CSS for corresponding template
+// $url = $admin->get("url"); // Get url for the page with specific username
 
-// This is information that gets passed down to the corresponsing template
-$props = [
-    'username' => $username,
-    'icon' => SystemConfig::socialIconArr(),
-    'info' => (new InfoAnchor($admin->get("info"))),
-    'css' => $css,
-    'mode' => 'a'
-];
+// // This is information that gets passed down to the corresponsing template
+// $props = [
+//     'username' => $username,
+//     'icon' => SystemConfig::socialIconArr(),
+//     'info' => (new InfoAnchor($admin->get("info"))),
+//     'css' => $css,
+//     'mode' => 'a'
+// ];
 
 if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);

@@ -150,7 +150,14 @@ class Template8 implements ITemplate
     <p class="experience template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
     <div class="hospital-info">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/776e3cfcfa82d98d51a9f608fe60490dbe6c756636ef36cde209a8f7bef2c756?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="hospital-icon" />
-      <p class="hospital-name template__font template_des">' . $props['info']['description']->getHTML() . '</p>
+      <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
     </div>
   </div>
   <div id="social-media" class="flex flex-col gap-3">

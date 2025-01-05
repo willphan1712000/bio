@@ -94,7 +94,7 @@ class Template4 implements ITemplate
 
 .store-title {
   text-align: center;
-  margin-top: 30%;
+  margin-top: 25%;
 }
 
 .store-tagline {
@@ -191,7 +191,14 @@ class Template4 implements ITemplate
       <div id="text">
       <h1 class="store-title template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
       <p class="store-tagline template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
-      <p class="store-tagline template__font template_des">' . $props['info']['description']->getHTML() . '</p>
+      <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
       </div>
     </header>
     <nav class="social-icons">

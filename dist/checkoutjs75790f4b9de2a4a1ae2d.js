@@ -120,6 +120,7 @@ const Return = () => {
                 try {
                     const r = yield (0, WW_1.$$$)("/data/api/purchase/POST.php", (0, checkoutContext_1.listPush)()).api().post();
                     if (r.success) {
+                        localStorage.removeItem((0, checkoutContext_1.getUser)());
                         countDown = setInterval(() => {
                             setCount(prev => prev - 1);
                         }, 1000);
@@ -66016,4 +66017,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=checkoutjs2e3e3b1442577bdbeed2.js.map
+//# sourceMappingURL=checkoutjs75790f4b9de2a4a1ae2d.js.map

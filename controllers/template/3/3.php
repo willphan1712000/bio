@@ -231,7 +231,14 @@ class Template3 implements ITemplate
               <div id="text">
                 <h1 class="shop-title template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                 <p class="tagline template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
-                <p class="tagline template__font template_des">' . $props['info']['description']->getHTML() . '</p>
+                <textarea class="des template__font template_des" style="border: none;
+                resize: none;
+                background: transparent;
+                width: 80vw;
+                text-align: center;
+                margin: 0px;
+                height: 70px;
+                scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
               </div>
                 <nav class="icon-container">
                 ' . $props['info']['Facebook']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />') . '

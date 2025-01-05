@@ -7,6 +7,8 @@ use Stripe\StripeClient;
 require_once __DIR__ . '/../../vendor/autoload.php';
 Dotenv\Dotenv::createImmutable(__DIR__ . "/../../")->load();
 
+SESSION_START();
+
 try {
   $stripe = new StripeClient($_ENV["STRIPE_SECRET_KEY"]);
   header('Content-Type: application/json');
@@ -16,13 +18,14 @@ try {
 
   $YOUR_DOMAIN = SystemConfig::globalVariables()['stripeRedirect'];
   $productList = TemplateManagement::getProducts();
+  $user = $jsonObj->user;
 
   // echo json_encode($stripe);
   // die();
 
   $checkout_session = $stripe->checkout->sessions->create([
     'ui_mode' => 'embedded',
-    'line_items' => createLineItems($jsonObj->items, $productList),
+    'line_items' => createLineItems($jsonObj->items, $productList, $user),
     'mode' => 'payment',
     'return_url' => $YOUR_DOMAIN . '/@return?session_id={CHECKOUT_SESSION_ID}',
   ]);
@@ -36,21 +39,22 @@ try {
   ]));
 }
 
-function createLineItems(array $items, array $product): array
+function createLineItems(array $items, array $product, string $user): array
 {
   $result = [];
   foreach ($items as $item) {
-    $result[] = [
-      'price_data' => [
-        'currency' => 'usd',
-        'product_data' => [
-          'name' => $product[$item->id]['name'],
-          'images' => [$product[$item->id]['image']],
+    if (TemplateManagement::isAbleToPurchase($_SESSION, $user, $item->id))
+      $result[] = [
+        'price_data' => [
+          'currency' => 'usd',
+          'product_data' => [
+            'name' =>  $product[$item->id]['name'],
+            'images' => [$product[$item->id]['image']],
+          ],
+          'unit_amount' => $product[$item->id]['price'],
         ],
-        'unit_amount' => $product[$item->id]['price'],
-      ],
-      'quantity' => 1,
-    ];
+        'quantity' => 1,
+      ];
   }
   return $result;
 }

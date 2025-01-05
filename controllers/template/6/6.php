@@ -132,7 +132,14 @@ class Template6 implements ITemplate
     <div id="text">
     <h1 class="profile-name template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
     <p class="profile-bio template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
-    <p class="profile-bio template__font template_des">' . $props['info']['description']->getHTML() . '</p>
+    <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
     </div>
     <nav class="social-links">
     ' . $props['info']['Facebook']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd3e99876742f505189785dc61cbf5743fc1c6051b0f0e93e91c5c678b53cc6a?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="social-icon social-icon-small" alt="" />') . '

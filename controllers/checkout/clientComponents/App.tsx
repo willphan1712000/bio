@@ -112,6 +112,7 @@ const Return = () => {
       try {
         const r = await $$$("/data/api/purchase/POST.php", listPush()).api().post() as Response
         if(r.success) {
+          localStorage.removeItem(getUser()) // clear local storage for corresponding user
           countDown = setInterval(() => {
             setCount(prev => prev - 1)
           }, 1000)
@@ -124,7 +125,7 @@ const Return = () => {
     }
 
     if(status === 'complete') {
-      push()
+      push() // Push purchased data to database
     }
 
     return () => {

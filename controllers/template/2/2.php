@@ -275,8 +275,14 @@ class Template2 implements ITemplate
   <div id="text">
   <h1 class="div-2 template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
   <div class="div-3 template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</div>
-  <div class="div-3 template__font template_des">' . $props['info']['description']->getHTML() . '</div>
-  </div>
+  <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
   <div class="div-4"></div>
 
   <div class="element div-5 div-element">

@@ -121,7 +121,7 @@ class Template10 implements ITemplate
 .socialUser {
   background-color: #f0f0f0;
 }
-  #template__background {
+#template__background {
     background: ' . $props['css']['background'] . ';
 }
 .template__font {

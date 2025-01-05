@@ -2,7 +2,6 @@
 
 use config\SystemConfig as c;
 use controllers\user\UserController;
-use component\Template;
 use component\Copyright;
 use component\UserFooter;
 use controllers\template\TemplateFactory;
@@ -28,6 +27,7 @@ $props = [
     'info' => $infoArray,
     'css' => $css
 ];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

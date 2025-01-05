@@ -90,7 +90,7 @@ class Template1 implements ITemplate
     font-weight: 300;
     text-align: center;
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
   }
   .div-8 {
     display: flex;
@@ -243,7 +243,7 @@ class Template1 implements ITemplate
       </p>
     </div>
     ' . $props['info']['Mobile']->getHTML('<div class="div-6">Contact us</div>') . '
-    <div class="div-7 gap-2">
+    <div class="div-7">
       
       ' . $props['info']['Website']->getHTML('<div class="div-8">
         <img

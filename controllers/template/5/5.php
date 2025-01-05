@@ -7,10 +7,10 @@ use controllers\template\ITemplate;
 
 class Template5 implements ITemplate
 {
-  public function html($props)
-  {
-    $icon = SystemConfig::socialIconArr();
-    $html = '
+    public function html($props)
+    {
+        $icon = SystemConfig::socialIconArr();
+        $html = '
         <div id="template-container">
             <style>
                 .bakery-container {
@@ -138,7 +138,14 @@ class Template5 implements ITemplate
                     <div class="backdrop-child" id="text">
                         <h1 class="template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                         <p class="tagline template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
-                        <p class="tagline template__font template_des">' . $props['info']['description']->getHTML() . '</p>
+                        <textarea class="des template__font template_des" style="border: none;
+                            resize: none;
+                            background: transparent;
+                            width: 80vw;
+                            text-align: center;
+                            margin: 0px;
+                            height: 70px;
+                            scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
                     </div>
                 </div>
                 
@@ -182,6 +189,6 @@ class Template5 implements ITemplate
             </main>
         </div>';
 
-    echo $html;
-  }
+        echo $html;
+    }
 }
