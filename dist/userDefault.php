@@ -18,7 +18,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             display: none;
         }</style><script src="/dist/userjs903cd2533c0ce288e28c.js"></script></head><body><div id="container"><div class="adminSection"><div class="info"><div class="info__img"><div class="info__img--location"><img src="<?= $image; ?> " alt="bio_user_avatar" draggable="false" style="width: 100%; height: 100%;"></div></div><div class="info__about"><div class="info__name"><div><h1 style="text-align: center;"><?= $infoArray['name']->getHTML(); ?></h1></div></div><div class="info__position"><div><p style="text-align: center; font-size: 18px; margin-top: 10px;"><?= $infoArray['position']->getHTML(); ?></p></div></div><div class="info__org"><div><h2><?= $infoArray['organization']->getHTML(); ?></h2></div></div><div class="info__des"><div><textarea id="des" rows="5" cols="15" style="border: none; resize: none; outline: none; font-size: 18px; text-align: center; scrollbar-width: none; -ms-overflow-style: none;"><?= $infoArray['description']->getHTML(); ?></textarea></div></div></div></div><div id="social-media"> <?php
                 foreach ($infoArray as $prop => $info) {
-                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
+                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode', 'WhatsappFlag', 'WhatsappCode'])) {
 
                         /** @var Display */
                         $element = $infoArray[$prop];

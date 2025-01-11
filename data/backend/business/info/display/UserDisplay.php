@@ -2,18 +2,21 @@
 
 namespace business\info\display;
 
-use business\info\operation\LongString;
 use business\info\operation\MakeSpace;
+use business\info\operation\Operation;
+use business\info\operation\LongString;
 
 class UserDisplay implements Display
 {
     protected string $name;
     protected ?string $value;
+    protected ?Operation $o;
 
     function __construct(string $name, ?string $value)
     {
         $this->name = $name;
         $this->value = $value;
+        $this->o = null;
     }
 
     public function getValue(): ?string
@@ -33,12 +36,19 @@ class UserDisplay implements Display
     {
         $children = $children ?? $this->value;
         $display = $this->value === null ? "none" : "flex";
-        return '<a href="' . $this->value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
+        $value = ($this->o === null) ? $this->value : $this->o->execute($this->value);
+        return '<a href="' . $value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
     }
 
     public function getAdminHTML(?string $children = null): string
     {
         $children = $children ?? '';
         return '<div id="' . $this->name . '">' . $children . '</div>';
+    }
+
+    public function setOperation(Operation $o): Display
+    {
+        $this->o = $o;
+        return $this;
     }
 }

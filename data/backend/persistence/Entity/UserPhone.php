@@ -48,6 +48,13 @@ class UserPhone extends EntityFunction
     #[Column(name: 'ViberFlag', nullable: true)]
     protected ?string $ViberFlag;
 
+    #[Column(name: 'Whatsapp', nullable: true)]
+    protected ?string $Whatsapp;
+    #[Column(name: 'WhatsappCode', nullable: true)]
+    protected ?string $WhatsappCode;
+    #[Column(name: 'WhatsappFlag', nullable: true)]
+    protected ?string $WhatsappFlag;
+
     public function getUser(): User
     {
         return $this->User;

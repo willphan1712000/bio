@@ -94,6 +94,7 @@ class SystemConfig
             "Zalo" => '<i class="fa-brands fa-viber"></i>',
             "Viber" => '<i class="fa-brands fa-viber"></i>',
             "HotLine" => '<i class="fa-solid fa-phone"></i>',
+            "Whatsapp" => '<i class="fa-brands fa-whatsapp"></i>',
         ];
     }
 
@@ -125,6 +126,7 @@ class SystemConfig
             'Website' => '/^https?:\/\/[^\s]+$/',
             'Viber' => '/^\d{10}$/',
             'HotLine' => '/^\d{10}$/',
+            'Whatsapp' => '/^\d{10}$/',
         ];
     }
 
@@ -155,6 +157,7 @@ class SystemConfig
             'Website' => 'Website link',
             'Viber' => 'Viber',
             'HotLine' => 'HotLine',
+            'Whatsapp' => 'Whatsapp',
         ];
     }
 

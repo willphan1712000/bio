@@ -19,6 +19,7 @@ exports.X = X;
 exports.Pinterest = Pinterest;
 exports.Linkedin = Linkedin;
 exports.Viber = Viber;
+exports.Whatsapp = Whatsapp;
 exports.Zalo = Zalo;
 exports.Tiktok = Tiktok;
 exports.Website = Website;
@@ -46,6 +47,7 @@ const iconMap = {
     'Linkedin': (0, jsx_runtime_1.jsx)(Linkedin, {}),
     'Zalo': (0, jsx_runtime_1.jsx)(Zalo, {}),
     'Viber': (0, jsx_runtime_1.jsx)(Viber, {}),
+    'Whatsapp': (0, jsx_runtime_1.jsx)(Whatsapp, {}),
     'HotLine': (0, jsx_runtime_1.jsx)(Mobile, {}),
     'Tiktok': (0, jsx_runtime_1.jsx)(Tiktok, {}),
     'Website': (0, jsx_runtime_1.jsx)(Website, {}),
@@ -97,6 +99,9 @@ function Linkedin() {
 }
 function Viber() {
     return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-viber" }));
+}
+function Whatsapp() {
+    return ((0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-whatsapp" }));
 }
 function Zalo() {
     return ((0, jsx_runtime_1.jsx)(Image_1.default, { src: "/controllers/client/img/zalo.png" }));

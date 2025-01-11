@@ -68,7 +68,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             <div id="social-media">
                 <?php
                 foreach ($infoArray as $prop => $info) {
-                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode'])) {
+                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode', 'WhatsappFlag', 'WhatsappCode'])) {
 
                         /** @var Display */
                         $element = $infoArray[$prop];

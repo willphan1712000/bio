@@ -2,10 +2,11 @@
 
 namespace business\info\phone;
 
+use business\info\display\UserDisplay;
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\phone\Phone;
-use business\info\display\ViberDisplay;
+use business\info\operation\Viber as OperationViber;
 
 class Viber extends Phone
 {
@@ -17,14 +18,15 @@ class Viber extends Phone
 
     public function doHandle(Info $info): bool
     {
+        $o = OperationViber::getInstance();
         $value = $info->getInfo($this->name);
         if ($this->validate($this->name, $value)) {
             // $info->setInfo($this->name, $value);
             if (!empty($value)) {
-                $info->setInfo('vcard', $info->getInfo('vcard') . 'URL;TYPE=Viber:viber://contact?number=' . $this->format([
+                $info->setInfo('vcard', $info->getInfo('vcard') . 'URL;TYPE=Viber:' . $o->execute($this->format([
                     'code' => $info->getInfo('ViberCode'),
                     'number' => $info->getInfo('Viber')
-                ]) . '\n');
+                ])) . '\n');
 
                 return $this->setValueToDatabase($this->name, $value, $info->getInfo('username')) && $this->setValueToDatabase('ViberCode', $info->getInfo('ViberCode'), $info->getInfo('username')) && $this->setValueToDatabase('ViberFlag', $info->getInfo('ViberFlag'), $info->getInfo('username'));
             }
@@ -51,10 +53,13 @@ class Viber extends Phone
     {
         $value = $this->getValueFromDatabase('Viber', $info->getInfo('username'));
         $code = $this->getValueFromDatabase('ViberCode', $info->getInfo('username'));
-        $info->setInfo($this->name, new ViberDisplay($this->name, $this->format([
+
+        $display = new UserDisplay($this->name, $this->format([
             'code' => $code,
             'number' => $value
-        ])));
+        ]));
+        $display->setOperation(OperationViber::getInstance());
+        $info->setInfo($this->name, $display);
         return true;
     }
 }

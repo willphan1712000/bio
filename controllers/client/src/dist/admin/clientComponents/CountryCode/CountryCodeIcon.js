@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const AdminContext_1 = __importStar(require("../AdminContext"));
 const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
     const name = (0, AdminContext_1.handleAdminElementContext)();
     const data = (0, AdminContext_1.default)();
     let flag = '', code = '';
@@ -46,6 +46,10 @@ const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
         case 'HotLine':
             flag = (_g = data['HotLineFlag']) !== null && _g !== void 0 ? _g : 'us';
             code = (_h = data['HotLineCode']) !== null && _h !== void 0 ? _h : '+1';
+            break;
+        case 'Whatsapp':
+            flag = (_j = data['WhatsappFlag']) !== null && _j !== void 0 ? _j : 'us';
+            code = (_k = data['WhatsappCode']) !== null && _k !== void 0 ? _k : '+1';
             break;
         default:
             break;
