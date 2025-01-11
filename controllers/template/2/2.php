@@ -1,15 +1,14 @@
 <?php
-namespace component\template;
 
-class Template2 {
-    private $props;
-    public function __construct($props) {
-        $this->props = $props;
-    }
-    public function html() {
-        $props = $this->props;
-        
-        $html = '
+namespace controllers\template;
+
+use controllers\template\ITemplate;
+
+class Template2 implements ITemplate
+{
+  public function html($props)
+  {
+    $html = '
             <div id="template-container">
 <style>
   .element {
@@ -254,30 +253,36 @@ class Template2 {
     font: 400 25px Lilita One, sans-serif;
   }
   #template__background {
-    background: '.$props['css']['background'].';
+    background: ' . $props['css']['background'] . ';
   }
   .template__font {
-      font-family: '.$props['css']['font'].';
-      font-size: '.$props['css']['fontSize'].';
-      color: '.$props['css']['fontColor'].';
+      font-family: ' . $props['css']['font'] . ';
+      font-size: ' . $props['css']['fontSize'] . ';
+      color: ' . $props['css']['fontColor'] . ';
   }
   .template_name {
-      font-size: calc('.$props['css']['fontSize'].' + 15px);
+      font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
   }
 </style>
-<div class="div">
+<div class="div bg-white">
   <div id="avatar__container">
   <img draggable=false
     loading="lazy"
-    src="'.$props['imgPath'].'"
+    src="' . $props['imgPath'] . '"
     class="img" id="avatar"
   />
   </div>
   <div id="text">
-  <h1 class="div-2 template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
-  <div class="div-3 template__font template_org">'.$props['info']->organization()[$props['mode']].'</div>
-  <div class="div-3 template__font template_des">'.$props['info']->description()[$props['mode']].'</div>
-  </div>
+  <h1 class="div-2 template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
+  <div class="div-3 template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</div>
+  <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
   <div class="div-4"></div>
 
   <div class="element div-5 div-element">
@@ -289,7 +294,7 @@ class Template2 {
       />
       <div class="div-7">Facebook</div>
     </div>
-    '.$props['info']->social('Facebook', '<div class="div-element-btn">View</div>')[$props['mode']].'
+    ' . $props['info']['Facebook']->getHTML('<div class="div-element-btn">View</div>') . '
   </div>
   <div class="div-9"></div>
   <div class="element div-element">
@@ -301,7 +306,7 @@ class Template2 {
       />
       <div class="div-12">Youtube</div>
     </div>
-    '.$props['info']->social('Youtube', '<div class="div-element-btn">View</div>')[$props['mode']].'
+    ' . $props['info']['Youtube']->getHTML('<div class="div-element-btn">View</div>') . '
     
   </div>
   <div class="div-14"></div>
@@ -314,11 +319,11 @@ class Template2 {
       />
       <div class="div-17">Instagram</div>
     </div>
-    '.$props['info']->social('Instagram', '<div class="div-element-btn">View</div>')[$props['mode']].'
+    ' . $props['info']['Instagram']->getHTML('<div class="div-element-btn">View</div>') . '
   </div>
 </div>
 </div>
             ';
-            echo $html;
-        }
+    echo $html;
+  }
 }

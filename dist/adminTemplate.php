@@ -12,25 +12,25 @@ use controllers\admin\AdminController;
 $admin = new AdminController(); // get admin object
 $admin->execute();
 
-$username = $admin->get("username"); // get username
-$themeid = $admin->get("themeid"); // Get themeid
-$css = $admin->get("css"); // Get CSS for corresponding template
-$url = $admin->get("url"); // Get url for the page with specific username
+// $username = $admin->get("username"); // get username
+// $themeid = $admin->get("themeid"); // Get themeid
+// $css = $admin->get("css"); // Get CSS for corresponding template
+// $url = $admin->get("url"); // Get url for the page with specific username
 
-// This is information that gets passed down to the corresponsing template
-$props = [
-    'username' => $username,
-    'icon' => SystemConfig::socialIconArr(),
-    'info' => (new InfoAnchor($admin->get("info"))),
-    'css' => $css,
-    'mode' => 'a'
-];
+// // This is information that gets passed down to the corresponsing template
+// $props = [
+//     'username' => $username,
+//     'icon' => SystemConfig::socialIconArr(),
+//     'info' => (new InfoAnchor($admin->get("info"))),
+//     'css' => $css,
+//     'mode' => 'a'
+// ];
 
 if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);
     header("Location: /" . $username);
 }
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['adminTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindd1e856a4a9eada21702b.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/admin92e7aefe993bc8cf9ff5.js"></script><script src="/dist/prevjsf002fa72f0dd09cf65c6.js"></script><script src="/dist/adminjsf8c6c7b8e4f24babc1b0.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save">Save</div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['adminTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind30f5d0e6c772d5b1a4d8.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/admin5839428fcd5b8ae72fcd.js"></script><script src="/dist/prevjsf002fa72f0dd09cf65c6.js"></script><script src="/dist/adminjs0918f5df6ad8866e2438.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save">Save</div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div> <?php
                     // template($themeid, $props)->execute()->html(); 
                     ?> </div><div class="back swiper-slide"><div class="label">Back</div> <?php
                     (new Back([

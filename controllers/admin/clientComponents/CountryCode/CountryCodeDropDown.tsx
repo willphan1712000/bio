@@ -55,6 +55,11 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
                     setCountryCode({code: '+1', flag: 'us'})
                 }
                 break
+            case 'Whatsapp':
+                if(data['WhatsappCode'] === null || data['WhatsappCode'] === '' || data['WhatsappFlag'] === null || data['WhatsappFlag'] === '') {
+                    setCountryCode({code: '+1', flag: 'us'})
+                }
+                break
             default:
                 break
         }
@@ -77,6 +82,10 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
             case 'Viber':
                 data['ViberCode'] = code
                 data['ViberFlag'] = flag
+                break
+            case 'Whatsapp':
+                data['WhatsappCode'] = code
+                data['WhatsappFlag'] = flag
                 break
             default:
                 break

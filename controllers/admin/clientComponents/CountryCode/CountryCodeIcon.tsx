@@ -27,6 +27,10 @@ const CountryCodeIcon = ({buttonRef, onCallBack} : Props) => {
       flag = data['HotLineFlag'] ?? 'us'
       code = data['HotLineCode'] ?? '+1'
       break
+    case 'Whatsapp':
+      flag = data['WhatsappFlag'] ?? 'us'
+      code = data['WhatsappCode'] ?? '+1'
+      break
     default:
       break
   }

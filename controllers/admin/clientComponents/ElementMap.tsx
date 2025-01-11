@@ -25,6 +25,7 @@ const iconMap: ElementArray = {
     'Linkedin': <Linkedin />,
     'Zalo': <Zalo />,
     'Viber': <Viber />,
+    'Whatsapp': <Whatsapp />,
     'HotLine': <Mobile />,
     'Tiktok': <Tiktok />,
     'Website': <Website />,
@@ -121,6 +122,12 @@ export function Linkedin() {
 export function Viber() {
     return (
         <i className="fa-brands fa-viber"></i>
+    )
+}
+
+export function Whatsapp() {
+    return (
+        <i className="fa-brands fa-whatsapp"></i>
     )
 }
 

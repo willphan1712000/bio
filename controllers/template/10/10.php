@@ -1,15 +1,16 @@
 <?php
-namespace component\template;
 
-class Template10 {
-    private $props;
-    public function __construct($props) {
-        $this->props = $props;
-    }
-    public function html() {
-        $props = $this->props;
-        
-        $html = '
+namespace controllers\template;
+
+use config\SystemConfig;
+use controllers\template\ITemplate;
+
+class Template10 implements ITemplate
+{
+  public function html($props)
+  {
+    $icon = SystemConfig::socialIconArr();
+    $html = '
             <div id="template-container">
 <style>
   #social-media {
@@ -120,52 +121,62 @@ class Template10 {
 .socialUser {
   background-color: #f0f0f0;
 }
-  #template__background {
-    background: '.$props['css']['background'].';
+#template__background {
+    background: ' . $props['css']['background'] . ';
 }
 .template__font {
-    font-family: '.$props['css']['font'].';
-    font-size: '.$props['css']['fontSize'].';
-    color: '.$props['css']['fontColor'].';
+    font-family: ' . $props['css']['font'] . ';
+    font-size: ' . $props['css']['fontSize'] . ';
+    color: ' . $props['css']['fontColor'] . ';
 }
 .template_name {
-    font-size: calc('.$props['css']['fontSize'].' + 15px);
+    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
 }
 #avatar__container {
-    margin-top: 35px;
+    width: 100%;
 }
 </style>
 
 <main class="fashion-show-container" id="template__background">
 <div id="avatar__container">
-  <img 	id="avatar" draggable=false src="'.$props['imgPath'].'" alt="Fashion Show Hero Image" class="hero-image" /></div>
+  <img 	id="avatar" draggable=false src="' . $props['imgPath'] . '" alt="Fashion Show Hero Image" class="hero-image" /></div>
   <div id="text">
-  <h1 class="main-title template__font template_name">'.$props['info']->name()[$props['mode']].'</h1>
-  <p class="des template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
-  <p class="des template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
+  <h1 class="main-title template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
+  <p class="des template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
+  <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
   </div>
   <nav class="social-links">
-  '.$props['info']->social('Facebook', ' <div class="social-button">
+  ' . $props['info']['Facebook']->getHTML('<div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc6f0cf7b4c3eb8e670601c61cc30afc7ea46efe75ca8f98a5f8f9649aee6497?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Facebook</span>
-      </div>')[$props['mode']].'
-  '.$props['info']->social('Instagram', '<div class="social-button">
+      </div>') . '
+  ' . $props['info']['Instagram']->getHTML('<div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/406f99e2876ec60b3fe915758299ce753fcefa6a397a2a9cc14e86b7769f07e8?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Instagram</span>
-      </div>')[$props['mode']].'
-  '.$props['info']->social('Tiktok', '<div class="social-button">
+      </div>') . '
+  ' . $props['info']['Tiktok']->getHTML('<div class="social-button">
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9640d6fcd0e2ffb558786d7f0ebe3d9ec7a87327b3263c59345ba8cbbf7326ef?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />
         <span>Tiktok</span>
-      </div>')[$props['mode']].'
+      </div>') . '
   </nav>
-  '.$props['info']->social('Website', '<div class="cta-button" role="button">Website</div>')[$props['mode']].'
-  '.$props['info']->mobile('<div class="cta-button" role="button">Contact</div>')[$props['mode']].'
-  <div id="social-media">
-    '.socialMediaIcon($props)->render().'
-</div>
+  ' . $props['info']['Website']->getHTML('<div class="cta-button" role="button">Website</div>') . '
+  ' . $props['info']['Mobile']->getHTML('<div class="cta-button" role="button">Contact</div>') . '
+  <div id="social-media" class="flex flex-col gap-3">
+    ' . $props['info']['Mobile']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f0f0f0] p-[10px]"><div class="flex justify-center items-center">' . $icon['Mobile'] . '</div><p class="ml-[40px]">Mobile</p></div>') . '
+    ' . $props['info']['Work']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f0f0f0] p-[10px]"><div class="flex justify-center items-center">' . $icon['Work'] . '</div><p class="ml-[40px]">Work</p></div>') . '
+    ' . $props['info']['Email']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f0f0f0] p-[10px]"><div class="flex justify-center items-center">' . $icon['Email'] . '</div><p class="ml-[40px]">Email</p></div>') . '
+    ' . $props['info']['Website']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f0f0f0] p-[10px]"><div class="flex justify-center items-center">' . $icon['Website'] . '</div><p class="ml-[40px]">Website</p></div>') . '
+  </div>
 </main>
 </div>
             ';
-            echo $html;
-        }
+    echo $html;
+  }
 }

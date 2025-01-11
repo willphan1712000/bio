@@ -1,15 +1,16 @@
 <?php
-namespace component\template;
 
-class Template8 {
-    private $props;
-    public function __construct($props) {
-        $this->props = $props;
-    }
-    public function html() {
-        $props = $this->props;
-        
-        $html = '
+namespace controllers\template;
+
+use config\SystemConfig;
+use controllers\template\ITemplate;
+
+class Template8 implements ITemplate
+{
+  public function html($props)
+  {
+    $icon = SystemConfig::socialIconArr();
+    $html = '
             <div id="template-container">
 <style>
   #social-media {
@@ -129,42 +130,53 @@ class Template8 {
   border: 0;
 }
   #template__background {
-    background: '.$props['css']['background'].';
+    background: ' . $props['css']['background'] . ';
 }
 .template__font {
-    font-family: '.$props['css']['font'].';
-    font-size: '.$props['css']['fontSize'].';
-    color: '.$props['css']['fontColor'].';
+    font-family: ' . $props['css']['font'] . ';
+    font-size: ' . $props['css']['fontSize'] . ';
+    color: ' . $props['css']['fontColor'] . ';
 }
 .template_name {
-    font-size: calc('.$props['css']['fontSize'].' + 15px);
+    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
 }
 </style>
 
 <article class="doctor-card" id="template__background">
 <div id="avatar__container">
-  <img id="avatar" draggable=false src='.$props['imgPath'].' alt="" class="doctor-image" /></div>
+  <img id="avatar" draggable=false src=' . $props['imgPath'] . ' alt="" class="doctor-image" /></div>
   <div class="doctor-info" id="text">
-    <h2 class="doctor-name template__font template_name">'.$props['info']->name()[$props['mode']].'</h2>
-    <p class="experience template__font template_org">'.$props['info']->organization()[$props['mode']].'</p>
+    <h2 class="doctor-name template__font template_name">' . $props['info']['name']->getHTML() . '</h2>
+    <p class="experience template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
     <div class="hospital-info">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/776e3cfcfa82d98d51a9f608fe60490dbe6c756636ef36cde209a8f7bef2c756?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="hospital-icon" />
-      <p class="hospital-name template__font template_des">'.$props['info']->description()[$props['mode']].'</p>
+      <textarea class="des template__font template_des" style="border: none;
+      resize: none;
+      background: transparent;
+      width: 80vw;
+      text-align: center;
+      margin: 0px;
+      height: 70px;
+      scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
     </div>
   </div>
-  <div id="social-media">
-    '.socialMediaIcon($props)->render().'
-</div>
+  <div id="social-media" class="flex flex-col gap-3">
+    ' . $props['info']['Mobile']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Mobile'] . '</div><p class="ml-[40px]">Mobile</p></div>') . '
+    ' . $props['info']['Work']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Work'] . '</div><p class="ml-[40px]">Work</p></div>') . '
+    ' . $props['info']['Email']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Email'] . '</div><p class="ml-[40px]">Email</p></div>') . '
+    ' . $props['info']['Website']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Website'] . '</div><p class="ml-[40px]">Website</p></div>') . '
+    
+  </div>
 
   <nav class="social-icons">
-  '.$props['info']->social('Facebook', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3393b75ab906daea2710ba571b17b57f43bb233b3c8623a2ae1e1a29ab313d45?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
-  '.$props['info']->social('Instagram', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d00bec11c237afc97cef1c9d77bd9d13265ba092a5fecfd431578cec09a9fd2?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
-  '.$props['info']->social('Tiktok', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5b840cf3826c0dbf15ec9baf47ed92f476095bd64236949670956d0c8f005cd9?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
-  '.$props['info']->social('Youtube', '<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db9b7b0af6f538262e1a23f01feca9f569a892fcbf9d83ce5525ed641cae444e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />')[$props['mode']].'
+  ' . $props['info']['Facebook']->getHTML('<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3393b75ab906daea2710ba571b17b57f43bb233b3c8623a2ae1e1a29ab313d45?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />') . '
+  ' . $props['info']['Instagram']->getHTML('<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6d00bec11c237afc97cef1c9d77bd9d13265ba092a5fecfd431578cec09a9fd2?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />') . '
+  ' . $props['info']['Tiktok']->getHTML('<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5b840cf3826c0dbf15ec9baf47ed92f476095bd64236949670956d0c8f005cd9?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />') . '
+  ' . $props['info']['Youtube']->getHTML('<img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db9b7b0af6f538262e1a23f01feca9f569a892fcbf9d83ce5525ed641cae444e?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="social-icon" />') . '
   </nav>
 </article>
 </div>
             ';
-            echo $html;
-        }
+    echo $html;
+  }
 }

@@ -14,7 +14,7 @@ const SocialTag = () => {
   return (
     <div className={`social ${name}`} >
         <div className="social__img info__img">{iconMap[name]}</div>
-        <div className='social__tool flex items-center'><div className="social__tool--wrapper flex items-center relative h-auto">{['Mobile', 'Work', 'Viber'].includes(name) && <CountryCode />}</div></div>
+        <div className='social__tool flex items-center'><div className="social__tool--wrapper flex items-center relative h-auto">{['Mobile', 'Work', 'Viber', 'Whatsapp'].includes(name) && <CountryCode />}</div></div>
         <div className="social__info info__about">
             <Input inputLabelColor='#f6f2ff'/>
         </div>

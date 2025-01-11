@@ -34,7 +34,7 @@ class Phone implements Operation
         return $this->phoneNumberFormat($list);
     }
 
-    private function handleNumber(?string $number): ?string
+    protected function handleNumber(?string $number): ?string
     {
         if ($number === null) {
             return null;

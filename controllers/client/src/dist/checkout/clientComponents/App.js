@@ -88,6 +88,7 @@ const Return = () => {
                 try {
                     const r = yield (0, WW_1.$$$)("/data/api/purchase/POST.php", (0, checkoutContext_1.listPush)()).api().post();
                     if (r.success) {
+                        localStorage.removeItem((0, checkoutContext_1.getUser)());
                         countDown = setInterval(() => {
                             setCount(prev => prev - 1);
                         }, 1000);
