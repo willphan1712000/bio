@@ -59,6 +59,7 @@ class Viber extends Phone
             'number' => $value
         ]));
         $display->setOperation(OperationViber::getInstance());
+
         $info->setInfo($this->name, $display);
         return true;
     }

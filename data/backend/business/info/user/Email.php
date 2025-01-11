@@ -2,10 +2,11 @@
 
 namespace business\info\user;
 
-use business\info\display\EmailDisplay;
+use business\info\display\UserDisplay;
 use business\info\Info;
 use business\info\user\User;
 use business\info\InfoHandler;
+use business\info\operation\Email as OperationEmail;
 
 class Email extends User
 {
@@ -18,7 +19,10 @@ class Email extends User
     public function doUserGET(Info $info): bool
     {
         $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
-        $info->setInfo($this->name, new EmailDisplay($this->name, $this->format($value)));
+        $display = new UserDisplay($this->name, $this->format($value));
+        $display->setOperation(OperationEmail::getInstance());
+
+        $info->setInfo($this->name, $display);
         return true;
     }
 

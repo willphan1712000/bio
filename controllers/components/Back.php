@@ -54,10 +54,11 @@ class Back
                 }
             </style>
             <div class="card-back-container">
-                <div class="ele name">' . $props['info']->name()['a'] . '</div>
-                <div class="ele organization">' . $props['info']->organization()['a'] . '</div>
+                <div class="ele name">' . $props['info']['name']->getHTML() . '</div>
+                <div class="ele position">' . $props['info']['position']->getHTML() . '</div>
+                <div class="ele organization">' . $props['info']['organization']->getHTML() . '</div>
                 <div class="ele line"></div>
-                <div class="ele phone">' . $props['info']->mobile()['div'] . '</div>
+                <div class="ele phone">' . $props['info']['Mobile']->getHTML() . '</div>
                 <div class="ele qr"><img draggable=false src="../user/' . $props['username'] . '/qr-code.png"></div>
             </div>
         ';

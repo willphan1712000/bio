@@ -27,6 +27,9 @@ const swiper_1 = __importDefault(__webpack_require__(/*! swiper */ "./node_modul
 const html2canvas_1 = __importDefault(__webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js"));
 const jspdf_1 = __importDefault(__webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js"));
 const SettingUI_1 = __webpack_require__(/*! ./clientComponents/SettingUI */ "./controllers/client/src/dist/admin/clientComponents/SettingUI.js");
+$(document).ready(function () {
+    admin(props);
+});
 function admin(props) {
     const swiper = new swiper_1.default('.swiper', {
         direction: 'horizontal',
@@ -61567,4 +61570,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=adminjsd2e1c797065494b0c1fa.js.map
+//# sourceMappingURL=adminjsdfd8cb939452f8a17303.js.map

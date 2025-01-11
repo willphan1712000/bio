@@ -5,8 +5,9 @@ namespace business\info\phone;
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\phone\Phone;
-use business\info\display\PhoneDisplay;
+use business\info\display\UserDisplay;
 use business\info\operation\NormalPhone;
+use business\info\operation\PhoneDisplay as OperationPhoneDisplay;
 
 class HotLine extends Phone
 {
@@ -52,10 +53,13 @@ class HotLine extends Phone
     {
         $value = $this->getValueFromDatabase('HotLine', $info->getInfo('username'));
         $code = $this->getValueFromDatabase('HotLineCode', $info->getInfo('username'));
-        $info->setInfo($this->name, new PhoneDisplay($this->name, $this->format([
+        $display = new UserDisplay($this->name, $this->format([
             'code' => $code,
             'number' => $value
-        ])));
+        ]));
+        $display->setOperation(OperationPhoneDisplay::getInstance());
+
+        $info->setInfo($this->name, $display);
         return true;
     }
 

@@ -17,6 +17,9 @@ const swiper_1 = __importDefault(require("swiper"));
 const html2canvas_1 = __importDefault(require("html2canvas"));
 const jspdf_1 = __importDefault(require("jspdf"));
 const SettingUI_1 = require("./clientComponents/SettingUI");
+$(document).ready(function () {
+    admin(props);
+});
 function admin(props) {
     const swiper = new swiper_1.default('.swiper', {
         direction: 'horizontal',

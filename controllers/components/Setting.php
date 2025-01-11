@@ -1,19 +1,24 @@
 <?php
+
 namespace component;
-class Setting {
+
+class Setting
+{
     private $props;
 
-    public function __construct($props) {
+    public function __construct($props)
+    {
         $this->props = $props;
     }
 
-    public function render() {
+    public function render()
+    {
         echo '
             <style>
-                '.$this->props["container"].' {
+                ' . $this->props["container"] . ' {
                     display: flex;
                 }
-                '.$this->props["container"].' .setting_bar {
+                ' . $this->props["container"] . ' .setting_bar {
                     display: flex;
                     flex-direction: row;
                     gap: 10px;
@@ -21,11 +26,11 @@ class Setting {
                     padding: 10px;
                     align-items: center;
                 }
-                '.$this->props["container"].' .setting_bar::-webkit-scrollbar {
+                ' . $this->props["container"] . ' .setting_bar::-webkit-scrollbar {
                     display: none;
                 }
                     
-                '.$this->props["container"].' .setting_bar .ele {
+                ' . $this->props["container"] . ' .setting_bar .ele {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -33,13 +38,13 @@ class Setting {
                     cursor: pointer;
                     height: fit-content;
                 }
-                '.$this->props["container"].' .setting_bar i {
+                ' . $this->props["container"] . ' .setting_bar i {
                     margin-right: 5px;
                 }
-                '.$this->props["container"].' .setting_bar .signout button {
+                ' . $this->props["container"] . ' .setting_bar .signout button {
                     color: #000;
                 }
-                '.$this->props["container"].' .setting_bar .delete {
+                ' . $this->props["container"] . ' .setting_bar .delete {
                     color: #fff;
                     background-color: red;
                     height: 50%;
@@ -52,7 +57,7 @@ class Setting {
                 <div class="ele fontSize typebox"><i class="fa-solid fa-expand"></i> Font Size</div>
                 <div class="ele fontColor typebox"><i class="fa-solid fa-droplet"></i> Font Color</div>
                 <div class="ele image typebox"><i class="fa-solid fa-image"></i>Save PDF</div>
-                <div class="ele bioBtn typebox">'.bioTemplateButton($this->props['username'])->render("bioBtn").'</div>
+                <div class="ele bioBtn typebox">' . (new BioTemplateButton($this->props['username']))->render("bioBtn") . '</div>
                 <div class="ele signout">
                 <form action="" method="POST">
                 <button name="signout" class="ele logout typebox"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
@@ -64,6 +69,7 @@ class Setting {
     }
 }
 
-function setting($props) {
+function setting($props)
+{
     return new Setting($props);
 }
