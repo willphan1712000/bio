@@ -16,6 +16,6 @@ class Viber extends Phone implements Operation
 
     public function execute($formattedNumber): mixed
     {
-        return 'viber://contact?number=' . $formattedNumber;
+        return $formattedNumber === null ? null : 'viber://contact?number=' . $formattedNumber;
     }
 }

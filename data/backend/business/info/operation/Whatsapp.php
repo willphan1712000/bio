@@ -16,6 +16,6 @@ class Whatsapp extends Phone implements Operation
 
     public function execute($formattedNumber): mixed
     {
-        return 'https://wa.me/' . str_replace([' ', '-'], '', $formattedNumber);
+        return $formattedNumber === null ? null : 'https://wa.me/' . str_replace([' ', '-'], '', $formattedNumber);
     }
 }

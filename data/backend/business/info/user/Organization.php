@@ -26,10 +26,7 @@ class Organization extends User
     {
         $value = $info->getInfo($this->name);
         if ($this->validate($this->name, $value)) {
-            $info->setInfo('vcard', $info->getInfo('vcard') . 'ORG:' . $this->format([
-                'position' => $info->getInfo('position'),
-                'org' => $value
-            ]) . '\n');
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'ORG;CHARSET=utf-8:' . $value . '\n');
 
             return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }

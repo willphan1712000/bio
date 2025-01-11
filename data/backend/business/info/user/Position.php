@@ -26,19 +26,10 @@ class Position extends User
     {
         $value = $info->getInfo($this->name);
         if ($this->validate($this->name, $value)) {
-            $info->setInfo('vcard', $info->getInfo('vcard') . 'ORG:' . $this->format([
-                'position' => $value,
-                'org' => $info->getInfo('organization')
-            ]) . '\n');
+            $info->setInfo('vcard', $info->getInfo('vcard') . 'TITLE;CHARSET=utf-8:' . $value . '\n');
 
             return $this->setValueToDatabase($this->name, empty($value) ? null : $value, $info->getInfo('username'));
         }
         return false;
-    }
-
-    public function format($info): ?string
-    {
-        $o = JobTitle::getInstance();
-        return $o->execute($info);
     }
 }
