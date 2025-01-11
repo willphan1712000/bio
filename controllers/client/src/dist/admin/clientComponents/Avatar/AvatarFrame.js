@@ -33,16 +33,17 @@ const W_1 = require("../../../client/src/Web-Development/W");
 const AdminContext_1 = __importStar(require("../AdminContext"));
 const AvatarFrame = () => {
     const [state, dispatch] = (0, AdminContext_1.handleAdminImageContext)();
+    const [transform, setTransform] = (0, react_1.useState)(null);
     const data = (0, AdminContext_1.default)();
     const imageRef = (0, react_1.useRef)(null);
     const frameRef = (0, react_1.useRef)(null);
     const wrapperRef = (0, react_1.useRef)(null);
-    let transform;
     function handleCancel() {
         dispatch({ type: 'upload' });
         $("body").css({
             overflow: "auto"
         });
+        setTransform(null);
     }
     function handleAccept() {
         const img = imageRef.current;
@@ -50,6 +51,7 @@ const AvatarFrame = () => {
         const [x, y, angle] = transform.exportData();
         const [canvas, ctx] = canvasObj.createCanvas(700, 700);
         const [, src, srcEncoded] = canvasObj.drawImage(img, ctx, x, y, 1, angle, canvas, frameRef.current.clientWidth, frameRef.current.clientHeight);
+        setTransform(null);
         $("body").css({
             overflow: "auto"
         });
@@ -57,20 +59,22 @@ const AvatarFrame = () => {
         data.image = srcEncoded;
         dispatch({ type: 'upload' });
     }
+    function handleLoad() {
+        setTransform((0, W_1.$$)(wrapperRef.current, frameRef.current).transform());
+    }
     (0, react_1.useEffect)(() => {
         const img = imageRef.current;
         if (img !== null && state.isUpload) {
             if (img.complete) {
-                transform = (0, W_1.$$)(wrapperRef.current, frameRef.current).transform();
+                handleLoad();
             }
             else {
-                img.addEventListener('load', () => transform = (0, W_1.$$)(wrapperRef.current, frameRef.current).transform());
+                img.addEventListener('load', () => handleLoad());
             }
         }
         return () => {
             if (img !== null && state.isUpload) {
-                img.removeEventListener('load', () => { });
-                transform.cleanup();
+                img.removeEventListener('load', () => handleLoad());
             }
         };
     }, [state]);

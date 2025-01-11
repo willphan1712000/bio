@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,13 +25,13 @@ class Transform {
         if (this.ele1 === null) {
             throw new Error("wrapper elemenet is not defined or not rendered yet");
         }
-        this.wrapperClass = "_" + (Date.now() + 1).toString();
+        this.wrapperClass = "_" + (Date.now() + 5000).toString();
         $(this.ele1).addClass(this.wrapperClass);
         this.imgFrame = this.ele2;
         if (this.imgFrame === null) {
             throw new Error("frame element is not defined or not rendered yet");
         }
-        this.frameClass = "_" + (Date.now() - 1).toString();
+        this.frameClass = "_" + (Date.now() - 5000).toString();
         $(this.ele2).addClass(this.frameClass);
         this.img = (this.ele1).querySelector("img");
         if (this.img === null) {
@@ -31,9 +40,17 @@ class Transform {
         this.ratio = this.img.clientWidth / this.img.clientHeight;
         this.controllerClassName = "_" + Date.now().toString();
         this.isRotateOffScreen = false;
-        new TransformController_1.default(this.wrapperClass, this.frameClass, this.controllerClassName);
-        this.transform();
-        this.handleElementGoOffScreen("." + this.controllerClassName + " .rotate", "." + this.controllerClassName + " .rotate.shadow", "rotate").handleElementGoOffScreen("." + this.controllerClassName + " .delete", "." + this.controllerClassName + " .delete.shadow", "delete");
+        this.initialize();
+    }
+    initialize() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const transformController = new TransformController_1.default(this.wrapperClass, this.frameClass, this.controllerClassName);
+            yield transformController.addController();
+            this.controllerContainer = document.querySelector("." + this.controllerClassName + '--container');
+            this.controller = document.querySelector("." + this.controllerClassName);
+            this.transform();
+            this.handleElementGoOffScreen("." + this.controllerClassName + " .rotate", "." + this.controllerClassName + " .rotate.shadow", "rotate").handleElementGoOffScreen("." + this.controllerClassName + " .delete", "." + this.controllerClassName + " .delete.shadow", "delete");
+        });
     }
     reset() {
         const width = this.imgFrame.clientWidth;
@@ -54,7 +71,7 @@ class Transform {
         return [this.x, this.y, this.angle, this.w, this.h];
     }
     repositionElement(x, y) {
-        const controllerWrapper = document.querySelector("." + this.controllerClassName + '--container');
+        const controllerWrapper = this.controllerContainer;
         const boxWrapper = this.ele1;
         boxWrapper.style.left = x + 'px';
         boxWrapper.style.top = y + 'px';
@@ -62,7 +79,7 @@ class Transform {
         controllerWrapper.style.top = (y + this.imgFrame.offsetTop + 3) + 'px';
     }
     resize(w, h) {
-        const controller = document.querySelector("." + this.controllerClassName);
+        const controller = this.controller;
         const img = this.img;
         const wrapper = this.ele1;
         controller.style.width = w + 3 + 'px';
@@ -71,7 +88,7 @@ class Transform {
         wrapper.style.width = w + 'px';
     }
     rotateBox(deg) {
-        const controllerWrapper = document.querySelector("." + this.controllerClassName + '--container');
+        const controllerWrapper = this.controllerContainer;
         const boxWrapper = this.ele1;
         boxWrapper.style.transform = `rotate(${deg}deg)`;
         controllerWrapper.style.rotate = `${deg}deg`;
@@ -117,7 +134,7 @@ class Transform {
         return this;
     }
     transform() {
-        const controllerWrapper = document.querySelector("." + this.controllerClassName + '--container');
+        const controllerWrapper = this.controllerContainer;
         const boxWrapper = this.ele1;
         const minWidth = 40;
         const minHeight = 40;
@@ -282,7 +299,7 @@ class Transform {
             initY = event.target.offsetTop;
             mousePressX = (type === 'desk') ? event.clientX : event.touches[0].clientX;
             mousePressY = (type === 'desk') ? event.clientY : event.touches[0].clientY;
-            var arrow = document.querySelector("." + this.controllerClassName);
+            var arrow = this.controller;
             var arrowRects = arrow.getBoundingClientRect();
             var arrowX = arrowRects.left + arrowRects.width / 2;
             var arrowY = arrowRects.top + arrowRects.height / 2;

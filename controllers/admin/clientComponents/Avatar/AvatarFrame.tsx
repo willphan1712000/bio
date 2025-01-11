@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Transform from "../../../client/src/Web-Development/components/Transform/Transform"
 import Canvas from "../../../client/src/Web-Development/components/upload/Canvas"
 import { $$ } from "../../../client/src/Web-Development/W"
@@ -6,27 +6,30 @@ import handleAdminContext, { handleAdminImageContext } from "../AdminContext"
 
 const AvatarFrame = () => {
   const [state, dispatch] = handleAdminImageContext()
+  const [transform, setTransform] = useState<Transform|null>(null)
+
   const data = handleAdminContext()
 
   const imageRef = useRef<HTMLImageElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
-  let transform: Transform
 
   function handleCancel() {
     dispatch({type: 'upload'})
     $("body").css({
       overflow: "auto"
     })
+    setTransform(null)
   }
 
  function handleAccept() {
     const img = imageRef.current
     const canvasObj = new Canvas()
-    const [x, y, angle] = transform.exportData()
+    const [x, y, angle] = transform!.exportData()
     const [canvas, ctx] = canvasObj.createCanvas(700, 700)
     const [,src,srcEncoded] = canvasObj.drawImage(img, ctx, x, y, 1, angle, canvas, frameRef.current!.clientWidth, frameRef.current!.clientHeight)
 
+    setTransform(null)
     $("body").css({
       overflow: "auto"
     })
@@ -37,21 +40,24 @@ const AvatarFrame = () => {
     dispatch({type: 'upload'}) // hide screen
   }
 
+  function handleLoad() {
+    setTransform($$(wrapperRef.current, frameRef.current).transform())
+  }
+
   useEffect(() => {
     const img = imageRef.current
 
     if(img !== null && state.isUpload) {
       if(img.complete) {
-        transform = $$(wrapperRef.current, frameRef.current).transform()
+        handleLoad()
       } else {
-        img.addEventListener('load', () => transform = $$(wrapperRef.current, frameRef.current).transform())
+        img.addEventListener('load', () => handleLoad())
       }
     }
 
     return () => {
       if(img !== null && state.isUpload) {
-        img.removeEventListener('load', ()=>{})
-        transform.cleanup()
+        img.removeEventListener('load', () => handleLoad())
       }
     }
 
