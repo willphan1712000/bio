@@ -25,6 +25,7 @@ class Template15 implements ITemplate
                 }
             </style>
 
+            <div class="w-screen">
             <div
             class="flex flex-col max-w-[455px] p-[10px] w-full"
             role="region"
@@ -44,9 +45,10 @@ class Template15 implements ITemplate
                 </div>
                 <div class="flex flex-col grow shrink-0 items-center basis-0 w-full px-[10px]">
                     <h1 class="mt-1 text-2xl font-semibold text-white template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
-                    <p class="mt-2 text-base font-semibold text-white template__font">
-                    ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-                    </p>
+                    <p class="mt-2 text-base font-semibold text-white template__font template_title">
+                    ' . $props['info']['position']->getHTML() . '</p>
+                    <p class="mt-2 text-base font-semibold text-white template__font template_org">
+                    ' . $props['info']['organization']->getHTML() . '</p>
                     <textarea class="hero-description template__font template_des" style="border: none;
                     resize: none;
                     background: transparent;
@@ -113,6 +115,7 @@ class Template15 implements ITemplate
                     />') . '
                     </div>
                 </div>
+            </div>
             </div>
             </div>
         ';

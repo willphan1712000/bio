@@ -65,14 +65,14 @@ const AvatarFrame = () => {
 
   if(state.isUpload)
     return (
-      <div className={`flex h-screen w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center`}>
-          <p className="text-[20px] mb-[20vw]">Drag, Zoom, or Rotate Image</p>
-          <div className="frame relative w-[80%] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white" ref={frameRef}>
+      <div className={`flex h-screen w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`}>
+          <p className="text-[20px] mb-[20px]">Drag, Zoom, or Rotate Image</p>
+          <div className="frame relative w-[100%] max-w-[800px] max-h-[800px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white" ref={frameRef}>
               <div className="wrapper" ref={wrapperRef}>
                 <img className="img__preview" src={state.previewSrc} ref={imageRef}/>
               </div>
           </div>
-          <div className="btn flex flex-row gap-6 mt-[20vw]">
+          <div className="btn flex flex-row gap-6 mt-[20px]">
               <div onClick={() => handleAccept()} className="flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Accept</div>
               <div onClick={() => handleCancel()} className="cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Cancel</div>
           </div>

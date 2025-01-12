@@ -26,10 +26,11 @@ class Template13 implements ITemplate
             </style>
 
             <div
-            class="flex overflow-hidden flex-col bg-white max-w-[430px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-full p-[10px]"
+            class="flex overflow-hidden flex-col bg-white max-w-[430px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-screen p-[10px]"
             role="region"
             aria-label="Digma Office Information Section"
             >
+            <div class="w-full">
             <div
                 class="flex relative flex-col items-center pt-11 pb-4 w-full min-h-[660px] px-[20px] rounded-3xl overflow-hidden"
             >
@@ -50,9 +51,10 @@ class Template13 implements ITemplate
                 />
                 </div>
                 <div class="relative mt-8 text-2xl font-bold text-white template__font template_name">' . $props['info']['name']->getHTML() . '</div>
-                <div class="relative mt-1 text-base tracking-widest text-white template__font">
-                ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-                </div>
+                <p class="relative mt-1 text-base tracking-widest text-white template__font template_title">
+                ' . $props['info']['position']->getHTML() . '</p>
+                <p class="relative mt-1 text-base tracking-widest text-white template__font template_org">
+                ' . $props['info']['organization']->getHTML() . '</p>
                 <div class="relative w-full">
                     <textarea class="des template_des template__font" style="border: none;
                         resize: none;

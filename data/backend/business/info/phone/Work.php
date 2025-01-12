@@ -2,10 +2,12 @@
 
 namespace business\info\phone;
 
-use business\info\display\PhoneDisplay;
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\phone\Phone;
+use business\info\display\UserDisplay;
+use business\info\display\PhoneDisplay;
+use business\info\operation\PhoneDisplay as OperationPhoneDisplay;
 
 class Work extends Phone
 {
@@ -51,10 +53,13 @@ class Work extends Phone
     {
         $value = $this->getValueFromDatabase('Work', $info->getInfo('username'));
         $code = $this->getValueFromDatabase('WorkCode', $info->getInfo('username'));
-        $info->setInfo($this->name, new PhoneDisplay($this->name, $this->format([
+        $display = new UserDisplay($this->name, $this->format([
             'code' => $code,
             'number' => $value
-        ])));
+        ]));
+        $display->setOperation(OperationPhoneDisplay::getInstance());
+
+        $info->setInfo($this->name, $display);
         return true;
     }
 }

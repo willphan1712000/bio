@@ -25,6 +25,7 @@ class Template19 implements ITemplate
                 }
             </style>
 
+            <div class="w-screen">
             <div class="flex flex-col rounded-3xl max-w-[430px] p-[10px]" role="region" aria-label="Photographer Profile">
             <div class="flex overflow-hidden flex-col items-center w-full rounded-3xl bg-zinc-800" id="template__background">
                 <div class="flex relative flex-col items-center self-stretch p-6 w-full">
@@ -43,7 +44,10 @@ class Template19 implements ITemplate
                     />
                 </div>
                 <h1 class="relative mt-2 text-2xl text-white template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
-                <p class="relative text-base leading-5 text-center text-white template__font">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
+                <p class="relative text-base leading-5 text-center text-white template__font template_title">
+                ' . $props['info']['position']->getHTML() . '</p>
+                <p class="relative text-base leading-5 text-center text-white template__font template_org">
+                ' . $props['info']['organization']->getHTML() . '</p>
                 <textarea class="z-0 hero-description template__font template_des" style="border: none;
                     resize: none;
                     background: transparent;
@@ -108,6 +112,7 @@ class Template19 implements ITemplate
                     </div>
                 </div>
                 </div>
+            </div>
             </div>
             </div>
         ';

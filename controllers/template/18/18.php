@@ -25,6 +25,7 @@ class Template18 implements ITemplate
                 }
             </style>
 
+            <div class="w-screen">
             <div
             class="flex overflow-hidden flex-col font-bold text-white bg-white max-w-[430px] p-[10px]"
             role="region"
@@ -79,7 +80,10 @@ class Template18 implements ITemplate
                 </div>
                 <h1 class="relative mt-[30px] text-3xl template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                 <div class="px-[10px] w-full flex justify-center items-center flex-col"
-                <p class="template__font">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
+                <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_title">
+                ' . $props['info']['position']->getHTML() . '</p>
+                <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_org">
+                ' . $props['info']['organization']->getHTML() . '</p>
                 <textarea class="hero-description template__font template_des" style="border: none;
                     resize: none;
                     background: transparent;
@@ -104,12 +108,13 @@ class Template18 implements ITemplate
                 Contact
                 </div>') . '
                 <div class="flex justify-center items-center my-[10px]">
-                    <div id="social-media" class="flex flex-col gap-3 z-[0] mt-[10px]">
+                    <div id="social-media" class="flex flex-col gap-3 z-[0] mt-[10px] text-black">
                         ' . $props['info']['Work']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Work'] . '</div><p class="ml-[40px]">Work</p></div>') . '
                         ' . $props['info']['Email']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Email'] . '</div><p class="ml-[40px]">Email</p></div>') . '
                     </div>
                 </div>
                 
+            </div>
             </div>
             </div>
         ';

@@ -147,7 +147,10 @@ class Template8 implements ITemplate
   <img id="avatar" draggable=false src=' . $props['imgPath'] . ' alt="" class="doctor-image" /></div>
   <div class="doctor-info" id="text">
     <h2 class="doctor-name template__font template_name">' . $props['info']['name']->getHTML() . '</h2>
-    <p class="experience template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
+     <p class="experience template__font template_title">
+      ' . $props['info']['position']->getHTML() . '</p>
+      <p class="experience template__font template_org">
+      ' . $props['info']['organization']->getHTML() . '</p>
     <div class="hospital-info">
       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/776e3cfcfa82d98d51a9f608fe60490dbe6c756636ef36cde209a8f7bef2c756?apiKey=076e1b6fb9564c54879ab1846aa9f941&" alt="" class="hospital-icon" />
       <textarea class="des template__font template_des" style="border: none;

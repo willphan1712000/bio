@@ -2,10 +2,11 @@
 
 namespace business\info\social;
 
+use business\info\display\UserDisplay;
 use business\info\Info;
 use business\info\InfoHandler;
 use business\info\social\Social;
-use business\info\display\YoutubeDisplay;
+use business\info\operation\Youtube as OperationYoutube;
 
 class Youtube extends Social
 {
@@ -18,7 +19,10 @@ class Youtube extends Social
     public function doUserGET(Info $info): bool
     {
         $value = $this->getValueFromDatabase($this->name, $info->getInfo('username'));
-        $info->setInfo($this->name, new YoutubeDisplay($this->name, $this->format($value)));
+        $display = new UserDisplay($this->name, $this->format($value));
+        $display->setOperation(OperationYoutube::getInstance());
+
+        $info->setInfo($this->name, $display);
         return true;
     }
 }

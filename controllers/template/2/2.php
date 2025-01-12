@@ -274,7 +274,10 @@ class Template2 implements ITemplate
   </div>
   <div id="text">
   <h1 class="div-2 template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
-  <div class="div-3 template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</div>
+   <p class="div-3 template__font template_title">
+      ' . $props['info']['position']->getHTML() . '</p>
+      <p class="div-3 template__font template_org">
+      ' . $props['info']['organization']->getHTML() . '</p>
   <textarea class="des template__font template_des" style="border: none;
       resize: none;
       background: transparent;
@@ -321,6 +324,7 @@ class Template2 implements ITemplate
     </div>
     ' . $props['info']['Instagram']->getHTML('<div class="div-element-btn">View</div>') . '
   </div>
+</div>
 </div>
 </div>
             ';

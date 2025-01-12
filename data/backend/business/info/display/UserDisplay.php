@@ -5,6 +5,7 @@ namespace business\info\display;
 use business\info\operation\MakeSpace;
 use business\info\operation\Operation;
 use business\info\operation\LongString;
+use config\SystemConfig;
 
 class UserDisplay implements Display
 {
@@ -34,14 +35,13 @@ class UserDisplay implements Display
 
     public function getHTML(?string $children = null): string
     {
-        $children = $children ?? $this->value;
-        $display = $this->value === null ? "none" : "flex";
-        $value = ($this->o === null) ? $this->value : $this->o->execute($this->value);
-        return '<a href="' . $value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
-    }
-
-    public function getAdminHTML(?string $children = null): string
-    {
+        $searchParams = SystemConfig::URLExtraction(1);
+        if ($searchParams !== 'admin') {
+            $children = $children ?? $this->value;
+            $display = $this->value === null ? "none" : "flex";
+            $value = ($this->o === null) ? $this->value : $this->o->execute($this->value);
+            return '<a href="' . $value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
+        }
         $children = $children ?? '';
         return '<div id="' . $this->name . '">' . $children . '</div>';
     }

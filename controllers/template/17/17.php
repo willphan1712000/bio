@@ -25,6 +25,7 @@ class Template17 implements ITemplate
                 }
             </style>
 
+            <div class="w-screen">
             <div class="flex flex-col rounded-3xl max-w-[430px] w-full p-[10px]" role="region" aria-label="Perfume Product Section">
             <div id="template__background"
                 class="flex overflow-hidden flex-col items-center p-4 w-full bg-yellow-100 rounded-3xl"
@@ -38,9 +39,10 @@ class Template17 implements ITemplate
                     alt="Perfume bottle display"
                     />
                     <div class="mt-2 text-2xl text-pink-400 template__font template_name" role="heading" aria-level="2">' . $props['info']['name']->getHTML() . '</div>
-                    <div class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font">
-                    ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-                    </div>
+                    <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_title">
+                    ' . $props['info']['position']->getHTML() . '</p>
+                    <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_org">
+                    ' . $props['info']['organization']->getHTML() . '</p>
                     <textarea class="hero-description template__font template_des" style="border: none;
                     resize: none;
                     background: transparent;
@@ -103,6 +105,7 @@ class Template17 implements ITemplate
                     class="flex shrink-0 self-center max-w-full h-3 bg-rose-300 rounded-[30px] w-[332px]"
                     role="presentation"
                 ></div>
+            </div>
             </div>
             </div>
         ';

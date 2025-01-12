@@ -137,7 +137,10 @@ class Template5 implements ITemplate
                     </div>
                     <div class="backdrop-child" id="text">
                         <h1 class="template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
-                        <p class="tagline template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
+                         <p class="tagline template__font template_title">
+                        ' . $props['info']['position']->getHTML() . '</p>
+                        <p class="tagline template__font template_org">
+                        ' . $props['info']['organization']->getHTML() . '</p>
                         <textarea class="des template__font template_des" style="border: none;
                             resize: none;
                             background: transparent;
