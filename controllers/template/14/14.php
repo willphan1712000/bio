@@ -25,6 +25,7 @@ class Template14 implements ITemplate
                 }
             </style>
 
+            <div class="w-screen">
             <div class="flex flex-col bg-white max-w-[414px] p-[10px] w-full">
             <div class="flex flex-col px-8 pt-6 w-full bg-[#5eb2e5] rounded-t-3xl" id="template__background">
             <div class="flex gap-5 justify-between w-full">
@@ -43,9 +44,10 @@ class Template14 implements ITemplate
                 </div>
                 </div>
                  <div class="title-wrapper w-full flex flex-col justify-center items-center mt-[20px]" id="text">
+                    <p class="hero-description template__font template_title">
+                    ' . $props['info']['position']->getHTML() . '</p>
                     <p class="hero-description template__font template_org">
-                    ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-                    </p>
+                    ' . $props['info']['organization']->getHTML() . '</p>
                     <textarea class="hero-description template__font template_des" style="border: none;
                     resize: none;
                     background: transparent;
@@ -101,6 +103,7 @@ class Template14 implements ITemplate
                     tabindex="0"
                 />') . '
                 </div>
+            </div>
             </div>
         ';
         echo $html;

@@ -131,7 +131,10 @@ class Template6 implements ITemplate
     </div>
     <div id="text">
     <h1 class="profile-name template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
-    <p class="profile-bio template__font template_org">' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '</p>
+     <p class="profile-bio template__font template_title">
+      ' . $props['info']['position']->getHTML() . '</p>
+      <p class="profile-bio template__font template_org">
+      ' . $props['info']['organization']->getHTML() . '</p>
     <textarea class="des template__font template_des" style="border: none;
       resize: none;
       background: transparent;

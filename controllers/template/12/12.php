@@ -24,7 +24,7 @@ class Template12 implements ITemplate
                 font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
             }
         </style>
-        <div class="flex overflow-hidden flex-col bg-white rounded-3xl max-w-[430px] w-full p-[10px]" role="region" aria-label="Hot Summer Collection">
+        <div class="flex overflow-hidden flex-col bg-white rounded-3xl max-w-[430px] w-screen p-[10px]" role="region" aria-label="Hot Summer Collection">
         <div id="template__background"
             class="flex flex-col px-7 pt-5 w-full rounded-3xl bg-[linear-gradient(180deg,#FF992E_0.31%,#F88138_21.54%,#E74453_66.09%,#DA1467_98.08%)]"
         >
@@ -37,9 +37,10 @@ class Template12 implements ITemplate
             <div class="self-center mt-7 text-base font-extralight text-white template__font template_name">
             ' . $props['info']['name']->getHTML() . '
             </div>
-            <div class="self-center mt-1 text-base font-extralight text-white template__font">
-            ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-            </div>
+            <p class="self-center mt-1 text-base font-extralight text-white template__font template_title">
+            ' . $props['info']['position']->getHTML() . '</p>
+            <p class="self-center mt-1 text-base font-extralight text-white template__font template_org">
+            ' . $props['info']['organization']->getHTML() . '</p>
             <textarea class="des template__font template_des" style="border: none;
                 resize: none;
                 background: transparent;

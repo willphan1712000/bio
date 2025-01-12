@@ -56,7 +56,7 @@ if (isset($_POST['signout'])) {
         </div>
         <div class="navigator">
             <a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a>
-            <div class="save">Save</div>
+            <div class="save"></div>
         </div>
         <div class="card-container swiper">
             <div class="swiper-wrapper">

@@ -25,6 +25,7 @@ class Template16 implements ITemplate
                 }
             </style>
 
+            <div class="w-screen">
             <div class="flex flex-col max-w-[430px] rounded-[29px] p-[10px] w-full" role="region" aria-label="Wedding Planning Services">
             <div class="flex overflow-hidden flex-col p-5 w-full rounded-[29px] bg-[linear-gradient(269deg,#FFDBFF_0.77%,#B1C6FE_99.23%)]" id="template__background">
                 <div class="flex gap-5 justify-center items-center w-full">
@@ -39,9 +40,10 @@ class Template16 implements ITemplate
                     <h1 class="self-center mt-2 text-xl font-bold text-white template__font template_name">
                    ' . $props['info']['name']->getHTML() . '
                     </h1>
-                    <p class="self-center mt-1.5 text-lg font-bold text-white text-center template__font">
-                    ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-                    </p>
+                    <p class="self-center mt-1.5 text-lg font-bold text-white text-center template__font template_title">
+                    ' . $props['info']['position']->getHTML() . '</p>
+                    <p class="self-center mt-1.5 text-lg font-bold text-white text-center template__font template_org">
+                    ' . $props['info']['organization']->getHTML() . '</p>
                     <textarea class="hero-description template__font template_des" style="border: none;
                     resize: none;
                     background: transparent;
@@ -104,6 +106,7 @@ class Template16 implements ITemplate
                     Contact
                 </button>') . '
                 </div>
+            </div>
             </div>
             </div>
         ';

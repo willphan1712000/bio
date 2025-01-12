@@ -24,9 +24,9 @@ class Template11 implements ITemplate
                         font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
                     }
                 </style>
-
+                <div class="p-[10px] w-screen">
                 <div id = "template__background"
-                    class="bg-[#89e6c9] flex overflow-hidden flex-col text-base rounded-3xl h-[680px] m-[10px]"
+                    class="bg-[#89e6c9] w-full flex overflow-hidden flex-col text-base rounded-3xl h-[680px]"
                     role="region"
                     aria-label="Contact Form Section"
                     >
@@ -57,11 +57,12 @@ class Template11 implements ITemplate
                         <div class="relative text-[20px] template__font template_name">
                             ' . $props['info']['name']->getHTML() . '
                         </div>
-                        <div class="relative template__font">
-                            ' . $props['info']['position']->getHTML() . " - " . $props['info']['organization']->getHTML() . '
-                        </div>
+                        <p class="relative template__font template_title">
+                        ' . $props['info']['position']->getHTML() . '</p>
+                        <p class="relative template__font template_org">
+                        ' . $props['info']['organization']->getHTML() . '</p>
                         <div class="relative">
-                            <textarea class="des template__font template_des template__font" style="border: none;
+                            <textarea class="des template__font template_des" style="border: none;
                                 resize: none;
                                 background: transparent;
                                 width: 100%;
@@ -93,7 +94,7 @@ class Template11 implements ITemplate
                         class="object-cover absolute inset-0 size-full"
                         alt=""
                         />
-                        <div id="social-media" class="flex flex-col gap-3 z-[0] mt-[10px]">
+                        <div id="social-media" class="flex flex-col gap-3 z-[0] mt-[10px] text-black">
                             ' . $props['info']['Mobile']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#fff] p-[10px]"><div class="flex justify-center items-center">' . $icon['Mobile'] . '</div><p class="ml-[40px]">Mobile</p></div>') . '
                             ' . $props['info']['Work']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#fff] p-[10px]"><div class="flex justify-center items-center">' . $icon['Work'] . '</div><p class="ml-[40px]">Work</p></div>') . '
                             ' . $props['info']['Email']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#fff] p-[10px]"><div class="flex justify-center items-center">' . $icon['Email'] . '</div><p class="ml-[40px]">Email</p></div>') . '
@@ -101,7 +102,7 @@ class Template11 implements ITemplate
                         </div>
                     </form>
                 </div>
-
+                </div>
         ';
         echo $html;
     }
