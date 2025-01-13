@@ -1,9 +1,9 @@
 <?php
 
 use component\Back;
-use component\Setting;
 use component\Copyright;
 use config\SystemConfig;
+use component\BioTemplateButton;
 use business\info\display\Display;
 use controllers\admin\AdminController;
 use controllers\template\TemplateFactory;
@@ -37,20 +37,15 @@ if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);
     header("Location: /" . $username);
 }
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['adminTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwinde48bfd9e5735152e0c0c.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/admin53ebb1ff4d7c698b0c60.js"></script><script src="/dist/adminjs83d544271ef36758da47.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save"></div></div><div class="card-container swiper"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div> <?php
-                    TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
-                    ?> </div><div class="back swiper-slide"><div class="label">Back</div> <?=
-                    (new Back([
-                        'container' => '.back',
-                        'username' => $username,
-                        'info' => $props['info']
-                    ]))->render();
-                    ?> </div></div></div><div id="setting"> <?php
-            (new Setting([
-                "username" => $username,
-                "container" => "#setting"
-            ]))->render();
-            ?> </div> <?php (new Copyright([
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['adminTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwinde26973413e39cd0cc2e1.js"></script><script src="/dist/universal338525335f3c1d0938f4.js"></script><script src="/dist/admin4afd3f4455264091b3da.js"></script><script src="/dist/adminjs888a7bc550f01e5e7572.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div class="navigator"><a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a><div class="save"></div></div><div><div class="card-container swiper" style="scrollbar-width: none;"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="label">Front</div> <?php
+                        TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
+                        ?> </div><div class="back swiper-slide"><div class="label">Back</div> <?=
+                        (new Back([
+                            'container' => '.back',
+                            'username' => $username,
+                            'info' => $props['info']
+                        ]))->render();
+                        ?> </div></div></div><div id="setting" class="sticky bottom-0 z-[10] w-full"></div></div><div class="bioBtn"><?= (new BioTemplateButton($username))->render(".bioBtn"); ?></div><div class="flex justify-center items-center mt-[10px]"><form action="" method="POST"><button name="signout" class="ele logout typebox"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button></form></div> <?php (new Copyright([
             'position' => 'relative'
         ]))->render(); ?> </div><script>const type = "admin";
         const props = {

@@ -1,7 +1,10 @@
-import Swiper from "swiper";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { SettingUI } from "./clientComponents/SettingUI";
+import Swiper from "swiper";
+import { $$ } from "../client/src/Web-Development/W";
+import { username } from "./clientComponents/AdminContext";
+import { fetchData, getCSS, getResource } from "./clientComponents/FetchData";
+import Setting from "./clientComponents/Setting/Setting";
 
 interface Props {
     [key: string]: string
@@ -10,10 +13,25 @@ interface Props {
 declare var props: Props
 
 $(document).ready(function() {
-    admin(props)
+    admin(props);
 })
 
-export default function admin(props: Props) {
+export default async function admin(props: Props) {
+    // get username
+    const user = username()
+
+    // Get information from database
+    const list = await fetchData(user)
+    list!.username = user // add username property to data list
+
+    // Get resource needed
+    const resource = await getResource(user)
+    
+    // Get needed css
+    const css = await getCSS(user)
+
+    $$("#setting", <Setting data={list} css={css} resource={resource}/>).reactMounting() // Mount setting to html
+
     // swiper for front card and back card
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
@@ -70,10 +88,10 @@ export default function admin(props: Props) {
     })
     
     // Setting operations
-    const settingUI = new SettingUI({
-        css: props['css'],
-        imgPath: props['imgPath'],
-        username: props['username'],
-        imgName: props['imgName'],
-    })
+    // const settingUI = new SettingUI({
+    //     css: props['css'],
+    //     imgPath: props['imgPath'],
+    //     username: props['username'],
+    //     imgName: props['imgName'],
+    // })
 }

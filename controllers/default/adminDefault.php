@@ -52,7 +52,7 @@ if (isset($_POST['signout'])) {
         <div class="mt-4">
             <?= (new SignupAgain())->render(); ?>
         </div>
-        <div id="delete"></div>
+        <div id="delete" class="mt-[20px]"></div>
         <div id="copyright">
             <p><?= $g['license']; ?></p>
         </div>

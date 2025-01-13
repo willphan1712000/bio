@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SettingUI = void 0;
 const Background_1 = __importDefault(require("./Background"));
-const Font_1 = __importDefault(require("./Font"));
 const FontColor_1 = __importDefault(require("./FontColor"));
 const FontSize_1 = __importDefault(require("./FontSize"));
 const Info_1 = __importDefault(require("./Info"));
@@ -14,7 +13,6 @@ class SettingUI {
         this.params = params;
         this.background = new Background_1.default(".setting_bar .background", params.css.background, "#template__background");
         this.fontSize = new FontSize_1.default(".setting_bar .fontSize", parseInt(params.css.fontSize), ".template__font");
-        this.font = new Font_1.default(".setting_bar .font", params.css.font, ".template__font");
         this.fontColor = new FontColor_1.default(".setting_bar .fontColor", params.css.fontColor, ".template__font");
         this.info = new Info_1.default({ name: ".template_name", target: ".card-back-container .name" }, { name: ".template_org", target: ".card-back-container .organization" }, { name: ".template_des", target: "" });
     }

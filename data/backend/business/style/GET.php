@@ -5,24 +5,26 @@ namespace business\style;
 use business\IAPI;
 use persistence\Database;
 use persistence\Entity\Style;
+use persistence\Entity\User;
 
 class GET implements IAPI
 {
     private string $username;
-    private int $template;
+    // private int $template;
 
-    function __construct(string $username, int $template)
+    function __construct(string $username)
     {
         $this->username = $username;
-        $this->template = $template;
+        // $this->template = $template;
     }
 
     private function getStyle()
     {
         try {
+            $template = Database::GET(User::class, 'defaultTemplate', ['username' => $this->username]);
             $style = Database::GET(Style::class, null, [
                 'username' => $this->username,
-                'template_id' => $this->template
+                'template_id' => $template
             ]);
 
             $out = [];
@@ -32,7 +34,10 @@ class GET implements IAPI
                 }
             }
 
-            return $out;
+            return [
+                'success' => true,
+                'data' => $out
+            ];
         } catch (\Exception $e) {
             return [
                 'success' => false,

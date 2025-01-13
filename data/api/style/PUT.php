@@ -12,7 +12,7 @@ class PUT extends APIAbstract
     public function handleRequest($body)
     {
         $props = json_decode(json_encode($body->props), true);
-        return (new TemplatePUT($body->username, $body->template, $props))->execute();
+        return (new TemplatePUT($body->username, $props))->execute();
     }
 }
 

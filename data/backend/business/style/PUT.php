@@ -4,6 +4,7 @@ namespace business\style;
 
 use business\IAPI;
 use persistence\Database;
+use persistence\Entity\User;
 use persistence\Entity\Style;
 
 class PUT implements IAPI
@@ -12,10 +13,10 @@ class PUT implements IAPI
     protected int $template;
     protected array $props;
 
-    function __construct(string $username, int $template, array $props)
+    function __construct(string $username, array $props)
     {
         $this->username = $username;
-        $this->template = $template;
+        $this->template = Database::GET(User::class, 'defaultTemplate', ['username' => $this->username]);
         $this->props = $props;
     }
 

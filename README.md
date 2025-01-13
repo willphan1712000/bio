@@ -18,7 +18,8 @@
 
 ### Template ratio
 
-- Web Browser: 1.6
+- Web Browser: 1.7
+- Card ratio: 1.6
 - App: 16/9
 
 ### Template Style Contribution
