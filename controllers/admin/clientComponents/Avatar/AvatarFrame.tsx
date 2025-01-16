@@ -67,7 +67,7 @@ const AvatarFrame = () => {
     return (
       <div className={`flex h-screen w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`}>
           <p className="text-[20px] mb-[20px]">Drag, Zoom, or Rotate Image</p>
-          <div className="frame relative w-[100%] max-w-[800px] max-h-[800px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white" ref={frameRef}>
+          <div className="frame relative w-[100%] max-w-[500px] max-h-[500px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white" ref={frameRef}>
               <div className="wrapper" ref={wrapperRef}>
                 <img className="img__preview" src={state.previewSrc} ref={imageRef}/>
               </div>
