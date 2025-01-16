@@ -156,3 +156,53 @@ export function Valid() {
 export function Invalid() {
     return <i style={{color: "red"}} className="fa-solid fa-x"></i>
 }
+
+export const fonts = [
+    "'Exo 2', sans-serif",
+    "'Asap', sans-serif",
+    "'Josefin Sans', sans-serif",
+    "'Macondo', cursive",
+    "'Oleo Script', cursive",
+    "'Pacifico', cursive",
+    "'Playfair Display', serif",
+    "'Tapestry', cursive",
+    "'Titillium Web', sans-serif",
+    "'Yanone Kaffeesatz', sans-serif",
+    "'Zen Loop', cursive",
+    "'Bebas Neue'",
+    "'Joan'",
+    "'Montserrat'",
+    "'Nunito Sans'",
+    "'Playfair Display'",
+    "'Roboto Slab'",
+    "'Source Sans Pro'",
+    "'Tai Heritage Pro'",
+    "'Ubuntu'"
+]
+
+export const solidColors = [
+    "#000000", // Black
+    "#444444", // Dark Gray
+    "#777777", // Medium Gray
+    "#AAAAAA", // Light Gray
+    "#DDDDDD", // Very Light Gray
+    "#FFFFFF", // White
+    "#FF0000", // Red
+    "#FF6666", // Light Red
+    "#FF69B4", // Pink
+    "#EE82EE", // Violet
+    "#9370DB", // Medium Purple
+    "#4B0082", // Indigo
+    "#008080", // Teal
+    "#00CED1", // Light Sea Green
+    "#AFEEEE", // Pale Turquoise
+    "#00BFFF", // Deep Sky Blue
+    "#6495ED", // Cornflower Blue
+    "#0000FF", // Blue
+    "#008000", // Green
+    "#90EE90", // Light Green
+    "#ADFF2F", // Green Yellow
+    "#FFFF00", // Yellow
+    "#FFA500", // Orange
+    "#FF8C00"  // Dark Orange
+  ];

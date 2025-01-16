@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import { AdminDeleteContext, DeleteAction, DeleteState, username } from '../AdminContext'
+import { AdminDeleteContext, username } from '../AdminContext'
 import DeleteButton from './DeleteButton'
 import DeleteConfirm from './DeleteConfirm'
 import reducer from './Reducer'

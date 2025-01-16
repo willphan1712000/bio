@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.iconMap = void 0;
+exports.solidColors = exports.fonts = exports.iconMap = void 0;
 exports.Email = Email;
 exports.Mobile = Mobile;
 exports.Booking = Booking;
@@ -118,3 +118,51 @@ function Valid() {
 function Invalid() {
     return (0, jsx_runtime_1.jsx)("i", { style: { color: "red" }, className: "fa-solid fa-x" });
 }
+exports.fonts = [
+    "'Exo 2', sans-serif",
+    "'Asap', sans-serif",
+    "'Josefin Sans', sans-serif",
+    "'Macondo', cursive",
+    "'Oleo Script', cursive",
+    "'Pacifico', cursive",
+    "'Playfair Display', serif",
+    "'Tapestry', cursive",
+    "'Titillium Web', sans-serif",
+    "'Yanone Kaffeesatz', sans-serif",
+    "'Zen Loop', cursive",
+    "'Bebas Neue'",
+    "'Joan'",
+    "'Montserrat'",
+    "'Nunito Sans'",
+    "'Playfair Display'",
+    "'Roboto Slab'",
+    "'Source Sans Pro'",
+    "'Tai Heritage Pro'",
+    "'Ubuntu'"
+];
+exports.solidColors = [
+    "#000000",
+    "#444444",
+    "#777777",
+    "#AAAAAA",
+    "#DDDDDD",
+    "#FFFFFF",
+    "#FF0000",
+    "#FF6666",
+    "#FF69B4",
+    "#EE82EE",
+    "#9370DB",
+    "#4B0082",
+    "#008080",
+    "#00CED1",
+    "#AFEEEE",
+    "#00BFFF",
+    "#6495ED",
+    "#0000FF",
+    "#008000",
+    "#90EE90",
+    "#ADFF2F",
+    "#FFFF00",
+    "#FFA500",
+    "#FF8C00"
+];

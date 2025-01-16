@@ -59,7 +59,8 @@ class UserController extends Controller
         $infoProcess = (new userGET($this->username))->execute();
         $this->info = $infoProcess['success'] ? $infoProcess['data'] : null; // get info map
 
-        $this->css = (new GET($this->username, $this->themeid))->execute(); // get template style array
+        $cssBackend = (new GET($this->username))->execute();
+        $this->css = $cssBackend['success'] ? $cssBackend['data'] : null; // get template style array
     }
 
     public function redirect()

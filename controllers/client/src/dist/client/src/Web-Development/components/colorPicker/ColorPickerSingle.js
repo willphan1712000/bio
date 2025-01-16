@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ColorPickerParent_1 = require("./ColorPickerParent");
-class ColorPickerSingle extends ColorPickerParent_1.ColorPickerParent {
+const ColorPickerMethod_1 = require("./ColorPickerMethod");
+class ColorPickerSingle extends ColorPickerMethod_1.ColorPickerMethod {
     constructor(container, cb, options) {
         super();
         this.options = options;

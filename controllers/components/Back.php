@@ -28,12 +28,12 @@ class Back
                 ' . $this->props["container"] . ' .card-back-container {
                     background-color: #fff;
                     border-radius: 40px;
-                    height: 100%;
                     width: calc(100vw - 40px);
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     flex-direction: column;
+                    aspect-ratio: 1/1.6;
                 }
                 ' . $this->props["container"] . ' .card-back-container .ele {
                     margin: 10px;

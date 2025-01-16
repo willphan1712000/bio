@@ -60,7 +60,7 @@ const DeleteConfirm = () => {
 
     if(state.show)
         return (
-            <div onClick={(e) => handleCancel(e)} className='fixed top-0 left-0 w-screen h-screen backdrop-blur-sm flex justify-center items-center'>
+            <div onClick={(e) => handleCancel(e)} className='z-[99] fixed top-0 left-0 w-screen h-screen backdrop-blur-sm flex justify-center items-center'>
                 <div onClick={e => handleStop(e)} ref={deleteMenuRef} className='rounded-[10px] bg-white max-w-[600px] w-[80%] h-[70%] shadow-2xl flex justify-center items-center flex-col p-[15px]'>
                     <p className="text-center text-[20px] mb-[10px]">{state.message.msg1}</p>
                     <p className="text-center">{state.message.msg2}</p>

@@ -1,9 +1,9 @@
 <?php
 
 use component\Back;
-use component\Setting;
 use component\Copyright;
 use config\SystemConfig;
+use component\BioTemplateButton;
 use business\info\display\Display;
 use controllers\admin\AdminController;
 use controllers\template\TemplateFactory;
@@ -58,33 +58,34 @@ if (isset($_POST['signout'])) {
             <a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a>
             <div class="save"></div>
         </div>
-        <div class="card-container swiper">
-            <div class="swiper-wrapper">
-                <div id="container" class="front swiper-slide">
-                    <div class="label">Front</div>
-                    <?php
-                    TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
-                    ?>
-                </div>
-                <div class="back swiper-slide">
-                    <div class="label">Back</div>
-                    <?=
-                    (new Back([
-                        'container' => '.back',
-                        'username' => $username,
-                        'info' => $props['info']
-                    ]))->render();
-                    ?>
+        <div>
+            <div class="card-container swiper" style="scrollbar-width: none;">
+                <div class="swiper-wrapper">
+                    <div id="container" class="front swiper-slide">
+                        <div class="label">Front</div>
+                        <?php
+                        TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
+                        ?>
+                    </div>
+                    <div class="back swiper-slide">
+                        <div class="label">Back</div>
+                        <?=
+                        (new Back([
+                            'container' => '.back',
+                            'username' => $username,
+                            'info' => $props['info']
+                        ]))->render();
+                        ?>
+                    </div>
                 </div>
             </div>
+            <div id="setting" class="sticky bottom-0 z-[10] w-full"></div>
         </div>
-        <div id="setting">
-            <?php
-            (new Setting([
-                "username" => $username,
-                "container" => "#setting"
-            ]))->render();
-            ?>
+        <div class="bioBtn"><?= (new BioTemplateButton($username))->render(".bioBtn"); ?></div>
+        <div class="flex justify-center items-center mt-[10px]">
+            <form action="" method="POST">
+                <button name="signout" class="ele logout typebox"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+            </form>
         </div>
         <?php (new Copyright([
             'position' => 'relative'

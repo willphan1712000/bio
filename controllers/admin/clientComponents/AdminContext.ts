@@ -35,7 +35,20 @@ export type DeleteState = {
 
 export type DeleteAction = | {type: 'show' | 'delete' | 'disable' | 'msg', value?: string}
 
+export type SettingState = {
+    background: boolean,
+    font: boolean,
+    fontSize: boolean,
+    fontColor: boolean
+}
+
+export type SettingAction = | {type: 'background' | 'font' | 'fontSize' | 'fontColor', value: boolean}
+
+type Setting = [state: SettingState, action: React.Dispatch<SettingAction>] | undefined
+
 export const AdminContext = createContext<Admin>(undefined)
+
+export const AdminCssContext = createContext<Admin>(undefined)
 
 export const AdminRegexContext = createContext<Admin>(undefined)
 
@@ -48,6 +61,8 @@ export const AdminSaveContext = createContext<Save>(undefined)
 export const AdminDeleteContext = createContext<Delete>(undefined)
 
 export const AdminLabelContext = createContext<Admin>(undefined)
+
+export const AdminSettingContext = createContext<Setting>(undefined)
 
 export default function handleAdminContext() {
     const data = useContext(AdminContext)
@@ -101,6 +116,22 @@ export function handleAdminLabelContext() {
     const data = useContext(AdminLabelContext)
     if(data === undefined) {
         throw new Error("Admin label context is undefined")
+    }
+    return data
+}
+
+export function handleAdminSettingContext() {
+    const data = useContext(AdminSettingContext)
+    if(data === undefined) {
+        throw new Error("Admin setting context is undefined")
+    }
+    return data
+}
+
+export function handleAdminCssContext() {
+    const data = useContext(AdminCssContext)
+    if(data === undefined) {
+        throw new Error("Admin CSS context is undefined")
     }
     return data
 }

@@ -12,7 +12,7 @@ class RESET extends APIAbstract
     public function handleRequest($body)
     {
         $props = json_decode(json_encode($body->props), true);
-        return (new TemplateRESET($body->username, $body->template, $props))->execute();
+        return (new TemplateRESET($body->username, $props))->execute();
     }
 }
 

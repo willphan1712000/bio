@@ -3,18 +3,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Table = exports.AddIntersectionObserver = exports.W4 = exports.W3 = exports.W2 = exports.W1 = void 0;
+exports.Table = exports.AddIntersectionObserver = exports.W4 = exports.W3 = exports.W2 = exports.W1 = exports.RangeSlider = exports.ColorType = exports.FontType = exports.Options = exports.ColorPickerGradient = void 0;
 exports.$$ = $$;
 const jquery_1 = __importDefault(require("jquery"));
 const SearchUI_1 = __importDefault(require("./components/search/SearchUI"));
-const RangeSlider_1 = require("./components/rangeSlider/RangeSlider");
-const ColorPickerSingle_1 = __importDefault(require("./components/colorPicker/ColorPickerSingle"));
-const ColorPickerDouble_1 = __importDefault(require("./components/colorPicker/ColorPickerDouble"));
-const Options_1 = require("./components/options/Options");
 const Transform_1 = __importDefault(require("./components/Transform/Transform"));
 const UploadFile_1 = __importDefault(require("./components/upload/UploadFile"));
 const TextEditor_1 = __importDefault(require("./components/textEditor/TextEditor"));
 const client_1 = __importDefault(require("react-dom/client"));
+var ColorPickerGradient_1 = require("./components/colorPicker/ColorPickerGradient");
+Object.defineProperty(exports, "ColorPickerGradient", { enumerable: true, get: function () { return __importDefault(ColorPickerGradient_1).default; } });
+var Options_1 = require("./components/options/Options");
+Object.defineProperty(exports, "Options", { enumerable: true, get: function () { return __importDefault(Options_1).default; } });
+var FontType_1 = require("./components/options/types/FontType");
+Object.defineProperty(exports, "FontType", { enumerable: true, get: function () { return __importDefault(FontType_1).default; } });
+var ColorType_1 = require("./components/options/types/ColorType");
+Object.defineProperty(exports, "ColorType", { enumerable: true, get: function () { return __importDefault(ColorType_1).default; } });
+var RangeSlider_1 = require("./components/rangeSlider/RangeSlider");
+Object.defineProperty(exports, "RangeSlider", { enumerable: true, get: function () { return __importDefault(RangeSlider_1).default; } });
 function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
@@ -44,18 +50,6 @@ class W1 {
     }
     share() {
         return new Share(this.ele1);
-    }
-    colorPickerSingle(cb, options) {
-        return new ColorPickerSingle_1.default(this.ele1, cb, options);
-    }
-    colorPickerDouble(cb, options) {
-        return new ColorPickerDouble_1.default(this.ele1, cb, options);
-    }
-    rangeSlider(cb, options) {
-        return new RangeSlider_1.RangeSlider(this.ele1, cb, options);
-    }
-    options(cb, options) {
-        return new Options_1.Options(this.ele1, cb, options);
     }
     textEditor(cb) {
         return new TextEditor_1.default(this.ele1, cb);
