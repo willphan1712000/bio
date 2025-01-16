@@ -72,7 +72,7 @@ const AvatarFrame = () => {
                 <img className="img__preview" src={state.previewSrc} ref={imageRef}/>
               </div>
           </div>
-          <div className="btn flex flex-row gap-6 mt-[20px]">
+          <div className="btn flex flex-row gap-6 mt-[20px] z-0">
               <div onClick={() => handleAccept()} className="flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Accept</div>
               <div onClick={() => handleCancel()} className="cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Cancel</div>
           </div>
