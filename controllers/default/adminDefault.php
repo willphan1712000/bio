@@ -29,6 +29,7 @@ if (isset($_POST['signout'])) {
 
 <body>
     <div id="container">
+        <div id="uploadImage"></div>
         <div class="adminSection">
             <div class="mt-[20px]">
                 <div id="template1"><?= (new BioTemplateButton($username))->render('#template1'); ?></div>

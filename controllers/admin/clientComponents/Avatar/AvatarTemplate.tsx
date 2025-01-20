@@ -6,7 +6,7 @@ const AvatarTemplate = () => {
 
   return ReactDOM.createPortal(
     <div className="aspect-square flex justify-center items-center flex-col w-full absolute top-0 left-0 bg-white rounded-full" style={{height: "-webkit-fill-available"}}>
-        <Avatar />
+        <Avatar popup={document.getElementById("uploadImagePopup")!}/>
     </div>,
     container
   )

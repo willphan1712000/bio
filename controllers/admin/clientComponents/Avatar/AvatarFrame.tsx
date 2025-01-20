@@ -3,8 +3,13 @@ import Transform from "../../../client/src/Web-Development/components/Transform/
 import Canvas from "../../../client/src/Web-Development/components/upload/Canvas"
 import { $$ } from "../../../client/src/Web-Development/W"
 import handleAdminContext, { handleAdminImageContext } from "../AdminContext"
+import ReactDOM from "react-dom"
 
-const AvatarFrame = () => {
+interface Props {
+  popup?: HTMLElement
+}
+
+const AvatarFrame = ({popup}: Props) => {
   const [state, dispatch] = handleAdminImageContext()
   const [transform, setTransform] = useState<Transform|null>(null)
 
@@ -63,21 +68,26 @@ const AvatarFrame = () => {
 
   }, [state])
 
-  if(state.isUpload)
-    return (
-      <div className={`flex h-screen w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`}>
-          <p className="text-[20px] mb-[20px]">Drag, Zoom, or Rotate Image</p>
-          <div className="frame relative w-[100%] max-w-[500px] max-h-[500px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white" ref={frameRef}>
-              <div className="wrapper" ref={wrapperRef}>
-                <img className="img__preview" src={state.previewSrc} ref={imageRef}/>
-              </div>
-          </div>
-          <div className="btn flex flex-row gap-6 mt-[20px] z-0">
-              <div onClick={() => handleAccept()} className="flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Accept</div>
-              <div onClick={() => handleCancel()} className="cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Cancel</div>
-          </div>
-      </div>
-    )
+  if(!state.isUpload) return null
+
+  const jsx = (
+    <div className={`flex h-screen w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`}>
+        <p className="text-[20px] mb-[20px]">Drag, Zoom, or Rotate Image</p>
+        <div className="frame relative w-[100%] max-w-[500px] max-h-[500px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white" ref={frameRef}>
+            <div className="wrapper" ref={wrapperRef}>
+              <img className="img__preview" src={state.previewSrc} ref={imageRef}/>
+            </div>
+        </div>
+        <div className="btn flex flex-row gap-6 mt-[20px] z-0">
+            <div onClick={() => handleAccept()} className="flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Accept</div>
+            <div onClick={() => handleCancel()} className="cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer">Cancel</div>
+        </div>
+    </div>
+  )
+
+  if(popup === undefined) return jsx
+
+  return ReactDOM.createPortal(jsx, popup)
 }
 
 export default AvatarFrame

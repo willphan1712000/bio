@@ -57,8 +57,8 @@ class Transform {
         const height = width / this.ratio;
         this.resize(width, height);
         this.repositionElement(width / 2, this.imgFrame.clientHeight / 2);
-        this.setValue(0, 0, 0, width, height);
         this.rotateBox(0);
+        this.setValue(0, this.imgFrame.clientHeight / 2 - this.img.height / 2, 0, width, height);
     }
     setValue(x, y, angle, w, h) {
         this.x = (x !== undefined) ? x : this.x;

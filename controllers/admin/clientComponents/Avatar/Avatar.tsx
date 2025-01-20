@@ -30,7 +30,11 @@ function reducer(state: State, action: Action): any {
     }
 }
 
-const Avatar = () => {
+interface Props {
+    popup?: HTMLElement
+}
+
+const Avatar = ({popup}: Props) => {
     const data = handleAdminContext()
 
     const [state, dispatch] = useReducer(reducer, {
@@ -43,7 +47,7 @@ const Avatar = () => {
   return (
     <>
         <AdminImageContext.Provider value={[state, dispatch]}>
-            <AvatarFrame />
+            <AvatarFrame popup={popup}/>
             <AvatarButton />
         </AdminImageContext.Provider>
     </>
