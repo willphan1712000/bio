@@ -20,6 +20,6 @@ const Options = ({ keyValue, Face, face, list, cb }) => {
             }
         });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { id: keyValue, className: "flex flex-row flex-1 items-center bg-white p-[10px] rounded-[20px] z-[1] overflow-y-hidden overflow-x-auto w-full", style: { scrollbarWidth: 'none' }, children: list.map(item => (0, jsx_runtime_1.jsx)("div", { "data-value": item, "data-key": keyValue, className: "overflow-hidden cursor-pointer flex flex-shrink-0 aspect-square w-[50px] h-[50px] mr-[5px] rounded-[50%] text-[25px] bg-[#f0f0f0]", children: (0, jsx_runtime_1.jsx)(Face, { face: face, value: item }) }, item)) }));
+    return ((0, jsx_runtime_1.jsx)("div", { id: keyValue, className: "[&::-webkit-scrollbar]:hidden flex flex-row flex-1 items-center bg-white p-[10px] rounded-[20px] z-[1] overflow-y-hidden overflow-x-auto w-full", style: { scrollbarWidth: 'none' }, children: list.map(item => (0, jsx_runtime_1.jsx)("div", { "data-value": item, "data-key": keyValue, className: "overflow-hidden cursor-pointer flex flex-shrink-0 aspect-square w-[50px] h-[50px] mr-[5px] rounded-[50%] text-[25px] bg-[#f0f0f0] border-black border-[1px]", children: (0, jsx_runtime_1.jsx)(Face, { face: face, value: item }) }, item)) }));
 };
 exports.default = Options;

@@ -42,8 +42,9 @@ class UserDisplay implements Display
             $value = ($this->o === null) ? $this->value : $this->o->execute($this->value);
             return '<a href="' . $value . '" target="_blank" style="text-decoration: none; color: #000; display: ' . $display . ';">' . $children . '</a>';
         }
+
         $children = $children ?? '';
-        return '<div id="' . $this->name . '">' . $children . '</div>';
+        return '<div id="element" data-name="' . $this->name . '">' . $children . '</div>'; // Indicator for editting
     }
 
     public function setOperation(Operation $o): Display

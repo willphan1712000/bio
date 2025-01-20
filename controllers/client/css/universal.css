@@ -60,11 +60,12 @@ input {
   padding: 5px;
 }
 textarea {
+  border-radius: 10px;
   border: solid #000 1px;
 }
 textarea:focus {
   outline: none !important;
-  border: soclid #000 2px;
+  border: 2px solid #000 !important;
 }
 /* Button style */
 .typebox {

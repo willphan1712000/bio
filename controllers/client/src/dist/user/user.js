@@ -29,4 +29,7 @@ function user() {
             url
         }).share();
     });
+    $("textarea").css({
+        "pointer-events": "none"
+    });
 }

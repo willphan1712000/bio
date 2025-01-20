@@ -37,6 +37,7 @@ class Back
                 }
                 ' . $this->props["container"] . ' .card-back-container .ele {
                     margin: 10px;
+                    width: 90%;
                 }
                 ' . $this->props["container"] . ' .card-back-container .line {
                     border-bottom: solid 2px #000;

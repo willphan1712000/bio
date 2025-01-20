@@ -54,21 +54,22 @@ if (isset($_POST['signout'])) {
         <div id="notSupported">
             <p>Bio does not support wide screen!</p>
         </div>
-        <div class="navigator">
-            <a href="/<?= $username; ?>" class="back"><i class="fa-solid fa-arrow-left"></i></a>
-            <div class="save"></div>
-        </div>
+
+        <a href="/<?= $username; ?>" class="z-10 p-[15px] bg-white rounded-full w-[50px] h-[50px] flex justify-center items-center no-underline text-black cursor-pointer fixed top-[0.5rem] left-[0.5rem]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"><i class="fa-solid fa-arrow-left"></i></a>
+        <div class="z-10 rounded-[20px] cursor-pointer p-[15px] bg-white fixed top-[0.5rem] right-[0.5rem]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"></div>
         <div>
             <div class="card-container swiper" style="scrollbar-width: none;">
                 <div class="swiper-wrapper">
                     <div id="container" class="front swiper-slide">
-                        <div class="label">Front</div>
+                        <div class="face-card-label">Front</div>
                         <?php
                         TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
                         ?>
                     </div>
                     <div class="back swiper-slide">
-                        <div class="label">Back</div>
+                        <div class="face-card-label">Back</div>
                         <?=
                         (new Back([
                             'container' => '.back',

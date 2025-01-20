@@ -3,7 +3,7 @@ import { AdminContext, AdminElementContext, AdminLabelContext, AdminRegexContext
 import Avatar from '../../admin/clientComponents/Avatar/Avatar'
 import Input from '../../admin/clientComponents/Input'
 import SaveDefault from '../../admin/clientComponents/Save/SaveDefault'
-import SocialTag from './SocialTag'
+import SocialTag from '../../admin/clientComponents/SocialTag'
 
 
 interface Props {

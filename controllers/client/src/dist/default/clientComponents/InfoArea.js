@@ -9,7 +9,7 @@ const AdminContext_1 = require("../../admin/clientComponents/AdminContext");
 const Avatar_1 = __importDefault(require("../../admin/clientComponents/Avatar/Avatar"));
 const Input_1 = __importDefault(require("../../admin/clientComponents/Input"));
 const SaveDefault_1 = __importDefault(require("../../admin/clientComponents/Save/SaveDefault"));
-const SocialTag_1 = __importDefault(require("./SocialTag"));
+const SocialTag_1 = __importDefault(require("../../admin/clientComponents/SocialTag"));
 const InfoArea = ({ data, extraData }) => {
     const [isLoading, setLoading] = (0, react_1.useState)(true);
     const [description, setDescription] = (0, react_1.useState)(data.description);

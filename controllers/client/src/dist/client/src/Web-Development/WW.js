@@ -83,6 +83,24 @@ class WW6 {
 class FormValidate extends WW3 {
     constructor(inputElement, feedbackElement, regex) {
         super(inputElement, feedbackElement, regex);
+        this.eventFunction = (e) => {
+            const regex = new RegExp(this.regex);
+            const target = e.target;
+            if (target.value !== '') {
+                if (regex.test(target.value)) {
+                    this.setValidity(true);
+                    this.feedbackElement.innerHTML = `<i style="color: green;" class="fa-solid fa-check"></i>`;
+                }
+                else {
+                    this.setValidity(false);
+                    this.feedbackElement.innerHTML = `<i style="color: red;" class="fa-solid fa-x"></i>`;
+                }
+            }
+            else {
+                this.feedbackElement.innerHTML = '';
+                this.setValidity(true);
+            }
+        };
         this.inputElement = inputElement;
         this.feedbackElement = feedbackElement;
         this.regex = regex;
@@ -102,28 +120,11 @@ class FormValidate extends WW3 {
         return this.isValid;
     }
     execute() {
-        const regex = new RegExp(this.regex);
-        this.inputElement.addEventListener("input", (e) => {
-            const target = e.target;
-            if (target.value !== '') {
-                if (regex.test(target.value)) {
-                    this.setValidity(true);
-                    this.feedbackElement.innerHTML = `<i style="color: green;" class="fa-solid fa-check"></i>`;
-                }
-                else {
-                    this.setValidity(false);
-                    this.feedbackElement.innerHTML = `<i style="color: red;" class="fa-solid fa-x"></i>`;
-                }
-            }
-            else {
-                this.feedbackElement.innerHTML = '';
-                this.setValidity(true);
-            }
-        });
+        this.inputElement.addEventListener("input", this.eventFunction);
         return this;
     }
     cleanup() {
-        this.inputElement.removeEventListener('input', () => { });
+        this.inputElement.removeEventListener('input', this.eventFunction);
         return this;
     }
 }

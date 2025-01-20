@@ -96,7 +96,8 @@ const CountryCodeDropDown = ({ isListShown, listRef, setDropDown }) => {
                 break;
         }
     }
-    const countryCodeClickHandler = ({ dial_code, code }) => {
+    const countryCodeClickHandler = (e, { dial_code, code }) => {
+        e.stopPropagation();
         setCountryCode({ flag: code, code: dial_code });
         setDropDown();
     };
@@ -112,6 +113,6 @@ const CountryCodeDropDown = ({ isListShown, listRef, setDropDown }) => {
     worker.onmessage = function (e) {
         setList(e.data);
     };
-    return (isListShown && ((0, jsx_runtime_1.jsxs)("div", { style: top, className: "flex codeList !absolute flex-col left-0 h-[500%] bg-white rounded-[10px] z-[999] p-[5px]", ref: listRef, children: [(0, jsx_runtime_1.jsx)("div", { className: "codeList__search", children: (0, jsx_runtime_1.jsx)("input", { onChange: onSearch, name: "search", id: "searchCountry", type: "text", placeholder: "Search Country", defaultValue: value }) }), (0, jsx_runtime_1.jsx)("div", { className: "codeList__list overflow-auto m-[5px]", children: list.map(country => (0, jsx_runtime_1.jsxs)("div", { onClick: () => countryCodeClickHandler(country), className: "each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]", "data-flag": country.code, children: [(0, jsx_runtime_1.jsx)("p", { children: country.name }), (0, jsx_runtime_1.jsx)("p", { children: country.dial_code })] }, country.code)) })] })));
+    return (isListShown && ((0, jsx_runtime_1.jsxs)("div", { style: top, className: "flex codeList !absolute flex-col left-0 h-[500%] bg-white rounded-[10px] z-[999] p-[5px]", ref: listRef, children: [(0, jsx_runtime_1.jsx)("div", { className: "codeList__search", children: (0, jsx_runtime_1.jsx)("input", { onChange: onSearch, name: "search", id: "searchCountry", type: "text", placeholder: "Search Country", defaultValue: value }) }), (0, jsx_runtime_1.jsx)("div", { className: "codeList__list overflow-auto m-[5px]", children: list.map(country => (0, jsx_runtime_1.jsxs)("div", { onClick: e => countryCodeClickHandler(e, country), className: "each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]", "data-flag": country.code, children: [(0, jsx_runtime_1.jsx)("p", { children: country.name }), (0, jsx_runtime_1.jsx)("p", { children: country.dial_code })] }, country.code)) })] })));
 };
 exports.default = CountryCodeDropDown;

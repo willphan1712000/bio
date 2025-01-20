@@ -163,7 +163,6 @@ class Transform {
             event.target.querySelector(".circle").classList.remove("show");
         }
         const handleDrag = (event, type) => {
-            event.preventDefault();
             event.stopPropagation();
             let initX = boxWrapper.offsetLeft;
             let initY = boxWrapper.offsetTop;
@@ -186,21 +185,20 @@ class Transform {
                 }, false);
             }
             else {
-                controllerWrapper.addEventListener('touchmove', eventMoveHandler, false);
+                controllerWrapper.addEventListener('touchmove', eventMoveHandler, { 'passive': true });
                 window.addEventListener('touchend', function eventEndHandler() {
-                    controllerWrapper.removeEventListener('touchmove', eventMoveHandler, false);
+                    controllerWrapper.removeEventListener('touchmove', eventMoveHandler);
                     window.removeEventListener('touchend', eventEndHandler);
                 }, false);
             }
         };
         controllerWrapper.addEventListener('mousedown', e => handleDrag(e, 'desk'), false);
-        controllerWrapper.addEventListener('touchstart', e => handleDrag(e, 'touch'), false);
+        controllerWrapper.addEventListener('touchstart', e => handleDrag(e, 'touch'), { 'passive': true });
         var leftTop = document.querySelector("." + this.controllerClassName + " .resize-topleft");
         var rightTop = document.querySelector("." + this.controllerClassName + " .resize-topright");
         var rightBottom = document.querySelector("." + this.controllerClassName + " .resize-bottomright");
         var leftBottom = document.querySelector("." + this.controllerClassName + " .resize-bottomleft");
         const resizeHandler = (event, left = false, top = false, xResize = false, yResize = false, type) => {
-            event.preventDefault();
             event.stopPropagation();
             initX = boxWrapper.offsetLeft;
             initY = boxWrapper.offsetTop;
@@ -275,7 +273,7 @@ class Transform {
                 }, false);
             }
             else {
-                window.addEventListener('touchmove', eventMoveHandler, false);
+                window.addEventListener('touchmove', eventMoveHandler, { 'passive': true });
                 window.addEventListener('touchend', function eventEndHandler() {
                     mouseupCb(event);
                     window.removeEventListener('touchmove', eventMoveHandler, false);
@@ -287,13 +285,12 @@ class Transform {
         rightTop.addEventListener('mousedown', e => resizeHandler(e, false, true, true, true, 'desk'));
         rightBottom.addEventListener('mousedown', e => resizeHandler(e, false, false, true, true, 'desk'));
         leftBottom.addEventListener('mousedown', e => resizeHandler(e, true, false, true, true, 'desk'));
-        leftTop.addEventListener('touchstart', e => resizeHandler(e, true, true, true, true, 'touch'));
-        rightTop.addEventListener('touchstart', e => resizeHandler(e, false, true, true, true, 'touch'));
-        rightBottom.addEventListener('touchstart', e => resizeHandler(e, false, false, true, true, 'touch'));
-        leftBottom.addEventListener('touchstart', e => resizeHandler(e, true, false, true, true, 'touch'));
+        leftTop.addEventListener('touchstart', e => resizeHandler(e, true, true, true, true, 'touch'), { 'passive': true });
+        rightTop.addEventListener('touchstart', e => resizeHandler(e, false, true, true, true, 'touch'), { 'passive': true });
+        rightBottom.addEventListener('touchstart', e => resizeHandler(e, false, false, true, true, 'touch'), { 'passive': true });
+        leftBottom.addEventListener('touchstart', e => resizeHandler(e, true, false, true, true, 'touch'), { 'passive': true });
         var rotate = document.querySelector("." + this.controllerClassName + " .rotate");
         const handleRotate = (event, type) => {
-            event.preventDefault();
             event.stopPropagation();
             initX = event.target.offsetLeft;
             initY = event.target.offsetTop;
@@ -321,7 +318,7 @@ class Transform {
                 }, false);
             }
             else {
-                window.addEventListener('touchmove', eventMoveHandler, false);
+                window.addEventListener('touchmove', eventMoveHandler, { 'passive': true });
                 window.addEventListener('touchend', function eventEndHandler() {
                     window.removeEventListener('touchmove', eventMoveHandler, false);
                     window.removeEventListener('touchend', eventEndHandler);
@@ -329,7 +326,7 @@ class Transform {
             }
         };
         rotate.addEventListener('mousedown', e => handleRotate(e, 'desk'), false);
-        rotate.addEventListener('touchstart', e => handleRotate(e, 'touch'), false);
+        rotate.addEventListener('touchstart', e => handleRotate(e, 'touch'), { 'passive': true });
         this.reset();
         return this;
     }

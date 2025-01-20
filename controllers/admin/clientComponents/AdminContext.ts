@@ -39,10 +39,12 @@ export type SettingState = {
     background: boolean,
     font: boolean,
     fontSize: boolean,
-    fontColor: boolean
+    fontColor: boolean,
+    input: boolean,
+    inputName: string
 }
 
-export type SettingAction = | {type: 'background' | 'font' | 'fontSize' | 'fontColor', value: boolean}
+export type SettingAction = | {type: 'background' | 'font' | 'fontSize' | 'fontColor' | 'input' | 'inputName' | 'all', value?: string}
 
 type Setting = [state: SettingState, action: React.Dispatch<SettingAction>] | undefined
 
