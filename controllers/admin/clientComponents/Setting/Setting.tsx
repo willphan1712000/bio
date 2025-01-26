@@ -1,6 +1,8 @@
 import { useEffect, useReducer } from 'react'
 import { ColorPickerGradient, ColorType, FontType, Options, RangeSlider } from '../../../client/src/Web-Development/W'
-import { AdminContext, AdminCssContext, AdminElementContext, AdminLabelContext, AdminRegexContext, AdminSettingContext } from '../AdminContext'
+import { AdminElementContext } from '../AdminContext'
+import AdminContextProvider from '../AdminContextProvider'
+import AvatarTemplate from '../Avatar/AvatarTemplate'
 import Delete from '../Delete/Delete'
 import { fonts, solidColors } from '../ElementMap'
 import { Resource } from '../FetchData'
@@ -11,7 +13,7 @@ import FontColor from './FontColor'
 import FontSize from './FontSize'
 import reducer, { elementClicked } from './Reducer'
 import SavePDF from './SavePDF'
-import AvatarTemplate from '../Avatar/AvatarTemplate'
+import Save from './Save'
 
 interface Props {
   data: {
@@ -79,75 +81,68 @@ const Setting = ({data, css, resource}: Props) => {
   }, [])
 
   return (
-    <AdminContext.Provider value={data}>
-      <AdminCssContext.Provider value={css}>
-        <AdminSettingContext.Provider value={[state, dispatch]}>
-          <AdminRegexContext.Provider value={resource.regexMap}>
-            <AdminLabelContext.Provider value={resource.labelMap}>
-              <div className='flex flex-col'>
-                <div id="setting_board" className='flex gap-1'>
-                  {state.background && (
-                    <>
-                      <ColorPickerGradient keyValue="W_colorPicker" defaultColor={css.background} cb={color => {
-                        css.background = color as string
-                        $("#template__background").css({
-                          background: color
-                        })
-                      }} />
-                      <Options keyValue="colorOptionsInBackground" Face={ColorType} list={solidColors} cb={color => {
-                        css.background = color as string
-                        $("#template__background").css({
-                          background: color
-                        })
-                      }}/>
-                    </>
-                  )}
-                {state.font && <Options keyValue="fontOptions" Face={FontType} face="A" list={fonts} cb={font => {
-                  css.font = font as string
-                  $(".template__font").css({
-                    fontFamily: font
-                  })
-                }}/>}
-                {state.fontSize && <RangeSlider keyValue="W_rangeSlider" range={{min: 0, max: 25}} defaultValue={parseInt(css.fontSize.replace("px", ''))} cb={value => {
-                    css.fontSize = value + "px"
-                    $(".template__font").css('font-size', value)
-                    $(".template_name").css('font-size', (value + 15))
-                }}/>}
-                {state.fontColor && <Options keyValue="colorOptions" Face={ColorType} list={solidColors} cb={color => {
-                  css.fontColor = color as string
-                  $(".template__font").css({
-                    color
-                  })
-                }}/>}
-                {state.input && (
-                  <AdminElementContext.Provider value={state.inputName}>
-                    <div className='w-full bg-white rounded-[20px] mx-4 p-1' id="inputElement">
-                      <SocialTag />
-                    </div>
-                  </AdminElementContext.Provider>
-                )}
-                </div>
-                <div id="setting_bar" className='[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto' style={{scrollbarWidth: 'none'}}>
-                  <Background />
-                  <Font />
-                  <FontSize />
-                  <FontColor />
-                  <SavePDF />
+    <AdminContextProvider data={data} css={css} regex={resource.regexMap} label={resource.labelMap} setting={[state, dispatch]}>
+      <div className='flex flex-col'>
+        <div id="setting_board" className='flex gap-1'>
+          {state.background && (
+            <>
+              <ColorPickerGradient keyValue="W_colorPicker" defaultColor={css.background} cb={color => {
+                css.background = color as string
+                $("#template__background").css({
+                  background: color
+                })
+              }} />
+              <Options keyValue="colorOptionsInBackground" Face={ColorType} list={solidColors} cb={color => {
+                css.background = color as string
+                $("#template__background").css({
+                  background: color
+                })
+              }}/>
+            </>
+          )}
+        {state.font && <Options keyValue="fontOptions" Face={FontType} face="A" list={fonts} cb={font => {
+          css.font = font as string
+          $(".template__font").css({
+            fontFamily: font
+          })
+        }}/>}
+        {state.fontSize && <RangeSlider keyValue="W_rangeSlider" range={{min: 0, max: 25}} defaultValue={parseInt(css.fontSize.replace("px", ''))} cb={value => {
+            css.fontSize = value + "px"
+            $(".template__font").css('font-size', value)
+            $(".template_name").css('font-size', (value + 15))
+        }}/>}
+        {state.fontColor && <Options keyValue="colorOptions" Face={ColorType} list={solidColors} cb={color => {
+          css.fontColor = color as string
+          $(".template__font").css({
+            color
+          })
+        }}/>}
+        {state.input && (
+          <AdminElementContext.Provider value={state.inputName}>
+            <div className='w-full bg-white rounded-[20px] mx-4 p-1' id="inputElement">
+              <SocialTag />
+            </div>
+          </AdminElementContext.Provider>
+        )}
+        </div>
+        <div id="setting_bar" className='[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto' style={{scrollbarWidth: 'none'}}>
+          <Background />
+          <Font />
+          <FontSize />
+          <FontColor />
+          <SavePDF />
 
-                  <div className="h-auto flex-shrink-0">
-                    <Delete message={resource.deleteWarning}/>
-                  </div>
-                </div>
-              </div>
+          <div className="h-auto flex-shrink-0">
+            <Delete message={resource.deleteWarning}/>
+          </div>
+        </div>
+      </div>
 
-              <AvatarTemplate />
-              
-              {/* Save Button Render Here */}
-            </AdminLabelContext.Provider>
-          </AdminRegexContext.Provider>
-        </AdminSettingContext.Provider>
-      </AdminCssContext.Provider>
-    </AdminContext.Provider>
+      <AvatarTemplate />
+      
+      <Save />
+      
+    </AdminContextProvider>
   )
 }
 

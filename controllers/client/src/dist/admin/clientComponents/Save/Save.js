@@ -36,8 +36,10 @@ exports.default = Save;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const WW_1 = require("../../../client/src/Web-Development/WW");
 const AdminContext_1 = __importStar(require("../AdminContext"));
+const FetchData_1 = require("../FetchData");
 function Save() {
     const data = (0, AdminContext_1.default)();
+    const css = (0, AdminContext_1.handleAdminCssContext)();
     const [state, dispatch] = (0, AdminContext_1.handleAdminSaveContext)();
     function handleSubmit(e) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -45,34 +47,38 @@ function Save() {
             dispatch({ type: 'submit' });
             dispatch({ type: 'disable' });
             dispatch({ type: 'message', value: 'Uploading...' });
-            try {
-                const result = yield (0, WW_1.$$$)("/data/api/info/PUT.php", data).api().post();
-                if (result.success) {
-                    dispatch({ type: 'submit' });
-                    dispatch({ type: 'show' });
-                    dispatch({ type: 'message', value: 'Updated. Going to your bio' });
-                    setTimeout(() => {
-                        window.location.href = '/' + data.username;
-                    }, 1500);
-                }
-                else {
-                    dispatch({ type: 'message', value: result.error });
-                    dispatch({ type: 'submit' });
-                    setTimeout(() => {
-                        dispatch({ type: 'disable' });
-                        dispatch({ type: 'default' });
-                    }, 3000);
-                }
+            const listOfPromises = [() => (0, FetchData_1.pushData)(data)];
+            if (css !== null) {
+                listOfPromises.push(() => (0, FetchData_1.pushCSS)(css));
             }
-            catch (error) {
+            const [error, result] = yield (0, WW_1.$$$)().wPromise().handlePromiseAllSettledResponse(listOfPromises);
+            if (error) {
                 dispatch({ type: 'message', value: error.error });
                 dispatch({ type: 'submit' });
                 setTimeout(() => {
                     dispatch({ type: 'disable' });
                     dispatch({ type: 'default' });
                 }, 3000);
+                return;
             }
+            if (!result)
+                return;
+            if (!result.success) {
+                dispatch({ type: 'message', value: result.error });
+                dispatch({ type: 'submit' });
+                setTimeout(() => {
+                    dispatch({ type: 'disable' });
+                    dispatch({ type: 'default' });
+                }, 3000);
+                return;
+            }
+            dispatch({ type: 'submit' });
+            dispatch({ type: 'show' });
+            dispatch({ type: 'message', value: 'Updated. Going to your bio' });
+            setTimeout(() => {
+                window.location.href = '/' + data.username;
+            }, 1500);
         });
     }
-    return ((0, jsx_runtime_1.jsx)("button", { disabled: state.disabled, className: 'w-full h-full absolute top-0 left-0', onClick: e => handleSubmit(e) }));
+    return ((0, jsx_runtime_1.jsx)("button", { disabled: state.disabled, className: 'size-full absolute top-0 left-0', onClick: e => handleSubmit(e) }));
 }

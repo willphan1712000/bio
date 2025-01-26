@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
 type Admin = {[key: string]: string | null} | undefined
+type AdminCSS = Admin | null
 type Element = string | undefined
 type Image = [state: State, action: React.Dispatch<Action>] | undefined
 export type State = {
@@ -46,11 +47,11 @@ export type SettingState = {
 
 export type SettingAction = | {type: 'background' | 'font' | 'fontSize' | 'fontColor' | 'input' | 'inputName' | 'all', value?: string}
 
-type Setting = [state: SettingState, action: React.Dispatch<SettingAction>] | undefined
+type Setting = [state: SettingState, action: React.Dispatch<SettingAction>] | undefined | null
 
 export const AdminContext = createContext<Admin>(undefined)
 
-export const AdminCssContext = createContext<Admin>(undefined)
+export const AdminCssContext = createContext<AdminCSS>(undefined)
 
 export const AdminRegexContext = createContext<Admin>(undefined)
 

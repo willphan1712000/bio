@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchData = fetchData;
 exports.getResource = getResource;
 exports.getCSS = getCSS;
+exports.pushData = pushData;
+exports.pushCSS = pushCSS;
 const WW_1 = require("../../client/src/Web-Development/WW");
 function fetchData(username) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -57,4 +59,19 @@ function getCSS(username) {
         }
         return cssList;
     });
+}
+function pushData(data) {
+    return (0, WW_1.$$$)("/data/api/info/PUT.php", data).api().post();
+}
+function pushCSS(data) {
+    const formatedData = {
+        username: data.username,
+        props: {
+            font: data.font,
+            fontSize: data.fontSize,
+            fontColor: data.fontColor,
+            background: data.background
+        }
+    };
+    return (0, WW_1.$$$)("/data/api/style/PUT.php", formatedData).api().post();
 }

@@ -636,6 +636,10 @@ video {
   bottom: -25px;
 }
 
+.bottom-\[1\.5rem\] {
+  bottom: 1.5rem;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -742,6 +746,10 @@ video {
 
 .z-\[99\] {
   z-index: 99;
+}
+
+.z-\[3\] {
+  z-index: 3;
 }
 
 .m-2\.5 {
@@ -1058,6 +1066,10 @@ video {
   height: 50px;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .h-\[680px\] {
   height: 680px;
 }
@@ -1245,6 +1257,10 @@ video {
 
 .w-\[60vw\] {
   width: 60vw;
+}
+
+.w-\[70\%\] {
+  width: 70%;
 }
 
 .w-\[80\%\] {
@@ -1503,6 +1519,10 @@ video {
 
 .rounded-\[50px\] {
   border-radius: 50px;
+}
+
+.rounded-\[85px\] {
+  border-radius: 85px;
 }
 
 .rounded-full {
@@ -2400,13 +2420,13 @@ video {
   position: relative;
   transition: 1s box-shadow;
   cursor: pointer;
-  width: 70%;
-  height: 60px;
+  width: 100%;
+  height: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   border-radius: 85px;
-  margin: 20px;
+  padding: 0px 10px;
 }
 
 .saveDefaultButtonGlowingStyle::before,

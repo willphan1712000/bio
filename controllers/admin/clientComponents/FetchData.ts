@@ -59,6 +59,23 @@ export async function getCSS(username: string): Promise<Data> {
     return cssList
 }
 
+export function pushData(data: any): Promise<Response> {
+    return $$$("/data/api/info/PUT.php", data).api().post<Response>()
+}
+
+export function pushCSS(data: any): Promise<Response> {
+    const formatedData = {
+        username: data.username,
+        props: {
+            font: data.font,
+            fontSize: data.fontSize,
+            fontColor: data.fontColor,
+            background: data.background
+        }
+    }
+    return $$$("/data/api/style/PUT.php", formatedData).api().post<Response>()
+}
+
 export type Resource = {
     regexMap: {
         [key: string]: string

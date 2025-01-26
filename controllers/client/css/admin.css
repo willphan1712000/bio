@@ -504,7 +504,7 @@ textarea {
   padding: 0px 10px;
   background: #fff;
   border-radius: 20px;
-  z-index: 20;
+  z-index: 1;
 }
 .card-container {
   width: 100vw;
