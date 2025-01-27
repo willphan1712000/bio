@@ -92,7 +92,8 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
         }
     }
 
-    const countryCodeClickHandler = ({dial_code, code}: List) => {
+    const countryCodeClickHandler = (e: React.MouseEvent, {dial_code, code}: List) => {
+        e.stopPropagation()
         setCountryCode({flag: code, code: dial_code})
         setDropDown()
     }
@@ -119,7 +120,7 @@ const CountryCodeDropDown = ({isListShown, listRef, setDropDown}: Props) => {
                 <input onChange={onSearch} name = "search" id = "searchCountry" type="text" placeholder="Search Country" defaultValue={value}/>
             </div>
             <div className="codeList__list overflow-auto m-[5px]">
-                {list.map(country => <div onClick={() => countryCodeClickHandler(country)} key={country.code} className="each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]" data-flag={country.code}><p>{country.name}</p><p>{country.dial_code}</p></div>)}
+                {list.map(country => <div onClick={e => countryCodeClickHandler(e, country)} key={country.code} className="each flex flex-row justify-between p-[5px] cursor-pointer rounded-[10px] hover:bg-[#d9d9d9]" data-flag={country.code}><p>{country.name}</p><p>{country.dial_code}</p></div>)}
             </div>
         </div>)
     )

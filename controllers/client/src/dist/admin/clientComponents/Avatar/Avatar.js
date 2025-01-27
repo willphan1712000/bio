@@ -45,7 +45,7 @@ function reducer(state, action) {
             throw new Error("Unknown action type");
     }
 }
-const Avatar = () => {
+const Avatar = ({ popup }) => {
     const data = (0, AdminContext_1.default)();
     const [state, dispatch] = (0, react_1.useReducer)(reducer, {
         isUpload: false,
@@ -53,6 +53,6 @@ const Avatar = () => {
         previewSrc: undefined,
         isDelete: data.image !== null,
     });
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminImageContext.Provider, { value: [state, dispatch], children: [(0, jsx_runtime_1.jsx)(AvatarFrame_1.default, {}), (0, jsx_runtime_1.jsx)(AvatarButton_1.default, {})] }) }));
+    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)(AdminContext_1.AdminImageContext.Provider, { value: [state, dispatch], children: [(0, jsx_runtime_1.jsx)(AvatarFrame_1.default, { popup: popup }), (0, jsx_runtime_1.jsx)(AvatarButton_1.default, {})] }) }));
 };
 exports.default = Avatar;

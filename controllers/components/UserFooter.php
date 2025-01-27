@@ -41,6 +41,9 @@ class UserFooter
                     padding: 0px 10px;
                     scrollbar-width: none;
                 }
+                ' . $container . ' #share .options::-webkit-scrollbar {
+                    display: none;
+                }
                 ' . $container . ' .share__btn {
                     height: 50px;
                     width: auto;

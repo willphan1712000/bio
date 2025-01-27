@@ -1,9 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-import { AdminContext, AdminElementContext, AdminLabelContext, AdminRegexContext, username } from '../../admin/clientComponents/AdminContext'
+import { AdminContext, AdminCssContext, AdminElementContext, AdminLabelContext, AdminRegexContext, username } from '../../admin/clientComponents/AdminContext'
 import Avatar from '../../admin/clientComponents/Avatar/Avatar'
 import Input from '../../admin/clientComponents/Input'
 import SaveDefault from '../../admin/clientComponents/Save/SaveDefault'
-import SocialTag from './SocialTag'
+import SocialTag from '../../admin/clientComponents/SocialTag'
+import AdminContextProvider from '../../admin/clientComponents/AdminContextProvider'
 
 
 interface Props {
@@ -41,42 +42,38 @@ const InfoArea = ({data, extraData}: Props) => {
 
   return (
     <>
-      <AdminContext.Provider value={data}>
-        <AdminRegexContext.Provider value={extraData.regexMap}>
-          <AdminLabelContext.Provider value={extraData.labelMap}>
-            <div className='info'>
-              <div className="info__img info__img--ava">
-                  <Avatar />
+      <AdminContextProvider data={data} css={null} regex={extraData.regexMap} label={extraData.labelMap} setting={null}>
+        <div className='info'>
+          <div className="info__img info__img--ava">
+              <Avatar />
+          </div>
+          <div className="info__about">
+              <div className="info__name my-[15px]">
+                <AdminElementContext.Provider value={'name'}>
+                  <Input inputLabelColor='#fff' name='name'/>
+                </AdminElementContext.Provider>
               </div>
-              <div className="info__about">
-                  <div className="info__name my-[15px]">
-                    <AdminElementContext.Provider value={'name'}>
-                      <Input inputLabelColor='#fff' name='name'/>
-                    </AdminElementContext.Provider>
-                  </div>
-                  <div className="info__position my-[15px]">
-                    <AdminElementContext.Provider value={'position'}>
-                      <Input inputLabelColor='#fff' name='position'/>
-                    </AdminElementContext.Provider>
-                  </div>
-                  <div className="info__org my-[15px]">
-                    <AdminElementContext.Provider value={'organization'}>
-                      <Input inputLabelColor='#fff' name='organization'/>
-                    </AdminElementContext.Provider>
-                  </div>
-                  <div className="info__des admin">
-                      <label htmlFor="des">Description</label>
-                      <textarea name="des" id="des" value={description ?? ''} onChange={e => desChangeHandler(e)}></textarea>
-                  </div>
+              <div className="info__position my-[15px]">
+                <AdminElementContext.Provider value={'position'}>
+                  <Input inputLabelColor='#fff' name='position'/>
+                </AdminElementContext.Provider>
               </div>
-            </div>
-            <div id="social-media">
-                {Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'position', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode', 'WhatsappCode', 'WhatsappFlag'].includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
-            </div>
-            <SaveDefault />
-          </AdminLabelContext.Provider>
-        </AdminRegexContext.Provider>
-      </ AdminContext.Provider>
+              <div className="info__org my-[15px]">
+                <AdminElementContext.Provider value={'organization'}>
+                  <Input inputLabelColor='#fff' name='organization'/>
+                </AdminElementContext.Provider>
+              </div>
+              <div className="info__des admin">
+                  <label htmlFor="des">Description</label>
+                  <textarea name="des" id="des" value={description ?? ''} onChange={e => desChangeHandler(e)}></textarea>
+              </div>
+          </div>
+        </div>
+        <div id="social-media">
+            {Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'position', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode', 'WhatsappCode', 'WhatsappFlag'].includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
+        </div>
+        <SaveDefault />
+      </AdminContextProvider>
     </>
     
   )

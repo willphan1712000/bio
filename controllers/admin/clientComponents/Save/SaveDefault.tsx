@@ -15,14 +15,16 @@ export default function SaveDefault() {
   })
 
   return (
-    <div className='flex justify-center items-center sticky bottom-0 z-[2]'>
-      <AdminSaveContext.Provider value={[state, dispatch]}>
-        <div className={`saveDefaultButtonStyle ${state.isShow ? 'saveDefaultButtonGlowingStyle': ''}`}>
-            <span className="flex items-center"><p className='mx-[10px]'>{state.msg}</p> <ClipLoader size="20px" color='#000' loading={state.isSubmitting}/></span>
-            <Save />
+    <AdminSaveContext.Provider value={[state, dispatch]}>
+        <div className='flex justify-center items-center sticky bottom-[1.5rem] z-[2] m-[20px]'>
+          <div className=' w-[70%] h-[60px]'>
+            <div className={`saveDefaultButtonStyle ${state.isShow ? 'saveDefaultButtonGlowingStyle': ''}`}>
+                <span className="flex items-center"><p className='mx-[10px]'>{state.msg}</p> <ClipLoader size="20px" color='#000' loading={state.isSubmitting}/></span>
+                <Save />
+            </div>
+          </div>
         </div>
-      </AdminSaveContext.Provider>
-    </div>
+    </AdminSaveContext.Provider>
   )
 }
 

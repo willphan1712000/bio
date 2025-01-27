@@ -17,7 +17,7 @@ const Input = ({inputLabelColor, name}: Props) => {
     name = nameContext as string
   }
 
-  const [value, setValue] = useState<string>(data[name]!)
+  const [value, setValue] = useState<string>('')
 
   const inputRef = useRef<HTMLInputElement>(null)
   const spanRef = useRef<HTMLElement>(null)
@@ -29,12 +29,15 @@ const Input = ({inputLabelColor, name}: Props) => {
   }
 
   useEffect(() => {
+    setValue(data[name]!)
+    $(spanRef.current as HTMLElement).empty()
+
     const validate = $$$(inputRef.current, spanRef.current, new RegExp(regexMap[name]!.slice(1, -1))).formValidate()
 
     return () => {
       validate.cleanup()
     }
-  }, [])
+  }, [name])
 
   return (
     <div className='relative w-full h-[32px]'>

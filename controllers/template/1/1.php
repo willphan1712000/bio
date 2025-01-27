@@ -43,7 +43,6 @@ class Template1 implements ITemplate
     border-radius: 20px 20px 0px 0px;
   }
   .div-3 {
-    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -241,7 +240,14 @@ class Template1 implements ITemplate
       ' . $props['info']['position']->getHTML() . '</p>
       <p class="div-5 template__font template_org">
       ' . $props['info']['organization']->getHTML() . '</p>
-        <p class="div-5 template__font template_des">' . $props['info']['description']->getHTML() . '
+        <textarea class="des template__font template_des" style="border: none;
+        resize: none;
+        background: transparent;
+        width: 80vw;
+        height: 70px;
+        text-align: center;
+        margin: 0px;
+        scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
       </p>
     </div>
     ' . $props['info']['Mobile']->getHTML('<div class="div-6">Contact us</div>') . '

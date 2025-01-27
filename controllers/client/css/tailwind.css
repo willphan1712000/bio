@@ -636,6 +636,10 @@ video {
   bottom: -25px;
 }
 
+.bottom-\[1\.5rem\] {
+  bottom: 1.5rem;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -648,6 +652,10 @@ video {
   left: -5px;
 }
 
+.left-\[0\.5rem\] {
+  left: 0.5rem;
+}
+
 .left-\[130px\] {
   left: 130px;
 }
@@ -658,6 +666,10 @@ video {
 
 .right-\[-10px\] {
   right: -10px;
+}
+
+.right-\[0\.5rem\] {
+  right: 0.5rem;
 }
 
 .right-\[10px\] {
@@ -682,6 +694,10 @@ video {
 
 .top-\[-60px\] {
   top: -60px;
+}
+
+.top-\[0\.5rem\] {
+  top: 0.5rem;
 }
 
 .top-\[10px\] {
@@ -732,6 +748,10 @@ video {
   z-index: 99;
 }
 
+.z-\[3\] {
+  z-index: 3;
+}
+
 .m-2\.5 {
   margin: 0.625rem;
 }
@@ -754,6 +774,11 @@ video {
 
 .m-\[5px\] {
   margin: 5px;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .mx-\[10px\] {
@@ -1041,6 +1066,10 @@ video {
   height: 50px;
 }
 
+.h-\[60px\] {
+  height: 60px;
+}
+
 .h-\[680px\] {
   height: 680px;
 }
@@ -1084,26 +1113,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.max-h-\[800px\] {
-  max-height: 800px;
-}
-
-.max-h-\[3rem\] {
-  max-height: 3rem;
-}
-
-.max-h-\[3rm\] {
-  max-height: 3rm;
-}
-
-.max-h-\[3em\] {
-  max-height: 3em;
-}
-
-.max-h-\[10rem\] {
-  max-height: 10rem;
 }
 
 .max-h-\[500px\] {
@@ -1250,6 +1259,10 @@ video {
   width: 60vw;
 }
 
+.w-\[70\%\] {
+  width: 70%;
+}
+
 .w-\[80\%\] {
   width: 80%;
 }
@@ -1318,20 +1331,8 @@ video {
   max-width: 700px;
 }
 
-.max-w-\[800px\] {
-  max-width: 800px;
-}
-
 .max-w-full {
   max-width: 100%;
-}
-
-.max-w-\[3rem\] {
-  max-width: 3rem;
-}
-
-.max-w-\[10rem\] {
-  max-width: 10rem;
 }
 
 .flex-1 {
@@ -1518,6 +1519,10 @@ video {
 
 .rounded-\[50px\] {
   border-radius: 50px;
+}
+
+.rounded-\[85px\] {
+  border-radius: 85px;
 }
 
 .rounded-full {
@@ -1819,6 +1824,10 @@ video {
 
 .p-0 {
   padding: 0px;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .p-1\.5 {
@@ -2411,13 +2420,13 @@ video {
   position: relative;
   transition: 1s box-shadow;
   cursor: pointer;
-  width: 70%;
-  height: 60px;
+  width: 100%;
+  height: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   border-radius: 85px;
-  margin: 20px;
+  padding: 0px 10px;
 }
 
 .saveDefaultButtonGlowingStyle::before,
@@ -2665,4 +2674,8 @@ video {
     --tw-bg-opacity: 1;
     background-color: rgb(254 202 202 / var(--tw-bg-opacity));
   }
+}
+
+.\[\&\:\:-webkit-scrollbar\]\:hidden::-webkit-scrollbar {
+  display: none;
 }

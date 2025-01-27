@@ -28,7 +28,7 @@ $props = [
     'css' => $css
 ];
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['userTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind638669a4fa4387326ce6.js"></script><script src="/dist/universalcd9b0fe72e36233b9716.js"></script><script src="/dist/admin1643753233ecfd7e751e.js"></script><script src="/dist/userjs183c6fbf9787e6463fa6.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['userTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwindad53304cbd22b1b65ce5.js"></script><script src="/dist/universalcc2d7b7cdae5892eb9f2.js"></script><script src="/dist/admin1c1fb3dcc32a218c3403.js"></script><script src="/dist/userjs286891fa6c643ce3c35f.js"></script></head><body><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="container"> <?php
         TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
         ?> </div><div id="userFooter"> <?php
         (new UserFooter())->render("#userFooter");
