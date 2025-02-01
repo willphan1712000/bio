@@ -14,6 +14,7 @@ import FontSize from './FontSize'
 import reducer, { elementClicked } from './Reducer'
 import SavePDF from './SavePDF'
 import Save from './Save'
+import Reset from './Reset'
 
 interface Props {
   data: {
@@ -130,6 +131,7 @@ const Setting = ({data, css, resource}: Props) => {
           <Font />
           <FontSize />
           <FontColor />
+          <Reset />
           <SavePDF />
 
           <div className="h-auto flex-shrink-0">

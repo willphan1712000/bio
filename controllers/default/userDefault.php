@@ -23,7 +23,7 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/controllers/default/css/universal.css?v=<?= $g['v']; ?>">
     <link rel="stylesheet" type="text/css" href="/controllers/default/css/user.css?v=<?= $g['v']; ?>">
-    <title><?= $g['userTitle']; ?></title>
+    <title><?= $username; ?></title>
     <script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
