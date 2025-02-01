@@ -17,8 +17,8 @@ $infoArray = $admin->get("info");
 $username = $admin->get("username"); // get username
 $themeid = $admin->get("themeid"); // Get themeid
 $css = $admin->get("css"); // Get CSS for corresponding template
-$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
 $g = $admin->get("g");
+$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
 
 
 $imgPath = $image;
@@ -37,8 +37,8 @@ if (isset($_POST['signout'])) {
     unset($_SESSION[$username]);
     header("Location: /" . $username);
 }
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['adminTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind65029ed44b35d75ba5ca.js"></script><script src="/dist/universal66d394af6af19d353787.js"></script><script src="/dist/admin45d6ba7459c0a1b22f0c.js"></script><script src="/dist/adminjs64f6dff71b2f29b2ce10.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="uploadImagePopup"></div><a href="/<?= $username; ?>" class="z-10 p-[15px] bg-white rounded-full w-[50px] h-[50px] flex justify-center items-center no-underline text-black cursor-pointer fixed top-[0.5rem] left-[0.5rem]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"><i class="fa-solid fa-arrow-left"></i></a><div id="save" class="z-10 cursor-pointer bg-white fixed top-[0.5rem] right-[0.5rem] rounded-[85px]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= $g['adminTitle']; ?></title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwinde07f83a7e37a34b0cf67.js"></script><script src="/dist/universalcc2d7b7cdae5892eb9f2.js"></script><script src="/dist/admin1c1fb3dcc32a218c3403.js"></script><script src="/dist/adminjs66b4525c3bd3e40c1c6b.js"></script></head><body><div id="admin"><div id="notSupported"><p>Bio does not support wide screen!</p></div><div id="uploadImagePopup"></div><a href="/<?= $username; ?>" class="z-10 p-[15px] bg-white rounded-full w-[50px] h-[50px] flex justify-center items-center no-underline text-black cursor-pointer fixed top-[0.5rem] left-[0.5rem]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"><i class="fa-solid fa-arrow-left"></i></a><div id="save" class="max-w-[90%] z-10 cursor-pointer bg-white fixed top-[0.5rem] right-[0.5rem] rounded-[85px]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"></div><div><div class="card-container swiper" style="scrollbar-width: none;"><div class="swiper-wrapper"><div id="container" class="front swiper-slide"><div class="face-card-label">Front</div> <?php
                         TemplateFactory::getInstance()->getTemplate($themeid)->html($props);
                         ?> </div><div class="back swiper-slide"><div class="face-card-label">Back</div> <?=

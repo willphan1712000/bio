@@ -17,8 +17,8 @@ $infoArray = $admin->get("info");
 $username = $admin->get("username"); // get username
 $themeid = $admin->get("themeid"); // Get themeid
 $css = $admin->get("css"); // Get CSS for corresponding template
-$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
 $g = $admin->get("g");
+$image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
 
 
 $imgPath = $image;
@@ -59,7 +59,7 @@ if (isset($_POST['signout'])) {
 
         <a href="/<?= $username; ?>" class="z-10 p-[15px] bg-white rounded-full w-[50px] h-[50px] flex justify-center items-center no-underline text-black cursor-pointer fixed top-[0.5rem] left-[0.5rem]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"><i class="fa-solid fa-arrow-left"></i></a>
-        <div id="save" class="z-10 cursor-pointer bg-white fixed top-[0.5rem] right-[0.5rem] rounded-[85px]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        <div id="save" class="max-w-[90%] z-10 cursor-pointer bg-white fixed top-[0.5rem] right-[0.5rem] rounded-[85px]" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;"></div>
 
         <div>

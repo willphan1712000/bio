@@ -17,6 +17,6 @@ const SaveTemplate = () => {
         default: 'Save',
         msg: 'Save'
     });
-    return ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminSaveContext.Provider, { value: [state, dispatch], children: (0, jsx_runtime_1.jsx)("div", { className: 'flex justify-center items-center sticky bottom-[1.5rem] z-[2] w-full h-[50px]', children: (0, jsx_runtime_1.jsxs)("div", { className: `saveDefaultButtonStyle ${state.isShow ? 'saveDefaultButtonGlowingStyle' : ''}`, children: [(0, jsx_runtime_1.jsxs)("span", { className: "flex items-center", children: [(0, jsx_runtime_1.jsx)("p", { className: 'mx-[10px]', children: state.msg }), " ", (0, jsx_runtime_1.jsx)(react_spinners_1.ClipLoader, { size: "20px", color: '#000', loading: state.isSubmitting })] }), (0, jsx_runtime_1.jsx)(Save_1.default, {})] }) }) }));
+    return ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminSaveContext.Provider, { value: [state, dispatch], children: (0, jsx_runtime_1.jsx)("div", { className: 'flex justify-center items-center sticky bottom-[1.5rem] z-[2] w-full', children: (0, jsx_runtime_1.jsxs)("div", { className: `saveDefaultButtonStyle ${state.isShow ? 'saveDefaultButtonGlowingStyle' : ''}`, children: [(0, jsx_runtime_1.jsxs)("span", { className: "flex items-center text-center", children: [(0, jsx_runtime_1.jsx)("p", { className: 'mx-[10px]', children: state.msg }), " ", (0, jsx_runtime_1.jsx)(react_spinners_1.ClipLoader, { size: "20px", color: '#000', loading: state.isSubmitting })] }), (0, jsx_runtime_1.jsx)(Save_1.default, {})] }) }) }));
 };
 exports.default = SaveTemplate;

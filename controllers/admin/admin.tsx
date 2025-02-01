@@ -3,6 +3,7 @@ import { $$ } from "../client/src/Web-Development/W";
 import { username } from "./clientComponents/AdminContext";
 import { fetchData, getCSS, getResource } from "./clientComponents/FetchData";
 import Setting from "./clientComponents/Setting/Setting";
+import { $$$ } from "../client/src/Web-Development/WW";
 
 interface Props {
     [key: string]: string
