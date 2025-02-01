@@ -118,6 +118,12 @@ const Setting = ({ data, css, resource }) => {
                                     $(".template__font").css({
                                         color
                                     });
-                                } }), state.input && ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: state.inputName, children: (0, jsx_runtime_1.jsx)("div", { className: 'w-full bg-white rounded-[20px] mx-4 p-1', id: "inputElement", children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}) }) }))] }), (0, jsx_runtime_1.jsxs)("div", { id: "setting_bar", className: '[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto', style: { scrollbarWidth: 'none' }, children: [(0, jsx_runtime_1.jsx)(Background_1.default, {}), (0, jsx_runtime_1.jsx)(Font_1.default, {}), (0, jsx_runtime_1.jsx)(FontSize_1.default, {}), (0, jsx_runtime_1.jsx)(FontColor_1.default, {}), (0, jsx_runtime_1.jsx)(Reset_1.default, {}), (0, jsx_runtime_1.jsx)(SavePDF_1.default, {}), (0, jsx_runtime_1.jsx)("div", { className: "h-auto flex-shrink-0", children: (0, jsx_runtime_1.jsx)(Delete_1.default, { message: resource.deleteWarning }) })] })] }), (0, jsx_runtime_1.jsx)(AvatarTemplate_1.default, {}), (0, jsx_runtime_1.jsx)(Save_1.default, {})] }));
+                                } }), state.input && ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: state.inputName, children: (0, jsx_runtime_1.jsx)("div", { className: 'w-full bg-white rounded-[20px] mx-4 p-1', id: "inputElement", children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}) }) }))] }), (0, jsx_runtime_1.jsx)(SettingBar, { resource: resource })] }), (0, jsx_runtime_1.jsx)(AvatarSave, {})] }));
 };
+const SettingBar = (0, react_1.memo)(({ resource }) => {
+    return ((0, jsx_runtime_1.jsxs)("div", { id: "setting_bar", className: '[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto', style: { scrollbarWidth: 'none' }, children: [(0, jsx_runtime_1.jsx)(Background_1.default, {}), (0, jsx_runtime_1.jsx)(Font_1.default, {}), (0, jsx_runtime_1.jsx)(FontSize_1.default, {}), (0, jsx_runtime_1.jsx)(FontColor_1.default, {}), (0, jsx_runtime_1.jsx)(Reset_1.default, {}), (0, jsx_runtime_1.jsx)(SavePDF_1.default, {}), (0, jsx_runtime_1.jsx)("div", { className: "h-auto flex-shrink-0", children: (0, jsx_runtime_1.jsx)(Delete_1.default, { message: resource.deleteWarning }) })] }));
+});
+const AvatarSave = (0, react_1.memo)(() => {
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(AvatarTemplate_1.default, {}), (0, jsx_runtime_1.jsx)(Save_1.default, {})] }));
+});
 exports.default = Setting;

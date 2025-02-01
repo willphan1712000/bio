@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { memo, useEffect, useReducer } from 'react'
 import { ColorPickerGradient, ColorType, FontType, Options, RangeSlider } from '../../../client/src/Web-Development/W'
 import { AdminElementContext } from '../AdminContext'
 import AdminContextProvider from '../AdminContextProvider'
@@ -126,26 +126,39 @@ const Setting = ({data, css, resource}: Props) => {
           </AdminElementContext.Provider>
         )}
         </div>
-        <div id="setting_bar" className='[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto' style={{scrollbarWidth: 'none'}}>
-          <Background />
-          <Font />
-          <FontSize />
-          <FontColor />
-          <Reset />
-          <SavePDF />
 
-          <div className="h-auto flex-shrink-0">
-            <Delete message={resource.deleteWarning}/>
-          </div>
-        </div>
+        <SettingBar resource={resource}/>
       </div>
-
-      <AvatarTemplate />
-      
-      <Save />
-      
+      <AvatarSave />
     </AdminContextProvider>
   )
 }
+
+// Define component groups that do not re-render every time state changes by dispatch
+const SettingBar = memo(({resource}: {resource: Resource}) => {
+  return (
+    <div id="setting_bar" className='[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto' style={{scrollbarWidth: 'none'}}>
+      <Background />
+      <Font />
+      <FontSize />
+      <FontColor />
+      <Reset />
+      <SavePDF />
+
+      <div className="h-auto flex-shrink-0">
+        <Delete message={resource.deleteWarning}/>
+      </div>
+    </div>
+  )
+})
+
+const AvatarSave = memo(() => {
+  return (
+    <>
+      <AvatarTemplate />
+      <Save />
+    </>
+  )
+})
 
 export default Setting
