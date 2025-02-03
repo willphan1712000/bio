@@ -5,11 +5,9 @@ import { $$ } from "../../../client/src/Web-Development/W"
 import handleAdminContext, { handleAdminImageContext } from "../AdminContext"
 import ReactDOM from "react-dom"
 
-interface Props {
-  popup?: HTMLElement
-}
 
-const AvatarFrame = ({popup}: Props) => {
+
+const AvatarFrame = () => {
   const [state, dispatch] = handleAdminImageContext()
   const [transform, setTransform] = useState<Transform|null>(null)
 
@@ -85,9 +83,9 @@ const AvatarFrame = ({popup}: Props) => {
     </div>
   )
 
-  if(popup === undefined) return jsx
+  if(!state.popup) return jsx
 
-  return ReactDOM.createPortal(jsx, popup)
+  return ReactDOM.createPortal(jsx, state.popup)
 }
 
 export default AvatarFrame

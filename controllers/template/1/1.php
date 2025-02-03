@@ -50,8 +50,7 @@ class Template1 implements ITemplate
     aspect-ratio: 1;
     align-items: center;
     justify-content: center;
-    padding: 0 4px;
-    margin-top: 20px;
+    border: solid 2px #fff;
   }
   .img {
     aspect-ratio: 1;
@@ -227,13 +226,17 @@ class Template1 implements ITemplate
 </style>
 <div class="div">
   <div class="div-2" id="template__background">
-    <div id="avatar__container" class="div-3">
-      <img id="avatar" draggable=false
-        loading="lazy"
-        src=' . $props['imgPath'] . '
-        class="img"
-      />
-    </div>
+    <div style="margin-top: 20px;">
+        <div id="avatar__container--wrapper" style="position: relative;">
+          <div id="avatar__container" style="overflow: hidden;" class="div-3">
+              <img id="avatar" draggable=false
+                loading="lazy"
+                src=' . $props['imgPath'] . '
+                class="img"
+              />
+          </div>
+        </div>
+      </div>
     <div id="text">
       <h1 class="div-4 template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
       <p class="div-5 template__font template_title">

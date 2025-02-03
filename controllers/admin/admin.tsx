@@ -3,7 +3,6 @@ import { $$ } from "../client/src/Web-Development/W";
 import { username } from "./clientComponents/AdminContext";
 import { fetchData, getCSS, getResource } from "./clientComponents/FetchData";
 import Setting from "./clientComponents/Setting/Setting";
-import { $$$ } from "../client/src/Web-Development/WW";
 
 interface Props {
     [key: string]: string
@@ -19,7 +18,6 @@ export default async function admin() {
 
     // Get information from database
     const list = await fetchData(user)
-    list.username = user // add username property to data list
 
     // Get resource needed
     const resource = await getResource(user)

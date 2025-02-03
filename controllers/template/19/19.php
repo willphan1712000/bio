@@ -35,14 +35,19 @@ class Template19 implements ITemplate
                     alt="Background profile cover"
                     class="object-cover absolute inset-0 size-full"
                 />
-                <div class="flex relative flex-col justify-center items-center px-1 bg-white rounded-full h-[98px] shadow-[0px_0px_7px_rgba(0,0,0,0.4)] w-[98px]">
-                    <img
-                    loading="lazy"
-                    src="' . $props['imgPath'] . '"
-                    alt="John Williams profile picture"
-                    class="object-contain w-full aspect-[0.99] rounded-[50%]"
-                    />
+                <div id="avatar__container--wrapper" style="position: relative;">
+                    <div>
+                        <div id="avatar__container" style="overflow: hidden;" class="flex relative flex-col justify-center items-center px-1 bg-white rounded-full shadow-[0px_0px_7px_rgba(0,0,0,0.4)] w-[150px] object-contain aspect-square border-white border-[3px]">
+                            <img
+                            loading="lazy"
+                            src="' . $props['imgPath'] . '"
+                            alt="John Williams profile picture"
+                            class=""
+                            />
+                        </div>
+                    </div>
                 </div>
+                <div id="text" class="flex flex-col items-center">
                 <h1 class="relative mt-2 text-2xl text-white template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                 <p class="relative text-base leading-5 text-center text-white template__font template_title">
                 ' . $props['info']['position']->getHTML() . '</p>
@@ -56,6 +61,7 @@ class Template19 implements ITemplate
                     margin: 0px;
                     height: 110px;
                     scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
+                </div>
                 <div class="flex gap-9 mt-[10px] z-0">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"

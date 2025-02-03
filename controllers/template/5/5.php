@@ -23,6 +23,7 @@ class Template5 implements ITemplate
                     margin: 0 auto;
                     overflow: hidden;
                     position: relative;
+                    background: #fff;
                 }
                 .hero-image {
                     aspect-ratio: 1.27;
@@ -130,10 +131,14 @@ class Template5 implements ITemplate
                 }
             </style>
 
-            <main class="bakery-container" id="template__background">
+            <main class="bakery-container">
                 <div class="backdrop">
-                    <div id="avatar__container">
-                        <img id="avatar" draggable=false src="' . $props['imgPath'] . '" alt="Bakery storefront" class="hero-image" />
+                    <div style="height: 50%;">
+                        <div id="avatar__container--wrapper" style="position: relative;">
+                            <div id="avatar__container" style="overflow: hidden;">
+                                <img id="avatar" draggable=false src="' . $props['imgPath'] . '" alt="Bakery storefront" class="hero-image" />
+                            </div>
+                        </div>
                     </div>
                     <div class="backdrop-child" id="text">
                         <h1 class="template__font template_name">' . $props['info']['name']->getHTML() . '</h1>

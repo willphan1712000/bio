@@ -26,12 +26,12 @@ class Template11 implements ITemplate
                 </style>
                 <div class="p-[10px] w-screen">
                 <div id = "template__background"
-                    class="bg-[#89e6c9] w-full flex overflow-hidden flex-col text-base rounded-3xl h-[680px]"
+                    class="bg-[#89e6c9] w-full flex overflow-hidden flex-col text-base rounded-3xl h-[800px]"
                     role="region"
                     aria-label="Contact Form Section"
                     >
                     <div
-                        class="flex relative flex-col text-center text-white text-opacity-70"
+                        class="flex relative flex-col text-center text-black text-opacity-70"
                     >
                         <img
                         loading="lazy"
@@ -40,7 +40,7 @@ class Template11 implements ITemplate
                         alt=""
                         />
                         <div
-                        class="flex relative z-10 flex-col py-7 px-10 -mb-3.5 aspect-[1.161] w-full"
+                        class="flex items-center relative z-1 flex-col py-7 px-10 -mb-3.5 aspect-[1.161] w-full"
                         >
                         <img
                             loading="lazy"
@@ -48,12 +48,18 @@ class Template11 implements ITemplate
                             class="object-cover absolute inset-0 size-full"
                             alt=""
                         />
-                        <img
+                        
+                        <div id="avatar__container--wrapper" style="position: relative;">
+                            <div id="avatar__container" style="overflow: hidden;" class="rounded-[50%] border-[2px] border-white object-contain self-center max-w-full aspect-square z-0 mb-[15px] w-[150px]">
+                            <img
                             loading="lazy"
                             src="' . $props['imgPath'] . '"
-                            class="rounded-[50%] border-[2px] border-white object-contain self-center max-w-full aspect-square w-[120px] z-0 mb-[15px]"
+                            class=""
                             alt="Company Logo"
                         />
+                        </div>
+                        </div>
+                        <div id="text" style="margin-top: 10px;">
                         <div class="relative text-[20px] template__font template_name">
                             ' . $props['info']['name']->getHTML() . '
                         </div>
@@ -70,6 +76,7 @@ class Template11 implements ITemplate
                                 margin: 0px;
                                 height: 70px;
                                 scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
+                        </div>
                         </div>
                         <div class="relative z-0">
                         <img

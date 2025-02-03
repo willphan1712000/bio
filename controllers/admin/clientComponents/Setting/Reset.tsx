@@ -12,10 +12,12 @@ const Reset = () => {
 
     if(error) {
       alert(error.error)
+      return
     }
 
     if(!result?.success) {
       alert(result?.error)
+      return
     }
 
     css.background = result?.data.background

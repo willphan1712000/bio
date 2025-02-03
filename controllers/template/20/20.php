@@ -49,13 +49,13 @@ class Template20 implements ITemplate
                     alt="Decorative spa elements"
                 />
                 </div>
-                <div class="absolute top-[40px]" style="left: calc(50% - 60px);">
-                    <div class="rounded-[50%] border-[#ec4899] border-[4px] overflow-hidden w-[120px]">
-                        <img src="' . $props['imgPath'] . '" class="size-full"/>
+                <div id="avatar__container--wrapper" style="position: absolute;" class="absolute top-[40px] self-center" style="left: calc(50% - 60px);">
+                    <div id="avatar__container" style="overflow: hidden;" class="rounded-[50%] border-[#ec4899] border-[4px] overflow-hidden w-[150px]">
+                    <img src="' . $props['imgPath'] . '" class="size-full"/>
                     </div>
                 </div>
             </div>
-            <div class="w-full p-[10px] flex flex-col justify-center items-center">
+            <div class="w-full p-[10px] pt-[25px] flex flex-col justify-center items-center" id="text">
             <div class="text-base font-light text-pink-500 template__font template_name" role="heading" aria-level="1">
                 ' . $props['info']['name']->getHTML() . '
             </div>

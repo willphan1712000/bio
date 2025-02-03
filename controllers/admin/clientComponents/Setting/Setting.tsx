@@ -15,6 +15,7 @@ import reducer, { elementClicked } from './Reducer'
 import SavePDF from './SavePDF'
 import Save from './Save'
 import Reset from './Reset'
+import Bio from './Bio'
 
 interface Props {
   data: {
@@ -66,7 +67,7 @@ const Setting = ({data, css, resource}: Props) => {
       }
     })
 
-    const template = document.querySelector(".card-container") as HTMLElement
+    const template = document.querySelector("#text") as HTMLElement
     template.addEventListener('input' , e => {
       const target = e.target as HTMLInputElement
       const name = $(target).data('name')
@@ -81,25 +82,29 @@ const Setting = ({data, css, resource}: Props) => {
     })
   }, [])
 
+  const background = document.getElementById("template__background") as HTMLElement;
+
   return (
     <AdminContextProvider data={data} css={css} regex={resource.regexMap} label={resource.labelMap} setting={[state, dispatch]}>
       <div className='flex flex-col'>
         <div id="setting_board" className='flex gap-1'>
           {state.background && (
+            background ? (
             <>
               <ColorPickerGradient keyValue="W_colorPicker" defaultColor={css.background} cb={color => {
                 css.background = color as string
-                $("#template__background").css({
+                $(background).css({
                   background: color
                 })
               }} />
               <Options keyValue="colorOptionsInBackground" Face={ColorType} list={solidColors} cb={color => {
                 css.background = color as string
-                $("#template__background").css({
+                $(background).css({
                   background: color
                 })
               }}/>
             </>
+            ) : <div className='flex items-center justify-center size-full rounded-[2rem] bg-white mx-[1rem] text-center' style={{boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}}><p>This template does not allow background change</p></div>
           )}
         {state.font && <Options keyValue="fontOptions" Face={FontType} face="A" list={fonts} cb={font => {
           css.font = font as string
@@ -138,6 +143,7 @@ const Setting = ({data, css, resource}: Props) => {
 const SettingBar = memo(({resource}: {resource: Resource}) => {
   return (
     <div id="setting_bar" className='[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto' style={{scrollbarWidth: 'none'}}>
+      <Bio />
       <Background />
       <Font />
       <FontSize />

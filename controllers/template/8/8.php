@@ -143,8 +143,11 @@ class Template8 implements ITemplate
 </style>
 
 <article class="doctor-card" id="template__background">
-<div id="avatar__container">
-  <img id="avatar" draggable=false src=' . $props['imgPath'] . ' alt="" class="doctor-image" /></div>
+  <div id="avatar__container--wrapper" style="position: relative;">
+      <div id="avatar__container" style="overflow: hidden;">
+        <img id="avatar" draggable=false src=' . $props['imgPath'] . ' alt="" class="doctor-image" />
+      </div>
+  </div>
   <div class="doctor-info" id="text">
     <h2 class="doctor-name template__font template_name">' . $props['info']['name']->getHTML() . '</h2>
      <p class="experience template__font template_title">

@@ -28,15 +28,19 @@ class Template16 implements ITemplate
             <div class="w-screen">
             <div class="flex flex-col max-w-[430px] rounded-[29px] p-[10px] w-full" role="region" aria-label="Wedding Planning Services">
             <div class="flex overflow-hidden flex-col p-5 w-full rounded-[29px] bg-[linear-gradient(269deg,#FFDBFF_0.77%,#B1C6FE_99.23%)]" id="template__background">
-                <div class="flex gap-5 justify-center items-center w-full">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/4074a58a008f9caba3a060b06381deb8208cb22805eec4511dae17b2e33b1652?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"
-                    alt="Featured Wedding Image"
-                    class="object-contain shrink-0 max-w-full rounded-full aspect-square w-[121px]"
-                />
+                <div id="avatar__container--wrapper" style="position: relative;" class="self-center">
+                    <div id="avatar__container" style="overflow: hidden;" class="flex gap-5 justify-center items-center object-contain shrink-0 max-w-full rounded-full aspect-square w-[150px] border-[3px] border-white">
+                        <div>
+                            <img
+                                loading="lazy"
+                                src="' . $props['imgPath'] . '"
+                                alt="Featured Wedding Image"
+                                class=""
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div class="flex justify-center items-center flex-col w-full">
+                <div class="flex justify-center items-center flex-col w-full" id="text">
                     <h1 class="self-center mt-2 text-xl font-bold text-white template__font template_name">
                    ' . $props['info']['name']->getHTML() . '
                     </h1>

@@ -33,14 +33,13 @@ margin: 0 auto;
 }
 
 .logo-container {
-background-color: #ff8fab;
+border: solid 7px #ff8fab;
 border-radius: 50%;
 display: flex;
 width: 193px;
 height: 193px;
 align-items: center;
 justify-content: center;
-padding: 0 9px;
 }
 
 .logo {
@@ -159,14 +158,13 @@ color: ' . $props['css']['fontColor'] . ';
 .template_name {
 font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
 }
-#text {
-height: 130px;
-}
 </style>
 
 <main class="beauty-store" id="template__background">
-<div class="logo-container" id="avatar__container">
-<img id="avatar" draggable=false loading="lazy" src="' . $props['imgPath'] . '" class="logo" alt="Beauty store logo" />
+<div id="avatar__container--wrapper" style="position: relative;">
+    <div class="logo-container" id="avatar__container" style="overflow: hidden;">
+        <img id="avatar" draggable=false loading="lazy" src="' . $props['imgPath'] . '" class="logo" alt="Beauty store logo" />
+    </div>
 </div>
 <div id="text">
 <h1 class="store-title template__font template_name">' . $props['info']['name']->getHTML() . '</h1>

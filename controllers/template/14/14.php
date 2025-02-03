@@ -27,18 +27,21 @@ class Template14 implements ITemplate
 
             <div class="w-screen">
             <div class="flex flex-col bg-white max-w-[414px] p-[10px] w-full">
-            <div class="flex flex-col px-8 pt-6 w-full bg-[#5eb2e5] rounded-t-3xl" id="template__background">
+            <div class="flex flex-col px-8 pt-6 w-full bg-[#5eb2e5] rounded-t-3xl">
             <div class="flex gap-5 justify-between w-full">
                 <div class="flex gap-8">
-                    <div
-                    class="flex flex-col justify-center items-center p-1.5 bg-white rounded-full aspect-square size-[150px]"
-                    >
-                    <img
-                        loading="lazy"
-                        src="' . $props['imgPath'] . '"
-                        alt="Travel profile avatar"
-                        class="object-contain rounded-full aspect-square size-full"
-                    />
+                    
+                    <div id="avatar__container--wrapper" style="position: relative;">
+                        <div id="avatar__container" style="overflow: hidden;" class="flex flex-col justify-center items-center rounded-full aspect-square size-[150px] border-[5px] border-white">
+                            <div>
+                                <img
+                                    loading="lazy"
+                                    src="' . $props['imgPath'] . '"
+                                    alt="Travel profile avatar"
+                                    class="object-contain rounded-full aspect-square size-full"
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div class="my-auto text-5xl text-white basis-auto template__font template_name">' . $props['info']['name']->getHTML() . '</div>
                 </div>
@@ -66,7 +69,7 @@ class Template14 implements ITemplate
                 ' . $props['info']['Website']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Website'] . '</div><p class="ml-[40px]">Website</p></div>') . '
             </div>
             </div>
-            <div class="flex flex-row justify-center px-14 py-5 mt-2 overflow-hidden gap-7 bg-[#5eb2e5] rounded-b-3xl sticky bottom-0" id="template__background">
+            <div class="flex flex-row justify-center px-14 py-5 mt-2 overflow-hidden gap-7 bg-[#5eb2e5] rounded-b-3xl sticky bottom-0">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/339fa9ac81d114b330d6caaeaf5994e93ef9c01ee462424838292e642f945ce9?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"

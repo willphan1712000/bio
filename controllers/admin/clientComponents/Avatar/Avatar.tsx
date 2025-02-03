@@ -31,10 +31,11 @@ function reducer(state: State, action: Action): any {
 }
 
 interface Props {
-    popup?: HTMLElement
+    popup?: HTMLElement,
+    avatarMounter?: HTMLElement
 }
 
-const Avatar = ({popup}: Props) => {
+const Avatar = ({popup, avatarMounter}: Props) => {
     const data = handleAdminContext()
 
     const [state, dispatch] = useReducer(reducer, {
@@ -42,12 +43,14 @@ const Avatar = ({popup}: Props) => {
         mainSrc: `${data.image === null ? '/controllers/client/img/unknown.png': `/user/${username()}/${data.image}`}`,
         previewSrc: undefined,
         isDelete: data.image !== null,
+        popup,
+        avatarMounter
     })
 
   return (
     <>
         <AdminImageContext.Provider value={[state, dispatch]}>
-            <AvatarFrame popup={popup}/>
+            <AvatarFrame />
             <AvatarButton />
         </AdminImageContext.Provider>
     </>

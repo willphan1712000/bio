@@ -21,9 +21,11 @@ const Reset = () => {
             }).api().post());
             if (error) {
                 alert(error.error);
+                return;
             }
             if (!(result === null || result === void 0 ? void 0 : result.success)) {
                 alert(result === null || result === void 0 ? void 0 : result.error);
+                return;
             }
             css.background = result === null || result === void 0 ? void 0 : result.data.background;
             css.font = result === null || result === void 0 ? void 0 : result.data.font;

@@ -26,7 +26,6 @@ function admin() {
     return __awaiter(this, void 0, void 0, function* () {
         const user = (0, AdminContext_1.username)();
         const list = yield (0, FetchData_1.fetchData)(user);
-        list.username = user;
         const resource = yield (0, FetchData_1.getResource)(user);
         const css = yield (0, FetchData_1.getCSS)(user);
         (0, W_1.$$)("#setting", (0, jsx_runtime_1.jsx)(Setting_1.default, { data: list, css: css, resource: resource })).reactMounting();

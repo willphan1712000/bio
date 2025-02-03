@@ -63,7 +63,6 @@ class Template4 implements ITemplate
   border-radius: 50%;
   background-color: var(--Purple-Gradient, linear-gradient(180deg, rgba(164, 96, 251, 0.6) 54.34%, rgba(211, 178, 255, 0.6) 100%));
   align-self: stretch;
-  display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
@@ -72,16 +71,14 @@ class Template4 implements ITemplate
 
 .logo-wrapper {
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-  background-color: #fff;
   border-radius: 50%;
-  z-index: 10;
   display: flex;
   margin-bottom: -74px;
   width: 100%;
   aspect-ratio: 1;
   align-items: center;
   justify-content: center;
-  padding: 0 5px;
+  border: solid 5px #fff;
 }
 
 .logo {
@@ -182,10 +179,12 @@ class Template4 implements ITemplate
 <main class="beauty-store-container">
   <div class="content-wrapper">
     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c4b2362f6ba779394de3a3b1b8f2e67bf84ed59db574f51e0bff4ad560120f8c?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="background-image" alt="" />
-    <header class="header-section" id="template__background">
+    <header class="header-section">
       <div class="logo-container">
-        <div class="logo-wrapper" id="avatar__container">
-          <img id="avatar" draggable=false loading="lazy" src="' . $props['imgPath'] . '" class="logo" alt="Beauty Store Logo" />
+        <div id="avatar__container--wrapper" style="position: relative;">
+          <div class="logo-wrapper" id="avatar__container" style="overflow: hidden;">
+            <img id="avatar" draggable=false loading="lazy" src="' . $props['imgPath'] . '" class="logo" alt="Beauty Store Logo" />
+          </div>
         </div>
       </div>
       <div id="text">
