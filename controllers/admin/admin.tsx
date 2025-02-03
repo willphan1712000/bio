@@ -18,7 +18,6 @@ export default async function admin() {
 
     // Get information from database
     const list = await fetchData(user)
-    list.username = user // add username property to data list
 
     // Get resource needed
     const resource = await getResource(user)

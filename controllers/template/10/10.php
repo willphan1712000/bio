@@ -138,8 +138,11 @@ class Template10 implements ITemplate
 </style>
 
 <main class="fashion-show-container" id="template__background">
-<div id="avatar__container">
-  <img 	id="avatar" draggable=false src="' . $props['imgPath'] . '" alt="Fashion Show Hero Image" class="hero-image" /></div>
+  <div id="avatar__container--wrapper" style="position: relative; width: 100%;">
+      <div id="avatar__container" style="overflow: hidden;">
+        <img 	id="avatar" draggable=false src="' . $props['imgPath'] . '" alt="Fashion Show Hero Image" class="hero-image" />
+      </div>
+  </div>
   <div id="text">
   <h1 class="main-title template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
    <p class="des template__font template_title">

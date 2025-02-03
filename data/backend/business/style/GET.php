@@ -9,7 +9,7 @@ use persistence\Entity\User;
 
 class GET implements IAPI
 {
-    private string $username;
+    protected string $username;
     // private int $template;
 
     function __construct(string $username)

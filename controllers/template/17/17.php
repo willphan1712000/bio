@@ -32,12 +32,17 @@ class Template17 implements ITemplate
             >
                 <div class="flex gap-5 w-full">
                 <div class="flex flex-col grow shrink-0 items-center basis-0 w-full justify-center">
-                    <img
-                    loading="lazy"
-                    src="' . $props['imgPath'] . '"
-                    class="object-contain max-w-full aspect-square w-[134px] rounded-[50%] border-[#f472b6] border-[5px]"
-                    alt="Perfume bottle display"
-                    />
+                    <div id="avatar__container--wrapper" style="position: relative;">
+                        <div id="avatar__container" style="overflow: hidden;" class="object-contain max-w-full aspect-square w-[134px] rounded-[50%] border-[#f472b6] border-[5px]">
+                        <img
+                        loading="lazy"
+                        src="' . $props['imgPath'] . '"
+                        class=""
+                        alt="Perfume bottle display"
+                        />
+                        </div>
+                    </div>
+                    <div id="text" class="flex items-center flex-col">
                     <div class="mt-2 text-2xl text-pink-400 template__font template_name" role="heading" aria-level="2">' . $props['info']['name']->getHTML() . '</div>
                     <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_title">
                     ' . $props['info']['position']->getHTML() . '</p>
@@ -51,6 +56,7 @@ class Template17 implements ITemplate
                     margin: 0px;
                     height: 100px;
                     scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
+                    </div>
                 </div>
                 </div>
                 <div

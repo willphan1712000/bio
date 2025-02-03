@@ -39,14 +39,11 @@ class Template7 implements ITemplate
   border-radius: 50%;
   align-self: stretch;
   display: flex;
-  width: 130%;
   position: relative;
   top: 0px;
-  left: -58px;
   flex-direction: column;
   align-items: center;
   padding: 0 0px 66px;
-  height: 370px;
 }
 .hero-image {
   aspect-ratio: 1.92;
@@ -57,8 +54,6 @@ class Template7 implements ITemplate
   align-self: stretch;
 }
 .title-wrapper {
-  position: absolute;
-  top: 56%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,9 +121,9 @@ class Template7 implements ITemplate
 .avatar-wrapper {
   border-radius: 50%;
   background-color: #fff;
-  padding: 6px;
+  padding: 5px;
   position: absolute;
-  width: 35%;
+  width: 45%;
   top: 5%;
 }
 .avatar-img {
@@ -141,7 +136,7 @@ class Template7 implements ITemplate
 #social-media {
   margin: 10px 0px 10px 0px;
 }
-   #template__background {
+   #template__background-strict {
       background: ' . $props['css']['background'] . ';
     }
     .template__font {
@@ -154,10 +149,12 @@ class Template7 implements ITemplate
     }
 </style>
 
-<section class="beauty-section" id="template__background">
+<section class="beauty-section" id="template__background-strict">
   <header class="hero-banner">
-    <div class="avatar-wrapper" id="avatar__container">
-      <img id="avatar" draggable=false draggable="false" src=' . $props['imgPath'] . ' alt="" class="avatar-img">
+    <div id="avatar__container--wrapper" style="position: absolute;" class="avatar-wrapper">
+        <div id="avatar__container" style="overflow: hidden; border-radius: 50%;">
+          <img id="avatar" draggable=false draggable="false" src=' . $props['imgPath'] . ' alt="" class="avatar-img">
+        </div>
     </div>
     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/dea77032a51d516ad82d4f4cfed164a9c9523bf104fffca6e4ef09b29db5de62?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="hero-image" alt="Beauty product showcase" />
     <div class="title-wrapper w-[60%]" id="text">

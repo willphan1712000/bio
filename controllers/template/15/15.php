@@ -33,17 +33,20 @@ class Template15 implements ITemplate
             >
             <div class="flex flex-col items-center w-full rounded-3xl bg-[#f6cdd2]" id="template__background">
                 <div class="flex flex-col gap-3.5 items-center w-full">
-                <div
-                    class="flex flex-col justify-center items-center px-1 mt-7 bg-pink-500 rounded-full border-2 border-white border-solid h-[120px] w-[120px]"
-                >
-                    <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/9418b757a65f0cd38b39081f840707db54b7293836ba8d82314dd38c7545e18f?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"
-                    alt="Sultry and Smart Profile"
-                    class="object-contain rounded-full aspect-square size-full"
-                    />
+                <div id="avatar__container--wrapper" style="position: relative;" class="mt-7">
+                    <div>
+                        <div
+                        class="flex flex-col justify-center items-center p-1 bg-pink-500 rounded-full border-2 border-white border-solid h-[150px] w-[150px]" id="avatar__container" style="overflow: hidden;"
+                        >
+                            <img
+                            loading="lazy"
+                            src="' . $props['imgPath'] . '"
+                            class="object-contain rounded-full aspect-square size-full"
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col grow shrink-0 items-center basis-0 w-full px-[10px]">
+                <div class="flex flex-col grow shrink-0 items-center basis-0 w-full px-[10px]" id="text">
                     <h1 class="mt-1 text-2xl font-semibold text-white template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                     <p class="mt-2 text-base font-semibold text-white template__font template_title">
                     ' . $props['info']['position']->getHTML() . '</p>

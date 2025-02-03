@@ -44,8 +44,8 @@ const InfoArea = ({data, extraData}: Props) => {
     <>
       <AdminContextProvider data={data} css={null} regex={extraData.regexMap} label={extraData.labelMap} setting={null}>
         <div className='info'>
-          <div className="info__img info__img--ava">
-              <Avatar />
+          <div className="info__img info__img--ava" id="avatar">
+            <Avatar />
           </div>
           <div className="info__about">
               <div className="info__name my-[15px]">
@@ -72,6 +72,7 @@ const InfoArea = ({data, extraData}: Props) => {
         <div id="social-media">
             {Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'position', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode', 'WhatsappCode', 'WhatsappFlag'].includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
         </div>
+
         <SaveDefault />
       </AdminContextProvider>
     </>

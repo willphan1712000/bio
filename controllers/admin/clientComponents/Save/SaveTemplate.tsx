@@ -16,9 +16,9 @@ const SaveTemplate = () => {
 
     return (
         <AdminSaveContext.Provider value={[state, dispatch]}>
-            <div className='flex justify-center items-center sticky bottom-[1.5rem] z-[2] w-full h-[50px]'>
+            <div className='flex justify-center items-center sticky bottom-[1.5rem] z-[2] w-full'>
                 <div className={`saveDefaultButtonStyle ${state.isShow ? 'saveDefaultButtonGlowingStyle': ''}`}>
-                    <span className="flex items-center"><p className='mx-[10px]'>{state.msg}</p> <ClipLoader size="20px" color='#000' loading={state.isSubmitting}/></span>
+                    <span className="flex items-center text-center"><p className='mx-[10px]'>{state.msg}</p> <ClipLoader size="20px" color='#000' loading={state.isSubmitting}/></span>
                     <Save />
                 </div>
             </div>

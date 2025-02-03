@@ -4,23 +4,27 @@ namespace business\style;
 
 use business\IAPI;
 use persistence\Database;
-use persistence\Entity\Style;
+use persistence\Entity\User;
 use persistence\Entity\StyleDefault;
 
-class RESET extends PUT implements IAPI
+class RESET extends GET implements IAPI
 {
-    protected function updateStyle()
+    protected function getStyle()
     {
         try {
-            foreach ($this->props as $key => $value) {
-                Database::PUT(Style::class, $key, Database::GET(StyleDefault::class, $key, ['template_id' => $this->template]), [
-                    'username' => $this->username,
-                    'template_id' => $this->template
-                ]);
+            $template = Database::GET(User::class, 'defaultTemplate', ['username' => $this->username]);
+            $style = Database::GET(StyleDefault::class, null, ['template_id' => $template]);
+
+            $out = [];
+            foreach (StyleDefault::getProperty() as $prop) {
+                if (in_array($prop, ['background', 'font', 'fontSize', 'fontColor'])) {
+                    $out[$prop] = $style->get($prop);
+                }
             }
 
             return [
-                'success' => true
+                'success' => true,
+                'data' => $out
             ];
         } catch (\Exception $e) {
             return [
@@ -28,5 +32,10 @@ class RESET extends PUT implements IAPI
                 'error' => $e->getMessage()
             ];
         }
+    }
+
+    public function execute()
+    {
+        return $this->getStyle();
     }
 }

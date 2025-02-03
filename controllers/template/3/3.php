@@ -33,7 +33,7 @@ class Template3 implements ITemplate
                 align-items: center;
             }
             .jewelry-shop {
-              border-radius: 20px;
+              border-radius: 40px;
               background-color: #fff;
               display: flex;
               max-width: 480px;
@@ -218,15 +218,16 @@ class Template3 implements ITemplate
               height: 193px;
               align-items: center;
               justify-content: center;
-              padding: 0 9px;
               box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             }
             </style>
 
             <section class="jewelry-shop">
               <div class="content-wrapper" id="template__background">
-              <div id="avatar__container">
-                <img id="avatar" draggable=false loading="lazy" src=' . $props['imgPath'] . ' class="logo" alt="Jewelry Shop Logo" />
+              <div id="avatar__container--wrapper" style="position: relative;">
+                <div id="avatar__container" style="overflow: hidden;" class="div-3">
+                    <img id="avatar" draggable=false loading="lazy" src=' . $props['imgPath'] . ' class="logo" alt="Jewelry Shop Logo" />
+                </div>
               </div>
               <div id="text">
                 <h1 class="shop-title template__font template_name">' . $props['info']['name']->getHTML() . '</h1>

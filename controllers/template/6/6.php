@@ -45,26 +45,21 @@ class Template6 implements ITemplate
 
 .avatar-container {
   align-self: stretch;
-  display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 41px 60px 0;
   border-radius: 40px 40px 0px 0px;
 }
 
 .avatar-wrapper {
-  background-color: #fff;
   border-radius: 50%;
-  z-index: 10;
-  display: flex;
-  margin-bottom: -66px;
+  z-index: 0;
   width: 210px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  padding: 0 6px;
+  border: solid 6px #fff;
 }
 
 .avatar {
@@ -76,7 +71,7 @@ class Template6 implements ITemplate
 }
 
 .profile-name {
-  margin-top: 70px;
+  margin-top: 15px;
   text-align: center;
 }
 
@@ -124,10 +119,14 @@ class Template6 implements ITemplate
 
 <article class="profile-card">
   <div class="profile-content" id="template__background">
-    <div class="avatar-container">
-      <div class="avatar-wrapper" id="avatar__container">
-        <img id="avatar" draggable=false loading="lazy" src="' . $props['imgPath'] . '" class="avatar" alt="Profile avatar" />
+    <div style="margin-top: 60px;">
+    <div id="avatar__container--wrapper" style="position: relative;">
+      <div class="avatar-container">
+        <div class="avatar-wrapper" id="avatar__container" style="overflow: hidden;">
+          <img id="avatar" draggable=false loading="lazy" src="' . $props['imgPath'] . '" class="avatar" alt="Profile avatar" />
+        </div>
       </div>
+    </div>
     </div>
     <div id="text">
     <h1 class="profile-name template__font template_name">' . $props['info']['name']->getHTML() . '</h1>

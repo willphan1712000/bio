@@ -32,7 +32,7 @@ const Canvas_1 = __importDefault(require("../../../client/src/Web-Development/co
 const W_1 = require("../../../client/src/Web-Development/W");
 const AdminContext_1 = __importStar(require("../AdminContext"));
 const react_dom_1 = __importDefault(require("react-dom"));
-const AvatarFrame = ({ popup }) => {
+const AvatarFrame = () => {
     const [state, dispatch] = (0, AdminContext_1.handleAdminImageContext)();
     const [transform, setTransform] = (0, react_1.useState)(null);
     const data = (0, AdminContext_1.default)();
@@ -82,8 +82,8 @@ const AvatarFrame = ({ popup }) => {
     if (!state.isUpload)
         return null;
     const jsx = ((0, jsx_runtime_1.jsxs)("div", { className: `flex h-screen w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`, children: [(0, jsx_runtime_1.jsx)("p", { className: "text-[20px] mb-[20px]", children: "Drag, Zoom, or Rotate Image" }), (0, jsx_runtime_1.jsx)("div", { className: "frame relative w-[100%] max-w-[500px] max-h-[500px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white", ref: frameRef, children: (0, jsx_runtime_1.jsx)("div", { className: "wrapper", ref: wrapperRef, children: (0, jsx_runtime_1.jsx)("img", { className: "img__preview", src: state.previewSrc, ref: imageRef }) }) }), (0, jsx_runtime_1.jsxs)("div", { className: "btn flex flex-row gap-6 mt-[20px] z-0", children: [(0, jsx_runtime_1.jsx)("div", { onClick: () => handleAccept(), className: "flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer", children: "Accept" }), (0, jsx_runtime_1.jsx)("div", { onClick: () => handleCancel(), className: "cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer", children: "Cancel" })] })] }));
-    if (popup === undefined)
+    if (!state.popup)
         return jsx;
-    return react_dom_1.default.createPortal(jsx, popup);
+    return react_dom_1.default.createPortal(jsx, state.popup);
 };
 exports.default = AvatarFrame;

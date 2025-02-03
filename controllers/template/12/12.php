@@ -26,14 +26,19 @@ class Template12 implements ITemplate
         </style>
         <div class="flex overflow-hidden flex-col bg-white rounded-3xl max-w-[430px] w-screen p-[10px]" role="region" aria-label="Hot Summer Collection">
         <div id="template__background"
-            class="flex flex-col px-7 pt-5 w-full rounded-3xl bg-[linear-gradient(180deg,#FF992E_0.31%,#F88138_21.54%,#E74453_66.09%,#DA1467_98.08%)]"
+            class="flex flex-col px-7 pt-5 w-full rounded-3xl"
         >
-            <img
-            loading="lazy"
-            src="' . $props['imgPath'] . '"
-            alt="Summer Collection Logo"
-            class="object-contain self-center max-w-full aspect-square shadow-[0px_0px_15px_rgba(0,0,0,0.35)] w-[120px] rounded-[50%]"
-            />
+            <div id="avatar__container--wrapper" style="position: relative;" class="self-center w-[150px]">
+                <div id="avatar__container" style="overflow: hidden;" class="rounded-[50%] shadow-[0px_0px_15px_rgba(0,0,0,0.35)]">
+                <img
+                    loading="lazy"
+                    src="' . $props['imgPath'] . '"
+                    alt="Summer Collection Logo"
+                    class="object-contain"
+                />
+                </div>
+            </div>
+            <div id="text" class="flex items-center flex-col justify-center">
             <div class="self-center mt-7 text-base font-extralight text-white template__font template_name">
             ' . $props['info']['name']->getHTML() . '
             </div>
@@ -49,6 +54,7 @@ class Template12 implements ITemplate
                 margin: 0px;
                 height: 70px;
                 scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
+                </div>
             <div class="flex overflow-hidden gap-7 justify-center px-8 py-1.5 mt-4 border border-white border-solid rounded-[50px]">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
@@ -95,13 +101,13 @@ class Template12 implements ITemplate
             >
                 <div class="mr-14">HAPPY SHOPPING</div>
                 ' . $props['info']['OrderOnline']->getHTML('<button
-                class="z-[1] px-16 py-2 mt-2.5 max-w-full whitespace-nowrap bg-orange-600 rounded-[30px] shadow-[0px_2px_5px_rgba(0,0,0,0.25)] w-[242px] text-white"
+                class="relative z-[1] px-16 py-2 mt-2.5 max-w-full whitespace-nowrap bg-orange-600 rounded-[30px] shadow-[0px_2px_5px_rgba(0,0,0,0.25)] w-[242px] text-white"
                 aria-label="Shop Now"
                 >
                 Shop
                 </button>') . '
                 ' . $props['info']['Mobile']->getHTML('<button
-                class="z-[1] px-16 py-2 mt-2.5 max-w-full whitespace-nowrap bg-orange-600 rounded-[30px] shadow-[0px_2px_5px_rgba(0,0,0,0.25)] w-[242px] text-white"
+                class="relative z-[1] px-16 py-2 mt-2.5 max-w-full whitespace-nowrap bg-orange-600 rounded-[30px] shadow-[0px_2px_5px_rgba(0,0,0,0.25)] w-[242px] text-white"
                 aria-label="Contact Us"
                 >
                 Contact

@@ -264,13 +264,17 @@ class Template2 implements ITemplate
       font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
   }
 </style>
-<div class="div bg-white">
-  <div id="avatar__container">
-  <img draggable=false
-    loading="lazy"
-    src="' . $props['imgPath'] . '"
-    class="img" id="avatar"
-  />
+<div class="div bg-white" id="template__background">
+  <div id="avatar__container--wrapper" style="position: relative;">
+    <div id="avatar__container" style="overflow: hidden;">
+      <div>
+        <img draggable=false
+          loading="lazy"
+          src="' . $props['imgPath'] . '"
+          class="img" id="avatar"
+        />
+      </div>
+    </div>
   </div>
   <div id="text">
   <h1 class="div-2 template__font template_name">' . $props['info']['name']->getHTML() . '</h1>

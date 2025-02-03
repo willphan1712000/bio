@@ -9,6 +9,8 @@ export type State = {
     mainSrc: string,
     previewSrc: string,
     isDelete: boolean,
+    popup?: HTMLElement,
+    avatarMounter?: HTMLElement
 }
 export type Action = {type: 'upload' | 'main' | 'preview' | 'delete', value?: string}
 

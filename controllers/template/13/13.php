@@ -43,27 +43,33 @@ class Template13 implements ITemplate
                 <div
                 class="flex relative flex-col items-center self-stretch px-20 w-full bg-white h-[70px] justify-center"
                 >
-                <img
-                    loading="lazy"
-                    src="' . $props['imgPath'] . '"
-                    class="object-contain z-10 mt-0 mb-0 max-w-full aspect-square w-[125px] rounded-[50%] border-[3px] border-white"
-                    alt="Digma Office Logo"
-                />
+                
+                <div id="avatar__container--wrapper" style="position: relative;">
+                    <div id="avatar__container" style="overflow: hidden;" class="object-contain z-0 mt-0 mb-0 max-w-full aspect-square w-[125px] rounded-[50%] border-[3px] border-white">
+                    <img
+                        loading="lazy"
+                        src="' . $props['imgPath'] . '"
+                        alt="Digma Office Logo"
+                    />
+                    </div>
                 </div>
+                </div>
+                <div id="text">
                 <div class="relative mt-8 text-2xl font-bold text-white template__font template_name">' . $props['info']['name']->getHTML() . '</div>
                 <p class="relative mt-1 text-base tracking-widest text-white template__font template_title">
                 ' . $props['info']['position']->getHTML() . '</p>
                 <p class="relative mt-1 text-base tracking-widest text-white template__font template_org">
                 ' . $props['info']['organization']->getHTML() . '</p>
                 <div class="relative w-full">
-                    <textarea class="des template_des template__font" style="border: none;
-                        resize: none;
-                        background: transparent;
-                        width: 100%;
-                        text-align: center;
-                        margin: 0px;
-                        height: 70px;
-                        scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
+                <textarea class="des template_des template__font" style="border: none;
+                    resize: none;
+                    background: transparent;
+                    width: 100%;
+                    text-align: center;
+                    margin: 0px;
+                    height: 70px;
+                    scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
+                </div>
                 </div>
                 <div class="flex gap-9 z-0 mt-[10px]">
                 ' . $props['info']['Facebook']->getHTML('<img

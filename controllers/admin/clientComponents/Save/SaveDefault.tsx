@@ -17,9 +17,9 @@ export default function SaveDefault() {
   return (
     <AdminSaveContext.Provider value={[state, dispatch]}>
         <div className='flex justify-center items-center sticky bottom-[1.5rem] z-[2] m-[20px]'>
-          <div className=' w-[70%] h-[60px]'>
+          <div className='min-w-[70%]'>
             <div className={`saveDefaultButtonStyle ${state.isShow ? 'saveDefaultButtonGlowingStyle': ''}`}>
-                <span className="flex items-center"><p className='mx-[10px]'>{state.msg}</p> <ClipLoader size="20px" color='#000' loading={state.isSubmitting}/></span>
+                <span className="flex items-center text-center"><p className='mx-[10px]'>{state.msg}</p> <ClipLoader size="20px" color='#000' loading={state.isSubmitting}/></span>
                 <Save />
             </div>
           </div>

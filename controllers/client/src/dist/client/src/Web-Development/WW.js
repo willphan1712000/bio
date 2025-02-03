@@ -222,6 +222,13 @@ class WPromise extends WW0 {
             .filter((item) => item !== undefined);
         return r.length > 0 ? r : [];
     }
+    wait(n) {
+        return new Promise((res) => {
+            setTimeout(() => {
+                res();
+            }, n * 1000);
+        });
+    }
     handlePromiseAllSettled(promiseArray, option) {
         return new Promise((res, rej) => __awaiter(this, void 0, void 0, function* () {
             try {
@@ -232,6 +239,7 @@ class WPromise extends WW0 {
                     res(results_init);
                 let results;
                 for (let i = 1; i <= retry; i++) {
+                    yield this.wait(1.5);
                     results = yield this.PromiseAllSettled(failedPromises);
                     failedPromises = this.failedPromise(results, failedPromises);
                     if (failedPromises.length === 0)

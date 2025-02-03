@@ -30,9 +30,9 @@
   /* font-family: 'Nunito Sans'; */
   /* font-family: 'Playfair Display'; */
   /* font-family: 'Roboto Slab'; */
-  /* font-family: 'Source Sans Pro'; */
+  font-family: 'Source Sans Pro';
   /* font-family: 'Tai Heritage Pro'; */
-  font-family: "Ubuntu";
+  /* font-family: "Ubuntu"; */
 }
 body {
   background-color: var(--main-color);

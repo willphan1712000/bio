@@ -42,6 +42,8 @@ const FontSize_1 = __importDefault(require("./FontSize"));
 const Reducer_1 = __importStar(require("./Reducer"));
 const SavePDF_1 = __importDefault(require("./SavePDF"));
 const Save_1 = __importDefault(require("./Save"));
+const Reset_1 = __importDefault(require("./Reset"));
+const Bio_1 = __importDefault(require("./Bio"));
 const Setting = ({ data, css, resource }) => {
     const [state, dispatch] = (0, react_1.useReducer)(Reducer_1.default, {
         background: false,
@@ -79,7 +81,7 @@ const Setting = ({ data, css, resource }) => {
                 dispatch({ type: 'all' });
             }
         });
-        const template = document.querySelector(".card-container");
+        const template = document.querySelector("#text");
         template.addEventListener('input', e => {
             const target = e.target;
             const name = $(target).data('name');
@@ -93,17 +95,18 @@ const Setting = ({ data, css, resource }) => {
             }
         });
     }, []);
-    return ((0, jsx_runtime_1.jsxs)(AdminContextProvider_1.default, { data: data, css: css, regex: resource.regexMap, label: resource.labelMap, setting: [state, dispatch], children: [(0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-col', children: [(0, jsx_runtime_1.jsxs)("div", { id: "setting_board", className: 'flex gap-1', children: [state.background && ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(W_1.ColorPickerGradient, { keyValue: "W_colorPicker", defaultColor: css.background, cb: color => {
+    const background = document.getElementById("template__background");
+    return ((0, jsx_runtime_1.jsxs)(AdminContextProvider_1.default, { data: data, css: css, regex: resource.regexMap, label: resource.labelMap, setting: [state, dispatch], children: [(0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-col', children: [(0, jsx_runtime_1.jsxs)("div", { id: "setting_board", className: 'flex gap-1', children: [state.background && (background ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(W_1.ColorPickerGradient, { keyValue: "W_colorPicker", defaultColor: css.background, cb: color => {
                                             css.background = color;
-                                            $("#template__background").css({
+                                            $(background).css({
                                                 background: color
                                             });
                                         } }), (0, jsx_runtime_1.jsx)(W_1.Options, { keyValue: "colorOptionsInBackground", Face: W_1.ColorType, list: ElementMap_1.solidColors, cb: color => {
                                             css.background = color;
-                                            $("#template__background").css({
+                                            $(background).css({
                                                 background: color
                                             });
-                                        } })] })), state.font && (0, jsx_runtime_1.jsx)(W_1.Options, { keyValue: "fontOptions", Face: W_1.FontType, face: "A", list: ElementMap_1.fonts, cb: font => {
+                                        } })] })) : (0, jsx_runtime_1.jsx)("div", { className: 'flex items-center justify-center size-full rounded-[2rem] bg-white mx-[1rem] text-center', style: { boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }, children: (0, jsx_runtime_1.jsx)("p", { children: "This template does not allow background change" }) })), state.font && (0, jsx_runtime_1.jsx)(W_1.Options, { keyValue: "fontOptions", Face: W_1.FontType, face: "A", list: ElementMap_1.fonts, cb: font => {
                                     css.font = font;
                                     $(".template__font").css({
                                         fontFamily: font
@@ -117,6 +120,12 @@ const Setting = ({ data, css, resource }) => {
                                     $(".template__font").css({
                                         color
                                     });
-                                } }), state.input && ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: state.inputName, children: (0, jsx_runtime_1.jsx)("div", { className: 'w-full bg-white rounded-[20px] mx-4 p-1', id: "inputElement", children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}) }) }))] }), (0, jsx_runtime_1.jsxs)("div", { id: "setting_bar", className: '[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto', style: { scrollbarWidth: 'none' }, children: [(0, jsx_runtime_1.jsx)(Background_1.default, {}), (0, jsx_runtime_1.jsx)(Font_1.default, {}), (0, jsx_runtime_1.jsx)(FontSize_1.default, {}), (0, jsx_runtime_1.jsx)(FontColor_1.default, {}), (0, jsx_runtime_1.jsx)(SavePDF_1.default, {}), (0, jsx_runtime_1.jsx)("div", { className: "h-auto flex-shrink-0", children: (0, jsx_runtime_1.jsx)(Delete_1.default, { message: resource.deleteWarning }) })] })] }), (0, jsx_runtime_1.jsx)(AvatarTemplate_1.default, {}), (0, jsx_runtime_1.jsx)(Save_1.default, {})] }));
+                                } }), state.input && ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminElementContext.Provider, { value: state.inputName, children: (0, jsx_runtime_1.jsx)("div", { className: 'w-full bg-white rounded-[20px] mx-4 p-1', id: "inputElement", children: (0, jsx_runtime_1.jsx)(SocialTag_1.default, {}) }) }))] }), (0, jsx_runtime_1.jsx)(SettingBar, { resource: resource })] }), (0, jsx_runtime_1.jsx)(AvatarSave, {})] }));
 };
+const SettingBar = (0, react_1.memo)(({ resource }) => {
+    return ((0, jsx_runtime_1.jsxs)("div", { id: "setting_bar", className: '[&::-webkit-scrollbar]:hidden flex flex-row gap-[10px] p-[10px] items-center overflow-auto', style: { scrollbarWidth: 'none' }, children: [(0, jsx_runtime_1.jsx)(Bio_1.default, {}), (0, jsx_runtime_1.jsx)(Background_1.default, {}), (0, jsx_runtime_1.jsx)(Font_1.default, {}), (0, jsx_runtime_1.jsx)(FontSize_1.default, {}), (0, jsx_runtime_1.jsx)(FontColor_1.default, {}), (0, jsx_runtime_1.jsx)(Reset_1.default, {}), (0, jsx_runtime_1.jsx)(SavePDF_1.default, {}), (0, jsx_runtime_1.jsx)("div", { className: "h-auto flex-shrink-0", children: (0, jsx_runtime_1.jsx)(Delete_1.default, { message: resource.deleteWarning }) })] }));
+});
+const AvatarSave = (0, react_1.memo)(() => {
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(AvatarTemplate_1.default, {}), (0, jsx_runtime_1.jsx)(Save_1.default, {})] }));
+});
 exports.default = Setting;

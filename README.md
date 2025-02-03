@@ -30,32 +30,24 @@
 $props = [
     'username' => $username,
     'imgPath' => $imgPath,
-    'social' => SystemConfig::socialNameArr(),
-    'icon' => SystemConfig::socialIconArr(),
     'info' => infoProcess($infoArray),
-    'css' => $css,
-    'mode' => 'div'
+    'css' => $css
 ];
-$css = [
-    'background',
-    'font',
-    'fontSize',
-    'fontColor'
-]
 ```
 
 - For each contributed template style, we are going to add some special ids and classes to be modified by admin
 
-| Where                     | id or class                            | css                                                                                                                                                                                                                | php                                 |
-| :------------------------ | :------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------- |
-| template background       | `id="template__background"`            | `background: '.$props['css']['background'].';`                                                                                                                                                                     | none                                |
-| template avatar container | `id="avatar__container"`               | none                                                                                                                                                                                                               | none                                |
-| template avatar           | `id="avatar"`                          | none                                                                                                                                                                                                               | none                                |
-| template text wrapper     | `id="text"`                            | none                                                                                                                                                                                                               | none                                |
-| template heading          | `class="template__font template_name"` | `.template__font {font-family: '.$props['css']['font'].';font-size: '.$props['css']['fontSize'].';color: '.$props['css']['fontColor'].';} .template_name {font-size: calc('.$props['css']['fontSize'].' + 15px);}` | none                                |
-| template organization     | `class="template__font template_org"`  | `.template__font {font-family: '.$props['css']['font'].';font-size: '.$props['css']['fontSize'].';color: '.$props['css']['fontColor'].';}`                                                                         | none                                |
-| template description      | `class="template__font template_des"`  | `.template__font {font-family: '.$props['css']['font'].';font-size: '.$props['css']['fontSize'].';color: '.$props['css']['fontColor'].';}`                                                                         | none                                |
-| social                    | none                                   | none                                                                                                                                                                                                               | `socialMediaIcon($props)->render()` |
+| Where                             | id or class                                             | css                                                                                                                                                                                                                | php                                 |
+| :-------------------------------- | :------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------- |
+| template background               | `id="template__background"`                             | `background: '.$props['css']['background'].';`                                                                                                                                                                     | none                                |
+| template avatar container wrapper | `id="avatar__container--wrapper"`                       | `style="position: relative;" `                                                                                                                                                                                     | none                                |
+| template avatar container         | `id="avatar__container"` `class="defaultTemplateClass"` | `style="overflow: hidden;" `                                                                                                                                                                                       | none                                |
+| template avatar                   | `id="avatar"`                                           | none                                                                                                                                                                                                               | none                                |
+| template text wrapper             | `id="text"`                                             | none                                                                                                                                                                                                               | none                                |
+| template heading                  | `class="template__font template_name"`                  | `.template__font {font-family: '.$props['css']['font'].';font-size: '.$props['css']['fontSize'].';color: '.$props['css']['fontColor'].';} .template_name {font-size: calc('.$props['css']['fontSize'].' + 15px);}` | none                                |
+| template organization             | `class="template__font template_org"`                   | `.template__font {font-family: '.$props['css']['font'].';font-size: '.$props['css']['fontSize'].';color: '.$props['css']['fontColor'].';}`                                                                         | none                                |
+| template description              | `class="template__font template_des"`                   | `.template__font {font-family: '.$props['css']['font'].';font-size: '.$props['css']['fontSize'].';color: '.$props['css']['fontColor'].';}`                                                                         | none                                |
+| social                            | none                                                    | none                                                                                                                                                                                                               | `socialMediaIcon($props)->render()` |
 
 - CSS
 
@@ -77,21 +69,28 @@ $css = [
 
 ```html
 <div id="text">
-  <h1 class="store-title template__font template_name"></h1>
+  <h1 class="template__font template_name"></h1>
+  <p class="des template__font template_title"></p>
   <p class="des template__font template_org"></p>
-  <p class="des template__font template_des"></p>
+  <textarea
+    class="des template__font template_des"
+    style="border: none;
+        resize: none;
+        background: transparent;
+        width: 80vw;
+        height: 70px;
+        text-align: center;
+        margin: 0px;
+        scrollbar-width: none;"
+  ></textarea>
 </div>
+```
 
-<main class="beauty-store" id="template__background">
-  <div class="logo-container" id="avatar__container">
-    <img
-      id="avatar"
-      draggable="false"
-      loading="lazy"
-      src="'.$props['imgPath'].'"
-      class="logo"
-      alt="Beauty store logo"
-    />
+```html
+<div id="avatar__container--wrapper" style="position: relative;">
+  <div id="avatar__container" style="overflow: hidden;">
+    <img id="avatar" draggable=false loading="lazy" src=' . $props['imgPath'] .
+    ' class="img" />
   </div>
-</main>
+</div>
 ```
