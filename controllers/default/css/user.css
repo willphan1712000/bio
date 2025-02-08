@@ -166,8 +166,9 @@ a {
   display: flex;
   flex-direction: row;
 }
-.social__img i {
-  font-size: 50px;
+.social__img > * {
+  font-size: 40px;
+  width: 40px;
 }
 .social__info label {
   margin-bottom: 5px;
@@ -438,9 +439,9 @@ a {
   .social.info {
     flex-direction: row;
   }
-  .social__img i {
+  /* .social__img i {
     font-size: 40px;
-  }
+  } */
   .adminBtn {
     flex-direction: column;
     width: 95%;

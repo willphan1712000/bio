@@ -33,7 +33,7 @@ const iconMap: ElementArray = {
     'Invalid': <Invalid />
 };
 
-export { iconMap };
+// export { iconMap };
 
 export function Email() {
     return (

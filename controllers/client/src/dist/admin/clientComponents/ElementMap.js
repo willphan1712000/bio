@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.solidColors = exports.fonts = exports.iconMap = void 0;
+exports.solidColors = exports.fonts = void 0;
 exports.Email = Email;
 exports.Mobile = Mobile;
 exports.Booking = Booking;
@@ -54,7 +54,6 @@ const iconMap = {
     'Valid': (0, jsx_runtime_1.jsx)(Valid, {}),
     'Invalid': (0, jsx_runtime_1.jsx)(Invalid, {})
 };
-exports.iconMap = iconMap;
 function Email() {
     return ((0, jsx_runtime_1.jsx)(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEnvelope, size: "3x" }));
 }

@@ -11,7 +11,7 @@ class GET extends APIAbstract
 {
     public function handleRequest($body)
     {
-        return (new TemplateGET($body->username))->execute();
+        return (new TemplateGET($body->username, $body->template))->execute();
     }
 }
 

@@ -33,7 +33,7 @@ class EntityFunction
             (9, 'Template ID 9', 'controllers/template/9/9.png', NULL, '\'700 Urbanist\', sans-serif', '15px', '#ff8fab', 'linear-gradient(62deg, #ffcad7 0%, #ffffff 54%, #ffcad7 100%)', 1000),
             (10, 'Template ID 10', 'controllers/template/10/10.png', NULL, '\'Kulim Park\', sans-serif', '15px', '#000', '#fff', 1000),
             (11, 'Template ID 11', 'controllers/template/11/11.png', NULL, '\'Kulim Park\', sans-serif', '16px', '#fff', '#89e6c9', 1000),
-            (12, 'Template ID 12', 'controllers/template/12/12.png', NULL, '\'Inter\', sans-serif', '16px', '#fff', 'linear-gradient(180deg,#FF992E_0.31%,#F88138_21.54%,#E74453_66.09%,#DA1467_98.08%)', 1000),
+            (12, 'Template ID 12', 'controllers/template/12/12.png', NULL, '\'Inter\', sans-serif', '16px', '#fff', 'linear-gradient(180deg,#FF992E 0.31%,#F88138 21.54%,#E74453 66.09%,#DA1467 98.08%)', 1000),
             (13, 'Template ID 13', 'controllers/template/13/13.png', NULL, '\'Inter\', sans-serif', '16px', '#fff', '#329cef', 1000),
             (14, 'Template ID 14', 'controllers/template/14/14.png', NULL, '\'Inter\', sans-serif', '16px', '#fff', '#329cef', 1000),
             (15, 'Template ID 15', 'controllers/template/15/15.png', NULL, '\'Inter\', sans-serif', '16px', '#000', '#f6cdd2', 1000),

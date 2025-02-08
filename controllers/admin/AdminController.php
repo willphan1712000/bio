@@ -70,8 +70,6 @@ class AdminController extends UserController
 
                 $this->getPostData(); // get all needed data
 
-                $this->regexMap = SystemConfig::regexMap();
-
                 return [
                     'success' => true
                 ];

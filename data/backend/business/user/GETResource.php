@@ -19,7 +19,8 @@ class GETResource implements IAPI
                     'regexMap' => SystemConfig::regexMap(),
                     'labelMap' => SystemConfig::labelMap(),
                     'defaultImg' => SystemConfig::globalVariables()['img']['unknown'],
-                    'deleteWarning' => SystemConfig::globalVariables()['deleteWarningMsg']
+                    'deleteWarning' => SystemConfig::globalVariables()['deleteWarningMsg'],
+                    'iconMap' => SystemConfig::socialIconArr()
                 ]
             ];
         } catch (\Exception $e) {

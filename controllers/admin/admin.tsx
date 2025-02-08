@@ -4,10 +4,6 @@ import { username } from "./clientComponents/AdminContext";
 import { fetchData, getCSS, getResource } from "./clientComponents/FetchData";
 import Setting from "./clientComponents/Setting/Setting";
 
-interface Props {
-    [key: string]: string
-}
-
 $(document).ready(function() {
     admin();
 })

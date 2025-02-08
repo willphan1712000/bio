@@ -198,9 +198,9 @@ textarea {
   display: flex;
   flex-direction: row;
 }
-.social__img i {
+/* .social__img i {
   font-size: 50px !important;
-}
+} */
 .social__info label {
   margin-bottom: 5px;
 }

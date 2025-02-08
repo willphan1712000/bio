@@ -27,7 +27,7 @@ function adminPage() {
         const list = yield (0, FetchData_1.fetchData)(user);
         list.username = user;
         const resource = yield (0, FetchData_1.getResource)(user);
-        (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath: resource.defaultImg, regexMap: resource.regexMap, labelMap: resource.labelMap } })).reactMounting();
+        (0, W_1.$$)("#info__wrapper", (0, jsx_runtime_1.jsx)(InfoArea_1.default, { data: list, extraData: { defaultImgPath: resource.defaultImg, regexMap: resource.regexMap, labelMap: resource.labelMap, iconMap: resource.iconMap } })).reactMounting();
         (0, W_1.$$)("#delete", (0, jsx_runtime_1.jsx)(Delete_1.default, { message: resource.deleteWarning })).reactMounting();
     });
 }

@@ -19,7 +19,7 @@ async function adminPage() {
     // Get needed resource
     const resource = await getResource(user)
 
-    $$("#info__wrapper", <InfoArea data={list} extraData={{defaultImgPath: resource.defaultImg, regexMap: resource.regexMap, labelMap: resource.labelMap}}/>).reactMounting() // Mount React components
+    $$("#info__wrapper", <InfoArea data={list} extraData={{defaultImgPath: resource.defaultImg, regexMap: resource.regexMap, labelMap: resource.labelMap, iconMap: resource.iconMap}}/>).reactMounting() // Mount React components
 
     $$("#delete", <Delete message={resource.deleteWarning}/>).reactMounting() // Mount React component
 }
