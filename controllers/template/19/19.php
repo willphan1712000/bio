@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template19 implements ITemplate
+class Template19 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div class="w-screen">
             <div class="flex flex-col rounded-3xl max-w-[430px] p-[10px]" role="region" aria-label="Photographer Profile">
             <div class="flex overflow-hidden flex-col items-center w-full rounded-3xl bg-zinc-800" id="template__background">
@@ -47,7 +33,7 @@ class Template19 implements ITemplate
                         </div>
                     </div>
                 </div>
-                <div id="text" class="flex flex-col items-center">
+                <div id="text" class="flex flex-col items-center text-center">
                 <h1 class="relative mt-2 text-2xl text-white template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                 <p class="relative text-base leading-5 text-center text-white template__font template_title">
                 ' . $props['info']['position']->getHTML() . '</p>
@@ -62,7 +48,7 @@ class Template19 implements ITemplate
                     height: 110px;
                     scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
                 </div>
-                <div class="flex gap-9 mt-[10px] z-0">
+                <div class="flex gap-9 mt-[10px] z-0 justify-evenly">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a871abb91c88f38a5e5b4a9a1686ce0fd435c8770d41791051d9cf8da9d45ef?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"

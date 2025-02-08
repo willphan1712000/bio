@@ -10,21 +10,23 @@ use persistence\Entity\User;
 class GET implements IAPI
 {
     protected string $username;
-    // private int $template;
+    protected ?int $template;
 
-    function __construct(string $username)
+    function __construct(string $username, ?int $template = null)
     {
         $this->username = $username;
-        // $this->template = $template;
+        $this->template = $template;
     }
 
     private function getStyle()
     {
         try {
-            $template = Database::GET(User::class, 'defaultTemplate', ['username' => $this->username]);
+            if ($this->template === null) {
+                $this->template = Database::GET(User::class, 'defaultTemplate', ['username' => $this->username]);
+            }
             $style = Database::GET(Style::class, null, [
                 'username' => $this->username,
-                'template_id' => $template
+                'template_id' => $this->template
             ]);
 
             $out = [];

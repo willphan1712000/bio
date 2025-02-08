@@ -5,12 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template6 implements ITemplate
+class Template6 extends TemplateStyle implements ITemplate
 {
   public function html($props)
   {
     $icon = SystemConfig::socialIconArr();
-    $html = '
+    $html = $this->commonStyle($props) . '
             <div id="template-container">
 <style>
   #social-media {
@@ -104,17 +104,6 @@ class Template6 implements ITemplate
   width: 31px;
   margin: auto 0;
 }
-  #template__background {
-      background: ' . $props['css']['background'] . ';
-    }
-    .template__font {
-        font-family: ' . $props['css']['font'] . ';
-        font-size: ' . $props['css']['fontSize'] . ';
-        color: ' . $props['css']['fontColor'] . ';
-    }
-    .template_name {
-        font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-    }
 </style>
 
 <article class="profile-card">

@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template17 implements ITemplate
+class Template17 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div class="w-screen">
             <div class="flex flex-col rounded-3xl max-w-[430px] w-full p-[10px]" role="region" aria-label="Perfume Product Section">
             <div id="template__background"
@@ -42,7 +28,7 @@ class Template17 implements ITemplate
                         />
                         </div>
                     </div>
-                    <div id="text" class="flex items-center flex-col">
+                    <div id="text" class="flex items-center flex-col text-center">
                     <div class="mt-2 text-2xl text-pink-400 template__font template_name" role="heading" aria-level="2">' . $props['info']['name']->getHTML() . '</div>
                     <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_title">
                     ' . $props['info']['position']->getHTML() . '</p>
@@ -60,7 +46,7 @@ class Template17 implements ITemplate
                 </div>
                 </div>
                 <div
-                class="flex flex-col justify-center items-center py-2 w-full bg-rose-300"
+                class="flex flex-col justify-evenly items-center py-2 w-full bg-rose-300"
                 >
                 <div class="flex overflow-hidden gap-7">
                     ' . $props['info']['Facebook']->getHTML('<img

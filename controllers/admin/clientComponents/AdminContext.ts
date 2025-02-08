@@ -67,6 +67,8 @@ export const AdminDeleteContext = createContext<Delete>(undefined)
 
 export const AdminLabelContext = createContext<Admin>(undefined)
 
+export const AdminIconContext = createContext<Admin>(undefined)
+
 export const AdminSettingContext = createContext<Setting>(undefined)
 
 export default function handleAdminContext() {
@@ -121,6 +123,14 @@ export function handleAdminLabelContext() {
     const data = useContext(AdminLabelContext)
     if(data === undefined) {
         throw new Error("Admin label context is undefined")
+    }
+    return data
+}
+
+export function handleAdminIconContext() {
+    const data = useContext(AdminIconContext)
+    if(data === undefined) {
+        throw new Error("Admin icon context is undefined")
     }
     return data
 }

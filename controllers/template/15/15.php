@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template15 implements ITemplate
+class Template15 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div class="w-screen">
             <div
             class="flex flex-col max-w-[455px] p-[10px] w-full"
@@ -46,7 +32,7 @@ class Template15 implements ITemplate
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col grow shrink-0 items-center basis-0 w-full px-[10px]" id="text">
+                <div class="flex flex-col grow shrink-0 items-center basis-0 w-full px-[10px] text-center" id="text">
                     <h1 class="mt-1 text-2xl font-semibold text-white template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                     <p class="mt-2 text-base font-semibold text-white template__font template_title">
                     ' . $props['info']['position']->getHTML() . '</p>
@@ -85,7 +71,7 @@ class Template15 implements ITemplate
                 <div
                 class="flex z-10 flex-col justify-center self-stretch px-9 py-3.5 mt-7 mb-0 w-full bg-red-400 rounded-b-3xl sticky bottom-0"
                 >
-                <div class="flex overflow-hidden gap-8">
+                <div class="flex overflow-hidden gap-8 justify-evenly">
                     ' . $props['info']['Facebook']->getHTML('<img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/ef68a5bb658f98c40d28524a8d3c718ba55138af7cda927f67d555f3a7e037b7?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"

@@ -2,7 +2,6 @@
 
 use component\Back;
 use component\Copyright;
-use config\SystemConfig;
 use component\BioTemplateButton;
 use business\info\display\Display;
 use controllers\admin\AdminController;

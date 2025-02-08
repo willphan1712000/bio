@@ -5,25 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template12 implements ITemplate
+class Template12 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-        <style>
-            #template__background {
-                background: ' . $props['css']['background'] . ';
-            }
-            .template__font {
-                font-family: ' . $props['css']['font'] . ';
-                font-size: ' . $props['css']['fontSize'] . ';
-                color: ' . $props['css']['fontColor'] . ';
-            }
-            .template_name {
-                font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-            }
-        </style>
+        $html = $this->commonStyle($props) . '
         <div class="flex overflow-hidden flex-col bg-white rounded-3xl max-w-[430px] w-screen p-[10px]" role="region" aria-label="Hot Summer Collection">
         <div id="template__background"
             class="flex flex-col px-7 pt-5 w-full rounded-3xl"
@@ -38,7 +25,7 @@ class Template12 implements ITemplate
                 />
                 </div>
             </div>
-            <div id="text" class="flex items-center flex-col justify-center">
+            <div id="text" class="flex items-center flex-col justify-center text-center">
             <div class="self-center mt-7 text-base font-extralight text-white template__font template_name">
             ' . $props['info']['name']->getHTML() . '
             </div>
@@ -55,7 +42,7 @@ class Template12 implements ITemplate
                 height: 70px;
                 scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
                 </div>
-            <div class="flex overflow-hidden gap-7 justify-center px-8 py-1.5 mt-4 border border-white border-solid rounded-[50px]">
+            <div class="flex overflow-hidden gap-7 px-8 py-1.5 mt-4 border border-white border-solid rounded-[50px] justify-evenly">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/f03b070a296817167022b7564e51b0651f06f45ef7df6c213e758ff33f258cfb?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"

@@ -18,6 +18,9 @@ interface Props {
       },
       labelMap: {
         [key: string]: string
+      },
+      iconMap: {
+        [key: string]: string
       }
     }
 }
@@ -42,7 +45,7 @@ const InfoArea = ({data, extraData}: Props) => {
 
   return (
     <>
-      <AdminContextProvider data={data} css={null} regex={extraData.regexMap} label={extraData.labelMap} setting={null}>
+      <AdminContextProvider data={data} css={null} regex={extraData.regexMap} label={extraData.labelMap} iconMap={extraData.iconMap} setting={null}>
         <div className='info'>
           <div className="info__img info__img--ava" id="avatar">
             <Avatar />

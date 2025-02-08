@@ -74,27 +74,28 @@ class SystemConfig
     public static function socialIconArr()
     {
         return [
-            "Mobile" => '<i class="fa-solid fa-phone"></i>',
-            "Work" => '<i class="fa-solid fa-phone"></i>',
-            "Email" => '<i class="fa-solid fa-envelope"></i>',
-            "Website" => '<i class="fa-solid fa-globe"></i>',
-            "Booking" => '<img style="width: 100%;" class="icon" src="/controllers/client/img/booking.png">',
-            "OrderOnline" => '<img style="width: 100%;" class="icon" src="/controllers/client/img/order.png">',
-            "HotSale" => '<img style="width: 100%;" class="icon" src="/controllers/client/img/hotsales.png">',
-            "Address" => '<i class="fa-solid fa-location-dot"></i>',
-            "Facebook" => '<i class="fa-brands fa-facebook"></i>',
-            "Instagram" => '<i class="fa-brands fa-instagram"></i>',
-            "Messenger" => '<i class="fa-brands fa-facebook-messenger"></i>',
-            "Youtube" => '<i class="fa-brands fa-youtube"></i>',
-            "Threads" => '<i class="fa-brands fa-threads"></i>',
-            "X" => '<i class="fa-brands fa-x-twitter"></i>',
-            "Linkedin" => '<i class="fa-brands fa-linkedin"></i>',
-            "Tiktok" => '<i class="fa-brands fa-tiktok"></i>',
-            "Pinterest" => '<i class="fa-brands fa-pinterest"></i>',
-            "Zalo" => '<i class="fa-brands fa-viber"></i>',
-            "Viber" => '<i class="fa-brands fa-viber"></i>',
-            "HotLine" => '<i class="fa-solid fa-phone"></i>',
-            "Whatsapp" => '<i class="fa-brands fa-whatsapp"></i>',
+            "Mobile" => '<div style=""><i class="fa-solid fa-phone"></i></div>',
+            "Work" => '<div style=""><i class="fa-solid fa-phone"></i></div>',
+            "Email" => '<div style=""><i class="fa-solid fa-envelope"></i></div>',
+            "Website" => '<div style=""><i class="fa-solid fa-globe"></i></div>',
+            "Booking" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/booking.png" alt="element_icon"></div>',
+            "OrderOnline" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/order.png" alt="element_icon"></div>',
+            "HotSale" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/hotsales.png" alt="element_icon"></div>',
+            "Address" => '<div style=""><i class="fa-solid fa-location-dot"></i></div>',
+            "Facebook" => '<div style=""><i class="fa-brands fa-facebook"></i></div>',
+            "Instagram" => '<div style=""><i class="fa-brands fa-instagram"></i></div>',
+            "Messenger" => '<div style=""><i class="fa-brands fa-facebook-messenger"></i></div>',
+            "Youtube" => '<div style=""><i class="fa-brands fa-youtube"></i></div>',
+            "Threads" => '<div style=""><i class="fa-brands fa-threads"></i></div>',
+            "X" => '<div style=""><i class="fa-brands fa-x-twitter"></i></div>',
+            "Linkedin" => '<div style=""><i class="fa-brands fa-linkedin"></i></div>',
+            "Tiktok" => '<div style=""><i class="fa-brands fa-tiktok"></i></div>',
+            "Pinterest" => '<div style=""><i class="fa-brands fa-pinterest"></i></div>',
+            "Zalo" => '<div style=""><i class="fa-brands fa-viber"></i></div>',
+            "Viber" => '<div style=""><i class="fa-brands fa-viber"></i></div>',
+            "HotLine" => '<div style=""><i class="fa-solid fa-phone"></i></div>',
+            "Whatsapp" => '<div style=""><i class="fa-brands fa-whatsapp"></i></div>',
+            "Zalo" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/zalo.png" alt="element_icon"></div>'
         ];
     }
 
@@ -161,7 +162,9 @@ class SystemConfig
         ];
     }
 
-    // dump and die function used for debugging
+    /**
+     * dump and die function used for debugging
+     */
     public static function dd($value)
     {
         echo "<pre>";
@@ -171,9 +174,11 @@ class SystemConfig
         die();
     }
 
-    // this function is for extracting url into base or query string
-    // For example, if the url is https://domain/page1/page2/page3. hierarchy 1 will return page3, 2 will return page2, 3 will return page1, and so on
-    // If ignore hierarchy, and pass queryStr, it will return matching queryStr. For example, if the url is https://domain?username=willphan and queryStr is username, it will return willphan
+    /** 
+     * this function is for extracting url into base or query string.
+     * For example, if the url is https://domain/page1/page2/page3. hierarchy 1 will return page3, 2 will return page2, 3 will return page1, and so on.
+     * If ignore hierarchy, and pass queryStr, it will return matching queryStr. For example, if the url is https://domain?username=willphan and queryStr is username, it will return willphan.
+     */
     public static function URLExtraction(int $hierarchy = 1, string $queryStr = null)
     {
         $groups = explode("/", parse_url($_SERVER['REQUEST_URI'])['path']);

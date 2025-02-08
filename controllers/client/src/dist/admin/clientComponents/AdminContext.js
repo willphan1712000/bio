@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminSettingContext = exports.AdminLabelContext = exports.AdminDeleteContext = exports.AdminSaveContext = exports.AdminImageContext = exports.AdminElementContext = exports.AdminRegexContext = exports.AdminCssContext = exports.AdminContext = void 0;
+exports.AdminSettingContext = exports.AdminIconContext = exports.AdminLabelContext = exports.AdminDeleteContext = exports.AdminSaveContext = exports.AdminImageContext = exports.AdminElementContext = exports.AdminRegexContext = exports.AdminCssContext = exports.AdminContext = void 0;
 exports.default = handleAdminContext;
 exports.handleAdminRegexContext = handleAdminRegexContext;
 exports.handleAdminElementContext = handleAdminElementContext;
@@ -8,6 +8,7 @@ exports.handleAdminImageContext = handleAdminImageContext;
 exports.handleAdminSaveContext = handleAdminSaveContext;
 exports.handleAdminDeleteContext = handleAdminDeleteContext;
 exports.handleAdminLabelContext = handleAdminLabelContext;
+exports.handleAdminIconContext = handleAdminIconContext;
 exports.handleAdminSettingContext = handleAdminSettingContext;
 exports.handleAdminCssContext = handleAdminCssContext;
 exports.username = username;
@@ -20,6 +21,7 @@ exports.AdminImageContext = (0, react_1.createContext)(undefined);
 exports.AdminSaveContext = (0, react_1.createContext)(undefined);
 exports.AdminDeleteContext = (0, react_1.createContext)(undefined);
 exports.AdminLabelContext = (0, react_1.createContext)(undefined);
+exports.AdminIconContext = (0, react_1.createContext)(undefined);
 exports.AdminSettingContext = (0, react_1.createContext)(undefined);
 function handleAdminContext() {
     const data = (0, react_1.useContext)(exports.AdminContext);
@@ -67,6 +69,13 @@ function handleAdminLabelContext() {
     const data = (0, react_1.useContext)(exports.AdminLabelContext);
     if (data === undefined) {
         throw new Error("Admin label context is undefined");
+    }
+    return data;
+}
+function handleAdminIconContext() {
+    const data = (0, react_1.useContext)(exports.AdminIconContext);
+    if (data === undefined) {
+        throw new Error("Admin icon context is undefined");
     }
     return data;
 }

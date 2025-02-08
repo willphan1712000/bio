@@ -85,7 +85,7 @@ const Setting = ({data, css, resource}: Props) => {
   const background = document.getElementById("template__background") as HTMLElement;
 
   return (
-    <AdminContextProvider data={data} css={css} regex={resource.regexMap} label={resource.labelMap} setting={[state, dispatch]}>
+    <AdminContextProvider data={data} css={css} regex={resource.regexMap} label={resource.labelMap} iconMap={resource.iconMap} setting={[state, dispatch]}>
       <div className='flex flex-col'>
         <div id="setting_board" className='flex gap-1'>
           {state.background && (

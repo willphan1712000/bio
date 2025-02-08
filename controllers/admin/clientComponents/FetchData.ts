@@ -86,5 +86,8 @@ export type Resource = {
     defaultImg: string,
     deleteWarning: {
         [key: string]: string
+    },
+    iconMap: {
+        [key: string]: string
     }
 }

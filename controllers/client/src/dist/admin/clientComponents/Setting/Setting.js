@@ -96,7 +96,7 @@ const Setting = ({ data, css, resource }) => {
         });
     }, []);
     const background = document.getElementById("template__background");
-    return ((0, jsx_runtime_1.jsxs)(AdminContextProvider_1.default, { data: data, css: css, regex: resource.regexMap, label: resource.labelMap, setting: [state, dispatch], children: [(0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-col', children: [(0, jsx_runtime_1.jsxs)("div", { id: "setting_board", className: 'flex gap-1', children: [state.background && (background ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(W_1.ColorPickerGradient, { keyValue: "W_colorPicker", defaultColor: css.background, cb: color => {
+    return ((0, jsx_runtime_1.jsxs)(AdminContextProvider_1.default, { data: data, css: css, regex: resource.regexMap, label: resource.labelMap, iconMap: resource.iconMap, setting: [state, dispatch], children: [(0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-col', children: [(0, jsx_runtime_1.jsxs)("div", { id: "setting_board", className: 'flex gap-1', children: [state.background && (background ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(W_1.ColorPickerGradient, { keyValue: "W_colorPicker", defaultColor: css.background, cb: color => {
                                             css.background = color;
                                             $(background).css({
                                                 background: color
