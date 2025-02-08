@@ -5,25 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template11 implements ITemplate
+class Template11 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-                <style>
-                    #template__background {
-                        background: ' . $props['css']['background'] . ';
-                    }
-                    .template__font {
-                        font-family: ' . $props['css']['font'] . ';
-                        font-size: ' . $props['css']['fontSize'] . ';
-                        color: ' . $props['css']['fontColor'] . ';
-                    }
-                    .template_name {
-                        font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                    }
-                </style>
+        $html = $this->commonStyle($props) . '
                 <div class="p-[10px] w-screen">
                 <div id = "template__background"
                     class="bg-[#89e6c9] w-full flex overflow-hidden flex-col text-base rounded-3xl h-[800px]"

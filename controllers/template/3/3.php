@@ -5,12 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template3 implements ITemplate
+class Template3 extends TemplateStyle implements ITemplate
 {
   public function html($props)
   {
     $icon = SystemConfig::socialIconArr();
-    $html = '
+    $html = $this->commonStyle($props) . '
             <div id="template-container">
             <style>
               #social-media {
@@ -77,7 +77,7 @@ class Template3 implements ITemplate
               display: flex;
               margin-top: 15px;
               gap: 20px;
-              justify-content: space-between;
+              justify-content: space-evenly;
               padding: 10px 48px;
             }
 
@@ -200,17 +200,6 @@ class Template3 implements ITemplate
               white-space: nowrap;
               border: 0;
             }
-            #template__background {
-              background: ' . $props['css']['background'] . ';
-            }
-            .template__font {
-                font-family: ' . $props['css']['font'] . ';
-                font-size: ' . $props['css']['fontSize'] . ';
-                color: ' . $props['css']['fontColor'] . ';
-            }
-            .template_name {
-                font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-            }
             #avatar__container {
               border-radius: 50%;
               display: flex;
@@ -247,7 +236,6 @@ class Template3 implements ITemplate
                 <nav class="icon-container">
                 ' . $props['info']['Facebook']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/49f66af27cf65ef6b13acdf34efdc81d3b8bd777925a503041e71d4774da0738?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon" alt="Navigation Icon 1" />') . '
                 ' . $props['info']['Instagram']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7c9ca01f01fe0de3d01068aced92664353afad2a7eeee4339b0dab4121cd67c1?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-2" alt="Navigation Icon 2" />') . '
-                ' . $props['info']['Website']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/93a997ead6a3fa349a746bf98ddffb34732dc07673732dd27f24ad007a133a57?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-3" alt="Navigation Icon 3" style="display: none;"/>') . '
                 ' . $props['info']['Tiktok']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/694401f71d23033db96ad84981d7524d368ecc4480b88c1b64088c0d17b72dc6?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-4" alt="Navigation Icon 4" />') . '
                 ' . $props['info']['Youtube']->getHTML('<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/642ac05796d795ebd2a19013e100293d05cc2df926419342da3e347834961d6f?apiKey=076e1b6fb9564c54879ab1846aa9f941&" class="icon-5" alt="Navigation Icon 5" />') . '
                 </nav>

@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template18 implements ITemplate
+class Template18 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div class="w-screen">
             <div
             class="flex overflow-hidden flex-col font-bold text-black bg-white max-w-[430px] p-[10px]"
@@ -48,7 +34,7 @@ class Template18 implements ITemplate
                                 />
                         </div>
                     </div>
-                    <div class="flex flex-col rounded-none max-w-[324px] absolute bottom-[-25px] w-full" style="left: calc(50% - 162px);">
+                    <div class="flex flex-col rounded-none max-w-[324px] absolute bottom-[-25px] w-full justify-evenly" style="left: calc(50% - 162px);">
                         <div id="template__background"
                             class="flex gap-5 justify-between px-10 py-2.5 bg-red-900 rounded-xl border border-white border-solid"
                             role="region"
@@ -81,7 +67,7 @@ class Template18 implements ITemplate
                         </div>
                     </div>
                 </div>
-                <div id="text" class="z-[1]">
+                <div id="text" class="z-[1] text-center">
                 <h1 class="relative mt-[30px] text-3xl template__font template_name">' . $props['info']['name']->getHTML() . '</h1>
                 <div class="px-[10px] w-full flex justify-center items-center flex-col">
                 <p class="text-center self-stretch mt-1.5 text-base text-rose-300 template__font template_title">

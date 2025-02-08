@@ -4,11 +4,11 @@ namespace controllers\template;
 
 use controllers\template\ITemplate;
 
-class Template2 implements ITemplate
+class Template2 extends TemplateStyle implements ITemplate
 {
   public function html($props)
   {
-    $html = '
+    $html = $this->commonStyle($props) . '
             <div id="template-container">
 <style>
   .element {
@@ -251,17 +251,6 @@ class Template2 implements ITemplate
     color: #fff;
     margin-top: 56px;
     font: 400 25px Lilita One, sans-serif;
-  }
-  #template__background {
-    background: ' . $props['css']['background'] . ';
-  }
-  .template__font {
-      font-family: ' . $props['css']['font'] . ';
-      font-size: ' . $props['css']['fontSize'] . ';
-      color: ' . $props['css']['fontColor'] . ';
-  }
-  .template_name {
-      font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
   }
 </style>
 <div class="div bg-white" id="template__background">

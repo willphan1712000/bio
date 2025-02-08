@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template13 implements ITemplate
+class Template13 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div
             class="flex overflow-hidden flex-col bg-white max-w-[430px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-screen p-[10px]"
             role="region"
@@ -54,7 +40,7 @@ class Template13 implements ITemplate
                     </div>
                 </div>
                 </div>
-                <div id="text">
+                <div id="text" class="text-center">
                 <div class="relative mt-8 text-2xl font-bold text-white template__font template_name">' . $props['info']['name']->getHTML() . '</div>
                 <p class="relative mt-1 text-base tracking-widest text-white template__font template_title">
                 ' . $props['info']['position']->getHTML() . '</p>
@@ -71,7 +57,7 @@ class Template13 implements ITemplate
                     scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
                 </div>
                 </div>
-                <div class="flex gap-9 z-0 mt-[10px]">
+                <div class="flex gap-9 z-0 mt-[10px] justify-evenly">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/992941d1922cc1db8c7c3e3700d95c0cc378822e1a9e3a089baab1ce209dd9ef?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"

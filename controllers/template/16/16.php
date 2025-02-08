@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template16 implements ITemplate
+class Template16 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div class="w-screen">
             <div class="flex flex-col max-w-[430px] rounded-[29px] p-[10px] w-full" role="region" aria-label="Wedding Planning Services">
             <div class="flex overflow-hidden flex-col p-5 w-full rounded-[29px] bg-[linear-gradient(269deg,#FFDBFF_0.77%,#B1C6FE_99.23%)]" id="template__background">
@@ -40,7 +26,7 @@ class Template16 implements ITemplate
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center items-center flex-col w-full" id="text">
+                <div class="flex justify-center items-center flex-col w-full text-center" id="text">
                     <h1 class="self-center mt-2 text-xl font-bold text-white template__font template_name">
                    ' . $props['info']['name']->getHTML() . '
                     </h1>
@@ -57,7 +43,7 @@ class Template16 implements ITemplate
                     height: 120px;
                     scrollbar-width: none;">' . $props['info']['description']->getHTML() . '</textarea>
                 </div>
-                <div class="flex overflow-hidden gap-7 justify-center items-center mt-4">
+                <div class="flex overflow-hidden gap-7 justify-evenly items-center mt-4">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/5004f95ec01b213c8c4aee5110dcc817a7894a502b922c8e866faa9610b76421?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"

@@ -5,26 +5,12 @@ namespace controllers\template;
 use config\SystemConfig;
 use controllers\template\ITemplate;
 
-class Template14 implements ITemplate
+class Template14 extends TemplateStyle implements ITemplate
 {
     public function html($props)
     {
         $icon = SystemConfig::socialIconArr();
-        $html = '
-            <style>
-                #template__background {
-                    background: ' . $props['css']['background'] . ';
-                }
-                .template__font {
-                    font-family: ' . $props['css']['font'] . ';
-                    font-size: ' . $props['css']['fontSize'] . ';
-                    color: ' . $props['css']['fontColor'] . ';
-                }
-                .template_name {
-                    font-size: calc(' . $props['css']['fontSize'] . ' + 15px);
-                }
-            </style>
-
+        $html = $this->commonStyle($props) . '
             <div class="w-screen">
             <div class="flex flex-col bg-white max-w-[414px] p-[10px] w-full">
             <div class="flex flex-col px-8 pt-6 w-full bg-[#5eb2e5] rounded-t-3xl">
@@ -46,7 +32,7 @@ class Template14 implements ITemplate
                     <div class="my-auto text-5xl text-white basis-auto template__font template_name">' . $props['info']['name']->getHTML() . '</div>
                 </div>
                 </div>
-                 <div class="title-wrapper w-full flex flex-col justify-center items-center mt-[20px]" id="text">
+                 <div class="title-wrapper w-full flex flex-col justify-center items-center mt-[20px] text-center" id="text">
                     <p class="hero-description template__font template_title">
                     ' . $props['info']['position']->getHTML() . '</p>
                     <p class="hero-description template__font template_org">
@@ -69,7 +55,7 @@ class Template14 implements ITemplate
                 ' . $props['info']['Website']->getHTML('<div class="flex flex-row w-[60vw] rounded-[30px] bg-[#f3effb] p-[10px]"><div class="flex justify-center items-center">' . $icon['Website'] . '</div><p class="ml-[40px]">Website</p></div>') . '
             </div>
             </div>
-            <div class="flex flex-row justify-center px-14 py-5 mt-2 overflow-hidden gap-7 bg-[#5eb2e5] rounded-b-3xl sticky bottom-0">
+            <div class="flex flex-row justify-evenly px-14 py-5 mt-2 overflow-hidden gap-7 bg-[#5eb2e5] rounded-b-3xl sticky bottom-0">
                 ' . $props['info']['Facebook']->getHTML('<img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/339fa9ac81d114b330d6caaeaf5994e93ef9c01ee462424838292e642f945ce9?placeholderIfAbsent=true&apiKey=076e1b6fb9564c54879ab1846aa9f941"
