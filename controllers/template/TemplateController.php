@@ -7,19 +7,18 @@ use persistence\Database;
 use persistence\Entity\User;
 use persistence\Entity\UserInfo;
 use business\user\UserManagement;
-use controllers\Controller;
+use controllers\admin\AdminController;
 use business\template\TemplateManagement;
 
 // This business operation is used to handle template controller logic
-class TemplateController extends Controller
+class TemplateController extends AdminController
 {
-    private $username;
-    private bool $isSignedIn;
-    private $purchased;
-    private $chosenTemplate;
-    private $imgPath;
-    private $total;
-    private $g;
+    protected ?string $username;
+    protected $purchased;
+    protected $chosenTemplate;
+    protected $imgPath;
+    protected $total;
+    protected $g;
 
     function __construct()
     {
@@ -35,7 +34,7 @@ class TemplateController extends Controller
     }
 
     // Check if user is signed in. If so, get user avatar. Otherwise, redirect user to sign in page
-    private function signedIn()
+    protected function signedIn()
     {
         if ($this->username !== NULL) {
             $this->isSignedIn = UserManagement::isSignedIn($_SESSION, $this->username);
@@ -52,7 +51,7 @@ class TemplateController extends Controller
     }
 
     // get all purchased templates and default template
-    private function purchase()
+    protected function purchase()
     {
         if ($this->isSignedIn) {
             $purchases = Database::SQL("select template_id from Style where username ='$this->username'"); // Get all templates purchased
@@ -80,5 +79,6 @@ class TemplateController extends Controller
     {
         $this->signedIn();
         $this->purchase();
+        $this->restoreProcess();
     }
 }

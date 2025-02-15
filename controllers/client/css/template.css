@@ -69,7 +69,6 @@ h2, h5 {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 10vh;
 }
 .template-wrapper {
     background-color: #fff;

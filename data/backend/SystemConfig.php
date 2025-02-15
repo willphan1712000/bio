@@ -126,7 +126,7 @@ class SystemConfig
             'Tiktok' => '/^https?:\/\/[^\s]+$/',
             'Website' => '/^https?:\/\/[^\s]+$/',
             'Viber' => '/^\d{10}$/',
-            'HotLine' => '/^\d{10}$/',
+            'HotLine' => '/^\d+$/',
             'Whatsapp' => '/^\d{10}$/',
         ];
     }
