@@ -43,7 +43,7 @@ use function component\signup\signupAgain;
     <div class="logo"><?= logo(["src" => $g["img"]["logo"]])->render(); ?></div>
     <div class="signupParent">
         <div class="passRequirements">
-            <p><i class="fa-solid fa-arrow-down" style="margin-right: 2px"></i> PASSWORD REQUIREMENTS
+            <p class="text-center"><i class="fa-solid fa-arrow-down" style="margin-right: 2px"></i> PASSWORD REQUIREMENTS
             <p><br><br>
             <p><?= $g['passwordRequirement']['char']; ?></p><br><br>
             <p><?= $g['passwordRequirement']['upper']; ?></p><br><br>

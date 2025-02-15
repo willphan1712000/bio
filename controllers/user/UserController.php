@@ -13,7 +13,7 @@ use persistence\Entity\User;
 
 class UserController extends Controller
 {
-    protected string $username;
+    protected ?string $username;
     protected $themeid;
     protected $info;
     protected $css;

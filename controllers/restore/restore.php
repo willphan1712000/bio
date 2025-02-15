@@ -38,8 +38,8 @@ if (isset($_POST['delete'])) {
 <body>
     <div class="logo"><?= (new Logo())->render(); ?></div>
     <div class="signupParent">
-        <div class="signupChild <?= $inactive; ?>">
-            <h1>Restore Account</h1>
+        <div class="relative pt-4 signupChild <?= $inactive; ?>">
+            <h1 class="absolute top-[-20px] p-2 bg-white rounded-2xl shadow-[0px_8px_24px_rgba(149,157,165,0.2)]">Restore Account</h1>
             <p class="restore__msg"><?= $g['restoreWarningMsg']['msg1']; ?></p>
             <p class="restore__msg"><?= $g['restoreWarningMsg']['msg2']; ?><?= $dayLeft; ?><?= $g['restoreWarningMsg']['msg3']; ?>"<?= $username; ?>"</p>
             <p class="restore__msg"><?= $g['restoreWarningMsg']['msg4']; ?></p>
@@ -50,7 +50,7 @@ if (isset($_POST['delete'])) {
                     <button type="submit" name="delete" class="p-0 w-[150px] h-[40px] text-[12px] !bg-[#f0f0f0] btn__ele btn__ele--delete">Delete Permanently</button>
                 </form>
             </div>
-            <p class="signupChild__msg"><?= (new SigninGoBack())->render(); ?></p>
+            <div class="signupChild__msg absolute bottom-[-20px]"><?= (new SigninGoBack())->render(); ?></div>
         </div>
     </div>
     <?php

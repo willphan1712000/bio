@@ -12,8 +12,10 @@ use business\user\UserManagement;
 
 class AdminController extends UserController
 {
-    private bool $isSignedIn;
+    protected bool $isSignedIn;
     protected array $regexMap;
+
+    function __construct() {}
 
     protected function getPreData()
     {
@@ -35,12 +37,12 @@ class AdminController extends UserController
         die();
     }
 
-    private function restoreProcess()
+    protected function restoreProcess()
     {
-        // get deleteToken
-        $deleteToken = Database::GET(User::class, "deleteToken", ['username' => $this->username]);
         // Check if user is signed in
         if ($this->isSignedIn) {
+            // get deleteToken
+            $deleteToken = Database::GET(User::class, "deleteToken", ['username' => $this->username]);
             // Check if there is a deleteToken. If so, redirect to restore page
             if ($deleteToken !== NULL && $deleteToken !== "") {
                 if (time() - $deleteToken < $this->g["accountHoldPeriod"]) {
@@ -51,8 +53,6 @@ class AdminController extends UserController
                     }
                 }
             }
-        } else {
-            header("Location: /@signin");
         }
     }
 
