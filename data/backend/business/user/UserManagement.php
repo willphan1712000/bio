@@ -60,6 +60,7 @@ class UserManagement implements IUserManagement
         } catch (\Exception $e) {
             return false;
         }
+        return false;
     }
     // Check if email matches a username, return true if exists. Otherwise, return false
     public static function isEmailMatchUsername(string $username, string $email): bool

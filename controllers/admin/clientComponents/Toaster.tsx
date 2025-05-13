@@ -1,4 +1,3 @@
-
 interface Props {
     msg: string
 }

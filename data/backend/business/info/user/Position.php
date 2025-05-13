@@ -5,7 +5,6 @@ namespace business\info\user;
 use business\info\Info;
 use business\info\user\User;
 use business\info\InfoHandler;
-use business\info\operation\JobTitle;
 use business\info\display\NormalDisplay;
 
 class Position extends User
