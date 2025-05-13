@@ -2,7 +2,7 @@ import { faEnvelope, faGlobe, faLocationDot, faPhone } from "@fortawesome/free-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "../../client/src/Web-Development/components/Image";
 
-type Element = 'Email' | 'Mobile' | 'Work' | 'Booking' | 'OrderOnline' | 'HotSale' | 'Address' | 'Facebook' | 'Instagram' | 'Messenger' | 'Youtube' | 'Threads' | 'X' | 'Pinterest' | 'Linkedin' | 'Zalo' | 'Tiktok' | 'Website';
+type Element = 'Email' | 'Mobile' | 'Work' | 'Booking' | 'OrderOnline' | 'HotSale' | 'Address' | 'Facebook' | 'Instagram' | 'Messenger' | 'Youtube' | 'Threads' | 'X' | 'Pinterest' | 'Linkedin' | 'Zalo' | 'Tiktok' | 'Website' 
 export default Element;
 
 type ElementArray = Record<string, any>

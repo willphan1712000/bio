@@ -14,6 +14,9 @@ $socialIconArr = $user->get("socialIconArr");
 $username = $user->get("username");
 $g = $user->get("g");
 $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML() === '' ? $g['img']['unknown'] : "/user/" . $username . "/" . $infoArray['image']->getHTML();
+$orders = ['Email', 'Address', 'Mobile', 'Work', 'Viber', 'Whatsapp', 'HotLine', 'Menu', 'Booking', 'Website', 'OrderOnline', 'HotSale'];
+$exclude1 = ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode', 'WhatsappFlag', 'WhatsappCode'];
+$exclude = array_merge($orders, $exclude1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,9 +70,23 @@ $image = $infoArray['image']->getHTML() === null || $infoArray['image']->getHTML
             </div>
             <div id="social-media">
                 <?php
+                foreach ($orders as $prop) {
+                    /** @var Display */
+                    $element = $infoArray[$prop];
+                    echo $element->getHTML('<div class="social ' . $prop . '" style="width: 100%;">
+                        <div class="social__img info__img">' . $socialIconArr[$prop] . '</div>
+                        <div class="social__info info__about">
+                            <div class="info__name">
+                                <div>
+                                    <p>' . $element->getLabel() . '</p>
+                                    <p>' . $element->getValue() . '</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>');
+                }
                 foreach ($infoArray as $prop => $info) {
-                    if (!in_array($prop, ['username', 'name', 'image', 'position', 'organization', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'HotLineFlag', 'HotLineCode', 'ViberFlag', 'ViberCode', 'WhatsappFlag', 'WhatsappCode'])) {
-
+                    if (!in_array($prop, $exclude)) {
                         /** @var Display */
                         $element = $infoArray[$prop];
                         echo $element->getHTML('<div class="social ' . $prop . '" style="width: 100%;">

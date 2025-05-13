@@ -40,6 +40,11 @@ const InfoArea = ({data, extraData}: Props) => {
     }, 500)
   }, [])
 
+  // According to the requirement, the order of information elements should be considered
+  const orders = ['Email', 'Address', 'Mobile', 'Work', 'Viber', 'Whatsapp', 'HotLine', 'Menu', 'Booking', 'Website', 'OrderOnline', 'HotSale']
+  const exclude1 = ['username', 'name', 'image', 'organization', 'position', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode', 'WhatsappCode', 'WhatsappFlag']
+  const exclude = [...exclude1, ...orders]
+
   if(isLoading)
     return <div className='m-3'><p className='text-center'>Loading... Please Wait</p></div>
 
@@ -73,7 +78,8 @@ const InfoArea = ({data, extraData}: Props) => {
           </div>
         </div>
         <div id="social-media">
-            {Object.keys(data).map(key => !['username', 'name', 'image', 'organization', 'position', 'description', 'MobileFlag', 'MobileCode', 'WorkFlag', 'WorkCode', 'ViberFlag', 'ViberCode', 'HotLineFlag', 'HotLineCode', 'WhatsappCode', 'WhatsappFlag'].includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
+            {orders.map(key => <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
+            {Object.keys(data).map(key => !exclude.includes(key) && <AdminElementContext.Provider key={key} value={key}><SocialTag key={key} ></SocialTag></AdminElementContext.Provider>)}
         </div>
 
         <SaveDefault />
