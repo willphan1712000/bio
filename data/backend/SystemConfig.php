@@ -2,8 +2,6 @@
 
 namespace config;
 
-// require_once __DIR__ . "/../../vendor/autoload.php";
-
 use config\ProductionConfig;
 
 class SystemConfig
@@ -58,6 +56,11 @@ class SystemConfig
                 'char' => 'Password must have at least 6 characters',
                 'number' => 'Password must have at least a number',
                 'upper' => 'Password must have at least 1 upper case'
+            ],
+            'heading' => [
+                'title' => 'Level up your',
+                'title_span' => 'eBusiness Cards',
+                'description' => 'Our eBusiness cards template will give you the best design so you can make a good impression towards your clients, increase your revenue based on your professionals.'
             ]
         ];
     }

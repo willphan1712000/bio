@@ -6,24 +6,11 @@
 #aic {
   width: 100vw;
 }
-h2,
-h5 {
-  text-align: center;
-  margin: 10px 0px;
-}
 .heading {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 60vh;
-}
-.heading h1 {
-  transform: scale(2);
-}
-.heading img {
-  height: 50%;
-  margin-top: 30px;
 }
 .register {
   display: flex;
@@ -318,12 +305,7 @@ h5 {
 }
 /* Web responsive */
 @media screen and (max-width: 600px) {
-  .heading {
-    height: 40vh;
-  }
-  .heading h1 {
-    font-size: 20px;
-  }
+
   .signupParent {
     height: 68vh;
   }

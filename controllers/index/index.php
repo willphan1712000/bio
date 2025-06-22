@@ -22,6 +22,8 @@ use function component\signin\signinMain;
 require_once __DIR__ . "/../controllers/components/signup/SignupMain.php";
 
 use function component\signup\signupMain;
+
+use component\signin\SigninTrial;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,19 +38,56 @@ use function component\signup\signupMain;
 
 <body>
     <div id="container">
-        <div class="logo"><?= logo()->render(); ?></div>
+        <div class="w-full flex flex-row justify-between p-[10px]">
+            <div class="logo"><?= logo()->render(); ?></div>
+            <div class="flex flex-row gap-2">
+                <div class="w-[100px] h-[50px]"><?= signinMain()->render(); ?></div>
+                <div class="w-[100px] h-[50px]"><?= signupMain()->render(); ?></div>
+            </div>
+        </div>
         <div class="heading">
-            <h1>Create Your Bio</h1>
-            <img src="<?= $g['img']['bio'] ?>" alt="">
+            <div class="w-[60%] min-w-[300px] gap-5 flex flex-col py-[50px] items-center">
+                <div class="logo"><?= logo()->render(); ?></div>
+                <div class="flex flex-col justify-center">
+                    <h1 class="text-center text-[50px]"><?= SystemConfig::globalVariables()['heading']['title']; ?></h1>
+                    <h2 class="text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]"><?= SystemConfig::globalVariables()['heading']['title_span']; ?></h2>
+                </div>
+                <h3 class="text-center text-[20px]"><?= SystemConfig::globalVariables()['heading']['description']; ?></h3>
+
+                <div class="flex flex-row justify-center gap-10 w-full max-w-[1000px] m-10">
+                    <div class="relative">
+                        <img draggable="false" src="/controllers/client/img/ip.png" alt="" class="size-full object-fill" />
+                        <div class="size-full absolute top-0 left-0 px-[10px] py-[70px] flex flex-col items-center">
+                            <div class="rounded-[20px] overflow-hidden">
+                                <img draggable="false" src="/controllers/client/img/aboveIp.png" alt="" class="object-fill" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="translate-y-[50px] shadow-xl">
+                        <img draggable="false" src="/controllers/client/img/ebusiness.png" alt="" class="size-full object-fill" />
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="register">
-            <?= signinMain()->render(); ?>
-            <?= signupMain()->render(); ?>
+        <div class="flex flex-row gap-10 w-full justify-center">
+            <div class="bioBtn"><?= bioTemplateButton("")->render(".bioBtn"); ?></div>
+            <div class="w-[150px] h-[60px]"><?= (new SigninTrial())->render(); ?></div>
         </div>
-        <div class="bioBtn"><?= bioTemplateButton("")->render(".bioBtn"); ?></div>
+
+        <div id="showcase"></div>
+
+        <div class="w-full">
+            <div>
+                <img draggable="false" src="/controllers/client/img/eBusiness1.jpg" />
+            </div>
+            <div>
+                <img draggable="false" src="/controllers/client/img/eBusiness2.jpg" />
+            </div>
+        </div>
+
         <?php
         copyright([
-            'position' => 'absolute'
+            'position' => 'relative'
         ])->render();
         ?>
     </div>

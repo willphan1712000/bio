@@ -712,6 +712,18 @@ video {
   top: 5px;
 }
 
+.left-\[40px\] {
+  left: 40px;
+}
+
+.top-\[30px\] {
+  top: 30px;
+}
+
+.right-\[40px\] {
+  right: 40px;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -768,6 +780,10 @@ video {
   margin: 5px;
 }
 
+.m-10 {
+  margin: 2.5rem;
+}
+
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -788,11 +804,6 @@ video {
   margin-right: 1rem;
 }
 
-.mx-\[40px\] {
-  margin-left: 40px;
-  margin-right: 40px;
-}
-
 .my-0 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -811,6 +822,11 @@ video {
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-\[20px\] {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .\!mb-\[5px\] {
@@ -1100,6 +1116,34 @@ video {
   height: 100vh;
 }
 
+.h-\[40vh\] {
+  height: 40vh;
+}
+
+.h-\[60vh\] {
+  height: 60vh;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
+}
+
+.h-\[500vh\] {
+  height: 500vh;
+}
+
+.h-\[80\%\] {
+  height: 80%;
+}
+
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[60px\] {
+  height: 60px;
+}
+
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -1142,6 +1186,10 @@ video {
 
 .w-\[100px\] {
   width: 100px;
+}
+
+.w-\[10rem\] {
+  width: 10rem;
 }
 
 .w-\[125px\] {
@@ -1224,10 +1272,6 @@ video {
   width: 50px;
 }
 
-.w-\[5rem\] {
-  width: 5rem;
-}
-
 .w-\[60\%\] {
   width: 60%;
 }
@@ -1250,6 +1294,10 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.min-w-\[300px\] {
+  min-width: 300px;
 }
 
 .min-w-\[70\%\] {
@@ -1312,6 +1360,18 @@ video {
   max-width: 100%;
 }
 
+.max-w-\[300px\] {
+  max-width: 300px;
+}
+
+.max-w-\[1200px\] {
+  max-width: 1200px;
+}
+
+.max-w-\[1000px\] {
+  max-width: 1000px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1342,6 +1402,31 @@ video {
 
 .basis-auto {
   flex-basis: auto;
+}
+
+.translate-y-\[-10px\] {
+  --tw-translate-y: -10px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[10px\] {
+  --tw-translate-y: 10px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[-100px\] {
+  --tw-translate-y: -100px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[100px\] {
+  --tw-translate-y: 100px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[50px\] {
+  --tw-translate-y: 50px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .transform {
@@ -1400,6 +1485,10 @@ video {
 
 .gap-10 {
   gap: 2.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-3 {
@@ -1496,6 +1585,10 @@ video {
 
 .rounded-\[30px\] {
   border-radius: 30px;
+}
+
+.rounded-\[40px\] {
+  border-radius: 40px;
 }
 
 .rounded-\[50\%\] {
@@ -1673,6 +1766,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[--primary\] {
+  background-color: var(--primary);
+}
+
 .bg-\[red\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
@@ -1801,6 +1898,11 @@ video {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-fill {
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .p-0 {
@@ -1949,6 +2051,11 @@ video {
   padding-right: 10px;
 }
 
+.px-\[15px\] {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .px-\[20px\] {
   padding-left: 20px;
   padding-right: 20px;
@@ -2012,6 +2119,36 @@ video {
 .py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.py-\[50px\] {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.py-\[5px\] {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.px-\[8px\] {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.px-\[6px\] {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.py-\[40px\] {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.py-\[70px\] {
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
 .pb-16 {
@@ -2142,6 +2279,10 @@ video {
   font-size: 32px;
 }
 
+.text-\[40px\] {
+  font-size: 40px;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2165,6 +2306,10 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[50px\] {
+  font-size: 50px;
 }
 
 .font-black {
@@ -2329,6 +2474,12 @@ video {
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -2556,6 +2707,11 @@ video {
 .hover\:bg-sky-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(240 249 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gradient-to-br:hover {
