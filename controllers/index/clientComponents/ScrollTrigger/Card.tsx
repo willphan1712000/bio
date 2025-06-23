@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useImperativeHandle, useRef } from 'react'
+import Text from './Text';
+import clientConfig from '../../../client/clientConfig';
 
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
+export type CardRef = {
+  card: HTMLDivElement | null
+  one: HTMLDivElement | null
+  two: HTMLDivElement | null
+  three: HTMLDivElement | null
+}
+
+const Card = React.forwardRef<CardRef, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
+  const card = useRef<HTMLDivElement>(null)
+  const one = useRef<HTMLDivElement>(null)
+  const two = useRef<HTMLDivElement>(null)
+  const three = useRef<HTMLDivElement>(null)
+
+  useImperativeHandle(ref, () => ({
+    card: card.current,
+    one: one.current,
+    two: two.current,
+    three: three.current
+  }))
+
   return (
     <div className="card-container" style={cardContainerStyle} >
-      <div className="card" ref={ref} style={cardStyle}>
+      <div className="card" ref={card} style={cardStyle}>
         <div className="card-face front" style={frontFaceStyle}></div>
         <div className="card-face back" style={backFaceStyle}></div>
       </div>
+      <Text text={clientConfig.nfc.one} ref={one} className='top-[50px] left-[-200px] absolute w-[200px]'/>
+      <Text text={clientConfig.nfc.two} ref={two} pointerDirection="left" className='top-[100px] right-[-200px] absolute w-[200px]'/>
+      <Text text={clientConfig.nfc.three} ref={three} className='top-[150px] left-[-200px] absolute w-[200px]'/>
     </div>
   )
 })
@@ -19,8 +43,8 @@ const cardContainerStyle: React.CSSProperties = {
   minWidth: '200px',
   minHeight: '333.33px',
   perspective: '1500px',
-  position: 'sticky',
-  top: '20%',
+  position: "sticky",
+  top: "20%",
 };
 
 const cardStyle: React.CSSProperties = {

@@ -45,7 +45,7 @@ use component\signin\SigninTrial;
                 <div class="w-[100px] h-[50px]"><?= signupMain()->render(); ?></div>
             </div>
         </div>
-        <div class="heading">
+        <div class="heading my-10 rounded-[20px] bg-white">
             <div class="w-[60%] min-w-[300px] gap-5 flex flex-col py-[50px] items-center">
                 <div class="logo"><?= logo()->render(); ?></div>
                 <div class="flex flex-col justify-center">
@@ -55,26 +55,36 @@ use component\signin\SigninTrial;
                 <h3 class="text-center text-[20px]"><?= SystemConfig::globalVariables()['heading']['description']; ?></h3>
 
                 <div class="flex flex-row justify-center gap-10 w-full max-w-[1000px] m-10">
-                    <div class="relative">
+                    <div class="relative overflow-hidden shadow-2xl rounded-[35px]">
                         <img draggable="false" src="/controllers/client/img/ip.png" alt="" class="size-full object-fill" />
-                        <div class="size-full absolute top-0 left-0 px-[10px] py-[70px] flex flex-col items-center">
+                        <div class="size-full absolute top-0 left-0 px-[5px] py-[50px] flex flex-col items-center">
                             <div class="rounded-[20px] overflow-hidden">
                                 <img draggable="false" src="/controllers/client/img/aboveIp.png" alt="" class="object-fill" />
                             </div>
                         </div>
                     </div>
-                    <div class="translate-y-[50px] shadow-xl">
-                        <img draggable="false" src="/controllers/client/img/ebusiness.png" alt="" class="size-full object-fill" />
+                    <div class="translate-y-[50px] flex flex-col gap-5">
+                        <img draggable="false" src="/controllers/client/img/ebusiness01.png" alt="" class="object-fill shadow-xl " />
+                        <img draggable="false" src="/controllers/client/img/ebusiness02.png" alt="" class="object-fill shadow-xl " />
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-row gap-10 w-full justify-center">
-            <div class="bioBtn"><?= bioTemplateButton("")->render(".bioBtn"); ?></div>
-            <div class="w-[150px] h-[60px]"><?= (new SigninTrial())->render(); ?></div>
+            <div class="flex flex-row gap-10 w-full justify-center pb-10">
+                <div class="bioBtn"><?= bioTemplateButton("")->render(".bioBtn"); ?></div>
+                <div class="w-[150px] h-[60px]"><?= (new SigninTrial())->render(); ?></div>
+            </div>
         </div>
 
-        <div id="showcase"></div>
+        <div class="my-10 rounded-[20px] bg-white">
+            <div class="w-full text-center pt-10">
+                <h1 class="text-[25px]" style="border-radius:5px; background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-color: #4158d0;
+                background-image: linear-gradient(43deg, #4158d0, #c850c0 46%, #ffcc70);
+                margin: 0 !important;">Use NFC - Near Field Communication Technology</h1>
+            </div>
+            <div id="showcase"></div>
+        </div>
 
         <div class="w-full">
             <div>

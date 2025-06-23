@@ -10,35 +10,60 @@ const react_1 = require("react");
 const Card_1 = __importDefault(require("./Card"));
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 function AppScrollTrigger() {
-    const imgRef = (0, react_1.useRef)(null);
+    const cardRef = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(() => {
-        const el = imgRef.current;
-        gsap_1.default.fromTo(el, {
-            rotationY: 0,
-        }, {
-            rotationY: 360,
+        if (!cardRef.current)
+            return;
+        const card = cardRef.current.card;
+        const one = cardRef.current.one;
+        const two = cardRef.current.two;
+        const three = cardRef.current.three;
+        gsap_1.default.timeline({
             scrollTrigger: {
-                trigger: el,
+                trigger: card,
                 start: "top 20%",
                 end: "bottom 40%",
                 scrub: true,
                 markers: false,
             }
-        });
+        }).fromTo(card, { rotationY: 0 }, { rotationY: 360 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 20%",
+                end: "bottom 60%",
+                scrub: true,
+                markers: false,
+            }
+        }).fromTo(one, { opacity: 0 }, { opacity: 1 }).to(one, { opacity: 0 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 10%",
+                end: "bottom 50%",
+                scrub: true,
+                markers: false,
+            }
+        }).fromTo(two, { opacity: 0 }, { opacity: 1 }).to(two, { opacity: 0 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 0%",
+                end: "bottom 40%",
+                scrub: true,
+                markers: false,
+            }
+        }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsx)("header", { className: "App-header", children: (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: imgRef }) }) }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsx)("header", { className: "App-header", style: styles.appHeader, children: (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) }) }) }));
 }
 const styles = {
     spacer: {
-        padding: "50px",
-        height: "100vh",
+        height: "120vh",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center"
-    },
-    img: {
-        position: "sticky",
-        top: "20%"
+        justifyContent: "center",
+        position: "relative"
     },
     appHeader: {
         backgroundColor: "#ffffff",
@@ -48,9 +73,11 @@ const styles = {
         alignItems: "center",
         justifyContent: "center",
         fontSize: "calc(10px + 2vmin)",
-        color: "white",
+        color: "black",
         perspective: "1500px",
         backfaceVisibility: "hidden",
+        position: "relative",
+        padding: "50px"
     }
 };
 exports.default = AppScrollTrigger;

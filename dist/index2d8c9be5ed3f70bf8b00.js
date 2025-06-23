@@ -1,6 +1,26 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./controllers/client/src/dist/client/clientConfig.js":
+/*!************************************************************!*\
+  !*** ./controllers/client/src/dist/client/clientConfig.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports["default"] = Object.freeze({
+    nfc: {
+        one: "Cards use short-range wireless technology to communicate with compatible devices when brought close together.",
+        two: "These cards can store and transmit small amounts of data, such as contact info, website links, or payment credentials.",
+        three: "NFC cards require no battery and are often used for digital business cards, access control, or contactless payments."
+    }
+});
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/client/src/Web-Development/W.js":
 /*!*********************************************************************!*\
   !*** ./controllers/client/src/dist/client/src/Web-Development/W.js ***!
@@ -2080,35 +2100,60 @@ const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js"
 const Card_1 = __importDefault(__webpack_require__(/*! ./Card */ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/Card.js"));
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 function AppScrollTrigger() {
-    const imgRef = (0, react_1.useRef)(null);
+    const cardRef = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(() => {
-        const el = imgRef.current;
-        gsap_1.default.fromTo(el, {
-            rotationY: 0,
-        }, {
-            rotationY: 360,
+        if (!cardRef.current)
+            return;
+        const card = cardRef.current.card;
+        const one = cardRef.current.one;
+        const two = cardRef.current.two;
+        const three = cardRef.current.three;
+        gsap_1.default.timeline({
             scrollTrigger: {
-                trigger: el,
+                trigger: card,
                 start: "top 20%",
                 end: "bottom 40%",
                 scrub: true,
                 markers: false,
             }
-        });
+        }).fromTo(card, { rotationY: 0 }, { rotationY: 360 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 20%",
+                end: "bottom 60%",
+                scrub: true,
+                markers: false,
+            }
+        }).fromTo(one, { opacity: 0 }, { opacity: 1 }).to(one, { opacity: 0 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 10%",
+                end: "bottom 50%",
+                scrub: true,
+                markers: false,
+            }
+        }).fromTo(two, { opacity: 0 }, { opacity: 1 }).to(two, { opacity: 0 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: "top 0%",
+                end: "bottom 40%",
+                scrub: true,
+                markers: false,
+            }
+        }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsx)("header", { className: "App-header", children: (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: imgRef }) }) }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsx)("header", { className: "App-header", style: styles.appHeader, children: (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) }) }) }));
 }
 const styles = {
     spacer: {
-        padding: "50px",
-        height: "100vh",
+        height: "120vh",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center"
-    },
-    img: {
-        position: "sticky",
-        top: "20%"
+        justifyContent: "center",
+        position: "relative"
     },
     appHeader: {
         backgroundColor: "#ffffff",
@@ -2118,9 +2163,11 @@ const styles = {
         alignItems: "center",
         justifyContent: "center",
         fontSize: "calc(10px + 2vmin)",
-        color: "white",
+        color: "black",
         perspective: "1500px",
         backfaceVisibility: "hidden",
+        position: "relative",
+        padding: "50px"
     }
 };
 exports["default"] = AppScrollTrigger;
@@ -2136,14 +2183,49 @@ exports["default"] = AppScrollTrigger;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const Text_1 = __importDefault(__webpack_require__(/*! ./Text */ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/Text.js"));
+const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../../client/clientConfig */ "./controllers/client/src/dist/client/clientConfig.js"));
 const Card = react_1.default.forwardRef((props, ref) => {
-    return ((0, jsx_runtime_1.jsx)("div", { className: "card-container", style: cardContainerStyle, children: (0, jsx_runtime_1.jsxs)("div", { className: "card", ref: ref, style: cardStyle, children: [(0, jsx_runtime_1.jsx)("div", { className: "card-face front", style: frontFaceStyle }), (0, jsx_runtime_1.jsx)("div", { className: "card-face back", style: backFaceStyle })] }) }));
+    const card = (0, react_1.useRef)(null);
+    const one = (0, react_1.useRef)(null);
+    const two = (0, react_1.useRef)(null);
+    const three = (0, react_1.useRef)(null);
+    (0, react_1.useImperativeHandle)(ref, () => ({
+        card: card.current,
+        one: one.current,
+        two: two.current,
+        three: three.current
+    }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "card-container", style: cardContainerStyle, children: [(0, jsx_runtime_1.jsxs)("div", { className: "card", ref: card, style: cardStyle, children: [(0, jsx_runtime_1.jsx)("div", { className: "card-face front", style: frontFaceStyle }), (0, jsx_runtime_1.jsx)("div", { className: "card-face back", style: backFaceStyle })] }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.one, ref: one, className: 'top-[50px] left-[-200px] absolute w-[200px]' }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.two, ref: two, pointerDirection: "left", className: 'top-[100px] right-[-200px] absolute w-[200px]' }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.three, ref: three, className: 'top-[150px] left-[-200px] absolute w-[200px]' })] }));
 });
 const cardContainerStyle = {
     maxWidth: '300px',
@@ -2153,8 +2235,8 @@ const cardContainerStyle = {
     minWidth: '200px',
     minHeight: '333.33px',
     perspective: '1500px',
-    position: 'sticky',
-    top: '20%',
+    position: "sticky",
+    top: "20%",
 };
 const cardStyle = {
     width: '100%',
@@ -2174,6 +2256,42 @@ const cardFaceStyle = {
 const frontFaceStyle = Object.assign(Object.assign({}, cardFaceStyle), { backgroundImage: "url('/controllers/client/img/instagram_front.png')", backgroundSize: 'cover', backgroundPosition: 'center' });
 const backFaceStyle = Object.assign(Object.assign({}, cardFaceStyle), { backgroundImage: "url('/controllers/client/img/instagram_back.png')", backgroundSize: 'cover', backgroundPosition: 'center', transform: 'rotateY(180deg)', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff', fontSize: '1.2em' });
 exports["default"] = Card;
+
+
+/***/ }),
+
+/***/ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/Text.js":
+/*!**********************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/ScrollTrigger/Text.js ***!
+  \**********************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const Text = react_1.default.forwardRef((props, ref) => {
+    const { text, pointerDirection = 'right' } = props, rest = __rest(props, ["text", "pointerDirection"]);
+    if (pointerDirection === 'right')
+        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute top-[100px] left-[150px]`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] right-[-8px]` })] })] })));
+    return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute top-[100px] right-[200px]`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] left-[-8px]` })] })] })));
+});
+exports["default"] = Text;
 
 
 /***/ }),
@@ -50750,4 +50868,4 @@ if (false) {} else {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index72e96602a50873ae3125.js.map
+//# sourceMappingURL=index2d8c9be5ed3f70bf8b00.js.map

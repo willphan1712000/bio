@@ -20,6 +20,6 @@ class SigninTrial implements SigninButton
 
     public function render()
     {
-        return '<div class="relative rounded-[20px] border-black border-[2px] size-full flex justify-center items-center no-underline text-black hover:bg-white transition-all"><i class="fa-solid fa-right-to-bracket mr-[5px]"></i>Start Trial' . $this->signin->render() . '</div>';
+        return '<div class="relative rounded-[20px] border-black border-[2px] size-full flex justify-center items-center no-underline text-black hover:bg-black hover:text-white hover:shadow-2xl transition-all"><i class="fa-solid fa-right-to-bracket mr-[5px]"></i>Start Trial' . $this->signin->render() . '</div>';
     }
 }
