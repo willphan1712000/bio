@@ -20,7 +20,7 @@ class SignupMain implements SigninButton
 
     public function render()
     {
-        return '<div class="relative rounded-[20px] bg-white size-full flex justify-center items-center no-underline text-black"><i class="fa-brands fa-stumbleupon mr-[5px]"></i>Sign up' . $this->signup->render() . '</div>';
+        return '<div class="relative rounded-[20px] bg-[--primary] size-full flex justify-center items-center no-underline text-white"><i class="fa-brands fa-stumbleupon mr-[5px]"></i>Sign up' . $this->signup->render() . '</div>';
     }
 }
 

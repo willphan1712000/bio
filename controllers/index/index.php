@@ -38,7 +38,7 @@ use component\signin\SigninTrial;
 
 <body>
     <div id="container">
-        <div class="w-full flex flex-row justify-between p-[10px]">
+        <div class="w-full flex flex-row justify-between p-[10px] bg-white">
             <div class="logo"><?= logo()->render(); ?></div>
             <div class="flex flex-row gap-2">
                 <div class="w-[100px] h-[50px]"><?= signinMain()->render(); ?></div>

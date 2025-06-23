@@ -20,7 +20,7 @@ class SigninMain implements SigninButton
 
     public function render()
     {
-        return '<div class="relative rounded-[20px] bg-white size-full flex justify-center items-center no-underline text-black"><i class="fa-solid fa-right-to-bracket mr-[5px]"></i>Sign in' . $this->signin->render() . '</div>';
+        return '<div class="relative rounded-[20px] bg-white size-full flex justify-center items-center no-underline text-black border-[2px] border-black"><i class="fa-solid fa-right-to-bracket mr-[5px]"></i>Sign in' . $this->signin->render() . '</div>';
     }
 }
 

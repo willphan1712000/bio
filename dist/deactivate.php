@@ -7,7 +7,7 @@ use config\SystemConfig;
 
 $img = SystemConfig::globalVariables()['img']['deactivate'];
 
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Document</title><script src="/dist/tailwind63d1cd5224fffd537aa1.js"></script><script src="/dist/universal7a528f12fa5fb93514d3.js"></script></head><body><div class="logo mt-[20px]"><?= (new Logo())->render(); ?></div><div id="container" class="flex flex-col justify-center items-center"><div class="p-[30px]"><h1 class="text-[20px] shadow-xs rounded-[30px] bg-[#f0f0f0] p-[20px] text-center">Your account is being deactivated, go to sign in to restore your account now</h1></div><div id="code404" class="max-w-[500px]"><img draggable="false" src="<?= $img ?>"></div> <?= (new SigninGoBack())->render(); ?> </div> <?php
+?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Document</title><script src="/dist/tailwind221559c38903578d5bc8.js"></script><script src="/dist/universal7a528f12fa5fb93514d3.js"></script></head><body><div class="logo mt-[20px]"><?= (new Logo())->render(); ?></div><div id="container" class="flex flex-col justify-center items-center"><div class="p-[30px]"><h1 class="text-[20px] shadow-xs rounded-[30px] bg-[#f0f0f0] p-[20px] text-center">Your account is being deactivated, go to sign in to restore your account now</h1></div><div id="code404" class="max-w-[500px]"><img draggable="false" src="<?= $img ?>"></div> <?= (new SigninGoBack())->render(); ?> </div> <?php
     (new Copyright([
         'position' => 'absolute'
     ]))->render();
