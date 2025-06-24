@@ -76,7 +76,7 @@ use component\signin\SigninTrial;
         </div>
 
         <div class="my-10 rounded-[20px] bg-white">
-            <div class="w-full text-center pt-10">
+            <div class="w-full text-center p-10 pb-0">
                 <h1 class="text-[25px]" style="border-radius:5px; background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-color: #4158d0;

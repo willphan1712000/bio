@@ -17,9 +17,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = __importDefault(require("react"));
 const Text = react_1.default.forwardRef((props, ref) => {
-    const { text, pointerDirection = 'right' } = props, rest = __rest(props, ["text", "pointerDirection"]);
+    const { text, pointerDirection = 'up' } = props, rest = __rest(props, ["text", "pointerDirection"]);
     if (pointerDirection === 'right')
         return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute top-[100px] left-[150px]`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] right-[-8px]` })] })] })));
-    return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute top-[100px] right-[200px]`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] left-[-8px]` })] })] })));
+    if (pointerDirection === 'left')
+        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute top-[100px] right-[200px]`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] left-[-8px]` })] })] })));
+    if (pointerDirection === 'up')
+        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute bottom-[250px] -rotate-90`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] right-[-8px]` })] })] })));
+    if (pointerDirection === 'down')
+        return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ ref: ref }, rest, { children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] text-black', children: text }), (0, jsx_runtime_1.jsxs)("div", { className: `absolute top-[100px] right-[200px]`, children: [(0, jsx_runtime_1.jsx)("div", { className: "w-[150px] h-[1px] bg-black" }), (0, jsx_runtime_1.jsx)("div", { className: `rounded-full w-[16px] h-[16px] bg-black absolute top-[-8px] left-[-8px]` })] })] })));
 });
 exports.default = Text;

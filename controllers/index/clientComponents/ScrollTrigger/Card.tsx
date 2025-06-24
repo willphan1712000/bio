@@ -28,9 +28,9 @@ const Card = React.forwardRef<CardRef, React.HTMLAttributes<HTMLDivElement>>((pr
         <div className="card-face front" style={frontFaceStyle}></div>
         <div className="card-face back" style={backFaceStyle}></div>
       </div>
-      <Text text={clientConfig.nfc.one} ref={one} className='top-[50px] left-[-200px] absolute w-[200px]'/>
-      <Text text={clientConfig.nfc.two} ref={two} pointerDirection="left" className='top-[100px] right-[-200px] absolute w-[200px]'/>
-      <Text text={clientConfig.nfc.three} ref={three} className='top-[150px] left-[-200px] absolute w-[200px]'/>
+      <Text text={clientConfig.nfc.one} ref={one} className='bottom-[-70%] left-[0%] absolute w-[200px] z-10'/>
+      <Text text={clientConfig.nfc.two} ref={two} className='bottom-[-60%] left-[10%] absolute w-[200px] z-10'/>
+      <Text text={clientConfig.nfc.three} ref={three} className='bottom-[-80%] left-[20%] absolute w-[200px] z-10'/>
     </div>
   )
 })
@@ -44,7 +44,7 @@ const cardContainerStyle: React.CSSProperties = {
   minHeight: '333.33px',
   perspective: '1500px',
   position: "sticky",
-  top: "20%",
+  top: "10%",
 };
 
 const cardStyle: React.CSSProperties = {

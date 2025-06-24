@@ -41,7 +41,7 @@ const Card = react_1.default.forwardRef((props, ref) => {
         two: two.current,
         three: three.current
     }));
-    return ((0, jsx_runtime_1.jsxs)("div", { className: "card-container", style: cardContainerStyle, children: [(0, jsx_runtime_1.jsxs)("div", { className: "card", ref: card, style: cardStyle, children: [(0, jsx_runtime_1.jsx)("div", { className: "card-face front", style: frontFaceStyle }), (0, jsx_runtime_1.jsx)("div", { className: "card-face back", style: backFaceStyle })] }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.one, ref: one, className: 'top-[50px] left-[-200px] absolute w-[200px]' }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.two, ref: two, pointerDirection: "left", className: 'top-[100px] right-[-200px] absolute w-[200px]' }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.three, ref: three, className: 'top-[150px] left-[-200px] absolute w-[200px]' })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "card-container", style: cardContainerStyle, children: [(0, jsx_runtime_1.jsxs)("div", { className: "card", ref: card, style: cardStyle, children: [(0, jsx_runtime_1.jsx)("div", { className: "card-face front", style: frontFaceStyle }), (0, jsx_runtime_1.jsx)("div", { className: "card-face back", style: backFaceStyle })] }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.one, ref: one, className: 'bottom-[-70%] left-[0%] absolute w-[200px] z-10' }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.two, ref: two, className: 'bottom-[-60%] left-[10%] absolute w-[200px] z-10' }), (0, jsx_runtime_1.jsx)(Text_1.default, { text: clientConfig_1.default.nfc.three, ref: three, className: 'bottom-[-80%] left-[20%] absolute w-[200px] z-10' })] }));
 });
 const cardContainerStyle = {
     maxWidth: '300px',
@@ -52,7 +52,7 @@ const cardContainerStyle = {
     minHeight: '333.33px',
     perspective: '1500px',
     position: "sticky",
-    top: "20%",
+    top: "10%",
 };
 const cardStyle = {
     width: '100%',

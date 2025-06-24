@@ -2,6 +2,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 import Card, { CardRef } from './Card';
+import Lenis from '@studio-freight/lenis';
+import { smoothScrolling } from '../../../client/clientConfig';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,42 +21,44 @@ function AppScrollTrigger() {
     gsap.timeline({
       scrollTrigger: {
         trigger: card,
-        start: "top 20%",
-        end: "bottom 40%",
-        scrub: true,
+        start: "top 10%",
+        end: "300% 20%",
+        scrub: 1,
         markers: false,
       }
     }).fromTo(card, { rotationY: 0 }, { rotationY: 360 })
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: card,
-        start: "top 20%",
-        end: "bottom 60%",
-        scrub: true,
+        trigger: one,
+        start: "top 65%",
+        end: "bottom 55%",
+        scrub: 1,
         markers: false,
       }
     }).fromTo(one, { opacity: 0 }, { opacity: 1 }).to(one, { opacity: 0 })
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: card,
-        start: "top 10%",
-        end: "bottom 50%",
-        scrub: true,
+        trigger: two,
+        start: "110% 50%",
+        end: "210% 40%",
+        scrub: 1,
         markers: false,
       }
     }).fromTo(two, { opacity: 0 }, { opacity: 1 }).to(two, { opacity: 0 })
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: card,
-        start: "top 0%",
-        end: "bottom 40%",
-        scrub: true,
+        trigger: three,
+        start: "220% 35%",
+        end: "320% 25%",
+        scrub: 1,
         markers: false,
       }
     }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 })
+
+    smoothScrolling()
   }, [])
 
   return (
@@ -70,7 +74,7 @@ function AppScrollTrigger() {
 
 const styles: { [key: string]: React.CSSProperties } = {
   spacer: {
-    height: "120vh",
+    height: "200vh",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",

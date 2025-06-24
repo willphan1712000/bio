@@ -752,6 +752,98 @@ video {
   top: 5px;
 }
 
+.left-\[200px\] {
+  left: 200px;
+}
+
+.bottom-\[200px\] {
+  bottom: 200px;
+}
+
+.bottom-\[-200px\] {
+  bottom: -200px;
+}
+
+.bottom-\[300px\] {
+  bottom: 300px;
+}
+
+.bottom-\[250px\] {
+  bottom: 250px;
+}
+
+.top-\[300px\] {
+  top: 300px;
+}
+
+.top-\[600px\] {
+  top: 600px;
+}
+
+.left-\[100px\] {
+  left: 100px;
+}
+
+.top-\[0px\] {
+  top: 0px;
+}
+
+.bottom-\[0px\] {
+  bottom: 0px;
+}
+
+.bottom-\[-100\%\] {
+  bottom: -100%;
+}
+
+.bottom-\[-20\%\] {
+  bottom: -20%;
+}
+
+.bottom-\[-40\%\] {
+  bottom: -40%;
+}
+
+.bottom-\[-50\%\] {
+  bottom: -50%;
+}
+
+.bottom-\[-60\%\] {
+  bottom: -60%;
+}
+
+.left-\[45\%\] {
+  left: 45%;
+}
+
+.left-\[35\%\] {
+  left: 35%;
+}
+
+.left-\[100\%\] {
+  left: 100%;
+}
+
+.left-\[10\%\] {
+  left: 10%;
+}
+
+.bottom-\[-70\%\] {
+  bottom: -70%;
+}
+
+.left-\[0\%\] {
+  left: 0%;
+}
+
+.left-\[20\%\] {
+  left: 20%;
+}
+
+.bottom-\[-80\%\] {
+  bottom: -80%;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1417,6 +1509,16 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-rotate-90 {
+  --tw-rotate: -90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1836,10 +1938,6 @@ video {
   background-color: rgb(39 39 42 / var(--tw-bg-opacity));
 }
 
-.bg-\[--primary-color\] {
-  background-color: var(--primary-color);
-}
-
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
 }
@@ -1980,6 +2078,10 @@ video {
 
 .p-\[8px\] {
   padding: 8px;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .px-0 {
@@ -2202,6 +2304,10 @@ video {
 
 .pt-\[25px\] {
   padding-top: 25px;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
 }
 
 .text-center {
