@@ -1,42 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./controllers/client/src/dist/client/clientConfig.js":
-/*!************************************************************!*\
-  !*** ./controllers/client/src/dist/client/clientConfig.js ***!
-  \************************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.smoothScrolling = smoothScrolling;
-const lenis_1 = __importDefault(__webpack_require__(/*! @studio-freight/lenis */ "./node_modules/@studio-freight/lenis/dist/lenis.cjs.js"));
-exports["default"] = Object.freeze({
-    nfc: {
-        one: "Cards use short-range wireless technology to communicate with compatible devices when brought close together.",
-        two: "These cards can store and transmit small amounts of data, such as contact info, website links, or payment credentials.",
-        three: "NFC cards require no battery and are often used for digital business cards, access control, or contactless payments."
-    }
-});
-function smoothScrolling() {
-    const lenis = new lenis_1.default();
-    lenis.on('scroll', (e) => {
-        console.log(e);
-    });
-    function ref(time) {
-        lenis.raf(time);
-        requestAnimationFrame(ref);
-    }
-    requestAnimationFrame(ref);
-}
-
-
-/***/ }),
-
 /***/ "./controllers/client/src/dist/client/src/Web-Development/W.js":
 /*!*********************************************************************!*\
   !*** ./controllers/client/src/dist/client/src/Web-Development/W.js ***!
@@ -2097,6 +2061,99 @@ exports["default"] = UploadFile;
 
 /***/ }),
 
+/***/ "./controllers/client/src/dist/index/clientComponents/Heading/Heading.js":
+/*!*******************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/Heading/Heading.js ***!
+  \*******************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../clientConfig */ "./controllers/client/src/dist/index/clientConfig.js"));
+const gsap_1 = __importDefault(__webpack_require__(/*! gsap */ "./node_modules/gsap/index.js"));
+const ScrollTrigger_1 = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
+gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
+const Heading = () => {
+    const backdropRef = (0, react_1.useRef)(null);
+    const textRef = (0, react_1.useRef)(null);
+    const greetingRef = (0, react_1.useRef)(null);
+    const imgRef = (0, react_1.useRef)(null);
+    (0, react_1.useEffect)(() => {
+        const backdrop = backdropRef.current;
+        const text = textRef.current;
+        const greeting = greetingRef.current;
+        const img = imgRef.current;
+        if (!backdrop || !text || !greeting || !img)
+            return;
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: backdrop,
+                start: "top 10%",
+                end: "bottom 10%",
+                scrub: 1,
+                markers: false
+            }
+        }).fromTo(backdrop, { opacity: 0.9 }, { opacity: 0 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: text,
+                start: "top 10%",
+                end: "bottom 10%",
+                scrub: 1,
+                markers: false
+            }
+        }).fromTo(text, { scale: 0.5 }, { scale: 1 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: greeting,
+                start: "top 20%",
+                end: "bottom 20%",
+                scrub: 1,
+                markers: false
+            }
+        }).fromTo(greeting, { opacity: 1 }, { opacity: 0 });
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: img,
+                start: "top 10%",
+                end: "bottom 10%",
+                scrub: 1,
+                markers: false
+            }
+        }).fromTo(img, { scale: 1 }, { scale: 1.2 });
+        window.addEventListener('resize', () => {
+            ScrollTrigger_1.ScrollTrigger.refresh();
+        });
+    }, []);
+    return ((0, jsx_runtime_1.jsx)("div", { style: styles.container, children: (0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col justify-center items-center relative overflow-hidden", style: styles.sticky, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'overflow-hidden rounded-[30px] max-h-[700px] flex flex-col items-center', children: [(0, jsx_runtime_1.jsx)("img", { draggable: "false", src: '/controllers/client/img/background.png', className: "object-cover size-full relative", ref: imgRef }), (0, jsx_runtime_1.jsx)("div", { style: {
+                                position: 'absolute',
+                                inset: 0,
+                                backgroundColor: '#000',
+                                pointerEvents: 'none',
+                                borderRadius: "30px",
+                                opacity: 0.9
+                            }, ref: backdropRef }), (0, jsx_runtime_1.jsx)("div", { className: 'absolute top-[10%] w-[80%]', ref: greetingRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/logo.png", className: 'size-full' }) })] }), (0, jsx_runtime_1.jsxs)("div", { className: 'px-10', ref: textRef, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-center text-[40px] text-black", children: clientConfig_1.default.heading.title }), (0, jsx_runtime_1.jsx)("h2", { className: "text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]", children: clientConfig_1.default.heading.titleSpan })] })] }) }));
+};
+const styles = {
+    container: {
+        height: "180vh",
+    },
+    sticky: {
+        position: "sticky",
+        top: "10%"
+    }
+};
+exports["default"] = Heading;
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/AppScrollTrigger.js":
 /*!**********************************************************************************************!*\
   !*** ./controllers/client/src/dist/index/clientComponents/ScrollTrigger/AppScrollTrigger.js ***!
@@ -2113,18 +2170,22 @@ const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modul
 const gsap_1 = __importDefault(__webpack_require__(/*! gsap */ "./node_modules/gsap/index.js"));
 const ScrollTrigger_1 = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
 const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../clientConfig */ "./controllers/client/src/dist/index/clientConfig.js"));
 const Card_1 = __importDefault(__webpack_require__(/*! ./Card */ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/Card.js"));
-const clientConfig_1 = __webpack_require__(/*! ../../../client/clientConfig */ "./controllers/client/src/dist/client/clientConfig.js");
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 function AppScrollTrigger() {
     const cardRef = (0, react_1.useRef)(null);
+    const headerRef = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(() => {
         if (!cardRef.current)
+            return;
+        if (!headerRef.current)
             return;
         const card = cardRef.current.card;
         const one = cardRef.current.one;
         const two = cardRef.current.two;
         const three = cardRef.current.three;
+        const header = headerRef.current;
         gsap_1.default.timeline({
             scrollTrigger: {
                 trigger: card,
@@ -2161,9 +2222,20 @@ function AppScrollTrigger() {
                 markers: false,
             }
         }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 });
-        (0, clientConfig_1.smoothScrolling)();
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: header,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                markers: false,
+            }
+        }).fromTo(header, { backgroundColor: "#328b94" }, { backgroundColor: "#f5f5f7" });
+        window.addEventListener('resize', () => {
+            ScrollTrigger_1.ScrollTrigger.refresh();
+        });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsx)("header", { className: "App-header", style: styles.appHeader, children: (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) }) }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsxs)("header", { className: "App-header", style: styles.appHeader, ref: headerRef, children: [(0, jsx_runtime_1.jsx)("div", { className: 'hidden', children: (0, jsx_runtime_1.jsx)("h1", { className: "text-[25px]", style: styles.title, children: clientConfig_1.default.nfc.title }) }), (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) })] }) }));
 }
 const styles = {
     spacer: {
@@ -2174,7 +2246,6 @@ const styles = {
         position: "relative"
     },
     appHeader: {
-        backgroundColor: "#ffffff",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -2185,7 +2256,19 @@ const styles = {
         perspective: "1500px",
         backfaceVisibility: "hidden",
         position: "relative",
-        padding: "50px"
+        padding: "50px",
+        backgroundColor: "#328b94"
+    },
+    title: {
+        borderRadius: '5px',
+        backgroundClip: 'text',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundColor: '#4158d0',
+        backgroundImage: 'linear-gradient(43deg, #4158d0, #c850c0 46%, #ffcc70)',
+        margin: '0',
+        textAlign: 'center',
+        padding: '30px'
     }
 };
 exports["default"] = AppScrollTrigger;
@@ -2231,7 +2314,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const Text_1 = __importDefault(__webpack_require__(/*! ./Text */ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/Text.js"));
-const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../../client/clientConfig */ "./controllers/client/src/dist/client/clientConfig.js"));
+const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../clientConfig */ "./controllers/client/src/dist/index/clientConfig.js"));
 const Card = react_1.default.forwardRef((props, ref) => {
     const card = (0, react_1.useRef)(null);
     const one = (0, react_1.useRef)(null);
@@ -2319,6 +2402,88 @@ exports["default"] = Text;
 
 /***/ }),
 
+/***/ "./controllers/client/src/dist/index/clientComponents/Templates/Template.js":
+/*!**********************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/Templates/Template.js ***!
+  \**********************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const gsap_1 = __importDefault(__webpack_require__(/*! gsap */ "./node_modules/gsap/index.js"));
+const ScrollTrigger_1 = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
+const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
+const Template = () => {
+    const imgRef = (0, react_1.useRef)(null);
+    (0, react_1.useEffect)(() => {
+        const img = imgRef.current;
+        if (!img)
+            return;
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: img,
+                start: "top 10%",
+                end: "120% 10%",
+                scrub: 1,
+                markers: false,
+            }
+        }).fromTo(img, { borderRadius: '999px', width: '50%' }, { borderRadius: '20px', width: '90%' });
+        window.addEventListener('resize', () => {
+            ScrollTrigger_1.ScrollTrigger.refresh();
+        });
+    }, []);
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "md:h-[70vh]" }), (0, jsx_runtime_1.jsx)("div", { className: 'h-[150vh] flex flex-col items-center bg-[--primary] py-10', children: (0, jsx_runtime_1.jsx)("div", { className: 'md:h-[90vh] overflow-hidden rounded-full sticky top-[50%] translate-y-[-50%]', ref: imgRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/template2.png", className: 'size-full object-cover' }) }) })] }));
+};
+exports["default"] = Template;
+
+
+/***/ }),
+
+/***/ "./controllers/client/src/dist/index/clientConfig.js":
+/*!***********************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientConfig.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.smoothScrolling = smoothScrolling;
+const lenis_1 = __importDefault(__webpack_require__(/*! @studio-freight/lenis */ "./node_modules/@studio-freight/lenis/dist/lenis.cjs.js"));
+exports["default"] = Object.freeze({
+    nfc: {
+        title: "Use NFC - Near Field Communication Technology",
+        one: "Cards use short-range wireless technology to communicate with compatible devices when brought close together.",
+        two: "These cards can store and transmit small amounts of data, such as contact info, website links, or payment credentials.",
+        three: "NFC cards require no battery and are often used for digital business cards, access control, or contactless payments."
+    },
+    heading: {
+        title: "Level up your",
+        titleSpan: "eBusiness Cards",
+        description: "Our eBusiness cards template will give you the best design so you can make a good impression towards your clients, increase your revenue based on your professionals."
+    }
+});
+function smoothScrolling() {
+    const lenis = new lenis_1.default();
+    function ref(time) {
+        lenis.raf(time);
+        requestAnimationFrame(ref);
+    }
+    requestAnimationFrame(ref);
+}
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/index/index.js":
 /*!****************************************************!*\
   !*** ./controllers/client/src/dist/index/index.js ***!
@@ -2333,17 +2498,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
+const Heading_1 = __importDefault(__webpack_require__(/*! ./clientComponents/Heading/Heading */ "./controllers/client/src/dist/index/clientComponents/Heading/Heading.js"));
 const AppScrollTrigger_1 = __importDefault(__webpack_require__(/*! ./clientComponents/ScrollTrigger/AppScrollTrigger */ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/AppScrollTrigger.js"));
+const Template_1 = __importDefault(__webpack_require__(/*! ./clientComponents/Templates/Template */ "./controllers/client/src/dist/index/clientComponents/Templates/Template.js"));
 $(document).ready(function () {
+    const heading = document.getElementById("heading");
+    if (!heading)
+        return;
+    (0, W_1.$$)("#heading", (0, jsx_runtime_1.jsx)(Heading_1.default, {})).reactMounting();
     const showcase = document.getElementById("showcase");
-    if (!showcase) {
-        console.log("Not Rendered");
-    }
-    index();
-});
-function index() {
+    if (!showcase)
+        return;
     (0, W_1.$$)("#showcase", (0, jsx_runtime_1.jsx)(AppScrollTrigger_1.default, {})).reactMounting();
-}
+    const templates = document.getElementById("templates");
+    if (!templates)
+        return;
+    (0, W_1.$$)("#templates", (0, jsx_runtime_1.jsx)(Template_1.default, {})).reactMounting();
+});
 
 
 /***/ }),
@@ -50904,4 +51075,4 @@ if (false) {} else {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index7b088397ebecf6aacfc3.js.map
+//# sourceMappingURL=indexe1055cc6905489af0210.js.map

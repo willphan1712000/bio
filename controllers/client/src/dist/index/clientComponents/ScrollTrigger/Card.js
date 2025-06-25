@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = __importStar(require("react"));
 const Text_1 = __importDefault(require("./Text"));
-const clientConfig_1 = __importDefault(require("../../../client/clientConfig"));
+const clientConfig_1 = __importDefault(require("../../clientConfig"));
 const Card = react_1.default.forwardRef((props, ref) => {
     const card = (0, react_1.useRef)(null);
     const one = (0, react_1.useRef)(null);

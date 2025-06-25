@@ -7,18 +7,22 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const gsap_1 = __importDefault(require("gsap"));
 const ScrollTrigger_1 = require("gsap/ScrollTrigger");
 const react_1 = require("react");
+const clientConfig_1 = __importDefault(require("../../clientConfig"));
 const Card_1 = __importDefault(require("./Card"));
-const clientConfig_1 = require("../../../client/clientConfig");
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 function AppScrollTrigger() {
     const cardRef = (0, react_1.useRef)(null);
+    const headerRef = (0, react_1.useRef)(null);
     (0, react_1.useEffect)(() => {
         if (!cardRef.current)
+            return;
+        if (!headerRef.current)
             return;
         const card = cardRef.current.card;
         const one = cardRef.current.one;
         const two = cardRef.current.two;
         const three = cardRef.current.three;
+        const header = headerRef.current;
         gsap_1.default.timeline({
             scrollTrigger: {
                 trigger: card,
@@ -55,9 +59,20 @@ function AppScrollTrigger() {
                 markers: false,
             }
         }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 });
-        (0, clientConfig_1.smoothScrolling)();
+        gsap_1.default.timeline({
+            scrollTrigger: {
+                trigger: header,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                markers: false,
+            }
+        }).fromTo(header, { backgroundColor: "#328b94" }, { backgroundColor: "#f5f5f7" });
+        window.addEventListener('resize', () => {
+            ScrollTrigger_1.ScrollTrigger.refresh();
+        });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsx)("header", { className: "App-header", style: styles.appHeader, children: (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) }) }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsxs)("header", { className: "App-header", style: styles.appHeader, ref: headerRef, children: [(0, jsx_runtime_1.jsx)("div", { className: 'hidden', children: (0, jsx_runtime_1.jsx)("h1", { className: "text-[25px]", style: styles.title, children: clientConfig_1.default.nfc.title }) }), (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) })] }) }));
 }
 const styles = {
     spacer: {
@@ -68,7 +83,6 @@ const styles = {
         position: "relative"
     },
     appHeader: {
-        backgroundColor: "#ffffff",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -79,7 +93,19 @@ const styles = {
         perspective: "1500px",
         backfaceVisibility: "hidden",
         position: "relative",
-        padding: "50px"
+        padding: "50px",
+        backgroundColor: "#328b94"
+    },
+    title: {
+        borderRadius: '5px',
+        backgroundClip: 'text',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundColor: '#4158d0',
+        backgroundImage: 'linear-gradient(43deg, #4158d0, #c850c0 46%, #ffcc70)',
+        margin: '0',
+        textAlign: 'center',
+        padding: '30px'
     }
 };
 exports.default = AppScrollTrigger;

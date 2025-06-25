@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef } from 'react'
 import Text from './Text';
-import clientConfig from '../../../client/clientConfig';
+import clientConfig from '../../clientConfig';
 
 export type CardRef = {
   card: HTMLDivElement | null
