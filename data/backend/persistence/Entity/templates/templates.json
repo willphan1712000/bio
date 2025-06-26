@@ -1,0 +1,611 @@
+[
+    {
+        "name": "Template ID 0",
+        "description": null,
+        "image": null,
+        "font": null,
+        "fontSize": null,
+        "fontColor": null,
+        "backgroundColor": null,
+        "price": 0,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 1",
+        "description": null,
+        "image": "controllers/template/1/1.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "12px",
+        "fontColor": "#fff",
+        "backgroundColor": "#29b27c",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 2",
+        "description": null,
+        "image": "controllers/template/2/2.png",
+        "font": "'400 Lilita One', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#9ece00",
+        "backgroundColor": "#fff",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 3",
+        "description": null,
+        "image": "controllers/template/3/3.png",
+        "font": "'400 Barlow Semi    Condensed', -apple-system, Roboto, Helvetica, sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#c59975",
+        "backgroundColor": "#fff",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 4",
+        "description": null,
+        "image": "controllers/template/4/4.png",
+        "font": "'700 Be Vietnam', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#fff",
+        "backgroundColor": "linear-gradient(180deg, #7b32f3 22.19%, rgba(197, 171, 245, 0) 99.87%)",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 5",
+        "description": null,
+        "image": "controllers/template/5/5.png",
+        "font": "'400 Raleway', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#fea3a3",
+        "backgroundColor": "#fff",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 6",
+        "description": null,
+        "image": "controllers/template/6/6.png",
+        "font": "'400 Katibeh', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#fff",
+        "backgroundColor": "linear-gradient(180deg, #7bffda 0%, #6192fe 100%)",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 7",
+        "description": null,
+        "image": "controllers/template/7/7.png",
+        "font": "'900 Inter', sans-serif",
+        "fontSize": "13px",
+        "fontColor": "#fff",
+        "backgroundColor": "linear-gradient(90deg, #bd00ff 0%, #ff1bee 100%)",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 8",
+        "description": null,
+        "image": "controllers/template/8/8.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#0f74f6",
+        "backgroundColor": "#fff",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 9",
+        "description": null,
+        "image": "controllers/template/9/9.png",
+        "font": "'700 Urbanist', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#ff8fab",
+        "backgroundColor": "linear-gradient(62deg, #ffcad7 0%, #ffffff 54%, #ffcad7 100%)",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 10",
+        "description": null,
+        "image": "controllers/template/10/10.png",
+        "font": "'Kulim Park', sans-serif",
+        "fontSize": "15px",
+        "fontColor": "#000",
+        "backgroundColor": "#fff",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 11",
+        "description": null,
+        "image": "controllers/template/11/11.png",
+        "font": "'Kulim Park', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#fff",
+        "backgroundColor": "#89e6c9",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 12",
+        "description": null,
+        "image": "controllers/template/12/12.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#fff",
+        "backgroundColor": "linear-gradient(180deg,#FF992E 0.31%,#F88138 21.54%,#E74453 66.09%,#DA1467 98.08%)",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 13",
+        "description": null,
+        "image": "controllers/template/13/13.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#fff",
+        "backgroundColor": "#329cef",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 14",
+        "description": null,
+        "image": "controllers/template/14/14.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#fff",
+        "backgroundColor": "#329cef",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 15",
+        "description": null,
+        "image": "controllers/template/15/15.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#000",
+        "backgroundColor": "#f6cdd2",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 16",
+        "description": null,
+        "image": "controllers/template/16/16.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#000",
+        "backgroundColor": "linear-gradient(269deg,#FFDBFF 0.77%,#B1C6FE 99.23%)",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 17",
+        "description": null,
+        "image": "controllers/template/17/17.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#f472b6",
+        "backgroundColor": "#fef9c3",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 18",
+        "description": null,
+        "image": "controllers/template/18/18.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#fff",
+        "backgroundColor": "#7f1d1d",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 19",
+        "description": null,
+        "image": "controllers/template/19/19.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#fff",
+        "backgroundColor": "#27272a",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    },
+    {
+        "name": "Template ID 20",
+        "description": null,
+        "image": "controllers/template/20/20.png",
+        "font": "'Inter', sans-serif",
+        "fontSize": "16px",
+        "fontColor": "#ec4899",
+        "backgroundColor": "#fff",
+        "price": 1000,
+        "priceCurrency": "USD",
+        "elements": {
+            "Facebook": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            },
+            "Instagram": {
+                "x": 10,
+                "y": 10,
+                "W": 100,
+                "H": 100,
+                "w": 20,
+                "h": 20
+            }
+        }
+    }
+]

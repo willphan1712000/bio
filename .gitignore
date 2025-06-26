@@ -5,16 +5,16 @@ user/*
 # node module
 node_modules/
 
-# composer and npm json files
-composer.json
-composer.lock
-package-lock.json
-package.json
+# # composer and npm json files
+# composer.json
+# composer.lock
+# package-lock.json
+# package.json
 
-# config file (webpack, tailwind, typesciprt)
-tailwind.config.js
-webpack.config.js
-tsconfig.json
+# # config file (webpack, tailwind, typesciprt)
+# tailwind.config.js
+# webpack.config.js
+# tsconfig.json
 
 # MacOS
 .DS_Store

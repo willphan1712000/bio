@@ -94,3 +94,9 @@ $props = [
   </div>
 </div>
 ```
+
+- Model Migration
+
+```linux
+./vendor/bin/doctrine-migrations diff && ./vendor/bin/doctrine-migrations migrate
+```

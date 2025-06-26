@@ -1,0 +1,29 @@
+{
+    "name":" Template 1",
+    "description": null,
+    "image": "controllers/template/1/1.png",
+    "font": "'Inter', sans-serif",
+    "fontSize": "12px",
+    "fontColor": "#fff",
+    "backgroundColor": "#29b27c",
+    "price": 1000,
+    "priceCurrency": "USD",
+    "elements": {
+        "Facebook": {
+            "x": 10,
+            "y": 10,
+            "W": 100,
+            "H": 100,
+            "w": 20,
+            "h": 20
+        },
+        "Instagram": {
+            "x": 10,
+            "y": 10,
+            "W": 100,
+            "H": 100,
+            "w": 20,
+            "h": 20
+        }
+    }
+}

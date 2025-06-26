@@ -4,6 +4,7 @@
 :root {
   --main-color: #f6f2ff;
   --main-deepColor: #cec3e7;
+  --primary: #328b94;
 }
 * {
   padding: 0;

@@ -16,9 +16,9 @@ class Logo
     public function render()
     {
         return '
-            <div class="logo-box w-[5rem] flex justify-between p-2">
+            <a href="/" class="logo-box w-[10rem] flex justify-between p-2">
                 <img class="h-full" src="' . $this->src . '?v=' . time() . '" alt="allinclicks_logo" draggable=false>
-            </div>
+            </a>
         ';
     }
 }
