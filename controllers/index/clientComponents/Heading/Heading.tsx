@@ -80,14 +80,13 @@ const Heading = () => {
                     }}
                     ref={backdropRef}
                 />
-                <div className='absolute top-[10%] w-[80%]' ref={greetingRef}>
+                <div className='absolute top-[10%] w-[80%] max-w-[800px]' ref={greetingRef}>
                     <img src="/controllers/client/img/logo.png" className='size-full'/>
                 </div>
             </div>
             <div className='px-10' ref={textRef}>
                 <h1 className="text-center text-[40px] text-black">{clientConfig.heading.title}</h1>
                 <h2 className="text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]">{clientConfig.heading.titleSpan}</h2>
-                {/* <h3 className="text-center text-[20px] text-white">{clientConfig.heading.description}</h3> */}
             </div>
         </div>
     </div>

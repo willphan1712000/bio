@@ -68,7 +68,7 @@ const Heading = () => {
                                 pointerEvents: 'none',
                                 borderRadius: "30px",
                                 opacity: 0.9
-                            }, ref: backdropRef }), (0, jsx_runtime_1.jsx)("div", { className: 'absolute top-[10%] w-[80%]', ref: greetingRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/logo.png", className: 'size-full' }) })] }), (0, jsx_runtime_1.jsxs)("div", { className: 'px-10', ref: textRef, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-center text-[40px] text-black", children: clientConfig_1.default.heading.title }), (0, jsx_runtime_1.jsx)("h2", { className: "text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]", children: clientConfig_1.default.heading.titleSpan })] })] }) }));
+                            }, ref: backdropRef }), (0, jsx_runtime_1.jsx)("div", { className: 'absolute top-[10%] w-[80%] max-w-[800px]', ref: greetingRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/logo.png", className: 'size-full' }) })] }), (0, jsx_runtime_1.jsxs)("div", { className: 'px-10', ref: textRef, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-center text-[40px] text-black", children: clientConfig_1.default.heading.title }), (0, jsx_runtime_1.jsx)("h2", { className: "text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]", children: clientConfig_1.default.heading.titleSpan })] })] }) }));
 };
 const styles = {
     container: {
