@@ -4,7 +4,7 @@
   "description": "# Below is how it works - user registers their own accout - user logs in to their account - user is able to put their links to boxes in the admin page - user hits \"save\" button to save everything on server - after this, it will go back to user page to view main bio page",
   "main": "index.js",
   "scripts": {
-    "wpb": "webpack",
+    "wpb": "webpack --mode=production",
     "wpw": "webpack --watch",
     "twb": "tailwindcss build -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css",
     "tww": "tailwindcss build -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css --watch",
