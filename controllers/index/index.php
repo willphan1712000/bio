@@ -54,8 +54,8 @@ use component\signin\SigninTrial;
                         <img draggable="false" src="/controllers/client/img/ip.png" alt="" class="size-full object-fill" />
                     </div>
                     <div class="translate-y-[50px] flex flex-col gap-5">
-                        <img draggable="false" src="/controllers/client/img/ebusiness01.png" alt="" class="object-fill shadow-xl " />
-                        <img draggable="false" src="/controllers/client/img/ebusiness02.png" alt="" class="object-fill shadow-xl " />
+                        <img draggable="false" src="/controllers/client/img/eBusiness01.png" alt="" class="object-fill shadow-xl " />
+                        <img draggable="false" src="/controllers/client/img/eBusiness02.png" alt="" class="object-fill shadow-xl " />
                     </div>
                 </div>
             </div>
