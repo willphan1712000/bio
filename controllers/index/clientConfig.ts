@@ -11,6 +11,15 @@ export default Object.freeze({
         title: "Level up your",
         titleSpan: "eBusiness Cards",
         description: "Our eBusiness cards template will give you the best design so you can make a good impression towards your clients, increase your revenue based on your professionals."
+    },
+    aic: {
+        website: "https://card.aiccards.com",
+        email: "tonthang@icloud.com",
+        phone: "571-419-0969",
+        messenger: "https://m.me/AllinclicksUs",
+        facebook: "https://www.facebook.com/AllinclicksUs/",
+        instagram: "https://www.instagram.com/allinclicks.us",
+        address: "800 Walnut Creek Dr NW, Lilburn, GA 30047"
     }
 })
 

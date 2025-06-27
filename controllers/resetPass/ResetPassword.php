@@ -3,8 +3,6 @@
 namespace controllers\resetPass;
 
 use business\user\PUT;
-use business\user\signup\Input;
-use business\user\signup\Password;
 use config\SystemConfig;
 use controllers\Controller;
 use persistence\Database;

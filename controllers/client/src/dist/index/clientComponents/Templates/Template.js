@@ -27,6 +27,6 @@ const Template = () => {
             ScrollTrigger_1.ScrollTrigger.refresh();
         });
     }, []);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "md:h-[70vh]" }), (0, jsx_runtime_1.jsx)("div", { className: 'h-[150vh] flex flex-col items-center bg-[--primary] py-10', children: (0, jsx_runtime_1.jsx)("div", { className: 'md:h-[90vh] overflow-hidden rounded-full sticky top-[50%] translate-y-[-50%]', ref: imgRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/template2.png", className: 'size-full object-cover' }) }) })] }));
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "md:h-[70vh]" }), (0, jsx_runtime_1.jsx)("div", { className: 'h-[150vh] flex flex-col items-center bg-[--primary] py-10 rounded-[30px]', children: (0, jsx_runtime_1.jsx)("div", { className: 'md:h-[90vh] overflow-hidden rounded-full sticky top-[50%] translate-y-[-50%]', ref: imgRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/template2.png", className: 'size-full object-cover' }) }) })] }));
 };
 exports.default = Template;

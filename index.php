@@ -7,7 +7,7 @@ SESSION_START();
 use config\Router;
 
 $payment = ['checkout', 'return'];
-$user = ['signin', 'signup', 'forgot', 'forgotUsernmame', 'resetPass', 'restore'];
+$user = ['signin', 'signup', 'forgot', 'forgotUsername', 'resetPass', 'restore'];
 $template = ['template'];
 $warning = ['expire', 'deactivate'];
 $admin = ['aic'];
