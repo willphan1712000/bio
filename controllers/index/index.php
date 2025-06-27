@@ -67,6 +67,7 @@ use component\signin\SigninTrial;
 
         <div id="showcase"></div>
         <div id="templates"></div>
+        <div id="footer"></div>
 
         <?php
         copyright([

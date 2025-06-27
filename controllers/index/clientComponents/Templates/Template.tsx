@@ -31,7 +31,7 @@ const Template = () => {
   return (
     <>
         <div className="md:h-[70vh]"></div>
-        <div className='h-[150vh] flex flex-col items-center bg-[--primary] py-10'>
+        <div className='h-[150vh] flex flex-col items-center bg-[--primary] py-10 rounded-[30px]'>
             <div className='md:h-[90vh] overflow-hidden rounded-full sticky top-[50%] translate-y-[-50%]' ref={imgRef}>
                 <img src="/controllers/client/img/template2.png" className='size-full object-cover'/>
             </div>

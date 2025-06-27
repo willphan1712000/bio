@@ -1001,6 +1001,10 @@ video {
   margin-top: 30px;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1077,6 +1081,36 @@ video {
 .size-full {
   width: 100%;
   height: 100%;
+}
+
+.size-\[10px\] {
+  width: 10px;
+  height: 10px;
+}
+
+.size-\[50px\] {
+  width: 50px;
+  height: 50px;
+}
+
+.size-\[80px\] {
+  width: 80px;
+  height: 80px;
+}
+
+.size-\[60px\] {
+  width: 60px;
+  height: 60px;
+}
+
+.size-\[auto\] {
+  width: auto;
+  height: auto;
+}
+
+.size-\[40px\] {
+  width: 40px;
+  height: 40px;
 }
 
 .h-0\.5 {
@@ -1336,6 +1370,10 @@ video {
   width: 100vw;
 }
 
+.w-\[50\%\] {
+  width: 50%;
+}
+
 .min-w-\[300px\] {
   min-width: 300px;
 }
@@ -1408,8 +1446,16 @@ video {
   max-width: 100%;
 }
 
+.max-w-\[300px\] {
+  max-width: 300px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.flex-\[2\] {
+  flex: 2;
 }
 
 .flex-shrink {
@@ -1485,12 +1531,20 @@ video {
   flex-wrap: wrap;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-end {
   align-items: flex-end;
 }
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -1553,6 +1607,10 @@ video {
   gap: 20px;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .self-center {
   align-self: center;
 }
@@ -1579,6 +1637,10 @@ video {
 
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.text-wrap {
+  text-wrap: wrap;
 }
 
 .rounded-2xl {
@@ -2016,6 +2078,14 @@ video {
   padding: 8px;
 }
 
+.p-\[5x\] {
+  padding: 5x;
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
@@ -2169,6 +2239,16 @@ video {
 .py-\[5px\] {
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.py-\[10px\] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.py-\[30px\] {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .pb-10 {
@@ -2832,6 +2912,20 @@ video {
 
   .md\:h-\[90vh\] {
     height: 90vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:items-start {
+    align-items: flex-start;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
   }
 }
 

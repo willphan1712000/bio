@@ -2061,6 +2061,75 @@ exports["default"] = UploadFile;
 
 /***/ }),
 
+/***/ "./controllers/client/src/dist/index/clientComponents/Footer/Footer.js":
+/*!*****************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/Footer/Footer.js ***!
+  \*****************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const Logo_1 = __importDefault(__webpack_require__(/*! ../Logo */ "./controllers/client/src/dist/index/clientComponents/Logo.js"));
+const TemplateButton_1 = __importDefault(__webpack_require__(/*! ../TemplateButton */ "./controllers/client/src/dist/index/clientComponents/TemplateButton.js"));
+const Info_1 = __importDefault(__webpack_require__(/*! ./Info */ "./controllers/client/src/dist/index/clientComponents/Footer/Info.js"));
+const Social_1 = __importDefault(__webpack_require__(/*! ./Social */ "./controllers/client/src/dist/index/clientComponents/Footer/Social.js"));
+const Footer = () => {
+    return ((0, jsx_runtime_1.jsx)("div", { className: 'bg-black mt-5 p-[30px] w-full flex flex-row justify-center', children: (0, jsx_runtime_1.jsxs)("div", { className: ' max-w-[1000px]', children: [(0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-col lg:flex-row gap-10 justify-center items-center lg:items-start', children: [(0, jsx_runtime_1.jsx)("div", { className: 'flex-1 w-[50%] max-w-[300px]', children: (0, jsx_runtime_1.jsx)(Logo_1.default, {}) }), (0, jsx_runtime_1.jsx)(Info_1.default, {}), (0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-[2] flex-col items-center gap-5', children: [(0, jsx_runtime_1.jsx)(TemplateButton_1.default, { onClick: () => window.location.href = '/@template' }), (0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-row gap-4', children: [(0, jsx_runtime_1.jsx)(TemplateButton_1.default, { content: 'Sign In', onClick: () => window.location.href = '/@signin' }), (0, jsx_runtime_1.jsx)(TemplateButton_1.default, { content: 'Sign Up', onClick: () => window.location.href = '/@signup' })] })] })] }), (0, jsx_runtime_1.jsx)(Social_1.default, {})] }) }));
+};
+exports["default"] = Footer;
+
+
+/***/ }),
+
+/***/ "./controllers/client/src/dist/index/clientComponents/Footer/Info.js":
+/*!***************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/Footer/Info.js ***!
+  \***************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../clientConfig */ "./controllers/client/src/dist/index/clientConfig.js"));
+const Info = () => {
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-[2] flex-col items-start text-white text-[16px]', children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px]', children: "Contact Us" }), (0, jsx_runtime_1.jsxs)("p", { children: ["Facetime: ", (0, jsx_runtime_1.jsx)("a", { href: `facetime-audio:${clientConfig_1.default.aic.email}`, children: clientConfig_1.default.aic.phone })] }), (0, jsx_runtime_1.jsxs)("p", { children: ["Email: ", (0, jsx_runtime_1.jsx)("a", { href: `mailto:${clientConfig_1.default.aic.email}`, children: clientConfig_1.default.aic.email })] }), (0, jsx_runtime_1.jsxs)("p", { children: ["Address: ", (0, jsx_runtime_1.jsx)("a", { href: `https://google.com/maps?q=${clientConfig_1.default.aic.address}`, children: clientConfig_1.default.aic.address })] }), (0, jsx_runtime_1.jsxs)("p", { children: ["Website: ", (0, jsx_runtime_1.jsx)("a", { href: `${clientConfig_1.default.aic.website}`, children: clientConfig_1.default.aic.website })] })] }));
+};
+exports["default"] = Info;
+
+
+/***/ }),
+
+/***/ "./controllers/client/src/dist/index/clientComponents/Footer/Social.js":
+/*!*****************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/Footer/Social.js ***!
+  \*****************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../clientConfig */ "./controllers/client/src/dist/index/clientConfig.js"));
+const Social = () => {
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'text-white flex flex-row justify-center items-center gap-5 text-[20px] py-[30px]', children: [(0, jsx_runtime_1.jsx)("div", { title: "Facebook", className: 'border-white border-[2px] p-[5px] rounded-full size-[40px] flex flex-row justify-center items-center', children: (0, jsx_runtime_1.jsx)("a", { href: `${clientConfig_1.default.aic.facebook}`, children: (0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-facebook" }) }) }), (0, jsx_runtime_1.jsx)("div", { title: "Instagram", className: 'border-white border-[2px] p-[5px] rounded-full size-[40px] flex flex-row justify-center items-center', children: (0, jsx_runtime_1.jsx)("a", { href: `${clientConfig_1.default.aic.instagram}`, children: (0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-instagram" }) }) }), (0, jsx_runtime_1.jsx)("div", { title: "Messenger", className: 'border-white border-[2px] p-[5px] rounded-full size-[40px] flex flex-row justify-center items-center', children: (0, jsx_runtime_1.jsx)("a", { href: `${clientConfig_1.default.aic.messenger}`, children: (0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-facebook-messenger" }) }) }), (0, jsx_runtime_1.jsx)("div", { title: "Phone", className: 'border-white border-[2px] p-[5px] rounded-full size-[40px] flex flex-row justify-center items-center', children: (0, jsx_runtime_1.jsx)("a", { href: `tel:${clientConfig_1.default.aic.phone}`, children: (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-phone" }) }) }), (0, jsx_runtime_1.jsx)("div", { title: "Facetime Audio", className: 'border-white border-[2px] p-[5px] rounded-full size-[40px] flex flex-row justify-center items-center', children: (0, jsx_runtime_1.jsx)("a", { href: `facetime-audio:${clientConfig_1.default.aic.email}`, children: (0, jsx_runtime_1.jsx)("i", { className: "fa-brands fa-apple" }) }) })] }));
+};
+exports["default"] = Social;
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/index/clientComponents/Heading/Heading.js":
 /*!*******************************************************************************!*\
   !*** ./controllers/client/src/dist/index/clientComponents/Heading/Heading.js ***!
@@ -2078,6 +2147,7 @@ const react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js"
 const clientConfig_1 = __importDefault(__webpack_require__(/*! ../../clientConfig */ "./controllers/client/src/dist/index/clientConfig.js"));
 const gsap_1 = __importDefault(__webpack_require__(/*! gsap */ "./node_modules/gsap/index.js"));
 const ScrollTrigger_1 = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
+const Logo_1 = __importDefault(__webpack_require__(/*! ../Logo */ "./controllers/client/src/dist/index/clientComponents/Logo.js"));
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 const Heading = () => {
     const backdropRef = (0, react_1.useRef)(null);
@@ -2138,7 +2208,7 @@ const Heading = () => {
                                 pointerEvents: 'none',
                                 borderRadius: "30px",
                                 opacity: 0.9
-                            }, ref: backdropRef }), (0, jsx_runtime_1.jsx)("div", { className: 'absolute top-[10%] w-[80%] max-w-[800px]', ref: greetingRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/logo.png", className: 'size-full' }) })] }), (0, jsx_runtime_1.jsxs)("div", { className: 'px-10', ref: textRef, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-center text-[40px] text-black", children: clientConfig_1.default.heading.title }), (0, jsx_runtime_1.jsx)("h2", { className: "text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]", children: clientConfig_1.default.heading.titleSpan })] })] }) }));
+                            }, ref: backdropRef }), (0, jsx_runtime_1.jsx)("div", { className: 'absolute top-[10%] w-[80%] max-w-[800px]', ref: greetingRef, children: (0, jsx_runtime_1.jsx)(Logo_1.default, {}) })] }), (0, jsx_runtime_1.jsxs)("div", { className: 'px-10', ref: textRef, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-center text-[40px] text-black", children: clientConfig_1.default.heading.title }), (0, jsx_runtime_1.jsx)("h2", { className: "text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]", children: clientConfig_1.default.heading.titleSpan })] })] }) }));
 };
 const styles = {
     container: {
@@ -2150,6 +2220,24 @@ const styles = {
     }
 };
 exports["default"] = Heading;
+
+
+/***/ }),
+
+/***/ "./controllers/client/src/dist/index/clientComponents/Logo.js":
+/*!********************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/Logo.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const Logo = () => {
+    return ((0, jsx_runtime_1.jsx)("a", { href: "/", children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/logo.png", className: 'size-full' }) }));
+};
+exports["default"] = Logo;
 
 
 /***/ }),
@@ -2402,6 +2490,36 @@ exports["default"] = Text;
 
 /***/ }),
 
+/***/ "./controllers/client/src/dist/index/clientComponents/TemplateButton.js":
+/*!******************************************************************************!*\
+  !*** ./controllers/client/src/dist/index/clientComponents/TemplateButton.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+const TemplateButton = (_a) => {
+    var { content = "Templates" } = _a, otherProps = __rest(_a, ["content"]);
+    return ((0, jsx_runtime_1.jsx)("button", Object.assign({}, otherProps, { className: "TemplateButtonbtn", children: (0, jsx_runtime_1.jsx)("div", { style: { backgroundColor: "#111723" }, className: "TemplateButtonlabel", children: (0, jsx_runtime_1.jsx)("p", { className: "TemplateButtonp", style: { color: `$fff` }, children: content }) }) })));
+};
+exports["default"] = TemplateButton;
+
+
+/***/ }),
+
 /***/ "./controllers/client/src/dist/index/clientComponents/Templates/Template.js":
 /*!**********************************************************************************!*\
   !*** ./controllers/client/src/dist/index/clientComponents/Templates/Template.js ***!
@@ -2438,7 +2556,7 @@ const Template = () => {
             ScrollTrigger_1.ScrollTrigger.refresh();
         });
     }, []);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "md:h-[70vh]" }), (0, jsx_runtime_1.jsx)("div", { className: 'h-[150vh] flex flex-col items-center bg-[--primary] py-10', children: (0, jsx_runtime_1.jsx)("div", { className: 'md:h-[90vh] overflow-hidden rounded-full sticky top-[50%] translate-y-[-50%]', ref: imgRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/template2.png", className: 'size-full object-cover' }) }) })] }));
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { className: "md:h-[70vh]" }), (0, jsx_runtime_1.jsx)("div", { className: 'h-[150vh] flex flex-col items-center bg-[--primary] py-10 rounded-[30px]', children: (0, jsx_runtime_1.jsx)("div", { className: 'md:h-[90vh] overflow-hidden rounded-full sticky top-[50%] translate-y-[-50%]', ref: imgRef, children: (0, jsx_runtime_1.jsx)("img", { src: "/controllers/client/img/template2.png", className: 'size-full object-cover' }) }) })] }));
 };
 exports["default"] = Template;
 
@@ -2470,6 +2588,15 @@ exports["default"] = Object.freeze({
         title: "Level up your",
         titleSpan: "eBusiness Cards",
         description: "Our eBusiness cards template will give you the best design so you can make a good impression towards your clients, increase your revenue based on your professionals."
+    },
+    aic: {
+        website: "https://card.aiccards.com",
+        email: "tonthang@icloud.com",
+        phone: "571-419-0969",
+        messenger: "https://m.me/AllinclicksUs",
+        facebook: "https://www.facebook.com/AllinclicksUs/",
+        instagram: "https://www.instagram.com/allinclicks.us",
+        address: "800 Walnut Creek Dr NW, Lilburn, GA 30047"
     }
 });
 function smoothScrolling() {
@@ -2498,6 +2625,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 const W_1 = __webpack_require__(/*! ../client/src/Web-Development/W */ "./controllers/client/src/dist/client/src/Web-Development/W.js");
+const Footer_1 = __importDefault(__webpack_require__(/*! ./clientComponents/Footer/Footer */ "./controllers/client/src/dist/index/clientComponents/Footer/Footer.js"));
 const Heading_1 = __importDefault(__webpack_require__(/*! ./clientComponents/Heading/Heading */ "./controllers/client/src/dist/index/clientComponents/Heading/Heading.js"));
 const AppScrollTrigger_1 = __importDefault(__webpack_require__(/*! ./clientComponents/ScrollTrigger/AppScrollTrigger */ "./controllers/client/src/dist/index/clientComponents/ScrollTrigger/AppScrollTrigger.js"));
 const Template_1 = __importDefault(__webpack_require__(/*! ./clientComponents/Templates/Template */ "./controllers/client/src/dist/index/clientComponents/Templates/Template.js"));
@@ -2514,6 +2642,10 @@ $(document).ready(function () {
     if (!templates)
         return;
     (0, W_1.$$)("#templates", (0, jsx_runtime_1.jsx)(Template_1.default, {})).reactMounting();
+    const footer = document.getElementById("footer");
+    if (!footer)
+        return;
+    (0, W_1.$$)("#footer", (0, jsx_runtime_1.jsx)(Footer_1.default, {})).reactMounting();
 });
 
 
@@ -51075,4 +51207,4 @@ if (false) {} else {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index0e3bcf1d0f5e081ea9ae.js.map
+//# sourceMappingURL=index71d65341e9352c4e85ba.js.map

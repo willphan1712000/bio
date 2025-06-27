@@ -141,6 +141,14 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+              test: /\.module\.css$/,
+              use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     },

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import clientConfig from '../../clientConfig'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Logo from '../Logo'
 gsap.registerPlugin(ScrollTrigger)
 
 const Heading = () => {
@@ -81,7 +82,7 @@ const Heading = () => {
                     ref={backdropRef}
                 />
                 <div className='absolute top-[10%] w-[80%] max-w-[800px]' ref={greetingRef}>
-                    <img src="/controllers/client/img/logo.png" className='size-full'/>
+                    <Logo />
                 </div>
             </div>
             <div className='px-10' ref={textRef}>
