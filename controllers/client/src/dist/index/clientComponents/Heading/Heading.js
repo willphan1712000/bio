@@ -73,7 +73,7 @@ const Heading = () => {
 };
 const styles = {
     container: {
-        height: "180vh",
+        height: "180lvh",
     },
     sticky: {
         position: "sticky",

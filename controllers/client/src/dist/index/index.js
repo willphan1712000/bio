@@ -26,4 +26,47 @@ $(document).ready(function () {
     if (!footer)
         return;
     (0, W_1.$$)("#footer", (0, jsx_runtime_1.jsx)(Footer_1.default, {})).reactMounting();
+    const navBtn = document.getElementById("navBtn");
+    const navBtnClose = document.getElementById("navBtnClose");
+    const nav = document.getElementById("nav");
+    if (!navBtn || !nav || !navBtnClose)
+        return;
+    navOpenFunc(navBtn, navBtnClose, nav);
 });
+function navOpenFunc(navBtn, navBtnClose, nav) {
+    navBtn.addEventListener('click', () => {
+        if (nav.classList.contains("invisible")) {
+            open();
+        }
+        else {
+            close();
+        }
+    });
+    navBtnClose.addEventListener('click', () => {
+        if (nav.classList.contains("invisible")) {
+            close();
+        }
+        else {
+            open();
+        }
+    });
+    window.addEventListener('click', e => {
+        const target = e.target;
+        if (navBtn.contains(target) || navBtn === target)
+            return;
+        const isClickInside = nav.contains(target) || target === nav;
+        if (!isClickInside) {
+            close();
+        }
+    });
+    function open() {
+        nav.classList.remove('invisible');
+        navBtnClose.classList.remove('hidden');
+        navBtn.classList.add('hidden');
+    }
+    function close() {
+        nav.classList.add('invisible');
+        navBtnClose.classList.add('hidden');
+        navBtn.classList.remove('hidden');
+    }
+}

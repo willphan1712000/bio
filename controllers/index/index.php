@@ -38,13 +38,39 @@ use component\signin\SigninTrial;
 
 <body>
     <div id="container">
-        <div class="w-full flex flex-row justify-between p-[10px] bg-white">
-            <div class="logo"><?= logo()->render(); ?></div>
+        <div class="w-full hidden lg:flex flex-row justify-between p-[10px] bg-white">
+            <div class="w-fit"><?= logo()->render(); ?></div>
+            <div class="flex flex-row gap-5 justify-start items-center flex-1 px-10">
+                <a href="/@template" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">Templates</a>
+                <a href="/@about" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">About us</a>
+                <a href="/@terms" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">Terms & Privacy</a>
+                <a href="/@blogs" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">Blogs</a>
+            </div>
             <div class="flex flex-row gap-2">
                 <div class="w-[100px] h-[50px]"><?= signinMain()->render(); ?></div>
                 <div class="w-[100px] h-[50px]"><?= signupMain()->render(); ?></div>
             </div>
         </div>
+        <div class="flex flex-col relative">
+            <div class="w-full lg:hidden flex flex-row justify-between p-[10px] bg-white">
+                <div><?= logo()->render(); ?></div>
+                <div class="flex flex-col items-start justify-center text-[30px] cursor-pointer transition-all" id="navBtn"><i class="fa-solid fa-bars"></i></div>
+                <div class="flex-col items-start justify-center text-[30px] cursor-pointer transition-all hidden" id="navBtnClose"><i class="fa-solid fa-circle-xmark"></i></div>
+            </div>
+            <div class="bg-white p-5 rounded-[30px] absolute top-[110%] left-0 w-full z-[99] invisible" id="nav">
+                <div class="flex flex-col gap-5 justify-start items-center flex-1 px-10">
+                    <a href="/@template" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">Templates</a>
+                    <a href="/@about" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">About us</a>
+                    <a href="/@terms" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">Terms & Privacy</a>
+                    <a href="/@blogs" class="hover:bg-[#f5f5f7] p-[10px] rounded-[10px]">Blogs</a>
+                </div>
+                <div class="flex flex-row gap-2 justify-center py-5">
+                    <div class="w-[100px] h-[50px]"><?= signinMain()->render(); ?></div>
+                    <div class="w-[100px] h-[50px]"><?= signupMain()->render(); ?></div>
+                </div>
+            </div>
+        </div>
+
         <div class="heading my-10 rounded-[20px] bg-white">
             <div class="w-full min-w-[300px] gap-5 flex flex-col py-[50px] items-center px-[10px]">
                 <div id="heading" class="w-full"></div>

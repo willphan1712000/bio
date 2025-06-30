@@ -70,10 +70,9 @@ function AppScrollTrigger() {
       }
     }).fromTo(header, { backgroundColor: "#328b94" }, { backgroundColor: "#f5f5f7" })
 
-    window.addEventListener('resize', () => {
-        ScrollTrigger.refresh()
-    })
-  }, [])
+    ScrollTrigger.addEventListener("refreshInit", () => window.scrollTo(0, window.pageYOffset));
+        ScrollTrigger.refresh();
+    }, [])
 
   return (
     <div className="App" style={styles.container}>
@@ -91,14 +90,14 @@ function AppScrollTrigger() {
 
 const styles: { [key: string]: React.CSSProperties } = {
   spacer: {
-    height: "200vh",
+    height: "200lvh",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     position: "relative"
   },
   appHeader: {
-    minHeight: "100vh",
+    minHeight: "100lvh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

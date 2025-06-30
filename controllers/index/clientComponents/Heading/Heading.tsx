@@ -96,7 +96,7 @@ const Heading = () => {
 
 const styles: { [key: string] : React.CSSProperties } = {
     container: {
-        height: "180vh",
+        height: "180lvh",
     },
     sticky: {
         position: "sticky",
