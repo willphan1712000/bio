@@ -13,9 +13,10 @@ exports.default = Object.freeze({
         three: "NFC cards require no battery and are often used for digital business cards, access control, or contactless payments."
     },
     heading: {
-        title: "Level up your",
-        titleSpan: "eBusiness Cards",
-        description: "Our eBusiness cards template will give you the best design so you can make a good impression towards your clients, increase your revenue based on your professionals."
+        title: "Level Up Your eBusiness Cards",
+        des1: "Create your profile and save it on an ",
+        desSpan: "eBusiness Cards",
+        des2: " Tap it on a phone to see how amazing your profile is"
     },
     aic: {
         website: "https://card.aiccards.com",
