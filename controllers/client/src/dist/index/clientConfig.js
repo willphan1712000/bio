@@ -26,6 +26,30 @@ exports.default = Object.freeze({
         facebook: "https://www.facebook.com/AllinclicksUs/",
         instagram: "https://www.instagram.com/allinclicks.us",
         address: "800 Walnut Creek Dr NW, Lilburn, GA 30047"
+    },
+    templates: {
+        basic: {
+            heading: "Basic Templates",
+            des: "Just create your profile, buy a template of your choice and we will ship your card to you."
+        },
+        pro: {
+            heading: "Pro Templates",
+            des: "Just create your profile, buy a pro template of your choice. You will have the pro template displayed on your profile + a card printed with the template shipped to you."
+        },
+        diamond: {
+            heading: "",
+            des: ""
+        }
+    },
+    cards: {
+        basic: {
+            heading: "",
+            des: ""
+        },
+        professional: {
+            heading: "",
+            des: ""
+        }
     }
 });
 function smoothScrolling() {

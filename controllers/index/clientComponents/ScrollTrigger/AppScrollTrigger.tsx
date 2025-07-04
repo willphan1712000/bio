@@ -60,24 +60,12 @@ function AppScrollTrigger() {
       }
     }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 })
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: header,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        markers: false,
-      }
-    }).fromTo(header, { backgroundColor: "#328b94" }, { backgroundColor: "#f5f5f7" })
-
-    ScrollTrigger.addEventListener("refreshInit", () => window.scrollTo(0, window.pageYOffset));
-        ScrollTrigger.refresh();
     }, [])
 
   return (
     <div className="App" style={styles.container}>
       <header className="App-header" style={styles.appHeader} ref={headerRef}>
-        <div className='hidden'>
+        <div className=''>
             <h1 className="text-[25px]" style={styles.title}>{clientConfig.nfc.title}</h1>
         </div>
         <div style={styles.spacer}>
@@ -89,6 +77,10 @@ function AppScrollTrigger() {
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    width: "100%",
+    maxWidth: "1500px",
+  },
   spacer: {
     height: "200lvh",
     display: "flex",
@@ -108,7 +100,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     backfaceVisibility: "hidden",
     position: "relative",
     padding: "50px",
-    backgroundColor: "#328b94"
+    backgroundColor: "#f5f5f7",
+    borderRadius: "30px"
   },
   title: {
     borderRadius: '5px',

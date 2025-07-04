@@ -59,21 +59,14 @@ function AppScrollTrigger() {
                 markers: false,
             }
         }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 });
-        gsap_1.default.timeline({
-            scrollTrigger: {
-                trigger: header,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1,
-                markers: false,
-            }
-        }).fromTo(header, { backgroundColor: "#328b94" }, { backgroundColor: "#f5f5f7" });
-        ScrollTrigger_1.ScrollTrigger.addEventListener("refreshInit", () => window.scrollTo(0, window.pageYOffset));
-        ScrollTrigger_1.ScrollTrigger.refresh();
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsxs)("header", { className: "App-header", style: styles.appHeader, ref: headerRef, children: [(0, jsx_runtime_1.jsx)("div", { className: 'hidden', children: (0, jsx_runtime_1.jsx)("h1", { className: "text-[25px]", style: styles.title, children: clientConfig_1.default.nfc.title }) }), (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) })] }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsxs)("header", { className: "App-header", style: styles.appHeader, ref: headerRef, children: [(0, jsx_runtime_1.jsx)("div", { className: '', children: (0, jsx_runtime_1.jsx)("h1", { className: "text-[25px]", style: styles.title, children: clientConfig_1.default.nfc.title }) }), (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) })] }) }));
 }
 const styles = {
+    container: {
+        width: "100%",
+        maxWidth: "1500px",
+    },
     spacer: {
         height: "200lvh",
         display: "flex",
@@ -93,7 +86,8 @@ const styles = {
         backfaceVisibility: "hidden",
         position: "relative",
         padding: "50px",
-        backgroundColor: "#328b94"
+        backgroundColor: "#f5f5f7",
+        borderRadius: "30px"
     },
     title: {
         borderRadius: '5px',
