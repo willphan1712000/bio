@@ -18,6 +18,6 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = __importDefault(require("react"));
 const Card = react_1.default.forwardRef((props, ref) => {
     const { item } = props, rest = __rest(props, ["item"]);
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)("div", Object.assign({ className: 'h-[100dvh] w-full flex justify-center items-center flex-col text-center p-[20px]' }, rest, { ref: ref, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-[30px] font-bold py-2 px-3 text-white bg-[--primary] rounded-full", children: item.heading }), (0, jsx_runtime_1.jsx)("p", { className: "text-[25px]", children: item.des })] })) }));
+    return ((0, jsx_runtime_1.jsxs)("div", Object.assign({ className: 'h-[100dvh] w-full flex justify-center items-center flex-col text-center p-[20px]' }, rest, { ref: ref, children: [(0, jsx_runtime_1.jsx)("h1", { className: "text-[30px] font-bold py-2 px-3 text-white bg-[--primary] rounded-full", children: item.heading }), (0, jsx_runtime_1.jsx)("p", { className: "text-[25px]", children: item.des })] })));
 });
 exports.default = Card;

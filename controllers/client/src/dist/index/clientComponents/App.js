@@ -8,11 +8,10 @@ const Footer_1 = __importDefault(require("./Footer/Footer"));
 const Banner_1 = __importDefault(require("./Heading/Banner"));
 const NavBar_1 = __importDefault(require("./NavBar/NavBar"));
 const AppScrollTrigger_1 = __importDefault(require("./ScrollTrigger/AppScrollTrigger"));
-const Desktop_1 = __importDefault(require("./Template/Desktop/Desktop"));
-const Desktop_2 = __importDefault(require("./eCards/Desktop/Desktop"));
+const Template_1 = __importDefault(require("./Template/Template"));
+const Desktop_1 = __importDefault(require("./eCards/Desktop/Desktop"));
 const Marketing_1 = __importDefault(require("./Template/Marketing"));
-const Mobile_1 = __importDefault(require("./Template/Mobile/Mobile"));
 const App = () => {
-    return ((0, jsx_runtime_1.jsxs)("div", { className: "bg-gradient-to-r from-[#C8F8FF] to-[#FFD18C] flex flex-col items-center", children: [(0, jsx_runtime_1.jsx)(NavBar_1.default, {}), (0, jsx_runtime_1.jsx)(Banner_1.default, {}), (0, jsx_runtime_1.jsx)(Mobile_1.default, {}), (0, jsx_runtime_1.jsx)(Desktop_1.default, {}), (0, jsx_runtime_1.jsx)(Marketing_1.default, {}), (0, jsx_runtime_1.jsx)(Desktop_2.default, {}), (0, jsx_runtime_1.jsx)(AppScrollTrigger_1.default, {}), (0, jsx_runtime_1.jsx)(Footer_1.default, {})] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "bg-gradient-to-r from-[#C8F8FF] to-[#FFD18C] flex flex-col items-center", children: [(0, jsx_runtime_1.jsx)(NavBar_1.default, {}), (0, jsx_runtime_1.jsx)(Banner_1.default, {}), (0, jsx_runtime_1.jsx)(Template_1.default, {}), (0, jsx_runtime_1.jsx)(Marketing_1.default, {}), (0, jsx_runtime_1.jsx)(Desktop_1.default, {}), (0, jsx_runtime_1.jsx)(AppScrollTrigger_1.default, {}), (0, jsx_runtime_1.jsx)(Footer_1.default, {})] }));
 };
 exports.default = App;

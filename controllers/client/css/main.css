@@ -303,6 +303,10 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   font-size: 15px;
 }
+
+.template-image-background {
+  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+}
 /* Web responsive */
 @media screen and (max-width: 600px) {
 
