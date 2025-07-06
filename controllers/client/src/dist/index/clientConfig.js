@@ -6,6 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.smoothScrolling = smoothScrolling;
 const lenis_1 = __importDefault(require("@studio-freight/lenis"));
 exports.default = Object.freeze({
+    domain: "https://card.aiccards.com",
+    default_product: {
+        thumbnails: "/controllers/client/img/unknown.png",
+        url: "/"
+    },
     nfc: {
         title: "Use NFC - Near Field Communication Technology",
         one: "Cards use short-range wireless technology to communicate with compatible devices when brought close together.",
@@ -44,11 +49,87 @@ exports.default = Object.freeze({
     cards: {
         basic: {
             heading: "",
-            des: ""
+            des: "",
+            products: [
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+            ]
         },
         professional: {
             heading: "",
-            des: ""
+            des: "",
+            products: [
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+            ]
         }
     }
 });

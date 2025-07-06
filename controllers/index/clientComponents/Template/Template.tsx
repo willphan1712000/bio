@@ -41,7 +41,7 @@ const Template = () => {
 
   if(windowWidth >= mobile)
     return (
-      <div className="flex bg-[#f5f5f7] rounded-3xl flex-row">
+      <div className="flex bg-[#f5f5f7] rounded-3xl flex-row max-w-[1500px]">
         <div className="flex flex-col p-10 w-[60%]">
           <Card item={clientConfig.templates.basic} ref={cardOne} />
           <Card item={clientConfig.templates.pro} ref={cardTwo}/>

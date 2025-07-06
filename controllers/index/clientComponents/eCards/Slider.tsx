@@ -10,7 +10,15 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import useWindowWidth, { mobile } from '../../hooks/useWindowWidth';
 import Card from './Card';
-const Slider = () => {
+
+interface Props {
+  products?: {
+    thumbnails: string,
+    url: string
+  }[]
+}
+
+const Slider = ({ products }: Props) => {
   const windowWidth = useWindowWidth()
   const slideCSS = '!flex flex-row justify-center h-[400px]'
   const notMobile = windowWidth >= mobile
@@ -31,14 +39,10 @@ const Slider = () => {
       }}
       lazyPreloadPrevNext={3}
     >
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
-      <SwiperSlide className={slideCSS}><Card /></SwiperSlide>
+      
+      {products?.map((product, index) => (
+        <SwiperSlide key={index} className={slideCSS}><Card product={product}/></SwiperSlide>
+      ))}
     </Swiper>
   );
 };

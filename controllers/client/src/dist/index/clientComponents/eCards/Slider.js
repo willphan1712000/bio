@@ -35,15 +35,15 @@ require("swiper/css/pagination");
 require("swiper/css/scrollbar");
 const useWindowWidth_1 = __importStar(require("../../hooks/useWindowWidth"));
 const Card_1 = __importDefault(require("./Card"));
-const Slider = () => {
+const Slider = ({ products }) => {
     const windowWidth = (0, useWindowWidth_1.default)();
     const slideCSS = '!flex flex-row justify-center h-[400px]';
     const notMobile = windowWidth >= useWindowWidth_1.mobile;
-    return ((0, jsx_runtime_1.jsxs)(react_1.Swiper, { modules: [modules_1.Pagination, modules_1.Navigation, modules_1.Autoplay], spaceBetween: notMobile ? 30 : 0, slidesPerView: notMobile ? 3 : 1, pagination: {
+    return ((0, jsx_runtime_1.jsx)(react_1.Swiper, { modules: [modules_1.Pagination, modules_1.Navigation, modules_1.Autoplay], spaceBetween: notMobile ? 30 : 0, slidesPerView: notMobile ? 3 : 1, pagination: {
             clickable: true
         }, navigation: true, className: 'w-full max-w-[1020px] card-slider', autoplay: {
             delay: 5000,
             disableOnInteraction: true
-        }, lazyPreloadPrevNext: 3, children: [(0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) }), (0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, {}) })] }));
+        }, lazyPreloadPrevNext: 3, children: products === null || products === void 0 ? void 0 : products.map((product, index) => ((0, jsx_runtime_1.jsx)(react_1.SwiperSlide, { className: slideCSS, children: (0, jsx_runtime_1.jsx)(Card_1.default, { product: product }) }, index))) }));
 };
 exports.default = Slider;

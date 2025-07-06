@@ -1409,6 +1409,10 @@ video {
   width: 100vw;
 }
 
+.w-\[250px\] {
+  width: 250px;
+}
+
 .min-w-\[70\%\] {
   min-width: 70%;
 }
@@ -1680,8 +1684,16 @@ video {
   overflow-y: hidden;
 }
 
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .rounded-2xl {

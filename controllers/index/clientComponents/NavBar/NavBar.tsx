@@ -58,8 +58,8 @@ const NavBar = () => {
 
   return (
     <div className='rounded-3xl w-full'>
-        <div className="w-full hidden lg:flex flex-row justify-between p-[10px] bg-white">
-            <div className="max-w-[250px] w-[40%]"><Logo /></div>
+        <div className="w-full hidden lg:flex flex-row justify-between p-[20px] bg-white">
+            <div className="w-[200px]"><Logo /></div>
             <div className="flex flex-row gap-5 justify-start items-center flex-1 px-10">
                 <Link />
             </div>
@@ -68,8 +68,8 @@ const NavBar = () => {
             </div>
         </div>
         <div className="flex flex-col relative lg:hidden">
-            <div className="w-full flex flex-row justify-between p-[10px] bg-white h-[60px]">
-                <div className="max-w-[250px] w-[40%]"><Logo /></div>
+            <div className="w-full flex flex-row justify-between p-[10px] bg-white">
+                <div className="w-[200px]"><Logo /></div>
                 <div className="flex flex-col items-start justify-center text-[30px] cursor-pointer transition-all" id="navBtn"><i className="fa-solid fa-bars"></i></div>
                 <div className="flex-col items-start justify-center text-[30px] cursor-pointer transition-all hidden" id="navBtnClose"><i className="fa-solid fa-circle-xmark"></i></div>
             </div>

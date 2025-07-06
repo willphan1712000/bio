@@ -1,11 +1,22 @@
 import { TiPlus } from "react-icons/ti";
+import clientConfig from "../../clientConfig";
 
-const Card = () => {
+interface Props {
+  product?: {
+    thumbnails: string,
+    url: string
+  }
+}
+
+const Card = ({ product = clientConfig.default_product }: Props) => {
+
   return (
-    <div className='bg-[--apple] rounded-[40px] w-[300px] h-[400px] overflow-hidden relative'>
-      <img src="/controllers/client/img/background.png" className='size-full object-cover' draggable="false" loading="lazy"/>
-      <div className="absolute bottom-5 right-5 rounded-full bg-[--apple] size-[50px] flex justify-center items-center"><TiPlus size="20"/></div>
-    </div>
+    <a href={product.url} target="">
+      <div className='bg-[--apple] rounded-[40px] w-[300px] h-[400px] overflow-hidden relative'>
+        <img src={product.thumbnails} className='size-full object-cover' draggable="false" loading="lazy"/>
+        <div className="absolute bottom-5 right-5 rounded-full bg-[--apple] size-[50px] flex justify-center items-center"><TiPlus size="20"/></div>
+      </div>
+    </a>
   )
 }
 
