@@ -1184,10 +1184,6 @@ video {
   height: 50px;
 }
 
-.h-\[60px\] {
-  height: 60px;
-}
-
 .h-\[70\%\] {
   height: 70%;
 }
@@ -1409,10 +1405,6 @@ video {
   width: 100vw;
 }
 
-.w-\[250px\] {
-  width: 250px;
-}
-
 .min-w-\[70\%\] {
   min-width: 70%;
 }
@@ -1427,10 +1419,6 @@ video {
 
 .max-w-\[1500px\] {
   max-width: 1500px;
-}
-
-.max-w-\[250px\] {
-  max-width: 250px;
 }
 
 .max-w-\[300px\] {
@@ -1684,16 +1672,16 @@ video {
   overflow-y: hidden;
 }
 
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 .text-ellipsis {
   text-overflow: ellipsis;
 }
 
 .whitespace-nowrap {
   white-space: nowrap;
-}
-
-.break-words {
-  overflow-wrap: break-word;
 }
 
 .rounded-2xl {
@@ -2731,6 +2719,10 @@ video {
 
 .duration-200 {
   transition-duration: 200ms;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .saveDefaultButtonStyle {

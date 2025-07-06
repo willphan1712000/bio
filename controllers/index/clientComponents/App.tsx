@@ -4,9 +4,9 @@ import NavBar from "./NavBar/NavBar"
 import AppScrollTrigger from "./ScrollTrigger/AppScrollTrigger"
 import Template from "./Template/Template"
 import ECards from "./eCards/ECards"
-import Marketing from "./Template/Marketing"
 import Separator from "./Separator"
 import UpSell from "./eCards/UpSell"
+import ETemplate from "./eCards/ETemplate"
 
 const App = () => {
   return (
@@ -14,7 +14,9 @@ const App = () => {
         <NavBar />
         <Banner />
         <Template />
-        <Marketing />
+        <Separator />
+        <ETemplate />
+        <Separator />
         <ECards />
         <Separator />
         <AppScrollTrigger/>

@@ -9,9 +9,13 @@ const pro_products = clientConfig.cards.professional.products
 const ECards = () => {
   return (
     <div className='w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden'>
+      <div id="basic_cards"></div>
       <p className='text-[20px] pb-5'>Basic eBusiness Cards</p>
       <Slider products={basic_products}/>
-      <Separator />
+
+      <Separator thickness="4" />
+
+      <div id="pro_cards"></div>
       <p className='text-[25px]'>Professional eBusiness Cards</p>
       <Effect products={pro_products}/>
     </div>

@@ -43,8 +43,8 @@ const Template = () => {
     return (
       <div className="flex bg-[#f5f5f7] rounded-3xl flex-row max-w-[1500px]">
         <div className="flex flex-col p-10 w-[60%]">
-          <Card item={clientConfig.templates.basic} ref={cardOne} />
-          <Card item={clientConfig.templates.pro} ref={cardTwo}/>
+          <Card item={clientConfig.templates.basic} ref={cardOne} id="#basic_templates" />
+          <Card item={clientConfig.templates.pro} ref={cardTwo} id="#pro_templates" />
         </div>
         <div className="flex w-[40%] sticky top-0 h-[100vh]">
           <Image url={"/controllers/client/img/background.png"} ref={imgOne} />

@@ -11,6 +11,6 @@ const Slider_1 = __importDefault(require("./Slider"));
 const basic_products = clientConfig_1.default.cards.basic.products;
 const pro_products = clientConfig_1.default.cards.professional.products;
 const ECards = () => {
-    return ((0, jsx_runtime_1.jsxs)("div", { className: 'w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden', children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] pb-5', children: "Basic eBusiness Cards" }), (0, jsx_runtime_1.jsx)(Slider_1.default, { products: basic_products }), (0, jsx_runtime_1.jsx)(Separator_1.default, {}), (0, jsx_runtime_1.jsx)("p", { className: 'text-[25px]', children: "Professional eBusiness Cards" }), (0, jsx_runtime_1.jsx)(Effect_1.default, { products: pro_products })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden', children: [(0, jsx_runtime_1.jsx)("div", { id: "basic_cards" }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] pb-5', children: "Basic eBusiness Cards" }), (0, jsx_runtime_1.jsx)(Slider_1.default, { products: basic_products }), (0, jsx_runtime_1.jsx)(Separator_1.default, { thickness: "4" }), (0, jsx_runtime_1.jsx)("div", { id: "pro_cards" }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[25px]', children: "Professional eBusiness Cards" }), (0, jsx_runtime_1.jsx)(Effect_1.default, { products: pro_products })] }));
 };
 exports.default = ECards;
