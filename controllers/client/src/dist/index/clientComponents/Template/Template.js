@@ -15,13 +15,23 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -65,6 +75,6 @@ const Template = () => {
     }, [windowWidth]);
     if (windowWidth >= useWindowWidth_1.mobile)
         return ((0, jsx_runtime_1.jsxs)("div", { className: "flex bg-[#f5f5f7] rounded-3xl flex-row max-w-[1500px]", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col p-10 w-[60%]", children: [(0, jsx_runtime_1.jsx)(Card_1.default, { item: clientConfig_1.default.templates.basic, ref: cardOne, id: "#basic_templates" }), (0, jsx_runtime_1.jsx)(Card_1.default, { item: clientConfig_1.default.templates.pro, ref: cardTwo, id: "#pro_templates" })] }), (0, jsx_runtime_1.jsxs)("div", { className: "flex w-[40%] sticky top-0 h-[100vh]", children: [(0, jsx_runtime_1.jsx)(Image_1.default, { url: "/controllers/client/img/background.png", ref: imgOne }), (0, jsx_runtime_1.jsx)(Image_1.default, { url: "/controllers/client/img/ip.png", ref: imgTwo })] })] }));
-    return ((0, jsx_runtime_1.jsxs)("div", { className: "flex bg-[#f5f5f7] rounded-3xl flex-col", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex w-full sticky top-0 h-[500px] template-image-background", children: [(0, jsx_runtime_1.jsx)(Image_1.default, { url: "/controllers/client/img/background.png", ref: imgOne }), (0, jsx_runtime_1.jsx)(Image_1.default, { url: "/controllers/client/img/ip.png", ref: imgTwo })] }), (0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col p-10 w-full", children: [(0, jsx_runtime_1.jsx)(Card_1.default, { item: clientConfig_1.default.templates.basic, ref: cardOne, isMobile: true }), (0, jsx_runtime_1.jsx)(Card_1.default, { item: clientConfig_1.default.templates.pro, ref: cardTwo, isMobile: true })] })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: "flex bg-[#f5f5f7] rounded-3xl flex-col", children: [(0, jsx_runtime_1.jsxs)("div", { className: "flex w-full sticky top-0 h-[500px] template-image-background", children: [(0, jsx_runtime_1.jsx)(Image_1.default, { url: "/controllers/client/img/background.png", ref: imgOne }), (0, jsx_runtime_1.jsx)(Image_1.default, { url: "/controllers/client/img/ip.png", ref: imgTwo })] }), (0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col p-10 w-full", children: [(0, jsx_runtime_1.jsx)(Card_1.default, { item: clientConfig_1.default.templates.basic, ref: cardOne, isMobile: true, id: "#basic_templates" }), (0, jsx_runtime_1.jsx)(Card_1.default, { item: clientConfig_1.default.templates.pro, ref: cardTwo, isMobile: true, id: "#pro_templates" })] })] }));
 };
 exports.default = Template;

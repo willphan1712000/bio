@@ -60,8 +60,8 @@ const Template = () => {
         <Image url={"/controllers/client/img/ip.png"} ref={imgTwo} />
       </div>
       <div className="flex flex-col p-10 w-full">
-        <Card item={clientConfig.templates.basic} ref={cardOne} isMobile={true} />
-        <Card item={clientConfig.templates.pro} ref={cardTwo}isMobile={true} />
+        <Card item={clientConfig.templates.basic} ref={cardOne} isMobile={true} id="#basic_templates"/>
+        <Card item={clientConfig.templates.pro} ref={cardTwo}isMobile={true} id="#pro_templates"/>
       </div>
     </div>
   )
