@@ -1,13 +1,13 @@
-import { Button } from '@radix-ui/themes'
+import { Button } from '@willphan1712000/w'
 import { ComponentProps } from 'react'
 
 interface Props extends ComponentProps<typeof Button> {
     title?: string
 }
 
-const Template = ({title = 'Click me', ...otherProps}: Props) => {
+const Template = ({...otherProps}: Props) => {
   return (
-    <Button {...otherProps} onClick={() => window.location.href = '/@template'}>{title}</Button>
+    <Button {...otherProps} onClick={() => window.location.href = '/@template'} type="gradient" />
   )
 }
 

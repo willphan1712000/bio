@@ -309,7 +309,9 @@
 }
 /* Web responsive */
 @media screen and (max-width: 600px) {
-
+  .card-slider .swiper-wrapper {
+    scale: 0.7;
+  }
   .signupParent {
     height: 68vh;
   }

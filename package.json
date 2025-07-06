@@ -6,8 +6,8 @@
   "scripts": {
     "wpb": "webpack --mode=production",
     "wpw": "webpack --watch",
-    "twb": "tailwindcss build -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css",
-    "tww": "tailwindcss build -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css --watch",
+    "twb": "tailwindcss -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css",
+    "tww": "tailwindcss -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css --watch",
     "tsc": "rm -rf ./controllers/client/src/dist/ && tsc --watch"
   },
   "keywords": [],
@@ -36,7 +36,7 @@
     "sass": "^1.77.6",
     "sass-loader": "^13.3.3",
     "style-loader": "^3.3.4",
-    "tailwindcss": "^3.4.13",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.6.3",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4"

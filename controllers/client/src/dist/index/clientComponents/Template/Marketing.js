@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const Template_1 = __importDefault(require("../Template"));
 const Marketing = () => {
-    return ((0, jsx_runtime_1.jsx)("div", { className: 'p-10', children: (0, jsx_runtime_1.jsx)(Template_1.default, { title: "Explore More Template", variant: "soft", color: "crimson", size: "4" }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: 'p-10', children: (0, jsx_runtime_1.jsx)(Template_1.default, { content: "Explore More Template" }) }));
 };
 exports.default = Marketing;

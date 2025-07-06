@@ -3,8 +3,10 @@ import Banner from "./Heading/Banner"
 import NavBar from "./NavBar/NavBar"
 import AppScrollTrigger from "./ScrollTrigger/AppScrollTrigger"
 import Template from "./Template/Template"
-import DesktopCard from "./eCards/Desktop/Desktop"
+import ECards from "./eCards/ECards"
 import Marketing from "./Template/Marketing"
+import Separator from "./Separator"
+import UpSell from "./eCards/UpSell"
 
 const App = () => {
   return (
@@ -13,8 +15,12 @@ const App = () => {
         <Banner />
         <Template />
         <Marketing />
-        <DesktopCard />
+        <ECards />
+        <Separator />
         <AppScrollTrigger/>
+        <Separator />
+        <UpSell />
+        <Separator />
         <Footer />
     </div>
   )

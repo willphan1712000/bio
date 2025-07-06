@@ -13,16 +13,16 @@ const Card = React.forwardRef<HTMLDivElement, Props>(( props, ref ) => {
 
   if(!isMobile)
     return (
-      <div className='h-[100dvh] w-full flex justify-center items-center flex-col text-center p-[20px]' {...rest} ref={ref}>
+      <div className='h-[100vh] w-full flex justify-center items-center flex-col text-center p-[20px]' {...rest} ref={ref}>
           <h1 className="text-[30px] font-bold py-2 px-3 text-white bg-[--primary] rounded-full">{item.heading}</h1>
           <p className="text-[25px]">{item.des}</p>
       </div>
     )
 
   return (
-    <div className='h-[100dvh] w-full flex justify-end items-center flex-col text-center p-[20px]' {...rest} ref={ref}>
-        <h1 className="text-[30px] font-bold py-2 px-3 text-white bg-[--primary] rounded-full">{item.heading}</h1>
-        <p className="text-[25px]">{item.des}</p>
+    <div className='h-[700px] w-full flex justify-end items-center flex-col text-center p-[20px]' {...rest} ref={ref}>
+        <h1 className="text-[25px] font-bold py-2 px-3 text-white bg-[--primary] rounded-full">{item.heading}</h1>
+        <p className="text-[20px]">{item.des}</p>
     </div>
   )
 })

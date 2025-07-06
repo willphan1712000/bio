@@ -12,9 +12,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const themes_1 = require("@radix-ui/themes");
+const w_1 = require("@willphan1712000/w");
 const Template = (_a) => {
-    var { title = 'Click me' } = _a, otherProps = __rest(_a, ["title"]);
-    return ((0, jsx_runtime_1.jsx)(themes_1.Button, Object.assign({}, otherProps, { onClick: () => window.location.href = '/@template', children: title })));
+    var otherProps = __rest(_a, []);
+    return ((0, jsx_runtime_1.jsx)(w_1.Button, Object.assign({}, otherProps, { onClick: () => window.location.href = '/@template', type: "gradient" })));
 };
 exports.default = Template;

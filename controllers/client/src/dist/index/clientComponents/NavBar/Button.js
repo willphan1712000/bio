@@ -7,6 +7,6 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const Signin_1 = __importDefault(require("../Signin"));
 const Signup_1 = __importDefault(require("../Signup"));
 const Button = () => {
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(Signin_1.default, { title: "Sign In", size: "3", color: "crimson", variant: 'outline' }), (0, jsx_runtime_1.jsx)(Signup_1.default, { title: "Sign up", size: "3", color: "indigo", variant: 'outline' })] }));
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(Signin_1.default, { content: "Sign In" }), (0, jsx_runtime_1.jsx)(Signup_1.default, { content: "Sign up" })] }));
 };
 exports.default = Button;
