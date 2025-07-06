@@ -1,6 +1,11 @@
 import Lenis from "@studio-freight/lenis"
 
 export default Object.freeze({
+    domain: "https://card.aiccards.com",
+    default_product: {
+        thumbnails: "/controllers/client/img/unknown.png",
+        url: "/"
+    },
     nfc: {
         title: "Use NFC - Near Field Communication Technology",
         one: "Cards use short-range wireless technology to communicate with compatible devices when brought close together.",
@@ -8,9 +13,10 @@ export default Object.freeze({
         three: "NFC cards require no battery and are often used for digital business cards, access control, or contactless payments."
     },
     heading: {
-        title: "Level up your",
-        titleSpan: "eBusiness Cards",
-        description: "Our eBusiness cards template will give you the best design so you can make a good impression towards your clients, increase your revenue based on your professionals."
+        title: "Level Up Your eBusiness Cards",
+        des1: "Create your profile and save it on an ",
+        desSpan: "eBusiness Cards",
+        des2: " Tap it on a phone to see how amazing your profile is"
     },
     aic: {
         website: "https://card.aiccards.com",
@@ -20,6 +26,182 @@ export default Object.freeze({
         facebook: "https://www.facebook.com/AllinclicksUs/",
         instagram: "https://www.instagram.com/allinclicks.us",
         address: "800 Walnut Creek Dr NW, Lilburn, GA 30047"
+    },
+    templates: {
+        basic: {
+            heading: "Basic Templates",
+            des: "Just create your profile, buy a template of your choice and we will ship your card to you.",
+            products: [
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+            ]
+        },
+        pro: {
+            heading: "Pro Templates",
+            des: "Just create your profile, buy a pro template of your choice. You will have the pro template displayed on your profile + a card printed with the template shipped to you.",
+            products: [
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/instagram_front.png",
+                    url: "/"
+                },
+            ]
+        },
+        diamond: {
+            heading: "",
+            des: ""
+        }
+    },
+    cards: {
+        basic: {
+            heading: "",
+            des: "",
+            products: [
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+            ]
+        },
+        professional: {
+            heading: "",
+            des: "",
+            products: [
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+                {
+                    thumbnails: "/controllers/client/img/background.png",
+                    url: "/"
+                },
+            ]
+        }
     }
 })
 

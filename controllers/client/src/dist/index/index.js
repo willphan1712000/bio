@@ -5,25 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const W_1 = require("../client/src/Web-Development/W");
-const Footer_1 = __importDefault(require("./clientComponents/Footer/Footer"));
-const Heading_1 = __importDefault(require("./clientComponents/Heading/Heading"));
-const AppScrollTrigger_1 = __importDefault(require("./clientComponents/ScrollTrigger/AppScrollTrigger"));
-const Template_1 = __importDefault(require("./clientComponents/Templates/Template"));
+require("@willphan1712000/w/dist/index.css");
+const App_1 = __importDefault(require("./clientComponents/App"));
 $(document).ready(function () {
-    const heading = document.getElementById("heading");
-    if (!heading)
+    const container = document.getElementById("container");
+    if (!container)
         return;
-    (0, W_1.$$)("#heading", (0, jsx_runtime_1.jsx)(Heading_1.default, {})).reactMounting();
-    const showcase = document.getElementById("showcase");
-    if (!showcase)
-        return;
-    (0, W_1.$$)("#showcase", (0, jsx_runtime_1.jsx)(AppScrollTrigger_1.default, {})).reactMounting();
-    const templates = document.getElementById("templates");
-    if (!templates)
-        return;
-    (0, W_1.$$)("#templates", (0, jsx_runtime_1.jsx)(Template_1.default, {})).reactMounting();
-    const footer = document.getElementById("footer");
-    if (!footer)
-        return;
-    (0, W_1.$$)("#footer", (0, jsx_runtime_1.jsx)(Footer_1.default, {})).reactMounting();
+    (0, W_1.$$)("#container", (0, jsx_runtime_1.jsx)(App_1.default, {})).reactMounting();
 });

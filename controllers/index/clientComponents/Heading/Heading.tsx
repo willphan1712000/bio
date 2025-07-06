@@ -87,7 +87,7 @@ const Heading = () => {
             </div>
             <div className='px-10' ref={textRef}>
                 <h1 className="text-center text-[40px] text-black">{clientConfig.heading.title}</h1>
-                <h2 className="text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]">{clientConfig.heading.titleSpan}</h2>
+                <h2 className="text-center text-white bg-[--primary] px-[15px] py-[5px] rounded-[40px] text-[40px]">{clientConfig.heading.desSpan}</h2>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@ const Heading = () => {
 
 const styles: { [key: string] : React.CSSProperties } = {
     container: {
-        height: "180vh",
+        height: "180lvh",
     },
     sticky: {
         position: "sticky",
