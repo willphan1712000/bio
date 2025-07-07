@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.smoothScrolling = smoothScrolling;
 const lenis_1 = __importDefault(require("@studio-freight/lenis"));
 exports.default = Object.freeze({
-    domain: "https://card.aiccards.com",
     default_product: {
         thumbnails: "/controllers/client/img/unknown.png",
         url: "/"

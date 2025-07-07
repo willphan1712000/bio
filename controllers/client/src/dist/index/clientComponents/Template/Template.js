@@ -57,7 +57,7 @@ const Template = () => {
         gsap_1.default.timeline({
             scrollTrigger: {
                 trigger: cardOne.current,
-                start: "top center",
+                start: "top 90%",
                 end: "bottom 30%",
                 scrub: 1,
                 markers: false,

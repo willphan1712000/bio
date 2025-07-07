@@ -31,7 +31,7 @@ enum Bio
 
 class ProductionConfig
 {
-    public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
+    public static Mode $mode = Mode::DEVELOPMENT; // mode (development or production)
     public static Type $type = Type::TEST;
     public static Bio $bio = Bio::PRO;
     public static $version = "7.6.2"; // version of the product

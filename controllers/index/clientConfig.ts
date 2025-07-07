@@ -1,7 +1,6 @@
 import Lenis from "@studio-freight/lenis"
 
 export default Object.freeze({
-    domain: "https://card.aiccards.com",
     default_product: {
         thumbnails: "/controllers/client/img/unknown.png",
         url: "/"
