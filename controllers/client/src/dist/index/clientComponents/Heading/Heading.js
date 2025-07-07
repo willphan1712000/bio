@@ -9,6 +9,7 @@ const clientConfig_1 = __importDefault(require("../../clientConfig"));
 const gsap_1 = __importDefault(require("gsap"));
 const ScrollTrigger_1 = require("gsap/ScrollTrigger");
 const Logo_1 = __importDefault(require("../Logo"));
+const AppImage_1 = __importDefault(require("../AppImage"));
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 const Heading = () => {
     const backdropRef = (0, react_1.useRef)(null);
@@ -62,7 +63,7 @@ const Heading = () => {
             ScrollTrigger_1.ScrollTrigger.refresh();
         });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { style: styles.container, children: (0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col justify-center items-center relative overflow-hidden", style: styles.sticky, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'overflow-hidden rounded-[30px] max-h-[700px] flex flex-col items-center', children: [(0, jsx_runtime_1.jsx)("img", { draggable: "false", src: '/controllers/client/img/background.png', className: "object-cover size-full relative", ref: imgRef }), (0, jsx_runtime_1.jsx)("div", { style: {
+    return ((0, jsx_runtime_1.jsx)("div", { style: styles.container, children: (0, jsx_runtime_1.jsxs)("div", { className: "flex flex-col justify-center items-center relative overflow-hidden", style: styles.sticky, children: [(0, jsx_runtime_1.jsxs)("div", { className: 'overflow-hidden rounded-[30px] max-h-[700px] flex flex-col items-center', children: [(0, jsx_runtime_1.jsx)(AppImage_1.default, { src: '/controllers/client/img/background.png', className: "object-cover size-full relative", ref: imgRef }), (0, jsx_runtime_1.jsx)("div", { style: {
                                 position: 'absolute',
                                 inset: 0,
                                 backgroundColor: '#000',

@@ -3,6 +3,7 @@ import clientConfig from '../../clientConfig'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Logo from '../Logo'
+import AppImage from '../AppImage'
 gsap.registerPlugin(ScrollTrigger)
 
 const Heading = () => {
@@ -69,7 +70,7 @@ const Heading = () => {
     <div style={styles.container}>
         <div className="flex flex-col justify-center items-center relative overflow-hidden" style={styles.sticky}>
             <div className='overflow-hidden rounded-[30px] max-h-[700px] flex flex-col items-center'>
-                <img draggable="false" src='/controllers/client/img/background.png' className="object-cover size-full relative" ref={imgRef}/>
+                <AppImage src='/controllers/client/img/background.png' className="object-cover size-full relative" ref={imgRef}/>
                 <div
                     style={{
                         position: 'absolute',

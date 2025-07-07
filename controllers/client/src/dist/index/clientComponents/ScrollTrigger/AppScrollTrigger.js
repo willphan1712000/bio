@@ -22,7 +22,6 @@ function AppScrollTrigger() {
         const one = cardRef.current.one;
         const two = cardRef.current.two;
         const three = cardRef.current.three;
-        const header = headerRef.current;
         gsap_1.default.timeline({
             scrollTrigger: {
                 trigger: card,

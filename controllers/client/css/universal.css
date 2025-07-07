@@ -1,12 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Asap&family=Exo+2:wght@200&family=Josefin+Sans:wght@200&family=Macondo&family=Oleo+Script&family=Pacifico&family=Playfair+Display:ital@1&family=Tapestry&family=Titillium+Web:wght@200&family=Yanone+Kaffeesatz:wght@300&family=Zen+Loop:ital@1&display=swap"); /* Update 1 */
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Joan&family=Lora:ital,wght@1,500&family=Montserrat:wght@500&family=Nunito+Sans:ital,wght@1,300&family=Playfair+Display:ital,wght@1,600&family=Roboto+Slab&family=Source+Sans+Pro&family=Tai+Heritage+Pro&family=Ubuntu&display=swap"); /* Update 2 */
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=League+Spartan:wght@800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap"); /* Update 3 */
-:root {
-  --main-color: #f6f2ff;
-  --main-deepColor: #cec3e7;
-  --primary: #328b94;
-  --apple: #f5f5f7;
-}
+
 * {
   padding: 0;
   margin: 0;
