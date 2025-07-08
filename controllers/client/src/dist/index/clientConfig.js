@@ -23,7 +23,7 @@ exports.default = Object.freeze({
         des2: " Tap it on a phone to see how amazing your profile is"
     },
     aic: {
-        website: "https://card.aiccards.com",
+        website: "https://allinclicks.com",
         email: "tonthang@icloud.com",
         phone: "571-419-0969",
         messenger: "https://m.me/AllinclicksUs",

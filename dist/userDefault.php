@@ -4,6 +4,7 @@ use config\SystemConfig as c;
 use component\UserFooter;
 use business\info\display\Display;
 use controllers\user\UserController;
+use component\Copyright;
 
 $user = new UserController();
 $user->execute();
@@ -52,4 +53,6 @@ $exclude = array_merge($orders, $exclude1);
                         </div>');
                     }
                 }
-                ?> </div></div><div id="share"> <?= (new UserFooter())->render("#share"); ?> </div><div id="copyright"><p><?= $g['license']; ?></p></div></div></body></html>
+                ?> </div></div><div id="share"> <?= (new UserFooter())->render("#share"); ?> </div> <?php (new Copyright([
+            'position' => 'relative'
+        ]))->render(); ?> </div></body></html>

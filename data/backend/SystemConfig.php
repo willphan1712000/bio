@@ -9,6 +9,7 @@ class SystemConfig
     public static function globalVariables()
     {
         return [
+            'company_domain' => 'https://allinclicks.com',
             'product_name' => 'Allinclicks Bio',
             'product_year' => date("Y"),
             'domain' => ProductionConfig::config()['domain'],

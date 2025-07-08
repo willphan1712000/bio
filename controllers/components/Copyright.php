@@ -16,13 +16,15 @@ class Copyright
     public function render()
     {
         $license = SystemConfig::globalVariables()['license'];
+        $domain = SystemConfig::globalVariables()['company_domain'];
+
         echo '
             <div id="copyright" class="rounded-[20px] bg-white m-[15px] py-[20px] px-0 flex flex-col justify-center items-center w-full" style="position: ' . $this->props['position'] . '; width: -webkit-fill-available;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
                 <p>' . $license . '</p>
                 <div class="flex flex-row gap-3">
-                    <a href="@terms" target="">Privacy Policy</a>
+                    <a href="' . $domain . '/privacy" target="">Privacy Policy</a>
                     <span> | </span>
-                    <a href="@terms" target="">Terms of Use</a>
+                    <a href="' . $domain . '/terms" target="">Terms of Use</a>
                 </div>
             </div>
         ';
