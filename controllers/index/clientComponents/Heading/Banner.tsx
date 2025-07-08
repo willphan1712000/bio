@@ -20,7 +20,7 @@ const Banner = () => {
           </div>
         </div>
         <div className="w-[20%] rounded-[40px] overflow-hidden lg:flex hidden max-w-[400px]">
-          <AppImage src="/controllers/client/img/ip.png" className="size-full"/>
+          <AppImage src={clientConfig.heading.img} className="size-full"/>
         </div>
       </div>
     </div>

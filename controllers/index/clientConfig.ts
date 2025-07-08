@@ -15,7 +15,8 @@ export default Object.freeze({
         title: "Level Up Your eBusiness Cards",
         des1: "Create your profile and save it on an ",
         desSpan: "eBusiness Cards",
-        des2: " Tap it on a phone to see how amazing your profile is"
+        des2: " Tap it on a phone to see how amazing your profile is",
+        img: "/controllers/client/img/ip.png"
     },
     aic: {
         website: "https://allinclicks.com",
