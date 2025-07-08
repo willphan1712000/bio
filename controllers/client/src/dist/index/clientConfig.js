@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.smoothScrolling = smoothScrolling;
 const lenis_1 = __importDefault(require("@studio-freight/lenis"));
 exports.default = Object.freeze({
-    domain: "https://card.aiccards.com",
     default_product: {
         thumbnails: "/controllers/client/img/unknown.png",
         url: "/"
@@ -21,10 +20,11 @@ exports.default = Object.freeze({
         title: "Level Up Your eBusiness Cards",
         des1: "Create your profile and save it on an ",
         desSpan: "eBusiness Cards",
-        des2: " Tap it on a phone to see how amazing your profile is"
+        des2: " Tap it on a phone to see how amazing your profile is",
+        img: "/controllers/client/img/ip.png"
     },
     aic: {
-        website: "https://card.aiccards.com",
+        website: "https://allinclicks.com",
         email: "tonthang@icloud.com",
         phone: "571-419-0969",
         messenger: "https://m.me/AllinclicksUs",

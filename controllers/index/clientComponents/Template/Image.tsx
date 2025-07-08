@@ -1,4 +1,5 @@
 import React from "react"
+import AppImage from "../AppImage"
 
 interface Props extends React.HTMLAttributes<HTMLImageElement> {
     url: string
@@ -10,7 +11,7 @@ const Image = React.forwardRef<HTMLImageElement, Props>((props, ref) => {
     return (
         <div className="absolute top-0 opacity-0 size-full p-10 flex flex-row items-center overflow-hidden" ref={ref}>
             <div className="overflow-hidden rounded-3xl size-full">
-                <img src={url} className="size-full object-cover" draggable="false" />
+                <AppImage src={url} className="size-full object-cover" />
             </div>
         </div>
     )
