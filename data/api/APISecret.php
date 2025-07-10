@@ -2,9 +2,7 @@
 
 namespace api;
 
-use config\Mode;
 use Dotenv\Dotenv;
-use config\ProductionConfig;
 
 header('Content-Type: application/json');
 

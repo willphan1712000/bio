@@ -3,13 +3,22 @@
         'name' => 'willphan1712000/htdocs',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '85081fd18483c6ecb5e5ef9fef71b0892734c204',
+        'reference' => '54f24fd269cf921de62c33f2f875a8c16396a530',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'automattic/woocommerce' => array(
+            'pretty_version' => '3.1.0',
+            'version' => '3.1.0.0',
+            'reference' => 'd3b292f04c0b3b21dced691ebad8be073a83b4ad',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../automattic/woocommerce',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'doctrine/collections' => array(
             'pretty_version' => '2.2.2',
             'version' => '2.2.2.0',
@@ -316,7 +325,7 @@
         'willphan1712000/htdocs' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '85081fd18483c6ecb5e5ef9fef71b0892734c204',
+            'reference' => '54f24fd269cf921de62c33f2f875a8c16396a530',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

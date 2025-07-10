@@ -77,6 +77,10 @@ class ComposerStaticInit2edcd92ef15fe2894552acf5289130cd
             'Doctrine\\Common\\Collections\\' => 28,
             'Doctrine\\Common\\' => 16,
         ),
+        'A' => 
+        array (
+            'Automattic\\WooCommerce\\' => 23,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -223,6 +227,10 @@ class ComposerStaticInit2edcd92ef15fe2894552acf5289130cd
         'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
+        ),
+        'Automattic\\WooCommerce\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/automattic/woocommerce/src/WooCommerce',
         ),
     );
 
