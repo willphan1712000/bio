@@ -8,7 +8,7 @@ class Username {
         });
     }
     getUsername() {
-        return this.removeSpace(this.$username.val());
+        return this.$username.val();
     }
     isFilled() {
         return this.$username.val() !== "";

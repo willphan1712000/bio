@@ -53,6 +53,7 @@
     "@stripe/stripe-js": "^5.4.0",
     "@studio-freight/lenis": "^1.0.42",
     "@willphan1712000/w": "^1.2.3",
+    "apisauce": "^3.2.0",
     "buffer": "^6.0.3",
     "dotenv": "^16.4.5",
     "gsap": "^3.13.0",

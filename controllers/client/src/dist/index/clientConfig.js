@@ -124,7 +124,7 @@ exports.default = Object.freeze({
     },
     cards: {
         basic: {
-            heading: "",
+            heading: "Basic eBusiness Cards",
             des: "",
             products: [
                 {
@@ -166,7 +166,7 @@ exports.default = Object.freeze({
             ]
         },
         professional: {
-            heading: "",
+            heading: "Professional eBusiness Cards",
             des: "",
             products: [
                 {

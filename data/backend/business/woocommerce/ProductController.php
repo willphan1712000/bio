@@ -19,8 +19,7 @@ class ProductController
         $this->response = $response;
 
         $this->woocommerce = new Client(
-            // SystemConfig::globalVariables()['company_domain'],
-            'https://card.aiccards.com',
+            SystemConfig::globalVariables()['company_domain'],
             $_ENV["WOO_KEY"],
             $_ENV["WOO_SECRET"],
             [

@@ -119,7 +119,7 @@ export default Object.freeze({
     },
     cards: {
         basic: {
-            heading: "",
+            heading: "Basic eBusiness Cards",
             des: "",
             products: [
                 {
@@ -161,7 +161,7 @@ export default Object.freeze({
             ]
         },
         professional: {
-            heading: "",
+            heading: "Professional eBusiness Cards",
             des: "",
             products: [
                 {

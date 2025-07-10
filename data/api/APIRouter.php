@@ -20,6 +20,7 @@ class APIRouter
             $api_router = new APIRouter(new Request(), new Response());
             $api_router->get('/api/woo/products', 'business\woocommerce\ProductController@getAll');
             $api_router->get('/api/woo/products/{id}', 'business\woocommerce\ProductController@getWithId');
+            $api_router->get('/api/woo/products/ebusiness', 'business\woocommerce\eBusinessCards@getAll');
             $api_router->resolve();
 
             exit;
