@@ -13,21 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
+const react_query_1 = require("@tanstack/react-query");
+const react_spinners_1 = require("react-spinners");
 const clientConfig_1 = __importDefault(require("../../clientConfig"));
+const ecard_1 = __importDefault(require("../api/ecard"));
 const Separator_1 = __importDefault(require("../Separator"));
 const Effect_1 = __importDefault(require("./Effect"));
 const Slider_1 = __importDefault(require("./Slider"));
-const react_spinners_1 = require("react-spinners");
-const basic_products = clientConfig_1.default.cards.basic.products;
-const pro_products = clientConfig_1.default.cards.professional.products;
 const ECards = () => {
-    const [sliderLoading, setSliderLoading] = (0, react_1.useState)(false);
-    const [effectLoading, setEffectLoading] = (0, react_1.useState)(false);
-    const fetchCards = () => __awaiter(void 0, void 0, void 0, function* () {
+    const { isPending, data: products } = (0, react_query_1.useQuery)({
+        queryKey: ['eBusinessCards'],
+        queryFn: () => __awaiter(void 0, void 0, void 0, function* () { return yield ecard_1.default.getEBusinessCards(); })
     });
-    (0, react_1.useEffect)(() => {
-    }, []);
-    return ((0, jsx_runtime_1.jsxs)("div", { className: 'w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden', children: [(0, jsx_runtime_1.jsx)("div", { id: "basic_cards" }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] pb-5', children: clientConfig_1.default.cards.basic.heading }), sliderLoading ? (0, jsx_runtime_1.jsx)(react_spinners_1.BeatLoader, {}) : (0, jsx_runtime_1.jsx)(Slider_1.default, { products: basic_products }), (0, jsx_runtime_1.jsx)(Separator_1.default, { thickness: "4" }), (0, jsx_runtime_1.jsx)("div", { id: "pro_cards" }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[25px]', children: clientConfig_1.default.cards.professional.heading }), effectLoading ? (0, jsx_runtime_1.jsx)(react_spinners_1.BeatLoader, {}) : (0, jsx_runtime_1.jsx)(Effect_1.default, { products: pro_products })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden', children: [(0, jsx_runtime_1.jsx)("div", { id: "basic_cards" }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] pb-5', children: clientConfig_1.default.cards.basic.heading }), isPending ? (0, jsx_runtime_1.jsx)(react_spinners_1.BeatLoader, {}) : (0, jsx_runtime_1.jsx)(Slider_1.default, { products: products }), (0, jsx_runtime_1.jsx)(Separator_1.default, { thickness: "4" }), (0, jsx_runtime_1.jsx)("div", { id: "pro_cards" }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[25px]', children: clientConfig_1.default.cards.professional.heading }), isPending ? (0, jsx_runtime_1.jsx)(react_spinners_1.BeatLoader, {}) : (0, jsx_runtime_1.jsx)(Effect_1.default, { products: products })] }));
 };
 exports.default = ECards;

@@ -3,15 +3,9 @@ import 'swiper/css';
 import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper/modules';
 import Card from './Card';
+import { ClientProducts } from '../api/ecard';
 
-interface Props {
-  products?: {
-    thumbnails: string,
-    url: string
-  }[]
-}
-
-export default function Effect({ products }: Props) {
+export default function Effect({ products }: ClientProducts) {
   const slideCSS = 'rounded-[40px] shadow-xl'
   return (
     <div className='flex flex-col justify-center'>
