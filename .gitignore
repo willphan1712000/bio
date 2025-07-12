@@ -5,12 +5,6 @@ user/*
 # node module
 node_modules/
 
-# dist
-dist/
-
-# composer vendor
-vendor/
-
 # MacOS
 .DS_Store
 
