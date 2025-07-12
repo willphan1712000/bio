@@ -12,6 +12,7 @@ class ProductController
     protected Request $request;
     protected Response $response;
     protected $woocommerce;
+    protected const EBUSINESS_CATEGORY_ID = 115;
 
     public function __construct(Request $request, Response $response)
     {
@@ -30,8 +31,11 @@ class ProductController
 
     public function getAll()
     {
-        $products = $this->woocommerce->get("products");
-        return $this->response->setStatusCode(200)->json($products);
+        $id = self::EBUSINESS_CATEGORY_ID;
+        $products = [
+            "products" => $this->woocommerce->get("products?category=$id")
+        ];
+        $this->response->setStatusCode(200)->json($products);
     }
 
     public function getWithId($id)

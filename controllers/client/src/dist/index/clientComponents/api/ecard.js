@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const apiClient_1 = __importDefault(require("./apiClient"));
 function get() {
-    return apiClient_1.default.get('/api/woo/products/ebusiness');
+    return apiClient_1.default.get('/api/woo/product');
 }
 function getAdapter(serverProducts) {
     const products = serverProducts.map(product => ({

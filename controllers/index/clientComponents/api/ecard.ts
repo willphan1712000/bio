@@ -15,7 +15,7 @@ export type ClientProducts = {
 }
 
 function get(): Promise<ApiResponse<ServerProducts>> {
-    return apiClient.get<ServerProducts>('/api/woo/products/ebusiness')
+    return apiClient.get<ServerProducts>('/api/woo/product')
 }
 
 function getAdapter(serverProducts: any[]): ClientProducts {

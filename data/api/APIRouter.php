@@ -18,9 +18,8 @@ class APIRouter
     {
         if (str_starts_with($_SERVER['REQUEST_URI'], '/api/')) {
             $api_router = new APIRouter(new Request(), new Response());
-            $api_router->get('/api/woo/products', 'business\woocommerce\ProductController@getAll');
-            $api_router->get('/api/woo/products/{id}', 'business\woocommerce\ProductController@getWithId');
-            $api_router->get('/api/woo/products/ebusiness', 'business\woocommerce\eBusinessCards@getAll');
+            $api_router->get("/api/woo/product", 'business\woocommerce\ProductController@getAll');
+            $api_router->get('/api/woo/product/{id}', 'business\woocommerce\ProductController@getWithId');
             $api_router->resolve();
 
             exit;

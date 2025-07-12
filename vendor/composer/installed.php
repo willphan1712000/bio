@@ -3,7 +3,7 @@
         'name' => 'willphan1712000/htdocs',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '54f24fd269cf921de62c33f2f875a8c16396a530',
+        'reference' => '8a0df8e6d58a9877934ba38c5378152e919f18a9',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -325,7 +325,7 @@
         'willphan1712000/htdocs' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '54f24fd269cf921de62c33f2f875a8c16396a530',
+            'reference' => '8a0df8e6d58a9877934ba38c5378152e919f18a9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
