@@ -10,15 +10,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import useWindowWidth, { mobile } from '../../hooks/useWindowWidth';
 import Card from './Card';
+import { ClientProducts } from '../api/ecard';
 
-interface Props {
-  products?: {
-    thumbnails: string,
-    url: string
-  }[]
-}
-
-const Slider = ({ products }: Props) => {
+const Slider = ({ products }: ClientProducts) => {
   const windowWidth = useWindowWidth()
   const slideCSS = '!flex flex-row justify-center h-[400px]'
   const notMobile = windowWidth >= mobile

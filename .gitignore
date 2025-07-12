@@ -5,25 +5,17 @@ user/*
 # node module
 node_modules/
 
-# # composer and npm json files
-# composer.json
-# composer.lock
-# package-lock.json
-# package.json
+# dist
+dist/
 
-# # config file (webpack, tailwind, typesciprt)
-# tailwind.config.js
-# webpack.config.js
-# tsconfig.json
+# composer vendor
+vendor/
 
 # MacOS
 .DS_Store
 
 #testing
 test/*
-
-#Wjs
-controllers/client/src/Web-Development
 
 # local env files
 .env*.local

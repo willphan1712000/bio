@@ -13,7 +13,8 @@
         "doctrine/migrations": "^3.8",
         "symfony/cache": "^7.1",
         "phpmailer/phpmailer": "^6.9",
-        "stripe/stripe-php": "^16.4"
+        "stripe/stripe-php": "^16.4",
+        "automattic/woocommerce": "^3.1"
     },
     "autoload": {
         "psr-4": {

@@ -3,6 +3,7 @@
 namespace config;
 
 use config\ProductionConfig;
+use Throwable;
 
 class SystemConfig
 {
@@ -192,5 +193,17 @@ class SystemConfig
         parse_str($query, $query_params);
         $result = (isset($query_params[$queryStr]) && $query_params[$queryStr] !== "") ? $query_params[$queryStr] : null;
         return ($queryStr === null) ? $groups[$len - $hierarchy] : $result;
+    }
+
+    public static function handleException(Throwable $exception): void
+    {
+        http_response_code(500);
+
+        echo json_encode([
+            "code" => $exception->getCode(),
+            "message" => $exception->getMessage(),
+            "file" => $exception->getFile(),
+            "line" => $exception->getLine()
+        ]);
     }
 }

@@ -53,10 +53,14 @@ class UserManagement implements IUserManagement
     {
         try {
             $result = Database::GET(User::class, null, ['username' => $username]);
-            // SystemConfig::dd($result);
+
             if ($result) {
-                return true;
+                if ($result->getUsername() === $username) {
+                    return true;
+                }
             }
+
+            return false;
         } catch (\Exception $e) {
             return false;
         }

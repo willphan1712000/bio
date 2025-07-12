@@ -15,10 +15,20 @@ class CheckUsername extends SignupHandler
 
     public function doHandle(Input $input): bool
     {
-        $username = str_replace(' ', '', $input->getUsername());
-        if (!UserManagement::isUserExist($username)) {
-            return true;
+        $username = $input->getUsername();
+
+        if (str_contains($username, " ")) {
+            throw new \Exception("Username should not contain spaces!");
         }
-        throw new \Exception("User already exists");
+
+        if (preg_match('/[A-Z]/', $username)) {
+            throw new \Exception("Username should not uppercase letters");
+        }
+
+        if (UserManagement::isUserExist($username)) {
+            throw new \Exception("User already exists");
+        }
+
+        return true;
     }
 }
