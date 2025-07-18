@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const SideBar_1 = __importDefault(require("./sideBar/SideBar"));
 const theme_1 = require("../../client/clientComponents/context/theme");
 const detectLightMode_1 = __importDefault(require("../../client/utilities/detectLightMode"));
+const SideBar_1 = __importDefault(require("./sideBar/SideBar"));
 const App = () => {
     const [theme, setTheme] = (0, react_1.useState)({
         classes: {

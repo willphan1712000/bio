@@ -1,15 +1,13 @@
-import React from 'react'
+import useCollapseContext from '../../../client/clientComponents/context/collapse'
 import Logo from '../../../client/clientComponents/Logo'
-import { Button } from '@willphan1712000/w'
 
 const Account = () => {
+  const { isCollapse } = useCollapseContext()
+
   return (
-    <div className='w-full'>
+    <div className='w-full h-[80px]'>
       <div className='w-[60%] p-5 flex flex-col gap-5'>
-        <Logo />
-        <div>
-          <Button content='Log out' onClick={() => console.log("Logout")}/>
-        </div>
+        { !isCollapse && <Logo /> }
       </div>
     </div>
   )

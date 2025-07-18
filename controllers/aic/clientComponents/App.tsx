@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import SideBar from './sideBar/SideBar'
+import { useEffect, useState } from 'react'
 import { ThemeContext, ThemeContextType } from '../../client/clientComponents/context/theme'
 import detectLightMode from '../../client/utilities/detectLightMode'
+import SideBar from './sideBar/SideBar'
 
 const App = () => {
     const [theme, setTheme] = useState<ThemeContextType>({

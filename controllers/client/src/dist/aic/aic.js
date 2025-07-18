@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const W_1 = require("../client/src/Web-Development/W");
 const App_1 = __importDefault(require("./clientComponents/App"));
-require("@willphan1712000/w/dist/index.css");
 $(document).ready(function () {
     (0, W_1.$$)("#container", (0, jsx_runtime_1.jsx)(App_1.default, {})).reactMounting();
     aic();

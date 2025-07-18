@@ -624,6 +624,10 @@ video {
   visibility: hidden;
 }
 
+.collapse {
+  visibility: collapse;
+}
+
 .static {
   position: static;
 }
@@ -1231,6 +1235,14 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[20px\] {
+  height: 20px;
+}
+
+.h-\[80px\] {
+  height: 80px;
 }
 
 .max-h-\[500px\] {

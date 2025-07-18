@@ -1,18 +1,37 @@
-import React from 'react'
-import Account from './Account'
-import Dashboard from './content/Dashboard'
+import { useState } from 'react'
+import { CollapseContext } from '../../../client/clientComponents/context/collapse'
 import useThemeContext from '../../../client/clientComponents/context/theme'
+import config from '../config'
+import Account from './Account'
+import Collapse from './Collapse'
+import Tab from './Tab'
 
 const SideBar = () => {
-    const theme = useThemeContext()
+  const [isCollapse, setCollapse] = useState<boolean>(false)
+  const theme = useThemeContext()
 
-    const className = `${theme.classes.border} w-[300px] h-[100vh] shadow-2xl rounded-xl`
+  const className = `${theme.classes.border} ${isCollapse ? 'w-[100px]' : 'w-[300px]'} h-[100vh] shadow-2xl rounded-xl flex flex-col justify-between`
+
   return (
-    <div className={className}>
-      <Account />
-      <Dashboard />
-    </div>
+    <CollapseContext.Provider value={{ isCollapse, setCollapse }}>
+      <div className={className}>
+        <Account />
+        <div className='flex-1'>
+          {(Object.keys(config.sideBarTabs) as (keyof typeof config.sideBarTabs)[]).map(tab => (
+          <Tab 
+            key={tab}
+            name={config.sideBarTabs[tab].name}
+            icon={config.sideBarTabs[tab].icon}
+          />
+        ))}
+        </div>
+        <div>
+          <Collapse />
+        </div>
+      </div>
+    </CollapseContext.Provider>
   )
 }
+
 
 export default SideBar
