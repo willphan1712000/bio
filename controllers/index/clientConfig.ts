@@ -18,15 +18,6 @@ export default Object.freeze({
         des2: " Tap it on a phone to see how amazing your profile is",
         img: "/controllers/client/img/ip.png"
     },
-    aic: {
-        website: "https://allinclicks.com",
-        email: "tonthang@icloud.com",
-        phone: "571-419-0969",
-        messenger: "https://m.me/AllinclicksUs",
-        facebook: "https://www.facebook.com/AllinclicksUs/",
-        instagram: "https://www.instagram.com/allinclicks.us",
-        address: "800 Walnut Creek Dr NW, Lilburn, GA 30047"
-    },
     templates: {
         basic: {
             heading: "Basic Templates",
