@@ -2,6 +2,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class TransformController {
     constructor(wrapper, frame, controller) {
+        Object.defineProperty(this, "wrapper", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "frame", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "controller", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.wrapper = wrapper;
         this.frame = frame;
         this.controller = controller;

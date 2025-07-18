@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Username {
     constructor(username, signUpUI) {
+        Object.defineProperty(this, "$username", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.$username = $(username);
         this.$username.on("input", e => {
             signUpUI.update();

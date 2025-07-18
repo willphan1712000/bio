@@ -1216,6 +1216,10 @@ video {
   height: 800px;
 }
 
+.h-\[80px\] {
+  height: 80px;
+}
+
 .h-\[90\%\] {
   height: 90%;
 }
@@ -1235,14 +1239,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[20px\] {
-  height: 20px;
-}
-
-.h-\[80px\] {
-  height: 80px;
 }
 
 .max-h-\[500px\] {

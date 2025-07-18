@@ -2,6 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class UploadFile {
     constructor(ele1, cb, type) {
+        Object.defineProperty(this, "$ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "$ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.$ele1 = $(ele1);
         this.$ele1.after(`<input type="file" hidden accept="${type}">`);
         this.$ele2 = this.$ele1.siblings('input');

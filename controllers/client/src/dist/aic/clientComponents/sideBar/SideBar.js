@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const collapse_1 = require("./collapse");
+const collapse_1 = require("./context/collapse");
 const theme_1 = __importDefault(require("../../../client/clientComponents/context/theme"));
 const config_1 = __importDefault(require("../config"));
 const Account_1 = __importDefault(require("./Account"));

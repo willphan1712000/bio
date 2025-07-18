@@ -2,6 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Register {
     constructor(register, signUpUI) {
+        Object.defineProperty(this, "$register", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "isEnabled", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.$register = $(register);
         this.isEnabled = false;
         this.isDisabledHandling();

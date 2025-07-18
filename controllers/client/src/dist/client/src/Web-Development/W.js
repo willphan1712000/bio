@@ -37,6 +37,12 @@ function $$(ele1, ele2, ele3, ele4) {
 }
 class W1 {
     constructor(ele1) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
     }
     passShowHide() {
@@ -61,6 +67,18 @@ class W1 {
 exports.W1 = W1;
 class W2 {
     constructor(ele1, ele2) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
     }
@@ -83,6 +101,24 @@ class W2 {
 exports.W2 = W2;
 class W3 {
     constructor(ele1, ele2, ele3) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
@@ -100,6 +136,30 @@ class W3 {
 exports.W3 = W3;
 class W4 {
     constructor(ele1, ele2, ele3, ele4) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele4", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
@@ -109,6 +169,18 @@ class W4 {
 exports.W4 = W4;
 class ReactMounting {
     constructor(element, jsx) {
+        Object.defineProperty(this, "element", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "jsx", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.element = element;
         this.jsx = jsx;
         this.render();
@@ -124,6 +196,24 @@ class ReactMounting {
 class AddIntersectionObserver extends W3 {
     constructor(target, options, cb) {
         super(target, options, cb);
+        Object.defineProperty(this, "observer", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "target", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "count", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.target = document.querySelector(this.ele1);
         this.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -168,6 +258,18 @@ class Share extends W1 {
 class Table extends W2 {
     constructor(location, data) {
         super(location, data);
+        Object.defineProperty(this, "location", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "data", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.location = location;
         this.data = data;
     }
@@ -261,6 +363,18 @@ class Spinner extends W1 {
 class PassShowHide extends W1 {
     constructor(inputSelector) {
         super(inputSelector);
+        Object.defineProperty(this, "inputSelector", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "$input", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.inputSelector = inputSelector;
         this.$input = (0, jquery_1.default)(this.inputSelector);
     }
@@ -358,6 +472,12 @@ class CopyToClipboard extends W2 {
 class Search extends W2 {
     constructor(ele1, ele2) {
         super(ele1, ele2);
+        Object.defineProperty(this, "searchUI", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.searchUI = new SearchUI_1.default(this.ele1, this.ele2);
     }
 }

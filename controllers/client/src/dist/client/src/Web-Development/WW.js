@@ -45,11 +45,29 @@ class WW0 {
 }
 class WW1 {
     constructor(ele1) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
     }
 }
 class WW2 {
     constructor(ele1, ele2) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
     }
@@ -59,6 +77,24 @@ class WW2 {
 }
 class WW3 {
     constructor(ele1, ele2, ele3) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
@@ -72,6 +108,30 @@ class WW3 {
 }
 class WW4 {
     constructor(ele1, ele2, ele3, ele4) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele4", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
@@ -80,6 +140,36 @@ class WW4 {
 }
 class WW5 {
     constructor(ele1, ele2, ele3, ele4, ele5) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele4", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele5", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
@@ -89,6 +179,42 @@ class WW5 {
 }
 class WW6 {
     constructor(ele1, ele2, ele3, ele4, ele5, ele6) {
+        Object.defineProperty(this, "ele1", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele2", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele3", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele4", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele5", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "ele6", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.ele1 = ele1;
         this.ele2 = ele2;
         this.ele3 = ele3;
@@ -100,24 +226,53 @@ class WW6 {
 class FormValidate extends WW3 {
     constructor(inputElement, feedbackElement, regex) {
         super(inputElement, feedbackElement, regex);
-        this.eventFunction = (e) => {
-            const regex = new RegExp(this.regex);
-            const target = e.target;
-            if (target.value !== '') {
-                if (regex.test(target.value)) {
-                    this.setValidity(true);
-                    this.feedbackElement.innerHTML = `<i style="color: green;" class="fa-solid fa-check"></i>`;
+        Object.defineProperty(this, "inputElement", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "feedbackElement", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "regex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "isValid", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "eventFunction", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: (e) => {
+                const regex = new RegExp(this.regex);
+                const target = e.target;
+                if (target.value !== '') {
+                    if (regex.test(target.value)) {
+                        this.setValidity(true);
+                        this.feedbackElement.innerHTML = `<i style="color: green;" class="fa-solid fa-check"></i>`;
+                    }
+                    else {
+                        this.setValidity(false);
+                        this.feedbackElement.innerHTML = `<i style="color: red;" class="fa-solid fa-x"></i>`;
+                    }
                 }
                 else {
-                    this.setValidity(false);
-                    this.feedbackElement.innerHTML = `<i style="color: red;" class="fa-solid fa-x"></i>`;
+                    this.feedbackElement.innerHTML = '';
+                    this.setValidity(true);
                 }
             }
-            else {
-                this.feedbackElement.innerHTML = '';
-                this.setValidity(true);
-            }
-        };
+        });
         this.inputElement = inputElement;
         this.feedbackElement = feedbackElement;
         this.regex = regex;
@@ -148,6 +303,12 @@ class FormValidate extends WW3 {
 class Signup extends WW3 {
     constructor(ui, url, success) {
         super(ui, url, success);
+        Object.defineProperty(this, "signUpUI", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.signUpUI = new SignUpUI_1.default(ui, url, success);
     }
 }

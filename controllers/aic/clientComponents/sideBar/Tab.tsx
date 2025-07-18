@@ -1,4 +1,4 @@
-import useCollapseContext from "./collapse";
+import useCollapseContext from "./context/collapse";
 import useThemeContext from "../../../client/clientComponents/context/theme";
 
 interface Props {
@@ -13,7 +13,7 @@ const Tab = ({ selected = false, name, icon, onClick}: Props) => {
     const theme = useThemeContext()
     const { isCollapse } = useCollapseContext()
 
-    const className = `${theme.classes.hover} ${theme.classes.text} ${isCollapse ? 'justify-center': ''} flex items-center flex-row gap-2 m-5 p-3 rounded-xl cursor-pointer transition-all ${selected ? `${theme.classes.border}` : ''}`;
+    const className = `${theme.classes.hover} ${theme.classes.text} h-[50px] flex items-center flex-row gap-2 m-5 p-3 rounded-xl cursor-pointer transition-all ${selected ? `${theme.classes.border}` : ''}`;
 
   return (
     <a className={className} onClick={onClick}>

@@ -2,6 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class TextEditor {
     constructor(element, cb) {
+        Object.defineProperty(this, "text", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "element", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.element = element;
         const elementHtml = document.querySelector(this.element);
         this.text = elementHtml.textContent;

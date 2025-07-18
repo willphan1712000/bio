@@ -4,6 +4,30 @@ const ColorPickerMethod_1 = require("./ColorPickerMethod");
 class ColorPickerDouble extends ColorPickerMethod_1.ColorPickerMethod {
     constructor(container, cb, options) {
         super();
+        Object.defineProperty(this, "color", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "gradient", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "container", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "options", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.options = options;
         this.container = container;
         this.color = options.default;

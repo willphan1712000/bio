@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CollapseContext } from './collapse'
+import { CollapseContext } from './context/collapse'
 import useThemeContext from '../../../client/clientComponents/context/theme'
 import config from '../config'
 import Account from './Account'

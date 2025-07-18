@@ -22,6 +22,54 @@ const Username_1 = __importDefault(require("./Username"));
 const key = process.env.SYSTEM_SECRET_KEY;
 class SignUpUI {
     constructor(ui, url, success) {
+        Object.defineProperty(this, "usernameBox", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "passwordBox", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "emailBox", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "checkBox", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "error", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "register", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "url", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "success", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.usernameBox = new Username_1.default(ui['username'], this);
         this.passwordBox = new Password_1.default(ui['password'], this);
         this.emailBox = new Email_1.default(ui['email'], this);

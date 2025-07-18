@@ -1,4 +1,4 @@
-import useCollapseContext from './collapse'
+import useCollapseContext from './context/collapse'
 import Logo from '../../../client/clientComponents/Logo'
 
 const Account = () => {

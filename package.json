@@ -1,5 +1,5 @@
 {
-  "name": "htdocs",
+  "name": "link-bio-web-application",
   "version": "1.0.0",
   "description": "# Below is how it works - user registers their own accout - user logs in to their account - user is able to put their links to boxes in the admin page - user hits \"save\" button to save everything on server - after this, it will go back to user page to view main bio page",
   "main": "index.js",
@@ -10,13 +10,16 @@
     "tww": "tailwindcss -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css --watch",
     "tsc": "rm -rf ./controllers/client/src/dist/ && tsc --watch"
   },
+  "type": "commonjs",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Will Phan",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.23.3",
     "@babel/plugin-transform-strict-mode": "^7.23.3",
     "@babel/preset-env": "^7.23.3",
+    "@tanstack/router-cli": "^1.128.4",
+    "@tanstack/router-plugin": "^1.128.4",
     "@types/jquery": "^3.5.30",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -53,6 +56,8 @@
     "@tanstack/query-async-storage-persister": "^5.82.0",
     "@tanstack/react-query": "^5.82.0",
     "@tanstack/react-query-persist-client": "^5.82.0",
+    "@tanstack/react-router": "^1.128.4",
+    "@tanstack/react-router-devtools": "^1.128.4",
     "@willphan1712000/w": "^1.2.3",
     "apisauce": "^3.2.0",
     "buffer": "^6.0.3",
@@ -69,6 +74,10 @@
     "react-router-dom": "^7.1.1",
     "react-spinners": "^0.15.0",
     "swiper": "^11.1.9",
+    "tiny-warning": "^1.0.3",
     "webpack-remove-strict-mode-plugin": "^1.0.0"
+  },
+  "overrides": {
+    "tiny-warning": "1.0.3"
   }
 }

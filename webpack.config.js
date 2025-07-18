@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const dotenv = require('dotenv');
 // Load .env file variables into process.env
 dotenv.config();
+const { tanstackRouter } = require('@tanstack/router-plugin/webpack')
 
 const entryjs = {
   tailwind: path.resolve(__dirname, 'controllers/client/css/tailwind.css'),
@@ -113,6 +114,12 @@ htmlEntry.push(
       SYSTEM_SECRET_KEY: process.env.SYSTEM_SECRET_KEY
     }),
   }),
+)
+htmlEntry.push(
+  tanstackRouter({
+    target: 'react',
+    autoCodeSplitting: true
+  })
 )
 
 module.exports = {

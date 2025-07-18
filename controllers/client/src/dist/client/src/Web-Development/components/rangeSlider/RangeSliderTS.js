@@ -4,6 +4,24 @@ exports.RangeSlider = void 0;
 class RangeSlider {
     constructor(container, cb, options) {
         var _a;
+        Object.defineProperty(this, "options", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "value", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "container", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.options = options;
         this.value = (_a = this.options) === null || _a === void 0 ? void 0 : _a.default;
         this.container = container;

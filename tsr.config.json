@@ -1,0 +1,6 @@
+{
+  "routesDirectory": "./controllers/aic/clientComponents/routes",
+  "generatedRouteTree": "./controllers/aic/clientComponents/routes/routeTree.gen.ts",
+  "routeFileIgnorePrefix": "-",
+  "quoteStyle": "single"
+}
