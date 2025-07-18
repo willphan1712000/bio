@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { CollapseContext } from '../../../client/clientComponents/context/collapse'
+import { CollapseContext } from './collapse'
 import useThemeContext from '../../../client/clientComponents/context/theme'
 import config from '../config'
 import Account from './Account'
-import Collapse from './Collapse'
 import Tab from './Tab'
 
 const SideBar = () => {
@@ -26,7 +25,7 @@ const SideBar = () => {
         ))}
         </div>
         <div>
-          <Collapse />
+          <Tab name={config.collapse.name} icon={config.collapse.icon} onClick={() => setCollapse(prev => !prev)}/>
         </div>
       </div>
     </CollapseContext.Provider>

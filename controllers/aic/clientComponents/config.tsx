@@ -2,6 +2,7 @@ import { TbLayoutDashboard } from "react-icons/tb";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { BiAnalyse } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
+import { TbLayoutSidebarLeftCollapseFilled } from "react-icons/tb";
 
 
 export default Object.freeze({
@@ -22,5 +23,9 @@ export default Object.freeze({
             name: "Logout",
             icon: <MdLogout size="20" />
         }
+    },
+    collapse: {
+        name: "Collapse Menu",
+        icon: <TbLayoutSidebarLeftCollapseFilled />
     }
 })

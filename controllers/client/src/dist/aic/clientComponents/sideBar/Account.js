@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const collapse_1 = __importDefault(require("../../../client/clientComponents/context/collapse"));
+const collapse_1 = __importDefault(require("./collapse"));
 const Logo_1 = __importDefault(require("../../../client/clientComponents/Logo"));
 const Account = () => {
     const { isCollapse } = (0, collapse_1.default)();

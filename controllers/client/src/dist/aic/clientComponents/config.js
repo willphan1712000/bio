@@ -5,6 +5,7 @@ const tb_1 = require("react-icons/tb");
 const fa_1 = require("react-icons/fa");
 const bi_1 = require("react-icons/bi");
 const md_1 = require("react-icons/md");
+const tb_2 = require("react-icons/tb");
 exports.default = Object.freeze({
     sideBarTabs: {
         dashboard: {
@@ -23,5 +24,9 @@ exports.default = Object.freeze({
             name: "Logout",
             icon: (0, jsx_runtime_1.jsx)(md_1.MdLogout, { size: "20" })
         }
+    },
+    collapse: {
+        name: "Collapse Menu",
+        icon: (0, jsx_runtime_1.jsx)(tb_2.TbLayoutSidebarLeftCollapseFilled, {})
     }
 });
