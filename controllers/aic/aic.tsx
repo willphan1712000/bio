@@ -1,10 +1,14 @@
 import { $$ } from "../client/src/Web-Development/W";
+import detectLightMode from "../client/utilities/detectLightMode";
+import App from "./clientComponents/App";
+import '@willphan1712000/w/dist/index.css'
 
 $(document).ready(function() {
+    $$("#container", <App />).reactMounting()
     aic()
 })
 
-export default function aic() {
+function aic() {
         // search mechanism
        (async function() {
             // Perform search mechanism

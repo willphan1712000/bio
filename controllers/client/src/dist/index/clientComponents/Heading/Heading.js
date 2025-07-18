@@ -8,8 +8,8 @@ const react_1 = require("react");
 const clientConfig_1 = __importDefault(require("../../clientConfig"));
 const gsap_1 = __importDefault(require("gsap"));
 const ScrollTrigger_1 = require("gsap/ScrollTrigger");
-const Logo_1 = __importDefault(require("../Logo"));
-const AppImage_1 = __importDefault(require("../AppImage"));
+const Logo_1 = __importDefault(require("../../../client/clientComponents/Logo"));
+const AppImage_1 = __importDefault(require("../../../client/clientComponents/AppImage"));
 gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 const Heading = () => {
     const backdropRef = (0, react_1.useRef)(null);

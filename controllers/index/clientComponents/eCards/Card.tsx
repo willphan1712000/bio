@@ -1,6 +1,6 @@
 import { TiPlus } from "react-icons/ti";
 import clientConfig from "../../clientConfig";
-import AppImage from "../AppImage";
+import AppImage from "../../../client/clientComponents/AppImage";
 
 interface Props {
   product?: {

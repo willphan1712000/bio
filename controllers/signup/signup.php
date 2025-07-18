@@ -19,14 +19,6 @@ $g = SystemConfig::globalVariables();
 require_once __DIR__ . "/../controllers/components/signin/SigninSignup.php";
 
 use function component\signin\signinSignup;
-
-require_once __DIR__ . "/../controllers/components/signin/SigninOriginal.php";
-
-use function component\signin\signinOriginal;
-
-require_once __DIR__ . "/../controllers/components/signup/SignupAgain.php";
-
-use function component\signup\signupAgain;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +32,7 @@ use function component\signup\signupAgain;
 </head>
 
 <body>
-    <div class="logo"><?= logo(["src" => $g["img"]["logo"]])->render(); ?></div>
+    <div class="logo w-[200px]"><?= logo(["src" => $g["img"]["logo"]])->render(); ?></div>
     <div class="signupParent">
         <div class="passRequirements">
             <p class="text-center"><i class="fa-solid fa-arrow-down" style="margin-right: 2px"></i> PASSWORD REQUIREMENTS

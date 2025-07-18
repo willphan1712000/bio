@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
-const Logo_1 = __importDefault(require("../Logo"));
+const Logo_1 = __importDefault(require("../../../client/clientComponents/Logo"));
 const Link_1 = __importDefault(require("./Link"));
 const Button_1 = __importDefault(require("./Button"));
 function navOpenFunc(navBtn, navBtnClose, nav) {

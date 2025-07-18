@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const w_1 = require("@willphan1712000/w");
-const Logo_1 = __importDefault(require("../Logo"));
+const Logo_1 = __importDefault(require("../../../client/clientComponents/Logo"));
 const Info_1 = __importDefault(require("./Info"));
 const Social_1 = __importDefault(require("./Social"));
 const Copyright_1 = __importDefault(require("./Copyright"));

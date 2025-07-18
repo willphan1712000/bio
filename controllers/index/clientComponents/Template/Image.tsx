@@ -1,5 +1,5 @@
 import React from "react"
-import AppImage from "../AppImage"
+import AppImage from "../../../client/clientComponents/AppImage"
 
 interface Props extends React.HTMLAttributes<HTMLImageElement> {
     url: string

@@ -1,0 +1,33 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const SideBar_1 = __importDefault(require("./sideBar/SideBar"));
+const theme_1 = require("../../client/clientComponents/context/theme");
+const detectLightMode_1 = __importDefault(require("../../client/utilities/detectLightMode"));
+const App = () => {
+    const [theme, setTheme] = (0, react_1.useState)({
+        classes: {
+            bg: '',
+            border: '',
+            hover: '',
+            text: '',
+        },
+    });
+    (0, react_1.useEffect)(() => {
+        const currentTheme = (0, detectLightMode_1.default)();
+        setTheme({
+            classes: {
+                bg: `system-${currentTheme}-bg`,
+                border: `system-${currentTheme}-border`,
+                hover: `system-${currentTheme}-hover`,
+                text: `system-${currentTheme}-text`
+            }
+        });
+    }, []);
+    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)("div", { className: theme === null || theme === void 0 ? void 0 : theme.classes.bg, children: (0, jsx_runtime_1.jsx)(SideBar_1.default, {}) }) }));
+};
+exports.default = App;

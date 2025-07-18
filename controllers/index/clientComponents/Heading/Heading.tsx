@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import clientConfig from '../../clientConfig'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Logo from '../Logo'
-import AppImage from '../AppImage'
+import Logo from '../../../client/clientComponents/Logo'
+import AppImage from '../../../client/clientComponents/AppImage'
 gsap.registerPlugin(ScrollTrigger)
 
 const Heading = () => {

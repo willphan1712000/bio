@@ -1,5 +1,5 @@
 import clientConfig from "../../clientConfig"
-import AppImage from "../AppImage"
+import AppImage from "../../../client/clientComponents/AppImage"
 import Signin from "../Signin"
 import Template from "../Template"
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Logo from '../Logo'
+import Logo from '../../../client/clientComponents/Logo'
 import Link from './Link'
 import Button from './Button'
 

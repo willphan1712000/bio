@@ -22,7 +22,7 @@ class CheckUsername extends SignupHandler
         }
 
         if (preg_match('/[A-Z]/', $username)) {
-            throw new \Exception("Username should not uppercase letters");
+            throw new \Exception("Username should not have uppercase letters");
         }
 
         if (UserManagement::isUserExist($username)) {

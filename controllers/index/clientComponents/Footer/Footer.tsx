@@ -1,5 +1,5 @@
 import { Button } from '@willphan1712000/w'
-import Logo from '../Logo'
+import Logo from '../../../client/clientComponents/Logo'
 import Info from './Info'
 import Social from './Social'
 import Copyright from './Copyright'
