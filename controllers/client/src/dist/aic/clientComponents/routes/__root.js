@@ -13,6 +13,6 @@ exports.Route = (0, react_router_1.createRootRoute)({
 });
 function RootComponent() {
     const theme = (0, theme_1.default)();
-    const classes = `${theme === null || theme === void 0 ? void 0 : theme.classes.bg} h-full flex flex-row`;
+    const classes = `${theme === null || theme === void 0 ? void 0 : theme.classes.bg} flex flex-row`;
     return ((0, jsx_runtime_1.jsxs)("div", { className: classes, children: [(0, jsx_runtime_1.jsx)(SideBar_1.default, {}), (0, jsx_runtime_1.jsx)(react_router_1.Outlet, {})] }));
 }

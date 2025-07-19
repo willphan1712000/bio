@@ -9,7 +9,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
     const theme = useThemeContext()
-    const classes = `${theme?.classes.bg} h-full flex flex-row`
+    const classes = `${theme?.classes.bg} flex flex-row`
 
     return (
         <div className={classes}>

@@ -2,7 +2,7 @@ import { $$ } from "../client/src/Web-Development/W";
 import App from "./clientComponents/App";
 
 $(document).ready(function() {
-    $$("#container", <App />).reactMounting()
+    $$("#admin_container", <App />).reactMounting()
     aic()
 })
 

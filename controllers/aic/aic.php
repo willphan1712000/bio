@@ -39,7 +39,7 @@ if (isset($_POST['aicLogout'])) {
     </div>
     <div id="aic">
         <!-- ========= SEPARATOR ========== -->
-        <div id="container"></div>
+        <div id="admin_container"></div>
         <!-- ========= SEPARATOR ========== -->
         <!-- <div class="logo flex flex-row justify-between">
             <div class="w-[200px] flex flex-row items-center"><?= (new Logo())->render(); ?></div>
