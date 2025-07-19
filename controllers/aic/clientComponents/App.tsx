@@ -22,10 +22,10 @@ const App = () => {
             border: '',
             hover: '',
             text: '',
+            container: ''
         },
     })
 
-    const classes = `${theme?.classes.bg} h-full`
     useEffect(() => {
         const currentTheme = detectLightMode()
         setTheme({
@@ -33,16 +33,15 @@ const App = () => {
                 bg: `system-${currentTheme}-bg`,
                 border: `system-${currentTheme}-border`,
                 hover: `system-${currentTheme}-hover`,
-                text: `system-${currentTheme}-text`
+                text: `system-${currentTheme}-text`,
+                container: `system-${currentTheme}-container`
             }
         })
     }, [])
 
   return (
     <ThemeContext.Provider value={theme}>
-        <div className={classes}>
-            <RouterProvider router={router} />
-        </div>
+        <RouterProvider router={router} />
     </ThemeContext.Provider>
   )
 }

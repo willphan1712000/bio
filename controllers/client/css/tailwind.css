@@ -1160,6 +1160,10 @@ video {
   height: 1px;
 }
 
+.h-\[200px\] {
+  height: 200px;
+}
+
 .h-\[25px\] {
   height: 25px;
 }
@@ -1239,10 +1243,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[auto\] {
-  height: auto;
 }
 
 .max-h-\[500px\] {
@@ -2387,6 +2387,10 @@ video {
   padding-top: 25px;
 }
 
+.pt-\[80px\] {
+  padding-top: 80px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -2435,6 +2439,10 @@ video {
   font-size: 16px;
 }
 
+.text-\[18px\] {
+  font-size: 18px;
+}
+
 .text-\[20px\] {
   font-size: 20px;
 }
@@ -2445,6 +2453,10 @@ video {
 
 .text-\[25px\] {
   font-size: 25px;
+}
+
+.text-\[2rem\] {
+  font-size: 2rem;
 }
 
 .text-\[30px\] {
@@ -2745,22 +2757,36 @@ video {
   --apple: #f5f5f7;
   /* dark mode */
   --dark: #191919;
+  --dark-container: #1c1c1c;
   --dark-hover: #2a2929;
   --dark-border: #2e2e2e;
   --dark-text: #fff;
   /* light mode */
   --light: #fff;
+  --light-container: var(--apple);
   --light-hover: var(--apple);
   --light-border: #cecece;
   --light-text: #000;
+  /* stat card colors */
+  --stat-card-one: linear-gradient(135deg, rgba(255, 255, 196, 1.000) 0.000%, rgba(255, 97, 100, 1.000) 50.000%, rgba(176, 0, 18, 1.000) 100.000%);
+  --stat-card-two: linear-gradient(45deg, rgba(250, 218, 97, 1.000) 0.000%, rgba(255, 145, 136, 1.000) 50.000%, rgba(255, 90, 205, 1.000) 100.000%);
+  --stat-card-three: linear-gradient(45deg, rgba(142, 197, 252, 1.000) 0.000%, rgba(141, 211, 255, 1.000) 25.000%, rgba(161, 216, 255, 1.000) 50.000%, rgba(193, 210, 255, 1.000) 75.000%, rgba(224, 195, 255, 1.000) 100.000%);
+  --stat-card-four: linear-gradient(45deg, rgba(142, 197, 252, 1.000) 0.000%, rgba(141, 211, 255, 1.000) 25.000%, rgba(161, 216, 255, 1.000) 50.000%, rgba(193, 210, 255, 1.000) 75.000%, rgba(224, 195, 255, 1.000) 100.000%);
+  --stat-card-five: linear-gradient(90deg, rgba(7, 174, 234, 1.000) 0.000%, rgba(43, 245, 152, 1.000) 100.000%);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* dark mode classes */
+
 .system-dark-bg {
   background-color: var(--dark);
+}
+
+.system-dark-container {
+  background-color: var(--dark-container);
 }
 
 .system-dark-hover:hover {
@@ -2775,8 +2801,14 @@ html {
   color: var(--dark-text)
 }
 
+/* light mode classes */
+
 .system-light-bg {
   background-color: var(--light);
+}
+
+.system-light-container {
+  background-color: var(--light-container);
 }
 
 .system-light-hover:hover {
@@ -2789,6 +2821,103 @@ html {
 
 .system-light-text {
   color: var(--light-text);
+}
+
+/* stat card classes */
+
+.stat-card-one {
+  background: var(--stat-card-one);
+}
+
+.stat-card-one::after {
+  content: "";
+  position: absolute;
+  inset: -.2em;
+  filter: blur(1em);
+  z-index: -1;
+  transition: all .2s ease-in-out;
+  background: var(--stat-card-one);
+  opacity: 0;
+}
+
+.stat-card-one:hover::after {
+  opacity: 1;
+}
+
+.stat-card-two {
+  background: var(--stat-card-two);
+}
+
+.stat-card-two::after {
+  content: "";
+  position: absolute;
+  inset: -.2em;
+  filter: blur(1em);
+  z-index: -1;
+  transition: all .2s ease-in-out;
+  background: var(--stat-card-two);
+  opacity: 0;
+}
+
+.stat-card-two:hover::after {
+  opacity: 1;
+}
+
+.stat-card-three {
+  background: var(--stat-card-three);
+}
+
+.stat-card-three::after {
+  content: "";
+  position: absolute;
+  inset: -.2em;
+  filter: blur(1em);
+  z-index: -1;
+  transition: all .2s ease-in-out;
+  background: var(--stat-card-three);
+  opacity: 0;
+}
+
+.stat-card-three:hover::after {
+  opacity: 1;
+}
+
+.stat-card-four {
+  background: var(--stat-card-four);
+}
+
+.stat-card-four::after {
+  content: "";
+  position: absolute;
+  inset: -.2em;
+  filter: blur(1em);
+  z-index: -1;
+  transition: all .2s ease-in-out;
+  background: var(--stat-card-four);
+  opacity: 0;
+}
+
+.stat-card-four:hover::after {
+  opacity: 1;
+}
+
+.stat-card-five {
+  background: var(--stat-card-five);
+}
+
+.stat-card-five::after {
+  content: "";
+  position: absolute;
+  inset: -.2em;
+  filter: blur(1em);
+  z-index: -1;
+  transition: all .2s ease-in-out;
+  background: var(--stat-card-five);
+  opacity: 0;
+}
+
+.stat-card-five:hover::after {
+  opacity: 1;
 }
 
 .saveDefaultButtonStyle {
@@ -3041,6 +3170,12 @@ html {
 
 .peer:focus ~ .peer-focus\:text-\[13px\] {
   font-size: 13px;
+}
+
+@media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
 }
 
 @media (min-width: 1024px) {

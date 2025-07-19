@@ -20,9 +20,9 @@ const App = () => {
             border: '',
             hover: '',
             text: '',
+            container: ''
         },
     });
-    const classes = `${theme === null || theme === void 0 ? void 0 : theme.classes.bg} h-full`;
     (0, react_1.useEffect)(() => {
         const currentTheme = (0, detectLightMode_1.default)();
         setTheme({
@@ -30,10 +30,11 @@ const App = () => {
                 bg: `system-${currentTheme}-bg`,
                 border: `system-${currentTheme}-border`,
                 hover: `system-${currentTheme}-hover`,
-                text: `system-${currentTheme}-text`
+                text: `system-${currentTheme}-text`,
+                container: `system-${currentTheme}-container`
             }
         });
     }, []);
-    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)("div", { className: classes, children: (0, jsx_runtime_1.jsx)(react_router_1.RouterProvider, { router: router }) }) }));
+    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)(react_router_1.RouterProvider, { router: router }) }));
 };
 exports.default = App;

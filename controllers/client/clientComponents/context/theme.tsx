@@ -5,7 +5,8 @@ export type ThemeContextType = {
         bg: string,
         border: string,
         hover: string,
-        text: string
+        text: string,
+        container: string
     }
 }
 
