@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './__root'
-import { Route as ProfileRouteImport } from './profile'
+import { Route as AtuploadRouteImport } from './@upload'
+import { Route as AtpriceRouteImport } from './@price'
 import { Route as IndexRouteImport } from './index'
 
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
+const AtuploadRoute = AtuploadRouteImport.update({
+  id: '/@upload',
+  path: '/@upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtpriceRoute = AtpriceRouteImport.update({
+  id: '/@price',
+  path: '/@price',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +31,48 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/profile': typeof ProfileRoute
+  '/@price': typeof AtpriceRoute
+  '/@upload': typeof AtuploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/profile': typeof ProfileRoute
+  '/@price': typeof AtpriceRoute
+  '/@upload': typeof AtuploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/profile': typeof ProfileRoute
+  '/@price': typeof AtpriceRoute
+  '/@upload': typeof AtuploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile'
+  fullPaths: '/' | '/@price' | '/@upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile'
-  id: '__root__' | '/' | '/profile'
+  to: '/' | '/@price' | '/@upload'
+  id: '__root__' | '/' | '/@price' | '/@upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProfileRoute: typeof ProfileRoute
+  AtpriceRoute: typeof AtpriceRoute
+  AtuploadRoute: typeof AtuploadRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
+    '/@upload': {
+      id: '/@upload'
+      path: '/@upload'
+      fullPath: '/@upload'
+      preLoaderRoute: typeof AtuploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/@price': {
+      id: '/@price'
+      path: '/@price'
+      fullPath: '/@price'
+      preLoaderRoute: typeof AtpriceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProfileRoute: ProfileRoute,
+  AtpriceRoute: AtpriceRoute,
+  AtuploadRoute: AtuploadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

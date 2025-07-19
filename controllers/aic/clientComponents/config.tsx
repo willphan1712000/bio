@@ -9,19 +9,23 @@ export default Object.freeze({
     sideBarTabs: {
         dashboard: {
             name: "Dashboard",
-            icon: <TbLayoutDashboard size="20"/>
+            icon: <TbLayoutDashboard size="20"/>,
+            to: "/"
         },
         management: {
             name: "Template Management",
-            icon: <BiAnalyse size="20" />
+            icon: <BiAnalyse size="20" />,
+            to: "/@upload"
         },
         price: {
             name: "Template Price",
-            icon: <FaMoneyCheckAlt size="20"/>
+            icon: <FaMoneyCheckAlt size="20"/>,
+            to: "/@price"
         },
         logout: {
             name: "Logout",
-            icon: <MdLogout size="20" />
+            icon: <MdLogout size="20" />,
+            to: "/@logout"
         }
     },
     collapse: {

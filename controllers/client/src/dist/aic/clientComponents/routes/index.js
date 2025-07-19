@@ -7,5 +7,5 @@ exports.Route = (0, react_router_1.createFileRoute)('/')({
     component: RouteComponent,
 });
 function RouteComponent() {
-    return (0, jsx_runtime_1.jsx)("div", { children: "Hello \"/\"!" });
+    return (0, jsx_runtime_1.jsx)("div", { className: 'text-white', children: "Hello Will Phan" });
 }

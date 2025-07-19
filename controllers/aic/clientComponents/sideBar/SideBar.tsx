@@ -9,18 +9,20 @@ const SideBar = () => {
   const [isCollapse, setCollapse] = useState<boolean>(false)
   const theme = useThemeContext()
 
-  const className = `${theme.classes.border} ${isCollapse ? 'w-[100px]' : 'w-[300px]'} h-[100vh] shadow-2xl rounded-xl flex flex-col justify-between`
+  const className = `${theme.classes.border} ${isCollapse ? 'w-fit' : 'w-[300px]'} h-full shadow-2xl rounded-xl flex flex-col justify-between`
+  const tabs = config.sideBarTabs
 
   return (
     <CollapseContext.Provider value={{ isCollapse, setCollapse }}>
       <div className={className}>
         <Account />
         <div className='flex-1'>
-          {(Object.keys(config.sideBarTabs) as (keyof typeof config.sideBarTabs)[]).map(tab => (
+          {(Object.keys(tabs) as (keyof typeof tabs)[]).map(tab => (
           <Tab 
             key={tab}
-            name={config.sideBarTabs[tab].name}
-            icon={config.sideBarTabs[tab].icon}
+            to={tabs[tab].to}
+            name={tabs[tab].name}
+            icon={tabs[tab].icon}
           />
         ))}
         </div>

@@ -74,10 +74,6 @@
     "react-router-dom": "^7.1.1",
     "react-spinners": "^0.15.0",
     "swiper": "^11.1.9",
-    "tiny-warning": "^1.0.3",
     "webpack-remove-strict-mode-plugin": "^1.0.0"
-  },
-  "overrides": {
-    "tiny-warning": "1.0.3"
   }
 }

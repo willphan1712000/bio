@@ -25,7 +25,7 @@ $g = SystemConfig::globalVariables();
 
 <body>
     <div id="container">
-        <div class="logo mt-[20px]"><?= logo(["src" => $g["img"]["logo"]])->render(); ?></div>
+        <div class="logo mt-[20px] w-[200px]"><?= logo(["src" => $g["img"]["logo"]])->render(); ?></div>
         <div id="code404"><img draggable=false src="<?= $g['img']['404'] ?>" alt=""> <a href="/">Go back</a></div><?php
                                                                                                                     copyright([
                                                                                                                         'position' => 'absolute'

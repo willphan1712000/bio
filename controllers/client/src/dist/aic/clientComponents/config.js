@@ -10,19 +10,23 @@ exports.default = Object.freeze({
     sideBarTabs: {
         dashboard: {
             name: "Dashboard",
-            icon: (0, jsx_runtime_1.jsx)(tb_1.TbLayoutDashboard, { size: "20" })
+            icon: (0, jsx_runtime_1.jsx)(tb_1.TbLayoutDashboard, { size: "20" }),
+            to: "/"
         },
         management: {
             name: "Template Management",
-            icon: (0, jsx_runtime_1.jsx)(bi_1.BiAnalyse, { size: "20" })
+            icon: (0, jsx_runtime_1.jsx)(bi_1.BiAnalyse, { size: "20" }),
+            to: "/@upload"
         },
         price: {
             name: "Template Price",
-            icon: (0, jsx_runtime_1.jsx)(fa_1.FaMoneyCheckAlt, { size: "20" })
+            icon: (0, jsx_runtime_1.jsx)(fa_1.FaMoneyCheckAlt, { size: "20" }),
+            to: "/@price"
         },
         logout: {
             name: "Logout",
-            icon: (0, jsx_runtime_1.jsx)(md_1.MdLogout, { size: "20" })
+            icon: (0, jsx_runtime_1.jsx)(md_1.MdLogout, { size: "20" }),
+            to: "/@logout"
         }
     },
     collapse: {

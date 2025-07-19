@@ -41,18 +41,19 @@ if (isset($_POST['aicLogout'])) {
         <!-- ========= SEPARATOR ========== -->
         <div id="container"></div>
         <!-- ========= SEPARATOR ========== -->
-        <div class="logo flex flex-row justify-between">
+        <!-- <div class="logo flex flex-row justify-between">
             <div class="w-[200px] flex flex-row items-center"><?= (new Logo())->render(); ?></div>
             <form action="" method="POST"><button name="aicLogout" class="aicBtn">Sign out <i class="fa-solid fa-right-from-bracket"></i></button></form>
         </div>
         <div class="search-area">
             <input type="text" placeholder="Search username or email" id="search">
         </div>
-        <div id="userData"></div><?php
-                                    (new Copyright([
-                                        'position' => 'relative'
-                                    ]))->render();
-                                    ?>
+        <div id="userData"></div> -->
+        <?php
+        (new Copyright([
+            'position' => 'relative'
+        ]))->render();
+        ?>
     </div>
     <script>
         const type = 'aic';

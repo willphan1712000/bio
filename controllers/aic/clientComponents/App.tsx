@@ -3,28 +3,29 @@ import { useEffect, useState } from 'react'
 import { ThemeContext, ThemeContextType } from '../../client/clientComponents/context/theme'
 import detectLightMode from '../../client/utilities/detectLightMode'
 import { routeTree } from './routes/routeTree.gen'
-import SideBar from './sideBar/SideBar'
 
-// const router = createRouter({ 
-//     routeTree,
-//     basepath: '/@aic'
-//  })
-//  declare module "@tanstack/react-router" {
-//     interface Register {
-//         router: typeof router
-//     }
-//  }
+const router = createRouter({ 
+    routeTree,
+    basepath: '/@aic'
+ })
+ declare module "@tanstack/react-router" {
+    interface Register {
+        router: typeof router
+    }
+ }
 
 
 const App = () => {
     const [theme, setTheme] = useState<ThemeContextType>({
-    classes: {
-        bg: '',
-        border: '',
-        hover: '',
-        text: '',
-    },
-})
+        classes: {
+            bg: '',
+            border: '',
+            hover: '',
+            text: '',
+        },
+    })
+
+    const classes = `${theme?.classes.bg} h-full`
     useEffect(() => {
         const currentTheme = detectLightMode()
         setTheme({
@@ -39,9 +40,8 @@ const App = () => {
 
   return (
     <ThemeContext.Provider value={theme}>
-        <div className={theme?.classes.bg}>
-            <SideBar />
-            {/* <RouterProvider router={router} /> */}
+        <div className={classes}>
+            <RouterProvider router={router} />
         </div>
     </ThemeContext.Provider>
   )
