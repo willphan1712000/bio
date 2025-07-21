@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './__root'
 import { Route as AtuploadRouteImport } from './@upload'
 import { Route as AtpriceRouteImport } from './@price'
+import { Route as AtlogoutRouteImport } from './@logout'
 import { Route as IndexRouteImport } from './index'
 
 const AtuploadRoute = AtuploadRouteImport.update({
@@ -23,6 +24,11 @@ const AtpriceRoute = AtpriceRouteImport.update({
   path: '/@price',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtlogoutRoute = AtlogoutRouteImport.update({
+  id: '/@logout',
+  path: '/@logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/@logout': typeof AtlogoutRoute
   '/@price': typeof AtpriceRoute
   '/@upload': typeof AtuploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/@logout': typeof AtlogoutRoute
   '/@price': typeof AtpriceRoute
   '/@upload': typeof AtuploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/@logout': typeof AtlogoutRoute
   '/@price': typeof AtpriceRoute
   '/@upload': typeof AtuploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/@price' | '/@upload'
+  fullPaths: '/' | '/@logout' | '/@price' | '/@upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/@price' | '/@upload'
-  id: '__root__' | '/' | '/@price' | '/@upload'
+  to: '/' | '/@logout' | '/@price' | '/@upload'
+  id: '__root__' | '/' | '/@logout' | '/@price' | '/@upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtlogoutRoute: typeof AtlogoutRoute
   AtpriceRoute: typeof AtpriceRoute
   AtuploadRoute: typeof AtuploadRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtpriceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/@logout': {
+      id: '/@logout'
+      path: '/@logout'
+      fullPath: '/@logout'
+      preLoaderRoute: typeof AtlogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtlogoutRoute: AtlogoutRoute,
   AtpriceRoute: AtpriceRoute,
   AtuploadRoute: AtuploadRoute,
 }

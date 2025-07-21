@@ -26,7 +26,7 @@ const SideBar = () => {
           />
         ))}
         </div>
-        <div>
+        <div title='Collapse Menu'>
           <Tab name={config.collapse.name} icon={config.collapse.icon} onClick={() => setCollapse(prev => !prev)}/>
         </div>
       </div>
