@@ -9,6 +9,8 @@ const react_1 = require("react");
 const theme_1 = require("../../client/clientComponents/context/theme");
 const detectLightMode_1 = __importDefault(require("../../client/utilities/detectLightMode"));
 const routeTree_gen_1 = require("./routes/routeTree.gen");
+const themes_1 = require("@radix-ui/themes");
+const react_query_1 = require("@tanstack/react-query");
 const router = (0, react_router_1.createRouter)({
     routeTree: routeTree_gen_1.routeTree,
     basepath: '/@aic'
@@ -35,6 +37,7 @@ const App = () => {
             }
         });
     }, []);
-    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)(react_router_1.RouterProvider, { router: router }) }));
+    const queryClient = new react_query_1.QueryClient();
+    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)(react_query_1.QueryClientProvider, { client: queryClient, children: (0, jsx_runtime_1.jsx)(themes_1.Theme, { radius: "full", children: (0, jsx_runtime_1.jsx)(react_router_1.RouterProvider, { router: router }) }) }) }));
 };
 exports.default = App;

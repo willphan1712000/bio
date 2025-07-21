@@ -1,4 +1,4 @@
-import apiClient, { Response } from "./apiClient"
+import apiClient, { Response } from "../../../client/api/apiClient"
 
 export type CompanyInfo = {
     "id": number,

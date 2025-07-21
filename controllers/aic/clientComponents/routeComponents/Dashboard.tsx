@@ -1,6 +1,7 @@
 import useThemeContext from "../../../client/clientComponents/context/theme"
 import AppLineChart from "./dashboardComponents/AppLineChart"
 import StatCards from "./dashboardComponents/StatCards"
+import Users from "./dashboardComponents/Users"
 
 const Dashboard = () => {
   const theme = useThemeContext()
@@ -11,6 +12,7 @@ const Dashboard = () => {
       <h1 className={headingClasses}>Welcome to Link bio Dashboard</h1>
       <StatCards />
       <AppLineChart />
+      <Users />
     </div>
   )
 }

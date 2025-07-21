@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const apiClient_1 = __importDefault(require("./apiClient"));
+const apiClient_1 = __importDefault(require("../../../client/api/apiClient"));
 function get() {
     return apiClient_1.default.get('/api/woo/product');
 }
