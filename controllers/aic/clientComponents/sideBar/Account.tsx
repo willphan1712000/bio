@@ -3,7 +3,7 @@ import Logo from '../../../client/clientComponents/Logo'
 
 const Account = () => {
   const { isCollapse } = useCollapseContext()
-  const logoClasses = `md:flex hidden w-[60%] p-5 flex-col gap-5`
+  const logoClasses = `flex w-[60%] p-5 flex-col gap-5`
 
   return (
     <div className='w-full h-[80px]'>

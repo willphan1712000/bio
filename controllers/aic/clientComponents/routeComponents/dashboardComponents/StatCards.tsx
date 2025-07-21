@@ -5,7 +5,7 @@ import StatCard from './StatCard';
 
 const StatCards = () => {
   return (
-    <div className="flex flex-row gap-5 py-10">
+    <div className="flex flex-col items-center md:flex-row gap-5 py-10">
         <StatCard color='one' icon={ <FaRegUser size="25"/> } title="Total number of users" value="300k" />
         <StatCard color="two" icon={ <SiMoneygram size="25"/>} title="Pro templates"/>
         <StatCard color="five" icon={ <GrMoney size="25"/> } title="Total subscription" />

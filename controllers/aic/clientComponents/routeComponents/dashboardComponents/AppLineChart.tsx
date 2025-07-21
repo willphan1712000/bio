@@ -4,11 +4,10 @@ const data = [{name: 'Facebook', uv: 400, pv: 2400, amt: 2400}, {name: 'Instagra
 
 const AppLineChart = () => {
   const theme = useThemeContext()
-  const classes = `${theme.classes.container} ${theme.classes.border} p-10 rounded-3xl shadow-xl`
+  const classes = `${theme.classes.container} ${theme.classes.border} p-10 rounded-3xl shadow-xl w-full md:w-fit`
 
   return (
     <div className={classes}>
-      <ResponsiveContainer width={600} height={300}>
         <LineChart width={600} height={300} data={data}>
           <CartesianGrid stroke="#aaa" strokeDasharray="5 5" />
           <Line dataKey="uv" type="monotone" strokeWidth={2} name='Number of links created'/>
@@ -17,8 +16,6 @@ const AppLineChart = () => {
           <Legend align='left'/>
           <Tooltip />
         </LineChart>
-
-      </ResponsiveContainer>
     </div>
   )
 }

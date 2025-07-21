@@ -9,28 +9,40 @@ const SideBar = () => {
   const [isCollapse, setCollapse] = useState<boolean>(false)
   const theme = useThemeContext()
 
-  const className = `${theme.classes.border} ${isCollapse ? 'w-fit' : 'w-[300px]'} sticky top-0 left-0 h-[100vh] shadow-2xl rounded-xl flex flex-col justify-between`
+  const className = `${theme.classes.border} ${isCollapse ? 'w-fit' : 'w-[270px]'} md:flex hidden sticky top-0 left-0 h-[100vh] shadow-2xl rounded-xl flex-col justify-between`
   const tabs = config.sideBarTabs
 
   return (
-    <CollapseContext.Provider value={{ isCollapse, setCollapse }}>
-      <div className={className}>
-        <Account />
-        <div className='flex-1'>
-          {(Object.keys(tabs) as (keyof typeof tabs)[]).map(tab => (
-          <Tab 
-            key={tab}
-            to={tabs[tab].to}
-            name={tabs[tab].name}
-            icon={tabs[tab].icon}
-          />
-        ))}
+    <>
+      <CollapseContext.Provider value={{ isCollapse, setCollapse }}>
+        <div className='flex md:hidden flex-row justify-center fixed top-0 w-full bg-white shadow-2xl z-[2]'>
+              {(Object.keys(tabs) as (keyof typeof tabs)[]).map(tab => (
+              <Tab 
+                key={tab}
+                to={tabs[tab].to}
+                name={tabs[tab].name}
+                icon={tabs[tab].icon}
+              />
+            ))}
         </div>
-        <div title='Collapse Menu'>
-          <Tab name={config.collapse.name} icon={config.collapse.icon} onClick={() => setCollapse(prev => !prev)}/>
+        <div className={className}>
+          <Account />
+          <div className='flex-1'>
+            {(Object.keys(tabs) as (keyof typeof tabs)[]).map(tab => (
+            <Tab 
+              key={tab}
+              to={tabs[tab].to}
+              name={tabs[tab].name}
+              icon={tabs[tab].icon}
+            />
+          ))}
+          </div>
+          <div title='Collapse Menu'>
+            <Tab name={config.collapse.name} icon={config.collapse.icon} onClick={() => setCollapse(prev => !prev)}/>
+          </div>
         </div>
-      </div>
-    </CollapseContext.Provider>
+      </CollapseContext.Provider>
+    </>
   )
 }
 
