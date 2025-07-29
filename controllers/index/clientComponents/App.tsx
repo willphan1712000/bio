@@ -38,7 +38,6 @@ const App = () => {
           <Separator />
           <AppScrollTrigger/>
           <Separator />
-          <UpSell />
           <Separator />
           <Footer />
       </div>

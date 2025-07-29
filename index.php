@@ -8,6 +8,8 @@ use api\APIRouter;
 use config\Router;
 use config\SystemConfig;
 
+SystemConfig::redirect();
+
 APIRouter::api_work();
 
 // ==========================================================================

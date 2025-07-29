@@ -22,86 +22,10 @@ export default Object.freeze({
         basic: {
             heading: "Basic Templates",
             des: "Just create your profile, buy a template of your choice and we will ship your card to you.",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-            ]
         },
         pro: {
             heading: "Pro Templates",
             des: "Just create your profile, buy a pro template of your choice. You will have the pro template displayed on your profile + a card printed with the template shipped to you.",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-            ]
         },
         diamond: {
             heading: "",
@@ -112,86 +36,10 @@ export default Object.freeze({
         basic: {
             heading: "Basic eBusiness Cards",
             des: "",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-            ]
         },
         professional: {
             heading: "Professional eBusiness Cards",
             des: "",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-            ]
         }
     }
 })
