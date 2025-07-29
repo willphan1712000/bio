@@ -45,7 +45,7 @@ $g = $data['g'];
                 <div id="cart"></div>
             </div>
         </div>
-        <div class="logo"></div>
+        <div class="logo w-[200px]"></div>
         <!-- Purchased templates -->
         <?=
         (new YourTemplate([

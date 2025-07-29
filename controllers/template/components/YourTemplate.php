@@ -38,7 +38,7 @@ class YourTemplate extends Component
         return '
             <div class="swiper-slide template-wrapper" style="display: ' . $display . '">
                 <div class="heading">
-                    ' . (new Logo())->render() . '
+                    <div class="w-[200px]">' . (new Logo())->render() . '</div>
                     <h1>Your templates</h1>
                 </div>
 

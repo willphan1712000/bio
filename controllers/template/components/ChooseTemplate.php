@@ -34,9 +34,7 @@ class ChooseTemplate extends Component
         return '
             <div class="swiper-slide template-wrapper" style="display: ' . $display . '">
                 <div class="heading mb-[20px]">
-                    ' . (new Logo([
-            "src" => $g["img"]["logo"]
-        ]))->render() . '
+                    <div class="w-[200px]">' . (new Logo())->render() . '</div>
                     <h1>Choose Your Template</h1>
                 </div>
 
