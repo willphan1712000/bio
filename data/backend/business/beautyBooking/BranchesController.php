@@ -31,7 +31,7 @@ class BranchesController
             $this->response->setStatusCode(500)->json($return);
         } else {
             $return = [
-                "sucess" => true,
+                "success" => true,
                 "data" => json_decode($res, true)
             ];
             $this->response->setStatusCode(200)->json($return);

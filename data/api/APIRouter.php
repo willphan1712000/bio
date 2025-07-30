@@ -21,6 +21,7 @@ class APIRouter
             $api_router->get("/api/woo/product", 'business\woocommerce\ProductController@getAll');
             $api_router->get('/api/woo/product/{id}', 'business\woocommerce\ProductController@getWithId');
             $api_router->get('/api/branches', 'business\beautyBooking\BranchesController@get');
+            $api_router->post('/api/template/manage', 'business\templateManagement\TemplateController@post');
 
             $api_router->resolve();
 

@@ -58,7 +58,8 @@ class SystemConfig
                 'char' => 'Password must have at least 6 characters',
                 'number' => 'Password must have at least a number',
                 'upper' => 'Password must have at least 1 upper case'
-            ]
+            ],
+            'template_server' => ProductionConfig::config()['template_server']
         ];
     }
 

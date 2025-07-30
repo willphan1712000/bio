@@ -15,7 +15,7 @@ const SideBar = () => {
   return (
     <>
       <CollapseContext.Provider value={{ isCollapse, setCollapse }}>
-        <div className='flex md:hidden flex-row justify-center fixed top-0 w-full bg-white shadow-2xl z-[2]'>
+        <div className='bg-inherit flex md:hidden flex-row justify-center fixed top-0 w-full shadow-2xl z-[2]'>
               {(Object.keys(tabs) as (keyof typeof tabs)[]).map(tab => (
               <Tab 
                 key={tab}

@@ -4,8 +4,6 @@ import apiUsers from '../../api/users'
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 
-const notify = () => toast('Here is your toast.');
-
 const Users = () => {
     const { isPending, data: users, error } = useQuery({
         queryKey: ['users'],

@@ -9,7 +9,7 @@ interface Props {
 
 const StatCard = ({ color = "one", icon, title = 'Card Title', value = '200k' }: Props) => {
     const statCardClasses = `stat-card-${color} w-[300px] h-[200px] rounded-2xl p-10 flex flex-col gap-5 z-[1] relative transition-all`
-    const  textClasses = `text-[18px]`
+    const  textClasses = `text-[18px] text-black`
 
     return (
         <div className={statCardClasses}>

@@ -51,7 +51,6 @@ const react_query_1 = require("@tanstack/react-query");
 const users_1 = __importDefault(require("../../api/users"));
 const react_hot_toast_1 = __importStar(require("react-hot-toast"));
 const react_1 = require("react");
-const notify = () => (0, react_hot_toast_1.default)('Here is your toast.');
 const Users = () => {
     const { isPending, data: users, error } = (0, react_query_1.useQuery)({
         queryKey: ['users'],

@@ -8,9 +8,10 @@ const theme_1 = __importDefault(require("../../../client/clientComponents/contex
 const AppLineChart_1 = __importDefault(require("./dashboardComponents/AppLineChart"));
 const StatCards_1 = __importDefault(require("./dashboardComponents/StatCards"));
 const Users_1 = __importDefault(require("./dashboardComponents/Users"));
+const Layout_1 = __importDefault(require("./Layout"));
 const Dashboard = () => {
     const theme = (0, theme_1.default)();
     const headingClasses = `${theme.classes.text} text-[2rem] p-5`;
-    return ((0, jsx_runtime_1.jsxs)("div", { className: "pt-[100px] px-5 w-full md:w-fit md:p-10", children: [(0, jsx_runtime_1.jsx)("h1", { className: headingClasses, children: "Welcome to Link bio Dashboard" }), (0, jsx_runtime_1.jsx)(StatCards_1.default, {}), (0, jsx_runtime_1.jsx)(AppLineChart_1.default, {}), (0, jsx_runtime_1.jsx)(Users_1.default, {})] }));
+    return ((0, jsx_runtime_1.jsxs)(Layout_1.default, { heading: "Welcome to Link bio Dashboard", children: [(0, jsx_runtime_1.jsx)(StatCards_1.default, {}), (0, jsx_runtime_1.jsx)(AppLineChart_1.default, {}), (0, jsx_runtime_1.jsx)(Users_1.default, {})] }));
 };
 exports.default = Dashboard;

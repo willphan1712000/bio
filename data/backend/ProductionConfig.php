@@ -74,6 +74,7 @@ class ProductionConfig
                 'domain' => 'test.allinclicksbio.com',
                 'fulldomain' => 'https://test.allinclicksbio.com',
                 'stripeRedirect' => 'http://localhost',
+                'template_server' => 'http://localhost:3000'
             ];
         } else if (self::$mode = Mode::PRODUCTION) {
             switch (self::$type) {
@@ -82,12 +83,14 @@ class ProductionConfig
                         'domain' => 'allinclicksbio.com',
                         'fulldomain' => 'https://allinclicksbio.com',
                         'stripeRedirect' => 'https://allinclicksbio.com',
+                        'template_server' => 'https://template.bio.allinclicks.com'
                     ];
                 case Type::TEST:
                     return [
                         'domain' => 'test.allinclicksbio.com',
                         'fulldomain' => 'https://test.allinclicksbio.com',
                         'stripeRedirect' => 'https://test.allinclicksbio.com',
+                        'template_server' => 'https://template.bio.allinclicks.com'
                     ];
                 default:
                     return [];

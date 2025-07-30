@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Upload from '../routeComponents/Upload'
+import Template from '../routeComponents/Template'
 
 export const Route = createFileRoute('/@upload')({
-  component: Upload,
+  component: Template,
 })
