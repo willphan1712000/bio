@@ -27,19 +27,19 @@ const persister = createAsyncStoragePersister({
 const App = () => {
   return (
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
-      <div className="bg-gradient-to-r from-[#C8F8FF] to-[#FFD18C] flex flex-col items-center">
+      <div className="bg-gradient-to-r from-[#C8F8FF] to-[#FFD18C] flex flex-col items-center px-[10px]">
           <NavBar />
           <Banner />
           <Template />
           <Separator />
           <ETemplate />
           <Separator />
-          <ECards />
-          <Separator />
+          {/* <ECards />
+          <Separator /> */}
           <AppScrollTrigger/>
           <Separator />
-          <UpSell />
-          <Separator />
+          {/* <UpSell /> */}
+          {/* <Separator /> */}
           <Footer />
       </div>
     </PersistQueryClientProvider>

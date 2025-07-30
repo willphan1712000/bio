@@ -58,7 +58,8 @@ class SystemConfig
                 'char' => 'Password must have at least 6 characters',
                 'number' => 'Password must have at least a number',
                 'upper' => 'Password must have at least 1 upper case'
-            ]
+            ],
+            'template_server' => ProductionConfig::config()['template_server']
         ];
     }
 
@@ -205,5 +206,20 @@ class SystemConfig
             "file" => $exception->getFile(),
             "line" => $exception->getLine()
         ]);
+    }
+
+    /**
+     * This function will check the current domain, and redirect to the correct domain if necessary
+     */
+    public static function redirect()
+    {
+        $domain = $_SERVER['HTTP_HOST'];
+        $uri = $_SERVER["REQUEST_URI"];
+        $currentDomain = self::globalVariables()["domain"];
+        if (ProductionConfig::$mode === Mode::PRODUCTION) {
+            if ($domain !== $currentDomain) {
+                header("Location: https://" . $currentDomain . $uri);
+            }
+        }
     }
 }

@@ -1,12 +1,12 @@
 import { Button } from '@willphan1712000/w'
-import Logo from '../Logo'
+import Logo from '../../../client/clientComponents/Logo'
 import Info from './Info'
 import Social from './Social'
 import Copyright from './Copyright'
 
 const Footer = () => {
     return (
-            <div className='bg-[#111113] p-[30px] w-full flex flex-row justify-center'>
+            <div className='bg-[#111113] p-[30px] w-full flex flex-row justify-center rounded-t-[30px]'>
                 <div className=' max-w-[1000px]'>
                     <div className='flex flex-col lg:flex-row gap-10 justify-center items-center lg:items-start'>
                         <div className='flex-1 w-[50%] max-w-[300px]'><Logo /></div>

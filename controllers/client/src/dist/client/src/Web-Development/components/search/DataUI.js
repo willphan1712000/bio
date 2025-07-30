@@ -12,6 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const WW_1 = require("../../WW");
 class DataUI {
     constructor(url) {
+        Object.defineProperty(this, "url", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.url = url;
     }
     getData(options) {

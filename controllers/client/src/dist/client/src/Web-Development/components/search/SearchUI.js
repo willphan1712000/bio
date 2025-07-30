@@ -17,6 +17,36 @@ const InputUI_1 = __importDefault(require("./InputUI"));
 const TableUI_1 = __importDefault(require("./TableUI"));
 class SearchUI {
     constructor(input, tableProps) {
+        Object.defineProperty(this, "inputUI", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "tableUI", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "dataUI", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "table", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "observer", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         this.inputUI = new InputUI_1.default(input, this);
         this.tableUI = new TableUI_1.default(tableProps.container, tableProps.target, tableProps.limit, tableProps.like, tableProps.url, tableProps.html);
         this.dataUI = new DataUI_1.default(tableProps.url.get);

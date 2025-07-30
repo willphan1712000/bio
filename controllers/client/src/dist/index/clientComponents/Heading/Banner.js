@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const clientConfig_1 = __importDefault(require("../../clientConfig"));
-const AppImage_1 = __importDefault(require("../AppImage"));
+const AppImage_1 = __importDefault(require("../../../client/clientComponents/AppImage"));
 const Signin_1 = __importDefault(require("../Signin"));
 const Template_1 = __importDefault(require("../Template"));
 const Banner = () => {

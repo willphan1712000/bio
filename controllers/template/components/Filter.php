@@ -12,16 +12,13 @@ class Filter extends Component
             <div class="filter flex flex-col justify-center items-center mb-[10px]">
                 <div class="type flex flex-row justify-evenly items-center gap-[20px]">
                     <div class="typebox popular active">
-                        <a class="no-underline text-black" href="' . $this->props['popular'] . '">Popular</a>
+                        <a class="no-underline text-black" href="' . $this->props['popular'] . '">Horizontal</a>
                     </div>
                     <div class="typebox industry">
-                        <a class="no-underline text-black" href="' . $this->props['industry'] . '">Industry</a>
+                        <a class="no-underline text-black" href="' . $this->props['industry'] . '">Vertical</a>
                     </div>
                     <div class="typebox color">
-                        <a class="no-underline text-black" href="' . $this->props['color'] . '">Color</a>
-                    </div>
-                    <div class="typebox color">
-                        <a class="no-underline text-black" href="' . $this->props['like'] . '">Like</a>
+                        <a class="no-underline text-black" href="' . $this->props['color'] . '">Custom</a>
                     </div>
                 </div>
             </div>

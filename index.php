@@ -8,6 +8,8 @@ use api\APIRouter;
 use config\Router;
 use config\SystemConfig;
 
+SystemConfig::redirect();
+
 APIRouter::api_work();
 
 // ==========================================================================
@@ -27,6 +29,9 @@ for ($i = 0; $i < count($pages); $i++) {
     $router->addRoute('/@' . $pages[$i], 'dist/' . $pages[$i] . '.php');
     $router->addRoute('/@' . $pages[$i] . '/', 'dist/' . $pages[$i] . '.php');
 }
+$router->addRoute('/@aic/@upload', 'dist/aic.php');
+$router->addRoute('/@aic/@price', 'dist/aic.php');
+$router->addRoute('/@aic/@logout', 'dist/aic.php');
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $router->route($uri);

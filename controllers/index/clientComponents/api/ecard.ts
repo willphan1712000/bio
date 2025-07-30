@@ -1,5 +1,5 @@
 import { ApiResponse } from "apisauce";
-import apiClient from "./apiClient";
+import apiClient from "../../../client/api/apiClient";
 
 export type ServerProducts = {
     products: any[]

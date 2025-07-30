@@ -20,6 +20,9 @@ class APIRouter
             $api_router = new APIRouter(new Request(), new Response());
             $api_router->get("/api/woo/product", 'business\woocommerce\ProductController@getAll');
             $api_router->get('/api/woo/product/{id}', 'business\woocommerce\ProductController@getWithId');
+            $api_router->get('/api/branches', 'business\beautyBooking\BranchesController@get');
+            $api_router->post('/api/template/manage', 'business\templateManagement\TemplateController@post');
+
             $api_router->resolve();
 
             exit;
@@ -102,6 +105,7 @@ class Response
 
     public function json($data)
     {
+        header('Access-Control-Allow-Origin');
         header('Content-Type: application/json');
         echo json_encode($data);
         return $this;

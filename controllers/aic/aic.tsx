@@ -1,10 +1,13 @@
 import { $$ } from "../client/src/Web-Development/W";
+import App from "./clientComponents/App";
+import "@radix-ui/themes/styles.css";
 
 $(document).ready(function() {
-    aic()
+    $$("#admin_container", <App />).reactMounting()
+    // aic()
 })
 
-export default function aic() {
+function aic() {
         // search mechanism
        (async function() {
             // Perform search mechanism

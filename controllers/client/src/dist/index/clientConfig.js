@@ -23,99 +23,14 @@ exports.default = Object.freeze({
         des2: " Tap it on a phone to see how amazing your profile is",
         img: "/controllers/client/img/ip.png"
     },
-    aic: {
-        website: "https://allinclicks.com",
-        email: "tonthang@icloud.com",
-        phone: "571-419-0969",
-        messenger: "https://m.me/AllinclicksUs",
-        facebook: "https://www.facebook.com/AllinclicksUs/",
-        instagram: "https://www.instagram.com/allinclicks.us",
-        address: "800 Walnut Creek Dr NW, Lilburn, GA 30047"
-    },
     templates: {
         basic: {
             heading: "Basic Templates",
             des: "Just create your profile, buy a template of your choice and we will ship your card to you.",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-            ]
         },
         pro: {
             heading: "Pro Templates",
             des: "Just create your profile, buy a pro template of your choice. You will have the pro template displayed on your profile + a card printed with the template shipped to you.",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/instagram_front.png",
-                    url: "/"
-                },
-            ]
         },
         diamond: {
             heading: "",
@@ -126,86 +41,10 @@ exports.default = Object.freeze({
         basic: {
             heading: "Basic eBusiness Cards",
             des: "",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-            ]
         },
         professional: {
             heading: "Professional eBusiness Cards",
             des: "",
-            products: [
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-                {
-                    thumbnails: "/controllers/client/img/background.png",
-                    url: "/"
-                },
-            ]
         }
     }
 });

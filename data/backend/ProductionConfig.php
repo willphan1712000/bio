@@ -34,7 +34,7 @@ class ProductionConfig
     public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
     public static Type $type = Type::TEST;
     public static Bio $bio = Bio::PRO;
-    public static $version = "7.6.6"; // version of the product
+    public static $version = "7.7.0"; // version of the product
 
     public static function database()
     {
@@ -74,6 +74,7 @@ class ProductionConfig
                 'domain' => 'test.allinclicksbio.com',
                 'fulldomain' => 'https://test.allinclicksbio.com',
                 'stripeRedirect' => 'http://localhost',
+                'template_server' => 'http://localhost:3000'
             ];
         } else if (self::$mode = Mode::PRODUCTION) {
             switch (self::$type) {
@@ -82,12 +83,14 @@ class ProductionConfig
                         'domain' => 'allinclicksbio.com',
                         'fulldomain' => 'https://allinclicksbio.com',
                         'stripeRedirect' => 'https://allinclicksbio.com',
+                        'template_server' => 'https://template.bio.allinclicks.com'
                     ];
                 case Type::TEST:
                     return [
                         'domain' => 'test.allinclicksbio.com',
                         'fulldomain' => 'https://test.allinclicksbio.com',
                         'stripeRedirect' => 'https://test.allinclicksbio.com',
+                        'template_server' => 'https://template.bio.allinclicks.com'
                     ];
                 default:
                     return [];

@@ -16,7 +16,7 @@ class Logo
     public function render()
     {
         return '
-            <a href="/" class="logo-box w-[10rem] flex justify-between p-2">
+            <a href="/" class="logo-box w-full flex justify-between p-2">
                 <img class="h-full" src="' . $this->src . '?v=' . time() . '" alt="allinclicks_logo" draggable=false>
             </a>
         ';

@@ -21,3 +21,6 @@ old/*
 #migrations
 migrations/*
 !migrations/.gitkeep
+
+#tanstack
+.tanstack/

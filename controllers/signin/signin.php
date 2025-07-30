@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="logo">
+    <div class="logo w-[200px]">
         <?= (new Logo(["src" => $g["img"]["logo"]]))->render(); ?>
     </div>
     <div class="signupParent flex justify-center items-center h-[75vh]">
