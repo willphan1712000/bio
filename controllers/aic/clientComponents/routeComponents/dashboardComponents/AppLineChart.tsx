@@ -4,7 +4,7 @@ const data = [{name: 'Facebook', uv: 400, pv: 2400, amt: 2400}, {name: 'Instagra
 
 const AppLineChart = () => {
   const theme = useThemeContext()
-  const classes = `${theme.classes.container} ${theme.classes.border} p-10 rounded-3xl shadow-xl w-full md:w-fit`
+  const classes = `${theme.classes.container} ${theme.classes.border} p-10 rounded-3xl shadow-xl w-full md:w-fit overflow-auto`
 
   return (
     <div className={classes}>
