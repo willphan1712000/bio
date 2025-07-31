@@ -66,7 +66,7 @@ const Upload = () => {
     };
     const handleUpload = () => __awaiter(void 0, void 0, void 0, function* () {
         if (!thumbnail || !template || !annotation) {
-            (0, react_hot_toast_1.default)('Please upload all required files');
+            (0, react_hot_toast_1.default)('❌  Please upload all required files');
             return;
         }
         setUploading(true);
@@ -78,10 +78,11 @@ const Upload = () => {
         resetFiles();
         if (!data.success) {
             console.log(data.error);
-            (0, react_hot_toast_1.default)("Error: open console tab to see more information!");
+            (0, react_hot_toast_1.default)("❌  Error: open console tab to see more information!");
         }
         else {
-            (0, react_hot_toast_1.default)("Upload successfully");
+            console.log(data.data);
+            (0, react_hot_toast_1.default)("✅  Upload successfully");
         }
         setUploading(false);
     });

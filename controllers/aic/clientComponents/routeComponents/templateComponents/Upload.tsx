@@ -21,7 +21,7 @@ const Upload = () => {
 
     const handleUpload = async () => {
         if(!thumbnail || !template || !annotation) {
-            toast('Please upload all required files')
+            toast('❌  Please upload all required files');
             return
         }
 
@@ -35,9 +35,10 @@ const Upload = () => {
         resetFiles()
         if(!data.success) {
             console.log(data.error)
-            toast("Error: open console tab to see more information!")
+            toast("❌  Error: open console tab to see more information!")
         } else {
-            toast("Upload successfully")
+            console.log(data.data)
+            toast("✅  Upload successfully")
         }
         
         setUploading(false)
