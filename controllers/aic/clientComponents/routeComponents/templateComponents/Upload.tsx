@@ -1,13 +1,16 @@
 import { Button } from '@radix-ui/themes'
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { BarLoader } from 'react-spinners'
+import AppToaster from '../../../../client/clientComponents/AppToaster'
 import useThemeContext from '../../../../client/clientComponents/context/theme'
 import apiTemplate from '../../api/template'
 import UploadArea from './UploadArea'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const Upload = () => {
     const theme = useThemeContext()
-    const containerClasses = `${theme.classes.border} md:w-fit w-full p-10 rounded-[30px] flex flex-col items-center md:items-start`
+    const containerClasses = `${theme.classes.border} md:w-fit w-full p-10 rounded-[30px] flex flex-col items-center md:items-start my-5`
     const [thumbnail, setThumbnail] = useState<File>()
     const [template, setTemplate] = useState<File>()
     const [annotation, setAnnotation] = useState<File>()
@@ -19,26 +22,40 @@ const Upload = () => {
         setAnnotation(undefined)
     }
 
+    const queryClient = useQueryClient()
+    const { mutateAsync: uploadTemplate } = useMutation({
+        mutationFn: apiTemplate.uploadTemplate,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["templates"] })
+        }
+    })
+
     const handleUpload = async () => {
         if(!thumbnail || !template || !annotation) {
-            toast('❌  Please upload all required files');
+            toast(
+                <AppToaster message='Please upload all required files'/>
+            );
             return
         }
 
         setUploading(true)
-        const data = await apiTemplate.uploadTemplate({
+        const data = await uploadTemplate({
             thumbnail,
             template,
             annotation
         })
 
         resetFiles()
+
         if(!data.success) {
             console.log(data.error)
-            toast("❌  Error: open console tab to see more information!")
+            toast(<AppToaster message={data.error}/>)
         } else {
-            console.log(data.data)
-            toast("✅  Upload successfully")
+            if(!data.data.success) {
+                toast(<AppToaster message={data.data.error} />)
+            } else {
+                toast(<AppToaster message={data.data.data.msg} status={true} />);
+            }
         }
         
         setUploading(false)
@@ -55,7 +72,7 @@ const Upload = () => {
                 </div>
                 <div className='w-fit p-[20px]'>
                     <div className='bg-white p-[1px] rounded-full'>
-                        <Button loading={isUploading} size="3" radius='full' onClick={handleUpload}>Upload</Button>
+                        <Button disabled={isUploading} size="3" radius='full' onClick={handleUpload}>{isUploading ? <BarLoader />: 'Upload'}</Button>
                     </div>
                 </div>
             </div>

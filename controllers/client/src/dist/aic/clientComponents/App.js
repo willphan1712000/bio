@@ -38,6 +38,6 @@ const App = () => {
         });
     }, []);
     const queryClient = new react_query_1.QueryClient();
-    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)(react_query_1.QueryClientProvider, { client: queryClient, children: (0, jsx_runtime_1.jsx)(themes_1.Theme, { radius: "full", children: (0, jsx_runtime_1.jsx)(react_router_1.RouterProvider, { router: router }) }) }) }));
+    return ((0, jsx_runtime_1.jsx)(theme_1.ThemeContext.Provider, { value: theme, children: (0, jsx_runtime_1.jsx)(react_query_1.QueryClientProvider, { client: queryClient, children: (0, jsx_runtime_1.jsx)(themes_1.Theme, { accentColor: "cyan", radius: "full", children: (0, jsx_runtime_1.jsx)(react_router_1.RouterProvider, { router: router }) }) }) }));
 };
 exports.default = App;

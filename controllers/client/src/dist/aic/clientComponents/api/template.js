@@ -24,10 +24,51 @@ function uploadTemplate(files) {
                 'Content-Type': 'multipart/form-data'
             }
         });
+        return res.data;
+    });
+}
+function getTemplateRecords() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.get('/api/template/manage');
+        if (!res.ok)
+            return undefined;
         const data = res.data;
-        return data;
+        if (!data.success)
+            return undefined;
+        const data_sec = data.data;
+        if (!data_sec.success)
+            return undefined;
+        return data_sec.data;
+    });
+}
+function getTemplateServerURL() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.get('/api/template/manage/url');
+        if (!res.ok)
+            return undefined;
+        const data = res.data;
+        if (!data.success)
+            return undefined;
+        return data.data;
+    });
+}
+function deleteTemplate(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.delete('/api/template/manage/' + id);
+        if (!res.ok)
+            return undefined;
+        const data = res.data;
+        if (!data.success)
+            return undefined;
+        const data_sec = data.data;
+        if (!data_sec.success)
+            return undefined;
+        return data_sec.success;
     });
 }
 exports.default = {
-    uploadTemplate
+    uploadTemplate,
+    getTemplateRecords,
+    getTemplateServerURL,
+    deleteTemplate
 };

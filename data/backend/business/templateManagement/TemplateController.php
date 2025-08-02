@@ -5,6 +5,7 @@ namespace business\templateManagement;
 use api\Request;
 use api\Response;
 use config\SystemConfig;
+use config\TalkToOtherServer;
 
 /**
  * This class handles talking to template server to manage templates
@@ -13,15 +14,50 @@ class TemplateController
 {
     protected Request $request;
     protected Response $response;
+    protected TalkToOtherServer $otherServer;
     protected static string $Template_Server_URL;
+    protected static string $endpoint;
 
     public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
         $this->response = $response;
-        if (!isset(self::$Template_Server_URL)) {
-            self::$Template_Server_URL = SystemConfig::globalVariables()['template_server'];
-        }
+        $this->otherServer = TalkToOtherServer::getInstance();
+        self::$Template_Server_URL = SystemConfig::globalVariables()['template_server']['url'];
+        self::$endpoint = SystemConfig::globalVariables()['template_server']['endpoint']['template'];
+    }
+
+    /**
+     * This function handles getting all templates - this might handle efficient loading
+     */
+    public function get()
+    {
+        $this->otherServer->get(
+            self::$Template_Server_URL . self::$endpoint,
+            function ($res) {
+                $this->response->setStatusCode(200)->json([
+                    "success" => true,
+                    "data" => json_decode($res, true)
+                ]);
+            },
+            function () {
+                $this->response->setStatusCode(400)->json([
+                    "success" => false,
+                    "error" => "There is an error getting information."
+                ]);
+            }
+        );
+    }
+
+    /**
+     * This function handles returning the template server url
+     */
+    public function getTemplateServerURL()
+    {
+        $this->response->setStatusCode(200)->json([
+            "success" => true,
+            "data" => self::$Template_Server_URL
+        ]);
     }
 
     /**
@@ -29,11 +65,6 @@ class TemplateController
      */
     public function post()
     {
-        // $this->response->setStatusCode(200)->json([
-        //     "data" => $this->request->getMethod()
-        // ]);
-        // return;
-
         // Check for all required files
         $requiredFiles = ['thumbnail', 'template', 'annotation'];
         foreach ($requiredFiles as $field) {
@@ -65,7 +96,7 @@ class TemplateController
             ),
         ];
 
-        $ch = curl_init(self::$Template_Server_URL . "/api/upload");
+        $ch = curl_init(self::$Template_Server_URL . self::$endpoint);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
@@ -87,5 +118,28 @@ class TemplateController
         }
 
         curl_close($ch);
+    }
+
+    /**
+     * This function handles deleting a specific template with id
+     * @param int id id of a template to be deleted
+     */
+    public function delete($id)
+    {
+        $this->otherServer->delete(
+            self::$Template_Server_URL . self::$endpoint . "/" . $id,
+            function ($res) {
+                $this->response->setStatusCode(200)->json([
+                    "success" => true,
+                    "data" => json_decode($res, true)
+                ]);
+            },
+            function () {
+                $this->response->setStatusCode(400)->json([
+                    "success" => false,
+                    "error" => "There is an error getting information."
+                ]);
+            }
+        );
     }
 }

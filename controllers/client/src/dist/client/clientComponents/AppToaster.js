@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
-const radix_ui_1 = require("radix-ui");
-const AppToaster = ({ title, description, state }) => {
-    const { open, setOpen } = state;
-    return ((0, jsx_runtime_1.jsxs)(radix_ui_1.Toast.Provider, { swipeDirection: "right", children: [(0, jsx_runtime_1.jsxs)(radix_ui_1.Toast.Root, { open: true, onOpenChange: setOpen, children: [(0, jsx_runtime_1.jsx)(radix_ui_1.Toast.Title, { children: title }), (0, jsx_runtime_1.jsx)(radix_ui_1.Toast.Description, { children: description }), (0, jsx_runtime_1.jsx)(radix_ui_1.Toast.Action, { altText: "Go" }), (0, jsx_runtime_1.jsx)(radix_ui_1.Toast.Close, {})] }), (0, jsx_runtime_1.jsx)(radix_ui_1.Toast.Viewport, {})] }));
+const fa_1 = require("react-icons/fa");
+const io_1 = require("react-icons/io");
+const AppToaster = ({ status = false, message = '' }) => {
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'flex flex-row items-center gap-2', children: [status ? (0, jsx_runtime_1.jsx)(fa_1.FaCheckCircle, { color: 'green', size: "25" }) : (0, jsx_runtime_1.jsx)(io_1.IoMdCloseCircle, { color: 'red', size: "25" }), message] }));
 };
 exports.default = AppToaster;

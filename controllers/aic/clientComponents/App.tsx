@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { ThemeContext, ThemeContextType } from '../../client/clientComponents/context/theme'
 import detectLightMode from '../../client/utilities/detectLightMode'
 import { routeTree } from './routes/routeTree.gen'
-import { Theme } from '@radix-ui/themes'
+import { Theme, ThemePanel } from '@radix-ui/themes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const router = createRouter({ 
@@ -46,7 +46,7 @@ const App = () => {
   return (
     <ThemeContext.Provider value={theme}>
         <QueryClientProvider client={queryClient}>
-            <Theme radius="full">
+            <Theme accentColor="cyan" radius="full">
                 <RouterProvider router={router} />
             </Theme>
         </QueryClientProvider>

@@ -26,9 +26,9 @@ class BranchesController
         if (curl_errno($ch)) {
             $return = [
                 "success" => false,
-                "error" => "There is an  error getting information."
+                "error" => "There is an error getting information."
             ];
-            $this->response->setStatusCode(500)->json($return);
+            $this->response->setStatusCode(400)->json($return);
         } else {
             $return = [
                 "success" => true,

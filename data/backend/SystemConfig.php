@@ -59,7 +59,12 @@ class SystemConfig
                 'number' => 'Password must have at least a number',
                 'upper' => 'Password must have at least 1 upper case'
             ],
-            'template_server' => ProductionConfig::config()['template_server']
+            'template_server' => [
+                'url' => ProductionConfig::config()['template_server'],
+                'endpoint' => [
+                    'template' => '/api/template'
+                ]
+            ]
         ];
     }
 
