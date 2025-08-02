@@ -37,7 +37,7 @@ class TemplateController
             function ($res) {
                 $this->response->setStatusCode(200)->json([
                     "success" => true,
-                    "data" => json_decode($res, true)
+                    "data" => json_decode($res, true),
                 ]);
             },
             function () {

@@ -20,7 +20,7 @@ function getUsers() {
             limit: 50
         });
         if (!res.ok)
-            return undefined;
+            throw new Error(res.problem);
         const data = res.data;
         if (!data.success)
             throw new Error(data.error);

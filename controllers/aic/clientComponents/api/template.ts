@@ -33,39 +33,39 @@ async function uploadTemplate(files: Files): Promise<Response<Response<any>>> {
     return res.data as Response<Response<any>>
 }
 
-async function getTemplateRecords(): Promise<Template[] | undefined> {
+async function getTemplateRecords(): Promise<Template[]> {
     const res = await apiClient.get('/api/template/manage')
 
-    if(!res.ok) return undefined
+    if(!res.ok) throw new Error(res.problem)
 
     const data = res.data as Response<Response<Template[]>>
-    if(!data.success) return undefined
+    if(!data.success) throw new Error(data.error)
 
     const data_sec = data.data
-    if(!data_sec.success) return undefined
+    if(!data_sec.success) throw new Error(data_sec.error)
 
     return data_sec.data
 }
 
-async function getTemplateServerURL(): Promise<string | undefined> {
+async function getTemplateServerURL(): Promise<string> {
     const res = await apiClient.get('/api/template/manage/url')
 
-    if(!res.ok) return undefined
+    if(!res.ok) throw new Error(res.problem)
 
     const data = res.data as Response<string>
-    if(!data.success) return undefined
+    if(!data.success) throw new Error(data.error)
 
     return data.data
 }
 
-async function deleteTemplate(id: number): Promise<boolean | undefined> {
+async function deleteTemplate(id: number): Promise<boolean> {
     const res = await apiClient.delete('/api/template/manage/' + id)
-    if(!res.ok) return undefined
+    if(!res.ok) throw new Error(res.problem)
     const data = res.data as Response<Response<undefined>>
-    if(!data.success) return undefined
+    if(!data.success) throw new Error(data.error)
 
     const data_sec = data.data
-    if(!data_sec.success) return undefined
+    if(!data_sec.success) throw new Error(data_sec.error)
     return data_sec.success
 }
 

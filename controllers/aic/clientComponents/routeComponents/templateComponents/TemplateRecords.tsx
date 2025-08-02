@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
 import AppToaster from '../../../../client/clientComponents/AppToaster';
-import wait from '../../../../client/utilities/wait';
 import apiTemplate from '../../api/template';
 
 const TemplateRecords = () => {

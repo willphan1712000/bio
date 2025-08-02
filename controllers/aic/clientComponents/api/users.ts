@@ -15,7 +15,7 @@ async function getUsers() {
         limit: 50
     })
 
-    if(!res.ok) return undefined
+    if(!res.ok) throw new Error(res.problem)
     const data = res.data as Response<UserType[]>
     if(!data.success) throw new Error(data.error)
     return data.data as UserType[]
