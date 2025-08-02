@@ -14,17 +14,17 @@ const Tab = ({ to, name, icon, onClick }: Props) => {
     const theme = useThemeContext()
     const { isCollapse } = useCollapseContext()
 
-    const className = `${theme.classes.hover} ${theme.classes.text} h-[50px] flex items-center flex-row gap-2 m-5 p-3 rounded-xl cursor-pointer transition-all`;
+    const className = `${theme.classes.hover} ${theme.classes.text} !w-auto h-[50px] !flex items-center !flex-row gap-2 m-5 p-3 rounded-xl cursor-pointer`;
     const pClasses = `md:flex hidden`
 
     if(to)
       return (
-        <Link to={to} className={className} onClick={onClick} activeProps={{
-          className: theme.classes.border
-        }}>
-          {icon}
-          { !isCollapse && <p className={pClasses}>{name}</p> }
-        </Link>
+          <Link to={to} className={className} onClick={onClick} activeProps={{
+            className: theme.classes.border
+          }}>
+            {icon}
+            { !isCollapse && <p className={pClasses}>{name}</p> }
+          </Link>
       )
 
     return (

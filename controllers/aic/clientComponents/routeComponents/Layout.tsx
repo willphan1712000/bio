@@ -8,7 +8,7 @@ interface Props {
 
 const Layout = ({ children, heading }: Props ) => {
     const theme = useThemeContext()
-    const headingClasses = `${theme.classes.text} pt-[100px] p-5 w-full md:w-fit md:p-10`
+    const headingClasses = `${theme.classes.text} bg-inherit pt-[100px] p-5 w-full md:w-fit md:p-10`
     return (
         <div className={headingClasses}>
             <h1 className="text-[2rem] p-5">{heading}</h1>

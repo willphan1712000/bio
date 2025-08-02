@@ -24,3 +24,6 @@ migrations/*
 
 #tanstack
 .tanstack/
+
+# vscode
+.vscode

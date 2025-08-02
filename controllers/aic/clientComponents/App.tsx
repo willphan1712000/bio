@@ -1,10 +1,10 @@
+import { Theme } from '@radix-ui/themes'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 import { ThemeContext, ThemeContextType } from '../../client/clientComponents/context/theme'
 import detectLightMode from '../../client/utilities/detectLightMode'
 import { routeTree } from './routes/routeTree.gen'
-import { Theme, ThemePanel } from '@radix-ui/themes'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const router = createRouter({ 
     routeTree,
@@ -29,7 +29,8 @@ const App = () => {
     })
 
     useEffect(() => {
-        const currentTheme = detectLightMode()
+        // const currentTheme = detectLightMode()
+        const currentTheme = 'dark'
         setTheme({
             classes: {
                 bg: `system-${currentTheme}-bg`,
@@ -43,15 +44,15 @@ const App = () => {
 
     const queryClient = new QueryClient()
 
-  return (
-    <ThemeContext.Provider value={theme}>
-        <QueryClientProvider client={queryClient}>
-            <Theme accentColor="cyan" radius="full">
-                <RouterProvider router={router} />
-            </Theme>
-        </QueryClientProvider>
-    </ThemeContext.Provider>
-  )
+    return (
+        <ThemeContext.Provider value={theme}>
+            <QueryClientProvider client={queryClient}>
+                <Theme accentColor="cyan" radius="full">
+                    <RouterProvider router={router} />
+                </Theme>
+            </QueryClientProvider>
+        </ThemeContext.Provider>
+    )
 }
 
 export default App
