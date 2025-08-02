@@ -24,6 +24,7 @@ class APIRouter
             $api_router->get('/api/template/manage', 'business\templateManagement\TemplateController@get');
             $api_router->get('/api/template/manage/url', 'business\templateManagement\TemplateController@getTemplateServerURL');
             $api_router->post('/api/template/manage', 'business\templateManagement\TemplateController@post');
+            $api_router->put('/api/template/manage/{id}', 'business\templateManagement\TemplateController@put');
             $api_router->delete('/api/template/manage/{id}', 'business\templateManagement\TemplateController@delete');
 
             $api_router->resolve();

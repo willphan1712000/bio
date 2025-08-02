@@ -74,6 +74,12 @@ const TemplateRecords = () => {
             queryClient.invalidateQueries({ queryKey: ["templates"] });
         }
     });
+    const { mutateAsync: updateTemplate } = (0, react_query_1.useMutation)({
+        mutationFn: template_1.default.updateTemplate,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["templates"] });
+        }
+    });
     const handleDeleteTemplate = (id) => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield deleteTemplate(id);
         if (!res) {
@@ -83,6 +89,15 @@ const TemplateRecords = () => {
             (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { status: true, message: 'Delete successfully' }));
         }
     });
+    const handleUpdateTemplate = (id) => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield updateTemplate(id);
+        if (!res) {
+            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: 'Update unsuccessfully' }));
+        }
+        else {
+            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { status: true, message: 'Update successfully' }));
+        }
+    });
     (0, react_1.useEffect)(() => {
         if (error) {
             (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: error.message }));
@@ -90,6 +105,6 @@ const TemplateRecords = () => {
     }, [error]);
     if (isPending)
         return (0, jsx_runtime_1.jsx)(react_spinners_1.DotLoader, {});
-    return ((0, jsx_runtime_1.jsxs)(themes_1.Flex, { py: "9", height: "fit-content", direction: "column", children: [(0, jsx_runtime_1.jsx)(react_hot_toast_1.Toaster, {}), (0, jsx_runtime_1.jsxs)(themes_1.Table.Root, { variant: 'surface', children: [(0, jsx_runtime_1.jsx)(themes_1.Table.Header, { children: (0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "ID" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Type" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Template" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Thumbnail" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Unit price" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Recurring price" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Created at" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Active" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Terminate" })] }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Body, { children: templates === null || templates === void 0 ? void 0 : templates.map(template => ((0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.RowHeaderCell, { children: template.id }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.type }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)("a", { target: "_blank", href: url + template.template_url, children: "Link" }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)("a", { target: "_blank", href: url + template.thumbnail_url, children: "Link" }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.unit_price ? template.unit_price : '$10' }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.recurring_price ? template.recurring_price : '$10' }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.createdAt }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(themes_1.Switch, { onClick: () => console.log("Swtiched id " + template.id), size: "3", defaultChecked: template.isActive }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(AppAlertDialog_1.default, { buttonTitle: 'Terminate', title: 'Terminate this template', des: 'Are you sure to do this? This will delete the template and all related files. This will also be reflected on the template page seen by all customers.', fn: () => handleDeleteTemplate(template.id) }) })] }, template.id))) })] })] }));
+    return ((0, jsx_runtime_1.jsxs)(themes_1.Flex, { py: "9", height: "fit-content", direction: "column", children: [(0, jsx_runtime_1.jsx)(react_hot_toast_1.Toaster, {}), (0, jsx_runtime_1.jsxs)(themes_1.Table.Root, { variant: 'surface', children: [(0, jsx_runtime_1.jsx)(themes_1.Table.Header, { children: (0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "ID" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Type" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Template" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Thumbnail" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Unit price" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Recurring price" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Created at" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Active" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Terminate" })] }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Body, { children: templates === null || templates === void 0 ? void 0 : templates.map(template => ((0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.RowHeaderCell, { children: template.id }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.type }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)("a", { target: "_blank", href: url + template.template_url, children: "Link" }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)("a", { target: "_blank", href: url + template.thumbnail_url, children: "Link" }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.unit_price ? template.unit_price : '$10' }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.recurring_price ? template.recurring_price : '$10' }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.createdAt }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(themes_1.Switch, { onClick: () => handleUpdateTemplate(template.id), size: "3", defaultChecked: template.isActive }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(AppAlertDialog_1.default, { buttonTitle: 'Terminate', title: 'Terminate this template', des: 'Are you sure to do this? This will delete the template and all related files. This will also be reflected on the template page seen by all customers.', fn: () => handleDeleteTemplate(template.id) }) })] }, template.id))) })] })] }));
 };
 exports.default = TemplateRecords;

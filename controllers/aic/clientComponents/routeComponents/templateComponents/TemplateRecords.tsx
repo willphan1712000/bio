@@ -30,6 +30,13 @@ const TemplateRecords = () => {
         }
     })
 
+    const {mutateAsync: updateTemplate } = useMutation({
+        mutationFn: apiTemplate.updateTemplate,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["templates"] })
+        }
+    })
+
     const handleDeleteTemplate = async (id: number) => {
         const res = await deleteTemplate(id)
         if(!res) {
@@ -39,6 +46,19 @@ const TemplateRecords = () => {
         } else {
             toast(
                 <AppToaster status={true} message='Delete successfully' />
+            )
+        }
+    }
+
+    const handleUpdateTemplate = async (id: number) => {
+        const res = await updateTemplate(id)
+        if(!res) {
+            toast(
+                <AppToaster message='Update unsuccessfully' />
+            )
+        } else {
+            toast(
+                <AppToaster status={true} message='Update successfully' />
             )
         }
     }
@@ -81,7 +101,7 @@ const TemplateRecords = () => {
                         <Table.Cell>{template.unit_price ? template.unit_price : '$10'}</Table.Cell>
                         <Table.Cell>{template.recurring_price ? template.recurring_price : '$10'}</Table.Cell>
                         <Table.Cell>{template.createdAt}</Table.Cell>
-                        <Table.Cell>{<Switch onClick={() => console.log("Swtiched id " + template.id)} size="3" defaultChecked={template.isActive} />}</Table.Cell>
+                        <Table.Cell>{<Switch onClick={() => handleUpdateTemplate(template.id)} size="3" defaultChecked={template.isActive} />}</Table.Cell>
                         <Table.Cell><AppAlertDialog 
                             buttonTitle='Terminate'
                             title='Terminate this template'

@@ -58,10 +58,22 @@ async function getTemplateServerURL(): Promise<string> {
     return data.data
 }
 
+async function updateTemplate(id: number): Promise<boolean> {
+    const res = await apiClient.put('/api/template/manage/' + id)
+    if(!res.ok) throw new Error(res.problem)
+
+    const data = res.data as Response<Response<any>>
+    if(!data.success) throw new Error(data.error)
+
+    const data_sec = data.data
+    if(!data_sec.success) throw new Error(data_sec.error)
+    return data_sec.success
+}
+
 async function deleteTemplate(id: number): Promise<boolean> {
     const res = await apiClient.delete('/api/template/manage/' + id)
     if(!res.ok) throw new Error(res.problem)
-    const data = res.data as Response<Response<undefined>>
+    const data = res.data as Response<Response<any>>
     if(!data.success) throw new Error(data.error)
 
     const data_sec = data.data
@@ -73,5 +85,6 @@ export default {
     uploadTemplate,
     getTemplateRecords,
     getTemplateServerURL,
+    updateTemplate,
     deleteTemplate
 }

@@ -121,6 +121,29 @@ class TemplateController
     }
 
     /**
+     * This function handles changing some information on the template server
+     * @param int id id of a template to be updated
+     */
+    public function put($id)
+    {
+        $this->otherServer->put(
+            self::$Template_Server_URL . self::$endpoint . "/" . $id,
+            function ($res) {
+                $this->response->setStatusCode(200)->json([
+                    "success" => true,
+                    "data" => json_decode($res, true)
+                ]);
+            },
+            function () {
+                $this->response->setStatusCode(400)->json([
+                    "success" => false,
+                    "error" => "There is an error getting information."
+                ]);
+            }
+        );
+    }
+
+    /**
      * This function handles deleting a specific template with id
      * @param int id id of a template to be deleted
      */

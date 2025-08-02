@@ -40,6 +40,23 @@ class TalkToOtherServer
 
     public function getId() {}
 
+    public function put(string $url, callable $ifSuccessFunc, callable $ifFailFunc)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $res = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            $ifFailFunc();
+        } else {
+            $ifSuccessFunc($res);
+        }
+
+        curl_close($ch);
+    }
+
     public function delete(string $url, callable $ifSuccessFunc, callable $ifFailFunc): void
     {
         $ch = curl_init($url);
