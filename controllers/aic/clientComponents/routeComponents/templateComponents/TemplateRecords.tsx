@@ -1,43 +1,23 @@
-import { Flex, Skeleton, Switch, Table } from '@radix-ui/themes';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { Flex, Switch, Table } from '@radix-ui/themes';
 import toast, { Toaster } from 'react-hot-toast';
+import { DotLoader } from 'react-spinners';
 import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
 import AppToaster from '../../../../client/clientComponents/AppToaster';
-import apiTemplate from '../../api/template';
-import { DotLoader } from 'react-spinners';
 import dateFormat from '../../../../client/utilities/timeFormat';
+import apiTemplate from '../../api/template';
 import config from '../../config';
+import useAppEffect from '../../hooks/useAppEffect';
+import useAppMutation from '../../hooks/useAppMutation';
+import useAppQuery from '../../hooks/useAppQuery';
 
 const TemplateRecords = () => {
-    const { isPending, data: templates, error } = useQuery({
-        queryKey: ["templates"],
-        queryFn: async () => apiTemplate.getTemplateRecords(),
-        staleTime: 5 * 60 * 1000, // 5 minutes,
-        retry: 1
-    })
+    const { isPending, data: templates, error } = useAppQuery('templates', apiTemplate.getTemplateRecords)
+    const { data: url } = useAppQuery('template_server_url', apiTemplate.getTemplateServerURL)
 
-    const { data: url } = useQuery({
-        queryKey: ['template_server_url'],
-        queryFn: async () => apiTemplate.getTemplateServerURL(),
-        staleTime: 5 * 60 * 1000, // 5 minutes,
-        retry: 1
-    })
+    const { mutateAsync: deleteTemplate } = useAppMutation('templates', apiTemplate.deleteTemplate)
+    const {mutateAsync: updateTemplate } = useAppMutation('templates', apiTemplate.updateTemplate)
 
-    const queryClient = useQueryClient()
-    const { mutateAsync: deleteTemplate } = useMutation({
-        mutationFn: apiTemplate.deleteTemplate,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["templates"] })
-        }
-    })
-
-    const {mutateAsync: updateTemplate } = useMutation({
-        mutationFn: apiTemplate.updateTemplate,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["templates"] })
-        }
-    })
+    useAppEffect(error)
 
     const handleDeleteTemplate = async (id: number) => {
         const res = await deleteTemplate(id)
@@ -64,14 +44,6 @@ const TemplateRecords = () => {
             )
         }
     }
-
-    useEffect(() => {
-        if(error) {
-            toast(
-                <AppToaster message={error.message} />
-            )
-        }
-    }, [error])
 
     if(isPending) return <DotLoader />
     

@@ -1,29 +1,15 @@
 import { FaRegUser } from "react-icons/fa";
 import { GrMoney } from "react-icons/gr";
 import { SiMoneygram } from "react-icons/si";
-import StatCard from './StatCard';
-import { useQuery } from "@tanstack/react-query";
-import apiDashboard from '../../api/dashboard';
 import { DotLoader } from "react-spinners";
-import AppToaster from "../../../../client/clientComponents/AppToaster";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+import apiDashboard from '../../api/dashboard';
+import useAppEffect from "../../hooks/useAppEffect";
+import useAppQuery from "../../hooks/useAppQuery";
+import StatCard from './StatCard';
 
 const StatCards = () => {
-  const { isPending, data: analyticsInfo, error } = useQuery({
-    queryKey: ['analytics'],
-    queryFn: async () => apiDashboard.analytics(),
-    staleTime: 5 * 60 * 1000, // 5 minutes,
-    retry: 1
-  })
-
-  useEffect(() => {
-      if(error) {
-          toast(
-            <AppToaster message={error?.message || "Something went wrong"} />
-          )
-      }
-  }, [error])
+  const { isPending, data: analyticsInfo, error } = useAppQuery('analytics', apiDashboard.analytics)
+  useAppEffect(error)
 
   if(isPending) return <DotLoader />
 
