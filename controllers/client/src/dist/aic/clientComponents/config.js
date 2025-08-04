@@ -32,5 +32,15 @@ exports.default = Object.freeze({
     collapse: {
         name: "Collapse Menu",
         icon: (0, jsx_runtime_1.jsx)(tb_2.TbLayoutSidebarLeftCollapseFilled, {})
+    },
+    message: {
+        user: {
+            terminateTitle: "Terminate this user",
+            terminateMsg: "Are you sure to do this? This will delete user and all related information.",
+        },
+        template: {
+            terminateTitle: "Terminate this template",
+            terminateMsg: "Are you sure to do this? This will delete the template and all related files. This will also be reflected on the template page seen by all customers."
+        }
     }
 });

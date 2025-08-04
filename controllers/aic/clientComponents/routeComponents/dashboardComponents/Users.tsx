@@ -1,8 +1,13 @@
-import { Flex, Skeleton, Table } from '@radix-ui/themes'
-import { useQuery } from '@tanstack/react-query'
-import apiUsers from '../../api/users'
-import toast, { Toaster } from 'react-hot-toast';
+import { Flex, Table } from '@radix-ui/themes';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { DotLoader } from 'react-spinners';
+import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
+import AppToaster from '../../../../client/clientComponents/AppToaster';
+import dateFormat from '../../../../client/utilities/timeFormat';
+import apiUsers from '../../api/users';
+import config from '../../config';
 
 const Users = () => {
     const { isPending, data: users, error } = useQuery({
@@ -14,14 +19,38 @@ const Users = () => {
 
     useEffect(() => {
         if(error) {
-            toast(error.message)
+            toast(
+                <AppToaster message={error.message} />
+            )
         }
     }, [error])
 
-  return (
-    <Flex py="9" height="fit-content" direction="column">
-        <Toaster />
-        <Skeleton loading={isPending}>
+    const queryClient = useQueryClient()
+    const { mutateAsync: deleteTemplate } = useMutation({
+        mutationFn: apiUsers.deleteUser,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["users"] })
+        }
+    })
+
+    const handleDeleteUser = async (username: string) => {
+        const res = await deleteTemplate(username)
+        if(!res) {
+            toast(
+                <AppToaster message='Delete unsuccessfully' />
+            )
+        } else {
+            toast(
+                <AppToaster message='Delete successfully' status={true} />
+            )
+        }
+    }
+
+    if(isPending) return <DotLoader />
+
+    return (
+        <Flex py="9" height="fit-content" direction="column">
+            <Toaster />
             <Table.Root variant='surface'>
                 <Table.Header>
                     <Table.Row>
@@ -31,6 +60,7 @@ const Users = () => {
                         <Table.ColumnHeaderCell>Token</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Delete Token</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Created at</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Terminate user</Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -42,14 +72,19 @@ const Users = () => {
                             <Table.Cell>{user.email}</Table.Cell>
                             <Table.Cell>{user.token}</Table.Cell>
                             <Table.Cell>{user.deleteToken}</Table.Cell>
-                            <Table.Cell>{user.createdAt}</Table.Cell>
+                            <Table.Cell>{dateFormat(user.createdAt)}</Table.Cell>
+                            <Table.Cell><AppAlertDialog 
+                            buttonTitle='Terminate'
+                            title={config.message.user.terminateTitle}
+                            des={config.message.user.terminateMsg}
+                            fn={() => handleDeleteUser(user.username)}
+                        /></Table.Cell>
                         </Table.Row>
                     ))}
                 </Table.Body>
             </Table.Root>
-        </Skeleton>
-    </Flex>
-  )
+        </Flex>
+    )
 }
 
 export default Users

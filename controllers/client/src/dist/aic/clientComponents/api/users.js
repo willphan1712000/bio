@@ -20,13 +20,28 @@ function getUsers() {
             limit: 50
         });
         if (!res.ok)
-            return undefined;
+            throw new Error(res.problem);
         const data = res.data;
         if (!data.success)
             throw new Error(data.error);
         return data.data;
     });
 }
+function deleteUser(username) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.post('/data/api/user/DELETE.php', {
+            username,
+            key: process.env.SYSTEM_SECRET_KEY
+        });
+        if (!res.ok)
+            throw new Error(res.problem);
+        const data = res.data;
+        if (!data.success)
+            throw new Error(data.error);
+        return data.success;
+    });
+}
 exports.default = {
-    getUsers
+    getUsers,
+    deleteUser
 };

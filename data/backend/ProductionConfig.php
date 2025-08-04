@@ -34,7 +34,7 @@ class ProductionConfig
     public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
     public static Type $type = Type::TEST;
     public static Bio $bio = Bio::PRO;
-    public static $version = "7.7.0"; // version of the product
+    public static $version = "7.8.0"; // version of the product
 
     public static function database()
     {
@@ -71,26 +71,26 @@ class ProductionConfig
     {
         if (self::$mode === Mode::DEVELOPMENT) {
             return [
-                'domain' => 'test.allinclicksbio.com',
-                'fulldomain' => 'https://test.allinclicksbio.com',
-                'stripeRedirect' => 'http://localhost',
-                'template_server' => 'http://localhost:3000'
+                'domain' => $_ENV['DOMAIN_DEV'],
+                'fulldomain' => $_ENV['DOMAIN_DEV_FULL'],
+                'stripeRedirect' => $_ENV['MERCHANT_REDIRECT_DEV'],
+                'template_server' => $_ENV['TEMPLATE_SERVER_DEV']
             ];
         } else if (self::$mode = Mode::PRODUCTION) {
             switch (self::$type) {
                 case Type::MAIN:
                     return [
-                        'domain' => 'allinclicksbio.com',
-                        'fulldomain' => 'https://allinclicksbio.com',
-                        'stripeRedirect' => 'https://allinclicksbio.com',
-                        'template_server' => 'https://template.bio.allinclicks.com'
+                        'domain' => $_ENV['DOMAIN_MAIN'],
+                        'fulldomain' => $_ENV['DOMAIN_MAIN_FULL'],
+                        'stripeRedirect' => $_ENV['MERCHANT_REDIRECT_MAIN'],
+                        'template_server' => $_ENV['TEMPLATE_SERVER_MAIN']
                     ];
                 case Type::TEST:
                     return [
-                        'domain' => 'test.allinclicksbio.com',
-                        'fulldomain' => 'https://test.allinclicksbio.com',
-                        'stripeRedirect' => 'https://test.allinclicksbio.com',
-                        'template_server' => 'https://template.bio.allinclicks.com'
+                        'domain' => $_ENV['DOMAIN_TEST'],
+                        'fulldomain' => $_ENV['DOMAIN_TEST_FULL'],
+                        'stripeRedirect' => $_ENV['MERCHANT_REDIRECT_TEST'],
+                        'template_server' => $_ENV['TEMPLATE_SERVER_TEST']
                     ];
                 default:
                     return [];

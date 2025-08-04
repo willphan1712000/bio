@@ -9,7 +9,7 @@ const SideBar = () => {
   const [isCollapse, setCollapse] = useState<boolean>(false)
   const theme = useThemeContext()
 
-  const className = `${theme.classes.border} ${isCollapse ? 'w-fit' : 'w-[270px]'} md:flex hidden sticky top-0 left-0 h-[100vh] shadow-2xl rounded-xl flex-col justify-between`
+  const className = `${theme.classes.border} ${isCollapse ? 'w-fit' : 'w-[270px] min-w-[270px]'} md:flex hidden sticky top-0 left-0 z-[99] h-[100vh] shadow-2xl rounded-xl flex-col justify-between bg-inherit`
   const tabs = config.sideBarTabs
 
   return (

@@ -24,10 +24,66 @@ function uploadTemplate(files) {
                 'Content-Type': 'multipart/form-data'
             }
         });
+        return res.data;
+    });
+}
+function getTemplateRecords() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.get('/api/template/manage');
+        if (!res.ok)
+            throw new Error(res.problem);
         const data = res.data;
-        return data;
+        if (!data.success)
+            throw new Error(data.error);
+        const data_sec = data.data;
+        if (!data_sec.success)
+            throw new Error(data_sec.error);
+        return data_sec.data;
+    });
+}
+function getTemplateServerURL() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.get('/api/template/manage/url');
+        if (!res.ok)
+            throw new Error(res.problem);
+        const data = res.data;
+        if (!data.success)
+            throw new Error(data.error);
+        return data.data;
+    });
+}
+function updateTemplate(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.put('/api/template/manage/' + id);
+        if (!res.ok)
+            throw new Error(res.problem);
+        const data = res.data;
+        if (!data.success)
+            throw new Error(data.error);
+        const data_sec = data.data;
+        if (!data_sec.success)
+            throw new Error(data_sec.error);
+        return data_sec.success;
+    });
+}
+function deleteTemplate(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.delete('/api/template/manage/' + id);
+        if (!res.ok)
+            throw new Error(res.problem);
+        const data = res.data;
+        if (!data.success)
+            throw new Error(data.error);
+        const data_sec = data.data;
+        if (!data_sec.success)
+            throw new Error(data_sec.error);
+        return data_sec.success;
     });
 }
 exports.default = {
-    uploadTemplate
+    uploadTemplate,
+    getTemplateRecords,
+    getTemplateServerURL,
+    updateTemplate,
+    deleteTemplate
 };
