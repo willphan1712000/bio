@@ -26,6 +26,8 @@ class APIRouter
             $api_router->post('/api/template/manage', 'business\templateManagement\TemplateController@post');
             $api_router->put('/api/template/manage/{id}', 'business\templateManagement\TemplateController@put');
             $api_router->delete('/api/template/manage/{id}', 'business\templateManagement\TemplateController@delete');
+            $api_router->get('/api/analytics', 'business\analytics\AnalyticsController@get');
+            $api_router->get('/api/analytics/social', 'business\analytics\AnalyticsController@getUserSocial');
 
             $api_router->resolve();
 

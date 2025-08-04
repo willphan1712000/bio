@@ -6,6 +6,8 @@ import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
 import AppToaster from '../../../../client/clientComponents/AppToaster';
 import apiTemplate from '../../api/template';
 import { DotLoader } from 'react-spinners';
+import dateFormat from '../../../../client/utilities/timeFormat';
+import config from '../../config';
 
 const TemplateRecords = () => {
     const { isPending, data: templates, error } = useQuery({
@@ -98,14 +100,14 @@ const TemplateRecords = () => {
                         <Table.Cell>{template.type}</Table.Cell>
                         <Table.Cell><a target="_blank" href={url + template.template_url}>Link</a></Table.Cell>
                         <Table.Cell><a target="_blank" href={url + template.thumbnail_url}>Link</a></Table.Cell>
-                        <Table.Cell>{template.unit_price ? template.unit_price : '$10'}</Table.Cell>
-                        <Table.Cell>{template.recurring_price ? template.recurring_price : '$10'}</Table.Cell>
-                        <Table.Cell>{template.createdAt}</Table.Cell>
+                        <Table.Cell>{template.unit_price ? template.unit_price : '$10/year'}</Table.Cell>
+                        <Table.Cell>{template.recurring_price ? template.recurring_price : '$10/year'}</Table.Cell>
+                        <Table.Cell>{dateFormat(template.createdAt)}</Table.Cell>
                         <Table.Cell>{<Switch onClick={() => handleUpdateTemplate(template.id)} size="3" defaultChecked={template.isActive} />}</Table.Cell>
                         <Table.Cell><AppAlertDialog 
                             buttonTitle='Terminate'
-                            title='Terminate this template'
-                            des='Are you sure to do this? This will delete the template and all related files. This will also be reflected on the template page seen by all customers.'
+                            title={config.message.template.terminateTitle}
+                            des={config.message.template.terminateMsg}
                             fn={() => handleDeleteTemplate(template.id)}
                         /></Table.Cell>
                     </Table.Row>

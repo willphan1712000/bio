@@ -29,8 +29,7 @@ const App = () => {
     })
 
     useEffect(() => {
-        // const currentTheme = detectLightMode()
-        const currentTheme = 'dark'
+        const currentTheme = detectLightMode()
         setTheme({
             classes: {
                 bg: `system-${currentTheme}-bg`,
