@@ -55,7 +55,7 @@ const Users = () => {
                 <Table.Header>
                     <Table.Row>
                         <Table.ColumnHeaderCell>Username</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Password</Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell>Bio</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Token</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Delete Token</Table.ColumnHeaderCell>
@@ -68,7 +68,7 @@ const Users = () => {
                     {users?.map(user => (
                         <Table.Row key={user.username}>
                             <Table.RowHeaderCell>{user.username}</Table.RowHeaderCell>
-                            <Table.Cell>{user.password}</Table.Cell>
+                            <Table.Cell><a href={`/${user.username}`} target='__blank'>Go to Bio</a></Table.Cell>
                             <Table.Cell>{user.email}</Table.Cell>
                             <Table.Cell>{user.token}</Table.Cell>
                             <Table.Cell>{user.deleteToken}</Table.Cell>
