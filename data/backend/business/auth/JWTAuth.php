@@ -2,6 +2,7 @@
 
 namespace business\auth;
 
+use config\SystemConfig;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Dotenv\Dotenv;
@@ -24,6 +25,8 @@ class JWTAuth implements AuthInterface
 
     public function auth(): bool
     {
+        if ($this->token === null) return false;
+
         try {
             $decode = JWT::decode($this->token, new Key($_ENV['JWT_SECRET'], 'HS256'));
             if ($decode->username === $this->username) {
@@ -39,7 +42,9 @@ class JWTAuth implements AuthInterface
     public function generateAuth(): bool|string
     {
         $token = JWT::encode([
-            "username" => $this->username
+            "username" => $this->username,
+            "iat" => time(),
+            "exp" => time() + SystemConfig::globalVariables()['timeSession']
         ], $_ENV['JWT_SECRET'], 'HS256');
 
         return $token;

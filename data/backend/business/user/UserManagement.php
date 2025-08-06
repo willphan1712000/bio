@@ -2,8 +2,7 @@
 
 namespace business\user;
 
-use business\auth\JWTAuth;
-use business\auth\Session;
+use business\auth\Auth;
 use config\SystemConfig;
 use persistence\Database;
 use persistence\Entity\User;
@@ -24,7 +23,7 @@ class UserManagement implements IUserManagement
      */
     public static function isSignedIn(&$SESSION, string $username, string $token = null): bool
     {
-        $authStrategy = new JWTAuth($username, $token);
+        $authStrategy = new Auth($username, $token);
         return $authStrategy->auth();
     }
 
@@ -33,7 +32,7 @@ class UserManagement implements IUserManagement
      */
     public static function auth(&$SESSION, string $username): bool
     {
-        $authStrategy = new JWTAuth($username);
+        $authStrategy = new Auth($username);
         return $authStrategy->generateAuth();
     }
 

@@ -11,7 +11,7 @@ class Session implements AuthInterface
 {
     protected string $username;
 
-    public function __construct(string $username)
+    public function __construct(string $username, ?string $token = null)
     {
         $this->username = $username;
     }

@@ -1,20 +1,6 @@
 <?php
 
-use config\SystemConfig;
 use component\Copyright;
-use business\user\UserManagement;
-use component\Logo;
-
-$g = SystemConfig::globalVariables();
-// SESSION_START();
-$isSignedIn = UserManagement::isSignedIn($_SESSION, "Allinclicks");
-if (!$isSignedIn) {
-    header("Location: /@signin");
-}
-if (isset($_POST['aicLogout'])) {
-    unset($_SESSION['Allinclicks']);
-    header("Location: /");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
