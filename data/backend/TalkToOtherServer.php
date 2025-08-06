@@ -40,11 +40,15 @@ class TalkToOtherServer
 
     public function getId() {}
 
-    public function put(string $url, callable $ifSuccessFunc, callable $ifFailFunc)
+    public function put(string $url, callable $ifSuccessFunc, callable $ifFailFunc, array $headers = [])
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
 
         $res = curl_exec($ch);
 
@@ -57,11 +61,15 @@ class TalkToOtherServer
         curl_close($ch);
     }
 
-    public function delete(string $url, callable $ifSuccessFunc, callable $ifFailFunc): void
+    public function delete(string $url, callable $ifSuccessFunc, callable $ifFailFunc, array $headers = []): void
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
 
         $res = curl_exec($ch);
 

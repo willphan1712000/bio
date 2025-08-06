@@ -2,13 +2,15 @@
 
 namespace business\user;
 
+use business\auth\JWTAuth;
+use business\auth\Session;
 use config\SystemConfig;
 use persistence\Database;
 use persistence\Entity\User;
 
 interface IUserManagement
 {
-    public static function isSignedIn(&$SESSION, string $username): bool;
+    public static function isSignedIn(&$SESSION, string $username, string $hi): bool;
     public static function auth(&$SESSION, string $username): bool;
     public static function URLGenerator(string $username, string $c): string|null;
     public static function isUserExist($username): bool;
@@ -17,28 +19,27 @@ interface IUserManagement
 
 class UserManagement implements IUserManagement
 {
-    public static function isSignedIn(&$SESSION, string $username): bool
+    /**
+     * This function handles checking whether or not the user is signed in
+     */
+    public static function isSignedIn(&$SESSION, string $username, string $token = null): bool
     {
-        if (isset($SESSION[$username])) {
-            if (time() - $SESSION['last_time_' . $username] > SystemConfig::globalVariables()['timeSession']) {
-                unset($SESSION[$username]);
-                return false;
-            } else {
-                $SESSION['last_time_' . $username] = time();
-                return true;
-            }
-        } else {
-            return false;
-        }
+        $authStrategy = new JWTAuth($username, $token);
+        return $authStrategy->auth();
     }
+
+    /**
+     * This function handles granting user session or token to access resources
+     */
     public static function auth(&$SESSION, string $username): bool
     {
-        $SESSION[$username] = $username;
-        $SESSION['last_time_' . $username] = time();
-
-        return true;
+        $authStrategy = new JWTAuth($username);
+        return $authStrategy->generateAuth();
     }
-    // This function is to create url for user
+
+    /**
+     * This function is to create url for user
+     */
     public static function URLGenerator(string $username, string $c = "main" | "share"): string|null
     {
         if ($c === "main") {
@@ -48,7 +49,10 @@ class UserManagement implements IUserManagement
         }
         return NULL;
     }
-    // Check if username exists, return true if exists. Otherwise, return false
+
+    /**
+     * Check if username exists, return true if exists. Otherwise, return false
+     */
     public static function isUserExist($username): bool
     {
         try {
@@ -66,7 +70,10 @@ class UserManagement implements IUserManagement
         }
         return false;
     }
-    // Check if email matches a username, return true if exists. Otherwise, return false
+
+    /**
+     * Check if email matches a username, return true if exists. Otherwise, return false
+     */
     public static function isEmailMatchUsername(string $username, string $email): bool
     {
         if (self::isUserExist($username)) {

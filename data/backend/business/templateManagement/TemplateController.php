@@ -162,7 +162,10 @@ class TemplateController
                     "success" => false,
                     "error" => "There is an error getting information."
                 ]);
-            }
+            },
+            [
+                'Authorization' => $_ENV['SYSTEM_SERECT_KEY']
+            ]
         );
     }
 }
