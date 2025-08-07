@@ -3,6 +3,7 @@
 namespace api;
 
 use business\user\UserManagement;
+use config\SystemConfig;
 
 header('Content-Type: application/json');
 SESSION_START();
@@ -23,7 +24,7 @@ abstract class APIAbstract implements API
     public function execute()
     {
         // Verify user has already signed in before giving access to resources
-        if (UserManagement::isSignedIn($_SESSION, $this->body->username, $this->headers['authorization-token'] ?? NULL)) {
+        if (UserManagement::isSignedIn($_SESSION, $this->body->username, $this->headers[SystemConfig::globalVariables()['auth']['token_property']] ?? NULL)) {
             return $this->handleRequest($this->body); // Return authorized resource
         } else {
             return [

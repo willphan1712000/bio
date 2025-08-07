@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt_decode_1 = require("jwt-decode");
-const key = 'authorization-token';
+const key = "CRM-ctoken";
 function setToken(token) {
     localStorage.setItem(key, token);
 }
@@ -16,6 +16,7 @@ function removeToken() {
     localStorage.removeItem(key);
 }
 exports.default = {
+    key,
     setToken,
     getToken,
     removeToken,

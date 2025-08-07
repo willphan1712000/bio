@@ -32,7 +32,8 @@ class APIRouter
             $api_router->get('/api/analytics', 'business\analytics\AnalyticsController@get');
             $api_router->get('/api/analytics/social', 'business\analytics\AnalyticsController@getUserSocial');
 
-            $api_router->post('/api/auth', 'business\AuthController@post');
+            $api_router->post('/api/auth', 'business\auth\AuthController@postGenerate');
+            $api_router->post('/api/auth/check', 'business\auth\AuthController@postValidate');
 
             $api_router->resolve();
 
@@ -100,6 +101,11 @@ class Request
     public function getBody()
     {
         return json_decode(file_get_contents("php://input"), true);
+    }
+
+    public function getHeaders()
+    {
+        return getallheaders();
     }
 }
 

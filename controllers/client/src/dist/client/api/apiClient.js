@@ -23,6 +23,6 @@ apiClient.addAsyncRequestTransform((request) => __awaiter(void 0, void 0, void 0
         return;
     if (!request.headers)
         request.headers = {};
-    request.headers['authorization-token'] = token;
+    request.headers[storage_1.default.key] = token;
 }));
 exports.default = apiClient;

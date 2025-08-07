@@ -2,6 +2,9 @@
 
 namespace config;
 
+require_once __DIR__ . '/business/auth/Auth.php';
+
+use business\auth\STRATEGY;
 use config\ProductionConfig;
 use Throwable;
 
@@ -64,6 +67,10 @@ class SystemConfig
                 'endpoint' => [
                     'template' => '/api/template'
                 ]
+            ],
+            "auth" => [
+                "token_property" => "CRM-ctoken", // This name is the property name whenever accessing token from headers of a request,
+                "auth_strategy" => STRATEGY::SESSION
             ]
         ];
     }

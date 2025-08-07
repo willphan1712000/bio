@@ -4,8 +4,9 @@ namespace business\auth;
 
 use business\auth\JWTAuth;
 use business\auth\Session;
+use config\SystemConfig;
 
-enum STRAGETRY
+enum STRATEGY
 {
     case SESSION;
     case JWT;
@@ -16,16 +17,16 @@ enum STRAGETRY
  */
 class Auth implements AuthInterface
 {
-    const strategy = STRAGETRY::JWT;
     protected AuthInterface $auth;
 
     public function __construct(...$arg)
     {
-        switch (self::strategy) {
-            case STRAGETRY::SESSION:
+        $strategy = SystemConfig::globalVariables()["auth"]["auth_strategy"];
+        switch ($strategy) {
+            case STRATEGY::SESSION:
                 $this->auth = new Session(...$arg);
                 break;
-            case STRAGETRY::JWT:
+            case STRATEGY::JWT:
                 $this->auth = new JWTAuth(...$arg);
                 break;
             default:

@@ -1,18 +1,11 @@
+import auth from "../client/auth/auth";
 import { $$ } from "../client/src/Web-Development/W";
 import App from "./clientComponents/App";
 import "@radix-ui/themes/styles.css";
-import authStorage from '../client/auth/storage'
 
-$(document).ready(function() {
-    const user = authStorage.getUser() as {
-        username: string,
-        exp: number,
-        iat: number
-    }
+$(document).ready(async function() {
+    const isSignedIn = await auth.validate("Allinclicks")
 
-    if(!user || user.username !== 'Allinclicks') {
-        return window.location.href = '/@signin'
-    }
-    
-    $$("#admin_container", <App />).reactMounting()
+    if(isSignedIn)
+        $$("#admin_container", <App />).reactMounting()
 })

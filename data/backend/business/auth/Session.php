@@ -3,21 +3,24 @@
 namespace business\auth;
 
 use config\SystemConfig;
+use Exception;
 
 /**
  * Session-based Authorization
  */
 class Session implements AuthInterface
 {
-    protected string $username;
+    protected ?string $username;
 
-    public function __construct(string $username, ?string $token = null)
+    public function __construct(?string $username)
     {
         $this->username = $username;
     }
 
     public function auth(): bool
     {
+        if (!isset($this->username) || $this->username === NULL) throw new Exception("Username is not given");
+
         if (isset($_SESSION[$this->username])) {
             if (time() - $_SESSION['last_time_' . $this->username] > SystemConfig::globalVariables()['timeSession']) {
                 unset($_SESSION[$this->username]);

@@ -6,6 +6,7 @@ use config\SystemConfig;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Dotenv\Dotenv;
+use Exception;
 
 Dotenv::createImmutable(__DIR__ . "./../../../../")->load();
 
@@ -14,10 +15,10 @@ Dotenv::createImmutable(__DIR__ . "./../../../../")->load();
  */
 class JWTAuth implements AuthInterface
 {
-    protected string $username;
+    protected ?string $username;
     protected ?string $token;
 
-    public function __construct(string $username, ?string $token = null)
+    public function __construct(?string $username, ?string $token = null)
     {
         $this->username = $username;
         $this->token = $token;
@@ -25,6 +26,8 @@ class JWTAuth implements AuthInterface
 
     public function auth(): bool
     {
+        if (!isset($this->username) || $this->username === null) throw new Exception("Username is not given");
+
         if ($this->token === null) return false;
 
         try {

@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
-import Cookies from 'js-cookie';
-import authStorage from '../../../client/auth/storage'
+import auth from '../../../client/auth/auth'
 
 export const Route = createFileRoute('/@logout')({
   component: RouteComponent,
@@ -9,12 +8,7 @@ export const Route = createFileRoute('/@logout')({
 
 function RouteComponent() {
     useEffect(() => {
-        // clear cookies
-        Cookies.remove('PHPSESSID')
-        // remove token
-        authStorage.removeToken()
-        // redirect to the login page
-        window.location.href = '/@signin'
+        auth.logout()
     }, [])
   return null
 }

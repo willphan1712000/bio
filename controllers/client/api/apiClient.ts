@@ -15,7 +15,7 @@ apiClient.addAsyncRequestTransform(async (request) => {
     const token = authStorage.getToken()
     if(!token) return
     if(!request.headers) request.headers = {}
-    request.headers['authorization-token'] = token
+    request.headers[authStorage.key] = token
 })
 
 export default apiClient

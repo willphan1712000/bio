@@ -1,6 +1,6 @@
 import { jwtDecode, JwtPayload } from "jwt-decode"
 
-const key = 'authorization-token'
+const key = "CRM-ctoken"
 
 function setToken(token: string) {
     localStorage.setItem(key, token)
@@ -20,6 +20,7 @@ function removeToken(): void {
 }
 
 export default {
+    key,
     setToken,
     getToken,
     removeToken,
