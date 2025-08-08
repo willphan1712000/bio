@@ -35,9 +35,9 @@ class PricingController
                 ]);
             },
             function () {
-                $this->response->setStatusCode(200)->json([
+                $this->response->setStatusCode(400)->json([
                     "success" => false,
-                    "data" => "There is an error getting information."
+                    "data" => "Can not connect to the other server."
                 ]);
             }
         );
@@ -51,15 +51,15 @@ class PricingController
             self::$Template_Server_URL . self::$endpoint,
             $data,
             function ($res) {
-                $this->response->setStatusCode(200)->json([
+                $this->response->setStatusCode(201)->json([
                     "success" => true,
                     "data" => json_decode($res, true)
                 ]);
             },
             function () {
-                $this->response->setStatusCode(200)->json([
+                $this->response->setStatusCode(400)->json([
                     "success" => false,
-                    "data" => "There is an error getting information."
+                    "data" => "Can not connect to the other server."
                 ]);
             },
             [

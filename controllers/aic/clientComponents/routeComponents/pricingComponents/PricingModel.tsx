@@ -18,13 +18,13 @@ const PricingModel = () => {
 
     const { isPending, data: pricingQuery, error } = useAppQuery("pricing", apiPricing.get)
     useAppEffect(error)
+
     useEffect(() => {
         if(!isPending && pricingQuery) {
             setPricing(pricingQuery)
         }
     }, [pricingQuery])
     
-
     const handleUpdate = async () => {
         const { error } = await handleAsync(apiPricing.post(pricing))
         if(error) {
