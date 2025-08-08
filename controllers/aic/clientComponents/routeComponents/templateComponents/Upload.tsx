@@ -63,7 +63,6 @@ const Upload = () => {
 
     return (
         <>
-            <Toaster />
             <div className={containerClasses}>
                 <div className='flex flex-col md:flex-row justify-center items-center'>
                     <UploadArea title="Upload Thumbnail" state={{file: thumbnail, setFile: setThumbnail}} />

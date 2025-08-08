@@ -3,9 +3,9 @@ import { GrMoney } from "react-icons/gr";
 import { SiMoneygram } from "react-icons/si";
 import { DotLoader } from "react-spinners";
 import apiDashboard from '../../api/dashboard';
-import useAppEffect from "../../hooks/useAppEffect";
-import useAppQuery from "../../hooks/useAppQuery";
 import StatCard from './StatCard';
+import useAppEffect from "../../../../client/hooks/useAppEffect";
+import useAppQuery from "../../../../client/hooks/useAppQuery";
 
 const StatCards = () => {
   const { isPending, data: analyticsInfo, error } = useAppQuery('analytics', apiDashboard.analytics)

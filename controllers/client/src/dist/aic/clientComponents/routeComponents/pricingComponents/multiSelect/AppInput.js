@@ -11,6 +11,8 @@ const AppInput = ({ title = '', name, id }) => {
     if (!state || !setState)
         return;
     const value = state[id][name];
+    if (typeof value === 'boolean')
+        return;
     const handleChange = (e) => {
         const value = e.target.value;
         setState(prev => {
@@ -21,6 +23,6 @@ const AppInput = ({ title = '', name, id }) => {
             return newPrev;
         });
     };
-    return ((0, jsx_runtime_1.jsxs)("div", { className: 'relative md:w-auto w-full', children: [(0, jsx_runtime_1.jsx)("span", { className: 'absolute text-black top-[-15px] left-[10px] bg-white px-[5px]', children: title }), (0, jsx_runtime_1.jsx)("input", { placeholder: `${name === 'price' ? '0.00' : '0'}`, type: "text", min: "0", className: 'text-black focus:border-[1px] w-full', name: name, value: value, onChange: handleChange })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { className: 'relative md:w-auto w-full flex-1', children: [(0, jsx_runtime_1.jsx)("span", { className: 'absolute text-black top-[-15px] left-[10px] bg-white px-[5px]', children: title }), (0, jsx_runtime_1.jsx)("input", { placeholder: `${name === 'price' ? '0.00' : '0'}`, type: "text", min: "0", className: 'text-black focus:border-[1px] w-full', name: name, value: value, onChange: handleChange })] }));
 };
 exports.default = AppInput;

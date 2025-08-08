@@ -26,7 +26,7 @@ function post(pricing) {
         const data_sec = data.data;
         if (!data_sec.success)
             throw new Error(data_sec.error);
-        return data_sec.data;
+        return data_sec.success;
     });
 }
 function get() {
@@ -43,7 +43,22 @@ function get() {
         return data_sec.data;
     });
 }
+function update(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield apiClient_1.default.put('/api/pricing/' + id);
+        if (!res.ok)
+            throw new Error(res.problem);
+        const data = res.data;
+        if (!data.success)
+            throw new Error(data.error);
+        const data_sec = data.data;
+        if (!data_sec.success)
+            throw new Error(data_sec.error);
+        return data_sec.success;
+    });
+}
 exports.default = {
     post,
-    get
+    get,
+    update
 };

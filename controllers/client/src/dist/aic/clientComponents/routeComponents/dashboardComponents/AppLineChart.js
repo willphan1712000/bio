@@ -8,8 +8,8 @@ const react_spinners_1 = require("react-spinners");
 const recharts_1 = require("recharts");
 const theme_1 = __importDefault(require("../../../../client/clientComponents/context/theme"));
 const dashboard_1 = __importDefault(require("../../api/dashboard"));
-const useAppEffect_1 = __importDefault(require("../../hooks/useAppEffect"));
-const useAppQuery_1 = __importDefault(require("../../hooks/useAppQuery"));
+const useAppEffect_1 = __importDefault(require("../../../../client/hooks/useAppEffect"));
+const useAppQuery_1 = __importDefault(require("../../../../client/hooks/useAppQuery"));
 const data = [{ name: 'Facebook', uv: 400, pv: 2400, amt: 2400 }, { name: 'Instagram', uv: 200, pv: 2400, amt: 2400 }, { name: 'Tiktok', uv: 890, pv: 2400, amt: 2400 }];
 const AppLineChart = () => {
     const theme = (0, theme_1.default)();

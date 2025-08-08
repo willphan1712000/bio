@@ -9,9 +9,9 @@ const gr_1 = require("react-icons/gr");
 const si_1 = require("react-icons/si");
 const react_spinners_1 = require("react-spinners");
 const dashboard_1 = __importDefault(require("../../api/dashboard"));
-const useAppEffect_1 = __importDefault(require("../../hooks/useAppEffect"));
-const useAppQuery_1 = __importDefault(require("../../hooks/useAppQuery"));
 const StatCard_1 = __importDefault(require("./StatCard"));
+const useAppEffect_1 = __importDefault(require("../../../../client/hooks/useAppEffect"));
+const useAppQuery_1 = __importDefault(require("../../../../client/hooks/useAppQuery"));
 const StatCards = () => {
     const { isPending, data: analyticsInfo, error } = (0, useAppQuery_1.default)('analytics', dashboard_1.default.analytics);
     (0, useAppEffect_1.default)(error);

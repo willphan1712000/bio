@@ -1,15 +1,15 @@
 import { Button } from '@radix-ui/themes'
 import { useEffect, useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { HashLoader } from 'react-spinners'
 import AppToaster from '../../../../client/clientComponents/AppToaster'
 import useThemeContext from '../../../../client/clientComponents/context/theme'
 import handleAsync from '../../../../client/utilities/handleAsync'
 import apiPricing from '../../api/pricing'
-import useAppEffect from '../../hooks/useAppEffect'
-import useAppQuery from '../../hooks/useAppQuery'
 import { PricingContext, PricingModel } from './context'
 import MultiSelect from './multiSelect/MultiSelect'
+import useAppQuery from '../../../../client/hooks/useAppQuery'
+import useAppEffect from '../../../../client/hooks/useAppEffect'
 
 const PricingModel = () => {
     const theme = useThemeContext()
@@ -40,7 +40,6 @@ const PricingModel = () => {
 
     return (
         <>
-            <Toaster />
             <PricingContext.Provider value={{
                 state: pricing,
                 setState: setPricing

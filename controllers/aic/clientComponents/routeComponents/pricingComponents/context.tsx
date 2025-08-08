@@ -1,9 +1,11 @@
 import { createContext, useContext } from "react";
 
 export type PricingModel = {
-    price: number,
-    discount: number,
-    period: number
+    id?: number,
+    price: number | string,
+    discount: number | string,
+    period: number | string,
+    isRecurring: boolean
 }
 
 export type PricingModelContextType = {

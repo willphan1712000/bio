@@ -2,8 +2,8 @@ import { DotLoader } from 'react-spinners';
 import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import useThemeContext from '../../../../client/clientComponents/context/theme';
 import apiDashboard from '../../api/dashboard';
-import useAppEffect from '../../hooks/useAppEffect';
-import useAppQuery from '../../hooks/useAppQuery';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 
 const data = [{name: 'Facebook', uv: 400, pv: 2400, amt: 2400}, {name: 'Instagram', uv: 200, pv: 2400, amt: 2400}, {name: 'Tiktok', uv: 890, pv: 2400, amt: 2400}];
 

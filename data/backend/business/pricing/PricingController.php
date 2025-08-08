@@ -67,4 +67,23 @@ class PricingController
             ]
         );
     }
+
+    public function put($id)
+    {
+        $this->otherServer->put(
+            self::$Template_Server_URL . self::$endpoint . "/" . $id,
+            function ($res) {
+                $this->response->setStatusCode(201)->json([
+                    "success" => true,
+                    "data" => json_decode($res, true)
+                ]);
+            },
+            function () {
+                $this->response->setStatusCode(400)->json([
+                    "success" => false,
+                    "data" => "Can not connect to the other server."
+                ]);
+            }
+        );
+    }
 }

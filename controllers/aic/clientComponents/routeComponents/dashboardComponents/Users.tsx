@@ -6,10 +6,10 @@ import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
 import dateFormat from '../../../../client/utilities/timeFormat';
 import apiUsers from '../../api/users';
 import config from '../../config';
-import useAppQuery from '../../hooks/useAppQuery';
-import useAppMutation from '../../hooks/useAppMutation';
 import AppToaster from '../../../../client/clientComponents/AppToaster';
-import useAppEffect from '../../hooks/useAppEffect';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppMutation from '../../../../client/hooks/useAppMutation';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 
 const Users = () => {
     const { isPending, data: users, error } = useAppQuery('users', apiUsers.getUsers)
@@ -33,7 +33,6 @@ const Users = () => {
 
     return (
         <Flex py="9" height="fit-content" direction="column">
-            <Toaster />
             <Table.Root variant='surface'>
                 <Table.Header>
                     <Table.Row>

@@ -12,9 +12,10 @@ const MultiSelect = () => {
 
       const newPrev = [...prev]
       newPrev.push({
-        price: 10,
-        discount: 50,
-        period: 12
+        price: '',
+        discount: '',
+        period: '',
+        isRecurring: true
       })
 
       return newPrev
@@ -22,7 +23,7 @@ const MultiSelect = () => {
   }
 
   return (
-    <div className='bg-white p-5 rounded-[30px] md:w-[600px] md:min-w-[600px] w-full'>
+    <div className='bg-white p-5 rounded-[30px] md:w-[700px] md:min-w-[700px] w-full'>
       <div className="flex flex-col">
         { state.map((_, id) => (
             <SelectRow key={id} id={id}/>

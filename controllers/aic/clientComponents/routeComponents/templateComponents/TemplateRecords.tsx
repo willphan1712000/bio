@@ -6,9 +6,9 @@ import AppToaster from '../../../../client/clientComponents/AppToaster';
 import dateFormat from '../../../../client/utilities/timeFormat';
 import apiTemplate from '../../api/template';
 import config from '../../config';
-import useAppEffect from '../../hooks/useAppEffect';
-import useAppMutation from '../../hooks/useAppMutation';
-import useAppQuery from '../../hooks/useAppQuery';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppMutation from '../../../../client/hooks/useAppMutation';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 
 const TemplateRecords = () => {
     const { isPending, data: templates, error } = useAppQuery('templates', apiTemplate.getTemplateRecords)
@@ -49,7 +49,6 @@ const TemplateRecords = () => {
     
     return (
       <Flex py="9" height="fit-content" direction="column">
-        <Toaster />
         <Table.Root variant='surface'>
             <Table.Header>
                 <Table.Row>

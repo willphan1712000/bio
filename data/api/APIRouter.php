@@ -33,6 +33,7 @@ class APIRouter
 
             $api_router->get('/api/pricing', 'business\pricing\PricingController@get');
             $api_router->post('/api/pricing', 'business\pricing\PricingController@post');
+            $api_router->put('/api/pricing/{id}', 'business\pricing\PricingController@put');
 
             $api_router->get('/api/analytics', 'business\analytics\AnalyticsController@get');
             $api_router->get('/api/analytics/social', 'business\analytics\AnalyticsController@getUserSocial');
