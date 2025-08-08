@@ -21,6 +21,8 @@ const entryjs = {
   templatejs: path.resolve(__dirname, 'controllers/client/src/dist/template/template.js'),
   signupjs: path.resolve(__dirname, 'controllers/client/src/dist/signup/signup.js'),
   aicjs: path.resolve(__dirname, 'controllers/client/src/dist/aic/aic.js'),
+  terms: path.resolve(__dirname, 'controllers/client/src/dist/terms/terms.js'),
+  privacy: path.resolve(__dirname, 'controllers/client/src/dist/privacy/privacy.js'),
   index: path.resolve(__dirname, 'controllers/client/src/dist/index/index.js'),
 }
 const entryHtml = {
@@ -37,6 +39,7 @@ const entryHtml = {
   "signup.php": "controllers/signup/signup.php",
   "template.php": "controllers/template/template.php",
   "terms.php": "controllers/terms/terms.php",
+  "privacy.php": "controllers/privacy/privacy.php",
   "user.php": "controllers/user/user.php",
   "userDefault.php": "controllers/default/userDefault.php",
   "userTemplate.php": "controllers/user/userTemplate.php",
@@ -60,7 +63,8 @@ const entryChunks = {
   "signin.php": ['tailwind', 'prevjs', 'universal', 'main'],
   "signup.php": ['tailwind', 'signupjs', 'prevjs', 'universal', 'main'],
   "template.php": ['tailwind', 'templatejs', 'template', 'universal'],
-  "terms.php": ['tailwind', 'universal'],
+  "terms.php": ['terms', 'tailwind', 'universal'],
+  "privacy.php": ['privacy', 'tailwind', 'universal'],
   "user.php": [],
   "userDefault.php": ['userjs'],
   "userTemplate.php": ['tailwind', 'userjs', 'universal', 'admin'],

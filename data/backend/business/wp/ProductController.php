@@ -1,6 +1,6 @@
 <?php
 
-namespace business\woocommerce;
+namespace business\wp;
 
 use api\Request;
 use api\Response;

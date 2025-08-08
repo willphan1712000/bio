@@ -12,28 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = validate;
-const apiClient_1 = __importDefault(require("../api/apiClient"));
-const handleAsync_1 = __importDefault(require("../utilities/handleAsync"));
-function getValidate(username) {
+const apiClient_1 = __importDefault(require("../client/api/apiClient"));
+$("document").ready(function () {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield apiClient_1.default.post('/api/auth/check', {
-            username
-        });
+        const container = document.getElementById('container');
+        if (!container)
+            return;
+        const content = container.querySelector(".content");
+        if (!content)
+            return;
+        content.innerHTML = 'Loading...';
+        const res = yield apiClient_1.default.get('/api/wp/pages/terms');
         if (!res.ok)
             throw new Error(res.problem);
         const data = res.data;
         if (!data.success)
             throw new Error(data.error);
-        return data.data;
+        content.innerHTML = data.data;
     });
-}
-function validate(username) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const { data: auth } = yield (0, handleAsync_1.default)(getValidate(username));
-        if (!auth) {
-            window.location.href = '/@signin';
-        }
-        return auth;
-    });
-}
+});
