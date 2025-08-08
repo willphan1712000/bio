@@ -31,6 +31,9 @@ class APIRouter
             $api_router->put('/api/template/manage/{id}', 'business\templateManagement\TemplateController@put');
             $api_router->delete('/api/template/manage/{id}', 'business\templateManagement\TemplateController@delete');
 
+            $api_router->get('/api/pricing', 'business\pricing\PricingController@get');
+            $api_router->post('/api/pricing', 'business\pricing\PricingController@post');
+
             $api_router->get('/api/analytics', 'business\analytics\AnalyticsController@get');
             $api_router->get('/api/analytics/social', 'business\analytics\AnalyticsController@getUserSocial');
 

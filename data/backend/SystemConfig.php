@@ -65,7 +65,14 @@ class SystemConfig
             'template_server' => [
                 'url' => ProductionConfig::config()['template_server'],
                 'endpoint' => [
-                    'template' => '/api/template'
+                    'template' => '/api/template',
+                    'pricing' => '/api/pricing'
+                ]
+            ],
+            'payment_server' => [
+                'url' => ProductionConfig::config()['payment_server'],
+                'endpoint' => [
+                    ''
                 ]
             ],
             "auth" => [

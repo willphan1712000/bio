@@ -812,6 +812,26 @@ video {
   top: 5px;
 }
 
+.left-\[10px\] {
+  left: 10px;
+}
+
+.top-\[-13px\] {
+  top: -13px;
+}
+
+.top-\[-18px\] {
+  top: -18px;
+}
+
+.right-\[-10px\] {
+  right: -10px;
+}
+
+.top-\[-15px\] {
+  top: -15px;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -915,6 +935,11 @@ video {
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-\[5px\] {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .\!mb-\[5px\] {
@@ -1250,6 +1275,14 @@ video {
   height: 100vh;
 }
 
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[35px\] {
+  height: 35px;
+}
+
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -1439,12 +1472,20 @@ video {
   width: 400px;
 }
 
+.w-\[550px\] {
+  width: 550px;
+}
+
 .min-w-\[270px\] {
   min-width: 270px;
 }
 
 .min-w-\[70\%\] {
   min-width: 70%;
+}
+
+.min-w-\[550px\] {
+  min-width: 550px;
 }
 
 .max-w-\[1000px\] {
@@ -1788,6 +1829,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-\[15px\] {
+  border-radius: 15px;
 }
 
 .rounded-b-3xl {
@@ -2651,6 +2696,11 @@ video {
   color: rgb(39 39 42 / var(--tw-text-opacity));
 }
 
+.text-pink-50 {
+  --tw-text-opacity: 1;
+  color: rgb(253 242 248 / var(--tw-text-opacity));
+}
+
 .text-opacity-70 {
   --tw-text-opacity: 0.7;
 }
@@ -3109,6 +3159,11 @@ html {
   }
 }
 
+.hover\:border-\[red\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 0 0 / var(--tw-border-opacity));
+}
+
 .hover\:bg-\[\#d9d9d9\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(217 217 217 / var(--tw-bg-opacity));
@@ -3161,6 +3216,14 @@ html {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:border-collapse:focus {
+  border-collapse: collapse;
+}
+
+.focus\:border-\[1px\]:focus {
+  border-width: 1px;
 }
 
 .focus\:outline-none:focus {
@@ -3246,6 +3309,26 @@ html {
   .md\:w-fit {
     width: -moz-fit-content;
     width: fit-content;
+  }
+
+  .md\:w-\[550px\] {
+    width: 550px;
+  }
+
+  .md\:w-\[600px\] {
+    width: 600px;
+  }
+
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:min-w-\[550px\] {
+    min-width: 550px;
+  }
+
+  .md\:min-w-\[600px\] {
+    min-width: 600px;
   }
 
   .md\:flex-row {
