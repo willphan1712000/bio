@@ -6,14 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Route = void 0;
 const react_router_1 = require("@tanstack/react-router");
 const react_1 = require("react");
-const js_cookie_1 = __importDefault(require("js-cookie"));
+const auth_1 = __importDefault(require("../../../client/auth/auth"));
 exports.Route = (0, react_router_1.createFileRoute)('/@logout')({
     component: RouteComponent,
 });
 function RouteComponent() {
     (0, react_1.useEffect)(() => {
-        js_cookie_1.default.remove('PHPSESSID');
-        window.location.href = '/@signin';
+        auth_1.default.logout();
     }, []);
     return null;
 }

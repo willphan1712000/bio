@@ -6,7 +6,6 @@ use config\SystemConfig;
 use persistence\Database;
 use controllers\Controller;
 use persistence\Entity\User;
-use PHPMailer\PHPMailer\SMTP;
 use business\user\UserManagement;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;

@@ -1,0 +1,34 @@
+name: Deploy nodejs backend to Hosting.com
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Building Project ...
+        run: npm run build
+
+      - name: Pushing to hosting.com ...
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTING_DOMAIN }}
+          username: ${{ secrets.HOSTING_USERNAME }}
+          port: ${{ secrets.HOSTING_PORT }}
+          key: ${{ secrets.HOSTING_SSH_KEY }}
+          source: "./*"
+          target: "/home/bio/test.allinclicksbio.com"

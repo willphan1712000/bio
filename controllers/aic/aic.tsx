@@ -1,31 +1,11 @@
+import auth from "../client/auth/auth";
 import { $$ } from "../client/src/Web-Development/W";
 import App from "./clientComponents/App";
 import "@radix-ui/themes/styles.css";
 
-$(document).ready(function() {
-    $$("#admin_container", <App />).reactMounting()
-    // aic()
-})
+$(document).ready(async function() {
+    const isSignedIn = await auth.validate("Allinclicks")
 
-function aic() {
-        // search mechanism
-       (async function() {
-            // Perform search mechanism
-           $$("#search", {
-                container: "#userData",
-                target: "#copyright",
-                limit: 50,
-                like: "",
-                url: {
-                    get: "/data/api/user/GETALL.php",
-                    delete: "/data/api/user/DELETE.php"
-                },
-                html: {
-                    button: "#userData button",
-                    confirm: ".btn__confirm",
-                    back: ".btn__back",
-                    parent: ".warning__parent"
-               }
-           }).search();
-       })()
-    }
+    if(isSignedIn)
+        $$("#admin_container", <App />).reactMounting()
+})

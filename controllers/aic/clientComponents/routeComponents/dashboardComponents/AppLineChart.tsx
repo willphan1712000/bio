@@ -1,11 +1,9 @@
-import { LineChart, Line, CartesianGrid, Legend, XAxis, YAxis, Tooltip } from 'recharts';
-import useThemeContext from '../../../../client/clientComponents/context/theme';
-import { useQuery } from '@tanstack/react-query';
-import apiDashboard from '../../api/dashboard';
 import { DotLoader } from 'react-spinners';
-import { useEffect } from 'react';
-import toast from 'react-hot-toast';
-import AppToaster from '../../../../client/clientComponents/AppToaster';
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
+import useThemeContext from '../../../../client/clientComponents/context/theme';
+import apiDashboard from '../../api/dashboard';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 
 const data = [{name: 'Facebook', uv: 400, pv: 2400, amt: 2400}, {name: 'Instagram', uv: 200, pv: 2400, amt: 2400}, {name: 'Tiktok', uv: 890, pv: 2400, amt: 2400}];
 
@@ -13,20 +11,8 @@ const AppLineChart = () => {
   const theme = useThemeContext()
   const classes = `${theme.classes.container} ${theme.classes.border} p-10 rounded-3xl shadow-xl w-full md:w-fit overflow-auto`
 
-  const { isPending, data: socialInfo, error } = useQuery({
-    queryKey: ['analyticsSocial'],
-    queryFn: async () => apiDashboard.social(),
-    staleTime: 5 * 60 * 1000,
-    retry: 1
-  })
-
-  useEffect(() => {
-    if(error) {
-        toast(
-          <AppToaster message={error?.message || "Something went wrong"} />
-        )
-    }
-  }, [error])
+  const { isPending, data: socialInfo, error } = useAppQuery('analyticsSocial', apiDashboard.social)
+  useAppEffect(error)
 
   if(isPending) return <DotLoader />
 

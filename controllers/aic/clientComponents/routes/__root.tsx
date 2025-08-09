@@ -1,6 +1,7 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import SideBar from "../sideBar/SideBar";
 import useThemeContext from "../../../client/clientComponents/context/theme";
+import { Toaster } from "react-hot-toast";
 
 
 export const Route = createRootRoute({
@@ -15,6 +16,7 @@ function RootComponent() {
         <div className={classes}>
             <SideBar />
             <Outlet />
+            <Toaster />
         </div>
     )
 }

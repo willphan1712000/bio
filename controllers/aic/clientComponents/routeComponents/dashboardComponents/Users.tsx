@@ -1,37 +1,20 @@
 import { Flex, Table } from '@radix-ui/themes';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { DotLoader } from 'react-spinners';
 import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
-import AppToaster from '../../../../client/clientComponents/AppToaster';
+
 import dateFormat from '../../../../client/utilities/timeFormat';
 import apiUsers from '../../api/users';
 import config from '../../config';
+import AppToaster from '../../../../client/clientComponents/AppToaster';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppMutation from '../../../../client/hooks/useAppMutation';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 
 const Users = () => {
-    const { isPending, data: users, error } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => apiUsers.getUsers(),
-        staleTime: 5 * 60 * 1000, // 5 minutes,
-        retry: 1
-    })
-
-    useEffect(() => {
-        if(error) {
-            toast(
-                <AppToaster message={error.message} />
-            )
-        }
-    }, [error])
-
-    const queryClient = useQueryClient()
-    const { mutateAsync: deleteTemplate } = useMutation({
-        mutationFn: apiUsers.deleteUser,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["users"] })
-        }
-    })
+    const { isPending, data: users, error } = useAppQuery('users', apiUsers.getUsers)
+    const { mutateAsync: deleteTemplate } = useAppMutation('users', apiUsers.deleteUser)
+    useAppEffect(error)
 
     const handleDeleteUser = async (username: string) => {
         const res = await deleteTemplate(username)
@@ -50,12 +33,10 @@ const Users = () => {
 
     return (
         <Flex py="9" height="fit-content" direction="column">
-            <Toaster />
             <Table.Root variant='surface'>
                 <Table.Header>
                     <Table.Row>
                         <Table.ColumnHeaderCell>Username</Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>Password</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Token</Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>Delete Token</Table.ColumnHeaderCell>
@@ -67,8 +48,7 @@ const Users = () => {
                 <Table.Body>
                     {users?.map(user => (
                         <Table.Row key={user.username}>
-                            <Table.RowHeaderCell>{user.username}</Table.RowHeaderCell>
-                            <Table.Cell>{user.password}</Table.Cell>
+                            <Table.RowHeaderCell><a href={`/${user.username}`} target='__blank'>{user.username}</a></Table.RowHeaderCell>
                             <Table.Cell>{user.email}</Table.Cell>
                             <Table.Cell>{user.token}</Table.Cell>
                             <Table.Cell>{user.deleteToken}</Table.Cell>

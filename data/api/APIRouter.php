@@ -18,16 +18,28 @@ class APIRouter
     {
         if (str_starts_with($_SERVER['REQUEST_URI'], '/api/')) {
             $api_router = new APIRouter(new Request(), new Response());
-            $api_router->get("/api/woo/product", 'business\woocommerce\ProductController@getAll');
-            $api_router->get('/api/woo/product/{id}', 'business\woocommerce\ProductController@getWithId');
+            $api_router->get("/api/woo/product", 'business\wp\ProductController@getAll');
+            $api_router->get('/api/woo/product/{id}', 'business\wp\ProductController@getWithId');
+            $api_router->get('/api/wp/pages/terms', 'business\wp\Terms@get');
+            $api_router->get('/api/wp/pages/privacy', 'business\wp\Privacy@get');
+
             $api_router->get('/api/branches', 'business\beautyBooking\BranchesController@get');
+
             $api_router->get('/api/template/manage', 'business\templateManagement\TemplateController@get');
             $api_router->get('/api/template/manage/url', 'business\templateManagement\TemplateController@getTemplateServerURL');
             $api_router->post('/api/template/manage', 'business\templateManagement\TemplateController@post');
             $api_router->put('/api/template/manage/{id}', 'business\templateManagement\TemplateController@put');
             $api_router->delete('/api/template/manage/{id}', 'business\templateManagement\TemplateController@delete');
+
+            $api_router->get('/api/pricing', 'business\pricing\PricingController@get');
+            $api_router->post('/api/pricing', 'business\pricing\PricingController@post');
+            $api_router->put('/api/pricing/{id}', 'business\pricing\PricingController@put');
+
             $api_router->get('/api/analytics', 'business\analytics\AnalyticsController@get');
             $api_router->get('/api/analytics/social', 'business\analytics\AnalyticsController@getUserSocial');
+
+            $api_router->post('/api/auth', 'business\auth\AuthController@postGenerate');
+            $api_router->post('/api/auth/check', 'business\auth\AuthController@postValidate');
 
             $api_router->resolve();
 
@@ -95,6 +107,11 @@ class Request
     public function getBody()
     {
         return json_decode(file_get_contents("php://input"), true);
+    }
+
+    public function getHeaders()
+    {
+        return getallheaders();
     }
 }
 

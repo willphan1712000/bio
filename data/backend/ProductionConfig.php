@@ -34,7 +34,7 @@ class ProductionConfig
     public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
     public static Type $type = Type::TEST;
     public static Bio $bio = Bio::PRO;
-    public static $version = "7.8.0"; // version of the product
+    public static $version = "7.9.0"; // version of the product
 
     public static function database()
     {
@@ -74,7 +74,8 @@ class ProductionConfig
                 'domain' => $_ENV['DOMAIN_DEV'],
                 'fulldomain' => $_ENV['DOMAIN_DEV_FULL'],
                 'stripeRedirect' => $_ENV['MERCHANT_REDIRECT_DEV'],
-                'template_server' => $_ENV['TEMPLATE_SERVER_DEV']
+                'template_server' => $_ENV['TEMPLATE_SERVER_DEV'],
+                'payment_server' => $_ENV['PAYMENT_SERVER_DEV']
             ];
         } else if (self::$mode = Mode::PRODUCTION) {
             switch (self::$type) {
@@ -83,14 +84,16 @@ class ProductionConfig
                         'domain' => $_ENV['DOMAIN_MAIN'],
                         'fulldomain' => $_ENV['DOMAIN_MAIN_FULL'],
                         'stripeRedirect' => $_ENV['MERCHANT_REDIRECT_MAIN'],
-                        'template_server' => $_ENV['TEMPLATE_SERVER_MAIN']
+                        'template_server' => $_ENV['TEMPLATE_SERVER_MAIN'],
+                        'payment_server' => $_ENV['PAYMENT_SERVER_MAIN']
                     ];
                 case Type::TEST:
                     return [
                         'domain' => $_ENV['DOMAIN_TEST'],
                         'fulldomain' => $_ENV['DOMAIN_TEST_FULL'],
                         'stripeRedirect' => $_ENV['MERCHANT_REDIRECT_TEST'],
-                        'template_server' => $_ENV['TEMPLATE_SERVER_TEST']
+                        'template_server' => $_ENV['TEMPLATE_SERVER_TEST'],
+                        'payment_server' => $_ENV['PAYMENT_SERVER_TEST']
                     ];
                 default:
                     return [];

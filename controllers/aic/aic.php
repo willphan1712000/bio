@@ -1,20 +1,6 @@
 <?php
 
-use config\SystemConfig;
 use component\Copyright;
-use business\user\UserManagement;
-use component\Logo;
-
-$g = SystemConfig::globalVariables();
-// SESSION_START();
-$isSignedIn = UserManagement::isSignedIn($_SESSION, "Allinclicks");
-if (!$isSignedIn) {
-    header("Location: /@signin");
-}
-if (isset($_POST['aicLogout'])) {
-    unset($_SESSION['Allinclicks']);
-    header("Location: /");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,14 +27,6 @@ if (isset($_POST['aicLogout'])) {
         <!-- ========= SEPARATOR ========== -->
         <div id="admin_container"></div>
         <!-- ========= SEPARATOR ========== -->
-        <!-- <div class="logo flex flex-row justify-between">
-            <div class="w-[200px] flex flex-row items-center"><?= (new Logo())->render(); ?></div>
-            <form action="" method="POST"><button name="aicLogout" class="aicBtn">Sign out <i class="fa-solid fa-right-from-bracket"></i></button></form>
-        </div>
-        <div class="search-area">
-            <input type="text" placeholder="Search username or email" id="search">
-        </div>
-        <div id="userData"></div> -->
         <?php
         (new Copyright([
             'position' => 'relative'
