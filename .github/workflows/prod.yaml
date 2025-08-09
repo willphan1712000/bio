@@ -23,6 +23,9 @@ jobs:
       - name: Building Project ...
         run: npm run build
 
+      - name: Create deploy tarball
+        run: tar --exclude='.tanstack/tmp' --ignore-failed-read -czf deploy.tar.gz .
+
       - name: Pushing to hosting.com ...
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -32,5 +35,3 @@ jobs:
           key: ${{ secrets.HOSTING_SSH_KEY }}
           source: "./*"
           target: "/home/bio/test.allinclicksbio.com"
-          tar_tmp_path: "/tmp"
-          tar_exec: "tar --exclude='.tanstack/tmp' --ignore-failed-read -czf"
