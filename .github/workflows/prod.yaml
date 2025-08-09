@@ -32,4 +32,5 @@ jobs:
           key: ${{ secrets.HOSTING_SSH_KEY }}
           source: "./*"
           target: "/home/bio/test.allinclicksbio.com"
-          exclude: ".tanstack/tmp"
+          tar_tmp_path: "/tmp"
+          tar_exec: "tar --exclude='.tanstack/tmp' --ignore-failed-read -czf"
