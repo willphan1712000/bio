@@ -23,6 +23,9 @@ jobs:
       - name: Building Project ...
         run: npm run build
 
+      - name: Archive files (exclude temp dirs)
+        run: tar --exclude='.tanstack/tmp' --ignore-failed-read -czf /tmp/deploy.tar.gz .
+
       - name: Pushing to hosting.com ...
         uses: appleboy/scp-action@v0.1.7
         with:
