@@ -33,5 +33,5 @@ jobs:
           username: ${{ secrets.HOSTING_USERNAME }}
           port: ${{ secrets.HOSTING_PORT }}
           key: ${{ secrets.HOSTING_SSH_KEY }}
-          source: "./*"
+          source: "deploy.tar.gz"
           target: "/home/bio/test.allinclicksbio.com"
