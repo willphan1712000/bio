@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const DataUI_1 = __importDefault(require("./DataUI"));
-const InputUI_1 = __importDefault(require("./InputUI"));
-const TableUI_1 = __importDefault(require("./TableUI"));
-class SearchUI {
+import DataUI from "./DataUI";
+import InputUI from "./InputUI";
+import TableUI from "./TableUI";
+export default class SearchUI {
     constructor(input, tableProps) {
         Object.defineProperty(this, "inputUI", {
             enumerable: true,
@@ -47,9 +42,9 @@ class SearchUI {
             writable: true,
             value: void 0
         });
-        this.inputUI = new InputUI_1.default(input, this);
-        this.tableUI = new TableUI_1.default(tableProps.container, tableProps.target, tableProps.limit, tableProps.like, tableProps.url, tableProps.html);
-        this.dataUI = new DataUI_1.default(tableProps.url.get);
+        this.inputUI = new InputUI(input, this);
+        this.tableUI = new TableUI(tableProps.container, tableProps.target, tableProps.limit, tableProps.like, tableProps.url, tableProps.html);
+        this.dataUI = new DataUI(tableProps.url.get);
         this.createTable();
     }
     createTable() {
@@ -80,4 +75,3 @@ class SearchUI {
         });
     }
 }
-exports.default = SearchUI;

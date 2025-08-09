@@ -1,10 +1,22 @@
-const path = require('path')
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const dotenv = require('dotenv');
-// Load .env file variables into process.env
+// const path = require('path')
+// const htmlWebpackPlugin = require('html-webpack-plugin');
+// const webpack = require('webpack');
+// const dotenv = require('dotenv');
+// // Load .env file variables into process.env
+// dotenv.config();
+// const { tanstackRouter } = require('@tanstack/router-plugin/webpack')
+
+import path from 'path'
+import htmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
+import dotenv from 'dotenv'
 dotenv.config();
-const { tanstackRouter } = require('@tanstack/router-plugin/webpack')
+import { tanstackRouter } from '@tanstack/router-plugin/webpack'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url); // Gets the absolute path of the current file
+const __dirname = dirname(__filename); // Extracts the directory path from the file path
 
 const entryjs = {
   tailwind: path.resolve(__dirname, 'controllers/client/css/tailwind.css'),
@@ -126,7 +138,7 @@ htmlEntry.push(
   })
 )
 
-module.exports = {
+export default {
     mode: 'development',
     entry: entryjs,
     output: {
@@ -160,12 +172,22 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
-            }
+            },
+            {
+              test: /\.m?js/,
+              type: "javascript/auto",
+            },
+            {
+              test: /\.m?js/,
+              resolve: {
+                fullySpecified: false,
+              },
+            },
         ]
     },
     resolve: {
       fallback: {
         "console": false
-      }
+      },
     },
 }

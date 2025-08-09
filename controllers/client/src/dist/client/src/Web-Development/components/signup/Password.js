@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Password {
+export default class Password {
     constructor(password, signUpUI) {
         Object.defineProperty(this, "$password", {
             enumerable: true,
@@ -17,4 +15,3 @@ class Password {
         return this.$password.val();
     }
 }
-exports.default = Password;

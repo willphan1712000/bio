@@ -1,11 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.smoothScrolling = smoothScrolling;
-const lenis_1 = __importDefault(require("@studio-freight/lenis"));
-exports.default = Object.freeze({
+import Lenis from "@studio-freight/lenis";
+export default Object.freeze({
     default_product: {
         thumbnails: "/controllers/client/img/unknown.png",
         url: "/"
@@ -48,8 +42,8 @@ exports.default = Object.freeze({
         }
     }
 });
-function smoothScrolling() {
-    const lenis = new lenis_1.default();
+export function smoothScrolling() {
+    const lenis = new Lenis();
     function ref(time) {
         lenis.raf(time);
         requestAnimationFrame(ref);

@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const WW_1 = require("../../../client/src/Web-Development/WW");
-const AdminContext_1 = require("../AdminContext");
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { $$$ } from "../../../client/src/Web-Development/WW";
+import { handleAdminCssContext, username } from "../AdminContext";
 const Reset = () => {
-    const css = (0, AdminContext_1.handleAdminCssContext)();
+    const css = handleAdminCssContext();
     function handleClick() {
         return __awaiter(this, void 0, void 0, function* () {
-            const [error, result] = yield (0, WW_1.$$$)().wPromise().Try((0, WW_1.$$$)("/data/api/style/RESET.php", {
-                username: (0, AdminContext_1.username)()
+            const [error, result] = yield $$$().wPromise().Try($$$("/data/api/style/RESET.php", {
+                username: username()
             }).api().post());
             if (error) {
                 alert(error.error);
@@ -42,6 +40,6 @@ const Reset = () => {
             $(".template_name").css('font-size', (parseInt(result === null || result === void 0 ? void 0 : result.data.fontSize.replace('px', '')) + 15));
         });
     }
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsxs)("button", { onClick: handleClick, className: 'reset flex justify-center items-center flex-shrink-0 cursor-pointer h-fit typebox', children: [(0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-circle-arrow-left mr-[5px]" }), " Reset"] }) }));
+    return (_jsx(_Fragment, { children: _jsxs("button", { onClick: handleClick, className: 'reset flex justify-center items-center flex-shrink-0 cursor-pointer h-fit typebox', children: [_jsx("i", { className: "fa-solid fa-circle-arrow-left mr-[5px]" }), " Reset"] }) }));
 };
-exports.default = Reset;
+export default Reset;

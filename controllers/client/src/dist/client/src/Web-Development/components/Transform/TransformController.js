@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class TransformController {
+export default class TransformController {
     constructor(wrapper, frame, controller) {
         Object.defineProperty(this, "wrapper", {
             enumerable: true,
@@ -153,4 +151,3 @@ class TransformController {
             `;
     }
 }
-exports.default = TransformController;

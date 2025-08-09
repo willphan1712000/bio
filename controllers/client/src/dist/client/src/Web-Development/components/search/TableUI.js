@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const W_1 = require("../../W");
-const WW_1 = require("../../WW");
-const DataUI_1 = __importDefault(require("./DataUI"));
-class TableUI {
+import { $$ } from "../../W";
+import { $$$ } from "../../WW";
+import DataUI from "./DataUI";
+export default class TableUI {
     constructor(container, target, limit, like, url, html) {
         Object.defineProperty(this, "tableContainer", {
             enumerable: true,
@@ -63,7 +58,7 @@ class TableUI {
         this.target = target;
         this.limit = limit;
         this.like = like;
-        this.dataUI = new DataUI_1.default(url.get);
+        this.dataUI = new DataUI(url.get);
         this.html = html;
         this.url = url;
     }
@@ -80,14 +75,14 @@ class TableUI {
                 like: this.like,
                 username: 'Allinclicks'
             });
-            const table = (0, W_1.$$)(this.tableContainer, data.data).table().addHeader();
+            const table = $$(this.tableContainer, data.data).table().addHeader();
             this.addRow(table, data.data);
             return table;
         });
     }
     addObserver(table) {
         const limit = this.limit;
-        const o = (0, W_1.$$)(this.target, {
+        const o = $$(this.target, {
             threshold: 1
         }, (e) => __awaiter(this, void 0, void 0, function* () {
             if (e) {
@@ -118,7 +113,7 @@ class TableUI {
             state.currentUsernameValue = currentUsernameElement.value;
         });
         $(html.confirm).click(() => __awaiter(this, void 0, void 0, function* () {
-            const r = yield (0, WW_1.$$$)(this.url.delete, {
+            const r = yield $$$(this.url.delete, {
                 username: state.currentUsernameValue,
                 key: process.env.SYSTEM_SECRET_KEY
             }).api().post();
@@ -135,4 +130,3 @@ class TableUI {
         });
     }
 }
-exports.default = TableUI;

@@ -1,54 +1,16 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
-const Canvas_1 = __importDefault(require("../../../client/src/Web-Development/components/upload/Canvas"));
-const W_1 = require("../../../client/src/Web-Development/W");
-const AdminContext_1 = __importStar(require("../AdminContext"));
-const react_dom_1 = __importDefault(require("react-dom"));
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useEffect, useRef, useState } from "react";
+import Canvas from "../../../client/src/Web-Development/components/upload/Canvas";
+import { $$ } from "../../../client/src/Web-Development/W";
+import handleAdminContext, { handleAdminImageContext } from "../AdminContext";
+import ReactDOM from "react-dom";
 const AvatarFrame = () => {
-    const [state, dispatch] = (0, AdminContext_1.handleAdminImageContext)();
-    const [transform, setTransform] = (0, react_1.useState)(null);
-    const data = (0, AdminContext_1.default)();
-    const imageRef = (0, react_1.useRef)(null);
-    const frameRef = (0, react_1.useRef)(null);
-    const wrapperRef = (0, react_1.useRef)(null);
+    const [state, dispatch] = handleAdminImageContext();
+    const [transform, setTransform] = useState(null);
+    const data = handleAdminContext();
+    const imageRef = useRef(null);
+    const frameRef = useRef(null);
+    const wrapperRef = useRef(null);
     function handleCancel() {
         dispatch({ type: 'upload' });
         $("body").css({
@@ -58,7 +20,7 @@ const AvatarFrame = () => {
     }
     function handleAccept() {
         const img = imageRef.current;
-        const canvasObj = new Canvas_1.default();
+        const canvasObj = new Canvas();
         const [x, y, angle] = transform.exportData();
         const [canvas, ctx] = canvasObj.createCanvas(700, 700);
         const [, src, srcEncoded] = canvasObj.drawImage(img, ctx, x, y, 1, angle, canvas, frameRef.current.clientWidth, frameRef.current.clientHeight);
@@ -71,9 +33,9 @@ const AvatarFrame = () => {
         dispatch({ type: 'upload' });
     }
     function handleLoad() {
-        setTransform((0, W_1.$$)(wrapperRef.current, frameRef.current).transform());
+        setTransform($$(wrapperRef.current, frameRef.current).transform());
     }
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const img = imageRef.current;
         if (img !== null && state.isUpload) {
             if (img.complete) {
@@ -91,9 +53,9 @@ const AvatarFrame = () => {
     }, [state]);
     if (!state.isUpload)
         return null;
-    const jsx = ((0, jsx_runtime_1.jsxs)("div", { className: `flex h-[100dvh] w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`, children: [(0, jsx_runtime_1.jsx)("p", { className: "text-[20px] mb-[20px]", children: "Drag, Zoom, or Rotate Image" }), (0, jsx_runtime_1.jsx)("div", { className: "frame relative w-[100%] max-w-[500px] max-h-[500px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white", ref: frameRef, children: (0, jsx_runtime_1.jsx)("div", { className: "wrapper", ref: wrapperRef, children: (0, jsx_runtime_1.jsx)("img", { className: "img__preview", src: state.previewSrc, ref: imageRef }) }) }), (0, jsx_runtime_1.jsxs)("div", { className: "btn flex flex-row gap-6 mt-[20px] z-0", children: [(0, jsx_runtime_1.jsx)("div", { onClick: () => handleAccept(), className: "flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer", children: "Accept" }), (0, jsx_runtime_1.jsx)("div", { onClick: () => handleCancel(), className: "cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer", children: "Cancel" })] })] }));
+    const jsx = (_jsxs("div", { className: `flex h-[100dvh] w-screen fixed top-0 left-0 backdrop-blur-[20px] z-[99] flex-col justify-center items-center px-[30px]`, children: [_jsx("p", { className: "text-[20px] mb-[20px]", children: "Drag, Zoom, or Rotate Image" }), _jsx("div", { className: "frame relative w-[100%] max-w-[500px] max-h-[500px] aspect-square border-dashed border-black border-4 rounded-[50%] p-[50px] overflow-hidden bg-white", ref: frameRef, children: _jsx("div", { className: "wrapper", ref: wrapperRef, children: _jsx("img", { className: "img__preview", src: state.previewSrc, ref: imageRef }) }) }), _jsxs("div", { className: "btn flex flex-row gap-6 mt-[20px] z-0", children: [_jsx("div", { onClick: () => handleAccept(), className: "flex items-center accept rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer", children: "Accept" }), _jsx("div", { onClick: () => handleCancel(), className: "cancel rounded-[10px] bg-[#f0f0f0f0] p-[10px] shadow-lg cursor-pointer", children: "Cancel" })] })] }));
     if (!state.popup)
         return jsx;
-    return react_dom_1.default.createPortal(jsx, state.popup);
+    return ReactDOM.createPortal(jsx, state.popup);
 };
-exports.default = AvatarFrame;
+export default AvatarFrame;

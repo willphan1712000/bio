@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,19 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const auth_1 = __importDefault(require("../client/auth/auth"));
-const W_1 = require("../client/src/Web-Development/W");
-const App_1 = __importDefault(require("./clientComponents/App"));
-require("@radix-ui/themes/styles.css");
+import { jsx as _jsx } from "react/jsx-runtime";
+import auth from "../client/auth/auth";
+import { $$ } from "../client/src/Web-Development/W";
+import App from "./clientComponents/App";
+import "@radix-ui/themes/styles.css";
 $(document).ready(function () {
     return __awaiter(this, void 0, void 0, function* () {
-        const isSignedIn = yield auth_1.default.validate("Allinclicks");
+        const isSignedIn = yield auth.validate("Allinclicks");
         if (isSignedIn)
-            (0, W_1.$$)("#admin_container", (0, jsx_runtime_1.jsx)(App_1.default, {})).reactMounting();
+            $$("#admin_container", _jsx(App, {})).reactMounting();
     });
 });

@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class CheckBox {
+export default class CheckBox {
     constructor(checkbox, signUpUI) {
         Object.defineProperty(this, "$checkbox", {
             enumerable: true,
@@ -17,4 +15,3 @@ class CheckBox {
         return this.$checkbox.is(':checked');
     }
 }
-exports.default = CheckBox;

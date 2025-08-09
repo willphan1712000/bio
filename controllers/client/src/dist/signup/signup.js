@@ -1,14 +1,12 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const W_1 = require("../client/src/Web-Development/W");
-const WW_1 = require("../client/src/Web-Development/WW");
+import { $$ } from "../client/src/Web-Development/W";
+import { $$$ } from "../client/src/Web-Development/WW";
 $(document).ready(function () {
     signupPage();
 });
 function signupPage() {
-    (0, W_1.$$)(".passRequirements", "dropdown", "").toggle().default();
-    (0, W_1.$$)("#password").passShowHide().run();
-    (0, WW_1.$$$)({
+    $$(".passRequirements", "dropdown", "").toggle().default();
+    $$("#password").passShowHide().run();
+    $$$({
         username: "#username",
         password: "#password",
         email: "#email",

@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class InputUI {
+export default class InputUI {
     constructor(input, searchUI) {
         Object.defineProperty(this, "$input", {
             enumerable: true,
@@ -25,4 +23,3 @@ class InputUI {
         return this.value;
     }
 }
-exports.default = InputUI;

@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Error {
+export default class Error {
     constructor(error) {
         Object.defineProperty(this, "$error", {
             enumerable: true,
@@ -14,4 +12,3 @@ class Error {
         this.$error.html(msg);
     }
 }
-exports.default = Error;

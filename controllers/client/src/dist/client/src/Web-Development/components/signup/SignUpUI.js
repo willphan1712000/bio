@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,19 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const WW_1 = require("../../WW");
-const CheckBox_1 = __importDefault(require("./CheckBox"));
-const Email_1 = __importDefault(require("./Email"));
-const Error_1 = __importDefault(require("./Error"));
-const Password_1 = __importDefault(require("./Password"));
-const Register_1 = __importDefault(require("./Register"));
-const Username_1 = __importDefault(require("./Username"));
+import { $$$ } from "../../WW";
+import CheckBox from "./CheckBox";
+import Email from "./Email";
+import Error from "./Error";
+import Password from "./Password";
+import Register from "./Register";
+import Username from "./Username";
 const key = process.env.SYSTEM_SECRET_KEY;
-class SignUpUI {
+export default class SignUpUI {
     constructor(ui, url, success) {
         Object.defineProperty(this, "usernameBox", {
             enumerable: true,
@@ -70,26 +65,26 @@ class SignUpUI {
             writable: true,
             value: void 0
         });
-        this.usernameBox = new Username_1.default(ui['username'], this);
-        this.passwordBox = new Password_1.default(ui['password'], this);
-        this.emailBox = new Email_1.default(ui['email'], this);
-        this.checkBox = new CheckBox_1.default(ui['checkbox'], this);
-        this.error = new Error_1.default(ui['error']);
-        this.register = new Register_1.default(ui['register'], this);
+        this.usernameBox = new Username(ui['username'], this);
+        this.passwordBox = new Password(ui['password'], this);
+        this.emailBox = new Email(ui['email'], this);
+        this.checkBox = new CheckBox(ui['checkbox'], this);
+        this.error = new Error(ui['error']);
+        this.register = new Register(ui['register'], this);
         this.url = url;
         this.success = success;
     }
     update() {
         return __awaiter(this, void 0, void 0, function* () {
-            const userExist = yield (0, WW_1.$$$)(this.url.userExist, {
+            const userExist = yield $$$(this.url.userExist, {
                 username: this.usernameBox.getUsername(),
                 key
             }).api().post();
-            const validEmail = yield (0, WW_1.$$$)(this.url.validEmail, {
+            const validEmail = yield $$$(this.url.validEmail, {
                 email: this.emailBox.getEmail(),
                 key
             }).api().post();
-            const validPassword = yield (0, WW_1.$$$)(this.url.validPassword, {
+            const validPassword = yield $$$(this.url.validPassword, {
                 password: this.passwordBox.getPassword(),
                 key
             }).api().post();
@@ -124,7 +119,7 @@ class SignUpUI {
     }
     signup() {
         return __awaiter(this, void 0, void 0, function* () {
-            const r = yield (0, WW_1.$$$)(this.url.signup, {
+            const r = yield $$$(this.url.signup, {
                 username: this.usernameBox.getUsername(),
                 password: this.passwordBox.getPassword(),
                 email: this.emailBox.getEmail(),
@@ -140,4 +135,3 @@ class SignUpUI {
         });
     }
 }
-exports.default = SignUpUI;

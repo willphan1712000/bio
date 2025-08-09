@@ -1,8 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = reducer;
-exports.elementClicked = elementClicked;
-function reducer(state, action) {
+export default function reducer(state, action) {
     switch (action.type) {
         case 'background':
             return {
@@ -57,7 +53,7 @@ function reducer(state, action) {
             throw new Error("Action type is undefined");
     }
 }
-function elementClicked(data, element) {
+export function elementClicked(data, element) {
     const props = Object.keys(data);
     let result = {
         status: false,

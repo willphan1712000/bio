@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
+import { jsx as _jsx } from "react/jsx-runtime";
 const ColorPickerSolid = () => {
-    return ((0, jsx_runtime_1.jsx)("div", {}));
+    return (_jsx("div", {}));
 };
-exports.default = ColorPickerSolid;
+export default ColorPickerSolid;

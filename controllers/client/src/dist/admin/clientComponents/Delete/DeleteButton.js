@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const AdminContext_1 = require("../AdminContext");
+import { jsx as _jsx } from "react/jsx-runtime";
+import { handleAdminDeleteContext } from "../AdminContext";
 const DeleteButton = () => {
-    const [, dispatch] = (0, AdminContext_1.handleAdminDeleteContext)();
+    const [, dispatch] = handleAdminDeleteContext();
     function handleClick(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -12,6 +10,6 @@ const DeleteButton = () => {
             overflow: "hidden"
         });
     }
-    return ((0, jsx_runtime_1.jsx)("button", { onClick: (e) => handleClick(e), className: "rounded-xl bg-red-500 p-2 text-[13px] font-medium text-white transition duration-200 hover:bg-red-600 active:bg-red-700 dark:bg-red-400 dark:text-white dark:hover:bg-red-300 dark:active:bg-red-200", children: "Delete Account" }));
+    return (_jsx("button", { onClick: (e) => handleClick(e), className: "rounded-xl bg-red-500 p-2 text-[13px] font-medium text-white transition duration-200 hover:bg-red-600 active:bg-red-700 dark:bg-red-400 dark:text-white dark:hover:bg-red-300 dark:active:bg-red-200", children: "Delete Account" }));
 };
-exports.default = DeleteButton;
+export default DeleteButton;

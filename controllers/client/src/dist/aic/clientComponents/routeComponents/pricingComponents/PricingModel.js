@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,31 +7,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const themes_1 = require("@radix-ui/themes");
-const react_1 = require("react");
-const react_hot_toast_1 = __importDefault(require("react-hot-toast"));
-const react_spinners_1 = require("react-spinners");
-const AppToaster_1 = __importDefault(require("../../../../client/clientComponents/AppToaster"));
-const theme_1 = __importDefault(require("../../../../client/clientComponents/context/theme"));
-const pricing_1 = __importDefault(require("../../api/pricing"));
-const context_1 = require("./context");
-const MultiSelect_1 = __importDefault(require("./multiSelect/MultiSelect"));
-const useAppQuery_1 = __importDefault(require("../../../../client/hooks/useAppQuery"));
-const useAppEffect_1 = __importDefault(require("../../../../client/hooks/useAppEffect"));
-const useAppMutation_1 = __importDefault(require("../../../../client/hooks/useAppMutation"));
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { Button } from '@radix-ui/themes';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { HashLoader } from 'react-spinners';
+import AppToaster from '../../../../client/clientComponents/AppToaster';
+import useThemeContext from '../../../../client/clientComponents/context/theme';
+import apiPricing from '../../api/pricing';
+import { PricingContext } from './context';
+import MultiSelect from './multiSelect/MultiSelect';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppMutation from '../../../../client/hooks/useAppMutation';
 const PricingModel = () => {
-    const theme = (0, theme_1.default)();
+    const theme = useThemeContext();
     const containerClasses = `${theme.classes.border} md:w-fit w-full p-10 rounded-[30px] flex flex-col items-center md:items-start my-5`;
-    const [pricing, setPricing] = (0, react_1.useState)(undefined);
-    const { isPending, data: pricingQuery, error } = (0, useAppQuery_1.default)("pricing", pricing_1.default.get);
-    const { mutateAsync: pricingUpdate } = (0, useAppMutation_1.default)("pricing", pricing_1.default.post);
-    (0, useAppEffect_1.default)(error);
-    (0, react_1.useEffect)(() => {
+    const [pricing, setPricing] = useState(undefined);
+    const { isPending, data: pricingQuery, error } = useAppQuery("pricing", apiPricing.get);
+    const { mutateAsync: pricingUpdate } = useAppMutation("pricing", apiPricing.post);
+    useAppEffect(error);
+    useEffect(() => {
         if (!isPending && pricingQuery) {
             setPricing(pricingQuery);
         }
@@ -40,13 +35,13 @@ const PricingModel = () => {
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield pricingUpdate(pricing);
         if (!res) {
-            return (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: error === null || error === void 0 ? void 0 : error.message }));
+            return toast(_jsx(AppToaster, { message: error === null || error === void 0 ? void 0 : error.message }));
         }
-        (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { status: true, message: "Update successfully" }));
+        toast(_jsx(AppToaster, { status: true, message: "Update successfully" }));
     });
-    return ((0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: (0, jsx_runtime_1.jsx)(context_1.PricingContext.Provider, { value: {
+    return (_jsx(_Fragment, { children: _jsx(PricingContext.Provider, { value: {
                 state: pricing,
                 setState: setPricing
-            }, children: (0, jsx_runtime_1.jsxs)("div", { className: containerClasses, children: [isPending ? (0, jsx_runtime_1.jsx)(react_spinners_1.HashLoader, {}) : (0, jsx_runtime_1.jsx)(MultiSelect_1.default, {}), (0, jsx_runtime_1.jsx)("div", { className: 'my-5 bg-white p-[1px] rounded-full w-fit', children: (0, jsx_runtime_1.jsx)(themes_1.Button, { size: "3", onClick: handleUpdate, children: "Update" }) })] }) }) }));
+            }, children: _jsxs("div", { className: containerClasses, children: [isPending ? _jsx(HashLoader, {}) : _jsx(MultiSelect, {}), _jsx("div", { className: 'my-5 bg-white p-[1px] rounded-full w-fit', children: _jsx(Button, { size: "3", onClick: handleUpdate, children: "Update" }) })] }) }) }));
 };
-exports.default = PricingModel;
+export default PricingModel;

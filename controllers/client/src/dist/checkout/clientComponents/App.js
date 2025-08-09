@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,23 +7,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_stripe_js_1 = require("@stripe/react-stripe-js");
-const stripe_js_1 = require("@stripe/stripe-js");
-const react_1 = require("react");
-const react_router_dom_1 = require("react-router-dom");
-const TemplateContext_1 = require("../../template/clientComponents/TemplateContext");
-const checkoutContext_1 = require("./checkoutContext");
-const WW_1 = require("../../client/src/Web-Development/WW");
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { useCallback, useEffect, useState } from "react";
+import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { getQueryStr, username } from "../../template/clientComponents/TemplateContext";
+import { getItems, getUser, listPush, setLocalStorage } from "./checkoutContext";
+import { $$$ } from '../../client/src/Web-Development/WW';
 const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
-const stripePromise = (0, stripe_js_1.loadStripe)(publishableKey);
+const stripePromise = loadStripe(publishableKey);
 const CheckoutForm = () => {
-    const user = (0, TemplateContext_1.username)();
-    const itemid = (0, TemplateContext_1.getQueryStr)('itemid');
+    const user = username();
+    const itemid = getQueryStr('itemid');
     const cart = JSON.parse(localStorage.getItem(user));
-    const items = (0, checkoutContext_1.getItems)(cart, itemid);
-    const fetchClientSecret = (0, react_1.useCallback)(() => {
+    const items = getItems(cart, itemid);
+    const fetchClientSecret = useCallback(() => {
         return fetch("/data/stripe/checkout.php", {
             method: "POST",
             headers: {
@@ -36,7 +34,7 @@ const CheckoutForm = () => {
             .then((res) => res.json())
             .then((data) => data.clientSecret);
     }, []);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         function get() {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
@@ -51,19 +49,19 @@ const CheckoutForm = () => {
             });
         }
         get();
-        (0, checkoutContext_1.setLocalStorage)(user, cart, itemid);
+        setLocalStorage(user, cart, itemid);
     }, []);
     const options = { fetchClientSecret };
-    return ((0, jsx_runtime_1.jsx)("div", { id: "checkout", children: (0, jsx_runtime_1.jsx)(react_stripe_js_1.EmbeddedCheckoutProvider, { stripe: stripePromise, options: options, children: (0, jsx_runtime_1.jsx)(react_stripe_js_1.EmbeddedCheckout, {}) }) }));
+    return (_jsx("div", { id: "checkout", children: _jsx(EmbeddedCheckoutProvider, { stripe: stripePromise, options: options, children: _jsx(EmbeddedCheckout, {}) }) }));
 };
 const Return = () => {
-    const [status, setStatus] = (0, react_1.useState)(null);
-    const [customerEmail, setCustomerEmail] = (0, react_1.useState)('');
-    const [count, setCount] = (0, react_1.useState)(5);
+    const [status, setStatus] = useState(null);
+    const [customerEmail, setCustomerEmail] = useState('');
+    const [count, setCount] = useState(5);
     if (count === 0) {
-        window.location.href = '/' + (0, checkoutContext_1.getUser)();
+        window.location.href = '/' + getUser();
     }
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const sessionId = urlParams.get('session_id');
@@ -81,14 +79,14 @@ const Return = () => {
             setCustomerEmail(data.customer_email);
         });
     }, []);
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         let countDown;
         function push() {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const r = yield (0, WW_1.$$$)("/data/api/purchase/POST.php", (0, checkoutContext_1.listPush)()).api().post();
+                    const r = yield $$$("/data/api/purchase/POST.php", listPush()).api().post();
                     if (r.success) {
-                        localStorage.removeItem((0, checkoutContext_1.getUser)());
+                        localStorage.removeItem(getUser());
                         countDown = setInterval(() => {
                             setCount(prev => prev - 1);
                         }, 1000);
@@ -110,14 +108,14 @@ const Return = () => {
         };
     }, [status]);
     if (status === 'open') {
-        return ((0, jsx_runtime_1.jsx)(react_router_dom_1.Navigate, { to: "/@checkout" }));
+        return (_jsx(Navigate, { to: "/@checkout" }));
     }
     if (status === 'complete') {
-        return ((0, jsx_runtime_1.jsxs)("div", { className: 'flex justify-center items-center p-[40px] flex-col w-screen h-screen', children: [(0, jsx_runtime_1.jsx)("div", { className: 'w-[100px] mb-[40px]', children: (0, jsx_runtime_1.jsx)("img", { draggable: false, src: "/controllers/client/img/done.png", alt: "payment_complete" }) }), (0, jsx_runtime_1.jsxs)("section", { id: "success", children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-center text-[30px]', children: "Thank you for your purchase" }), (0, jsx_runtime_1.jsxs)("p", { className: 'text-center text-[20px]', children: ["A confirmation email will be sent to ", customerEmail] }), (0, jsx_runtime_1.jsxs)("p", { className: 'text-center text-[20px]', children: ["Going to your purchased template in ", count, " second", count <= 1 ? '' : 's'] })] })] }));
+        return (_jsxs("div", { className: 'flex justify-center items-center p-[40px] flex-col w-screen h-screen', children: [_jsx("div", { className: 'w-[100px] mb-[40px]', children: _jsx("img", { draggable: false, src: "/controllers/client/img/done.png", alt: "payment_complete" }) }), _jsxs("section", { id: "success", children: [_jsx("p", { className: 'text-center text-[30px]', children: "Thank you for your purchase" }), _jsxs("p", { className: 'text-center text-[20px]', children: ["A confirmation email will be sent to ", customerEmail] }), _jsxs("p", { className: 'text-center text-[20px]', children: ["Going to your purchased template in ", count, " second", count <= 1 ? '' : 's'] })] })] }));
     }
     return null;
 };
 const App = () => {
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", children: (0, jsx_runtime_1.jsx)(react_router_dom_1.BrowserRouter, { children: (0, jsx_runtime_1.jsxs)(react_router_dom_1.Routes, { children: [(0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: "/@checkout", element: (0, jsx_runtime_1.jsx)(CheckoutForm, {}) }), (0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: "/@return", element: (0, jsx_runtime_1.jsx)(Return, {}) })] }) }) }));
+    return (_jsx("div", { className: "App", children: _jsx(Router, { children: _jsxs(Routes, { children: [_jsx(Route, { path: "/@checkout", element: _jsx(CheckoutForm, {}) }), _jsx(Route, { path: "/@return", element: _jsx(Return, {}) })] }) }) }));
 };
-exports.default = App;
+export default App;

@@ -1,19 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Route = void 0;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_router_1 = require("@tanstack/react-router");
-const SideBar_1 = __importDefault(require("../sideBar/SideBar"));
-const theme_1 = __importDefault(require("../../../client/clientComponents/context/theme"));
-const react_hot_toast_1 = require("react-hot-toast");
-exports.Route = (0, react_router_1.createRootRoute)({
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
+import SideBar from "../sideBar/SideBar";
+import useThemeContext from "../../../client/clientComponents/context/theme";
+import { Toaster } from "react-hot-toast";
+export const Route = createRootRoute({
     component: RootComponent
 });
 function RootComponent() {
-    const theme = (0, theme_1.default)();
+    const theme = useThemeContext();
     const classes = `${theme === null || theme === void 0 ? void 0 : theme.classes.bg} flex flex-row`;
-    return ((0, jsx_runtime_1.jsxs)("div", { className: classes, children: [(0, jsx_runtime_1.jsx)(SideBar_1.default, {}), (0, jsx_runtime_1.jsx)(react_router_1.Outlet, {}), (0, jsx_runtime_1.jsx)(react_hot_toast_1.Toaster, {})] }));
+    return (_jsxs("div", { className: classes, children: [_jsx(SideBar, {}), _jsx(Outlet, {}), _jsx(Toaster, {})] }));
 }

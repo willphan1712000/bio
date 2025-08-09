@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class UploadFile {
+export default class UploadFile {
     constructor(ele1, cb, type) {
         Object.defineProperty(this, "$ele1", {
             enumerable: true,
@@ -51,4 +49,3 @@ class UploadFile {
         });
     }
 }
-exports.default = UploadFile;

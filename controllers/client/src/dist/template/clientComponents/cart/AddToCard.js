@@ -1,15 +1,10 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
-const CartContext_1 = __importDefault(require("./CartContext"));
-const TemplateContext_1 = require("../TemplateContext");
+import { useEffect } from 'react';
+import handleCartContext from './CartContext';
+import { auth } from '../TemplateContext';
 const AddToCard = () => {
-    const [state, dispatch] = (0, CartContext_1.default)();
+    const [state, dispatch] = handleCartContext();
     function handleClick(e) {
-        (0, TemplateContext_1.auth)(state.signin, () => {
+        auth(state.signin, () => {
             const current = $(e.currentTarget);
             const check = current.find(".check");
             const data = current.data("id");
@@ -21,7 +16,7 @@ const AddToCard = () => {
             }
         });
     }
-    (0, react_1.useEffect)(() => {
+    useEffect(() => {
         Object.keys(state.items).map(item => {
             $(`.add[data-id="${item}"]`).find(".check").addClass("active");
         });
@@ -32,4 +27,4 @@ const AddToCard = () => {
     }, []);
     return null;
 };
-exports.default = AddToCard;
+export default AddToCard;

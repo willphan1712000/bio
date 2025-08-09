@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Register {
+export default class Register {
     constructor(register, signUpUI) {
         Object.defineProperty(this, "$register", {
             enumerable: true,
@@ -44,4 +42,3 @@ class Register {
         });
     }
 }
-exports.default = Register;

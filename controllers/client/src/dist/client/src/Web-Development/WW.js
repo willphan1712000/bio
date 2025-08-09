@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.$$$ = $$$;
-const jquery_1 = __importDefault(require("jquery"));
-const SignUpUI_1 = __importDefault(require("./components/signup/SignUpUI"));
-function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
+import $ from 'jquery';
+import SignUpUI from "./components/signup/SignUpUI";
+export function $$$(ele1, ele2, ele3, ele4, ele5, ele6) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined && ele5 !== undefined && ele6 !== undefined) {
         return new WW6(ele1, ele2, ele3, ele4, ele5, ele6);
     }
@@ -309,7 +303,7 @@ class Signup extends WW3 {
             writable: true,
             value: void 0
         });
-        this.signUpUI = new SignUpUI_1.default(ui, url, success);
+        this.signUpUI = new SignUpUI(ui, url, success);
     }
 }
 class API extends WW2 {
@@ -318,7 +312,7 @@ class API extends WW2 {
     }
     get() {
         return new Promise((res, rej) => {
-            jquery_1.default.ajax({
+            $.ajax({
                 url: this.ele1,
                 method: "GET",
                 dataType: "json",
@@ -335,7 +329,7 @@ class API extends WW2 {
     }
     post() {
         return new Promise((res, rej) => {
-            jquery_1.default.ajax({
+            $.ajax({
                 url: this.ele1,
                 method: "POST",
                 data: JSON.stringify(this.ele2),

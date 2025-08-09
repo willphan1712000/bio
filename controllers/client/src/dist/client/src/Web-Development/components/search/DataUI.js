@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,9 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const WW_1 = require("../../WW");
-class DataUI {
+import { $$$ } from "../../WW";
+export default class DataUI {
     constructor(url) {
         Object.defineProperty(this, "url", {
             enumerable: true,
@@ -22,7 +20,7 @@ class DataUI {
     }
     getData(options) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield (0, WW_1.$$$)(this.url, options).api().post();
+            const data = yield $$$(this.url, options).api().post();
             if (data.success) {
                 for (const i in data.data) {
                     data.data[i].Bio = '<a target="_blank" href="/' + data.data[i].username + '" style="color: #000;">Bio</a>';
@@ -37,4 +35,3 @@ class DataUI {
         });
     }
 }
-exports.default = DataUI;

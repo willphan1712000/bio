@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jwt_decode_1 = require("jwt-decode");
+import { jwtDecode } from "jwt-decode";
 const key = "CRM-ctoken";
 function setToken(token) {
     localStorage.setItem(key, token);
@@ -10,12 +8,12 @@ function getToken() {
 }
 function getUser() {
     const token = getToken();
-    return token ? (0, jwt_decode_1.jwtDecode)(token) : null;
+    return token ? jwtDecode(token) : null;
 }
 function removeToken() {
     localStorage.removeItem(key);
 }
-exports.default = {
+export default {
     key,
     setToken,
     getToken,

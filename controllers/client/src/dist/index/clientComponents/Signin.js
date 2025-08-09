@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,11 +9,10 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const w_1 = require("@willphan1712000/w");
+import { jsx as _jsx } from "react/jsx-runtime";
+import { Button } from '@willphan1712000/w';
 const Signin = (_a) => {
     var otherProps = __rest(_a, []);
-    return ((0, jsx_runtime_1.jsx)(w_1.Button, Object.assign({}, otherProps, { onClick: () => window.location.href = '/@signin', type: "solid" })));
+    return (_jsx(Button, Object.assign({}, otherProps, { onClick: () => window.location.href = '/@signin', type: "solid" })));
 };
-exports.default = Signin;
+export default Signin;

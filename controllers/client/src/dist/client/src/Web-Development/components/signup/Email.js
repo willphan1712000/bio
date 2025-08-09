@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Email {
+export default class Email {
     constructor(email, signUpUI) {
         Object.defineProperty(this, "$email", {
             enumerable: true,
@@ -17,4 +15,3 @@ class Email {
         return this.$email.val();
     }
 }
-exports.default = Email;

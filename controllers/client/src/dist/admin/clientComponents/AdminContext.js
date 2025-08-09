@@ -1,99 +1,85 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminSettingContext = exports.AdminIconContext = exports.AdminLabelContext = exports.AdminDeleteContext = exports.AdminSaveContext = exports.AdminImageContext = exports.AdminElementContext = exports.AdminRegexContext = exports.AdminCssContext = exports.AdminContext = void 0;
-exports.default = handleAdminContext;
-exports.handleAdminRegexContext = handleAdminRegexContext;
-exports.handleAdminElementContext = handleAdminElementContext;
-exports.handleAdminImageContext = handleAdminImageContext;
-exports.handleAdminSaveContext = handleAdminSaveContext;
-exports.handleAdminDeleteContext = handleAdminDeleteContext;
-exports.handleAdminLabelContext = handleAdminLabelContext;
-exports.handleAdminIconContext = handleAdminIconContext;
-exports.handleAdminSettingContext = handleAdminSettingContext;
-exports.handleAdminCssContext = handleAdminCssContext;
-exports.username = username;
-const react_1 = require("react");
-exports.AdminContext = (0, react_1.createContext)(undefined);
-exports.AdminCssContext = (0, react_1.createContext)(undefined);
-exports.AdminRegexContext = (0, react_1.createContext)(undefined);
-exports.AdminElementContext = (0, react_1.createContext)(undefined);
-exports.AdminImageContext = (0, react_1.createContext)(undefined);
-exports.AdminSaveContext = (0, react_1.createContext)(undefined);
-exports.AdminDeleteContext = (0, react_1.createContext)(undefined);
-exports.AdminLabelContext = (0, react_1.createContext)(undefined);
-exports.AdminIconContext = (0, react_1.createContext)(undefined);
-exports.AdminSettingContext = (0, react_1.createContext)(undefined);
-function handleAdminContext() {
-    const data = (0, react_1.useContext)(exports.AdminContext);
+import { createContext, useContext } from "react";
+export const AdminContext = createContext(undefined);
+export const AdminCssContext = createContext(undefined);
+export const AdminRegexContext = createContext(undefined);
+export const AdminElementContext = createContext(undefined);
+export const AdminImageContext = createContext(undefined);
+export const AdminSaveContext = createContext(undefined);
+export const AdminDeleteContext = createContext(undefined);
+export const AdminLabelContext = createContext(undefined);
+export const AdminIconContext = createContext(undefined);
+export const AdminSettingContext = createContext(undefined);
+export default function handleAdminContext() {
+    const data = useContext(AdminContext);
     if (data === undefined) {
         throw new Error("Admin context is undefined");
     }
     return data;
 }
-function handleAdminRegexContext() {
-    const data = (0, react_1.useContext)(exports.AdminRegexContext);
+export function handleAdminRegexContext() {
+    const data = useContext(AdminRegexContext);
     if (data === undefined) {
         throw new Error("Admin regex context is undefined");
     }
     return data;
 }
-function handleAdminElementContext() {
-    const data = (0, react_1.useContext)(exports.AdminElementContext);
+export function handleAdminElementContext() {
+    const data = useContext(AdminElementContext);
     if (data === undefined) {
         throw new Error("Admin element context is undefined");
     }
     return data;
 }
-function handleAdminImageContext() {
-    const data = (0, react_1.useContext)(exports.AdminImageContext);
+export function handleAdminImageContext() {
+    const data = useContext(AdminImageContext);
     if (data === undefined) {
         throw new Error("Admin image context is undefined");
     }
     return data;
 }
-function handleAdminSaveContext() {
-    const data = (0, react_1.useContext)(exports.AdminSaveContext);
+export function handleAdminSaveContext() {
+    const data = useContext(AdminSaveContext);
     if (data === undefined) {
         throw new Error("Admin save context is undefined");
     }
     return data;
 }
-function handleAdminDeleteContext() {
-    const data = (0, react_1.useContext)(exports.AdminDeleteContext);
+export function handleAdminDeleteContext() {
+    const data = useContext(AdminDeleteContext);
     if (data === undefined) {
         throw new Error("Admin delete context is undefined");
     }
     return data;
 }
-function handleAdminLabelContext() {
-    const data = (0, react_1.useContext)(exports.AdminLabelContext);
+export function handleAdminLabelContext() {
+    const data = useContext(AdminLabelContext);
     if (data === undefined) {
         throw new Error("Admin label context is undefined");
     }
     return data;
 }
-function handleAdminIconContext() {
-    const data = (0, react_1.useContext)(exports.AdminIconContext);
+export function handleAdminIconContext() {
+    const data = useContext(AdminIconContext);
     if (data === undefined) {
         throw new Error("Admin icon context is undefined");
     }
     return data;
 }
-function handleAdminSettingContext() {
-    const data = (0, react_1.useContext)(exports.AdminSettingContext);
+export function handleAdminSettingContext() {
+    const data = useContext(AdminSettingContext);
     if (data === undefined) {
         throw new Error("Admin setting context is undefined");
     }
     return data;
 }
-function handleAdminCssContext() {
-    const data = (0, react_1.useContext)(exports.AdminCssContext);
+export function handleAdminCssContext() {
+    const data = useContext(AdminCssContext);
     if (data === undefined) {
         throw new Error("Admin CSS context is undefined");
     }
     return data;
 }
-function username() {
+export function username() {
     const path = window.location.pathname;
     return path.split("/")[1];
 }

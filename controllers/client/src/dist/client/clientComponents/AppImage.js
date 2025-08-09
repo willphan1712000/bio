@@ -1,4 +1,3 @@
-"use strict";
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -10,10 +9,9 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
+import { jsx as _jsx } from "react/jsx-runtime";
 const AppImage = (_a) => {
     var otherProps = __rest(_a, []);
-    return ((0, jsx_runtime_1.jsx)("img", Object.assign({}, otherProps, { loading: 'lazy', draggable: "false", alt: "will-img-component" })));
+    return (_jsx("img", Object.assign({}, otherProps, { loading: 'lazy', draggable: "false", alt: "will-img-component" })));
 };
-exports.default = AppImage;
+export default AppImage;

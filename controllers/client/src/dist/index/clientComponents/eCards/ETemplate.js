@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,24 +7,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const clientConfig_1 = __importDefault(require("../../clientConfig"));
-const Separator_1 = __importDefault(require("../Separator"));
-const Template_1 = __importDefault(require("../Template"));
-const Effect_1 = __importDefault(require("./Effect"));
-const Slider_1 = __importDefault(require("./Slider"));
-const ecard_1 = __importDefault(require("../api/ecard"));
-const react_query_1 = require("@tanstack/react-query");
-const react_spinners_1 = require("react-spinners");
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import clientConfig from '../../clientConfig';
+import Separator from '../Separator';
+import Template from '../Template';
+import Effect from './Effect';
+import Slider from './Slider';
+import eBusinessCards from '../api/ecard';
+import { useQuery } from '@tanstack/react-query';
+import { BeatLoader } from 'react-spinners';
 const ETemplate = () => {
-    const { isPending, data: products } = (0, react_query_1.useQuery)({
+    const { isPending, data: products } = useQuery({
         queryKey: ['eBusinessCards'],
-        queryFn: () => __awaiter(void 0, void 0, void 0, function* () { return yield ecard_1.default.getEBusinessCards(); })
+        queryFn: () => __awaiter(void 0, void 0, void 0, function* () { return yield eBusinessCards.getEBusinessCards(); })
     });
-    return ((0, jsx_runtime_1.jsxs)("div", { className: 'w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden', children: [(0, jsx_runtime_1.jsx)("p", { className: 'text-[20px] pb-5', children: clientConfig_1.default.templates.basic.heading }), (0, jsx_runtime_1.jsx)("div", { id: "basic_templates" }), isPending ? (0, jsx_runtime_1.jsx)(react_spinners_1.BeatLoader, {}) : (0, jsx_runtime_1.jsx)(Slider_1.default, { products: products }), (0, jsx_runtime_1.jsx)(Separator_1.default, { thickness: '4' }), (0, jsx_runtime_1.jsx)("p", { className: 'text-[25px] pb-5', children: clientConfig_1.default.templates.pro.heading }), (0, jsx_runtime_1.jsx)("div", { id: "pro_templates" }), isPending ? (0, jsx_runtime_1.jsx)(react_spinners_1.BeatLoader, {}) : (0, jsx_runtime_1.jsx)(Effect_1.default, { products: products }), (0, jsx_runtime_1.jsx)("div", { className: 'p-10', children: (0, jsx_runtime_1.jsx)(Template_1.default, { content: "Explore More Template" }) })] }));
+    return (_jsxs("div", { className: 'w-full rounded-[30px] bg-[--apple] max-w-[1500px] flex flex-col justify-center items-center py-10 overflow-hidden', children: [_jsx("p", { className: 'text-[20px] pb-5', children: clientConfig.templates.basic.heading }), _jsx("div", { id: "basic_templates" }), isPending ? _jsx(BeatLoader, {}) : _jsx(Slider, { products: products }), _jsx(Separator, { thickness: '4' }), _jsx("p", { className: 'text-[25px] pb-5', children: clientConfig.templates.pro.heading }), _jsx("div", { id: "pro_templates" }), isPending ? _jsx(BeatLoader, {}) : _jsx(Effect, { products: products }), _jsx("div", { className: 'p-10', children: _jsx(Template, { content: "Explore More Template" }) })] }));
 };
-exports.default = ETemplate;
+export default ETemplate;

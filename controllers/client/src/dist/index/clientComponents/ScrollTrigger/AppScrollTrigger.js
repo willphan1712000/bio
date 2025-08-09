@@ -1,19 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const gsap_1 = __importDefault(require("gsap"));
-const ScrollTrigger_1 = require("gsap/ScrollTrigger");
-const react_1 = require("react");
-const clientConfig_1 = __importDefault(require("../../clientConfig"));
-const Card_1 = __importDefault(require("./Card"));
-gsap_1.default.registerPlugin(ScrollTrigger_1.ScrollTrigger);
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+import clientConfig from '../../clientConfig';
+import Card from './Card';
+gsap.registerPlugin(ScrollTrigger);
 function AppScrollTrigger() {
-    const cardRef = (0, react_1.useRef)(null);
-    const headerRef = (0, react_1.useRef)(null);
-    (0, react_1.useEffect)(() => {
+    const cardRef = useRef(null);
+    const headerRef = useRef(null);
+    useEffect(() => {
         if (!cardRef.current)
             return;
         if (!headerRef.current)
@@ -22,7 +17,7 @@ function AppScrollTrigger() {
         const one = cardRef.current.one;
         const two = cardRef.current.two;
         const three = cardRef.current.three;
-        gsap_1.default.timeline({
+        gsap.timeline({
             scrollTrigger: {
                 trigger: card,
                 start: "top 10%",
@@ -31,7 +26,7 @@ function AppScrollTrigger() {
                 markers: false,
             }
         }).fromTo(card, { rotationY: 0 }, { rotationY: 360 });
-        gsap_1.default.timeline({
+        gsap.timeline({
             scrollTrigger: {
                 trigger: one,
                 start: "top 65%",
@@ -40,7 +35,7 @@ function AppScrollTrigger() {
                 markers: false,
             }
         }).fromTo(one, { opacity: 0 }, { opacity: 1 }).to(one, { opacity: 0 });
-        gsap_1.default.timeline({
+        gsap.timeline({
             scrollTrigger: {
                 trigger: two,
                 start: "110% 50%",
@@ -49,7 +44,7 @@ function AppScrollTrigger() {
                 markers: false,
             }
         }).fromTo(two, { opacity: 0 }, { opacity: 1 }).to(two, { opacity: 0 });
-        gsap_1.default.timeline({
+        gsap.timeline({
             scrollTrigger: {
                 trigger: three,
                 start: "220% 35%",
@@ -59,7 +54,7 @@ function AppScrollTrigger() {
             }
         }).fromTo(three, { opacity: 0 }, { opacity: 1 }).to(three, { opacity: 0 });
     }, []);
-    return ((0, jsx_runtime_1.jsx)("div", { className: "App", style: styles.container, children: (0, jsx_runtime_1.jsxs)("header", { className: "App-header", style: styles.appHeader, ref: headerRef, children: [(0, jsx_runtime_1.jsx)("div", { className: '', children: (0, jsx_runtime_1.jsx)("h1", { className: "text-[25px]", style: styles.title, children: clientConfig_1.default.nfc.title }) }), (0, jsx_runtime_1.jsx)("div", { style: styles.spacer, children: (0, jsx_runtime_1.jsx)(Card_1.default, { ref: cardRef }) })] }) }));
+    return (_jsx("div", { className: "App", style: styles.container, children: _jsxs("header", { className: "App-header", style: styles.appHeader, ref: headerRef, children: [_jsx("div", { className: '', children: _jsx("h1", { className: "text-[25px]", style: styles.title, children: clientConfig.nfc.title }) }), _jsx("div", { style: styles.spacer, children: _jsx(Card, { ref: cardRef }) })] }) }));
 }
 const styles = {
     container: {
@@ -100,4 +95,4 @@ const styles = {
         padding: '30px'
     }
 };
-exports.default = AppScrollTrigger;
+export default AppScrollTrigger;

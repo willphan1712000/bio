@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,48 +7,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const themes_1 = require("@radix-ui/themes");
-const react_hot_toast_1 = __importDefault(require("react-hot-toast"));
-const react_spinners_1 = require("react-spinners");
-const AppAlertDialog_1 = __importDefault(require("../../../../client/clientComponents/AppAlertDialog"));
-const AppToaster_1 = __importDefault(require("../../../../client/clientComponents/AppToaster"));
-const timeFormat_1 = __importDefault(require("../../../../client/utilities/timeFormat"));
-const template_1 = __importDefault(require("../../api/template"));
-const config_1 = __importDefault(require("../../config"));
-const useAppEffect_1 = __importDefault(require("../../../../client/hooks/useAppEffect"));
-const useAppMutation_1 = __importDefault(require("../../../../client/hooks/useAppMutation"));
-const useAppQuery_1 = __importDefault(require("../../../../client/hooks/useAppQuery"));
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Flex, Switch, Table } from '@radix-ui/themes';
+import toast from 'react-hot-toast';
+import { DotLoader } from 'react-spinners';
+import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
+import AppToaster from '../../../../client/clientComponents/AppToaster';
+import dateFormat from '../../../../client/utilities/timeFormat';
+import apiTemplate from '../../api/template';
+import config from '../../config';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppMutation from '../../../../client/hooks/useAppMutation';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 const TemplateRecords = () => {
-    const { isPending, data: templates, error } = (0, useAppQuery_1.default)('templates', template_1.default.getTemplateRecords);
-    const { data: url } = (0, useAppQuery_1.default)('template_server_url', template_1.default.getTemplateServerURL);
-    const { mutateAsync: deleteTemplate } = (0, useAppMutation_1.default)('templates', template_1.default.deleteTemplate);
-    const { mutateAsync: updateTemplate } = (0, useAppMutation_1.default)('templates', template_1.default.updateTemplate);
-    (0, useAppEffect_1.default)(error);
+    const { isPending, data: templates, error } = useAppQuery('templates', apiTemplate.getTemplateRecords);
+    const { data: url } = useAppQuery('template_server_url', apiTemplate.getTemplateServerURL);
+    const { mutateAsync: deleteTemplate } = useAppMutation('templates', apiTemplate.deleteTemplate);
+    const { mutateAsync: updateTemplate } = useAppMutation('templates', apiTemplate.updateTemplate);
+    useAppEffect(error);
     const handleDeleteTemplate = (id) => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield deleteTemplate(id);
         if (!res) {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: 'Delete unsuccessfully' }));
+            toast(_jsx(AppToaster, { message: 'Delete unsuccessfully' }));
         }
         else {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { status: true, message: 'Delete successfully' }));
+            toast(_jsx(AppToaster, { status: true, message: 'Delete successfully' }));
         }
     });
     const handleUpdateTemplate = (id) => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield updateTemplate(id);
         if (!res) {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: 'Update unsuccessfully' }));
+            toast(_jsx(AppToaster, { message: 'Update unsuccessfully' }));
         }
         else {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { status: true, message: 'Update successfully' }));
+            toast(_jsx(AppToaster, { status: true, message: 'Update successfully' }));
         }
     });
     if (isPending)
-        return (0, jsx_runtime_1.jsx)(react_spinners_1.DotLoader, {});
-    return ((0, jsx_runtime_1.jsx)(themes_1.Flex, { py: "9", height: "fit-content", direction: "column", children: (0, jsx_runtime_1.jsxs)(themes_1.Table.Root, { variant: 'surface', children: [(0, jsx_runtime_1.jsx)(themes_1.Table.Header, { children: (0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "ID" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Type" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Template" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Thumbnail" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Unit price" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Recurring price" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Created at" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Active" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Terminate" })] }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Body, { children: templates === null || templates === void 0 ? void 0 : templates.map(template => ((0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.RowHeaderCell, { children: template.id }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.type }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)("a", { target: "_blank", href: url + template.template_url, children: "Link" }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)("a", { target: "_blank", href: url + template.thumbnail_url, children: "Link" }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.unit_price ? template.unit_price : '$10/year' }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: template.recurring_price ? template.recurring_price : '$10/year' }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, timeFormat_1.default)(template.createdAt) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(themes_1.Switch, { onClick: () => handleUpdateTemplate(template.id), size: "3", defaultChecked: template.isActive }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(AppAlertDialog_1.default, { buttonTitle: 'Terminate', title: config_1.default.message.template.terminateTitle, des: config_1.default.message.template.terminateMsg, fn: () => handleDeleteTemplate(template.id) }) })] }, template.id))) })] }) }));
+        return _jsx(DotLoader, {});
+    return (_jsx(Flex, { py: "9", height: "fit-content", direction: "column", children: _jsxs(Table.Root, { variant: 'surface', children: [_jsx(Table.Header, { children: _jsxs(Table.Row, { children: [_jsx(Table.ColumnHeaderCell, { children: "ID" }), _jsx(Table.ColumnHeaderCell, { children: "Type" }), _jsx(Table.ColumnHeaderCell, { children: "Template" }), _jsx(Table.ColumnHeaderCell, { children: "Thumbnail" }), _jsx(Table.ColumnHeaderCell, { children: "Unit price" }), _jsx(Table.ColumnHeaderCell, { children: "Recurring price" }), _jsx(Table.ColumnHeaderCell, { children: "Created at" }), _jsx(Table.ColumnHeaderCell, { children: "Active" }), _jsx(Table.ColumnHeaderCell, { children: "Terminate" })] }) }), _jsx(Table.Body, { children: templates === null || templates === void 0 ? void 0 : templates.map(template => (_jsxs(Table.Row, { children: [_jsx(Table.RowHeaderCell, { children: template.id }), _jsx(Table.Cell, { children: template.type }), _jsx(Table.Cell, { children: _jsx("a", { target: "_blank", href: url + template.template_url, children: "Link" }) }), _jsx(Table.Cell, { children: _jsx("a", { target: "_blank", href: url + template.thumbnail_url, children: "Link" }) }), _jsx(Table.Cell, { children: template.unit_price ? template.unit_price : '$10/year' }), _jsx(Table.Cell, { children: template.recurring_price ? template.recurring_price : '$10/year' }), _jsx(Table.Cell, { children: dateFormat(template.createdAt) }), _jsx(Table.Cell, { children: _jsx(Switch, { onClick: () => handleUpdateTemplate(template.id), size: "3", defaultChecked: template.isActive }) }), _jsx(Table.Cell, { children: _jsx(AppAlertDialog, { buttonTitle: 'Terminate', title: config.message.template.terminateTitle, des: config.message.template.terminateMsg, fn: () => handleDeleteTemplate(template.id) }) })] }, template.id))) })] }) }));
 };
-exports.default = TemplateRecords;
+export default TemplateRecords;

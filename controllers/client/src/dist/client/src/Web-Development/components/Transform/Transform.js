@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,12 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const TransformController_1 = __importDefault(require("./TransformController"));
-class Transform {
+import TransformController from "./TransformController";
+export default class Transform {
     constructor(ele1, ele2, ele3) {
         Object.defineProperty(this, "ele1", {
             enumerable: true,
@@ -140,7 +135,7 @@ class Transform {
     }
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
-            const transformController = new TransformController_1.default(this.wrapperClass, this.frameClass, this.controllerClassName);
+            const transformController = new TransformController(this.wrapperClass, this.frameClass, this.controllerClassName);
             yield transformController.addController();
             this.controllerContainer = document.querySelector("." + this.controllerClassName + '--container');
             this.controller = document.querySelector("." + this.controllerClassName);
@@ -436,4 +431,3 @@ class Transform {
         return this;
     }
 }
-exports.default = Transform;

@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class TextEditor {
+export default class TextEditor {
     constructor(element, cb) {
         Object.defineProperty(this, "text", {
             enumerable: true,
@@ -30,4 +28,3 @@ class TextEditor {
         return this.text;
     }
 }
-exports.default = TextEditor;

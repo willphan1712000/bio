@@ -1,17 +1,11 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = useAppEffect;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const react_1 = require("react");
-const react_hot_toast_1 = __importDefault(require("react-hot-toast"));
-const AppToaster_1 = __importDefault(require("../clientComponents/AppToaster"));
-function useAppEffect(error) {
-    (0, react_1.useEffect)(() => {
+import { jsx as _jsx } from "react/jsx-runtime";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import AppToaster from "../clientComponents/AppToaster";
+export default function useAppEffect(error) {
+    useEffect(() => {
         if (error) {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: error.message }));
+            toast(_jsx(AppToaster, { message: error.message }));
         }
     }, [error]);
 }

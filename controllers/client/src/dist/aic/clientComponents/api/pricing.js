@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const apiClient_1 = __importDefault(require("../../../client/api/apiClient"));
+import apiClient from "../../../client/api/apiClient";
 function post(pricing) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!pricing)
             throw new Error("Pricing is not defined");
-        const res = yield apiClient_1.default.post('/api/pricing', JSON.stringify(pricing));
+        const res = yield apiClient.post('/api/pricing', JSON.stringify(pricing));
         if (!res.ok)
             throw new Error(res.problem);
         const data = res.data;
@@ -31,7 +26,7 @@ function post(pricing) {
 }
 function get() {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield apiClient_1.default.get('/api/pricing');
+        const res = yield apiClient.get('/api/pricing');
         if (!res.ok)
             throw new Error(res.problem);
         const data = res.data;
@@ -45,7 +40,7 @@ function get() {
 }
 function update(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield apiClient_1.default.put('/api/pricing/' + id);
+        const res = yield apiClient.put('/api/pricing/' + id);
         if (!res.ok)
             throw new Error(res.problem);
         const data = res.data;
@@ -57,7 +52,7 @@ function update(id) {
         return data_sec.success;
     });
 }
-exports.default = {
+export default {
     post,
     get,
     update

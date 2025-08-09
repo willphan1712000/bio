@@ -1,27 +1,15 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Table = exports.AddIntersectionObserver = exports.W4 = exports.W3 = exports.W2 = exports.W1 = exports.RangeSlider = exports.ColorType = exports.FontType = exports.Options = exports.ColorPickerGradient = void 0;
-exports.$$ = $$;
-const jquery_1 = __importDefault(require("jquery"));
-const SearchUI_1 = __importDefault(require("./components/search/SearchUI"));
-const Transform_1 = __importDefault(require("./components/Transform/Transform"));
-const UploadFile_1 = __importDefault(require("./components/upload/UploadFile"));
-const TextEditor_1 = __importDefault(require("./components/textEditor/TextEditor"));
-const client_1 = __importDefault(require("react-dom/client"));
-var ColorPickerGradient_1 = require("./components/colorPicker/ColorPickerGradient");
-Object.defineProperty(exports, "ColorPickerGradient", { enumerable: true, get: function () { return __importDefault(ColorPickerGradient_1).default; } });
-var Options_1 = require("./components/options/Options");
-Object.defineProperty(exports, "Options", { enumerable: true, get: function () { return __importDefault(Options_1).default; } });
-var FontType_1 = require("./components/options/types/FontType");
-Object.defineProperty(exports, "FontType", { enumerable: true, get: function () { return __importDefault(FontType_1).default; } });
-var ColorType_1 = require("./components/options/types/ColorType");
-Object.defineProperty(exports, "ColorType", { enumerable: true, get: function () { return __importDefault(ColorType_1).default; } });
-var RangeSlider_1 = require("./components/rangeSlider/RangeSlider");
-Object.defineProperty(exports, "RangeSlider", { enumerable: true, get: function () { return __importDefault(RangeSlider_1).default; } });
-function $$(ele1, ele2, ele3, ele4) {
+import $ from 'jquery';
+import SearchUI from "./components/search/SearchUI";
+import Transform from "./components/Transform/Transform";
+import UploadFile from "./components/upload/UploadFile";
+import TextEditor from "./components/textEditor/TextEditor";
+import ReactDOM from "react-dom/client";
+export { default as ColorPickerGradient } from './components/colorPicker/ColorPickerGradient';
+export { default as Options } from './components/options/Options';
+export { default as FontType } from './components/options/types/FontType';
+export { default as ColorType } from './components/options/types/ColorType';
+export { default as RangeSlider } from './components/rangeSlider/RangeSlider';
+export function $$(ele1, ele2, ele3, ele4) {
     if (ele2 !== undefined && ele3 !== undefined && ele4 !== undefined) {
         return new W4(ele1, ele2, ele3, ele4);
     }
@@ -35,7 +23,7 @@ function $$(ele1, ele2, ele3, ele4) {
         return new W1(ele1);
     }
 }
-class W1 {
+export class W1 {
     constructor(ele1) {
         Object.defineProperty(this, "ele1", {
             enumerable: true,
@@ -49,7 +37,7 @@ class W1 {
         return new PassShowHide(this.ele1);
     }
     transform() {
-        return new Transform_1.default(this.ele1);
+        return new Transform(this.ele1);
     }
     addSpinner() {
         return new Spinner(this.ele1);
@@ -58,14 +46,13 @@ class W1 {
         return new Share(this.ele1);
     }
     textEditor(cb) {
-        return new TextEditor_1.default(this.ele1, cb);
+        return new TextEditor(this.ele1, cb);
     }
     uploadFile(cb, type) {
-        return new UploadFile_1.default(this.ele1, cb, type);
+        return new UploadFile(this.ele1, cb, type);
     }
 }
-exports.W1 = W1;
-class W2 {
+export class W2 {
     constructor(ele1, ele2) {
         Object.defineProperty(this, "ele1", {
             enumerable: true,
@@ -92,14 +79,13 @@ class W2 {
         return new Search(this.ele1, this.ele2);
     }
     transform() {
-        return new Transform_1.default(this.ele1, this.ele2);
+        return new Transform(this.ele1, this.ele2);
     }
     reactMounting() {
         return new ReactMounting(this.ele1, this.ele2);
     }
 }
-exports.W2 = W2;
-class W3 {
+export class W3 {
     constructor(ele1, ele2, ele3) {
         Object.defineProperty(this, "ele1", {
             enumerable: true,
@@ -124,7 +110,7 @@ class W3 {
         this.ele3 = ele3;
     }
     transform() {
-        return new Transform_1.default(this.ele1, this.ele2, this.ele3);
+        return new Transform(this.ele1, this.ele2, this.ele3);
     }
     addIntersectionObserver() {
         return new AddIntersectionObserver(this.ele1, this.ele2, this.ele3);
@@ -133,8 +119,7 @@ class W3 {
         return new Toggle(this.ele1, this.ele2, this.ele3);
     }
 }
-exports.W3 = W3;
-class W4 {
+export class W4 {
     constructor(ele1, ele2, ele3, ele4) {
         Object.defineProperty(this, "ele1", {
             enumerable: true,
@@ -166,7 +151,6 @@ class W4 {
         this.ele4 = ele4;
     }
 }
-exports.W4 = W4;
 class ReactMounting {
     constructor(element, jsx) {
         Object.defineProperty(this, "element", {
@@ -190,10 +174,10 @@ class ReactMounting {
         if (!parentElement) {
             throw new Error("The element React components will be mounted on is not found");
         }
-        (client_1.default.createRoot(parentElement).render(this.jsx));
+        (ReactDOM.createRoot(parentElement).render(this.jsx));
     }
 }
-class AddIntersectionObserver extends W3 {
+export class AddIntersectionObserver extends W3 {
     constructor(target, options, cb) {
         super(target, options, cb);
         Object.defineProperty(this, "observer", {
@@ -240,7 +224,6 @@ class AddIntersectionObserver extends W3 {
         return this.count;
     }
 }
-exports.AddIntersectionObserver = AddIntersectionObserver;
 class Share extends W1 {
     constructor(obj) {
         super(obj);
@@ -255,7 +238,7 @@ class Share extends W1 {
         }
     }
 }
-class Table extends W2 {
+export class Table extends W2 {
     constructor(location, data) {
         super(location, data);
         Object.defineProperty(this, "location", {
@@ -274,10 +257,10 @@ class Table extends W2 {
         this.data = data;
     }
     addHeader() {
-        (0, jquery_1.default)(this.location).append('<table><tr></tr></table>');
+        $(this.location).append('<table><tr></tr></table>');
         for (const headerKey in this.data[0]) {
             if (this.data[0].hasOwnProperty(headerKey)) {
-                (0, jquery_1.default)(this.location + " table tr").append(`<th>${headerKey}</th>`);
+                $(this.location + " table tr").append(`<th>${headerKey}</th>`);
             }
         }
         return this;
@@ -302,26 +285,25 @@ class Table extends W2 {
                 row += `<th>${eachData[eachKey]}</th>`;
             }
             row += `</tr>`;
-            (0, jquery_1.default)(this.location + " table").append(row);
+            $(this.location + " table").append(row);
         }
         return this;
     }
     empty() {
-        (0, jquery_1.default)(this.location).empty();
+        $(this.location).empty();
         this.addHeader();
     }
 }
-exports.Table = Table;
 class Spinner extends W1 {
     constructor(ele1) {
         super(ele1);
     }
     show() {
-        (0, jquery_1.default)(this.ele1.querySelector(".loader")).addClass("spinner");
+        $(this.ele1.querySelector(".loader")).addClass("spinner");
         return this;
     }
     hide() {
-        (0, jquery_1.default)(this.ele1.querySelector(".loader")).removeClass("spinner");
+        $(this.ele1.querySelector(".loader")).removeClass("spinner");
         return this;
     }
     singleSpinner() {
@@ -351,12 +333,12 @@ class Spinner extends W1 {
             }
         }`;
         document.head.appendChild(styleElement);
-        (0, jquery_1.default)(this.ele1).append(`<div class="loader"></div>`);
-        (0, jquery_1.default)(this.ele1).css("position", "relative");
+        $(this.ele1).append(`<div class="loader"></div>`);
+        $(this.ele1).css("position", "relative");
         return this;
     }
     gradientSpinner() {
-        (0, jquery_1.default)(this.ele1).append(`<div class="loader spinner"></div>`);
+        $(this.ele1).append(`<div class="loader spinner"></div>`);
         return this;
     }
 }
@@ -376,7 +358,7 @@ class PassShowHide extends W1 {
             value: void 0
         });
         this.inputSelector = inputSelector;
-        this.$input = (0, jquery_1.default)(this.inputSelector);
+        this.$input = $(this.inputSelector);
     }
     run() {
         const inputWidth = this.$input.innerWidth();
@@ -402,18 +384,18 @@ class Toggle extends W3 {
         super(ele1, ele2, ele3);
     }
     default() {
-        (0, jquery_1.default)(this.ele1).click((e) => {
-            (0, jquery_1.default)(e.currentTarget).toggleClass(this.ele2);
+        $(this.ele1).click((e) => {
+            $(e.currentTarget).toggleClass(this.ele2);
         });
         return this;
     }
     disableScroll() {
-        (0, jquery_1.default)("body").css({
+        $("body").css({
             overflow: "hidden"
         });
     }
     enableScroll() {
-        (0, jquery_1.default)("body").css({
+        $("body").css({
             overflow: "auto"
         });
     }
@@ -428,13 +410,13 @@ class Toggle extends W3 {
             this.ele1.trigger.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if ((0, jquery_1.default)(this.ele2).hasClass(this.ele3)) {
+                if ($(this.ele2).hasClass(this.ele3)) {
                     this.enableScroll();
-                    (0, jquery_1.default)(this.ele2).removeClass(this.ele3);
+                    $(this.ele2).removeClass(this.ele3);
                 }
                 else {
                     this.disableScroll();
-                    (0, jquery_1.default)(this.ele2).addClass(this.ele3);
+                    $(this.ele2).addClass(this.ele3);
                 }
             });
         }
@@ -443,17 +425,17 @@ class Toggle extends W3 {
                 const target = e.target;
                 if (this.ele1.terminate.includes(target)) {
                     this.enableScroll();
-                    (0, jquery_1.default)(this.ele2).removeClass(this.ele3);
+                    $(this.ele2).removeClass(this.ele3);
                 }
             });
         }
         return this;
     }
     cancel() {
-        (0, jquery_1.default)(this.ele1.trigger).off();
-        (0, jquery_1.default)(this.ele1.terminate).off();
-        (0, jquery_1.default)(this.ele2).off();
-        (0, jquery_1.default)(document).off();
+        $(this.ele1.trigger).off();
+        $(this.ele1.terminate).off();
+        $(this.ele2).off();
+        $(document).off();
         return this;
     }
 }
@@ -462,7 +444,7 @@ class CopyToClipboard extends W2 {
         super(ele1, ele2);
     }
     run(cb) {
-        (0, jquery_1.default)(this.ele2).click(() => {
+        $(this.ele2).click(() => {
             navigator.clipboard.writeText(this.ele1).then(() => {
                 cb();
             });
@@ -478,6 +460,6 @@ class Search extends W2 {
             writable: true,
             value: void 0
         });
-        this.searchUI = new SearchUI_1.default(this.ele1, this.ele2);
+        this.searchUI = new SearchUI(this.ele1, this.ele2);
     }
 }

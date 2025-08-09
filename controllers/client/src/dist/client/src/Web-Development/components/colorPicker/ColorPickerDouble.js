@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const ColorPickerMethod_1 = require("./ColorPickerMethod");
-class ColorPickerDouble extends ColorPickerMethod_1.ColorPickerMethod {
+import { ColorPickerMethod } from "./ColorPickerMethod";
+export default class ColorPickerDouble extends ColorPickerMethod {
     constructor(container, cb, options) {
         super();
         Object.defineProperty(this, "color", {
@@ -149,4 +147,3 @@ class ColorPickerDouble extends ColorPickerMethod_1.ColorPickerMethod {
         `;
     }
 }
-exports.default = ColorPickerDouble;

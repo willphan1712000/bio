@@ -1,17 +1,12 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const theme_1 = __importDefault(require("../../../client/clientComponents/context/theme"));
-const AppLineChart_1 = __importDefault(require("./dashboardComponents/AppLineChart"));
-const StatCards_1 = __importDefault(require("./dashboardComponents/StatCards"));
-const Users_1 = __importDefault(require("./dashboardComponents/Users"));
-const Layout_1 = __importDefault(require("./Layout"));
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import useThemeContext from "../../../client/clientComponents/context/theme";
+import AppLineChart from "./dashboardComponents/AppLineChart";
+import StatCards from "./dashboardComponents/StatCards";
+import Users from "./dashboardComponents/Users";
+import Layout from "./Layout";
 const Dashboard = () => {
-    const theme = (0, theme_1.default)();
+    const theme = useThemeContext();
     const headingClasses = `${theme.classes.text} text-[2rem] p-5`;
-    return ((0, jsx_runtime_1.jsxs)(Layout_1.default, { heading: "Welcome to Link bio Dashboard", children: [(0, jsx_runtime_1.jsx)(StatCards_1.default, {}), (0, jsx_runtime_1.jsx)(AppLineChart_1.default, {}), (0, jsx_runtime_1.jsx)(Users_1.default, {})] }));
+    return (_jsxs(Layout, { heading: "Welcome to Link bio Dashboard", children: [_jsx(StatCards, {}), _jsx(AppLineChart, {}), _jsx(Users, {})] }));
 };
-exports.default = Dashboard;
+export default Dashboard;

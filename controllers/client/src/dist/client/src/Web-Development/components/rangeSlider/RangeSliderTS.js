@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RangeSlider = void 0;
-class RangeSlider {
+export class RangeSlider {
     constructor(container, cb, options) {
         var _a;
         Object.defineProperty(this, "options", {
@@ -139,4 +136,3 @@ class RangeSlider {
         `;
     }
 }
-exports.RangeSlider = RangeSlider;

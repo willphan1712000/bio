@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const wait = (howLong) => {
     return new Promise((res, rej) => {
         setTimeout(() => {
@@ -7,4 +5,4 @@ const wait = (howLong) => {
         }, howLong);
     });
 };
-exports.default = wait;
+export default wait;

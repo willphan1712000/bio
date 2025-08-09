@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,11 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const apiClient_1 = __importDefault(require("../client/api/apiClient"));
+import apiClient from "../client/api/apiClient";
 $("document").ready(function () {
     return __awaiter(this, void 0, void 0, function* () {
         const container = document.getElementById('container');
@@ -22,7 +17,7 @@ $("document").ready(function () {
         if (!content)
             return;
         content.innerHTML = 'Loading...';
-        const res = yield apiClient_1.default.get('/api/wp/pages/terms');
+        const res = yield apiClient.get('/api/wp/pages/terms');
         if (!res.ok)
             throw new Error(res.problem);
         const data = res.data;

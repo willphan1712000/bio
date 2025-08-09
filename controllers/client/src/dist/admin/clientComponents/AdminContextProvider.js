@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const AdminContext_1 = require("./AdminContext");
+import { jsx as _jsx } from "react/jsx-runtime";
+import { AdminContext, AdminCssContext, AdminSettingContext, AdminRegexContext, AdminLabelContext, AdminIconContext } from './AdminContext';
 const AdminContextProvider = ({ data, css, regex, label, setting, children, iconMap }) => {
-    return ((0, jsx_runtime_1.jsx)(AdminContext_1.AdminContext.Provider, { value: data, children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminCssContext.Provider, { value: css, children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminSettingContext.Provider, { value: setting, children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminRegexContext.Provider, { value: regex, children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminLabelContext.Provider, { value: label, children: (0, jsx_runtime_1.jsx)(AdminContext_1.AdminIconContext.Provider, { value: iconMap, children: children }) }) }) }) }) }));
+    return (_jsx(AdminContext.Provider, { value: data, children: _jsx(AdminCssContext.Provider, { value: css, children: _jsx(AdminSettingContext.Provider, { value: setting, children: _jsx(AdminRegexContext.Provider, { value: regex, children: _jsx(AdminLabelContext.Provider, { value: label, children: _jsx(AdminIconContext.Provider, { value: iconMap, children: children }) }) }) }) }) }));
 };
-exports.default = AdminContextProvider;
+export default AdminContextProvider;

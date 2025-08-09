@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,37 +7,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const themes_1 = require("@radix-ui/themes");
-const react_hot_toast_1 = __importDefault(require("react-hot-toast"));
-const react_spinners_1 = require("react-spinners");
-const AppAlertDialog_1 = __importDefault(require("../../../../client/clientComponents/AppAlertDialog"));
-const timeFormat_1 = __importDefault(require("../../../../client/utilities/timeFormat"));
-const users_1 = __importDefault(require("../../api/users"));
-const config_1 = __importDefault(require("../../config"));
-const AppToaster_1 = __importDefault(require("../../../../client/clientComponents/AppToaster"));
-const useAppEffect_1 = __importDefault(require("../../../../client/hooks/useAppEffect"));
-const useAppMutation_1 = __importDefault(require("../../../../client/hooks/useAppMutation"));
-const useAppQuery_1 = __importDefault(require("../../../../client/hooks/useAppQuery"));
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Flex, Table } from '@radix-ui/themes';
+import toast from 'react-hot-toast';
+import { DotLoader } from 'react-spinners';
+import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
+import dateFormat from '../../../../client/utilities/timeFormat';
+import apiUsers from '../../api/users';
+import config from '../../config';
+import AppToaster from '../../../../client/clientComponents/AppToaster';
+import useAppEffect from '../../../../client/hooks/useAppEffect';
+import useAppMutation from '../../../../client/hooks/useAppMutation';
+import useAppQuery from '../../../../client/hooks/useAppQuery';
 const Users = () => {
-    const { isPending, data: users, error } = (0, useAppQuery_1.default)('users', users_1.default.getUsers);
-    const { mutateAsync: deleteTemplate } = (0, useAppMutation_1.default)('users', users_1.default.deleteUser);
-    (0, useAppEffect_1.default)(error);
+    const { isPending, data: users, error } = useAppQuery('users', apiUsers.getUsers);
+    const { mutateAsync: deleteTemplate } = useAppMutation('users', apiUsers.deleteUser);
+    useAppEffect(error);
     const handleDeleteUser = (username) => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield deleteTemplate(username);
         if (!res) {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: 'Delete unsuccessfully' }));
+            toast(_jsx(AppToaster, { message: 'Delete unsuccessfully' }));
         }
         else {
-            (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: 'Delete successfully', status: true }));
+            toast(_jsx(AppToaster, { message: 'Delete successfully', status: true }));
         }
     });
     if (isPending)
-        return (0, jsx_runtime_1.jsx)(react_spinners_1.DotLoader, {});
-    return ((0, jsx_runtime_1.jsx)(themes_1.Flex, { py: "9", height: "fit-content", direction: "column", children: (0, jsx_runtime_1.jsxs)(themes_1.Table.Root, { variant: 'surface', children: [(0, jsx_runtime_1.jsx)(themes_1.Table.Header, { children: (0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Username" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Email" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Token" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Delete Token" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Created at" }), (0, jsx_runtime_1.jsx)(themes_1.Table.ColumnHeaderCell, { children: "Terminate user" })] }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Body, { children: users === null || users === void 0 ? void 0 : users.map(user => ((0, jsx_runtime_1.jsxs)(themes_1.Table.Row, { children: [(0, jsx_runtime_1.jsx)(themes_1.Table.RowHeaderCell, { children: (0, jsx_runtime_1.jsx)("a", { href: `/${user.username}`, target: '__blank', children: user.username }) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: user.email }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: user.token }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: user.deleteToken }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, timeFormat_1.default)(user.createdAt) }), (0, jsx_runtime_1.jsx)(themes_1.Table.Cell, { children: (0, jsx_runtime_1.jsx)(AppAlertDialog_1.default, { buttonTitle: 'Terminate', title: config_1.default.message.user.terminateTitle, des: config_1.default.message.user.terminateMsg, fn: () => handleDeleteUser(user.username) }) })] }, user.username))) })] }) }));
+        return _jsx(DotLoader, {});
+    return (_jsx(Flex, { py: "9", height: "fit-content", direction: "column", children: _jsxs(Table.Root, { variant: 'surface', children: [_jsx(Table.Header, { children: _jsxs(Table.Row, { children: [_jsx(Table.ColumnHeaderCell, { children: "Username" }), _jsx(Table.ColumnHeaderCell, { children: "Email" }), _jsx(Table.ColumnHeaderCell, { children: "Token" }), _jsx(Table.ColumnHeaderCell, { children: "Delete Token" }), _jsx(Table.ColumnHeaderCell, { children: "Created at" }), _jsx(Table.ColumnHeaderCell, { children: "Terminate user" })] }) }), _jsx(Table.Body, { children: users === null || users === void 0 ? void 0 : users.map(user => (_jsxs(Table.Row, { children: [_jsx(Table.RowHeaderCell, { children: _jsx("a", { href: `/${user.username}`, target: '__blank', children: user.username }) }), _jsx(Table.Cell, { children: user.email }), _jsx(Table.Cell, { children: user.token }), _jsx(Table.Cell, { children: user.deleteToken }), _jsx(Table.Cell, { children: dateFormat(user.createdAt) }), _jsx(Table.Cell, { children: _jsx(AppAlertDialog, { buttonTitle: 'Terminate', title: config.message.user.terminateTitle, des: config.message.user.terminateMsg, fn: () => handleDeleteUser(user.username) }) })] }, user.username))) })] }) }));
 };
-exports.default = Users;
+export default Users;

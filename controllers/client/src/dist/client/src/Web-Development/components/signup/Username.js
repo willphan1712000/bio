@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Username {
+export default class Username {
     constructor(username, signUpUI) {
         Object.defineProperty(this, "$username", {
             enumerable: true,
@@ -23,4 +21,3 @@ class Username {
         return text.replace(/\s+/g, '');
     }
 }
-exports.default = Username;

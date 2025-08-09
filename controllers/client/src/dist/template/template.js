@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,28 +7,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = template;
-const jsx_runtime_1 = require("react/jsx-runtime");
-const swiper_1 = __importDefault(require("swiper"));
-const W_1 = require("../client/src/Web-Development/W");
-const TemplateContext_1 = require("./clientComponents/TemplateContext");
-const Cart_1 = __importDefault(require("./clientComponents/cart/Cart"));
-const WW_1 = require("../client/src/Web-Development/WW");
+import { jsx as _jsx } from "react/jsx-runtime";
+import Swiper from "swiper";
+import { $$ } from "../client/src/Web-Development/W";
+import { auth, username } from "./clientComponents/TemplateContext";
+import Cart from "./clientComponents/cart/Cart";
+import { $$$ } from "../client/src/Web-Development/WW";
 $(document).ready(() => {
     template(props);
 });
-function template(props) {
-    (0, W_1.$$)("#cart", (0, jsx_runtime_1.jsx)(Cart_1.default, { signin: props.isSignedIn })).reactMounting();
+export default function template(props) {
+    $$("#cart", _jsx(Cart, { signin: props.isSignedIn })).reactMounting();
     (function () {
         if (props.isSignedIn !== "true") {
             localStorage.clear();
         }
     })();
-    const swiper = new swiper_1.default('.swiper', {
+    const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         loop: false,
     });
@@ -50,35 +44,35 @@ function template(props) {
     $(".share").click(e => {
         const current = e.currentTarget;
         const shareURL = $(current).data("share");
-        (0, W_1.$$)({
-            title: (0, TemplateContext_1.username)(),
+        $$({
+            title: username(),
             url: shareURL
         }).share();
     });
     $(".select").click((e) => __awaiter(this, void 0, void 0, function* () {
         const current = e.currentTarget;
         const id = $(current).data("id");
-        const r = yield (0, WW_1.$$$)('/data/api/user/template/PUT.php', {
-            username: (0, TemplateContext_1.username)(),
+        const r = yield $$$('/data/api/user/template/PUT.php', {
+            username: username(),
             template_id: id
         }).api().post();
         if (r.success) {
-            window.location.href = '/' + (0, TemplateContext_1.username)();
+            window.location.href = '/' + username();
         }
     }));
     $(".buy").click(e => {
-        (0, TemplateContext_1.auth)(props.isSignedIn === 'true', () => {
+        auth(props.isSignedIn === 'true', () => {
             const current = $(e.currentTarget);
             const id = current.data("id");
-            window.location.href = '/@checkout?username=' + (0, TemplateContext_1.username)() + '&itemid=' + id;
+            window.location.href = '/@checkout?username=' + username() + '&itemid=' + id;
         });
     });
     (function () {
         return __awaiter(this, void 0, void 0, function* () {
-            if ((0, TemplateContext_1.username)() !== null) {
+            if (username() !== null) {
                 try {
-                    const r = yield (0, WW_1.$$$)("/data/api/template/GET.php", {
-                        username: (0, TemplateContext_1.username)()
+                    const r = yield $$$("/data/api/template/GET.php", {
+                        username: username()
                     }).api().post();
                     if (r.success) {
                         r.data.map(item => {
@@ -93,13 +87,13 @@ function template(props) {
         });
     })();
     $(".like").click(e => {
-        (0, TemplateContext_1.auth)(props.isSignedIn === 'true', () => __awaiter(this, void 0, void 0, function* () {
+        auth(props.isSignedIn === 'true', () => __awaiter(this, void 0, void 0, function* () {
             const current = $(e.currentTarget);
             const id = current.data("id");
             if (!current.hasClass("active")) {
                 try {
-                    const r = yield (0, WW_1.$$$)("/data/api/template/POST.php", {
-                        username: (0, TemplateContext_1.username)(),
+                    const r = yield $$$("/data/api/template/POST.php", {
+                        username: username(),
                         template_id: id
                     }).api().post();
                     if (r.success) {
@@ -112,8 +106,8 @@ function template(props) {
             }
             else {
                 try {
-                    const r = yield (0, WW_1.$$$)("/data/api/template/DELETE.php", {
-                        username: (0, TemplateContext_1.username)(),
+                    const r = yield $$$("/data/api/template/DELETE.php", {
+                        username: username(),
                         template_id: id
                     }).api().post();
                     if (r.success) {
@@ -127,7 +121,7 @@ function template(props) {
         }));
     });
     (function () {
-        const imgSpinner = (0, W_1.$$)(document.querySelector(".template .template-img")).addSpinner().singleSpinner();
+        const imgSpinner = $$(document.querySelector(".template .template-img")).addSpinner().singleSpinner();
         const img = $(".template .template-img > img");
         imgSpinner.show();
         img.css({

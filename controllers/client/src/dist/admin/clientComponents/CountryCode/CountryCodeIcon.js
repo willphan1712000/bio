@@ -1,44 +1,9 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsx_runtime_1 = require("react/jsx-runtime");
-const AdminContext_1 = __importStar(require("../AdminContext"));
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import handleAdminContext, { handleAdminElementContext } from "../AdminContext";
 const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-    const name = (0, AdminContext_1.handleAdminElementContext)();
-    const data = (0, AdminContext_1.default)();
+    const name = handleAdminElementContext();
+    const data = handleAdminContext();
     let flag = '', code = '';
     switch (name) {
         case 'Mobile':
@@ -64,6 +29,6 @@ const CountryCodeIcon = ({ buttonRef, onCallBack }) => {
         default:
             break;
     }
-    return ((0, jsx_runtime_1.jsxs)("div", { onClick: () => onCallBack(), className: "countryCode p-[2px] flex flex-row rounded-[10px] bg-white h-auto mr-[5px] cursor-pointer", "data-index": true, "data-flag": true, "data-code": true, ref: buttonRef, children: [(0, jsx_runtime_1.jsx)("div", { className: "flag w-[40px] p-[5px] !flex items-center", children: (0, jsx_runtime_1.jsx)("img", { draggable: false, className: 'w-full h-full', src: `/controllers/admin/clientComponents/CountryCode/flags/${flag.toLowerCase()}.png` }) }), (0, jsx_runtime_1.jsx)("p", { className: "code !flex items-center p-[2px]", children: code }), (0, jsx_runtime_1.jsx)("i", { className: "fa-solid fa-caret-down !flex items-center p-[2px]" })] }));
+    return (_jsxs("div", { onClick: () => onCallBack(), className: "countryCode p-[2px] flex flex-row rounded-[10px] bg-white h-auto mr-[5px] cursor-pointer", "data-index": true, "data-flag": true, "data-code": true, ref: buttonRef, children: [_jsx("div", { className: "flag w-[40px] p-[5px] !flex items-center", children: _jsx("img", { draggable: false, className: 'w-full h-full', src: `/controllers/admin/clientComponents/CountryCode/flags/${flag.toLowerCase()}.png` }) }), _jsx("p", { className: "code !flex items-center p-[2px]", children: code }), _jsx("i", { className: "fa-solid fa-caret-down !flex items-center p-[2px]" })] }));
 };
-exports.default = CountryCodeIcon;
+export default CountryCodeIcon;

@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const codeList = [
     {
         "name": "Afghanistan",
@@ -1212,4 +1210,4 @@ const codeList = [
         "code": "ZW"
     }
 ];
-exports.default = codeList;
+export default codeList;

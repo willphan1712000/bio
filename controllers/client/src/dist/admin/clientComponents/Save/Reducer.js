@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = reducer;
-function reducer(state, action) {
+export default function reducer(state, action) {
     switch (action.type) {
         case 'submit':
             return Object.assign(Object.assign({}, state), { isSubmitting: !state.isSubmitting });

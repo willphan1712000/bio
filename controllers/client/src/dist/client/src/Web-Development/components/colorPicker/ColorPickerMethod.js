@@ -1,8 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorPickerMethod = void 0;
-exports.hslToHex = hslToHex;
-class ColorPickerMethod {
+export class ColorPickerMethod {
     clickBehavior(container) {
         const $container = $(container);
         const $colorPicker = $(container + " .colorPickerBox");
@@ -70,8 +66,7 @@ class ColorPickerMethod {
         }).join('');
     }
 }
-exports.ColorPickerMethod = ColorPickerMethod;
-function hslToHex(h, s, l) {
+export function hslToHex(h, s, l) {
     s /= 100;
     l /= 100;
     let c = (1 - Math.abs(2 * l - 1)) * s;

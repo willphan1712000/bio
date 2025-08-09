@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Canvas {
+export default class Canvas {
     createCanvas(width, height) {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
@@ -53,4 +51,3 @@ class Canvas {
         }
     }
 }
-exports.default = Canvas;
