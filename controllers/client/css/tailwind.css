@@ -700,6 +700,10 @@ video {
   left: -10px;
 }
 
+.left-\[-250px\] {
+  left: -250px;
+}
+
 .left-\[-5px\] {
   left: -5px;
 }
@@ -730,6 +734,10 @@ video {
 
 .left-\[20\%\] {
   left: 20%;
+}
+
+.left-\[400px\] {
+  left: 400px;
 }
 
 .right-0 {
@@ -796,6 +804,10 @@ video {
   top: 0.5rem;
 }
 
+.top-\[0\] {
+  top: 0;
+}
+
 .top-\[10\%\] {
   top: 10%;
 }
@@ -818,6 +830,10 @@ video {
 
 .top-\[40px\] {
   top: 40px;
+}
+
+.top-\[50px\] {
+  top: 50px;
 }
 
 .top-\[5px\] {

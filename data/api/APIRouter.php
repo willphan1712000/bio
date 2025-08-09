@@ -22,6 +22,7 @@ class APIRouter
             $api_router->get('/api/woo/product/{id}', 'business\wp\ProductController@getWithId');
             $api_router->get('/api/wp/pages/terms', 'business\wp\Terms@get');
             $api_router->get('/api/wp/pages/privacy', 'business\wp\Privacy@get');
+            $api_router->get('/api/wp/pages/pricing', 'business\wp\Pricing@get');
 
             $api_router->get('/api/branches', 'business\beautyBooking\BranchesController@get');
 

@@ -8,15 +8,16 @@ const Copyright = () => {
     queryFn: async () => await apiCompanyInfo.get()
   })
     const copyright = `© ${new Date().getFullYear()} Allinclicks. All rights reserved.`
-    const allinclicksUrl = companyInfo?.url.split(" ")[0]
   return (
     <div className="relative flex flex-col justify-center items-center w-full text-white">
         <p>{copyright}</p>
         {isPending ? <BeatLoader /> : (
             <div className="flex flex-row gap-3">
-                <a href={`${allinclicksUrl}/privacy`} target="">Privacy Policy</a>
+                <a href={`/@privacy`} target="">Privacy Policy</a>
                 <span> | </span>
-                <a href={`${allinclicksUrl}/terms`} target="">Terms of Use</a>
+                <a href={`/@terms`} target="">Terms of Use</a>
+                <span> | </span>
+                <a href={`/@pricing`} target="">Pricing Policy</a>
             </div>
         )}
     </div>

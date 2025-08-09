@@ -19,7 +19,7 @@ $user = ['signin', 'signup', 'forgot', 'forgotUsername', 'resetPass', 'restore']
 $template = ['template'];
 $warning = ['expire', 'deactivate'];
 $admin = ['aic'];
-$document = ['terms', 'privacy'];
+$document = ['terms', 'privacy', 'pricing'];
 
 $pages = array_merge($payment, $user, $template, $warning, $admin, $document);
 

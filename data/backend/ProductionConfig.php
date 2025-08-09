@@ -34,7 +34,7 @@ class ProductionConfig
     public static Mode $mode = Mode::PRODUCTION; // mode (development or production)
     public static Type $type = Type::TEST;
     public static Bio $bio = Bio::PRO;
-    public static $version = "7.9.1"; // version of the product
+    public static $version = "7.9.2"; // version of the product
 
     public static function database()
     {

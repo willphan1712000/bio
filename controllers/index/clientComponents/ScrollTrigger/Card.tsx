@@ -1,6 +1,7 @@
 import React, { useImperativeHandle, useRef } from 'react'
 import Text from './Text';
 import clientConfig from '../../clientConfig';
+import useWindowWidth, { mobile } from '../../hooks/useWindowWidth';
 
 export type CardRef = {
   card: HTMLDivElement | null
@@ -22,15 +23,31 @@ const Card = React.forwardRef<CardRef, React.HTMLAttributes<HTMLDivElement>>((pr
     three: three.current
   }))
 
+  const windowWidth = useWindowWidth()
+
+  if(windowWidth <= mobile) {
+    return (
+      <div className="card-container" style={cardContainerStyle} >
+        <div className="card" ref={card} style={cardStyle}>
+          <div className="card-face front" style={frontFaceStyle}></div>
+          <div className="card-face back" style={backFaceStyle}></div>
+        </div>
+        <Text text={clientConfig.nfc.one} ref={one} className='bottom-[-70%] left-[0%] absolute w-[200px] z-10'/>
+        <Text text={clientConfig.nfc.two} ref={two} className='bottom-[-60%] left-[10%] absolute w-[200px] z-10'/>
+        <Text text={clientConfig.nfc.three} ref={three} className='bottom-[-80%] left-[20%] absolute w-[200px] z-10'/>
+      </div>
+    )
+  }
+
   return (
     <div className="card-container" style={cardContainerStyle} >
       <div className="card" ref={card} style={cardStyle}>
         <div className="card-face front" style={frontFaceStyle}></div>
         <div className="card-face back" style={backFaceStyle}></div>
       </div>
-      <Text text={clientConfig.nfc.one} ref={one} className='bottom-[-70%] left-[0%] absolute w-[200px] z-10'/>
-      <Text text={clientConfig.nfc.two} ref={two} className='bottom-[-60%] left-[10%] absolute w-[200px] z-10'/>
-      <Text text={clientConfig.nfc.three} ref={three} className='bottom-[-80%] left-[20%] absolute w-[200px] z-10'/>
+      <Text text={clientConfig.nfc.one} ref={one} className='top-[0] left-[400px] absolute w-[200px] z-10' pointerDirection='left'/>
+      <Text text={clientConfig.nfc.two} ref={two} className='top-0 left-[-250px] absolute w-[200px] z-10' pointerDirection='right'/>
+      <Text text={clientConfig.nfc.three} ref={three} className='top-[50px] left-[400px] absolute w-[200px] z-10' pointerDirection='left'/>
     </div>
   )
 })

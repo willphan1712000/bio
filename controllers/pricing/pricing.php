@@ -22,7 +22,7 @@ use function component\signup\signupTerms;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy</title>
+    <title>Pricing Policy</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script>
 </head>
