@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run Typescript Compiler ...
+        run: npm run build-ts
+
       - name: Building Project ...
         run: npm run build
 
