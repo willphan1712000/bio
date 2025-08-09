@@ -5,6 +5,9 @@ user/*
 # node module
 node_modules/
 
+# vendor (composer)
+vendor/*
+
 # MacOS
 .DS_Store
 
