@@ -6,7 +6,7 @@ user/*
 node_modules/
 
 # vendor (composer)
-vendor/*
+vendor/
 
 # MacOS
 .DS_Store
@@ -32,4 +32,4 @@ migrations/*
 .vscode
 
 # distribution
-dist/*
+dist/
