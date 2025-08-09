@@ -10,6 +10,7 @@ import { PricingContext, PricingModel } from './context'
 import MultiSelect from './multiSelect/MultiSelect'
 import useAppQuery from '../../../../client/hooks/useAppQuery'
 import useAppEffect from '../../../../client/hooks/useAppEffect'
+import useAppMutation from '../../../../client/hooks/useAppMutation'
 
 const PricingModel = () => {
     const theme = useThemeContext()
@@ -17,6 +18,7 @@ const PricingModel = () => {
     const [pricing, setPricing] = useState<PricingModel[] | undefined>(undefined)
 
     const { isPending, data: pricingQuery, error } = useAppQuery("pricing", apiPricing.get)
+    const { mutateAsync: pricingUpdate } = useAppMutation("pricing", apiPricing.post)
     useAppEffect(error)
 
     useEffect(() => {
@@ -26,10 +28,10 @@ const PricingModel = () => {
     }, [pricingQuery])
     
     const handleUpdate = async () => {
-        const { error } = await handleAsync(apiPricing.post(pricing))
-        if(error) {
+        const res = await pricingUpdate(pricing)
+        if(!res) {
             return toast(
-                <AppToaster message={error} />
+                <AppToaster message={error?.message} />
             )
         }
 

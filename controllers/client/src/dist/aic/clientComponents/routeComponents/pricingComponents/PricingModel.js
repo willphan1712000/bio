@@ -19,17 +19,18 @@ const react_hot_toast_1 = __importDefault(require("react-hot-toast"));
 const react_spinners_1 = require("react-spinners");
 const AppToaster_1 = __importDefault(require("../../../../client/clientComponents/AppToaster"));
 const theme_1 = __importDefault(require("../../../../client/clientComponents/context/theme"));
-const handleAsync_1 = __importDefault(require("../../../../client/utilities/handleAsync"));
 const pricing_1 = __importDefault(require("../../api/pricing"));
 const context_1 = require("./context");
 const MultiSelect_1 = __importDefault(require("./multiSelect/MultiSelect"));
 const useAppQuery_1 = __importDefault(require("../../../../client/hooks/useAppQuery"));
 const useAppEffect_1 = __importDefault(require("../../../../client/hooks/useAppEffect"));
+const useAppMutation_1 = __importDefault(require("../../../../client/hooks/useAppMutation"));
 const PricingModel = () => {
     const theme = (0, theme_1.default)();
     const containerClasses = `${theme.classes.border} md:w-fit w-full p-10 rounded-[30px] flex flex-col items-center md:items-start my-5`;
     const [pricing, setPricing] = (0, react_1.useState)(undefined);
     const { isPending, data: pricingQuery, error } = (0, useAppQuery_1.default)("pricing", pricing_1.default.get);
+    const { mutateAsync: pricingUpdate } = (0, useAppMutation_1.default)("pricing", pricing_1.default.post);
     (0, useAppEffect_1.default)(error);
     (0, react_1.useEffect)(() => {
         if (!isPending && pricingQuery) {
@@ -37,9 +38,9 @@ const PricingModel = () => {
         }
     }, [pricingQuery]);
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { error } = yield (0, handleAsync_1.default)(pricing_1.default.post(pricing));
-        if (error) {
-            return (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: error }));
+        const res = yield pricingUpdate(pricing);
+        if (!res) {
+            return (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { message: error === null || error === void 0 ? void 0 : error.message }));
         }
         (0, react_hot_toast_1.default)((0, jsx_runtime_1.jsx)(AppToaster_1.default, { status: true, message: "Update successfully" }));
     });

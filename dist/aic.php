@@ -1,8 +1,0 @@
-<?php
-
-use component\Copyright;
-?> <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AIC Admin</title><script src="https://kit.fontawesome.com/960d33c629.js" crossorigin="anonymous"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="/dist/tailwind8490fe3b22f2925796c8.js"></script><script src="/dist/universala11dc2d6c81a1151b30c.js"></script><script src="/dist/mainbc04966ddf355a8e3efc.js"></script><script src="/dist/prevjsd28e3153709e20ba757f.js"></script><script src="/dist/aicjsbfe682b60e38756603d8.js"></script></head><body><div class="warning__parent"><div class="warning__child"><i class="fa-solid fa-circle-exclamation"></i><p style="text-align: center">Warning, all information of this account will be deleted, are you sure you want to proceed?</p><div class="btn"><div class="btn__ele btn__confirm">Yes</div><div class="btn__ele btn__back">No</div></div></div></div><div id="aic"><!-- ========= SEPARATOR ========== --><div id="admin_container"></div><!-- ========= SEPARATOR ========== --> <?php
-        (new Copyright([
-            'position' => 'relative'
-        ]))->render();
-        ?> </div><script>const type = 'aic';</script></body></html>

@@ -27,3 +27,6 @@ migrations/*
 
 # vscode
 .vscode
+
+# distribution
+dist/*

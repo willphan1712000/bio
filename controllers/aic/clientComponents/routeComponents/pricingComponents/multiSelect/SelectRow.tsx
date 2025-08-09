@@ -41,7 +41,7 @@ const SelectRow = ({ id }: Props) => {
     
     return (
         <div className='flex flex-col md:flex-row gap-6 relative w-full items-center my-[10px]'>
-            <div className="relative w-fit">
+            <div className="relative w-fit text-black">
                <p>{id + 1}</p>
             </div>
             <AppInput 
