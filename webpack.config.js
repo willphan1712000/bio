@@ -35,6 +35,7 @@ const entryjs = {
   aicjs: path.resolve(__dirname, 'controllers/client/src/dist/aic/aic.js'),
   terms: path.resolve(__dirname, 'controllers/client/src/dist/terms/terms.js'),
   privacy: path.resolve(__dirname, 'controllers/client/src/dist/privacy/privacy.js'),
+  pricing: path.resolve(__dirname, 'controllers/client/src/dist/pricing/pricing.js'),
   index: path.resolve(__dirname, 'controllers/client/src/dist/index/index.js'),
 }
 const entryHtml = {
@@ -51,6 +52,7 @@ const entryHtml = {
   "signup.php": "controllers/signup/signup.php",
   "template.php": "controllers/template/template.php",
   "terms.php": "controllers/terms/terms.php",
+  "pricing.php": "controllers/pricing/pricing.php",
   "privacy.php": "controllers/privacy/privacy.php",
   "user.php": "controllers/user/user.php",
   "userDefault.php": "controllers/default/userDefault.php",
@@ -76,6 +78,7 @@ const entryChunks = {
   "signup.php": ['tailwind', 'signupjs', 'prevjs', 'universal', 'main'],
   "template.php": ['tailwind', 'templatejs', 'template', 'universal'],
   "terms.php": ['terms', 'tailwind', 'universal'],
+  "pricing.php": ['pricing', 'tailwind', 'universal'],
   "privacy.php": ['privacy', 'tailwind', 'universal'],
   "user.php": [],
   "userDefault.php": ['userjs'],

@@ -6,7 +6,7 @@ import Copyright from './Copyright'
 
 const Footer = () => {
     return (
-            <div className='bg-[#111113] p-[30px] w-full flex flex-row justify-center rounded-t-[30px]'>
+            <div className='bg-[#111113] p-[30px] w-full flex flex-row justify-center rounded-t-[30px] z-[1]'>
                 <div className=' max-w-[1000px]'>
                     <div className='flex flex-col lg:flex-row gap-10 justify-center items-center lg:items-start'>
                         <div className='flex-1 w-[50%] max-w-[300px]'><Logo /></div>
