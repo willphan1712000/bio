@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
+    "build-ts": "rm -rf ./controllers/client/src/dist/ && tsc",
     "wpw": "webpack --watch",
     "twb": "tailwindcss -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css",
     "tww": "tailwindcss -i controllers/client/src/styles.css -o controllers/client/css/tailwind.css --watch",

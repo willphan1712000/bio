@@ -33,3 +33,4 @@ migrations/*
 
 # distribution
 dist/
+controllers/client/src/dist
