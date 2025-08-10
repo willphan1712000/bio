@@ -23,6 +23,7 @@ interface Success {
 }
 
 const key = process.env.SYSTEM_SECRET_KEY
+console.log(key)
 
 export default class SignUpUI {
     private usernameBox: Username;
