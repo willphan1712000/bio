@@ -22,6 +22,9 @@ jobs:
 
       - name: Run Typescript Compiler ...
         run: npm run build-ts
+        env:
+          SYSTEM_SECRET_KEY: ${{ secrets.SYSTEM_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
 
       - name: Building Project ...
         run: npm run build
