@@ -2,12 +2,12 @@
 
 namespace api\user;
 
-use api\APISecret;
+use api\APIAbstract;
 use business\user\DELETE as userDELETE;
 
 require_once __DIR__ . "/../../../vendor/autoload.php";
 
-class DELETE extends APISecret
+class DELETE extends APIAbstract
 {
     public function handleRequest($body)
     {
