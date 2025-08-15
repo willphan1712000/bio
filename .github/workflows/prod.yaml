@@ -22,12 +22,12 @@ jobs:
 
       - name: Run Typescript Compiler ...
         run: npm run build-ts
-        env:
-          SYSTEM_SECRET_KEY: ${{ secrets.SYSTEM_SECRET_KEY }}
-          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
 
       - name: Building Project ...
         run: npm run build
+        env:
+          SYSTEM_SECRET_KEY: ${{ secrets.SYSTEM_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
 
       - name: Fix permissions for .tanstack/tmp
         run: chmod -R a+r .tanstack/tmp || true
