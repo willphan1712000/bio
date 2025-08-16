@@ -8,6 +8,11 @@ class TalkToOtherServer
 
     private function __construct() {}
 
+    private function headers(): array
+    {
+        return SystemConfig::globalVariables()['template_server']['headers'];
+    }
+
     public static function getInstance(): TalkToOtherServer
     {
         if (!isset(self::$instance)) {
@@ -27,6 +32,12 @@ class TalkToOtherServer
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = $this->headers();
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        }
+
         $res = curl_exec($ch);
 
         if (curl_errno($ch)) {
@@ -40,13 +51,14 @@ class TalkToOtherServer
 
     public function getId() {}
 
-    public function post(string $url, $data, callable $ifSuccessFunc, callable $ifFailFunc, array $headers = [])
+    public function post(string $url, $data, callable $ifSuccessFunc, callable $ifFailFunc)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
+        $headers = $this->headers();
         if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }
@@ -62,12 +74,13 @@ class TalkToOtherServer
         curl_close($ch);
     }
 
-    public function put(string $url, callable $ifSuccessFunc, callable $ifFailFunc, array $headers = [])
+    public function put(string $url, callable $ifSuccessFunc, callable $ifFailFunc)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+        $headers = $this->headers();
         if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }
@@ -83,12 +96,13 @@ class TalkToOtherServer
         curl_close($ch);
     }
 
-    public function delete(string $url, callable $ifSuccessFunc, callable $ifFailFunc, array $headers = []): void
+    public function delete(string $url, callable $ifSuccessFunc, callable $ifFailFunc): void
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+        $headers = $this->headers();
         if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }

@@ -2,6 +2,12 @@
 
 namespace config;
 
+require_once __DIR__ . "/../../vendor/autoload.php";
+
+use Dotenv\Dotenv;
+
+Dotenv::createImmutable(__DIR__ . "./../../")->load();
+
 require_once __DIR__ . '/business/auth/Auth.php';
 
 use business\auth\STRATEGY;
@@ -67,12 +73,20 @@ class SystemConfig
                 'endpoint' => [
                     'template' => '/api/template',
                     'pricing' => '/api/pricing'
+                ],
+                'headers' => [
+                    "Authorization: {$_ENV['SYSTEM_SECRET_KEY']}",
+                    "Content-Type: application/json"
                 ]
             ],
             'payment_server' => [
                 'url' => ProductionConfig::config()['payment_server'],
                 'endpoint' => [
                     ''
+                ],
+                'headers' => [
+                    "Authorization: {$_ENV['SYSTEM_SECRET_KEY']}",
+                    "Content-Type: application/json"
                 ]
             ],
             "auth" => [

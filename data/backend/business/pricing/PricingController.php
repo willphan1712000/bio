@@ -61,10 +61,7 @@ class PricingController
                     "success" => false,
                     "data" => "Can not connect to the other server."
                 ]);
-            },
-            [
-                "Content-Type: application/json"
-            ]
+            }
         );
     }
 

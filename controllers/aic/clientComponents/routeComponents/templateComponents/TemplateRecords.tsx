@@ -1,5 +1,5 @@
 import { Flex, Switch, Table } from '@radix-ui/themes';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { DotLoader } from 'react-spinners';
 import AppAlertDialog from '../../../../client/clientComponents/AppAlertDialog';
 import AppToaster from '../../../../client/clientComponents/AppToaster';
@@ -9,6 +9,7 @@ import config from '../../config';
 import useAppEffect from '../../../../client/hooks/useAppEffect';
 import useAppMutation from '../../../../client/hooks/useAppMutation';
 import useAppQuery from '../../../../client/hooks/useAppQuery';
+import handleAsync from '../../../../client/utilities/handleAsync';
 
 const TemplateRecords = () => {
     const { isPending, data: templates, error } = useAppQuery('templates', apiTemplate.getTemplateRecords)
@@ -20,10 +21,11 @@ const TemplateRecords = () => {
     useAppEffect(error)
 
     const handleDeleteTemplate = async (id: number) => {
-        const res = await deleteTemplate(id)
-        if(!res) {
+        const {error, data: res} = await handleAsync(deleteTemplate(id))
+
+        if(error) {
             toast(
-                <AppToaster message='Delete unsuccessfully' />
+                <AppToaster message={error} />
             )
         } else {
             toast(
@@ -56,8 +58,6 @@ const TemplateRecords = () => {
                     <Table.ColumnHeaderCell>Type</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Template</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Thumbnail</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Unit price</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Recurring price</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Created at</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Active</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Terminate</Table.ColumnHeaderCell>
@@ -71,8 +71,6 @@ const TemplateRecords = () => {
                         <Table.Cell>{template.type}</Table.Cell>
                         <Table.Cell><a target="_blank" href={url + template.template_url}>Link</a></Table.Cell>
                         <Table.Cell><a target="_blank" href={url + template.thumbnail_url}>Link</a></Table.Cell>
-                        <Table.Cell>{template.unit_price ? template.unit_price : '$10/year'}</Table.Cell>
-                        <Table.Cell>{template.recurring_price ? template.recurring_price : '$10/year'}</Table.Cell>
                         <Table.Cell>{dateFormat(template.createdAt)}</Table.Cell>
                         <Table.Cell>{<Switch onClick={() => handleUpdateTemplate(template.id)} size="3" defaultChecked={template.isActive} />}</Table.Cell>
                         <Table.Cell><AppAlertDialog 
