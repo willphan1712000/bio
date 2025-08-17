@@ -50,6 +50,10 @@ class UserSocial extends EntityFunction
     protected ?string $Website;
     #[Column(name: 'Menu', nullable: true)]
     protected ?string $Menu;
+    #[Column(name: 'Zillow', nullable: true)]
+    protected ?string $Zillow;
+    #[Column(name: 'Realtor', nullable: true)]
+    protected ?string $Realtor;
 
     public function getUser(): User
     {
@@ -205,5 +209,23 @@ class UserSocial extends EntityFunction
     public function getMenu(): string
     {
         return $this->Menu;
+    }
+    public function setZillow(string $Zillow): UserSocial
+    {
+        $this->Zillow = $Zillow;
+        return $this;
+    }
+    public function getZillow(): string
+    {
+        return $this->Zillow;
+    }
+    public function setRealtor(string $Realtor): UserSocial
+    {
+        $this->Realtor = $Realtor;
+        return $this;
+    }
+    public function getRealtor(): string
+    {
+        return $this->Realtor;
     }
 }
