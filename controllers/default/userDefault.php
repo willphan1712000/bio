@@ -49,7 +49,7 @@ $exclude = array_merge($orders, $exclude1);
                 <div class="info__about">
                     <div class="info__name">
                         <div>
-                            <h1 style="text-align: center;"><?= $infoArray['name']->getHTML(); ?></h1>
+                            <h1 style="text-align: center;" class="text-[30px]"><?= $infoArray['name']->getHTML(); ?></h1>
                         </div>
                     </div>
                     <div class="info__position">
@@ -59,7 +59,7 @@ $exclude = array_merge($orders, $exclude1);
                     </div>
                     <div class="info__org">
                         <div>
-                            <h2><?= $infoArray['organization']->getHTML(); ?></h2>
+                            <h2 class="text-[20px]"><?= $infoArray['organization']->getHTML(); ?></h2>
                         </div>
                     </div>
                     <div class="info__des">

@@ -28,7 +28,7 @@ class TalkToOtherServer
      * @param callable $ifSuccessFunc function such that if the request is successful
      * @param callable $ifFailFunc function such that if the request is failed
      */
-    public function get(string $url, callable $ifSuccessFunc, callable $ifFailFunc, array $headers = []): void
+    public function get(string $url, ?callable $ifSuccessFunc = null, ?callable $ifFailFunc = null, array $headers = [])
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -42,12 +42,18 @@ class TalkToOtherServer
         $res = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            $ifFailFunc();
+            if ($ifFailFunc !== null) {
+                $ifFailFunc();
+            }
         } else {
-            $ifSuccessFunc($res);
+            if ($ifSuccessFunc !== null) {
+                $ifSuccessFunc($res);
+            }
         }
 
         curl_close($ch);
+
+        return $res;
     }
 
     public function getId() {}
