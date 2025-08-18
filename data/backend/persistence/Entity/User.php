@@ -33,9 +33,9 @@ class User extends EntityFunction
     protected Collection $Template;
     #[OneToMany(targetEntity: 'Style', mappedBy: 'User', cascade: ['persist'])]
     protected Collection $Style;
-    #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'User', cascade: ['persist'])]
-    #[JoinColumn(name: 'defaultTemplate', referencedColumnName: 'template_id')]
-    protected $StyleDefault;
+    // #[ManyToOne(targetEntity: 'StyleDefault', inversedBy: 'User', cascade: ['persist'])]
+    // #[JoinColumn(name: 'defaultTemplate', referencedColumnName: 'template_id')]
+    // protected $StyleDefault;
 
     #[Column(name: 'password', nullable: false)]
     protected string $password;
@@ -160,9 +160,9 @@ class User extends EntityFunction
         $this->Style->add($Style);
         return $this;
     }
-    public function setStyleDefault(StyleDefault $styleDefault): User
-    {
-        $this->StyleDefault = $styleDefault;
-        return $this;
-    }
+    // public function setStyleDefault(StyleDefault $styleDefault): User
+    // {
+    //     $this->StyleDefault = $styleDefault;
+    //     return $this;
+    // }
 }
