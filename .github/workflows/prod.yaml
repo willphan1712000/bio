@@ -43,7 +43,7 @@ jobs:
           target: "/home/bio/test.allinclicksbio.com"
 
       - name: Running database migration ...
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOSTING_DOMAIN }}
           username: ${{ secrets.HOSTING_USERNAME }}
