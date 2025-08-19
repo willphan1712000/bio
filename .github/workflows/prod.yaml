@@ -41,3 +41,15 @@ jobs:
           key: ${{ secrets.HOSTING_SSH_KEY }}
           source: "./*"
           target: "/home/bio/test.allinclicksbio.com"
+
+      - name: Running database migration ...
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOSTING_DOMAIN }}
+          username: ${{ secrets.HOSTING_USERNAME }}
+          port: ${{ secrets.HOSTING_PORT }}
+          key: ${{ secrets.HOSTING_SSH_KEY }}
+          script: |
+            cd /home/bio/test.allinclicksbio.com
+            ./vendor/bin/doctrine-migrations diff
+            ./vendor/bin/doctrine-migrations migrate
