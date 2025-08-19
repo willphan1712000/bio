@@ -28,10 +28,10 @@ const PricingModel = () => {
     }, [pricingQuery])
     
     const handleUpdate = async () => {
-        const res = await pricingUpdate(pricing)
-        if(!res) {
+        const {error, data: res} = await handleAsync(pricingUpdate(pricing));
+        if(error) {
             return toast(
-                <AppToaster message={error?.message} />
+                <AppToaster message={error} />
             )
         }
 

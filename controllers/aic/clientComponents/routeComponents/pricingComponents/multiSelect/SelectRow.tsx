@@ -15,12 +15,12 @@ const SelectRow = ({ id }: Props) => {
 
     const handleRemove = () => {
             setState(prev => {
-            if(!prev) return prev
+                if(!prev) return prev
 
-            const newPrev = prev.filter((_, i) => i !== id)
+                const newPrev = prev.filter((_, i) => i !== id)
 
-            return newPrev
-        })
+                return newPrev
+            })
     }
 
     const handleSwitch = async () => {
@@ -61,7 +61,7 @@ const SelectRow = ({ id }: Props) => {
             />
             <div className="relative flex-1 w-full">
                 <span className="absolute top-[-22px] left-0">Is Recurring?</span>
-                <Switch size="3" defaultChecked={isChecked} onClick={() => handleSwitch()}/>
+                <Switch size="3" checked={isChecked} onCheckedChange={handleSwitch}/>
             </div>
             <div className="cursor-pointer border-[2px] border-transparent hover:border-[red] rounded-full z-10 transition-all" title="delete row" onClick={handleRemove} >
                 <IoIosCloseCircle color="black" size="30"/>

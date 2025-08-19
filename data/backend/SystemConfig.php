@@ -2,6 +2,12 @@
 
 namespace config;
 
+require_once __DIR__ . "/../../vendor/autoload.php";
+
+use Dotenv\Dotenv;
+
+Dotenv::createImmutable(__DIR__ . "./../../")->load();
+
 require_once __DIR__ . '/business/auth/Auth.php';
 
 use business\auth\STRATEGY;
@@ -67,12 +73,20 @@ class SystemConfig
                 'endpoint' => [
                     'template' => '/api/template',
                     'pricing' => '/api/pricing'
+                ],
+                'headers' => [
+                    "Authorization: {$_ENV['SYSTEM_SECRET_KEY']}",
+                    "Content-Type: application/json"
                 ]
             ],
             'payment_server' => [
                 'url' => ProductionConfig::config()['payment_server'],
                 'endpoint' => [
                     ''
+                ],
+                'headers' => [
+                    "Authorization: {$_ENV['SYSTEM_SECRET_KEY']}",
+                    "Content-Type: application/json"
                 ]
             ],
             "auth" => [
@@ -116,7 +130,9 @@ class SystemConfig
             "Viber" => '<div style=""><i class="fa-brands fa-viber"></i></div>',
             "HotLine" => '<div style=""><i class="fa-solid fa-phone"></i></div>',
             "Whatsapp" => '<div style=""><i class="fa-brands fa-whatsapp"></i></div>',
-            "Zalo" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/zalo.png" alt="element_icon"></div>'
+            "Zalo" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/zalo.png" alt="element_icon"></div>',
+            "Realtor" => '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/realtor.png" alt="element_icon"></div>',
+            "Zillow" =>  '<div style=""><img style="width: 100%;" class="icon" src="/controllers/client/img/zillow.png" alt="element_icon"></div>'
         ];
     }
 
@@ -150,6 +166,8 @@ class SystemConfig
             'Viber' => '/^\d{10}$/',
             'HotLine' => '/^\d+$/',
             'Whatsapp' => '/^\d{10}$/',
+            'Realtor' => '/^https?:\/\/[^\s]+$/',
+            'Zillow' => '/^https?:\/\/[^\s]+$/',
         ];
     }
 
@@ -182,6 +200,8 @@ class SystemConfig
             'Viber' => 'Viber',
             'HotLine' => 'HotLine',
             'Whatsapp' => 'Whatsapp',
+            'Realtor' => 'Realtor link',
+            'Zillow' => 'Zillow link',
         ];
     }
 

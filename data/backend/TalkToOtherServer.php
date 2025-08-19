@@ -8,6 +8,11 @@ class TalkToOtherServer
 
     private function __construct() {}
 
+    private function headers(): array
+    {
+        return SystemConfig::globalVariables()['template_server']['headers'];
+    }
+
     public static function getInstance(): TalkToOtherServer
     {
         if (!isset(self::$instance)) {
@@ -23,19 +28,32 @@ class TalkToOtherServer
      * @param callable $ifSuccessFunc function such that if the request is successful
      * @param callable $ifFailFunc function such that if the request is failed
      */
-    public function get(string $url, callable $ifSuccessFunc, callable $ifFailFunc): void
+    public function get(string $url, ?callable $ifSuccessFunc = null, ?callable $ifFailFunc = null, array $headers = [])
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if (!empty($headers)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        } else {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers());
+        }
+
         $res = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            $ifFailFunc();
+            if ($ifFailFunc !== null) {
+                $ifFailFunc();
+            }
         } else {
-            $ifSuccessFunc($res);
+            if ($ifSuccessFunc !== null) {
+                $ifSuccessFunc($res);
+            }
         }
 
         curl_close($ch);
+
+        return $res;
     }
 
     public function getId() {}
@@ -49,6 +67,8 @@ class TalkToOtherServer
 
         if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        } else {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers());
         }
 
         $res = curl_exec($ch);
@@ -70,6 +90,8 @@ class TalkToOtherServer
 
         if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        } else {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers());
         }
 
         $res = curl_exec($ch);
@@ -91,6 +113,8 @@ class TalkToOtherServer
 
         if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        } else {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers());
         }
 
         $res = curl_exec($ch);

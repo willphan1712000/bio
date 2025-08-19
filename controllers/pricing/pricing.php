@@ -1,5 +1,6 @@
 <?php
 
+use business\wp\Pricing;
 use config\SystemConfig;
 
 $g = SystemConfig::globalVariables();
@@ -15,6 +16,9 @@ use function component\copyright;
 require_once __DIR__ . "/../controllers/components/signup/SignupTerms.php";
 
 use function component\signup\signupTerms;
+
+$pricing = new Pricing();
+$content = $pricing->get();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +38,7 @@ use function component\signup\signupTerms;
     </div>
     <div id="container" class="max-w-[700px] relative bg-gradient-to-r from-red-500 to-purple-500 p-[3px] m-[20px] rounded-[30px]" style="width: calc(100% - 40px)">
         <div class="content bg-white rounded-[30px] p-8">
-
+            <?= $content; ?>
         </div>
     </div>
     <?php
